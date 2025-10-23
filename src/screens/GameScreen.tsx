@@ -2,15 +2,15 @@
  * Pantalla principal del juego
  */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../context/ThemeContext';
 import { usePhrases } from '../hooks/usePhrases';
 import PhraseCard from '../components/PhraseCard';

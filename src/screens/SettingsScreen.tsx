@@ -7,12 +7,12 @@ import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
   Switch,
   Alert,
   Modal,
   ScrollView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../context/ThemeContext';
 import CustomButton from '../components/CustomButton';
 import { clearCustomPhrases } from '../utils/storage';

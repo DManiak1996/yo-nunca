@@ -2,12 +2,15 @@
  * Pantalla de inicio de la app
  */
 
-import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../context/ThemeContext';
 import CustomButton from '../components/CustomButton';
-import { RootStackParamList } from '../types';
+import ResumeGameModal from '../components/ResumeGameModal';
+import { RootStackParamList, GameSession } from '../types';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { getGameSession, clearGameSession } from '../utils/storage';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -17,6 +20,56 @@ interface HomeScreenProps {
 
 export default function HomeScreen({ navigation }: HomeScreenProps) {
   const { theme } = useTheme();
+  const [savedSession, setSavedSession] = useState<GameSession | null>(null);
+  const [showResumeModal, setShowResumeModal] = useState(false);
+
+  /**
+   * Verifica si hay una sesión guardada al montar
+   */
+  useEffect(() => {
+    checkSavedSession();
+  }, []);
+
+  /**
+   * Verifica si hay una sesión de juego guardada
+   */
+  const checkSavedSession = async () => {
+    try {
+      const session = await getGameSession();
+      if (session) {
+        setSavedSession(session);
+        setShowResumeModal(true);
+      }
+    } catch (error) {
+      console.error('Error al verificar sesión guardada:', error);
+    }
+  };
+
+  /**
+   * Continúa la partida guardada
+   */
+  const handleContinueGame = () => {
+    if (!savedSession) return;
+    setShowResumeModal(false);
+    navigation.navigate('GameMultiplayer', {
+      players: savedSession.players,
+      difficulty: savedSession.difficulty,
+    });
+  };
+
+  /**
+   * Inicia una nueva partida y limpia la sesión guardada
+   */
+  const handleNewGame = async () => {
+    try {
+      await clearGameSession();
+    } catch (error) {
+      console.error('Error al limpiar sesión:', error);
+    }
+    setShowResumeModal(false);
+    setSavedSession(null);
+    navigation.navigate('CategorySelection');
+  };
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
@@ -43,7 +96,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
         <View style={styles.buttonsContainer}>
           <CustomButton
             title="Jugar"
-            onPress={() => navigation.navigate('Game')}
+            onPress={() => navigation.navigate('CategorySelection')}
             variant="primary"
             style={styles.button}
           />
@@ -60,6 +113,14 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
           Para mayores de 18 años
         </Text>
       </View>
+
+      {/* Modal para continuar partida guardada */}
+      <ResumeGameModal
+        visible={showResumeModal}
+        session={savedSession}
+        onContinue={handleContinueGame}
+        onNewGame={handleNewGame}
+      />
     </SafeAreaView>
   );
 }
