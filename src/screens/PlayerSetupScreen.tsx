@@ -247,14 +247,14 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
         <View style={styles.buttonRow}>
           <View style={styles.halfButton}>
             <CustomButton
-              title="Cambiar Cantidad"
-              onPress={() => setShowNumberPicker(true)}
+              title="Cambiar Identidad"
+              onPress={() => regeneratePlayers(players.length)}
               variant="secondary"
             />
           </View>
           <View style={styles.halfButton}>
             <CustomButton
-              title="+ Añadir"
+              title="Añadir Jugador"
               onPress={handleAddPlayer}
               variant="secondary"
             />

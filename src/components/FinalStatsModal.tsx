@@ -297,14 +297,8 @@ const FinalStatsModal = React.memo(function FinalStatsModal({
 
           {/* Botones */}
           <View style={styles.buttonsContainer}>
-            <View style={styles.buttonRow}>
-              <View style={styles.halfButton}>
-                <CustomButton title="Jugar de nuevo" onPress={onPlayAgain} variant="primary" />
-              </View>
-              <View style={styles.halfButton}>
-                <CustomButton title="Salir" onPress={onExit} variant="secondary" />
-              </View>
-            </View>
+            <CustomButton title="Jugar de nuevo" onPress={onPlayAgain} variant="primary" />
+            <CustomButton title="Salir" onPress={onExit} variant="secondary" />
           </View>
         </Animated.View>
       </View>
@@ -508,12 +502,6 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     padding: 20,
     paddingTop: 12,
-  },
-  buttonRow: {
-    flexDirection: 'row',
     gap: 12,
-  },
-  halfButton: {
-    flex: 1,
   },
 });

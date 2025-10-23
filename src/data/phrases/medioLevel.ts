@@ -1,5 +1,5 @@
 /**
- * Frases de nivel MEDIO - 60 frases
+ * Frases de nivel MEDIO - 80 frases
  * Categoría: Tibio, Hoy cojo el coche (Real), Mi primera vez..., Virgen pero desesperado
  * NOTA: NO incluyen "Yo nunca" al inicio (se añade dinámicamente)
  */
@@ -76,4 +76,26 @@ export const medioLevelPhrases: string[] = [
   "he fingido estar enfermo para evitar una responsabilidad",
   "he dejado que otra persona pagara la cuenta completa",
   "he comido directamente del bote o paquete",
+
+  // Más experiencias divertidas y cotidianas
+  "he hecho ejercicio solo para poder comer más después",
+  "he mentido sobre haber leído un libro famoso",
+  "he fingido saber cocinar y pedí comida a escondidas",
+  "he limpiado mi casa solo porque venía visita",
+  "he bloqueado a alguien en redes sociales sin decir nada",
+  "he guardado comida gratis de eventos aunque no tuviera hambre",
+  "he fingido tener planes para evitar quedar con alguien",
+  "he visto spoilers de una serie a propósito",
+  "he googleado a alguien antes de una primera cita",
+  "he fingido no ver a alguien conocido en la calle para no saludar",
+  "he comprado ropa y la he devuelto después de usarla",
+  "he mentido sobre cuánto me costó algo que compré",
+  "he llorado por algo muy tonto",
+  "he comido helado directamente del bote entero",
+  "he bailado borracho sobre una mesa o barra",
+  "he dormido con la ropa del día anterior puesta",
+  "he tirado comida de mi madre y dije que estaba deliciosa",
+  "he fingido gustarme el fútbol para caer bien",
+  "he usado el mismo vaso sin lavar durante días",
+  "he espiado conversaciones ajenas a propósito",
 ];

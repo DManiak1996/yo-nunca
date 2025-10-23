@@ -1,19 +1,19 @@
 /**
  * Componente para mostrar un jugador en la lista durante el juego
- * Incluye avatar, nombre, contador de tragos y botón para incrementar
- * Con animaciones bounce al incrementar tragos
+ * Con zonas táctiles: izquierda resta, derecha suma
+ * Sistema de bloqueo de tragos al cambiar de frase
  */
 
-import React, { useRef, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Animated, Alert } from 'react-native';
+import React, { useRef } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import { Player } from '../types';
 import { useTheme } from '../context/ThemeContext';
-import { useRateLimit } from '../hooks/useRateLimit';
 
 interface Props {
   player: Player;
   rank?: number; // Posición en el ranking (opcional)
   onIncrementDrinks: (playerId: string) => void;
+  onDecrementDrinks: (playerId: string) => void;
   showRank?: boolean;
 }
 
@@ -21,32 +21,19 @@ const PlayerListItem = React.memo(function PlayerListItem({
   player,
   rank,
   onIncrementDrinks,
+  onDecrementDrinks,
   showRank = false,
 }: Props) {
   const { theme } = useTheme();
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
-  // Rate limiting: máximo 10 clicks por segundo (anti-spam)
-  const { checkRateLimit } = useRateLimit({ maxCalls: 10, windowMs: 1000 });
-
   /**
-   * Maneja el incremento con animación bounce
+   * Animación bounce
    */
-  const handleIncrementWithAnimation = () => {
-    // Verificar rate limit
-    if (!checkRateLimit()) {
-      Alert.alert(
-        '¡Tranquilo! 🍺',
-        'No tan rápido... Dale tiempo al jugador para beber 😅',
-        [{ text: 'OK' }]
-      );
-      return;
-    }
-
-    // Animación de bounce
+  const animateBounce = () => {
     Animated.sequence([
       Animated.spring(scaleAnim, {
-        toValue: 1.2,
+        toValue: 1.1,
         tension: 100,
         friction: 3,
         useNativeDriver: true,
@@ -58,8 +45,26 @@ const PlayerListItem = React.memo(function PlayerListItem({
         useNativeDriver: true,
       }),
     ]).start();
+  };
 
+  /**
+   * Maneja el incremento de tragos
+   */
+  const handleIncrement = () => {
+    animateBounce();
     onIncrementDrinks(player.id);
+  };
+
+  /**
+   * Maneja el decremento de tragos
+   */
+  const handleDecrement = () => {
+    const lockedDrinks = player.drinksLockedAt || 0;
+    // Solo permitir restar si hay tragos no bloqueados
+    if (player.drinks > lockedDrinks) {
+      animateBounce();
+      onDecrementDrinks(player.id);
+    }
   };
 
   /**
@@ -90,6 +95,10 @@ const PlayerListItem = React.memo(function PlayerListItem({
     return theme.danger; // Rojo si tiene 10+
   };
 
+  // Calcular tragos desbloqueados (que se pueden restar)
+  const unlockedDrinks = player.drinks - (player.drinksLockedAt || 0);
+  const canDecrement = unlockedDrinks > 0;
+
   return (
     <View
       style={[
@@ -107,50 +116,66 @@ const PlayerListItem = React.memo(function PlayerListItem({
         </View>
       )}
 
-      {/* Avatar */}
-      <Text style={styles.avatar}>{player.avatar}</Text>
+      {/* ZONA IZQUIERDA (40%) - RESTAR */}
+      <TouchableOpacity
+        style={styles.leftZone}
+        onPress={handleDecrement}
+        activeOpacity={canDecrement ? 0.7 : 1}
+        disabled={!canDecrement}
+      >
+        {/* Avatar */}
+        <Text style={styles.avatar}>{player.avatar}</Text>
 
-      {/* Info del jugador */}
-      <View style={styles.infoContainer}>
-        <Text style={[styles.name, { color: theme.text }]} numberOfLines={1}>
-          {player.name}
-        </Text>
-        <View style={styles.drinksContainer}>
-          {[...Array(Math.min(player.drinks, 10))].map((_, index) => (
-            <Text key={index} style={styles.drinkIcon}>
-              🍺
-            </Text>
-          ))}
-          {player.drinks > 10 && (
-            <Text style={[styles.drinkCount, { color: theme.danger }]}>
-              +{player.drinks - 10}
+        {/* Info del jugador */}
+        <View style={styles.infoContainer}>
+          <Text style={[styles.name, { color: theme.text }]} numberOfLines={1}>
+            {player.name}
+          </Text>
+          <View style={styles.drinksContainer}>
+            {[...Array(Math.min(player.drinks, 10))].map((_, index) => (
+              <Text key={index} style={styles.drinkIcon}>
+                🍺
+              </Text>
+            ))}
+            {player.drinks > 10 && (
+              <Text style={[styles.drinkCount, { color: theme.danger }]}>
+                +{player.drinks - 10}
+              </Text>
+            )}
+          </View>
+          {/* Indicador visual zona restar */}
+          {canDecrement && (
+            <Text style={[styles.zoneIndicator, { color: theme.textSecondary }]}>
+              ← Restar
             </Text>
           )}
         </View>
-      </View>
+      </TouchableOpacity>
 
-      {/* Contador de tragos con animación */}
-      <Animated.View
-        style={[
-          styles.counterContainer,
-          { transform: [{ scale: scaleAnim }] }
-        ]}
-      >
-        <Text style={[styles.counterNumber, { color: theme.primary }]}>
-          {player.drinks}
-        </Text>
-        <Text style={[styles.counterLabel, { color: theme.textSecondary }]}>
-          {player.drinks === 1 ? 'trago' : 'tragos'}
-        </Text>
-      </Animated.View>
-
-      {/* Botón [+] */}
+      {/* ZONA DERECHA (60%) - SUMAR */}
       <TouchableOpacity
-        style={[styles.incrementButton, { backgroundColor: theme.primary }]}
-        onPress={handleIncrementWithAnimation}
+        style={styles.rightZone}
+        onPress={handleIncrement}
         activeOpacity={0.7}
       >
-        <Text style={styles.incrementButtonText}>+</Text>
+        {/* Contador de tragos con animación */}
+        <Animated.View
+          style={[
+            styles.counterContainer,
+            { transform: [{ scale: scaleAnim }] }
+          ]}
+        >
+          <Text style={[styles.counterNumber, { color: theme.primary }]}>
+            {player.drinks}
+          </Text>
+          <Text style={[styles.counterLabel, { color: theme.textSecondary }]}>
+            {player.drinks === 1 ? 'trago' : 'tragos'}
+          </Text>
+          {/* Indicador visual zona sumar */}
+          <Text style={[styles.zoneIndicator, { color: theme.textSecondary }]}>
+            Sumar →
+          </Text>
+        </Animated.View>
       </TouchableOpacity>
     </View>
   );
@@ -162,7 +187,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 12,
     borderRadius: 12,
     marginBottom: 8,
     elevation: 2,
@@ -171,25 +195,43 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
     borderWidth: 2,
+    overflow: 'hidden',
   },
   rankContainer: {
-    marginRight: 8,
-    minWidth: 32,
-    alignItems: 'center',
+    position: 'absolute',
+    top: 4,
+    left: 4,
+    zIndex: 10,
   },
   rankText: {
-    fontSize: 20,
+    fontSize: 16,
+  },
+  leftZone: {
+    flex: 0.5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    paddingRight: 6,
+    minHeight: 70,
+  },
+  rightZone: {
+    flex: 0.5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 12,
+    minHeight: 70,
+    borderLeftWidth: 1,
+    borderLeftColor: 'rgba(255, 255, 255, 0.1)',
   },
   avatar: {
-    fontSize: 28,
-    marginRight: 12,
+    fontSize: 26,
+    marginRight: 8,
   },
   infoContainer: {
     flex: 1,
-    marginRight: 12,
   },
   name: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '600',
     marginBottom: 4,
   },
@@ -197,43 +239,31 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'wrap',
+    marginBottom: 2,
   },
   drinkIcon: {
-    fontSize: 12,
-    marginRight: 2,
+    fontSize: 11,
+    marginRight: 1,
   },
   drinkCount: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: 'bold',
-    marginLeft: 4,
+    marginLeft: 3,
   },
   counterContainer: {
     alignItems: 'center',
-    marginRight: 12,
-    minWidth: 50,
   },
   counterNumber: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
   },
   counterLabel: {
     fontSize: 10,
+    marginTop: 2,
   },
-  incrementButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-  },
-  incrementButtonText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#000',
+  zoneIndicator: {
+    fontSize: 10,
+    marginTop: 2,
+    opacity: 0.6,
   },
 });

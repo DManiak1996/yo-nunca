@@ -1,5 +1,5 @@
 /**
- * Frases de nivel MUY PICANTE - 100 frases
+ * Frases de nivel MUY PICANTE - 150 frases
  * Categoría: Soy un turbio, Nah hoy de tranquis 😈, Hoy cojo el coche (Mentira),
  *            El que perdona murió en la cruz, Si ya sabes cómo me pongo para qué me invitáis
  * NOTA: NO incluyen "Yo nunca" al inicio (se añade dinámicamente)
@@ -126,4 +126,38 @@ export const muyPicanteLevelPhrases: string[] = [
   "he saboteado el trabajo de un compañero",
   "he inventado una historia traumática falsa para conseguir simpatía",
   "he fingido ser víctima de algo grave que nunca me pasó",
+
+  // Más contenido sexual extremo
+  "he tenido sexo en un avión",
+  "he practicado sexo en el baño de un tren",
+  "he tenido sexo en la oficina después del horario laboral",
+  "he practicado dogging (sexo en público con espectadores)",
+  "he tenido sexo con alguien para saldar una deuda",
+  "he participado en gloryholes",
+  "he tenido sexo con más de 50 personas en mi vida",
+  "he practicado pegging",
+  "he tenido sexo en una iglesia o templo",
+  "he participado en juegos sexuales por dinero",
+
+  // Más traiciones y secretos oscuros
+  "he besado a mi cuñado/a",
+  "he tenido fantasías con mi terapeuta",
+  "he acosado sexualmente a alguien en el trabajo",
+  "he filtrado información privada de alguien por venganza",
+  "he usado fotos falsas en aplicaciones de citas",
+  "he mentido sobre mi profesión para impresionar",
+  "he tenido sexo con alguien para conseguir drogas",
+  "he robado dinero de la billetera de alguien durante una cita",
+
+  // Más situaciones extremas
+  "he tenido sexo en un funeral",
+  "he tenido sexo con el profesor/a para aprobar",
+  "he practicado exhibicionismo deliberadamente",
+  "he enviado fotos íntimas mías a grupos de desconocidos",
+  "he tenido una relación amorosa con alguien casado durante años",
+  "he destruido la relación de alguien porque me gustaba esa persona",
+  "he mentido sobre usar anticonceptivos",
+  "he tenido sexo con gemelos/as (en momentos diferentes)",
+  "he fingido estar borracho para hacer cosas que quería hacer",
+  "he usado el teléfono de mi pareja para espiar sus conversaciones",
 ];

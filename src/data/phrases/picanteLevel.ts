@@ -1,5 +1,5 @@
 /**
- * Frases de nivel PICANTE - 80 frases
+ * Frases de nivel PICANTE - 100 frases
  * Categoría: Picante, Ardiente, Cachond@ pero no tanto, Mi primer paso para la borrachera
  * NOTA: NO incluyen "Yo nunca" al inicio (se añade dinámicamente)
  */
@@ -98,4 +98,10 @@ export const picanteLevelPhrases: string[] = [
   "he espiado a mis vecinos desde mi ventana",
   "he tenido una cita doble y ligué con la pareja de mi acompañante",
   "he tenido sexo mientras otras personas dormían en la misma habitación",
+  "he tenido sexo con alguien cuyo nombre no pregunté",
+  "he fingido gustarme alguien para conseguir algo",
+  "he tenido sexo en el coche de mis padres",
+  "he quedado con alguien solo para tener dónde dormir",
+  "he ligado con alguien para ponerle celoso a otra persona",
+  "he tenido sexo en la playa",
 ];

@@ -1,138 +1,84 @@
 /**
- * Generador de nombres aleatorios graciosos para jugadores
- * Incluye borrachos famosos y animales festivos
+ * Generador de nombres fiesteros para jugadores
  */
 
 import { Player } from '../types';
 
-// Borrachos famosos y personajes legendarios
-const DRUNK_CELEBRITIES = [
-  "Amy Winehouse",
-  "Charles Bukowski",
-  "Ernest Hemingway",
-  "Diego Maradona",
-  "Keith Richards",
-  "Ozzy Osbourne",
-  "Winston Churchill",
-  "Frank Sinatra",
-  "Hunter S. Thompson",
-  "Jim Morrison",
-  "Bon Scott",
-  "Janis Joplin",
-  "Shane MacGowan",
-  "George Best",
-  "Oliver Reed",
-  "Dean Martin",
-  "W.C. Fields",
-  "Richard Burton",
-  "Boris Yeltsin",
-  "Pablo Escobar (borracho de poder)",
-];
+// Nombres fiesteros y picantes creativos
+const PARTY_NAMES = [
+  // 🔥 Fiesteros y picantes
+  "El Padrino del Perreo",
+  "La Reina del Descontrol",
+  "El Sultán del Sudor",
+  "La Diosa del Pecado",
+  "El Arquitecto del Caos Sexual",
+  "La Ingeniera del Deseo",
+  "El Bandido del Beso Robado",
+  "La Maestra del Faje",
+  "El Titán del Toqueteo",
+  "La Fiera del After",
+  "El Sicario del Amor",
+  "La Reina del '¿solo amigos?'",
+  "El Príncipe del Calor",
+  "La Señorita del Delirio",
+  "El Mago del Kiki",
+  "La Hechicera del Jäger",
+  "El Devoto del Desmadre",
+  "La Virgen del Vino",
+  "El Pecador del Ron",
+  "La Bruja del Whisky",
 
-// Animales fiesteros con emojis
-const FUNNY_ANIMALS = [
-  "🐻 Oso borracho",
-  "🦊 Zorro fiestero",
-  "🐼 Panda pachanguero",
-  "🦁 León melenas",
-  "🐯 Tigre salvaje",
-  "🐺 Lobo aullador",
-  "🦝 Mapache travieso",
-  "🐨 Koala dormilón",
-  "🦘 Canguro saltarín",
-  "🐷 Cerdo glotón",
-  "🐵 Mono borrachín",
-  "🦍 Gorila gigante",
-  "🐸 Rana cantarina",
-  "🦎 Lagarto escurridizo",
-  "🐊 Cocodrilo hambriento",
-  "🦈 Tiburón cazador",
-  "🐙 Pulpo tentáculo",
-  "🦀 Cangrejo pinzas",
-  "🐌 Caracol lento",
-  "🦋 Mariposa voladora",
-  "🐝 Abeja trabajadora",
-  "🦗 Grillo musical",
-  "🕷️ Araña tejedora",
-  "🦂 Escorpión peligroso",
-  "🐢 Tortuga sabia",
-];
+  // 🍸 Humor y doble sentido
+  "El CEO del Vacile",
+  "La Gerenta del Placer Corporativo",
+  "El Consultor de Cuerpos",
+  "La Community Manager del Caos",
+  "El Influencer del Pecado",
+  "La Diseñadora del Deseo",
+  "El Pastor del Perreo",
+  "La Monja de la Fiesta",
+  "El Papa del Poteo",
+  "La Condesa del Copazo",
+  "El Notario de los Pecados",
+  "La Psicóloga del After",
+  "El Sommelier del Sudor",
+  "La Curandera del Gin",
+  "El Chamán del Kiki",
+  "La Embajadora del Desmadre",
+  "El Barón del Beso",
+  "La Marquesa del Trago",
+  "El Poeta del Pecado",
+  "La Reina del Trébol",
 
-// Apodos españoles graciosos
-const SPANISH_NICKNAMES = [
-  "El Cachondo",
-  "La Borracha",
-  "El Descarado",
-  "La Picante",
-  "El Turbio",
-  "La Salvaje",
-  "El Loco",
-  "La Diablesa",
-  "El Vicio",
-  "La Locuela",
-  "El Fiestero",
-  "La Marchosa",
-  "El Sinvergüenza",
-  "La Desfasada",
-  "El Mamado",
-  "La Piripi",
-  "El Colocado",
-  "La Temeraria",
-  "El Descontrolado",
-  "La Alocada",
-];
-
-// Combinación de adjetivos + sustantivos random
-const ADJECTIVES = [
-  "Épico",
-  "Salvaje",
-  "Loco",
-  "Místico",
-  "Turbio",
-  "Legendario",
-  "Caótico",
-  "Divino",
-  "Maldito",
-  "Bendito",
-];
-
-const NOUNS = [
-  "Bebedor",
-  "Fiestero",
-  "Guerrero",
-  "Campeón",
-  "Maestro",
-  "Rey",
-  "Héroe",
-  "Villano",
-  "Leyenda",
-  "Mito",
+  // 💃 Energía sexual y fiesta
+  "El Animal del Amor",
+  "La Pantera del Perreo",
+  "El Demonio del Deseo",
+  "La Tentación de la Noche",
+  "El Ángel del After",
+  "La Gata del Gin",
+  "El Tigre del Tequila",
+  "La Sirena del Ron",
+  "El Vampiro del Vodka",
+  "La Fénix del Fuego Interno",
+  "El Dragón del Delirio",
+  "La Musa del Caos",
+  "El Capitán del Coqueteo",
+  "La General del Golpe Bajo",
+  "El Hacker de Corazones",
+  "La Criminóloga del Kiki",
+  "El Piloto del Pecado",
+  "La Controladora del Calor",
+  "El Alquimista del Sudor",
+  "La Sultana del After",
 ];
 
 /**
- * Genera un nombre aleatorio gracioso
+ * Genera un nombre aleatorio de PARTY_NAMES
  * @returns String con el nombre generado
  */
 export function generateRandomName(): string {
-  const categories = [
-    DRUNK_CELEBRITIES,
-    FUNNY_ANIMALS,
-    SPANISH_NICKNAMES,
-  ];
-
-  // 70% de probabilidad de usar una de las 3 categorías principales
-  // 30% de probabilidad de generar combinación adjetivo + sustantivo
-  const useMainCategories = Math.random() < 0.7;
-
-  if (useMainCategories) {
-    const randomCategory = categories[Math.floor(Math.random() * categories.length)];
-    return randomCategory[Math.floor(Math.random() * randomCategory.length)];
-  } else {
-    // Generar combinación
-    const adj = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
-    const noun = NOUNS[Math.floor(Math.random() * NOUNS.length)];
-    return `${adj} ${noun}`;
-  }
+  return PARTY_NAMES[Math.floor(Math.random() * PARTY_NAMES.length)];
 }
 
 /**
@@ -177,14 +123,14 @@ export function generatePlayerList(count: number): Player[] {
 }
 
 /**
- * Genera un avatar aleatorio (emoji)
+ * Genera un avatar aleatorio (emoji) fiestero
  * @returns String con emoji
  */
 export function getRandomAvatar(): string {
   const avatars = [
-    '🎭', '🎪', '🎨', '🎬', '🎤', '🎧', '🎮', '🎯', '🎲', '🎰',
-    '👑', '👒', '🎩', '🧢', '👓', '🕶️', '🥽', '🥳', '🤠', '🤡',
-    '👹', '👺', '💀', '👽', '🤖', '🎃', '😈', '👿', '🔥', '⚡',
+    '🥳', '🎉', '🍺', '🍻', '🥂', '🍾', '🎊', '🎈', '🎆', '🎇',
+    '😎', '🕶️', '🤠', '🎩', '👑', '🔥', '⚡', '💥', '✨', '🌟',
+    '🎭', '👹', '👺', '💀', '👽', '🤖', '🎃', '😈', '👿', '🦄',
   ];
   return avatars[Math.floor(Math.random() * avatars.length)];
 }

@@ -36,9 +36,13 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
   const checkSavedSession = async () => {
     try {
       const session = await getGameSession();
-      if (session) {
+      // Ignorar sesiones que han sido finalizadas manualmente
+      if (session && !session.gameEnded) {
         setSavedSession(session);
         setShowResumeModal(true);
+      } else if (session?.gameEnded) {
+        // Limpiar sesión terminada
+        await clearGameSession();
       }
     } catch (error) {
       console.error('Error al verificar sesión guardada:', error);
@@ -86,9 +90,9 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
 
         {/* Logo y título */}
         <View style={styles.titleContainer}>
-          <Text style={[styles.logo, { color: theme.text }]}>🍻 Yo Nunca</Text>
+          <Text style={[styles.logo, { color: theme.text }]}>🍻Yo Nunca🍻</Text>
           <Text style={[styles.subtitle, { color: theme.textSecondary }]}>
-            El juego de beber definitivo
+            El cuerpo lo pide y lo sabes.
           </Text>
         </View>
 

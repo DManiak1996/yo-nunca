@@ -32,6 +32,7 @@ export interface Player {
   id: string;
   name: string;
   drinks: number;
+  drinksLockedAt?: number; // Tragos bloqueados de frases anteriores
   avatar?: string; // emoji o icono
 }
 
@@ -46,6 +47,7 @@ export interface GameSession {
   currentPhraseIndex: number;
   createdAt: number;
   lastPlayedAt: number;
+  gameEnded?: boolean; // Marca partidas finalizadas manualmente
 }
 
 /**

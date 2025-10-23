@@ -26,6 +26,8 @@ interface UseGameSessionReturn {
   sessionId: string;
   createdAt: number;
   incrementPlayerDrinks: (playerId: string) => void;
+  decrementPlayerDrinks: (playerId: string) => void;
+  lockPlayerDrinks: () => void;
   nextPhrase: () => void;
   resetGame: () => void;
   getPlayersSortedByDrinks: () => Player[];
@@ -107,6 +109,36 @@ export function useGameSession({
   }, []);
 
   /**
+   * Decrementa el contador de tragos de un jugador (solo si tiene tragos desbloqueados)
+   */
+  const decrementPlayerDrinks = useCallback((playerId: string) => {
+    setPlayers((currentPlayers) =>
+      currentPlayers.map((player) => {
+        if (player.id === playerId) {
+          const lockedDrinks = player.drinksLockedAt || 0;
+          // Solo decrementar si hay tragos desbloqueados
+          if (player.drinks > lockedDrinks) {
+            return { ...player, drinks: player.drinks - 1 };
+          }
+        }
+        return player;
+      })
+    );
+  }, []);
+
+  /**
+   * Bloquea los tragos actuales de todos los jugadores (llamar al cambiar de frase)
+   */
+  const lockPlayerDrinks = useCallback(() => {
+    setPlayers((currentPlayers) =>
+      currentPlayers.map((player) => ({
+        ...player,
+        drinksLockedAt: player.drinks,
+      }))
+    );
+  }, []);
+
+  /**
    * Avanza a la siguiente frase
    */
   const nextPhrase = useCallback(() => {
@@ -180,6 +212,8 @@ export function useGameSession({
     sessionId,
     createdAt,
     incrementPlayerDrinks,
+    decrementPlayerDrinks,
+    lockPlayerDrinks,
     nextPhrase,
     resetGame,
     getPlayersSortedByDrinks,

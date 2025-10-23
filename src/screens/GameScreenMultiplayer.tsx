@@ -12,6 +12,7 @@ import {
   Alert,
   TouchableOpacity,
   Animated,
+  Easing,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -25,6 +26,7 @@ import PlayerListItem from '../components/PlayerListItem';
 import CustomButton from '../components/CustomButton';
 import StatsModal from '../components/StatsModal';
 import FinalStatsModal from '../components/FinalStatsModal';
+import ConfirmEndGameModal from '../components/ConfirmEndGameModal';
 import { getRandomFunnyMessage, shouldShowFunnyMessage } from '../data/funnyMessages';
 import { clearGameSession } from '../utils/storage';
 
@@ -54,6 +56,8 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
     totalPhrases,
     unusedPhrases,
     incrementPlayerDrinks,
+    decrementPlayerDrinks,
+    lockPlayerDrinks,
     nextPhrase,
     resetGame,
     getPlayersSortedByDrinks,
@@ -65,10 +69,11 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
   });
 
   const [funnyMessage, setFunnyMessage] = useState<string | null>(null);
-  const [fadeAnim] = useState(new Animated.Value(1));
+  const [slideAnim] = useState(new Animated.Value(0));
   const [messageOpacity] = useState(new Animated.Value(0));
   const [showStatsModal, setShowStatsModal] = useState(false);
   const [showFinalStatsModal, setShowFinalStatsModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [gameStartTime] = useState(() => Date.now());
 
   // Guardado automático cada 10 segundos
@@ -77,21 +82,6 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
     enabled: !showFinalStatsModal, // No guardar si ya terminó
   });
 
-  /**
-   * Configura el header personalizado
-   */
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity
-          style={styles.headerButton}
-          onPress={handleShowStats}
-        >
-          <Text style={styles.headerButtonText}>🏆</Text>
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation, players]);
 
   /**
    * Verifica si debe mostrar mensaje gracioso después de cada frase
@@ -135,41 +125,45 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
    * Maneja el avance a la siguiente frase
    */
   const handleNextPhrase = () => {
-    // Animación de fade out y fade in
-    Animated.sequence([
-      Animated.timing(fadeAnim, {
-        toValue: 0,
-        duration: 150,
-        useNativeDriver: true,
-      }),
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 150,
-        useNativeDriver: true,
-      }),
-    ]).start();
+    // Bloquear tragos actuales antes de cambiar de frase
+    lockPlayerDrinks();
 
-    nextPhrase();
+    // Animación: card actual sale hacia la izquierda
+    Animated.timing(slideAnim, {
+      toValue: -400,
+      duration: 300,
+      easing: Easing.in(Easing.cubic),
+      useNativeDriver: true,
+    }).start(() => {
+      // Cambiar la frase
+      nextPhrase();
+
+      // Resetear posición a la derecha
+      slideAnim.setValue(400);
+
+      // Nueva card entra desde la derecha con deceleration
+      Animated.timing(slideAnim, {
+        toValue: 0,
+        duration: 500,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      }).start();
+    });
   };
 
   /**
    * Maneja la finalización de la partida
    */
   const handleFinishGame = () => {
-    Alert.alert(
-      'Finalizar Partida',
-      '¿Estás seguro de terminar el juego?',
-      [
-        { text: 'Cancelar', style: 'cancel' },
-        {
-          text: 'Finalizar',
-          style: 'destructive',
-          onPress: () => {
-            setShowFinalStatsModal(true);
-          },
-        },
-      ]
-    );
+    setShowConfirmModal(true);
+  };
+
+  /**
+   * Confirma la finalización del juego
+   */
+  const confirmFinishGame = () => {
+    setShowConfirmModal(false);
+    setShowFinalStatsModal(true);
   };
 
   /**
@@ -182,7 +176,15 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
       console.error('Error al limpiar sesión:', error);
     }
     setShowFinalStatsModal(false);
-    navigation.navigate('CategorySelection');
+    // Usar reset para limpiar el stack de navegación
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Home' }],
+    });
+    // Navegar a CategorySelection después del reset
+    setTimeout(() => {
+      navigation.navigate('CategorySelection');
+    }, 100);
   };
 
   /**
@@ -190,6 +192,7 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
    */
   const handleExit = async () => {
     try {
+      // Limpiar la sesión al salir
       await clearGameSession();
     } catch (error) {
       console.error('Error al limpiar sesión:', error);
@@ -232,6 +235,7 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
     <PlayerListItem
       player={item}
       onIncrementDrinks={incrementPlayerDrinks}
+      onDecrementDrinks={decrementPlayerDrinks}
     />
   );
 
@@ -249,8 +253,15 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
         </Animated.View>
       )}
 
-      {/* Tarjeta de frase */}
-      <Animated.View style={[styles.phraseContainer, { opacity: fadeAnim }]}>
+      {/* Tarjeta de frase con animación swipe */}
+      <Animated.View
+        style={[
+          styles.phraseContainer,
+          {
+            transform: [{ translateX: slideAnim }]
+          }
+        ]}
+      >
         <PhraseCard phrase={currentPhrase} />
         <Text style={[styles.phrasesCounter, { color: theme.textSecondary }]}>
           Quedan {unusedPhrases.length} frases
@@ -259,9 +270,6 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
 
       {/* Lista de jugadores */}
       <View style={styles.playersSection}>
-        <Text style={[styles.playersTitle, { color: theme.text }]}>
-          Jugadores ({players.length})
-        </Text>
         <FlatList
           data={players}
           renderItem={renderPlayerItem}
@@ -273,21 +281,26 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
 
       {/* Botones de acción */}
       <View style={styles.actionsContainer}>
-        <View style={styles.buttonRow}>
-          <View style={styles.smallButton}>
+        <View style={styles.topButtonRow}>
+          <TouchableOpacity
+            style={[styles.iconButton, { backgroundColor: theme.cardBackground }]}
+            onPress={handleResetGame}
+          >
+            <Text style={[styles.iconButtonText, { color: theme.text }]}>↻</Text>
+          </TouchableOpacity>
+          <View style={styles.mainButton}>
             <CustomButton
-              title="↻ Reiniciar"
-              onPress={handleResetGame}
-              variant="secondary"
-            />
-          </View>
-          <View style={styles.largeButton}>
-            <CustomButton
-              title="Siguiente Frase"
+              title="Siguiente"
               onPress={handleNextPhrase}
               variant="primary"
             />
           </View>
+          <TouchableOpacity
+            style={[styles.iconButton, { backgroundColor: theme.cardBackground }]}
+            onPress={handleShowStats}
+          >
+            <Text style={styles.iconButtonText}>🏆</Text>
+          </TouchableOpacity>
         </View>
         <CustomButton
           title="Finalizar Partida"
@@ -315,6 +328,13 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
         phrasesPlayed={phrasesPlayed}
         duration={(Date.now() - gameStartTime) / 1000 / 60}
       />
+
+      {/* Modal de confirmación */}
+      <ConfirmEndGameModal
+        visible={showConfirmModal}
+        onConfirm={confirmFinishGame}
+        onCancel={() => setShowConfirmModal(false)}
+      />
     </SafeAreaView>
   );
 }
@@ -323,12 +343,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  headerButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 8,
+  },
   headerButton: {
-    marginRight: 16,
     padding: 8,
+    marginHorizontal: 4,
   },
   headerButtonText: {
-    fontSize: 24,
+    fontSize: 22,
   },
   funnyMessageContainer: {
     position: 'absolute',
@@ -375,14 +400,25 @@ const styles = StyleSheet.create({
     padding: 16,
     gap: 12,
   },
-  buttonRow: {
+  topButtonRow: {
     flexDirection: 'row',
     gap: 12,
+    alignItems: 'center',
   },
-  smallButton: {
+  iconButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  iconButtonText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  mainButton: {
     flex: 1,
-  },
-  largeButton: {
-    flex: 2,
   },
 });
