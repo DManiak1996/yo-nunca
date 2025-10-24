@@ -4,13 +4,28 @@ App móvil multiplataforma (Android/iOS) del clásico juego de beber "Yo Nunca" 
 
 ## 🎯 Características
 
-- ✅ 50 frases predefinidas (suaves a muy picantes)
+### Juego
+- ✅ 240 frases organizadas por dificultad (Medio, Picante, Muy Picante)
+- ✅ Modo multijugador (2-20 jugadores)
+- ✅ Nombres aleatorios divertidos para jugadores
+- ✅ Sistema anti-repetición inteligente
+- ✅ Guardado automático de partidas
+- ✅ Estadísticas en tiempo real y finales
 - ✅ Frases personalizadas ilimitadas
-- ✅ Sin repeticiones en misma sesión
-- ✅ Modo oscuro/claro
+
+### Visual
+- ✅ Animación de cerveza en transiciones 🍺
+- ✅ Burbujas animadas en pantalla de inicio 🫧
+- ✅ Fuentes personalizadas (Bebas Neue + Nunito)
+- ✅ Imagen de fondo personalizable
+- ✅ Modo oscuro/claro con tema taberna
+- ✅ Transiciones suaves sin parpadeos
+
+### Técnico
 - ✅ 100% offline (sin internet)
 - ✅ Sin anuncios
-- ✅ Gratis y open source
+- ✅ TypeScript con strict mode
+- ✅ Performance optimizado
 
 ## 🛠️ Stack Tecnológico
 

@@ -21,6 +21,7 @@ import { RootStackParamList, DifficultyLevel } from '../types';
 import { useTheme } from '../context/ThemeContext';
 import { usePlayers } from '../hooks/usePlayers';
 import CustomButton from '../components/CustomButton';
+import BeerTransitionAnimation from '../components/BeerTransitionAnimation';
 
 type PlayerSetupScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -49,6 +50,7 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
   const [editingName, setEditingName] = useState('');
   const [showNumberPicker, setShowNumberPicker] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState(players.length);
+  const [showBeerAnimation, setShowBeerAnimation] = useState(false);
 
   /**
    * Maneja el cambio de número de jugadores
@@ -143,13 +145,24 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
   };
 
   /**
-   * Maneja el inicio del juego
+   * Maneja el inicio del juego con animación
    */
   const handleStartGame = () => {
+    setShowBeerAnimation(true);
+  };
+
+  /**
+   * Callback cuando la animación termina
+   */
+  const handleAnimationComplete = () => {
     navigation.navigate('GameMultiplayer', {
       players,
       difficulty,
     });
+    // Mantener animación visible 200ms más para cubrir el parpadeo de carga
+    setTimeout(() => {
+      setShowBeerAnimation(false);
+    }, 200);
   };
 
   /**
@@ -325,6 +338,11 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
           </View>
         </View>
       </Modal>
+
+      {/* Animación de transición de cerveza */}
+      {showBeerAnimation && (
+        <BeerTransitionAnimation onComplete={handleAnimationComplete} />
+      )}
     </SafeAreaView>
   );
 }

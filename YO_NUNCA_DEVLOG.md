@@ -2,9 +2,9 @@
 
 ## 📊 Estado del Proyecto
 
-**Fase actual:** YO NUNCA V2.0 - TODAS LAS FASES COMPLETADAS ✅
-**Última actualización:** 2025-10-23
-**Próximo paso:** Testing final y feedback del usuario
+**Fase actual:** YO NUNCA V2.0 - COMPLETADA + Mejoras UI/UX ✅
+**Última actualización:** 2025-10-24
+**Próximo paso:** Mejoras adicionales y testing continuo
 
 **Documentación de referencia:**
 📄 [Prompt completo](./YO_NUNCA_PROMPT_COMPLETO.md) - Especificaciones técnicas V1.0
@@ -1434,6 +1434,97 @@ npx create-expo-app yo-nunca --template expo-template-blank-typescript
 
 ---
 
-**Última actualización:** 2025-10-20
-**Actualizado por:** Planificación inicial (humano + Claude)
-**Próxima actualización:** Tras completar Fase 1
+---
+
+### MEJORAS UI/UX - Sesión 24/10/2025 ✅ COMPLETADA
+
+**Fecha:** 2025-10-24
+**Duración:** ~2 horas
+**Responsable:** Claude Code
+
+#### Objetivo:
+Pulir la experiencia visual y las transiciones de la app con animaciones personalizadas y mejoras de diseño.
+
+#### Funcionalidades implementadas:
+
+1. **Animación de Transición de Cerveza** 🍺
+   - Componente `BeerTransitionAnimation.tsx` creado
+   - Animación de líquido de cerveza (#D4A574) subiendo desde abajo
+   - Capa de espuma (#FFF5E1) con borde inferior ondulado
+   - 80 burbujas animadas con delays aleatorios
+   - Duración: 1.2s con timing suave
+   - Integrada en 4 puntos de navegación:
+     * HomeScreen → "Jugar", "Mis Frases", "Tus Estadísticas"
+     * PlayerSetupScreen → "Comenzar Juego"
+   - Z-index optimizado para cubrir transiciones
+   - Delay de desmontaje (200ms) para eliminar parpadeo
+
+2. **Animación Idle de Burbujas** 🫧
+   - Componente `IdleBubblesAnimation.tsx` creado
+   - 15 burbujas blancas flotando en HomeScreen
+   - Movimiento lento y continuo (6-9s por ciclo)
+   - Opacidad: 0.7 máx para visibilidad
+   - `pointerEvents="none"` para no bloquear interacción
+   - Z-index: 1 (detrás del contenido, delante del fondo)
+
+3. **Fuentes Personalizadas** ✨
+   - Instaladas: `@expo-google-fonts/bebas-neue` y `@expo-google-fonts/nunito`
+   - Título "Yo Nunca": **Bebas Neue** (56px, letter-spacing: 2)
+   - Subtítulo: **Nunito SemiBold** (18px)
+   - Hook `useFonts()` integrado correctamente en HomeScreen
+   - Sin emojis de cerveza en el título (diseño más limpio)
+
+4. **Imagen del Logo de Fondo** 🖼️
+   - Archivo: `fondo.png` (antes `nano-banana-*.png`)
+   - Posicionada detrás de burbujas y texto
+   - Z-index: 0 (nivel más bajo)
+   - Tamaño ajustable (100% ancho, altura personalizada)
+   - Opacidad: 0.9
+
+5. **Transiciones de Navegación Optimizadas** 🔄
+   - Transición instantánea (0ms) en lugar de slide
+   - Eliminado parpadeo visual post-animación
+   - Flujo: Animación cerveza → Navega → Delay 200ms → Oculta animación
+   - Nueva pantalla carga mientras animación cubre la transición
+
+#### Dependencias añadidas:
+```json
+{
+  "expo-font": "^latest",
+  "@expo-google-fonts/bebas-neue": "^latest",
+  "@expo-google-fonts/nunito": "^latest",
+  "react-native-svg": "^15.12.1"
+}
+```
+
+#### Archivos creados:
+- `src/components/BeerTransitionAnimation.tsx`
+- `src/components/IdleBubblesAnimation.tsx`
+- `fondo.png` (raíz del proyecto)
+
+#### Archivos modificados:
+- `src/screens/HomeScreen.tsx` (fuentes, animaciones, imagen fondo)
+- `src/screens/PlayerSetupScreen.tsx` (animación cerveza)
+- `src/navigation/AppNavigator.tsx` (transiciones instantáneas)
+- `package.json` (nuevas dependencias)
+
+#### Resultados:
+- ✅ Animación de cerveza fluida y profesional
+- ✅ Transiciones sin parpadeo visible
+- ✅ Diseño visual mejorado con fuentes personalizadas
+- ✅ Efecto idle sutil que da vida a la pantalla de inicio
+- ✅ Performance óptimo (80 burbujas en transición, 15 en idle)
+- ✅ Sin errores de TypeScript
+- ✅ Sin warnings críticos
+
+#### Notas técnicas:
+- Usada Animated API nativa en lugar de Reanimated para evitar problemas de Worklets
+- Z-index cuidadosamente configurado: fondo (0) → burbujas idle (1) → contenido (10) → animación cerveza (9999)
+- Hooks ordenados correctamente para evitar errores de React
+- Delay estratégico de 200ms para cubrir micro-parpadeo de carga de React Navigation
+
+---
+
+**Última actualización:** 2025-10-24
+**Actualizado por:** Claude Code
+**Próxima actualización:** Próxima sesión de mejoras o testing

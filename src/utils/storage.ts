@@ -3,13 +3,14 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { GameSession, CagonCounter } from '../types';
+import { GameSession, CagonCounter, GlobalStats, DifficultyLevel, Player } from '../types';
 
 // Keys para AsyncStorage
 const CUSTOM_PHRASES_KEY = '@yonunca_custom_phrases';
 const THEME_KEY = '@yonunca_theme';
 const GAME_SESSION_KEY = '@yonunca_game_session';
 const CAGON_COUNTER_KEY = '@yonunca_cagon_counter';
+const GLOBAL_STATS_KEY = '@yonunca_global_stats';
 
 /**
  * Obtiene las frases personalizadas guardadas
@@ -244,6 +245,138 @@ export async function resetCagonCounter(): Promise<void> {
     await AsyncStorage.setItem(CAGON_COUNTER_KEY, jsonValue);
   } catch (error) {
     console.error('Error al resetear contador cagón:', error);
+    throw error;
+  }
+}
+
+// ========== FUNCIONES PARA ESTADÍSTICAS GLOBALES (V2.1) ==========
+
+/**
+ * Obtiene las estadísticas globales del usuario
+ * @returns GlobalStats o objeto inicial si no existe
+ */
+export async function getGlobalStats(): Promise<GlobalStats> {
+  try {
+    const jsonValue = await AsyncStorage.getItem(GLOBAL_STATS_KEY);
+    if (jsonValue === null) {
+      // Retornar stats iniciales
+      return {
+        gamesPlayed: 0,
+        categoryCount: {
+          cagon: 0,
+          medio: 0,
+          picante: 0,
+          muy_picante: 0,
+        },
+        totalPlayersSum: 0,
+        totalDurationMinutes: 0,
+        totalDrinks: 0,
+        lastPlayedDate: '',
+        currentStreak: 0,
+        maxDrinksRecord: null,
+      };
+    }
+    return JSON.parse(jsonValue);
+  } catch (error) {
+    console.error('Error al obtener estadísticas globales:', error);
+    return {
+      gamesPlayed: 0,
+      categoryCount: {
+        cagon: 0,
+        medio: 0,
+        picante: 0,
+        muy_picante: 0,
+      },
+      totalPlayersSum: 0,
+      totalDurationMinutes: 0,
+      totalDrinks: 0,
+      lastPlayedDate: '',
+      currentStreak: 0,
+      maxDrinksRecord: null,
+    };
+  }
+}
+
+/**
+ * Actualiza las estadísticas globales después de una partida
+ * @param difficulty Categoría jugada
+ * @param players Lista de jugadores
+ * @param durationMinutes Duración de la partida en minutos
+ */
+export async function updateGlobalStats(
+  difficulty: DifficultyLevel,
+  players: Player[],
+  durationMinutes: number
+): Promise<void> {
+  try {
+    const stats = await getGlobalStats();
+
+    // Calcular tragos totales de esta partida
+    const gameDrinks = players.reduce((sum, p) => sum + p.drinks, 0);
+
+    // Encontrar jugador con más tragos
+    const maxDrinksPlayer = players.reduce((max, p) =>
+      p.drinks > max.drinks ? p : max
+    , players[0]);
+
+    // Actualizar contador de categoría
+    stats.categoryCount[difficulty]++;
+
+    // Calcular racha
+    const today = new Date().toISOString().split('T')[0];
+    const lastPlayed = stats.lastPlayedDate ? stats.lastPlayedDate.split('T')[0] : '';
+
+    if (lastPlayed) {
+      const lastDate = new Date(lastPlayed);
+      const todayDate = new Date(today);
+      const diffDays = Math.floor((todayDate.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24));
+
+      if (diffDays === 1) {
+        // Día consecutivo
+        stats.currentStreak++;
+      } else if (diffDays > 1) {
+        // Se rompió la racha
+        stats.currentStreak = 1;
+      }
+      // Si diffDays === 0, ya se jugó hoy, no cambiar racha
+    } else {
+      // Primera partida
+      stats.currentStreak = 1;
+    }
+
+    // Actualizar récord de tragos
+    if (!stats.maxDrinksRecord || maxDrinksPlayer.drinks > stats.maxDrinksRecord.drinks) {
+      stats.maxDrinksRecord = {
+        playerName: maxDrinksPlayer.name,
+        drinks: maxDrinksPlayer.drinks,
+        date: new Date().toISOString(),
+      };
+    }
+
+    // Actualizar stats generales
+    stats.gamesPlayed++;
+    stats.totalPlayersSum += players.length;
+    stats.totalDurationMinutes += durationMinutes;
+    stats.totalDrinks += gameDrinks;
+    stats.lastPlayedDate = new Date().toISOString();
+
+    // Guardar
+    const jsonValue = JSON.stringify(stats);
+    await AsyncStorage.setItem(GLOBAL_STATS_KEY, jsonValue);
+  } catch (error) {
+    console.error('Error al actualizar estadísticas globales:', error);
+    throw error;
+  }
+}
+
+/**
+ * Resetea todas las estadísticas globales
+ */
+export async function resetGlobalStats(): Promise<void> {
+  try {
+    await AsyncStorage.removeItem(GLOBAL_STATS_KEY);
+  } catch (error) {
+    console.error('Error al resetear estadísticas globales:', error);
     throw error;
   }
 }

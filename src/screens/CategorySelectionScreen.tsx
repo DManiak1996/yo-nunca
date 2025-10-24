@@ -127,10 +127,10 @@ export default function CategorySelectionScreen({ navigation }: Props) {
     <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
       <View style={styles.header}>
         <Text style={[styles.title, { color: theme.text }]}>
-          ¿Qué nivel eres hoy?
+          ¿Qué mood tienes hoy?
         </Text>
         <Text style={[styles.subtitle, { color: theme.textSecondary }]}>
-          Elige tu categoría de juego
+          Elige la categoria que más te guste
         </Text>
       </View>
 

@@ -15,6 +15,7 @@ import PlayerSetupScreen from '../screens/PlayerSetupScreen';
 import GameScreenMultiplayer from '../screens/GameScreenMultiplayer';
 import CustomPhrasesScreen from '../screens/CustomPhrasesScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import GlobalStatsScreen from '../screens/GlobalStatsScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -33,19 +34,17 @@ export default function AppNavigator() {
         },
         headerShown: false, // Ocultar headers por defecto
         gestureEnabled: true, // Habilitar swipe-back
-        cardStyleInterpolator: ({ current, layouts }) => {
+        // Sin animación - transición instantánea (la animación de cerveza la cubre)
+        cardStyleInterpolator: () => {
           return {
             cardStyle: {
-              transform: [
-                {
-                  translateX: current.progress.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [layouts.screen.width, 0],
-                  }),
-                },
-              ],
+              opacity: 1,
             },
           };
+        },
+        transitionSpec: {
+          open: { animation: 'timing', config: { duration: 0 } },
+          close: { animation: 'timing', config: { duration: 0 } },
         },
       }}
     >
@@ -82,6 +81,11 @@ export default function AppNavigator() {
       <Stack.Screen
         name="Settings"
         component={SettingsScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="GlobalStats"
+        component={GlobalStatsScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

@@ -21,7 +21,8 @@
         "backgroundColor": "#2C1810"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.yonunca"
     },
     "web": {
       "favicon": "./assets/favicon.png"

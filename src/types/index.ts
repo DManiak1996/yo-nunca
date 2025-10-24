@@ -71,6 +71,29 @@ export interface CagonCounter {
   lastUpdated: number;
 }
 
+/**
+ * Estadísticas globales del usuario
+ */
+export interface GlobalStats {
+  gamesPlayed: number;
+  categoryCount: {
+    cagon: number;
+    medio: number;
+    picante: number;
+    muy_picante: number;
+  };
+  totalPlayersSum: number; // Para calcular promedio
+  totalDurationMinutes: number;
+  totalDrinks: number;
+  lastPlayedDate: string; // ISO date
+  currentStreak: number;
+  maxDrinksRecord: {
+    playerName: string;
+    drinks: number;
+    date: string;
+  } | null;
+}
+
 export type RootStackParamList = {
   Home: undefined;
   CategorySelection: undefined;
@@ -79,4 +102,5 @@ export type RootStackParamList = {
   Game: undefined; // mantener por compatibilidad con v1.0
   CustomPhrases: undefined;
   Settings: undefined;
+  GlobalStats: undefined;
 };

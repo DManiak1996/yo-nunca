@@ -28,7 +28,7 @@ import StatsModal from '../components/StatsModal';
 import FinalStatsModal from '../components/FinalStatsModal';
 import ConfirmEndGameModal from '../components/ConfirmEndGameModal';
 import { getRandomFunnyMessage, shouldShowFunnyMessage } from '../data/funnyMessages';
-import { clearGameSession } from '../utils/storage';
+import { clearGameSession, updateGlobalStats } from '../utils/storage';
 
 type GameScreenMultiplayerNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -171,9 +171,14 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
    */
   const handlePlayAgain = async () => {
     try {
+      // Trackear estadísticas
+      const durationMinutes = (Date.now() - gameStartTime) / 1000 / 60;
+      await updateGlobalStats(difficulty, players, durationMinutes);
+
+      // Limpiar sesión
       await clearGameSession();
     } catch (error) {
-      console.error('Error al limpiar sesión:', error);
+      console.error('Error al guardar estadísticas o limpiar sesión:', error);
     }
     setShowFinalStatsModal(false);
     // Usar reset para limpiar el stack de navegación
@@ -192,10 +197,14 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
    */
   const handleExit = async () => {
     try {
+      // Trackear estadísticas
+      const durationMinutes = (Date.now() - gameStartTime) / 1000 / 60;
+      await updateGlobalStats(difficulty, players, durationMinutes);
+
       // Limpiar la sesión al salir
       await clearGameSession();
     } catch (error) {
-      console.error('Error al limpiar sesión:', error);
+      console.error('Error al guardar estadísticas o limpiar sesión:', error);
     }
     setShowFinalStatsModal(false);
     navigation.navigate('Home');
