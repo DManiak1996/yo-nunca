@@ -192,6 +192,7 @@ export function useGameSession({
       currentPhraseIndex: allPhrases.length - unusedPhrases.length,
       createdAt,
       lastPlayedAt: Date.now(),
+      gameEnded: false, // Por defecto no está finalizada
     };
   }, [
     sessionId,

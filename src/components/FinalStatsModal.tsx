@@ -3,14 +3,13 @@
  * Diseño estilo campeonato con podio y métricas completas
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   Modal,
   ScrollView,
-  Animated,
 } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { Player } from '../types';
@@ -26,7 +25,7 @@ interface Props {
   duration: number; // en minutos
 }
 
-const FinalStatsModal = React.memo(function FinalStatsModal({
+export default function FinalStatsModal({
   visible,
   onPlayAgain,
   onExit,
@@ -37,9 +36,6 @@ const FinalStatsModal = React.memo(function FinalStatsModal({
   const { theme } = useTheme();
   const { ranking, mostDiablo, mostBendito, totalDrinks } = useStats(players);
 
-  const [scaleAnim] = useState(new Animated.Value(0));
-  const [fadeAnim] = useState(new Animated.Value(0));
-
   // Top 3 jugadores
   const winner = ranking[0] || null;
   const second = ranking[1] || null;
@@ -48,28 +44,6 @@ const FinalStatsModal = React.memo(function FinalStatsModal({
   // Estadísticas adicionales
   const mostMisterioso = getMostMisterioso();
   const mostArdiente = getMostArdiente();
-
-  useEffect(() => {
-    if (visible) {
-      // Animación de entrada
-      Animated.parallel([
-        Animated.spring(scaleAnim, {
-          toValue: 1,
-          tension: 50,
-          friction: 7,
-          useNativeDriver: true,
-        }),
-        Animated.timing(fadeAnim, {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: true,
-        }),
-      ]).start();
-    } else {
-      scaleAnim.setValue(0);
-      fadeAnim.setValue(0);
-    }
-  }, [visible]);
 
   /**
    * Calcula el jugador más misterioso
@@ -104,6 +78,10 @@ const FinalStatsModal = React.memo(function FinalStatsModal({
     return `${mins}:${secs.toString().padStart(2, '0')} min`;
   }
 
+  if (!visible) {
+    return null;
+  }
+
   return (
     <Modal
       visible={visible}
@@ -112,13 +90,11 @@ const FinalStatsModal = React.memo(function FinalStatsModal({
       onRequestClose={onExit}
     >
       <View style={styles.overlay}>
-        <Animated.View
+        <View
           style={[
             styles.modalContainer,
             {
               backgroundColor: theme.cardBackground,
-              opacity: fadeAnim,
-              transform: [{ scale: scaleAnim }],
             },
           ]}
         >
@@ -140,7 +116,7 @@ const FinalStatsModal = React.memo(function FinalStatsModal({
               {/* Segundo lugar (izquierda) */}
               {second && (
                 <View style={styles.podiumSecond}>
-                  <Text style={styles.podiumAvatar}>{second.avatar}</Text>
+                  <Text style={styles.podiumAvatar}>{second.avatar || '🎭'}</Text>
                   <Text style={[styles.podiumName, { color: theme.text }]} numberOfLines={1}>
                     {second.name}
                   </Text>
@@ -156,7 +132,7 @@ const FinalStatsModal = React.memo(function FinalStatsModal({
               {winner && (
                 <View style={styles.podiumFirst}>
                   <Text style={styles.crownIcon}>👑</Text>
-                  <Text style={styles.podiumAvatarFirst}>{winner.avatar}</Text>
+                  <Text style={styles.podiumAvatarFirst}>{winner.avatar || '🎭'}</Text>
                   <Text style={[styles.podiumNameFirst, { color: theme.text }]} numberOfLines={1}>
                     {winner.name}
                   </Text>
@@ -173,7 +149,7 @@ const FinalStatsModal = React.memo(function FinalStatsModal({
               {/* Tercer lugar (derecha) */}
               {third && (
                 <View style={styles.podiumThird}>
-                  <Text style={styles.podiumAvatar}>{third.avatar}</Text>
+                  <Text style={styles.podiumAvatar}>{third.avatar || '🎭'}</Text>
                   <Text style={[styles.podiumName, { color: theme.text }]} numberOfLines={1}>
                     {third.name}
                   </Text>
@@ -300,13 +276,11 @@ const FinalStatsModal = React.memo(function FinalStatsModal({
             <CustomButton title="Jugar de nuevo" onPress={onPlayAgain} variant="primary" />
             <CustomButton title="Salir" onPress={onExit} variant="secondary" />
           </View>
-        </Animated.View>
+        </View>
       </View>
     </Modal>
   );
-});
-
-export default FinalStatsModal;
+}
 
 const styles = StyleSheet.create({
   overlay: {
@@ -318,13 +292,14 @@ const styles = StyleSheet.create({
   modalContainer: {
     width: '95%',
     maxWidth: 500,
-    maxHeight: '90%',
+    height: '90%', // CAMBIADO: de maxHeight a height para que flex funcione
     borderRadius: 24,
     elevation: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.4,
     shadowRadius: 10,
+    flexDirection: 'column', // AÑADIDO: estructura flex
   },
   scrollView: {
     flex: 1,

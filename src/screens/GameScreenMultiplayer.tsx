@@ -26,9 +26,8 @@ import PlayerListItem from '../components/PlayerListItem';
 import CustomButton from '../components/CustomButton';
 import StatsModal from '../components/StatsModal';
 import FinalStatsModal from '../components/FinalStatsModal';
-import ConfirmEndGameModal from '../components/ConfirmEndGameModal';
 import { getRandomFunnyMessage, shouldShowFunnyMessage } from '../data/funnyMessages';
-import { clearGameSession, updateGlobalStats } from '../utils/storage';
+import { clearGameSession, updateGlobalStats, saveGameSession } from '../utils/storage';
 
 type GameScreenMultiplayerNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -73,14 +72,16 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
   const [messageOpacity] = useState(new Animated.Value(0));
   const [showStatsModal, setShowStatsModal] = useState(false);
   const [showFinalStatsModal, setShowFinalStatsModal] = useState(false);
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [gameHasEnded, setGameHasEnded] = useState(false); // Flag permanente para evitar auto-save
   const [gameStartTime] = useState(() => Date.now());
 
   // Guardado automático cada 10 segundos
+  // IMPORTANTE: Deshabilitado permanentemente cuando el juego termina
   useAutoSave({
     gameSession: getSessionData(),
-    enabled: !showFinalStatsModal, // No guardar si ya terminó
+    enabled: !gameHasEnded, // No guardar si el juego ya terminó
   });
+
 
 
   /**
@@ -153,16 +154,26 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
 
   /**
    * Maneja la finalización de la partida
+   * Muestra directamente el modal de estadísticas finales (sin confirmación previa)
    */
-  const handleFinishGame = () => {
-    setShowConfirmModal(true);
-  };
+  const handleFinishGame = async () => {
+    // IMPORTANTE: Marcar permanentemente que el juego terminó (deshabilita useAutoSave)
+    setGameHasEnded(true);
 
-  /**
-   * Confirma la finalización del juego
-   */
-  const confirmFinishGame = () => {
-    setShowConfirmModal(false);
+    try {
+      // Marcar la sesión como finalizada para evitar que aparezca en HomeScreen
+      const currentSession = getSessionData();
+      if (currentSession) {
+        await saveGameSession({
+          ...currentSession,
+          gameEnded: true,
+        });
+      }
+    } catch (error) {
+      console.error('Error al marcar sesión como finalizada:', error);
+    }
+
+    // Mostrar directamente el modal de estadísticas finales
     setShowFinalStatsModal(true);
   };
 
@@ -328,7 +339,7 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
         unusedPhrases={unusedPhrases.length}
       />
 
-      {/* Modal de estadísticas finales */}
+      {/* Modal de estadísticas finales (incluye botones Jugar de nuevo y Salir) */}
       <FinalStatsModal
         visible={showFinalStatsModal}
         onPlayAgain={handlePlayAgain}
@@ -336,13 +347,6 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
         players={players}
         phrasesPlayed={phrasesPlayed}
         duration={(Date.now() - gameStartTime) / 1000 / 60}
-      />
-
-      {/* Modal de confirmación */}
-      <ConfirmEndGameModal
-        visible={showConfirmModal}
-        onConfirm={confirmFinishGame}
-        onCancel={() => setShowConfirmModal(false)}
       />
     </SafeAreaView>
   );

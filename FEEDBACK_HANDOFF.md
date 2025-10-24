@@ -252,7 +252,11 @@ export interface GlobalStats {
 
 ✅ **Todas las tareas V2.1 completadas exitosamente**
 
-La app está lista para testing final antes de entrar en producción.
+✅ **Bugfixes post-V2.1 completados (24/10/2025)**
+- Bug modal estadísticas finales - RESUELTO
+- Bug "partida en curso" después de finalizar - RESUELTO
+
+🚀 **La app está lista para preparación de producción (Fase 9)**
 
 ---
 

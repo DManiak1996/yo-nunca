@@ -2,9 +2,9 @@
 
 ## 📊 Estado del Proyecto
 
-**Fase actual:** YO NUNCA V2.1 - COMPLETADA ✅
+**Fase actual:** YO NUNCA V2.1 + BUGFIXES - COMPLETADA ✅
 **Última actualización:** 2025-10-24
-**Próximo paso:** Testing final y preparación para producción
+**Próximo paso:** Preparación para producción (Fase 9)
 
 **Documentación de referencia:**
 📄 [Prompt completo](./YO_NUNCA_PROMPT_COMPLETO.md) - Especificaciones técnicas V1.0
@@ -1602,6 +1602,99 @@ Pulir últimos detalles de UX y añadir sistema de estadísticas globales antes 
 - Testing extensivo con usuario real
 - Preparación para producción (Fase 9 del plan original)
 - Build de APK para pruebas
+
+---
+
+### BUGFIXES POST-V2.1 ✅ COMPLETADA
+
+**Fecha:** 2025-10-24
+**Duración:** ~2 horas
+**Responsable:** Claude Code
+
+#### Objetivo:
+Resolver 2 bugs críticos antes de pasar a producción:
+1. Modal de estadísticas finales no se mostraba visualmente
+2. Prompt "tienes una partida en curso" aparecía después de finalizar manualmente
+
+#### Bug 1: Modal de estadísticas finales no renderizaba ✅
+
+**Problema identificado:**
+- El modal se abría correctamente (logs confirmaban `visible: true`)
+- Las animaciones iniciaban
+- Pero el contenido NO se veía en pantalla
+- Después de debug visual (fondos de colores), se descubrió que el `ScrollView` no se renderizaba
+
+**Causa raíz:**
+- `modalContainer` tenía `maxHeight: '90%'` pero sin estructura flexbox interna
+- `ScrollView` con `flex: 1` no sabía cuánto espacio ocupar
+- El contenedor no establecía una altura definida para sus hijos
+
+**Solución aplicada:**
+1. **[FinalStatsModal.tsx:29](src/components/FinalStatsModal.tsx#L29)** - Removido `React.memo` que bloqueaba re-renders
+2. **[FinalStatsModal.tsx:324](src/components/FinalStatsModal.tsx#L324)** - Cambiado `maxHeight: '90%'` a `height: '90%'`
+3. **[FinalStatsModal.tsx:331](src/components/FinalStatsModal.tsx#L331)** - Añadido `flexDirection: 'column'` al container
+4. **Avatares por defecto** - Añadido emoji 🎭 cuando `player.avatar` es undefined
+
+**Resultado:**
+- ✅ Modal se renderiza completamente
+- ✅ Podio con 3 jugadores visible
+- ✅ Destacados y resumen visibles
+- ✅ ScrollView funcional
+
+#### Bug 2: "Tienes una partida en curso" aparecía tras finalizar ✅
+
+**Problema identificado:**
+- Al hacer clic en "Finalizar Partida", se marcaba `gameEnded: true`
+- Pero al cerrar el modal, `useAutoSave` se reactivaba
+- Al reactivarse, guardaba la sesión SIN el campo `gameEnded: true`
+- HomeScreen detectaba sesión activa y mostraba el prompt
+
+**Causa raíz:**
+1. `useAutoSave` estaba vinculado a `!showFinalStatsModal`
+2. Al cerrar el modal, `showFinalStatsModal` volvía a `false`
+3. Esto reactivaba `useAutoSave` que sobrescribía la sesión
+4. Además, `getSessionData()` no incluía el campo `gameEnded` en la interfaz
+
+**Solución aplicada:**
+1. **[useGameSession.ts:195](src/hooks/useGameSession.ts#L195)** - Añadido `gameEnded: false` por defecto en `getSessionData()`
+2. **[GameScreenMultiplayer.tsx:75](src/screens/GameScreenMultiplayer.tsx#L75)** - Añadido estado `gameHasEnded` permanente
+3. **[GameScreenMultiplayer.tsx:82](src/screens/GameScreenMultiplayer.tsx#L82)** - `useAutoSave` ahora usa `!gameHasEnded` en vez de `!showFinalStatsModal`
+4. **[GameScreenMultiplayer.tsx:161](src/screens/GameScreenMultiplayer.tsx#L161)** - `handleFinishGame` marca `gameHasEnded = true` inmediatamente
+5. Esta flag **NUNCA** vuelve a `false`, deshabilitando `useAutoSave` permanentemente
+
+**Resultado:**
+- ✅ Al finalizar partida, `useAutoSave` se deshabilita permanentemente
+- ✅ La sesión se marca con `gameEnded: true` y NO se sobrescribe
+- ✅ HomeScreen detecta `gameEnded: true` y NO muestra prompt
+- ✅ Sesión finalizada se limpia automáticamente en HomeScreen
+
+#### Archivos modificados:
+1. `src/components/FinalStatsModal.tsx` - Fix de renderizado + limpieza de logs
+2. `src/screens/GameScreenMultiplayer.tsx` - Fix de useAutoSave + limpieza de logs
+3. `src/hooks/useGameSession.ts` - Añadido campo `gameEnded` a sesión
+
+#### Proceso de debug:
+- Añadidos logs de consola para rastrear flujo
+- Debug visual con colores (rojo, verde, amarillo, magenta)
+- Identificación de problema de flexbox en modalContainer
+- Identificación de problema de reactivación de useAutoSave
+
+#### Logs eliminados:
+- ✅ Todos los `console.log` de debug removidos
+- ✅ Colores de debug removidos
+- ✅ Código limpio y listo para producción
+
+#### Testing realizado:
+- ✅ Modal de estadísticas finales se muestra correctamente
+- ✅ Podio con 3 jugadores visible
+- ✅ ScrollView funcional (destacados y resumen)
+- ✅ Botones "Jugar de nuevo" y "Salir" funcionales
+- ✅ NO aparece prompt "continuar partida" después de finalizar
+- ✅ Flujo completo sin errores
+
+#### Próximos pasos:
+- Testing extensivo final
+- Preparación para producción (Fase 9)
 
 ---
 
