@@ -2,9 +2,9 @@
 
 ## 📊 Estado del Proyecto
 
-**Fase actual:** YO NUNCA V2.0 - COMPLETADA + Mejoras UI/UX ✅
+**Fase actual:** YO NUNCA V2.1 - COMPLETADA ✅
 **Última actualización:** 2025-10-24
-**Próximo paso:** Mejoras adicionales y testing continuo
+**Próximo paso:** Testing final y preparación para producción
 
 **Documentación de referencia:**
 📄 [Prompt completo](./YO_NUNCA_PROMPT_COMPLETO.md) - Especificaciones técnicas V1.0
@@ -1525,6 +1525,86 @@ Pulir la experiencia visual y las transiciones de la app con animaciones persona
 
 ---
 
+### FEEDBACK V2.1 - Ajustes Finales ✅ COMPLETADA
+
+**Fecha:** 2025-10-24
+**Duración:** ~3 horas
+**Responsable:** Claude Code
+
+#### Objetivo:
+Pulir últimos detalles de UX y añadir sistema de estadísticas globales antes de producción.
+
+#### Tareas completadas:
+
+1. **Orden de nombres corregido** ✅
+   - Archivo: `src/utils/funnyNames.ts`
+   - Cambio: `${adj} ${noun}` → `${noun} ${adj}`
+   - Resultado: "Rey Intrépido" en vez de "Intrépido Rey"
+
+2. **60 nombres fiesteros añadidos** ✅
+   - Pool expandido con 60 nombres creativos y picantes
+   - Categorías: Fiesteros, Humor/doble sentido, Energía sexual
+   - Ejemplos: "El Padrino del Perreo", "La CEO del Vacile", "El Vampiro del Vodka"
+
+3. **Botones PlayerSetup igualados** ✅
+   - Archivo: `src/screens/PlayerSetupScreen.tsx`
+   - Botones "Añadir" y "Cambiar identidad" ahora tienen mismo tamaño
+
+4. **Layout PlayerListItem ajustado** ✅
+   - Archivo: `src/components/PlayerListItem.tsx`
+   - Nombre del jugador ahora se muestra completo
+   - Contador de tragos mejor posicionado
+
+5. **Botón estadísticas restaurado** ✅
+   - Archivo: `src/screens/GameScreenMultiplayer.tsx`
+   - Header con 2 botones: ✕ (Finalizar) y 🏆 (Stats)
+   - StatsModal funcional en tiempo real
+
+6. **Pantalla estadísticas globales** ✅
+   - Nuevos archivos:
+     * `src/screens/GlobalStatsScreen.tsx`
+     * `src/hooks/useGlobalStats.ts`
+   - Métricas implementadas:
+     * Partidas jugadas
+     * Categoría favorita (gráfico de barras)
+     * Promedio de jugadores
+     * Tiempo total jugado
+     * Tragos totales acumulados
+     * Racha actual de días consecutivos
+     * Récord de tragos en una partida
+   - Botón "Resetear Estadísticas" con confirmación
+   - Integración completa con sistema de guardado
+
+#### Archivos creados:
+1. `src/screens/GlobalStatsScreen.tsx` (208 líneas)
+2. `src/hooks/useGlobalStats.ts` (45 líneas)
+
+#### Archivos modificados:
+1. `src/utils/funnyNames.ts` - Orden corregido + 60 nombres nuevos
+2. `src/screens/PlayerSetupScreen.tsx` - Botones igualados
+3. `src/components/PlayerListItem.tsx` - Layout mejorado
+4. `src/screens/GameScreenMultiplayer.tsx` - Botón stats restaurado + integración GlobalStats
+5. `src/utils/storage.ts` - Funciones `getGlobalStats()` y `updateGlobalStats()`
+6. `src/screens/HomeScreen.tsx` - Botón "Tus Estadísticas"
+7. `src/navigation/AppNavigator.tsx` - Nueva ruta GlobalStats
+8. `src/types/index.ts` - Interfaz `GlobalStats`
+
+#### Resultados:
+- ✅ UX mejorada con nombres más naturales
+- ✅ Pool de nombres expandido (120+ combinaciones generadas + 60 fiesteros)
+- ✅ Layout más limpio y profesional
+- ✅ Sistema de estadísticas globales completo y persistente
+- ✅ Todas las funcionalidades V2.0 preservadas
+- ✅ Sin errores de TypeScript
+- ✅ Testing manual exitoso
+
+#### Próximos pasos:
+- Testing extensivo con usuario real
+- Preparación para producción (Fase 9 del plan original)
+- Build de APK para pruebas
+
+---
+
 **Última actualización:** 2025-10-24
 **Actualizado por:** Claude Code
-**Próxima actualización:** Próxima sesión de mejoras o testing
+**Próxima actualización:** Preparación para producción

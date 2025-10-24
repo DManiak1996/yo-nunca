@@ -7,10 +7,11 @@ App móvil multiplataforma (Android/iOS) del clásico juego de beber "Yo Nunca" 
 ### Juego
 - ✅ 240 frases organizadas por dificultad (Medio, Picante, Muy Picante)
 - ✅ Modo multijugador (2-20 jugadores)
-- ✅ Nombres aleatorios divertidos para jugadores
+- ✅ 120+ nombres aleatorios divertidos para jugadores
 - ✅ Sistema anti-repetición inteligente
 - ✅ Guardado automático de partidas
 - ✅ Estadísticas en tiempo real y finales
+- ✅ Estadísticas globales (récords, rachas, partidas jugadas)
 - ✅ Frases personalizadas ilimitadas
 
 ### Visual
