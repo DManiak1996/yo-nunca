@@ -72,9 +72,50 @@ Al usar nuestra Aplicación, usted acepta esta Política de Privacidad.
 
 Resumen: Yo Nunca no recopila, transmite ni comparte ningún dato personal. Toda la información permanece en su dispositivo.`;
 
+const TERMS_OF_SERVICE = `TÉRMINOS DE SERVICIO - YO NUNCA
+
+Última actualización: Octubre 2025
+
+## Aceptación de Términos
+
+Al usar esta aplicación, aceptas estos términos de servicio.
+
+## Restricción de Edad
+
+- Debes ser MAYOR DE 18 AÑOS para usar esta app
+- Declaras bajo tu responsabilidad que cumples este requisito
+- Los desarrolladores no son responsables del uso por menores de edad
+
+## Uso Responsable
+
+- Esta app es un JUEGO para entretenimiento entre amigos
+- NO promovemos el consumo excesivo de alcohol
+- Beber es OPCIONAL: puedes usar otras "penas" o jugar sin alcohol
+- NUNCA conduzcas bajo efectos del alcohol
+- Conoce tus límites y respétalos
+
+## Exención de Responsabilidad
+
+Los desarrolladores NO son responsables por:
+- Consecuencias del consumo de alcohol
+- Lesiones o daños derivados del uso del juego
+- Conflictos interpersonales entre jugadores
+- Contenido de frases personalizadas creadas por usuarios
+
+## Limitación de Garantías
+
+Esta app se proporciona "tal cual" sin garantías de ningún tipo.
+
+## Contacto
+
+Para preguntas: danielarmendiagiron@gmail.com
+
+Al usar esta app, confirmas haber leído, entendido y aceptado estos términos.`;
+
 export default function SettingsScreen() {
   const { theme, isDarkMode, toggleTheme } = useTheme();
   const [isPrivacyModalVisible, setIsPrivacyModalVisible] = useState(false);
+  const [isTermsModalVisible, setIsTermsModalVisible] = useState(false);
 
   const handleResetPhrases = () => {
     Alert.alert(
@@ -133,6 +174,27 @@ export default function SettingsScreen() {
           />
         </View>
 
+        {/* Sección Legal */}
+        <View style={styles.section}>
+          <Text style={[styles.sectionTitle, { color: theme.text }]}>Legal</Text>
+
+          <CustomButton
+            title="📄 Política de Privacidad"
+            onPress={() => setIsPrivacyModalVisible(true)}
+            variant="secondary"
+            style={styles.button}
+          />
+
+          <View style={{ height: 12 }} />
+
+          <CustomButton
+            title="📜 Términos de Servicio"
+            onPress={() => setIsTermsModalVisible(true)}
+            variant="secondary"
+            style={styles.button}
+          />
+        </View>
+
         {/* Sección de información */}
         <View style={styles.section}>
           <Text style={[styles.sectionTitle, { color: theme.text }]}>Información</Text>
@@ -149,13 +211,6 @@ export default function SettingsScreen() {
               Hecho con ❤️ para fiestas épicas
             </Text>
           </View>
-
-          <CustomButton
-            title="Política de Privacidad"
-            onPress={() => setIsPrivacyModalVisible(true)}
-            variant="secondary"
-            style={styles.button}
-          />
         </View>
 
         {/* Aviso legal */}
@@ -189,6 +244,33 @@ export default function SettingsScreen() {
             <CustomButton
               title="Cerrar"
               onPress={() => setIsPrivacyModalVisible(false)}
+              variant="primary"
+              style={styles.modalButton}
+            />
+          </View>
+        </View>
+      </Modal>
+
+      {/* Modal de términos de servicio */}
+      <Modal
+        visible={isTermsModalVisible}
+        transparent
+        animationType="slide"
+        onRequestClose={() => setIsTermsModalVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={[styles.modalContent, { backgroundColor: theme.cardBackground }]}>
+            <Text style={[styles.modalTitle, { color: theme.text }]}>
+              Términos de Servicio
+            </Text>
+            <ScrollView style={styles.modalScroll}>
+              <Text style={[styles.modalText, { color: theme.text }]}>
+                {TERMS_OF_SERVICE}
+              </Text>
+            </ScrollView>
+            <CustomButton
+              title="Cerrar"
+              onPress={() => setIsTermsModalVisible(false)}
               variant="primary"
               style={styles.modalButton}
             />

@@ -21,6 +21,7 @@ import { RootStackParamList } from '../types';
 import { useTheme } from '../context/ThemeContext';
 import { useGameSession } from '../hooks/useGameSession';
 import { useAutoSave } from '../hooks/useAutoSave';
+import { useRateLimit } from '../hooks/useRateLimit';
 import PhraseCard from '../components/PhraseCard';
 import PlayerListItem from '../components/PlayerListItem';
 import CustomButton from '../components/CustomButton';
@@ -75,6 +76,9 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
   const [gameHasEnded, setGameHasEnded] = useState(false); // Flag permanente para evitar auto-save
   const [gameStartTime] = useState(() => Date.now());
 
+  // Rate limiting para "Siguiente Frase" - 1 segundo entre frases
+  const nextPhraseRateLimit = useRateLimit({ maxCalls: 1, windowMs: 1000 });
+
   // Guardado automático cada 10 segundos
   // IMPORTANTE: Deshabilitado permanentemente cuando el juego termina
   useAutoSave({
@@ -126,6 +130,12 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
    * Maneja el avance a la siguiente frase
    */
   const handleNextPhrase = () => {
+    // Rate limiting - prevenir spam
+    if (!nextPhraseRateLimit.checkRateLimit()) {
+      Alert.alert('Espera un momento', 'Ve más despacio, deja que disfruten la frase 😊');
+      return;
+    }
+
     // Bloquear tragos actuales antes de cambiar de frase
     lockPlayerDrinks();
 

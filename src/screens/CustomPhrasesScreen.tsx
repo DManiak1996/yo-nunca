@@ -24,6 +24,9 @@ import {
   clearCustomPhrases,
   saveCustomPhrases,
 } from '../utils/storage';
+import { validateCustomPhrase } from '../utils/validation';
+import { sanitizeCustomPhrase } from '../utils/sanitization';
+import { useRateLimit } from '../hooks/useRateLimit';
 
 export default function CustomPhrasesScreen() {
   const navigation = useNavigation();
@@ -32,6 +35,11 @@ export default function CustomPhrasesScreen() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newPhrase, setNewPhrase] = useState('');
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
+
+  // Rate limiting - 5 frases por minuto = 12s por frase
+  const addPhraseRateLimit = useRateLimit({ maxCalls: 5, windowMs: 60000 });
+  // 10 eliminaciones por minuto = 6s por eliminación
+  const deletePhraseRateLimit = useRateLimit({ maxCalls: 10, windowMs: 60000 });
 
   useEffect(() => {
     loadPhrases();
@@ -47,20 +55,39 @@ export default function CustomPhrasesScreen() {
   };
 
   const handleAddPhrase = async () => {
+    // Rate limiting - solo al añadir, no al editar
+    if (editingIndex === null && !addPhraseRateLimit.checkRateLimit()) {
+      Alert.alert('Espera un momento', 'Estás añadiendo frases muy rápido. Descansa un poco 😊');
+      return;
+    }
+
+    const trimmed = newPhrase.trim();
+
+    // Validar
+    const validation = validateCustomPhrase(trimmed);
+    if (!validation.valid) {
+      Alert.alert('Frase inválida', validation.error || 'Revisa la frase e intenta de nuevo');
+      return;
+    }
+
+    // Sanitizar
+    const sanitized = sanitizeCustomPhrase(trimmed);
+
+    // Verificar duplicado (excepto si estamos editando)
+    const isDuplicate = phrases.some((p, idx) =>
+      idx !== editingIndex && p.toLowerCase() === sanitized.toLowerCase()
+    );
+
+    if (isDuplicate) {
+      Alert.alert('Frase duplicada', 'Esta frase ya existe en tu lista');
+      return;
+    }
+
     try {
       if (editingIndex !== null) {
         // Editar frase existente
         const updatedPhrases = [...phrases];
-        // Aplicar la misma limpieza que addCustomPhrase
-        let trimmedPhrase = newPhrase.trim();
-        const yoNuncaRegex = /^(yo nunca|yo\s+nunca)\s+/i;
-        trimmedPhrase = trimmedPhrase.replace(yoNuncaRegex, '');
-
-        if (!trimmedPhrase || trimmedPhrase.length < 10 || trimmedPhrase.length > 200) {
-          throw new Error('La frase debe tener entre 10 y 200 caracteres');
-        }
-
-        updatedPhrases[editingIndex] = trimmedPhrase;
+        updatedPhrases[editingIndex] = sanitized;
         await saveCustomPhrases(updatedPhrases);
         setNewPhrase('');
         setEditingIndex(null);
@@ -69,7 +96,7 @@ export default function CustomPhrasesScreen() {
         Alert.alert('¡Éxito!', 'Frase editada correctamente');
       } else {
         // Añadir nueva frase
-        await addCustomPhrase(newPhrase);
+        await addCustomPhrase(sanitized);
         setNewPhrase('');
         setIsModalVisible(false);
         await loadPhrases();
@@ -93,6 +120,12 @@ export default function CustomPhrasesScreen() {
   };
 
   const handleDeletePhrase = (index: number) => {
+    // Rate limiting
+    if (!deletePhraseRateLimit.checkRateLimit()) {
+      Alert.alert('Espera un momento', 'Estás eliminando frases muy rápido. Tómatelo con calma 😊');
+      return;
+    }
+
     Alert.alert(
       'Confirmar eliminación',
       '¿Estás seguro de que quieres eliminar esta frase?',

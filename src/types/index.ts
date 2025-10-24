@@ -95,6 +95,7 @@ export interface GlobalStats {
 }
 
 export type RootStackParamList = {
+  AgeGate: undefined;
   Home: undefined;
   CategorySelection: undefined;
   PlayerSetup: { difficulty: DifficultyLevel };

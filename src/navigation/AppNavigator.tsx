@@ -2,12 +2,14 @@
  * Configuración de navegación de la app
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useTheme } from '../context/ThemeContext';
 import { RootStackParamList } from '../types';
+import { isAgeVerified } from '../utils/storage';
 
 // Importar pantallas
+import AgeGateScreen from '../screens/AgeGateScreen';
 import HomeScreen from '../screens/HomeScreen';
 import GameScreen from '../screens/GameScreen';
 import CategorySelectionScreen from '../screens/CategorySelectionScreen';
@@ -21,9 +23,24 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
   const { theme } = useTheme();
+  const [ageVerified, setAgeVerified] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    async function checkAge() {
+      const verified = await isAgeVerified();
+      setAgeVerified(verified);
+    }
+    checkAge();
+  }, []);
+
+  // Mostrar loading mientras verifica
+  if (ageVerified === null) {
+    return null; // O un splash screen
+  }
 
   return (
     <Stack.Navigator
+      initialRouteName={ageVerified ? "Home" : "AgeGate"}
       screenOptions={{
         headerStyle: {
           backgroundColor: theme.cardBackground,
@@ -48,6 +65,13 @@ export default function AppNavigator() {
         },
       }}
     >
+      {!ageVerified && (
+        <Stack.Screen
+          name="AgeGate"
+          component={AgeGateScreen}
+          options={{ headerShown: false }}
+        />
+      )}
       <Stack.Screen
         name="Home"
         component={HomeScreen}

@@ -22,6 +22,8 @@ import { useTheme } from '../context/ThemeContext';
 import { usePlayers } from '../hooks/usePlayers';
 import CustomButton from '../components/CustomButton';
 import BeerTransitionAnimation from '../components/BeerTransitionAnimation';
+import { validatePlayerName } from '../utils/validation';
+import { sanitizePlayerName } from '../utils/sanitization';
 
 type PlayerSetupScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -111,8 +113,26 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
   const handleSaveEdit = () => {
     if (!editingPlayerId) return;
 
+    const trimmedName = editingName.trim();
+
+    // Validar nombre
+    const validation = validatePlayerName(trimmedName);
+    if (!validation.valid) {
+      Alert.alert('Nombre inválido', validation.error || 'Por favor, elige otro nombre');
+      return;
+    }
+
+    // Sanitizar
+    const sanitized = sanitizePlayerName(trimmedName);
+
+    // Verificar que no exista ya (excepto el jugador actual)
+    if (players.some(p => p.id !== editingPlayerId && p.name.toLowerCase() === sanitized.toLowerCase())) {
+      Alert.alert('Nombre duplicado', 'Este nombre ya existe. Elige otro.');
+      return;
+    }
+
     try {
-      renamePlayer(editingPlayerId, editingName);
+      renamePlayer(editingPlayerId, sanitized);
       setEditingPlayerId(null);
       setEditingName('');
     } catch (error: any) {

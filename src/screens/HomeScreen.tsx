@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   settingsIconText: {
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: 'bold'
   },
   titleContainer: {

@@ -11,6 +11,7 @@ const THEME_KEY = '@yonunca_theme';
 const GAME_SESSION_KEY = '@yonunca_game_session';
 const CAGON_COUNTER_KEY = '@yonunca_cagon_counter';
 const GLOBAL_STATS_KEY = '@yonunca_global_stats';
+const AGE_VERIFIED_KEY = '@yonunca_age_verified';
 
 /**
  * Obtiene las frases personalizadas guardadas
@@ -378,5 +379,33 @@ export async function resetGlobalStats(): Promise<void> {
   } catch (error) {
     console.error('Error al resetear estadísticas globales:', error);
     throw error;
+  }
+}
+
+// ========== FUNCIONES PARA AGE VERIFICATION (V3.0) ==========
+
+/**
+ * Verifica si el usuario ha confirmado ser mayor de 18 años
+ * @returns boolean - true si ha verificado su edad
+ */
+export async function isAgeVerified(): Promise<boolean> {
+  try {
+    const value = await AsyncStorage.getItem(AGE_VERIFIED_KEY);
+    return value === 'true';
+  } catch (error) {
+    console.error('Error checking age verification:', error);
+    return false;
+  }
+}
+
+/**
+ * Guarda la verificación de edad del usuario
+ * @param verified boolean - true si es mayor de 18
+ */
+export async function setAgeVerified(verified: boolean): Promise<void> {
+  try {
+    await AsyncStorage.setItem(AGE_VERIFIED_KEY, verified ? 'true' : 'false');
+  } catch (error) {
+    console.error('Error setting age verification:', error);
   }
 }
