@@ -12,6 +12,7 @@ const GAME_SESSION_KEY = '@yonunca_game_session';
 const CAGON_COUNTER_KEY = '@yonunca_cagon_counter';
 const GLOBAL_STATS_KEY = '@yonunca_global_stats';
 const AGE_VERIFIED_KEY = '@yonunca_age_verified';
+const VIBRATION_ENABLED_KEY = '@yonunca_vibration_enabled';
 
 /**
  * Obtiene las frases personalizadas guardadas
@@ -354,6 +355,10 @@ export async function updateGlobalStats(
       };
     }
 
+    // V3.0 - Actualizar mejor racha histórica
+    const bestStreakThisGame = Math.max(...players.map(p => p.maxStreak || 0));
+    stats.bestStreak = Math.max(stats.bestStreak || 0, bestStreakThisGame);
+
     // Actualizar stats generales
     stats.gamesPlayed++;
     stats.totalPlayersSum += players.length;
@@ -407,5 +412,33 @@ export async function setAgeVerified(verified: boolean): Promise<void> {
     await AsyncStorage.setItem(AGE_VERIFIED_KEY, verified ? 'true' : 'false');
   } catch (error) {
     console.error('Error setting age verification:', error);
+  }
+}
+
+// ========== FUNCIONES PARA VIBRACIÓN (V3.0) ==========
+
+/**
+ * Obtiene la preferencia de vibración del usuario
+ * @returns boolean - true si la vibración está habilitada (por defecto true)
+ */
+export async function getVibrationEnabled(): Promise<boolean> {
+  try {
+    const value = await AsyncStorage.getItem(VIBRATION_ENABLED_KEY);
+    return value !== 'false'; // Por defecto true
+  } catch (error) {
+    console.error('Error getting vibration preference:', error);
+    return true;
+  }
+}
+
+/**
+ * Guarda la preferencia de vibración del usuario
+ * @param enabled boolean - true para habilitar vibración
+ */
+export async function setVibrationEnabled(enabled: boolean): Promise<void> {
+  try {
+    await AsyncStorage.setItem(VIBRATION_ENABLED_KEY, enabled ? 'true' : 'false');
+  } catch (error) {
+    console.error('Error setting vibration preference:', error);
   }
 }

@@ -29,6 +29,7 @@ import StatsModal from '../components/StatsModal';
 import FinalStatsModal from '../components/FinalStatsModal';
 import { getRandomFunnyMessage, shouldShowFunnyMessage } from '../data/funnyMessages';
 import { clearGameSession, updateGlobalStats, saveGameSession } from '../utils/storage';
+import { triggerHaptic } from '../utils/haptics';
 
 type GameScreenMultiplayerNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -135,6 +136,9 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
       Alert.alert('Espera un momento', 'Ve más despacio, deja que disfruten la frase 😊');
       return;
     }
+
+    // V3.0 - Vibración al cambiar frase
+    triggerHaptic('light');
 
     // Bloquear tragos actuales antes de cambiar de frase
     lockPlayerDrinks();
@@ -259,12 +263,40 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
   };
 
   /**
+   * Maneja el incremento de tragos con detección de rachas
+   */
+  const handleIncrementDrinks = (playerId: string) => {
+    // V3.0 - Vibración al incrementar tragos
+    triggerHaptic('medium');
+
+    incrementPlayerDrinks(playerId);
+
+    // Buscar el jugador DESPUÉS del incremento para verificar la racha actualizada
+    // Usamos setTimeout para que el estado se actualice primero
+    setTimeout(() => {
+      const player = players.find(p => p.id === playerId);
+      if (player && player.currentStreak >= 3) { // Racha de 3 o más tragos consecutivos
+        const streakMessages = [
+          `🔥 ${player.name} está en RACHA! ${player.currentStreak} seguidos`,
+          `🍺 ${player.name} no para de beber! ${player.currentStreak} tragos consecutivos`,
+          `😈 ${player.name} está imparable! Racha de ${player.currentStreak}`,
+          `🎯 COMBO x${player.currentStreak}! ${player.name} está en modo bestia`,
+        ];
+        const randomMessage = streakMessages[Math.floor(Math.random() * streakMessages.length)];
+
+        // Mostrar alerta breve
+        Alert.alert('', randomMessage, [{ text: 'OK' }], { cancelable: true });
+      }
+    }, 100);
+  };
+
+  /**
    * Renderiza cada jugador
    */
   const renderPlayerItem = ({ item }: { item: typeof players[0] }) => (
     <PlayerListItem
       player={item}
-      onIncrementDrinks={incrementPlayerDrinks}
+      onIncrementDrinks={handleIncrementDrinks}
       onDecrementDrinks={decrementPlayerDrinks}
     />
   );

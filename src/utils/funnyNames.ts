@@ -116,6 +116,8 @@ export function generatePlayerList(count: number): Player[] {
       name,
       drinks: 0,
       avatar: getRandomAvatar(),
+      currentStreak: 0, // V3.0 - Inicializar racha
+      maxStreak: 0, // V3.0 - Inicializar mejor racha
     });
   }
 
@@ -160,6 +162,8 @@ export function generateSinglePlayer(existingNames: string[] = []): Player {
     name,
     drinks: 0,
     avatar: getRandomAvatar(),
+    currentStreak: 0, // V3.0 - Inicializar racha
+    maxStreak: 0, // V3.0 - Inicializar mejor racha
   };
 }
 

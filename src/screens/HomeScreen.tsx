@@ -15,6 +15,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { getGameSession, clearGameSession } from '../utils/storage';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Nunito_400Regular, Nunito_600SemiBold } from '@expo-google-fonts/nunito';
+import { moderateScale, verticalScale, scale, isSmallDevice } from '../utils/responsive';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -202,56 +203,56 @@ const styles = StyleSheet.create({
     width: '130%',
     height: '60%',
     top: '3%',
-    left: -60,
+    left: scale(-60),
     zIndex: 0, // Detrás de todo (fondo)
     opacity: 0.9,
   },
   content: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: scale(20),
     zIndex: 10, // Por encima de las burbujas
     elevation: 10, // Para Android
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    paddingTop: 10,
+    paddingTop: verticalScale(10),
   },
   settingsIcon: {
-    padding: 10,
+    padding: scale(10),
   },
   settingsIconText: {
-    fontSize: 32,
+    fontSize: moderateScale(28),
     fontWeight: 'bold'
   },
   titleContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 60,
+    marginBottom: verticalScale(isSmallDevice() ? 40 : 60),
   },
   logo: {
-    fontSize: 56,
+    fontSize: moderateScale(48),
     fontFamily: 'BebasNeue_400Regular',
     textAlign: 'center',
     marginBottom: 0,
     letterSpacing: 2,
   },
   subtitle: {
-    fontSize: 24,
+    fontSize: moderateScale(20),
     fontFamily: 'Nunito_600SemiBold',
     textAlign: 'center',
   },
   buttonsContainer: {
-    gap: 16,
-    paddingBottom: 40,
+    gap: verticalScale(14),
+    paddingBottom: verticalScale(30),
   },
   button: {
     width: '100%',
   },
   footer: {
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: moderateScale(12),
     paddingBottom: 20,
   },
 });

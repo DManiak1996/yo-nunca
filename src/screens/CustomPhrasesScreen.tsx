@@ -27,6 +27,7 @@ import {
 import { validateCustomPhrase } from '../utils/validation';
 import { sanitizeCustomPhrase } from '../utils/sanitization';
 import { useRateLimit } from '../hooks/useRateLimit';
+import { filterContent, CONTENT_POLICY_MESSAGE } from '../utils/contentFilter';
 
 export default function CustomPhrasesScreen() {
   const navigation = useNavigation();
@@ -62,6 +63,20 @@ export default function CustomPhrasesScreen() {
     }
 
     const trimmed = newPhrase.trim();
+
+    // Filtro de contenido prohibido (V3.0)
+    const contentCheck = filterContent(trimmed);
+    if (!contentCheck.allowed) {
+      Alert.alert(
+        'Contenido no permitido',
+        contentCheck.reason || 'Esta frase contiene contenido inapropiado',
+        [
+          { text: 'Ver política', onPress: () => Alert.alert('Política de contenido', CONTENT_POLICY_MESSAGE) },
+          { text: 'Entendido', style: 'default' },
+        ]
+      );
+      return;
+    }
 
     // Validar
     const validation = validateCustomPhrase(trimmed);

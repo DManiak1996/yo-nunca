@@ -96,15 +96,25 @@ export function useGameSession({
   }, [loadPhrases]);
 
   /**
-   * Incrementa el contador de tragos de un jugador
+   * Incrementa el contador de tragos de un jugador y actualiza rachas
    */
   const incrementPlayerDrinks = useCallback((playerId: string) => {
     setPlayers((currentPlayers) =>
-      currentPlayers.map((player) =>
-        player.id === playerId
-          ? { ...player, drinks: player.drinks + 1 }
-          : player
-      )
+      currentPlayers.map((player) => {
+        if (player.id === playerId) {
+          const newDrinks = player.drinks + 1;
+          const newStreak = (player.currentStreak || 0) + 1;
+          const newMaxStreak = Math.max(newStreak, player.maxStreak || 0);
+
+          return {
+            ...player,
+            drinks: newDrinks,
+            currentStreak: newStreak,
+            maxStreak: newMaxStreak,
+          };
+        }
+        return player;
+      })
     );
   }, []);
 
@@ -134,6 +144,7 @@ export function useGameSession({
       currentPlayers.map((player) => ({
         ...player,
         drinksLockedAt: player.drinks,
+        currentStreak: 0, // Resetear rachas al cambiar de frase
       }))
     );
   }, []);

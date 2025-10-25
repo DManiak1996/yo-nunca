@@ -38,7 +38,7 @@ interface Props {
 }
 
 export default function PlayerSetupScreen({ navigation, route }: Props) {
-  const { difficulty } = route.params;
+  const { difficulty, gameMode = 'normal' } = route.params; // V3.0 - Obtener gameMode
   const { theme } = useTheme();
   const {
     players,
@@ -175,10 +175,18 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
    * Callback cuando la animación termina
    */
   const handleAnimationComplete = () => {
-    navigation.navigate('GameMultiplayer', {
-      players,
-      difficulty,
-    });
+    // V3.0 - Navegar según el modo de juego
+    if (gameMode === 'detectives') {
+      navigation.navigate('GameDetectives', {
+        players,
+        difficulty,
+      });
+    } else {
+      navigation.navigate('GameMultiplayer', {
+        players,
+        difficulty,
+      });
+    }
     // Mantener animación visible 200ms más para cubrir el parpadeo de carga
     setTimeout(() => {
       setShowBeerAnimation(false);

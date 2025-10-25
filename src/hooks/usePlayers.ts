@@ -37,6 +37,8 @@ export function usePlayers(initialCount: number = 4) {
           name: trimmedName,
           drinks: 0,
           avatar: getRandomAvatar(),
+          currentStreak: 0, // V3.0 - Inicializar racha
+          maxStreak: 0, // V3.0 - Inicializar mejor racha
         };
       } else {
         // Nombre autogenerado usando la nueva función

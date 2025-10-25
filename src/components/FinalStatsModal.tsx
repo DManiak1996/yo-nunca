@@ -232,6 +232,31 @@ export default function FinalStatsModal({
                     </Text>
                   </View>
                 )}
+
+                {/* Mayor Racha - V3.0 */}
+                {(() => {
+                  const bestStreakPlayer = players.reduce((best, p) =>
+                    (p.maxStreak || 0) > (best.maxStreak || 0) ? p : best
+                  , players[0]);
+
+                  if (bestStreakPlayer && (bestStreakPlayer.maxStreak || 0) > 0) {
+                    return (
+                      <View style={[styles.highlightCard, { backgroundColor: '#FF6B3530' }]}>
+                        <Text style={styles.highlightIcon}>⚡</Text>
+                        <Text style={[styles.highlightLabel, { color: '#FF6B35' }]}>
+                          Mayor racha
+                        </Text>
+                        <Text style={[styles.highlightName, { color: theme.text }]} numberOfLines={1}>
+                          {bestStreakPlayer.name}
+                        </Text>
+                        <Text style={[styles.highlightValue, { color: theme.textSecondary }]}>
+                          {bestStreakPlayer.maxStreak} consecutivos
+                        </Text>
+                      </View>
+                    );
+                  }
+                  return null;
+                })()}
               </View>
             </View>
 

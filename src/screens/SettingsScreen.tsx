@@ -2,7 +2,7 @@
  * Pantalla de configuración
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -15,7 +15,8 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../context/ThemeContext';
 import CustomButton from '../components/CustomButton';
-import { clearCustomPhrases } from '../utils/storage';
+import { clearCustomPhrases, getVibrationEnabled, setVibrationEnabled } from '../utils/storage';
+import { triggerHaptic } from '../utils/haptics';
 
 const APP_VERSION = '1.0.0';
 
@@ -116,6 +117,26 @@ export default function SettingsScreen() {
   const { theme, isDarkMode, toggleTheme } = useTheme();
   const [isPrivacyModalVisible, setIsPrivacyModalVisible] = useState(false);
   const [isTermsModalVisible, setIsTermsModalVisible] = useState(false);
+  const [vibrationEnabled, setVibrationEnabledState] = useState(true);
+
+  useEffect(() => {
+    async function loadVibration() {
+      const enabled = await getVibrationEnabled();
+      setVibrationEnabledState(enabled);
+    }
+    loadVibration();
+  }, []);
+
+  const handleToggleVibration = async () => {
+    const newValue = !vibrationEnabled;
+    setVibrationEnabledState(newValue);
+    await setVibrationEnabled(newValue);
+
+    // Vibrar una vez para feedback
+    if (newValue) {
+      await triggerHaptic('light');
+    }
+  };
 
   const handleResetPhrases = () => {
     Alert.alert(
@@ -157,6 +178,27 @@ export default function SettingsScreen() {
             <Switch
               value={isDarkMode}
               onValueChange={toggleTheme}
+              trackColor={{ false: theme.border, true: theme.primary }}
+              thumbColor="#FFFFFF"
+            />
+          </View>
+        </View>
+
+        {/* Sección de preferencias */}
+        <View style={styles.section}>
+          <Text style={[styles.sectionTitle, { color: theme.text }]}>Preferencias</Text>
+          <View style={[styles.settingItem, { backgroundColor: theme.cardBackground }]}>
+            <View style={styles.settingInfo}>
+              <Text style={[styles.settingLabel, { color: theme.text }]}>
+                Vibración
+              </Text>
+              <Text style={[styles.settingDescription, { color: theme.textSecondary }]}>
+                Feedback háptico durante el juego
+              </Text>
+            </View>
+            <Switch
+              value={vibrationEnabled}
+              onValueChange={handleToggleVibration}
               trackColor={{ false: theme.border, true: theme.primary }}
               thumbColor="#FFFFFF"
             />

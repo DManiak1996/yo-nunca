@@ -5,12 +5,14 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
+import { moderateScale, verticalScale, scale } from '../utils/responsive';
 
 interface CustomButtonProps {
   title: string;
   onPress: () => void;
   variant?: 'primary' | 'secondary' | 'danger';
   style?: object;
+  disabled?: boolean; // V3.0 - Soporte para botones deshabilitados
 }
 
 export default function CustomButton({
@@ -18,6 +20,7 @@ export default function CustomButton({
   onPress,
   variant = 'primary',
   style,
+  disabled = false,
 }: CustomButtonProps) {
   const { theme } = useTheme();
 
@@ -44,21 +47,25 @@ export default function CustomButton({
       style={[
         styles.button,
         { backgroundColor: getBackgroundColor() },
+        disabled && styles.disabled,
         style,
       ]}
-      onPress={onPress}
-      activeOpacity={0.8}
+      onPress={disabled ? undefined : onPress}
+      activeOpacity={disabled ? 1 : 0.8}
+      disabled={disabled}
     >
-      <Text style={[styles.text, { color: getTextColor() }]}>{title}</Text>
+      <Text style={[styles.text, { color: getTextColor() }, disabled && styles.disabledText]}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 16,
-    paddingVertical: 16,
-    paddingHorizontal: 32,
+    borderRadius: moderateScale(14),
+    paddingVertical: verticalScale(14),
+    paddingHorizontal: scale(28),
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 4,
@@ -68,7 +75,13 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   text: {
-    fontSize: 20,
+    fontSize: moderateScale(18),
     fontWeight: '600',
+  },
+  disabled: {
+    opacity: 0.5,
+  },
+  disabledText: {
+    opacity: 0.7,
   },
 });

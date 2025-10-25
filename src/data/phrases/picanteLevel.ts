@@ -83,13 +83,13 @@ export const picanteLevelPhrases: string[] = [
   "he mentido sobre usar protección",
 
   // Secretos oscuros (nivel medio-alto)
-  "he robado dinero a un familiar",
+  "he fingido no tener dinero para que otros pagaran",
   "he leído el diario íntimo de alguien",
   "he difundido un rumor falso sobre alguien",
   "he saboteado una relación ajena por celos",
-  "he mentido en la policía",
-  "he acosado a alguien online",
-  "he hackeado la cuenta de alguien",
+  "he mentido a mis padres sobre dónde estaba realmente",
+  "he stalkeado obsesivamente las redes de mi ex",
+  "he entrado a la cuenta de redes de alguien",
   "he chantajeado a alguien emocionalmente",
   "he fingido una enfermedad para conseguir algo",
   "he plagiado un trabajo completo y lo presenté como mío",

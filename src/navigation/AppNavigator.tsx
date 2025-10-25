@@ -15,6 +15,10 @@ import GameScreen from '../screens/GameScreen';
 import CategorySelectionScreen from '../screens/CategorySelectionScreen';
 import PlayerSetupScreen from '../screens/PlayerSetupScreen';
 import GameScreenMultiplayer from '../screens/GameScreenMultiplayer';
+import GameScreenDetectives from '../screens/GameScreenDetectives'; // V3.0 - Modo Detectives
+// TODO PRODUCCIÓN: Descomentar cuando se cree Development Build
+// import LocalHostScreen from '../screens/LocalHostScreen'; // V3.0 - FASE D - Host
+// import LocalJoinScreen from '../screens/LocalJoinScreen'; // V3.0 - FASE D - Cliente
 import CustomPhrasesScreen from '../screens/CustomPhrasesScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import GlobalStatsScreen from '../screens/GlobalStatsScreen';
@@ -92,6 +96,22 @@ export default function AppNavigator() {
         component={GameScreenMultiplayer}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="GameDetectives"
+        component={GameScreenDetectives}
+        options={{ headerShown: false }}
+      />
+      {/* TODO PRODUCCIÓN: Descomentar cuando se cree Development Build */}
+      {/* <Stack.Screen
+        name="LocalHost"
+        component={LocalHostScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="LocalJoin"
+        component={LocalJoinScreen}
+        options={{ headerShown: false }}
+      /> */}
       <Stack.Screen
         name="Game"
         component={GameScreen}
