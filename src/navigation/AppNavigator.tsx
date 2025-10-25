@@ -16,11 +16,21 @@ import CategorySelectionScreen from '../screens/CategorySelectionScreen';
 import PlayerSetupScreen from '../screens/PlayerSetupScreen';
 import GameScreenMultiplayer from '../screens/GameScreenMultiplayer';
 import GameScreenDetectives from '../screens/GameScreenDetectives'; // V3.0 - Modo Detectives
-import LocalHostScreen from '../screens/LocalHostScreen'; // V3.0 - FASE D - Host
-import LocalJoinScreen from '../screens/LocalJoinScreen'; // V3.0 - FASE D - Cliente
 import CustomPhrasesScreen from '../screens/CustomPhrasesScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import GlobalStatsScreen from '../screens/GlobalStatsScreen';
+
+// Importar pantallas de multiplayer solo si NO es Expo Go
+// Expo Go no soporta react-native-tcp-socket
+import Constants from 'expo-constants';
+const isExpoGo = Constants.appOwnership === 'expo';
+
+// Componentes dummy para Expo Go
+const DummyScreen = () => null;
+
+// Importar LocalHost/Join solo en Development Build
+const LocalHostScreen = !isExpoGo ? require('../screens/LocalHostScreen').default : DummyScreen;
+const LocalJoinScreen = !isExpoGo ? require('../screens/LocalJoinScreen').default : DummyScreen;
 
 const Stack = createStackNavigator<RootStackParamList>();
 

@@ -17,6 +17,7 @@ import { RootStackParamList, DifficultyLevel, GameMode } from '../types';
 import { useTheme } from '../context/ThemeContext';
 import CagonModal from '../components/CagonModal';
 import { moderateScale, verticalScale, scale, isSmallDevice } from '../utils/responsive';
+import Constants from 'expo-constants';
 
 type CategorySelectionScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -57,6 +58,9 @@ export default function CategorySelectionScreen({ navigation }: Props) {
   const [showCagonModal, setShowCagonModal] = useState(false);
   const [fadeAnim] = useState(new Animated.Value(0));
   const [gameMode, setGameMode] = useState<GameMode>('normal'); // V3.0 - Modo de juego
+
+  // Detectar si estamos en Expo Go (no soporta TCP sockets)
+  const isExpoGo = Constants.executionEnvironment === 'storeClient';
 
   // Seleccionar nombres aleatorios al montar el componente
   const [medioName] = useState(
@@ -240,30 +244,33 @@ export default function CategorySelectionScreen({ navigation }: Props) {
       </View>
 
       {/* FASE D - Botones Multiplayer Local */}
-      <View style={styles.multiplayerSection}>
-        <Text style={[styles.multiplayerTitle, { color: theme.text }]}>
-          🌐 Modo Multijugador Local
-        </Text>
-        <View style={styles.multiplayerButtons}>
-          <TouchableOpacity
-            style={[styles.multiplayerButton, { backgroundColor: theme.primary }]}
-            onPress={handleCreateRoom}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.multiplayerButtonIcon}>🎮</Text>
-            <Text style={styles.multiplayerButtonText}>Crear Sala</Text>
-          </TouchableOpacity>
+      {/* Solo mostrar en Development Build, no en Expo Go */}
+      {!isExpoGo && (
+        <View style={styles.multiplayerSection}>
+          <Text style={[styles.multiplayerTitle, { color: theme.text }]}>
+            🌐 Modo Multijugador Local
+          </Text>
+          <View style={styles.multiplayerButtons}>
+            <TouchableOpacity
+              style={[styles.multiplayerButton, { backgroundColor: theme.primary }]}
+              onPress={handleCreateRoom}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.multiplayerButtonIcon}>🎮</Text>
+              <Text style={styles.multiplayerButtonText}>Crear Sala</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            style={[styles.multiplayerButton, { backgroundColor: theme.secondary }]}
-            onPress={handleJoinRoom}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.multiplayerButtonIcon}>🔗</Text>
-            <Text style={styles.multiplayerButtonText}>Unirse a Sala</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.multiplayerButton, { backgroundColor: theme.secondary }]}
+              onPress={handleJoinRoom}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.multiplayerButtonIcon}>🔗</Text>
+              <Text style={styles.multiplayerButtonText}>Unirse a Sala</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      )}
 
       {/* Modal Cagón */}
       <CagonModal
