@@ -10,8 +10,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   Animated,
-  Alert,
-  TextInput,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -98,26 +96,8 @@ export default function CategorySelectionScreen({ navigation }: Props) {
    * Crear sala como host
    */
   const handleCreateRoom = () => {
-    Alert.prompt(
-      '🎮 Crear Sala Local',
-      'Introduce tu nombre de jugador',
-      [
-        { text: 'Cancelar', style: 'cancel' },
-        {
-          text: 'Crear',
-          onPress: (hostName?: string) => {
-            if (hostName && hostName.trim()) {
-              navigation.navigate('LocalHost', { hostName: hostName.trim() });
-            } else {
-              Alert.alert('Error', 'El nombre no puede estar vacío');
-            }
-          },
-        },
-      ],
-      'plain-text',
-      '',
-      'default'
-    );
+    // Navegar directo - el input de nombre se hace en LocalHostScreen
+    navigation.navigate('LocalHost', { hostName: 'Jugador' });
   };
 
   /**
@@ -125,26 +105,8 @@ export default function CategorySelectionScreen({ navigation }: Props) {
    * Unirse a sala como cliente
    */
   const handleJoinRoom = () => {
-    Alert.prompt(
-      '🔗 Unirse a Sala',
-      'Introduce tu nombre de jugador',
-      [
-        { text: 'Cancelar', style: 'cancel' },
-        {
-          text: 'Continuar',
-          onPress: (playerName?: string) => {
-            if (playerName && playerName.trim()) {
-              navigation.navigate('LocalJoin', { playerName: playerName.trim() });
-            } else {
-              Alert.alert('Error', 'El nombre no puede estar vacío');
-            }
-          },
-        },
-      ],
-      'plain-text',
-      '',
-      'default'
-    );
+    // Navegar directo - el input de nombre se hace en LocalJoinScreen
+    navigation.navigate('LocalJoin', { playerName: 'Jugador' });
   };
 
   /**
@@ -278,10 +240,7 @@ export default function CategorySelectionScreen({ navigation }: Props) {
       </View>
 
       {/* FASE D - Botones Multiplayer Local */}
-      {/* TODO PRODUCCIÓN: Descomentar cuando se cree Development Build
-          El multiplayer requiere react-native-tcp-socket que NO funciona en Expo Go
-      */}
-      {/* <View style={styles.multiplayerSection}>
+      <View style={styles.multiplayerSection}>
         <Text style={[styles.multiplayerTitle, { color: theme.text }]}>
           🌐 Modo Multijugador Local
         </Text>
@@ -304,7 +263,7 @@ export default function CategorySelectionScreen({ navigation }: Props) {
             <Text style={styles.multiplayerButtonText}>Unirse a Sala</Text>
           </TouchableOpacity>
         </View>
-      </View> */}
+      </View>
 
       {/* Modal Cagón */}
       <CagonModal
@@ -324,27 +283,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: moderateScale(28),
+    fontSize: moderateScale(22),
     fontWeight: 'bold',
-    marginBottom: verticalScale(6),
+    marginBottom: verticalScale(4),
     textAlign: 'center',
   },
   subtitle: {
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(12),
     textAlign: 'center',
   },
   cardsContainer: {
     flex: 1,
-    padding: scale(12),
+    padding: scale(10),
     justifyContent: 'center',
-    gap: verticalScale(isSmallDevice() ? 10 : 14),
+    gap: verticalScale(isSmallDevice() ? 8 : 10),
   },
   cardWrapper: {
     width: '100%',
   },
   categoryCard: {
-    padding: scale(14),
-    borderRadius: moderateScale(14),
+    padding: scale(10),
+    borderRadius: moderateScale(12),
     alignItems: 'center',
     elevation: 4,
     shadowColor: '#000',
@@ -353,22 +312,22 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     borderWidth: 2,
     borderColor: 'rgba(255, 255, 255, 0.1)',
-    minHeight: verticalScale(isSmallDevice() ? 75 : 90),
+    minHeight: verticalScale(isSmallDevice() ? 60 : 70),
     justifyContent: 'center',
   },
   cardIcon: {
-    fontSize: moderateScale(32),
-    marginBottom: verticalScale(6),
+    fontSize: moderateScale(24),
+    marginBottom: verticalScale(4),
   },
   cardTitle: {
-    fontSize: moderateScale(18),
+    fontSize: moderateScale(15),
     fontWeight: 'bold',
     color: '#FFF',
     textAlign: 'center',
-    marginBottom: verticalScale(3),
+    marginBottom: verticalScale(2),
   },
   cardSubtitle: {
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(10),
     color: 'rgba(255, 255, 255, 0.9)',
     textAlign: 'center',
   },
@@ -383,51 +342,51 @@ const styles = StyleSheet.create({
   },
   // V3.0 - Estilos para toggle de modo
   modeToggleContainer: {
-    paddingHorizontal: scale(16),
-    paddingBottom: verticalScale(12),
+    paddingHorizontal: scale(14),
+    paddingBottom: verticalScale(10),
   },
   modeButtons: {
     flexDirection: 'row',
-    gap: scale(10),
-    marginBottom: verticalScale(10),
+    gap: scale(8),
+    marginBottom: verticalScale(8),
   },
   modeButton: {
     flex: 1,
-    paddingVertical: verticalScale(10),
-    paddingHorizontal: scale(12),
-    borderRadius: moderateScale(10),
+    paddingVertical: verticalScale(8),
+    paddingHorizontal: scale(10),
+    borderRadius: moderateScale(8),
     alignItems: 'center',
   },
   modeButtonText: {
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(12),
     fontWeight: '600',
   },
   modeDescription: {
-    fontSize: moderateScale(11),
+    fontSize: moderateScale(10),
     textAlign: 'center',
-    lineHeight: moderateScale(16),
+    lineHeight: moderateScale(14),
   },
   // FASE D - Estilos multiplayer
   multiplayerSection: {
-    paddingHorizontal: scale(16),
-    paddingVertical: verticalScale(16),
+    paddingHorizontal: scale(14),
+    paddingVertical: verticalScale(12),
     borderTopWidth: 1,
     borderTopColor: 'rgba(255, 255, 255, 0.1)',
   },
   multiplayerTitle: {
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(12),
     fontWeight: '600',
     textAlign: 'center',
-    marginBottom: verticalScale(12),
+    marginBottom: verticalScale(10),
   },
   multiplayerButtons: {
     flexDirection: 'row',
-    gap: scale(12),
+    gap: scale(10),
   },
   multiplayerButton: {
     flex: 1,
-    paddingVertical: verticalScale(12),
-    borderRadius: moderateScale(12),
+    paddingVertical: verticalScale(10),
+    borderRadius: moderateScale(10),
     alignItems: 'center',
     elevation: 3,
     shadowColor: '#000',
@@ -436,12 +395,12 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   multiplayerButtonIcon: {
-    fontSize: moderateScale(20),
-    marginBottom: verticalScale(4),
+    fontSize: moderateScale(18),
+    marginBottom: verticalScale(3),
   },
   multiplayerButtonText: {
     color: '#FFF',
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(11),
     fontWeight: '600',
   },
 });

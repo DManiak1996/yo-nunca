@@ -130,13 +130,58 @@ eas build --profile development --platform all
 ⏱️ **Tiempo estimado:** 10-20 minutos por plataforma
 
 #### 1.5 Instalar Development Build
-- iOS: Descargar IPA y instalar via TestFlight o cable
-- Android: Descargar APK e instalar directamente
+
+**Android:**
+- Descargar APK directamente desde link del build
+- Instalar en dispositivo (activar "Fuentes desconocidas")
+- **Gratis** ✅
+
+**iOS:**
+- ⚠️ **Requiere Apple Developer Account** ($99/año)
+- Build se sube automáticamente a TestFlight
+- Instalar app TestFlight desde App Store
+- Recibir invitación y descargar desde TestFlight
+
+**iOS sin Apple Developer:**
+- Usar Expo Go para testear (sin módulos nativos como TCP)
+- Solo para testing de UI/UX, no multiplayer
 
 #### 1.6 Ejecutar con Development Build
 ```bash
 npx expo start --dev-client
 ```
+
+---
+
+### PASO 1.7: Development Build para iOS (OPCIONAL)
+
+**⚠️ PREREQUISITOS:**
+- Apple Developer Account ($99/año) - https://developer.apple.com
+- Dispositivo iOS registrado
+
+**Comandos:**
+```bash
+# Registrar dispositivo iOS (abre link en iPhone)
+eas device:create
+
+# Crear build iOS
+eas build --profile development --platform ios
+
+# EAS pedirá:
+# - Login con Apple ID
+# - Generar certificados automáticamente (responder Y)
+# - Registrar dispositivo
+
+# Subir a TestFlight
+eas submit --platform ios
+```
+
+**En tu iPhone:**
+1. Descargar app "TestFlight" desde App Store
+2. Esperar invitación por email (5-30 minutos)
+3. Abrir invitación y descargar build
+
+**Tiempo estimado:** 20-40 minutos (primera vez)
 
 ---
 

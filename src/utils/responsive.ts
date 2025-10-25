@@ -17,7 +17,9 @@ const BASE_HEIGHT = 852; // iPhone 15 height
  */
 export const scale = (size: number): number => {
   const ratio = SCREEN_WIDTH / BASE_WIDTH;
-  return Math.round(PixelRatio.roundToNearestPixel(size * ratio));
+  // Si la pantalla es más grande, limitar el crecimiento al 90%
+  const adjustedRatio = ratio > 1 ? 1 + (ratio - 1) * 0.9 : ratio;
+  return Math.round(PixelRatio.roundToNearestPixel(size * adjustedRatio));
 };
 
 /**
@@ -26,7 +28,9 @@ export const scale = (size: number): number => {
  */
 export const verticalScale = (size: number): number => {
   const ratio = SCREEN_HEIGHT / BASE_HEIGHT;
-  return Math.round(PixelRatio.roundToNearestPixel(size * ratio));
+  // Si la pantalla es más grande, limitar el crecimiento al 90%
+  const adjustedRatio = ratio > 1 ? 1 + (ratio - 1) * 0.9 : ratio;
+  return Math.round(PixelRatio.roundToNearestPixel(size * adjustedRatio));
 };
 
 /**
@@ -34,9 +38,11 @@ export const verticalScale = (size: number): number => {
  * Usa esto para: font sizes, border radius, icon sizes
  * El factor controla cuánto escalar (0 = nada, 1 = completo)
  */
-export const moderateScale = (size: number, factor: number = 0.5): number => {
+export const moderateScale = (size: number, factor: number = 0.3): number => {
   const ratio = SCREEN_WIDTH / BASE_WIDTH;
-  return Math.round(PixelRatio.roundToNearestPixel(size + (ratio - 1) * size * factor));
+  // Si es más grande que base, reducir agresivamente
+  const adjustedRatio = ratio > 1 ? 1 + (ratio - 1) * 0.6 : ratio;
+  return Math.round(PixelRatio.roundToNearestPixel(size + (adjustedRatio - 1) * size * factor));
 };
 
 /**
