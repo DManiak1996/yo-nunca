@@ -12,10 +12,14 @@ import { isAgeVerified } from '../utils/storage';
 import AgeGateScreen from '../screens/AgeGateScreen';
 import HomeScreen from '../screens/HomeScreen';
 import GameScreen from '../screens/GameScreen';
+import GameSelectionScreen from '../screens/GameSelectionScreen'; // V4.0.1 - Selección de juegos
 import CategorySelectionScreen from '../screens/CategorySelectionScreen';
 import PlayerSetupScreen from '../screens/PlayerSetupScreen';
 import GameScreenMultiplayer from '../screens/GameScreenMultiplayer';
 import GameScreenDetectives from '../screens/GameScreenDetectives'; // V3.0 - Modo Detectives
+import CardGamePlayerSelectScreen from '../screens/CardGamePlayerSelectScreen'; // V4.1 - Selección jugador inicial
+import CardGameScreen from '../screens/CardGameScreen'; // V4.0 - El Rey de Copas
+import BottleGameScreen from '../screens/BottleGameScreen'; // V4.0 - La Botella
 import CustomPhrasesScreen from '../screens/CustomPhrasesScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import GlobalStatsScreen from '../screens/GlobalStatsScreen';
@@ -91,6 +95,11 @@ export default function AppNavigator() {
         options={{ headerShown: false }}
       />
       <Stack.Screen
+        name="GameSelection"
+        component={GameSelectionScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
         name="CategorySelection"
         component={CategorySelectionScreen}
         options={{ headerShown: false }}
@@ -108,6 +117,21 @@ export default function AppNavigator() {
       <Stack.Screen
         name="GameDetectives"
         component={GameScreenDetectives}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CardGamePlayerSelect"
+        component={CardGamePlayerSelectScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CardGame"
+        component={CardGameScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="BottleGame"
+        component={BottleGameScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen

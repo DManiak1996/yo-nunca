@@ -1,5 +1,5 @@
 /**
- * Frases de nivel PICANTE - 100 frases
+ * Frases de nivel PICANTE - 120+ frases
  * Categoría: Picante, Ardiente, Cachond@ pero no tanto, Mi primer paso para la borrachera
  * NOTA: NO incluyen "Yo nunca" al inicio (se añade dinámicamente)
  */
@@ -104,4 +104,44 @@ export const picanteLevelPhrases: string[] = [
   "he quedado con alguien solo para tener dónde dormir",
   "he ligado con alguien para ponerle celoso a otra persona",
   "he tenido sexo en la playa",
+
+  // Frases movidas desde MEDIO (más picantes)
+  "he tenido sueños sexuales con alguien presente aquí",
+
+  // Frases movidas desde MUY PICANTE (menos extremas)
+  "he probado cocaína",
+  "he fumado marihuana antes de ir a trabajar",
+
+  // Interacción social con el grupo (NUEVAS)
+  "querido besar a alguien de este grupo",
+  "sentido celos de alguien aquí",
+  "rechazado a alguien presente",
+  "mirado el WhatsApp de alguien de este grupo",
+
+  // Experiencias divertidas en grupo (NUEVAS)
+  "jugado a la botella y besado a alguien que no quería",
+  "participado en un juego de besos en grupo",
+  "hecho streaking (correr desnudo) por una apuesta",
+  "jugado a strip póker y perdido toda la ropa",
+
+  // Situaciones cómicas sociales (NUEVAS)
+  "roto la cremallera del pantalón en público y seguido así horas",
+  "hecho ruidos corporales embarazosos en una cita",
+  "enviado un mensaje íntimo al grupo familiar por error",
+
+  // Juegos y retos entre amigos (NUEVAS)
+  "besado a un desconocido por un reto",
+  "enviado un mensaje atrevido a alguien por una apuesta",
+  "bailado en un sitio público por haber perdido una apuesta",
+
+  // Momentos vergonzosos en fiestas (NUEVAS)
+  "vomitado en una fiesta y seguido bebiendo después",
+  "llorado borracho en una fiesta por algo ridículo",
+  "bailado tan mal que alguien grabó y se viralizó en el grupo",
+  "caído borracho y me hice daño pero seguí de fiesta",
+
+  // Confesiones que generen debate grupal (NUEVAS)
+  "pensado que merecía más el ascenso/premio que quien lo recibió",
+  "deseado que una pareja se separara porque me gustaba uno de los dos",
+  "sentido alivio cuando a un amigo le fue mal en algo",
 ];

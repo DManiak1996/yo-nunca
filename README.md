@@ -1,5 +1,8 @@
 # 🍻 Yo Nunca - Juego de Beber
 
+iIMPORTANTE PARA EL DEV SERVER :npx expo start --dev-client --scheme yonunca
+
+
 App móvil multiplataforma (Android/iOS) del clásico juego de beber "Yo Nunca" para fiestas.
 
 ## 🎯 Características

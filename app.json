@@ -2,22 +2,19 @@
   "expo": {
     "name": "Yo Nunca",
     "slug": "yo-nunca",
-    "scheme": "yonunca",
     "version": "3.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
-    "owner": "dmaniak1996",
+    "owner": "DManiak1996",
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#2C1810"
     },
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.dmaniak.yonunca",
-      "buildNumber": "1"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
@@ -26,21 +23,10 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.dmaniak.yonunca",
-      "versionCode": 1,
-      "permissions": [
-        "INTERNET",
-        "ACCESS_NETWORK_STATE",
-        "ACCESS_WIFI_STATE"
-      ]
+      "package": "com.anonymous.yonunca"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "08756388-dd0f-4691-adcd-ff8a63531104"
-      }
     }
   }
 }

@@ -3,7 +3,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../context/ThemeContext';
 import CustomButton from '../components/CustomButton';
@@ -132,16 +132,6 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
       <IdleBubblesAnimation />
 
       <View style={styles.content}>
-        {/* Header con icono de configuración */}
-        <View style={styles.header}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Settings')}
-            style={styles.settingsIcon}
-          >
-            <Text style={[styles.settingsIconText, { color: theme.text }]}>⚙️</Text>
-          </TouchableOpacity>
-        </View>
-
         {/* Logo y título */}
         <View style={styles.titleContainer}>
           <Text style={[styles.logo, { color: theme.text }]}>Yo Nunca</Text>
@@ -153,25 +143,19 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
         {/* Botones principales */}
         <View style={styles.buttonsContainer}>
           <CustomButton
-            title="Jugar"
-            onPress={() => handleNavigationWithAnimation('CategorySelection')}
+            title="🎮 Seleccionar Juego"
+            onPress={() => navigation.navigate('GameSelection')}
             variant="primary"
             style={styles.button}
           />
+
           <CustomButton
-            title="Mis Frases"
-            onPress={() => handleNavigationWithAnimation('CustomPhrases')}
-            variant="secondary"
-            style={styles.button}
-          />
-          <CustomButton
-            title="Tus Estadísticas"
-            onPress={() => handleNavigationWithAnimation('GlobalStats')}
+            title="⚙️ Configuración y Ajustes"
+            onPress={() => navigation.navigate('Settings')}
             variant="secondary"
             style={styles.button}
           />
         </View>
-
         {/* Footer */}
         <Text style={[styles.footer, { color: theme.textSecondary }]}>
           Para mayores de 18 años
@@ -249,6 +233,13 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '100%',
+  },
+  sectionTitle: {
+    fontSize: moderateScale(16),
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: verticalScale(8),
+    marginBottom: verticalScale(4),
   },
   footer: {
     textAlign: 'center',

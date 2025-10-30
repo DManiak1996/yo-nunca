@@ -15,8 +15,16 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../context/ThemeContext';
 import CustomButton from '../components/CustomButton';
-import { clearCustomPhrases, getVibrationEnabled, setVibrationEnabled } from '../utils/storage';
+import { getVibrationEnabled, setVibrationEnabled } from '../utils/storage';
 import { triggerHaptic } from '../utils/haptics';
+import { RootStackParamList } from '../types';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+type SettingsScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Settings'>;
+
+interface SettingsScreenProps {
+  navigation: SettingsScreenNavigationProp;
+}
 
 const APP_VERSION = '1.0.0';
 
@@ -113,7 +121,7 @@ Para preguntas: danielarmendiagiron@gmail.com
 
 Al usar esta app, confirmas haber leído, entendido y aceptado estos términos.`;
 
-export default function SettingsScreen() {
+export default function SettingsScreen({ navigation }: SettingsScreenProps) {
   const { theme, isDarkMode, toggleTheme } = useTheme();
   const [isPrivacyModalVisible, setIsPrivacyModalVisible] = useState(false);
   const [isTermsModalVisible, setIsTermsModalVisible] = useState(false);
@@ -138,31 +146,35 @@ export default function SettingsScreen() {
     }
   };
 
-  const handleResetPhrases = () => {
-    Alert.alert(
-      'Confirmar eliminación',
-      '¿Estás seguro de que quieres eliminar todas las frases personalizadas? Esta acción no se puede deshacer.',
-      [
-        { text: 'Cancelar', style: 'cancel' },
-        {
-          text: 'Eliminar',
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              await clearCustomPhrases();
-              Alert.alert('Éxito', 'Todas las frases personalizadas han sido eliminadas');
-            } catch (error) {
-              Alert.alert('Error', 'No se pudieron eliminar las frases');
-            }
-          },
-        },
-      ]
-    );
-  };
-
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
       <ScrollView style={styles.content}>
+        {/* Sección de gestión de juegos "Yo Nunca" */}
+        <View style={styles.section}>
+          <Text style={[styles.sectionTitle, { color: theme.text }]}>
+            Gestión de "Yo Nunca"
+          </Text>
+          <Text style={[styles.sectionDescription, { color: theme.textSecondary }]}>
+            (Solo para modos: Clásico y Detective)
+          </Text>
+
+          <CustomButton
+            title="📝 Mis Frases"
+            onPress={() => navigation.navigate('CustomPhrases')}
+            variant="secondary"
+            style={styles.button}
+          />
+
+          <View style={{ height: 12 }} />
+
+          <CustomButton
+            title="📊 Tus Estadísticas"
+            onPress={() => navigation.navigate('GlobalStats')}
+            variant="secondary"
+            style={styles.button}
+          />
+        </View>
+
         {/* Sección de tema */}
         <View style={styles.section}>
           <Text style={[styles.sectionTitle, { color: theme.text }]}>Apariencia</Text>
@@ -203,17 +215,6 @@ export default function SettingsScreen() {
               thumbColor="#FFFFFF"
             />
           </View>
-        </View>
-
-        {/* Sección de datos */}
-        <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: theme.text }]}>Datos</Text>
-          <CustomButton
-            title="Resetear frases personalizadas"
-            onPress={handleResetPhrases}
-            variant="danger"
-            style={styles.button}
-          />
         </View>
 
         {/* Sección Legal */}
@@ -338,6 +339,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 12,
+  },
+  sectionDescription: {
+    fontSize: 13,
+    marginBottom: 12,
+    fontStyle: 'italic',
   },
   settingItem: {
     flexDirection: 'row',

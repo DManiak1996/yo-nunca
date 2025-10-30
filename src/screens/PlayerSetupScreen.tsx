@@ -38,7 +38,7 @@ interface Props {
 }
 
 export default function PlayerSetupScreen({ navigation, route }: Props) {
-  const { difficulty, gameMode = 'normal' } = route.params; // V3.0 - Obtener gameMode
+  const { difficulty, gameMode = 'normal', gameType } = route.params; // V4.0 - Obtener gameType
   const { theme } = useTheme();
   const {
     players,
@@ -175,17 +175,15 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
    * Callback cuando la animación termina
    */
   const handleAnimationComplete = () => {
-    // V3.0 - Navegar según el modo de juego
-    if (gameMode === 'detectives') {
-      navigation.navigate('GameDetectives', {
-        players,
-        difficulty,
-      });
+    // V4.1 - Navegar según gameType o gameMode
+    if (gameType === 'cardgame') {
+      navigation.navigate('CardGamePlayerSelect', { players });
+    } else if (gameType === 'bottle') {
+      navigation.navigate('BottleGame', { players });
+    } else if (gameMode === 'detectives') {
+      navigation.navigate('GameDetectives', { players, difficulty });
     } else {
-      navigation.navigate('GameMultiplayer', {
-        players,
-        difficulty,
-      });
+      navigation.navigate('GameMultiplayer', { players, difficulty });
     }
     // Mantener animación visible 200ms más para cubrir el parpadeo de carga
     setTimeout(() => {

@@ -1,5 +1,5 @@
 /**
- * Frases de nivel MUY PICANTE - 150 frases
+ * Frases de nivel MUY PICANTE - 160+ frases
  * Categoría: Soy un turbio, Nah hoy de tranquis 😈, Hoy cojo el coche (Mentira),
  *            El que perdona murió en la cruz, Si ya sabes cómo me pongo para qué me invitáis
  * NOTA: NO incluyen "Yo nunca" al inicio (se añade dinámicamente)
@@ -48,7 +48,6 @@ export const muyPicanteLevelPhrases: string[] = [
   "he besado a alguien el mismo día de mi boda",
 
   // Sustancias (sin conducción ni venta)
-  "he probado cocaína",
   "he probado éxtasis o MDMA",
   "he probado LSD u otros alucinógenos",
   "he tenido sexo bajo efectos de sustancias",
@@ -56,7 +55,6 @@ export const muyPicanteLevelPhrases: string[] = [
   "he mezclado múltiples bebidas alcohólicas y me arrepentí",
   "he vomitado por beber demasiado en una cita",
   "he despertado sin recordar nada de la noche anterior",
-  "he fumado marihuana antes de ir a trabajar",
   "he ido a trabajar con resaca monumental",
 
   // Situaciones vergonzosas
@@ -84,7 +82,6 @@ export const muyPicanteLevelPhrases: string[] = [
   "he vendido contenido erótico online",
 
   // Secretos oscuros (sin ilegalidades graves)
-  "he espiado las redes sociales de mi ex obsesivamente",
   "he fingido ser otra persona online",
   "he entrado en la cuenta de redes de mi pareja sin permiso",
   "he leído los mensajes de mi pareja a escondidas",
@@ -133,15 +130,12 @@ export const muyPicanteLevelPhrases: string[] = [
 
   // Más contenido sexual explícito
   "he tenido sexo en un avión",
-  "he practicado sexo en el baño de un tren",
   "he tenido sexo en la oficina fuera de horario",
-  "he practicado sexo en espacios públicos de noche",
   "he participado en gloryholes",
   "he tenido sexo con más de 50 personas en mi vida",
   "he practicado pegging",
   "he tenido sexo en un cementerio",
   "he participado en juegos sexuales con apuestas",
-  "he tenido sexo en un coche aparcado en la calle",
 
   // Más secretos y traiciones
   "he besado a mi cuñado/a",
@@ -157,7 +151,6 @@ export const muyPicanteLevelPhrases: string[] = [
 
   // Situaciones sexuales extremas
   "he tenido sexo en un festival de música",
-  "he tenido sexo en la playa y nos vieron",
   "he practicado exhibicionismo en pareja consensuado",
   "he enviado fotos íntimas a grupos por diversión",
   "he tenido una relación amorosa con alguien casado durante años",
@@ -190,4 +183,28 @@ export const muyPicanteLevelPhrases: string[] = [
   "he ido a terapia solo para conocer gente",
   "he fingido compartir los valores de alguien para seducirlo/a",
   "he tenido sexo en el coche de otra persona sin permiso",
+
+  // Frases movidas desde PICANTE (más extremas)
+  "he tenido una ETS",
+  "he fingido un embarazo",
+
+  // Interacción social con el grupo (NUEVAS)
+  "tenido fantasías con alguien de los presentes",
+  "pensado que la pareja de alguien aquí no le conviene",
+
+  // Experiencias divertidas en grupo (NUEVAS)
+  "participado en juegos sexuales en grupo con amigos",
+  "besado a todos en un círculo de amigos en una noche",
+
+  // Momentos vergonzosos en fiestas (NUEVAS)
+  "liado con alguien en la fiesta y despertado sin recordar nada",
+  "meado en una fiesta en algún lugar que no era el baño",
+
+  // Confesiones que generen debate grupal (NUEVAS)
+  "saboteado sutilmente una oportunidad de alguien por beneficio propio",
+  "filtrado un secreto que prometí guardar",
+  "deseado secretamente el fracaso de alguien cercano",
+
+  // Retos extremos (NUEVAS)
+  "cumplido un reto sexual por haber perdido una apuesta",
 ];

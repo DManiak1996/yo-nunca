@@ -143,6 +143,14 @@ const PlayerListItem = React.memo(function PlayerListItem({
               </Text>
             )}
           </View>
+          {/* Indicador de racha - V3.0 */}
+          {player.currentStreak >= 3 && (
+            <View style={styles.streakBadge}>
+              <Text style={styles.streakText}>
+                🔥 {player.currentStreak} racha
+              </Text>
+            </View>
+          )}
           {/* Indicador visual zona restar */}
           {canDecrement && (
             <Text style={[styles.zoneIndicator, { color: theme.textSecondary }]}>
@@ -265,5 +273,18 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginTop: 2,
     opacity: 0.6,
+  },
+  streakBadge: {
+    backgroundColor: 'rgba(255, 87, 34, 0.2)',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 8,
+    marginTop: 4,
+    alignSelf: 'flex-start',
+  },
+  streakText: {
+    fontSize: 11,
+    fontWeight: 'bold',
+    color: '#FF5722',
   },
 });

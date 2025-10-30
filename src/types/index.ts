@@ -11,12 +11,16 @@ export interface Phrase {
 export interface Theme {
   background: string;
   cardBackground: string;
+  cardBg: string; // Alias para cardBackground
   primary: string;
   secondary: string;
   text: string;
   textSecondary: string;
+  textMuted: string; // Texto atenuado
   danger: string;
   success: string;
+  warning: string; // Color de advertencia
+  error: string; // Alias para danger
   border: string;
 }
 
@@ -29,6 +33,11 @@ export type DifficultyLevel = 'cagon' | 'medio' | 'picante' | 'muy_picante';
  * Modos de juego - V3.0
  */
 export type GameMode = 'normal' | 'detectives';
+
+/**
+ * Tipos de juego - V4.0
+ */
+export type GameType = 'yonunca' | 'detectives' | 'cardgame' | 'bottle';
 
 /**
  * Jugador en una partida multijugador
@@ -132,12 +141,16 @@ export interface DetectivesRoundResult {
 export type RootStackParamList = {
   AgeGate: undefined;
   Home: undefined;
+  GameSelection: undefined; // V4.0.1 - Pantalla de selección de juegos
   CategorySelection: undefined;
-  PlayerSetup: { difficulty: DifficultyLevel; gameMode?: GameMode };
+  PlayerSetup: { difficulty: DifficultyLevel; gameMode?: GameMode; gameType?: GameType };
   GameMultiplayer: { players: Player[]; difficulty: DifficultyLevel };
   GameDetectives: { players: Player[]; difficulty: DifficultyLevel }; // V3.0 - Modo Detectives
   LocalHost: { hostName: string }; // V3.0 - FASE D - Crear sala local
   LocalJoin: { playerName: string }; // V3.0 - FASE D - Unirse a sala local
+  CardGamePlayerSelect: { players: Player[] }; // V4.1 - Selección jugador inicial
+  CardGame: { players: Player[]; startingPlayerIndex?: number }; // V4.0 - El Rey de Copas
+  BottleGame: { players: Player[] }; // V4.0 - La Botella
   Game: undefined; // mantener por compatibilidad con v1.0
   CustomPhrases: undefined;
   Settings: undefined;

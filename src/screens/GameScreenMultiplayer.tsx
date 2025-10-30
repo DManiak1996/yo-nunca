@@ -275,7 +275,10 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
     // Usamos setTimeout para que el estado se actualice primero
     setTimeout(() => {
       const player = players.find(p => p.id === playerId);
-      if (player && player.currentStreak >= 3) { // Racha de 3 o más tragos consecutivos
+      if (!player) return;
+
+      // Detectar rachas
+      if (player.currentStreak >= 3) { // Racha de 3 o más tragos consecutivos
         const streakMessages = [
           `🔥 ${player.name} está en RACHA! ${player.currentStreak} seguidos`,
           `🍺 ${player.name} no para de beber! ${player.currentStreak} tragos consecutivos`,
