@@ -198,11 +198,25 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
     // Incrementar contador de juegos completados
     gamesCompletedCounter++;
 
-    // 🎯 Filosofía user-friendly: Anuncios cada X juegos (configurable)
-    // Prioridad: Experiencia de usuario > Monetización
-    // Proyección con 1000 DAU: $260-600/mes (suficiente para cubrir costos)
+    // 🎯 LOGS DE DEBUG - Temporal para testing de anuncios intersticiales
+    console.log('=== INTERSTITIAL AD DEBUG ===');
+    console.log('Games completed:', gamesCompletedCounter);
+    console.log('Frequency threshold:', ADS_CONFIG.INTERSTITIAL_FREQUENCY);
+    console.log('Should show ad?:', gamesCompletedCounter % ADS_CONFIG.INTERSTITIAL_FREQUENCY === 0);
+    console.log('Ad loaded?:', adLoaded);
+
+    // Filosofía: Mayor monetización con anuncios cada 2 juegos
+    // Prioridad: Balance entre ingresos y experiencia de usuario
+    // Proyección con 1000 DAU: $380-840/mes (+30-40% vs configuración anterior)
     if (gamesCompletedCounter % ADS_CONFIG.INTERSTITIAL_FREQUENCY === 0 && adLoaded) {
+      console.log('✅ Showing interstitial ad - All conditions met');
       showAd();
+    } else {
+      console.log('❌ Not showing ad - Reasons:', {
+        'Frequency check (should be 0)': gamesCompletedCounter % ADS_CONFIG.INTERSTITIAL_FREQUENCY,
+        'Ad loaded': adLoaded,
+        'Games for next ad': ADS_CONFIG.INTERSTITIAL_FREQUENCY - (gamesCompletedCounter % ADS_CONFIG.INTERSTITIAL_FREQUENCY)
+      });
     }
 
     // Mostrar directamente el modal de estadísticas finales

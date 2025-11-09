@@ -78,6 +78,7 @@ const StatsModal = React.memo(function StatsModal({
 
           <ScrollView
             style={styles.content}
+            contentContainerStyle={styles.contentContainer}
             showsVerticalScrollIndicator={false}
           >
             {/* Frases jugadas */}
@@ -120,6 +121,7 @@ const StatsModal = React.memo(function StatsModal({
                   <Text
                     style={[styles.rankingName, { color: theme.text }]}
                     numberOfLines={1}
+                    ellipsizeMode="tail"
                   >
                     {player.name}
                   </Text>
@@ -149,7 +151,11 @@ const StatsModal = React.memo(function StatsModal({
                     <Text style={[styles.highlightLabel, { color: theme.danger }]}>
                       Más diablo
                     </Text>
-                    <Text style={[styles.highlightName, { color: theme.text }]}>
+                    <Text
+                      style={[styles.highlightName, { color: theme.text }]}
+                      numberOfLines={1}
+                      ellipsizeMode="tail"
+                    >
                       {mostDiablo.avatar} {mostDiablo.name}
                     </Text>
                     <Text style={[styles.highlightValue, { color: theme.textSecondary }]}>
@@ -167,7 +173,11 @@ const StatsModal = React.memo(function StatsModal({
                     <Text style={[styles.highlightLabel, { color: theme.success }]}>
                       Más bendito
                     </Text>
-                    <Text style={[styles.highlightName, { color: theme.text }]}>
+                    <Text
+                      style={[styles.highlightName, { color: theme.text }]}
+                      numberOfLines={1}
+                      ellipsizeMode="tail"
+                    >
                       {mostBendito.avatar} {mostBendito.name}
                     </Text>
                     <Text style={[styles.highlightValue, { color: theme.textSecondary }]}>
@@ -226,9 +236,10 @@ const styles = StyleSheet.create({
   modalContainer: {
     width: '100%',
     maxWidth: 500,
-    maxHeight: '80%',
+    maxHeight: '85%',
     borderRadius: borderRadius['2xl'],
     ...shadows.xl,
+    overflow: 'hidden',
   },
   header: {
     flexDirection: 'row',
@@ -249,7 +260,11 @@ const styles = StyleSheet.create({
     fontWeight: typography.fontWeight.bold,
   },
   content: {
+    flex: 1,
     paddingHorizontal: spacing.lg,
+  },
+  contentContainer: {
+    paddingBottom: spacing.md,
   },
   section: {
     marginBottom: spacing.lg,

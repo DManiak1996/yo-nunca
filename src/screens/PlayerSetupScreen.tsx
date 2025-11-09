@@ -24,6 +24,7 @@ import CustomButton from '../components/CustomButton';
 import BeerTransitionAnimation from '../components/BeerTransitionAnimation';
 import { validatePlayerName } from '../utils/validation';
 import { sanitizePlayerName } from '../utils/sanitization';
+import { colors, shadows } from '../design-system/tokens';
 
 type PlayerSetupScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -210,7 +211,7 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
               value={editingName}
               onChangeText={setEditingName}
               autoFocus
-              maxLength={20}
+              maxLength={15}
               autoCapitalize="words"
               onSubmitEditing={handleSaveEdit}
               accessibilityLabel={`Editar nombre de ${item.name}`}
@@ -218,7 +219,11 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
             />
           ) : (
             <View style={styles.playerNameContainer}>
-              <Text style={[styles.playerName, { color: theme.text }]}>
+              <Text
+                style={[styles.playerName, { color: theme.text }]}
+                numberOfLines={1}
+                ellipsizeMode="tail"
+              >
                 {item.name}
               </Text>
               <Text style={[styles.playerNumber, { color: theme.textSecondary }]}>
@@ -253,7 +258,7 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
           ) : (
             <>
               <TouchableOpacity
-                style={[styles.actionButton, { backgroundColor: theme.secondary }]}
+                style={[styles.actionButton, { backgroundColor: colors.primary[500] }]}
                 onPress={() => handleStartEdit(item.id, item.name)}
                 accessibilityLabel={`Editar nombre de ${item.name}`}
                 accessibilityHint="Toca dos veces para editar el nombre"
@@ -262,7 +267,7 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
                 <Text style={styles.actionButtonText}>✎</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.actionButton, { backgroundColor: theme.danger }]}
+                style={[styles.actionButton, { backgroundColor: colors.error[500] }]}
                 onPress={() => handleRemovePlayer(item.id, item.name)}
                 accessibilityLabel={`Eliminar a ${item.name}`}
                 accessibilityHint="Toca dos veces para eliminar este jugador"
@@ -465,11 +470,12 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   actionButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
     justifyContent: 'center',
     alignItems: 'center',
+    ...shadows.sm,
   },
   actionButtonText: {
     fontSize: 18,

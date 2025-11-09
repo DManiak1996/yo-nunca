@@ -106,7 +106,11 @@ export default function DetectivesVoting({ players, phrase, onAllComplete }: Pro
         <View style={[styles.targetRow, { backgroundColor: theme.cardBackground }]}>
           <View style={styles.targetInfo}>
             <Text style={styles.targetAvatar}>{target.avatar || '🎭'}</Text>
-            <Text style={[styles.targetName, { color: theme.text }]}>
+            <Text
+              style={[styles.targetName, { color: theme.text }]}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
               {target.name}
             </Text>
           </View>
@@ -207,7 +211,11 @@ export default function DetectivesVoting({ players, phrase, onAllComplete }: Pro
       <View style={[styles.targetRow, { backgroundColor: theme.cardBackground }]}>
         <View style={styles.targetInfo}>
           <Text style={styles.targetAvatar}>{player.avatar || '🎭'}</Text>
-          <Text style={[styles.targetName, { color: theme.text }]}>
+          <Text
+            style={[styles.targetName, { color: theme.text }]}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
             {player.name}
           </Text>
         </View>
@@ -323,26 +331,28 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingHorizontal: 20,
-    gap: 12,
+    gap: 8,
   },
   targetRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 16,
+    padding: 12,
     borderRadius: 12,
+    marginBottom: 8,
   },
   targetInfo: {
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
+    marginRight: 8,
   },
   targetAvatar: {
-    fontSize: 24,
-    marginRight: 12,
+    fontSize: 20,
+    marginRight: 10,
   },
   targetName: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '600',
   },
   voteButtons: {

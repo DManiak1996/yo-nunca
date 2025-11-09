@@ -79,7 +79,11 @@ export default function DetectivesResults({
       >
         <View style={styles.playerInfo}>
           <Text style={styles.playerAvatar}>{player.avatar || '🎭'}</Text>
-          <Text style={[styles.playerName, { color: theme.text }]}>
+          <Text
+            style={[styles.playerName, { color: theme.text }]}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
             {player.name}
           </Text>
         </View>
