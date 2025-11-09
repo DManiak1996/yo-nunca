@@ -216,6 +216,168 @@ Si prefieres análisis más concisos o más detallados, modifica las instruccion
 
 ---
 
+---
+
+## 🎨 Agente de Diseño Visual de UI
+
+### Descripción
+Experto en Diseño Visual de Interfaces con más de 10 años de experiencia en branding digital, sistemas de diseño y estética de productos digitales. Te ayuda a crear interfaces visualmente impactantes, consistentes y profesionales.
+
+**⚠️ IMPORTANTE: Este agente tiene personalidad fuerte y criterio profesional.**
+- NO es un "yes man" que aprueba todo
+- Te dirá directamente si algo está mal diseñado visualmente
+- Rechazará decisiones estéticas que violen principios de diseño (con justificación)
+- Usa lenguaje directo y profesional, no tímido o complaciente
+- Su lealtad es con la excelencia visual, no con tus sentimientos
+
+### Archivo
+[`visual-designer.md`](./visual-designer.md)
+
+### ¿Cuándo usarlo?
+- Al iniciar un nuevo proyecto (para definir identidad visual desde el principio)
+- Cuando necesites crear o mejorar el sistema de diseño
+- Para revisar consistencia visual de componentes
+- Al elegir paletas de colores, tipografías o espaciados
+- Cuando el diseño se vea "amateur" o inconsistente
+- Para implementar dark mode correctamente
+
+### Comandos disponibles
+
+#### 1. `/visual-review` - Auditoría completa de diseño visual
+Realiza una revisión exhaustiva de toda la estética:
+- Paleta de colores
+- Tipografía y jerarquía
+- Espaciado y layout
+- Consistencia visual
+- Iconografía
+- Sistema de diseño
+
+**Cuándo usarlo:**
+- Al finalizar una versión importante
+- Cuando el diseño se vea inconsistente
+- Antes de lanzar a producción
+- Para establecer un sistema de diseño
+
+**Output:**
+- Resumen ejecutivo con puntuación de diseño visual
+- Análisis detallado por áreas (color, tipografía, espaciado, etc.)
+- Sistema de diseño propuesto (tokens, paletas, escalas)
+- Quick wins visuales
+- Roadmap de implementación
+
+**Ejemplo:**
+```
+/visual-review
+```
+
+---
+
+#### 2. `/visual-colors` - Auditoría de paleta de colores
+Analiza y propone una paleta de colores profesional y coherente.
+
+**Cuándo usarlo:**
+- Los colores actuales se ven "amateur" o inconsistentes
+- No hay un sistema de gradaciones de color
+- Necesitas implementar dark mode
+- Problemas de contraste o accesibilidad
+
+**Output:**
+- Análisis de paleta actual
+- Propuesta de paleta profesional con gradaciones (50-900)
+- Código de implementación (CSS variables, Tailwind config)
+- Verificación de contraste WCAG AA
+
+**Ejemplo:**
+```
+/visual-colors
+```
+
+---
+
+#### 3. `/visual-typography` - Análisis tipográfico
+Revisa y propone un sistema tipográfico profesional.
+
+**Cuándo usarlo:**
+- Hay múltiples tamaños de texto arbitrarios
+- La jerarquía visual no es clara
+- Se usan demasiadas tipografías diferentes
+- El texto es difícil de leer
+
+**Output:**
+- Análisis de tipografía actual
+- Propuesta de escala tipográfica modular
+- Combinaciones de tipografías profesionales
+- Código de implementación
+
+**Ejemplo:**
+```
+/visual-typography
+```
+
+---
+
+#### 4. `/visual-quickwins` - Mejoras visuales rápidas
+Identifica mejoras visuales de alto impacto con poco esfuerzo.
+
+**Cuándo usarlo:**
+- Tienes 1-2 horas para mejorar el aspecto visual
+- Antes de una demo o presentación
+- Para mejorar rápidamente la percepción de calidad
+
+**Output:**
+- 5-10 mejoras visuales con código específico
+- Tiempo estimado de implementación
+- Orden sugerido de implementación
+
+**Ejemplo:**
+```
+/visual-quickwins
+```
+
+---
+
+#### 5. `/visual-system` - Crear sistema de diseño
+Crea o mejora el sistema de diseño completo (design tokens).
+
+**Cuándo usarlo:**
+- No existe un sistema de diseño
+- El proyecto está creciendo y se vuelve inconsistente
+- Necesitas documentar decisiones de diseño
+- Quieres escalar el diseño de forma organizada
+
+**Output:**
+- Sistema de diseño completo (colores, espaciado, tipografía, sombras, etc.)
+- Código de implementación (CSS variables, Tailwind config, TypeScript tokens)
+- Documentación de uso
+- Ejemplos de componentes
+
+**Ejemplo:**
+```
+/visual-system
+```
+
+---
+
+### Diferencia entre UX/UI Designer y Visual Designer
+
+**UX/UI Designer** se enfoca en:
+- Usabilidad y flujos de usuario
+- Accesibilidad funcional
+- Arquitectura de información
+- Interacciones y comportamientos
+
+**Visual Designer** se enfoca en:
+- Estética y apariencia
+- Paletas de colores y armonías cromáticas
+- Tipografía y jerarquía visual
+- Sistemas de diseño (design tokens)
+- Consistencia visual
+- Identidad de marca
+
+**Úsalos juntos** para obtener el mejor resultado: primero optimiza la UX, luego eleva la calidad visual.
+
+---
+
 ## 🤝 Contribuir con nuevos agentes
 
 ¿Tienes ideas para nuevos agentes? Algunos candidatos:
@@ -238,7 +400,7 @@ Para crear un nuevo agente:
 
 ## ⚡ Tips Rápidos
 
-### Para obtener el máximo valor del agente UX/UI:
+### Para obtener el máximo valor de los agentes de diseño:
 
 1. **Sé específico con el contexto**
    - "Mis usuarios son personas mayores de 60 años"
