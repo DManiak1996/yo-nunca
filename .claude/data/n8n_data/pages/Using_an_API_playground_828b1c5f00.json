@@ -1,0 +1,32 @@
+{
+  "title": "Using an API playground",
+  "content": "This documentation site provides a playground to test out calls. Self-hosted users also have access to a built-in playground hosted as part of their instance.\n\n## Documentation playground\n\nYou can test API calls from this site's [API reference](../api-reference/). You need to set your server's base URL and instance name, and add an API key.\n\nn8n uses [Scalar's](https://github.com/scalar/scalar) open source API platform to power this functionality.\n\nExposed API key and data\n\nUse a test API key with limited scopes and test data when using a playground. All calls from the playground are routed through Scalar's proxy servers.\n\nYou have access to your live data. This is useful for trying out requests. Be aware you can change or delete real data.\n\n## Built-in playground\n\nThe API playground isn't available on Cloud. It's available for all self-hosted pricing tiers.\n\nThe n8n API comes with a built-in Swagger UI playground in self-hosted versions. This provides interactive documentation, where you can try out requests. The path to access the playground depends on your hosting.\n\nn8n constructs the path from values set in your environment variables:\n\nThe API version number is `1`. There may be multiple versions available in the future.\n\nIf you select **Authorize** and enter your API key in the API playground, you have access to your live data. This is useful for trying out requests. Be aware you can change or delete real data.\n\nThe API includes built-in documentation about credential formats. This is available using the `credentials` endpoint:\n\nHow to find `credentialTypeName`\n\nTo find the type, download your workflow as JSON and examine it. For example, for a Google Drive node the `{credentialTypeName}` is `googleDriveOAuth2Api`:",
+  "code_samples": [
+    {
+      "code": "N8N_HOST:N8N_PORT/N8N_PATH/api/v<api-version-number>/docs",
+      "language": "unknown"
+    },
+    {
+      "code": "N8N_HOST:N8N_PORT/N8N_PATH/api/v<api-version-number>/credentials/schema/{credentialTypeName}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n    ...,\n    \"credentials\": {\n        \"googleDriveOAuth2Api\": {\n        \"id\": \"9\",\n        \"name\": \"Google Drive\"\n        }\n    }\n}",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Documentation playground",
+      "id": "documentation-playground"
+    },
+    {
+      "level": "h2",
+      "text": "Built-in playground",
+      "id": "built-in-playground"
+    }
+  ],
+  "url": "llms-txt#using-an-api-playground",
+  "links": []
+}

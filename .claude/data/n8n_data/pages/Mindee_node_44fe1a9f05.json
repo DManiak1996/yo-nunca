@@ -1,0 +1,24 @@
+{
+  "title": "Mindee node",
+  "content": "Use the Mindee node to automate work in Mindee, and integrate Mindee with other applications. n8n has built-in support for a wide range of Mindee features, including predicting invoices.\n\nOn this page, you'll find a list of operations the Mindee node supports and links to more resources.\n\nRefer to [Mindee credentials](../../credentials/mindee/) for guidance on setting up authentication.\n\n- **Invoice**\n  - Predict\n- **Receipt**\n  - Predict\n\n## Templates and examples\n\n**Extract expenses from emails and add to Google Sheets**\n\n[View template details](https://n8n.io/workflows/1466-extract-expenses-from-emails-and-add-to-google-sheets/)\n\n**Notify on new emails with invoices in Slack**\n\n[View template details](https://n8n.io/workflows/1467-notify-on-new-emails-with-invoices-in-slack/)\n\n**Extract information from an image of a receipt**\n\n[View template details](https://n8n.io/workflows/702-extract-information-from-an-image-of-a-receipt/)\n\n[Browse Mindee integration templates](https://n8n.io/integrations/mindee/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#mindee-node",
+  "links": []
+}

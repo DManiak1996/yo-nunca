@@ -1,0 +1,23 @@
+{
+  "title": "Returns all items the node \"IF\" outputs (index: 1 which is Output \"false\" of run 0 which is the first run)",
+  "content": "allItems = _(\"IF\").all(1, 0);\n\npreviousNodeData = $(\"<node-name>\").all();\nfor(let i=0; i<previousNodeData.length; i++) {\n\tconsole.log(previousNodeData[i].json);\n}\n\npreviousNodeData = _(\"<node-name>\").all();\nfor item in previousNodeData:\n\t# item is of type <class 'pyodide.ffi.JsProxy'>\n\t# You need to convert it to a Dict\n\titemDict = item.json.to_py()\n\tprint(itemDict)\n```",
+  "code_samples": [
+    {
+      "code": "## Accessing item data\n\nGet all items output by a previous node, and log out the data they contain:",
+      "language": "unknown"
+    },
+    {
+      "code": "",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Accessing item data",
+      "id": "accessing-item-data"
+    }
+  ],
+  "url": "llms-txt#returns-all-items-the-node-\"if\"-outputs-(index:-1-which-is-output-\"false\"-of-run-0-which-is-the-first-run)",
+  "links": []
+}

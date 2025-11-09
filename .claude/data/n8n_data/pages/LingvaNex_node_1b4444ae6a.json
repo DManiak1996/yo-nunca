@@ -1,0 +1,19 @@
+{
+  "title": "LingvaNex node",
+  "content": "Use the LingvaNex node to automate work in LingvaNex, and integrate LingvaNex with other applications. n8n has built-in support for translating data with LingvaNex.\n\nOn this page, you'll find a list of operations the LingvaNex node supports and links to more resources.\n\nRefer to [LingvaNex credentials](../../credentials/lingvanex/) for guidance on setting up authentication.\n\n## Templates and examples\n\n**Get data from Hacker News and send to Airtable or via SMS**\n\n[View template details](https://n8n.io/workflows/888-get-data-from-hacker-news-and-send-to-airtable-or-via-sms/)\n\n**Get daily poems in Telegram**\n\n[View template details](https://n8n.io/workflows/975-get-daily-poems-in-telegram/)\n\n**Translate instructions using LingvaNex**\n\n[View template details](https://n8n.io/workflows/797-translate-instructions-using-lingvanex/)\n\n[Browse LingvaNex integration templates](https://n8n.io/integrations/lingvanex/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#lingvanex-node",
+  "links": []
+}

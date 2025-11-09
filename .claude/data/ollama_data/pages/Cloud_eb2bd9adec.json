@@ -1,0 +1,104 @@
+{
+  "title": "Cloud",
+  "content": "Source: https://docs.ollama.com/cloud\n\n<Info>Ollama's cloud is currently in preview.</Info>\n\nOllama's cloud models are a new kind of model in Ollama that can run without a powerful GPU. Instead, cloud models are automatically offloaded to Ollama's cloud service while offering the same capabilities as local models, making it possible to keep using your local tools while running larger models that wouldn't fit on a personal computer.\n\nOllama currently supports the following cloud models, with more coming soon:\n\n* `deepseek-v3.1:671b-cloud`\n* `gpt-oss:20b-cloud`\n* `gpt-oss:120b-cloud`\n* `kimi-k2:1t-cloud`\n* `qwen3-coder:480b-cloud`\n* `glm-4.6:cloud`\n* `minimax-m2:cloud`\n\n### Running Cloud models\n\nOllama's cloud models require an account on [ollama.com](https://ollama.com). To sign in or create an account, run:\n\n<Tabs>\n  <Tab title=\"CLI\">\n    To run a cloud model, open the terminal and run:\n\n<Tab title=\"Python\">\n    First, pull a cloud model so it can be accessed:\n\nNext, install [Ollama's Python library](https://github.com/ollama/ollama-python):\n\nNext, create and run a simple Python script:\n\n<Tab title=\"JavaScript\">\n    First, pull a cloud model so it can be accessed:\n\nNext, install [Ollama's JavaScript library](https://github.com/ollama/ollama-js):\n\nThen use the library to run a cloud model:\n\n<Tab title=\"cURL\">\n    First, pull a cloud model so it can be accessed:\n\nRun the following cURL command to run the command via Ollama's API:\n\nCloud models can also be accessed directly on ollama.com's API. In this mode, ollama.com acts as a remote Ollama host.\n\nFor direct access to ollama.com's API, first create an [API key](https://ollama.com/settings/keys).\n\nThen, set the `OLLAMA_API_KEY` environment variable to your API key.\n\nFor models available directly via Ollama's API, models can be listed via:\n\n### Generating a response\n\n<Tabs>\n  <Tab title=\"Python\">\n    First, install [Ollama's Python library](https://github.com/ollama/ollama-python)\n\n<Tab title=\"JavaScript\">\n    First, install [Ollama's JavaScript library](https://github.com/ollama/ollama-js):\n\nNext, make a request to the model:\n\n<Tab title=\"cURL\">\n    Generate a response via Ollama's chat API:",
+  "code_samples": [
+    {
+      "code": "ollama signin",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama run gpt-oss:120b-cloud",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama pull gpt-oss:120b-cloud",
+      "language": "unknown"
+    },
+    {
+      "code": "pip install ollama",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"JavaScript\">\n    First, pull a cloud model so it can be accessed:",
+      "language": "unknown"
+    },
+    {
+      "code": "Next, install [Ollama's JavaScript library](https://github.com/ollama/ollama-js):",
+      "language": "unknown"
+    },
+    {
+      "code": "Then use the library to run a cloud model:",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"cURL\">\n    First, pull a cloud model so it can be accessed:",
+      "language": "unknown"
+    },
+    {
+      "code": "Run the following cURL command to run the command via Ollama's API:",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n</Tabs>\n\n## Cloud API access\n\nCloud models can also be accessed directly on ollama.com's API. In this mode, ollama.com acts as a remote Ollama host.\n\n### Authentication\n\nFor direct access to ollama.com's API, first create an [API key](https://ollama.com/settings/keys).\n\nThen, set the `OLLAMA_API_KEY` environment variable to your API key.",
+      "language": "unknown"
+    },
+    {
+      "code": "### Listing models\n\nFor models available directly via Ollama's API, models can be listed via:",
+      "language": "unknown"
+    },
+    {
+      "code": "### Generating a response\n\n<Tabs>\n  <Tab title=\"Python\">\n    First, install [Ollama's Python library](https://github.com/ollama/ollama-python)",
+      "language": "unknown"
+    },
+    {
+      "code": "Then make a request",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"JavaScript\">\n    First, install [Ollama's JavaScript library](https://github.com/ollama/ollama-js):",
+      "language": "unknown"
+    },
+    {
+      "code": "Next, make a request to the model:",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"cURL\">\n    Generate a response via Ollama's chat API:",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Cloud Models",
+      "id": "cloud-models"
+    },
+    {
+      "level": "h3",
+      "text": "Running Cloud models",
+      "id": "running-cloud-models"
+    },
+    {
+      "level": "h2",
+      "text": "Cloud API access",
+      "id": "cloud-api-access"
+    },
+    {
+      "level": "h3",
+      "text": "Authentication",
+      "id": "authentication"
+    },
+    {
+      "level": "h3",
+      "text": "Listing models",
+      "id": "listing-models"
+    },
+    {
+      "level": "h3",
+      "text": "Generating a response",
+      "id": "generating-a-response"
+    }
+  ],
+  "url": "llms-txt#cloud",
+  "links": []
+}

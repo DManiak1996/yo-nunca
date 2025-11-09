@@ -1,0 +1,43 @@
+{
+  "url": "https://nextjs.org/docs/messages/google-font-display",
+  "title": "Google Font Display",
+  "content": "Enforce font-display behavior with Google Fonts.\n\nFor a Google Font, the font-display descriptor was either missing or set to auto, block, or fallback, which are not recommended.\n\nFor most cases, the best font display strategy for custom fonts is optional.\n\nSpecifying display=optional minimizes the risk of invisible text or layout shift. If swapping to the custom font after it has loaded is important to you, then use display=swap instead.\n\nIf you want to specifically display a font using an auto, block, or fallback strategy, then you can disable this rule.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Google Font Display",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h3",
+      "text": "When Not To Use It",
+      "id": "when-not-to-use-it"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Head from 'next/head'\n \nexport default function IndexPage() {\n  return (\n    <div>\n      <Head>\n        <link\n          href=\"https://fonts.googleapis.com/css2?family=Krona+One&display=optional\"\n          rel=\"stylesheet\"\n        />\n      </Head>\n    </div>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/google-font-display"
+  ]
+}

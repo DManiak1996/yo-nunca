@@ -1,0 +1,19 @@
+{
+  "title": "Asana Trigger node",
+  "content": "[Asana](https://asana.com/) is a web and mobile application designed to help teams organize, track, and manage their work.\n\nYou can find authentication information for this node [here](../../credentials/asana/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Asana Trigger integrations](https://n8n.io/integrations/asana-trigger/) page.\n\nn8n provides an app node for Asana. You can find the node docs [here](../../app-nodes/n8n-nodes-base.asana/).\n\nView [example workflows and related content](https://n8n.io/integrations/asana-trigger/) on n8n's website.\n\nRefer to [Asana's documentation](https://developers.asana.com/reference/rest-api-reference) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#asana-trigger-node",
+  "links": []
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Understand source control and environments",
+  "content": "- Available on Enterprise.\n\n- You must be an n8n instance owner or instance admin to enable and configure source control.\n\n- Instance owners and instance admins can push changes to and pull changes from the connected repository.\n\n- Project admins can push changes to the connected repository. They can't pull changes from the repository.\n\n- [Environments in n8n](environments/): The purpose of environments, and how they work in n8n.\n\n- [Git in n8n](git/): How n8n uses Git.\n\n- [Branch patterns](patterns/): The possible relationships between n8n instances and Git branches.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#understand-source-control-and-environments",
+  "links": []
+}

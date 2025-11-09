@@ -1,0 +1,24 @@
+{
+  "title": "Chat Memory Manager node",
+  "content": "The Chat Memory Manager node manages chat message [memories](../../../../../glossary/#ai-memory) within your workflows. Use this node to load, insert, and delete chat messages in an in-memory [vector store](../../../../../glossary/#ai-vector-store).\n\nThis node is useful when you:\n\n- Can't add a memory node directly.\n- Need to do more complex memory management, beyond what the memory nodes offer. For example, you can add this node to check the memory size of the Agent node's response, and reduce it if needed.\n- Want to inject messages to the AI that look like user messages, to give the AI more context.\n\nOn this page, you'll find a list of operations that the Chat Memory Manager node supports, along with links to more resources.\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Operation Mode**: Choose between **Get Many Messages**, **Insert Messages**, and **Delete Messages** operations.\n- **Insert Mode**: Available in **Insert Messages** mode. Choose from:\n  - **Insert Messages**: Insert messages alongside existing messages.\n  - **Override All Messages**: Replace current memory.\n- **Delete Mode**: available in **Delete Messages** mode. Choose from:\n  - **Last N**: Delete the last N messages.\n  - **All Messages**: Delete messages from memory.\n- **Chat Messages**: available in **Insert Messages** mode. Define the chat messages to insert into the memory, including:\n  - **Type Name or ID**: Set the message type. Select one of:\n    - **AI**: Use this for messages from the AI.\n    - **System**: Add a message containing instructions for the AI.\n    - **User**: Use this for messages from the user. This message type is sometimes called the 'human' message in other AI tools and guides.\n  - **Message**: Enter the message contents.\n  - **Hide Message in Chat**: Select whether n8n should display the message to the user in the chat UI (turned off) or not (turned on).\n- **Messages Count**: Available in **Delete Messages** mode when you select **Last N**. Enter the number of latest messages to delete.\n- **Simplify Output**: Available in **Get Many Messages** mode. Turn on to simplify the output to include only the sender (AI, user, or system) and the text.\n\n## Templates and examples\n\n**Chat with OpenAI Assistant (by adding a memory)**\n\n[View template details](https://n8n.io/workflows/2098-chat-with-openai-assistant-by-adding-a-memory/)\n\n**Personal Life Manager with Telegram, Google Services & Voice-Enabled AI**\n\n[View template details](https://n8n.io/workflows/8237-personal-life-manager-with-telegram-google-services-and-voice-enabled-ai/)\n\n**AI Voice Chat using Webhook, Memory Manager, OpenAI, Google Gemini & ElevenLabs**\n\n[View template details](https://n8n.io/workflows/2405-ai-voice-chat-using-webhook-memory-manager-openai-google-gemini-and-elevenlabs/)\n\n[Browse Chat Memory Manager integration templates](https://n8n.io/integrations/chat-memory-manager/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChain's Memory documentation](https://langchain-ai.github.io/langgraphjs/concepts/memory/) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#chat-memory-manager-node",
+  "links": []
+}

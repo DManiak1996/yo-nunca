@@ -1,0 +1,29 @@
+{
+  "title": "Jina AI node",
+  "content": "Use the Jina AI node to automate work in Jina AI and integrate Jina AI with other applications. n8n has built-in support for a wide range of Jina AI features.\n\nOn this page, you'll find a list of operations the Jina AI node supports, and links to more resources.\n\nYou can find authentication information for this node [here](../../credentials/jinaai/).\n\n- **Reader**:\n  - **Read**: Fetches content from a URL and converts it to clean, LLM-friendly formats.\n  - **Search**: Performs a web search using Jina AI and returns the top results as clean, LLM-friendly formats.\n- **Research**:\n  - **Deep Research**: Research a topic and generate a structured research report.\n\n## Templates and examples\n\n**AI Powered Web Scraping with Jina, Google Sheets and OpenAI : the EASY way**\n\n[View template details](https://n8n.io/workflows/2552-ai-powered-web-scraping-with-jina-google-sheets-and-openai-the-easy-way/)\n\n**AI-Powered Information Monitoring with OpenAI, Google Sheets, Jina AI and Slack**\n\n[View template details](https://n8n.io/workflows/2799-ai-powered-information-monitoring-with-openai-google-sheets-jina-ai-and-slack/)\n\n**AI-Powered Research with Jina AI Deep Search**\n\n[View template details](https://n8n.io/workflows/3068-ai-powered-research-with-jina-ai-deep-search/)\n\n[Browse Jina AI integration templates](https://n8n.io/integrations/jina-ai/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [Jina AI's reader API documentation](https://r.jina.ai/docs) and [Jina AI's search API documentation](https://s.jina.ai/docs) for more information about the service.\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#jina-ai-node",
+  "links": []
+}

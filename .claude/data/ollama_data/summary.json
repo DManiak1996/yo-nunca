@@ -1,0 +1,245 @@
+{
+  "name": "ollama",
+  "total_pages": 59,
+  "base_url": "https://docs.ollama.com/",
+  "llms_txt_detected": true,
+  "llms_txt_variant": null,
+  "pages": [
+    {
+      "title": "Get version",
+      "url": "llms-txt#get-version"
+    },
+    {
+      "title": "Show model details",
+      "url": "llms-txt#show-model-details"
+    },
+    {
+      "title": "Authentication",
+      "url": "llms-txt#authentication"
+    },
+    {
+      "title": "Generate a chat message",
+      "url": "llms-txt#generate-a-chat-message"
+    },
+    {
+      "title": "Copy a model",
+      "url": "llms-txt#copy-a-model"
+    },
+    {
+      "title": "Create a model",
+      "url": "llms-txt#create-a-model"
+    },
+    {
+      "title": "Delete a model",
+      "url": "llms-txt#delete-a-model"
+    },
+    {
+      "title": "Generate embeddings",
+      "url": "llms-txt#generate-embeddings"
+    },
+    {
+      "title": "Errors",
+      "url": "llms-txt#errors"
+    },
+    {
+      "title": "Generate a response",
+      "url": "llms-txt#generate-a-response"
+    },
+    {
+      "title": "Introduction",
+      "url": "llms-txt#introduction"
+    },
+    {
+      "title": "OpenAI compatibility",
+      "url": "llms-txt#openai-compatibility"
+    },
+    {
+      "title": "Define the schema for the response",
+      "url": "llms-txt#define-the-schema-for-the-response"
+    },
+    {
+      "title": "List running models",
+      "url": "llms-txt#list-running-models"
+    },
+    {
+      "title": "Pull a model",
+      "url": "llms-txt#pull-a-model"
+    },
+    {
+      "title": "Push a model",
+      "url": "llms-txt#push-a-model"
+    },
+    {
+      "title": "Streaming",
+      "url": "llms-txt#streaming"
+    },
+    {
+      "title": "List models",
+      "url": "llms-txt#list-models"
+    },
+    {
+      "title": "Usage",
+      "url": "llms-txt#usage"
+    },
+    {
+      "title": "Embeddings",
+      "url": "llms-txt#embeddings"
+    },
+    {
+      "title": "Streaming",
+      "url": "llms-txt#streaming"
+    },
+    {
+      "title": "Structured Outputs",
+      "url": "llms-txt#structured-outputs"
+    },
+    {
+      "title": "Thinking",
+      "url": "llms-txt#thinking"
+    },
+    {
+      "title": "Tool calling",
+      "url": "llms-txt#tool-calling"
+    },
+    {
+      "title": "directly pass the function as part of the tools list",
+      "url": "llms-txt#directly-pass-the-function-as-part-of-the-tools-list"
+    },
+    {
+      "title": "Vision",
+      "url": "llms-txt#vision"
+    },
+    {
+      "title": "Web search",
+      "url": "llms-txt#web-search"
+    },
+    {
+      "title": "CLI Reference",
+      "url": "llms-txt#cli-reference"
+    },
+    {
+      "title": "Cloud",
+      "url": "llms-txt#cloud"
+    },
+    {
+      "title": "Context length",
+      "url": "llms-txt#context-length"
+    },
+    {
+      "title": "null",
+      "url": "llms-txt#null"
+    },
+    {
+      "title": "FAQ",
+      "url": "llms-txt#faq"
+    },
+    {
+      "title": "Allow all Chrome, Firefox, and Safari extensions",
+      "url": "llms-txt#allow-all-chrome,-firefox,-and-safari-extensions"
+    },
+    {
+      "title": "Hardware support",
+      "url": "llms-txt#hardware-support"
+    },
+    {
+      "title": "Importing a Model",
+      "url": "llms-txt#importing-a-model"
+    },
+    {
+      "title": "Ollama's documentation",
+      "url": "llms-txt#ollama's-documentation"
+    },
+    {
+      "title": "Cline",
+      "url": "llms-txt#cline"
+    },
+    {
+      "title": "Codex",
+      "url": "llms-txt#codex"
+    },
+    {
+      "title": "Droid",
+      "url": "llms-txt#droid"
+    },
+    {
+      "title": "Goose",
+      "url": "llms-txt#goose"
+    },
+    {
+      "title": "JetBrains",
+      "url": "llms-txt#jetbrains"
+    },
+    {
+      "title": "n8n",
+      "url": "llms-txt#n8n"
+    },
+    {
+      "title": "Roo Code",
+      "url": "llms-txt#roo-code"
+    },
+    {
+      "title": "VS Code",
+      "url": "llms-txt#vs-code"
+    },
+    {
+      "title": "Xcode",
+      "url": "llms-txt#xcode"
+    },
+    {
+      "title": "Zed",
+      "url": "llms-txt#zed"
+    },
+    {
+      "title": "Linux",
+      "url": "llms-txt#linux"
+    },
+    {
+      "title": "macOS",
+      "url": "llms-txt#macos"
+    },
+    {
+      "title": "Modelfile Reference",
+      "url": "llms-txt#modelfile-reference"
+    },
+    {
+      "title": "comment",
+      "url": "llms-txt#comment"
+    },
+    {
+      "title": "sets the temperature to 1 [higher is more creative, lower is more coherent]",
+      "url": "llms-txt#sets-the-temperature-to-1-[higher-is-more-creative,-lower-is-more-coherent]"
+    },
+    {
+      "title": "sets the context window size to 4096, this controls how many tokens the LLM can use as context to generate the next token",
+      "url": "llms-txt#sets-the-context-window-size-to-4096,-this-controls-how-many-tokens-the-llm-can-use-as-context-to-generate-the-next-token"
+    },
+    {
+      "title": "sets a custom system message to specify the behavior of the chat assistant",
+      "url": "llms-txt#sets-a-custom-system-message-to-specify-the-behavior-of-the-chat-assistant"
+    },
+    {
+      "title": "Modelfile generated by \"ollama show\"",
+      "url": "llms-txt#modelfile-generated-by-\"ollama-show\""
+    },
+    {
+      "title": "To build a new Modelfile based on this one, replace the FROM line with:",
+      "url": "llms-txt#to-build-a-new-modelfile-based-on-this-one,-replace-the-from-line-with:"
+    },
+    {
+      "title": "FROM llama3.2:latest",
+      "url": "llms-txt#from-llama3.2:latest"
+    },
+    {
+      "title": "Quickstart",
+      "url": "llms-txt#quickstart"
+    },
+    {
+      "title": "Troubleshooting",
+      "url": "llms-txt#troubleshooting"
+    },
+    {
+      "title": "Windows",
+      "url": "llms-txt#windows"
+    }
+  ]
+}

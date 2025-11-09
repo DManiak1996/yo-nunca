@@ -1,0 +1,8 @@
+{
+  "title": "PayPal Trigger node",
+  "content": "[PayPal](https://paypal.com) is a digital payment service that supports online fund transfers that customers can use when shopping online.\n\nYou can find authentication information for this node [here](../../credentials/paypal/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [PayPal Trigger integrations](https://n8n.io/integrations/paypal-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#paypal-trigger-node",
+  "links": []
+}

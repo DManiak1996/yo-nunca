@@ -1,0 +1,69 @@
+{
+  "url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-render",
+  "title": "set-state-in-render",
+  "content": "Validates against unconditionally setting state during render, which can trigger additional renders and potential infinite render loops.\n\nCalling setState during render unconditionally triggers another render before the current one finishes. This creates an infinite loop that crashes your app.\n\nA common problem is trying to “fix” state after it renders. Suppose you want to keep a counter from exceeding a max prop:\n\nAs soon as count exceeds max, an infinite loop is triggered.\n\nInstead, it’s often better to move this logic to the event (the place where the state is first set). For example, you can enforce the maximum at the moment you update state:\n\nNow the setter only runs in response to the click, React finishes the render normally, and count never crosses max.\n\nIn rare cases, you may need to adjust state based on information from previous renders. For those, follow this pattern of setting state conditionally.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "set-state-in-render",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Rule Details",
+      "id": "rule-details"
+    },
+    {
+      "level": "h2",
+      "text": "Common Violations",
+      "id": "common-violations"
+    },
+    {
+      "level": "h3",
+      "text": "Invalid",
+      "id": "invalid"
+    },
+    {
+      "level": "h3",
+      "text": "Valid",
+      "id": "valid"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "I want to sync state to a prop",
+      "id": "clamp-state-to-prop"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// ❌ Unconditional setState directly in renderfunction Component({value}) {  const [count, setCount] = useState(0);  setCount(value); // Infinite loop!  return <div>{count}</div>;}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Derive during renderfunction Component({items}) {  const sorted = [...items].sort(); // Just calculate it in render  return <ul>{sorted.map(/*...*/)}</ul>;}// ✅ Set state in event handlerfunction Component() {  const [count, setCount] = useState(0);  return (    <button onClick={() => setCount(count + 1)}>      {count}    </button>  );}// ✅ Derive from props instead of setting statefunction Component({user}) {  const name = user?.name || '';  const email = user?.email || '';  return <div>{name}</div>;}// ✅ Conditionally derive state from props and state from previous rendersfunction Component({ items }) {  const [isReverse, setIsReverse] = useState(false);  const [selection, setSelection] = useState(null);  const [prevItems, setPrevItems] = useState(items);  if (items !== prevItems) { // This condition makes it valid    setPrevItems(items);    setSelection(null);  }  // ...}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ❌ Wrong: clamps during renderfunction Counter({max}) {  const [count, setCount] = useState(0);  if (count > max) {    setCount(max);  }  return (    <button onClick={() => setCount(count + 1)}>      {count}    </button>  );}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Clamp when updatingfunction Counter({max}) {  const [count, setCount] = useState(0);  const increment = () => {    setCount(current => Math.min(current + 1, max));  };  return <button onClick={increment}>{count}</button>;}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/eslint-plugin-react-hooks",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-render",
+    "https://react.dev/reference/react/useState",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/static-components"
+  ]
+}

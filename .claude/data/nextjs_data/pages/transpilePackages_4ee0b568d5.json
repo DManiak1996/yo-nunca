@@ -1,0 +1,31 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/transpilePackages",
+  "title": "transpilePackages",
+  "content": "Next.js can automatically transpile and bundle dependencies from local packages (like monorepos) or from external dependencies (node_modules). This replaces the next-transpile-modules package.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "transpilePackages",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  transpilePackages: ['package-name'],\n}\n \nmodule.exports = nextConfig",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/transpilePackages",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/trailingSlash",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack"
+  ]
+}

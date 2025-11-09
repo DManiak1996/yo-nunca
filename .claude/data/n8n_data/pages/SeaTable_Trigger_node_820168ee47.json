@@ -1,0 +1,8 @@
+{
+  "title": "SeaTable Trigger node",
+  "content": "[SeaTable](https://seatable.com/) is a collaborative database application with a spreadsheet interface.\n\nYou can find authentication information for this node [here](../../credentials/seatable/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [SeaTable Trigger integrations](https://n8n.io/integrations/seatable-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#seatable-trigger-node",
+  "links": []
+}

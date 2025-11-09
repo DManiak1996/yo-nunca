@@ -1,0 +1,8 @@
+{
+  "title": "Get version",
+  "content": "Source: https://docs.ollama.com/api-reference/get-version\n\nopenapi.yaml get /api/version\nRetrieve the version of the Ollama",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#get-version",
+  "links": []
+}

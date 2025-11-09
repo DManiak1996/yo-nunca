@@ -1,0 +1,68 @@
+{
+  "url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/static-components",
+  "title": "static-components",
+  "content": "Validates that components are static, not recreated every render. Components that are recreated dynamically can reset state and trigger excessive re-rendering.\n\nComponents defined inside other components are recreated on every render. React sees each as a brand new component type, unmounting the old one and mounting the new one, destroying all state and DOM nodes in the process.\n\nExamples of incorrect code for this rule:\n\nExamples of correct code for this rule:\n\nYou might define components inside to access local state:\n\nPass data as props instead:\n\nIf you find yourself wanting to define components inside other components to access local variables, that’s a sign you should be passing props instead. This makes components more reusable and testable.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "static-components",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Rule Details",
+      "id": "rule-details"
+    },
+    {
+      "level": "h3",
+      "text": "Invalid",
+      "id": "invalid"
+    },
+    {
+      "level": "h3",
+      "text": "Valid",
+      "id": "valid"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "I need to render different components conditionally",
+      "id": "conditional-components"
+    },
+    {
+      "level": "h3",
+      "text": "Note",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// ❌ Component defined inside componentfunction Parent() {  const ChildComponent = () => { // New component every render!    const [count, setCount] = useState(0);    return <button onClick={() => setCount(count + 1)}>{count}</button>;  };  return <ChildComponent />; // State resets every render}// ❌ Dynamic component creationfunction Parent({type}) {  const Component = type === 'button'    ? () => <button>Click</button>    : () => <div>Text</div>;  return <Component />;}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Components at module levelconst ButtonComponent = () => <button>Click</button>;const TextComponent = () => <div>Text</div>;function Parent({type}) {  const Component = type === 'button'    ? ButtonComponent  // Reference existing component    : TextComponent;  return <Component />;}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ❌ Wrong: Inner component to access parent statefunction Parent() {  const [theme, setTheme] = useState('light');  function ThemedButton() { // Recreated every render!    return (      <button className={theme}>        Click me      </button>    );  }  return <ThemedButton />;}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Better: Pass props to static componentfunction ThemedButton({theme}) {  return (    <button className={theme}>      Click me    </button>  );}function Parent() {  const [theme, setTheme] = useState('light');  return <ThemedButton theme={theme} />;}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/eslint-plugin-react-hooks",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/static-components",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-render",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/unsupported-syntax"
+  ]
+}

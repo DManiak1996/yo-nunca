@@ -1,0 +1,44 @@
+{
+  "url": "https://nextjs.org/docs/messages/no-script-component-in-head",
+  "title": "No Script Component in Head",
+  "content": "Prevent usage of next/script in next/head component.\n\nThe next/script component should not be used in a next/head component.\n\nMove the <Script /> component outside of <Head> instead.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "No Script Component in Head",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Script from 'next/script'\nimport Head from 'next/head'\n \nexport default function Index() {\n  return (\n    <Head>\n      <title>Next.js</title>\n      <Script src=\"/my-script.js\" />\n    </Head>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Script from 'next/script'\nimport Head from 'next/head'\n \nexport default function Index() {\n  return (\n    <>\n      <Head>\n        <title>Next.js</title>\n      </Head>\n      <Script src=\"/my-script.js\" />\n    </>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/no-script-component-in-head",
+    "https://nextjs.org/docs/pages/api-reference/components/head",
+    "https://nextjs.org/docs/pages/guides/scripts"
+  ]
+}

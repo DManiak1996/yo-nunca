@@ -1,0 +1,67 @@
+{
+  "url": "https://nextjs.org/docs/pages/guides/testing/playwright",
+  "title": "How to set up Playwright with Next.js",
+  "content": "Playwright is a testing framework that lets you automate Chromium, Firefox, and WebKit with a single API. You can use it to write End-to-End (E2E) testing. This guide will show you how to set up Playwright with Next.js and write your first tests.\n\nThe fastest way to get started is to use create-next-app with the with-playwright example. This will create a Next.js project complete with Playwright configured.\n\nTo install Playwright, run the following command:\n\nThis will take you through a series of prompts to setup and configure Playwright for your project, including adding a playwright.config.ts file. Please refer to the Playwright installation guide for the step-by-step guide.\n\nCreate two new Next.js pages:\n\nThen, add a test to verify that your navigation is working correctly:\n\nGood to know: You can use page.goto(\"/\") instead of page.goto(\"http://localhost:3000/\"), if you add \"baseURL\": \"http://localhost:3000\" to the playwright.config.ts configuration file.\n\nPlaywright will simulate a user navigating your application using three browsers: Chromium, Firefox and Webkit, this requires your Next.js server to be running. We recommend running your tests against your production code to more closely resemble how your application will behave.\n\nRun npm run build and npm run start, then run npx playwright test in another terminal window to run the Playwright tests.\n\nGood to know: Alternatively, you can use the webServer feature to let Playwright start the development server and wait until it's fully available.\n\nPlaywright will by default run your tests in the headless mode. To install all the Playwright dependencies, run npx playwright install-deps.\n\nYou can learn more about Playwright and Continuous Integration from these resources:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to set up Playwright with Next.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Quickstart",
+      "id": "quickstart"
+    },
+    {
+      "level": "h2",
+      "text": "Manual setup",
+      "id": "manual-setup"
+    },
+    {
+      "level": "h2",
+      "text": "Creating your first Playwright E2E test",
+      "id": "creating-your-first-playwright-e2e-test"
+    },
+    {
+      "level": "h3",
+      "text": "Running your Playwright tests",
+      "id": "running-your-playwright-tests"
+    },
+    {
+      "level": "h3",
+      "text": "Running Playwright on Continuous Integration (CI)",
+      "id": "running-playwright-on-continuous-integration-ci"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "npx create-next-app@latest --example with-playwright with-playwright-app",
+      "language": "unknown"
+    },
+    {
+      "code": "npm init playwright\n# or\nyarn create playwright\n# or\npnpm create playwright",
+      "language": "unknown"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Home() {\n  return (\n    <div>\n      <h1>Home</h1>\n      <Link href=\"/about\">About</Link>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function About() {\n  return (\n    <div>\n      <h1>About</h1>\n      <Link href=\"/\">Home</Link>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { test, expect } from '@playwright/test'\n \ntest('should navigate to the about page', async ({ page }) => {\n  // Start from the index page (the baseURL is set via the webServer in the playwright.config.ts)\n  await page.goto('http://localhost:3000/')\n  // Find an element with the text 'About' and click on it\n  await page.click('text=About')\n  // The new URL should be \"/about\" (baseURL is used there)\n  await expect(page).toHaveURL('http://localhost:3000/about')\n  // The new page should contain an h1 with \"About\"\n  await expect(page.locator('h1')).toContainText('About')\n})",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/guides",
+    "https://nextjs.org/docs/pages/guides/testing",
+    "https://nextjs.org/docs/pages/guides/testing/playwright",
+    "https://nextjs.org/docs/pages/guides/testing/jest",
+    "https://nextjs.org/docs/pages/guides/testing/vitest"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "url": "https://nextjs.org/docs/community",
+  "title": "Next.js Community",
+  "content": "With over 5 million weekly downloads, Next.js has a large and active community of developers across the world. Here's how you can get involved in our community:\n\nThere are a couple of ways you can contribute to the development of Next.js:\n\nIf you have a question about Next.js, or want to help others, you're always welcome to join the conversation:\n\nFollow Next.js on Twitter for the latest updates, and subscribe to the Vercel YouTube channel for Next.js videos.\n\nWe believe in creating an inclusive, welcoming community. As such, we ask all members to adhere to our Code of Conduct. This document outlines our expectations for participant behavior. We invite you to read it and help us maintain a safe and respectful environment.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Next.js Community",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Contributing",
+      "id": "contributing"
+    },
+    {
+      "level": "h2",
+      "text": "Discussions",
+      "id": "discussions"
+    },
+    {
+      "level": "h2",
+      "text": "Social Media",
+      "id": "social-media"
+    },
+    {
+      "level": "h2",
+      "text": "Code of Conduct",
+      "id": "code-of-conduct"
+    },
+    {
+      "level": "h3",
+      "text": "Contribution Guide",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Rspack",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/community",
+    "https://nextjs.org/docs/community/contribution-guide",
+    "https://nextjs.org/docs/community/rspack",
+    "https://nextjs.org/docs/architecture/supported-browsers"
+  ]
+}

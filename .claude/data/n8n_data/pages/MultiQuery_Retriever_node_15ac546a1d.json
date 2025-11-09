@@ -1,0 +1,24 @@
+{
+  "title": "MultiQuery Retriever node",
+  "content": "The MultiQuery Retriever node automates the process of prompt tuning by using an LLM to generate multiple queries from different perspectives for a given user input query.\n\nOn this page, you'll find the node parameters for the MultiQuery Retriever node, and links to more resources.\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Query Count**: Enter how many different versions of the query to generate.\n\n## Templates and examples\n\n[Browse MultiQuery Retriever integration templates](https://n8n.io/integrations/multiquery-retriever/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChain's retriever conceptual documentation](https://js.langchain.com/docs/concepts/retrievers) and [LangChain's multiquery retriever API documentation](https://v03.api.js.langchain.com/classes/langchain.retrievers_multi_query.MultiQueryRetriever.html) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#multiquery-retriever-node",
+  "links": []
+}

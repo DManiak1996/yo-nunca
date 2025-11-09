@@ -1,0 +1,29 @@
+{
+  "title": "3. Filtering Orders",
+  "content": "In this step of the workflow, you will learn how to filter data using conditional logic and how to use expressions in nodes using the [If node](../../../../integrations/builtin/core-nodes/n8n-nodes-base.if/).\n\nAfter this step, your workflow should look like this:\n\n[View workflow file](/_workflows//courses/level-one/chapter-5/chapter-5.3.json)\n\nTo insert only processing orders into Airtable we need to filter our data by `orderStatus`. Basically, we want to tell the program that *if* the `orderStatus` is processing, *then* insert all records with this status into Airtable; *else*, for example, if the `orderStatus` isn't *processing*, calculate the sum of all orders with the other `orderStatus` (`booked`).\n\nThis if-then-else command is conditional logic. In n8n workflows, you can add conditional logic with the [If node](../../../../integrations/builtin/core-nodes/n8n-nodes-base.if/), which splits a workflow conditionally based on comparison operations.\n\nIf you need to filter data on more than boolean values (true and false), use the [Switch node](../../../../integrations/builtin/core-nodes/n8n-nodes-base.switch/). The Switch node is similar to the If node, but supports multiple output connectors.\n\n## Add If node before the Airtable node\n\nFirst, let's add an If node between the connection from the HTTP Request node to the Airtable node:\n\n1. Hover over the arrow connection the **HTTP Request** node and the **Airtable** node.\n1. Select the **+** sign between the HTTP Request node and the Airtable node.\n\n## Configure the If node\n\nSelecting the plus removes the connection to the Airtable node to the HTTP request. Now, let's add an If node connected to the HTTP Request node:\n\n1. Search for the If node.\n1. Select it when it appears in the search.\n\nFor the If node, we'll use an expression.\n\nAn [expression](../../../../glossary/#expression-n8n) is a string of characters and symbols in a programming language that can be evaluated to get a value, often according to its input. In n8n workflows, you can use expressions in a node to refer to another node for input data. In our example, the If node references the data output by the HTTP Request node.\n\nIn the If node window, configure the parameters:\n\n- Set the `value1` placeholder to `{{ $json.orderStatus }}` with the following steps:\n\n1. Hover over the value1 field.\n\n1. Select the **Expression** tab on the right side of the `value1` field.\n\n1. Next, open the expression editor by selecting the link icon:\n\n*Opening the Expression Editor*\n\n1. Use the left-side panel to select **HTTP Request** > **orderStatus** and drag it into the **Expression** field in the center of the window.\n\n*Expression Editor in the If node*\n\n1. Once you add the expression, close the **Edit Expression** dialog.\n\n- **Operation**: Select **String** > **is equal to**\n\n- Set the `value2` placeholder to `processing`.\n\nMake sure to select the correct data type (boolean, date & time, number, or string) when you select the **Operation**.\n\nSelect **Execute step** to test the If node.\n\nYour results should look like this:\n\nNote that the orders with a `processing` order status should show for the **True Branch** output, while the orders with a `booked` order status should show in the **False Branch** output.\n\nClose the If node detail view when you're finished.\n\n## Insert data into Airtable\n\nNext, we want to insert this data into Airtable. Remember what Nathan said at the end of the [Inserting data into Airtable](../chapter-5.2/) lesson?\n\n> I actually need to insert only processing orders in the table...\n\nSince Nathan only needs the `processing` orders in the table, we'll connect the Airtable node to the If node's `true` connector.\n\nIn this case, since the Airtable node is already on our canvas, select the **If node** `true` connector and drag it to the Airtable node.\n\nIt's a good idea at this point to retest the Airtable node. Before you do, open your table in Airtable and delete all existing rows. Then open the Airtable node window in n8n and select **Execute step**.\n\nReview your data in Airtable to be sure your workflow only added the correct orders (those with `orderStatus` of `processing`). There should be 14 records now instead of 30.\n\nAt this stage, your workflow should look like this:\n\n[View workflow file](/_workflows//courses/level-one/chapter-5/chapter-5.3.json)\n\n**Nathan 🙋**: This If node is so useful for filtering data! Now I have all the information about processing orders. I actually only need the `employeeName` and `orderID`, but I guess I can keep all the other fields just in case.\n\n**You 👩‍🔧**: Actually, I wouldn't recommend doing that. Inserting more data requires more computational power, the data transfer is slower and takes longer, and takes up more storage resources in your table. In this particular case, 14 records with 5 fields might not seem like it'd make a significant difference, but if your business grows to thousands of records and dozens of fields, things add up and even one extra column can affect performance.\n\n**Nathan 🙋**: Oh, that's good to know. Can you select only two fields from the processing orders?\n\n**You 👩‍🔧**: Sure, I'll do that in the next step.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Add If node before the Airtable node",
+      "id": "add-if-node-before-the-airtable-node"
+    },
+    {
+      "level": "h2",
+      "text": "Configure the If node",
+      "id": "configure-the-if-node"
+    },
+    {
+      "level": "h2",
+      "text": "Insert data into Airtable",
+      "id": "insert-data-into-airtable"
+    },
+    {
+      "level": "h2",
+      "text": "What's next?",
+      "id": "what's-next?"
+    }
+  ],
+  "url": "llms-txt#3.-filtering-orders",
+  "links": []
+}

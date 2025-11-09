@@ -1,0 +1,39 @@
+{
+  "title": "AI Workflow Builder",
+  "content": "AI Workflow Builder enables you to create, refine, and debug workflows using natural language descriptions of your goals.\n\nIt handles the entire workflow construction process, including node selection, placement, and configuration, thereby reducing the time required to build functional workflows.\n\nFor details of pricing and availability of AI Workflow Builder, see [n8n Plans and Pricing](https://n8n.io/pricing/).\n\n## Working with the builder\n\n1. **Describe your workflow:** Either select an example prompt or describe your requirements in natural language.\n1. **Monitor the build:** The builder provides real-time feedback through several phases.\n1. **Review and refine the generated workflow:** Review required credentials and other parameters. Refine the workflow using prompts.\n\n### Commands you can run in the builder\n\n- `/clear`: Clears the context for the LLM and lets you start from scratch\n\n## Understanding credits\n\nEach time you send a message to the builder asking it to create or modify a workflow, that counts as one **interaction**, which is worth one **credit**.\n\n✅ **Counts as an interaction**\n\n- Sending a message to create a new workflow\n- Asking the builder to modify an existing workflow\n- Clicking the **Execute and refine** button in the builder window after a workflow is built\n\n❌ **Does NOT count as an interaction**\n\n- Messages that fail or produce generation errors\n- Requests you manually stop by clicking the stop button\n\n### Getting more credits\n\nIf you've used your monthly limit, you can upgrade to a higher plan.\n\nFor details on plans and pricing, see [n8n Plans and Pricing](https://n8n.io/pricing/).\n\n## AI model and data handling\n\nThe following data are sent to the LLM:\n\n- Text prompts that you provide to create, refine, or debug the workflow\n- Node definitions, parameters, and connections and the current workflow definition.\n- Any mock execution data that is loaded when using the builder\n\nThe following data are not sent:\n\n- Details of any credentials you use\n- Past executions of the workflow",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Working with the builder",
+      "id": "working-with-the-builder"
+    },
+    {
+      "level": "h3",
+      "text": "Commands you can run in the builder",
+      "id": "commands-you-can-run-in-the-builder"
+    },
+    {
+      "level": "h2",
+      "text": "Understanding credits",
+      "id": "understanding-credits"
+    },
+    {
+      "level": "h3",
+      "text": "How credits work",
+      "id": "how-credits-work"
+    },
+    {
+      "level": "h3",
+      "text": "Getting more credits",
+      "id": "getting-more-credits"
+    },
+    {
+      "level": "h2",
+      "text": "AI model and data handling",
+      "id": "ai-model-and-data-handling"
+    }
+  ],
+  "url": "llms-txt#ai-workflow-builder",
+  "links": []
+}

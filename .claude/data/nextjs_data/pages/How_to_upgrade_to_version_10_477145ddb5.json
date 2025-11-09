@@ -1,0 +1,37 @@
+{
+  "url": "https://nextjs.org/docs/pages/guides/upgrading/version-10",
+  "title": "How to upgrade to version 10",
+  "content": "There were no breaking changes between versions 9 and 10.\n\nTo upgrade to version 10, run the following command:\n\nGood to know: If you are using TypeScript, ensure you also upgrade @types/react and @types/react-dom to their corresponding versions.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to upgrade to version 10",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "npm i next@10",
+      "language": "unknown"
+    },
+    {
+      "code": "yarn add next@10",
+      "language": "unknown"
+    },
+    {
+      "code": "pnpm up next@10",
+      "language": "unknown"
+    },
+    {
+      "code": "bun add next@10",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/guides",
+    "https://nextjs.org/docs/pages/guides/upgrading",
+    "https://nextjs.org/docs/pages/guides/upgrading/codemods",
+    "https://nextjs.org/docs/pages/guides/upgrading/version-11"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Returns all items the node \"IF\" outputs (index: 0 which is Output \"true\" of the same run as current node)",
+  "content": "allItems = _(\"IF\").all(0, _runIndex);",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#returns-all-items-the-node-\"if\"-outputs-(index:-0-which-is-output-\"true\"-of-the-same-run-as-current-node)",
+  "links": []
+}

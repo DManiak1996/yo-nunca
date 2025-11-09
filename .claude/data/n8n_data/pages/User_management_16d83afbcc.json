@@ -1,0 +1,14 @@
+{
+  "title": "User management",
+  "content": "User management in n8n allows you to invite people to work in your n8n instance. It includes:\n\n- Login and password management\n- Adding and removing users\n- Three [account types](account-types/): **Owner** and **Member** (and **Admin** for Pro & Enterprise plans)\n\nThe user management feature doesn't send personal information, such as email or username, to n8n.\n\nThis section contains most usage information for user management, and the [Cloud setup guide](cloud-setup/). If you self-host n8n, there are extra steps to configure your n8n instance. Refer to the [Self-hosted guide](../hosting/configuration/user-management-self-hosted/).\n\nThis section includes guides to configuring [LDAP](ldap/) and [SAML](saml/) in n8n.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Setup guides",
+      "id": "setup-guides"
+    }
+  ],
+  "url": "llms-txt#user-management",
+  "links": []
+}

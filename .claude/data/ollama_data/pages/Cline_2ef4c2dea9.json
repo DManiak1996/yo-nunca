@@ -1,0 +1,29 @@
+{
+  "title": "Cline",
+  "content": "Source: https://docs.ollama.com/integrations/cline\n\nInstall [Cline](https://docs.cline.bot/getting-started/installing-cline) in your IDE.\n\n1. Open Cline settings > `API Configuration` and set `API Provider` to `Ollama`\n2. Select a model under `Model` or type one (e.g. `qwen3`)\n3. Update the context window to at least 32K tokens under `Context Window`\n\n<Note>Coding tools require a larger context window. It is recommended to use a context window of at least 32K tokens. See [Context length](/context-length) for more information.</Note>\n\n<div style={{ display: 'flex', justifyContent: 'center' }}>\n  <img src=\"https://mintcdn.com/ollama-9269c548/DILXUjvsEb6UDNxN/images/cline-settings.png?fit=max&auto=format&n=DILXUjvsEb6UDNxN&q=85&s=2d2755de6b2e06cd513119abf389acd0\" alt=\"Cline settings configuration showing API Provider set to Ollama\" width=\"50%\" data-og-width=\"596\" data-og-height=\"826\" data-path=\"images/cline-settings.png\" data-optimize=\"true\" data-opv=\"3\" srcset=\"https://mintcdn.com/ollama-9269c548/DILXUjvsEb6UDNxN/images/cline-settings.png?w=280&fit=max&auto=format&n=DILXUjvsEb6UDNxN&q=85&s=526c814bcfce0e2d812a6bfeb708ec74 280w, https://mintcdn.com/ollama-9269c548/DILXUjvsEb6UDNxN/images/cline-settings.png?w=560&fit=max&auto=format&n=DILXUjvsEb6UDNxN&q=85&s=03865bcf135e8ac371c526a18fc4ba8b 560w, https://mintcdn.com/ollama-9269c548/DILXUjvsEb6UDNxN/images/cline-settings.png?w=840&fit=max&auto=format&n=DILXUjvsEb6UDNxN&q=85&s=40a0ed4a094e6c3f753ef6ae8820b949 840w, https://mintcdn.com/ollama-9269c548/DILXUjvsEb6UDNxN/images/cline-settings.png?w=1100&fit=max&auto=format&n=DILXUjvsEb6UDNxN&q=85&s=f13028b0f2d177f7b3cb9eb3d6332416 1100w, https://mintcdn.com/ollama-9269c548/DILXUjvsEb6UDNxN/images/cline-settings.png?w=1650&fit=max&auto=format&n=DILXUjvsEb6UDNxN&q=85&s=00ab8386e21b6aa32e4dc4d3bbd02817 1650w, https://mintcdn.com/ollama-9269c548/DILXUjvsEb6UDNxN/images/cline-settings.png?w=2500&fit=max&auto=format&n=DILXUjvsEb6UDNxN&q=85&s=27a89d86786164ff499d03feab00d375 2500w\" />\n</div>\n\n## Connecting to ollama.com\n\n1. Create an [API key](https://ollama.com/settings/keys) from ollama.com\n2. Click on `Use custom base URL` and set it to `https://ollama.com`\n3. Enter your **Ollama API Key**\n4. Select a model from the list\n\n### Recommended Models\n\n* `qwen3-coder:480b`\n* `deepseek-v3.1:671b`",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Install",
+      "id": "install"
+    },
+    {
+      "level": "h2",
+      "text": "Usage with Ollama",
+      "id": "usage-with-ollama"
+    },
+    {
+      "level": "h2",
+      "text": "Connecting to ollama.com",
+      "id": "connecting-to-ollama.com"
+    },
+    {
+      "level": "h3",
+      "text": "Recommended Models",
+      "id": "recommended-models"
+    }
+  ],
+  "url": "llms-txt#cline",
+  "links": []
+}

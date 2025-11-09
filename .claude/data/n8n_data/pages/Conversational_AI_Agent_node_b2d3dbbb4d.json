@@ -1,0 +1,64 @@
+{
+  "title": "Conversational AI Agent node",
+  "content": "n8n removed this functionality in February 2025.\n\nThe Conversational Agent has human-like conversations. It can maintain context, understand user intent, and provide relevant answers. This agent is typically used for building chatbots, virtual assistants, and customer support systems.\n\nThe Conversational Agent describes [tools](../../../../../../glossary/#ai-tool) in the system prompt and parses JSON responses for tool calls. If your preferred AI model doesn't support tool calling or you're handling simpler interactions, this agent is a good general option. It's more flexible but may be less accurate than the [Tools Agent](../tools-agent/).\n\nRefer to [AI Agent](../) for more information on the AI Agent node itself.\n\nYou can use this agent with the [Chat Trigger](../../../../core-nodes/n8n-nodes-langchain.chattrigger/) node. Attach a memory sub-node so that users can have an ongoing conversation with multiple queries. Memory doesn't persist between sessions.\n\nConfigure the Conversational Agent using the following parameters.\n\nSelect how you want the node to construct the prompt (also known as the user's query or input from the chat).\n\n- **Take from previous node automatically**: If you select this option, the node expects an input from a previous node called `chatInput`.\n- **Define below**: If you select this option, provide either static text or an expression for dynamic content to serve as the prompt in the **Prompt (User Message)** field.\n\n### Require Specific Output Format\n\nThis parameter controls whether you want the node to require a specific output format. When turned on, n8n prompts you to connect one of these output parsers to the node:\n\n- [Auto-fixing Output Parser](../../../sub-nodes/n8n-nodes-langchain.outputparserautofixing/)\n- [Item List Output Parser](../../../sub-nodes/n8n-nodes-langchain.outputparseritemlist/)\n- [Structured Output Parser](../../../sub-nodes/n8n-nodes-langchain.outputparserstructured/)\n\nRefine the Conversational Agent node's behavior using these options:\n\nTell the agent about the tools it can use and add context to the user's input.\n\nYou must include these expressions and variable:\n\n- `{tools}`: A LangChain expression that provides a string of the tools you've connected to the Agent. Provide some context or explanation about who should use the tools and how they should use them.\n- `{format_instructions}`: A LangChain expression that provides the schema or format from the output parser node you've connected. Since the instructions themselves are context, you don't need to provide context for this expression.\n- `{{input}}`: A LangChain variable containing the user's prompt. This variable populates with the value of the **Prompt** parameter. Provide some context that this is the user's input.\n\nHere's an example of how you might use these strings:\n\nIf you'd like to send a message to the agent before the conversation starts, enter the message you'd like to send.\n\nUse this option to guide the agent's decision-making.\n\nEnter the number of times the model should run to try and generate a good answer from the user's prompt.\n\n### Return Intermediate Steps\n\nSelect whether to include intermediate steps the agent took in the final output (turned on) or not (turned off).\n\nThis could be useful for further refining the agent's behavior based on the steps it took.\n\n## Templates and examples\n\nRefer to the main AI Agent node's [Templates and examples](../#templates-and-examples) section.\n\nFor common questions or issues and suggested solutions, refer to [Common issues](../common-issues/).",
+  "code_samples": [
+    {
+      "code": "TOOLS\n------\nAssistant can ask the user to use tools to look up information that may be helpful in answering the user's original question. The tools the human can use are:\n\n{tools}\n\n{format_instructions}\n\nUSER'S INPUT\n--------------------\nHere is the user's input (remember to respond with a markdown code snippet of a JSON blob with a single action, and NOTHING else):\n\n{{input}}",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Prompt",
+      "id": "prompt"
+    },
+    {
+      "level": "h3",
+      "text": "Require Specific Output Format",
+      "id": "require-specific-output-format"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h3",
+      "text": "Human Message",
+      "id": "human-message"
+    },
+    {
+      "level": "h3",
+      "text": "System Message",
+      "id": "system-message"
+    },
+    {
+      "level": "h3",
+      "text": "Max Iterations",
+      "id": "max-iterations"
+    },
+    {
+      "level": "h3",
+      "text": "Return Intermediate Steps",
+      "id": "return-intermediate-steps"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    }
+  ],
+  "url": "llms-txt#conversational-ai-agent-node",
+  "links": []
+}

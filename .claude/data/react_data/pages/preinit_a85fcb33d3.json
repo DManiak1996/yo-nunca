@@ -1,0 +1,95 @@
+{
+  "url": "https://react.dev/reference/react-dom/preinit",
+  "title": "preinit",
+  "content": "React-based frameworks frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework’s documentation for details.\n\npreinit lets you eagerly fetch and evaluate a stylesheet or external script.\n\nTo preinit a script or stylesheet, call the preinit function from react-dom.\n\nSee more examples below.\n\nThe preinit function provides the browser with a hint that it should start downloading and executing the given resource, which can save time. Scripts that you preinit are executed when they finish downloading. Stylesheets that you preinit are inserted into the document, which causes them to go into effect right away.\n\npreinit returns nothing.\n\nCall preinit when rendering a component if you know that it or its children will use a specific resource, and you’re OK with the resource being evaluated and thereby taking effect immediately upon being downloaded.\n\nIf you want the browser to download the script but not to execute it right away, use preload instead. If you want to load an ESM module, use preinitModule.\n\nCall preinit in an event handler before transitioning to a page or state where external resources will be needed. This gets the process started earlier than if you call it during the rendering of the new page or state.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "preinit",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Note",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "preinit(href, options)",
+      "id": "preinit"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Preiniting when rendering",
+      "id": "preiniting-when-rendering"
+    },
+    {
+      "level": "h4",
+      "text": "Examples of preiniting",
+      "id": "examples"
+    },
+    {
+      "level": "h4",
+      "text": "Example 1 of 2: Preiniting an external script",
+      "id": "preiniting-an-external-script"
+    },
+    {
+      "level": "h3",
+      "text": "Preiniting in an event handler",
+      "id": "preiniting-in-an-event-handler"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "preinit(\"https://example.com/script.js\", {as: \"script\"});",
+      "language": "unknown"
+    },
+    {
+      "code": "import { preinit } from 'react-dom';function AppRoot() {  preinit(\"https://example.com/script.js\", {as: \"script\"});  // ...}",
+      "language": "python"
+    },
+    {
+      "code": "import { preinit } from 'react-dom';function AppRoot() {  preinit(\"https://example.com/script.js\", {as: \"script\"});  return ...;}",
+      "language": "python"
+    },
+    {
+      "code": "import { preinit } from 'react-dom';function CallToAction() {  const onClick = () => {    preinit(\"https://example.com/wizardStyles.css\", {as: \"style\"});    startWizard();  }  return (    <button onClick={onClick}>Start Wizard</button>  );}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-dom",
+    "https://react.dev/reference/react-dom/preinit",
+    "https://react.dev/learn/start-a-new-react-project",
+    "https://react.dev/reference/react-dom/preload",
+    "https://react.dev/reference/react-dom/preinitModule",
+    "https://react.dev/reference/react-dom/prefetchDNS"
+  ]
+}

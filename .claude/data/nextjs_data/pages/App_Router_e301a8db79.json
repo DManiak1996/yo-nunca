@@ -1,0 +1,54 @@
+{
+  "url": "https://nextjs.org/docs/app",
+  "title": "App Router",
+  "content": "The App Router is a file-system based router that uses React's latest features such as Server Components, Suspense, and Server Functions.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "App Router",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "Installation",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Project Structure",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Layouts and Pages",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Linking and Navigating",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Server and Client Components",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/app/getting-started/installation",
+    "https://nextjs.org/docs/app/getting-started/project-structure",
+    "https://nextjs.org/docs/app/getting-started/layouts-and-pages",
+    "https://nextjs.org/docs/app/getting-started/linking-and-navigating",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/stable",
+    "https://nextjs.org/docs/app/getting-started"
+  ]
+}

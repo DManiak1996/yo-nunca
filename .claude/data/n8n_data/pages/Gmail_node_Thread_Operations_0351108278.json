@@ -1,0 +1,69 @@
+{
+  "title": "Gmail node Thread Operations",
+  "content": "Use the Thread operations to delete, reply to, trash, untrash, add/remove labels, get one, or list threads. Refer to the [Gmail node](../) for more information on the Gmail node itself.\n\n## Add Label to a thread\n\nUse this operation to create a new draft.\n\nEnter these parameters:\n\n- Select the **Credential to connect with** or create a new one.\n- **Resource**: Select **Thread**.\n- **Operation**: Select **Add Label**.\n- **Thread ID**: Enter the ID of the thread you want to add the label to.\n- **Label Names or IDs**: Select the Label names you want to apply or enter an expression to specify IDs. The dropdown populates based on the **Credential** you selected.\n\nRefer to the [Gmail API Method: users.threads.modify](https://developers.google.com/gmail/api/reference/rest/v1/users.threads/modify) documentation for more information.\n\nUse this operation to immediately and permanently delete a thread and all its messages.\n\nThis operation can't be undone. For recoverable deletions, use the [Trash operation](#trash-a-thread) instead.\n\nEnter these parameters:\n\n- Select the **Credential to connect with** or create a new one.\n- **Resource**: Select **Thread**.\n- **Operation**: Select **Delete**.\n- **Thread ID**: Enter the ID of the thread you want to delete.\n\nRefer to the [Gmail API Method: users.threads.delete](https://developers.google.com/gmail/api/reference/rest/v1/users.threads/delete) documentation for more information.\n\nUse this operation to get a single thread.\n\nEnter these parameters:\n\n- Select the **Credential to connect with** or create a new one.\n- **Resource**: Select **Thread**.\n- **Operation**: Select **Get**.\n- **Thread ID**: Enter the ID of the thread you wish to retrieve.\n- **Simplify**: Choose whether to return a simplified version of the response (turned on) or the raw data (turned off). Default is on.\n  - This is the same as setting the `format` for the API call to `metadata`, which returns email message IDs, labels, and email headers, including: From, To, CC, BCC, and Subject.\n\n### Get thread options\n\nUse these options to further refine the node's behavior:\n\n- **Return Only Messages**: Choose whether to return only thread messages (turned on).\n\nRefer to the [Gmail API Method: users.threads.get](https://developers.google.com/gmail/api/reference/rest/v1/users.threads/get) documentation for more information.\n\nUse this operation to get two or more threads.\n\nEnter these parameters:\n\n- Select the **Credential to connect with** or create a new one.\n- **Resource**: Select **Thread**.\n- **Operation**: Select **Get Many**.\n- **Return All**: Choose whether the node returns all threads (turned on) or only up to a set limit (turned off).\n- **Limit**: Enter the maximum number of threads to return. Only used if you've turned off **Return All**.\n\n### Get Many threads filters\n\nUse these filters to further refine the node's behavior:\n\n- **Include Spam and Trash**: Select whether the node should get threads in the Spam and Trash folders (turned on) or not (turned off).\n- **Label Names or IDs**: Only return threads with the selected labels added to them. Select the Label names you want to apply or enter an expression to specify IDs. The dropdown populates based on the **Credential** you selected.\n- **Search**: Enter Gmail search refine filters, like `from:`, to filter the threads returned. Refer to [Refine searches in Gmail](https://support.google.com/mail/answer/7190?hl=en) for more information.\n- **Read Status**: Choose whether to receive **Unread and read emails**, **Unread emails only** (default), or **Read emails only**.\n- **Received After**: Return only those emails received after the specified date and time. Use the date picker to select the day and time or enter an expression to set a date as a string in ISO format or a timestamp in milliseconds. Refer to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) for more information on formatting the string.\n- **Received Before**: Return only those emails received before the specified date and time. Use the date picker to select the day and time or enter an expression to set a date as a string in ISO format or a timestamp in milliseconds. Refer to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) for more information on formatting the string.\n\nRefer to the [Gmail API Method: users.threads.list](https://developers.google.com/gmail/api/reference/rest/v1/users.threads/list) documentation for more information.\n\n## Remove label from a thread\n\nUse this operation to remove a label from a thread.\n\nEnter these parameters:\n\n- Select the **Credential to connect with** or create a new one.\n- **Resource**: Select **Thread**.\n- **Operation**: Select **Remove Label**.\n- **Thread ID**: Enter the ID of the thread you want to remove the label from.\n- **Label Names or IDs**: Select the Label names you want to remove or enter an expression to specify their IDs. The dropdown populates based on the **Credential** you selected.\n\nRefer to the [Gmail API Method: users.threads.modify](https://developers.google.com/gmail/api/reference/rest/v1/users.threads/modify) documentation for more information.\n\n## Reply to a message\n\nUse this operation to reply to a message.\n\nEnter these parameters:\n\n- Select the **Credential to connect with** or create a new one.\n- **Resource**: Select **Thread**.\n- **Operation**: Select **Reply**.\n- **Thread ID**: Enter the ID of the thread you want to reply to.\n- **Message Snippet or ID**: Select the Message you want to reply to or enter an expression to specify its ID. The dropdown populates based on the **Credential** you selected.\n- Select the **Email Type**. Choose from **Text** or **HTML**.\n- **Message**: Enter the email message body.\n\nUse these options to further refine the node's behavior:\n\n- **Attachments**: Select **Add Attachment** to add an attachment. Enter the **Attachment Field Name (in Input)** to identify which field from the input node contains the attachment.\n  - For multiple properties, enter a comma-separated list.\n- **BCC**: Enter one or more email addresses for blind copy recipients. Separate multiple email addresses with a comma, for example `jay@gatsby.com, jon@smith.com`.\n- **CC**: Enter one or more email addresses for carbon copy recipients. Separate multiple email addresses with a comma, for example `jay@gatsby.com, jon@smith.com`.\n- **Sender Name**: Enter the name you want displayed in your recipients' email as the sender.\n- **Reply to Sender Only**: Choose whether to reply all (turned off) or reply to the sender only (turned on).\n\nRefer to the [Gmail API Method: users.messages.send](https://developers.google.com/gmail/api/reference/rest/v1/users.messages/send) documentation for more information.\n\nUse this operation to move a thread and all its messages to the trash.\n\nEnter these parameters:\n\n- Select the **Credential to connect with** or create a new one.\n- **Resource**: Select **Thread**.\n- **Operation**: Select **Trash**.\n- **Thread ID**: Enter the ID of the thread you want to move to the trash.\n\nRefer to the [Gmail API Method: users.threads.trash](https://developers.google.com/gmail/api/reference/rest/v1/users.threads/trash) documentation for more information.\n\nUse this operation to recover a thread and all its messages from the trash.\n\nEnter these parameters:\n\n- Select the **Credential to connect with** or create a new one.\n- **Resource**: Select **Thread**.\n- **Operation**: Select **Untrash**.\n- **Thread ID**: Enter the ID of the thread you want to move to the trash.\n\nRefer to the [Gmail API Method: users.threads.untrash](https://developers.google.com/gmail/api/reference/rest/v1/users.threads/untrash) documentation for more information.\n\nFor common errors or issues and suggested resolution steps, refer to [Common Issues](../common-issues/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Add Label to a thread",
+      "id": "add-label-to-a-thread"
+    },
+    {
+      "level": "h2",
+      "text": "Delete a thread",
+      "id": "delete-a-thread"
+    },
+    {
+      "level": "h2",
+      "text": "Get a thread",
+      "id": "get-a-thread"
+    },
+    {
+      "level": "h3",
+      "text": "Get thread options",
+      "id": "get-thread-options"
+    },
+    {
+      "level": "h2",
+      "text": "Get Many threads",
+      "id": "get-many-threads"
+    },
+    {
+      "level": "h3",
+      "text": "Get Many threads filters",
+      "id": "get-many-threads-filters"
+    },
+    {
+      "level": "h2",
+      "text": "Remove label from a thread",
+      "id": "remove-label-from-a-thread"
+    },
+    {
+      "level": "h2",
+      "text": "Reply to a message",
+      "id": "reply-to-a-message"
+    },
+    {
+      "level": "h3",
+      "text": "Reply options",
+      "id": "reply-options"
+    },
+    {
+      "level": "h2",
+      "text": "Trash a thread",
+      "id": "trash-a-thread"
+    },
+    {
+      "level": "h2",
+      "text": "Untrash a thread",
+      "id": "untrash-a-thread"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    }
+  ],
+  "url": "llms-txt#gmail-node-thread-operations",
+  "links": []
+}

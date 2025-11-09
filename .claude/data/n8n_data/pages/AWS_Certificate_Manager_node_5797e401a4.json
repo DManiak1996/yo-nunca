@@ -1,0 +1,29 @@
+{
+  "title": "AWS Certificate Manager node",
+  "content": "Use the AWS Certificate Manager node to automate work in AWS Certificate Manager, and integrate AWS Certificate Manager with other applications. n8n has built-in support for a wide range of AWS Certificate Manager features, including creating, deleting, getting, and renewing SSL certificates.\n\nOn this page, you'll find a list of operations the AWS Certificate Manager node supports and links to more resources.\n\nRefer to [AWS Certificate Manager credentials](../../credentials/aws/) for guidance on setting up authentication.\n\n- Certificate\n  - Delete\n  - Get\n  - Get Many\n  - Get Metadata\n  - Renew\n\n## Templates and examples\n\n**Clean Up Expired AWS ACM Certificates with Slack Approval**\n\n[View template details](https://n8n.io/workflows/7626-clean-up-expired-aws-acm-certificates-with-slack-approval/)\n\n**Generate SSL/TLS Certificate Expiry Reports with AWS ACM and AI for Slack & Email**\n\n[View template details](https://n8n.io/workflows/7689-generate-ssltls-certificate-expiry-reports-with-aws-acm-and-ai-for-slack-and-email/)\n\n**Auto-Renew AWS Certificates with Slack Approval Workflow**\n\n[View template details](https://n8n.io/workflows/7490-auto-renew-aws-certificates-with-slack-approval-workflow/)\n\n[Browse AWS Certificate Manager integration templates](https://n8n.io/integrations/aws-certificate-manager/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [AWS Certificate Manager's documentation](https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html) for more information on this service.\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#aws-certificate-manager-node",
+  "links": []
+}

@@ -1,0 +1,70 @@
+{
+  "url": "https://react.dev/reference/react-dom/unmountComponentAtNode",
+  "title": "unmountComponentAtNode",
+  "content": "This API will be removed in a future major version of React.\n\nIn React 18, unmountComponentAtNode was replaced by root.unmount().\n\nunmountComponentAtNode removes a mounted React component from the DOM.\n\nCall unmountComponentAtNode to remove a mounted React component from the DOM and clean up its event handlers and state.\n\nSee more examples below.\n\nunmountComponentAtNode returns true if a component was unmounted and false otherwise.\n\nCall unmountComponentAtNode to remove a mounted React component from a browser DOM node and clean up its event handlers and state.\n\nOccasionally, you may want to “sprinkle” React on an existing page, or a page that is not fully written in React. In those cases, you may need to “stop” the React app, by removing all of the UI, state, and listeners from the DOM node it was rendered to.\n\nIn this example, clicking “Render React App” will render a React app. Click “Unmount React App” to destroy it:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "unmountComponentAtNode",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Deprecated",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "unmountComponentAtNode(domNode)",
+      "id": "unmountcomponentatnode"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Removing a React app from a DOM element",
+      "id": "removing-a-react-app-from-a-dom-element"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "unmountComponentAtNode(domNode)",
+      "language": "unknown"
+    },
+    {
+      "code": "import { unmountComponentAtNode } from 'react-dom';const domNode = document.getElementById('root');render(<App />, domNode);unmountComponentAtNode(domNode);",
+      "language": "python"
+    },
+    {
+      "code": "import { render, unmountComponentAtNode } from 'react-dom';import App from './App.js';const rootNode = document.getElementById('root');render(<App />, rootNode);// ...unmountComponentAtNode(rootNode);",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-dom",
+    "https://react.dev/reference/react-dom/unmountComponentAtNode",
+    "https://react.dev/reference/react-dom/client/createRoot",
+    "https://react.dev/reference/react-dom/render",
+    "https://react.dev/reference/react-dom/client"
+  ]
+}

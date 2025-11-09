@@ -1,0 +1,137 @@
+{
+  "url": "https://nextjs.org/docs/app/getting-started",
+  "title": "Getting Started",
+  "content": "Welcome to the Next.js documentation!\n\nThis Getting Started section will help you create your first Next.js app and learn the core features you'll use in every project.\n\nOur documentation assumes some familiarity with web development. Before getting started, it'll help if you're comfortable with:\n\nIf you're new to React or need a refresher, we recommend starting with our React Foundations course, and the Next.js Foundations course that has you building an application as you learn.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Getting Started",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Pre-requisite knowledge",
+      "id": "pre-requisite-knowledge"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "Installation",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Project Structure",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Layouts and Pages",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Linking and Navigating",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Server and Client Components",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Cache Components",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Fetching Data",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Updating Data",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Caching and Revalidating",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Error Handling",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "CSS",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Image Optimization",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Font Optimization",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Metadata and OG images",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Route Handlers",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Proxy",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Deploying",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Upgrading",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/getting-started",
+    "https://nextjs.org/docs/app/getting-started/installation",
+    "https://nextjs.org/docs/app/getting-started/project-structure",
+    "https://nextjs.org/docs/app/getting-started/layouts-and-pages",
+    "https://nextjs.org/docs/app/getting-started/linking-and-navigating",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/getting-started/cache-components",
+    "https://nextjs.org/docs/app/getting-started/fetching-data",
+    "https://nextjs.org/docs/app/getting-started/updating-data",
+    "https://nextjs.org/docs/app/getting-started/caching-and-revalidating",
+    "https://nextjs.org/docs/app/getting-started/error-handling",
+    "https://nextjs.org/docs/app/getting-started/css",
+    "https://nextjs.org/docs/app/getting-started/images",
+    "https://nextjs.org/docs/app/getting-started/fonts",
+    "https://nextjs.org/docs/app/getting-started/metadata-and-og-images",
+    "https://nextjs.org/docs/app/getting-started/route-handlers",
+    "https://nextjs.org/docs/app/getting-started/proxy",
+    "https://nextjs.org/docs/app/getting-started/deploying",
+    "https://nextjs.org/docs/app/getting-started/upgrading"
+  ]
+}

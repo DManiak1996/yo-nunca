@@ -1,0 +1,24 @@
+{
+  "title": "Cohere Model node",
+  "content": "Use the Cohere Model node to use Cohere's models.\n\nOn this page, you'll find the node parameters for the Cohere Model node, and links to more resources.\n\nThis node lacks tools support, so it won't work with the [AI Agent](../../root-nodes/n8n-nodes-langchain.agent/) node. Instead, connect it with the [Basic LLM Chain](../../root-nodes/n8n-nodes-langchain.chainllm/) node.\n\nYou can find authentication information for this node [here](../../../credentials/cohere/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Maximum Number of Tokens**: Enter the maximum number of tokens used, which sets the completion length.\n- **Sampling Temperature**: Use this option to control the randomness of the sampling process. A higher temperature creates more diverse sampling, but increases the risk of hallucinations.\n\n## Templates and examples\n\n**Automate Sales Cold Calling Pipeline with Apify, GPT-4o, and WhatsApp**\n\n[View template details](https://n8n.io/workflows/5449-automate-sales-cold-calling-pipeline-with-apify-gpt-4o-and-whatsapp/)\n\n**Create a Multi-Modal Telegram Support Bot with GPT-4 and Supabase RAG**\n\nby Ezema Kingsley Chibuzo\n\n[View template details](https://n8n.io/workflows/5589-create-a-multi-modal-telegram-support-bot-with-gpt-4-and-supabase-rag/)\n\n**Build a Document QA System with RAG using Milvus, Cohere, and OpenAI for Google Drive**\n\n[View template details](https://n8n.io/workflows/3848-build-a-document-qa-system-with-rag-using-milvus-cohere-and-openai-for-google-drive/)\n\n[Browse Cohere Model integration templates](https://n8n.io/integrations/cohere-model/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChains's Cohere documentation](https://js.langchain.com/docs/integrations/llms/cohere/) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node Options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#cohere-model-node",
+  "links": []
+}

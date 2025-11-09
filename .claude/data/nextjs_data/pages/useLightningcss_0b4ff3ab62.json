@@ -1,0 +1,31 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/useLightningcss",
+  "title": "useLightningcss",
+  "content": "Experimental support for using Lightning CSS with webpack. Lightning CSS is a fast CSS transformer and minifier, written in Rust.\n\nIf this option is not set, Next.js on webpack uses PostCSS with postcss-preset-env by default.\n\nTurbopack uses Lightning CSS by default since Next 14.2. This configuration option has no effect on Turbopack. Turbopack always uses Lightning CSS.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "useLightningcss",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    useLightningcss: false, // default, ignored on Turbopack\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/useLightningcss",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/urlImports",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/viewTransition"
+  ]
+}

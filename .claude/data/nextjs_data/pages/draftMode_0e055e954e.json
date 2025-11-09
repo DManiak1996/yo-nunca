@@ -1,0 +1,88 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/draft-mode",
+  "title": "draftMode",
+  "content": "draftMode is an async function allows you to enable and disable Draft Mode, as well as check if Draft Mode is enabled in a Server Component.\n\nThe following methods and properties are available:\n\nTo enable Draft Mode, create a new Route Handler and call the enable() method:\n\nBy default, the Draft Mode session ends when the browser is closed.\n\nTo disable Draft Mode manually, call the disable() method in your Route Handler:\n\nThen, send a request to invoke the Route Handler. If calling the route using the <Link> component, you must pass prefetch={false} to prevent accidentally deleting the cookie on prefetch.\n\nYou can check if Draft Mode is enabled in a Server Component with the isEnabled property:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "draftMode",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h2",
+      "text": "Good to know",
+      "id": "good-to-know"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Enabling Draft Mode",
+      "id": "enabling-draft-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Disabling Draft Mode",
+      "id": "disabling-draft-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Checking if Draft Mode is enabled",
+      "id": "checking-if-draft-mode-is-enabled"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "Draft Mode",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { draftMode } from 'next/headers'\n \nexport default async function Page() {\n  const { isEnabled } = await draftMode()\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { draftMode } from 'next/headers'\n \nexport async function GET(request: Request) {\n  const draft = await draftMode()\n  draft.enable()\n  return new Response('Draft mode is enabled')\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { draftMode } from 'next/headers'\n \nexport async function GET(request: Request) {\n  const draft = await draftMode()\n  draft.disable()\n  return new Response('Draft mode is disabled')\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { draftMode } from 'next/headers'\n \nexport default async function Page() {\n  const { isEnabled } = await draftMode()\n  return (\n    <main>\n      <h1>My Blog Post</h1>\n      <p>Draft Mode is currently {isEnabled ? 'Enabled' : 'Disabled'}</p>\n    </main>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/guides/draft-mode",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/api-reference/functions/draft-mode",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/components/link",
+    "https://nextjs.org/docs/app/guides/upgrading/codemods",
+    "https://nextjs.org/docs/app/api-reference/functions/cookies",
+    "https://nextjs.org/docs/app/api-reference/functions/fetch"
+  ]
+}

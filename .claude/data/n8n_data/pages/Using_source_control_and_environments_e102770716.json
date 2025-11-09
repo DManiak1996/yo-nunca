@@ -1,0 +1,8 @@
+{
+  "title": "Using source control and environments",
+  "content": "- Available on Enterprise.\n\n- You must be an n8n instance owner or instance admin to enable and configure source control.\n\n- Instance owners and instance admins can push changes to and pull changes from the connected repository.\n\n- Project admins can push changes to the connected repository. They can't pull changes from the repository.\n\n- [Push and pull](push-pull/): Send work to Git, and fetch work from Git to your instance. Understand what gets committed, and how n8n handles merge conflicts.\n\n- [Copy work between environments](copy-work/): How to copy work between different n8n instances.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#using-source-control-and-environments",
+  "links": []
+}

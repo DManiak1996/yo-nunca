@@ -1,0 +1,8 @@
+{
+  "title": "Webflow Trigger node",
+  "content": "[Webflow](https://webflow.com) is an application that allows you to build responsive websites with browser-based visual editing software.\n\nYou can find authentication information for this node [here](../../credentials/webflow/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Webflow Trigger integrations](https://n8n.io/integrations/webflow-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#webflow-trigger-node",
+  "links": []
+}

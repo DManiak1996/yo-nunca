@@ -1,0 +1,8 @@
+{
+  "title": "Node base file",
+  "content": "The node base file contains the core code of your node. All nodes must have a base file. The contents of this file are different depending on whether you're building a declarative-style or programmatic-style node. For guidance on which style to use, refer to [Choose your node building approach](../../../plan/choose-node-method/).\n\nThese documents give short code snippets to help understand the code structure and concepts. For full walk-throughs of building a node, including real-world code examples, refer to [Build a declarative-style node](../../declarative-style-node/) or [Build a programmatic-style node](../../programmatic-style-node/).\n\nYou can also explore the [n8n-nodes-starter](https://github.com/n8n-io/n8n-nodes-starter) and n8n's own [nodes](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/nodes) for a wider range of examples. The starter contains basic examples that you can build on. The n8n [Mattermost node](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/nodes/Mattermost) is a good example of a more complex programmatic-style node, including versioning.\n\nFor all nodes, refer to the:\n\n- [Structure of the node base file](structure/)\n- [Standard parameters](standard-parameters/)\n\nFor declarative-style nodes, refer to the:\n\n- [Declarative-style parameters](declarative-style-parameters/)\n\nFor programmatic-style nodes, refer to the:\n\n- [Programmatic-style parameters](programmatic-style-parameters/)\n- [Programmatic-style execute() method](programmatic-style-execute-method/)",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#node-base-file",
+  "links": []
+}

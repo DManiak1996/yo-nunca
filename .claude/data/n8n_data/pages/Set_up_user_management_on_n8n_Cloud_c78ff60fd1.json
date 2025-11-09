@@ -1,0 +1,19 @@
+{
+  "title": "Set up user management on n8n Cloud",
+  "content": "To access user management, upgrade to version 0.195.0 or newer.\n\nOnce you upgrade your Cloud instance to an n8n version with user management, you can't downgrade your version.\n\n## Step one: In-app setup\n\nWhen you set up user management for the first time, you create an owner account.\n\n1. Open n8n. The app displays a signup screen.\n1. Enter your details. Your password must be at least eight characters, including at least one number and one capital letter.\n1. Click **Next**. n8n logs you in with your new owner account.\n\n## Step two: Invite users\n\nYou can now invite other people to your n8n instance.\n\n1. Sign into your workspace with your owner account. (If you are in the Admin Panel open your **Workspace** from the Dashboard)\n1. Click the three dots next to your user icon at the bottom left and click **Settings**. n8n opens your **Personal settings** page.\n1. Click **Users** to go to the **Users** page.\n1. Click **Invite**.\n1. Enter the new user's email address.\n1. Click **Invite user**. n8n sends an email with a link for the new user to join.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Step one: In-app setup",
+      "id": "step-one:-in-app-setup"
+    },
+    {
+      "level": "h2",
+      "text": "Step two: Invite users",
+      "id": "step-two:-invite-users"
+    }
+  ],
+  "url": "llms-txt#set-up-user-management-on-n8n-cloud",
+  "links": []
+}

@@ -1,0 +1,24 @@
+{
+  "title": "Rename Keys",
+  "content": "Use the Rename Keys node to rename the keys of a key-value pair in n8n.\n\nYou can rename one or multiple keys using the Rename Keys node. Select the **Add new key** button to rename a key.\n\nFor each key, enter the:\n\n- **Current Key Name**: The current name of the key you want to rename.\n- **New Key Name**: The new name you want to assign to the key.\n\nChoose whether to use a **Regex** regular expression to identify keys to rename. To use this option, you must also enter:\n\n- The **Regular Expression** you'd like to use.\n- **Replace With**: Enter the new name you want to assign to the key(s) that match the **Regular Expression**.\n- You can also choose these Regex-specific options:\n  - **Case Insensitive**: Set whether the regular expression should match case (turned off) or be case insensitive (turned on).\n  - **Max Depth**: Enter the maximum depth to replace keys, using `-1` for unlimited and `0` for top-level only.\n\nUsing a regular expression can affect any keys that match the expression, including keys you've already renamed.\n\n## Templates and examples\n\n**Explore n8n Nodes in a Visual Reference Library**\n\n[View template details](https://n8n.io/workflows/3891-explore-n8n-nodes-in-a-visual-reference-library/)\n\n**Create Salesforce accounts based on Google Sheets data**\n\n[View template details](https://n8n.io/workflows/1792-create-salesforce-accounts-based-on-google-sheets-data/)\n\n**Create Salesforce accounts based on Excel 365 data**\n\n[View template details](https://n8n.io/workflows/1793-create-salesforce-accounts-based-on-excel-365-data/)\n\n[Browse Rename Keys integration templates](https://n8n.io/integrations/rename-keys/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#rename-keys",
+  "links": []
+}

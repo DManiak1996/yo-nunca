@@ -1,0 +1,37 @@
+{
+  "title": "`execution`",
+  "content": "Contains the unique ID of the current workflow execution.\n\n## `execution.resumeUrl`\n\nThe webhook URL to call to resume a [waiting](../../../../integrations/builtin/core-nodes/n8n-nodes-base.wait/) workflow.\n\nSee the [Wait > On webhook call](../../../../integrations/builtin/core-nodes/n8n-nodes-base.wait/#on-webhook-call) documentation to learn more.\n\n`execution.resumeUrl` is available in workflows containing a Wait node, along with a node that waits for a webhook response.\n\n## `execution.customData`\n\nThis is only available in the Code node.",
+  "code_samples": [
+    {
+      "code": "let executionId = $execution.id;",
+      "language": "unknown"
+    },
+    {
+      "code": "executionId = _execution.id",
+      "language": "unknown"
+    },
+    {
+      "code": "// Set a single piece of custom execution data\n$execution.customData.set(\"key\", \"value\");\n\n// Set the custom execution data object\n$execution.customData.setAll({\"key1\": \"value1\", \"key2\": \"value2\"})\n\n// Access the current state of the object during the execution\nvar customData = $execution.customData.getAll()\n\n// Access a specific value set during this execution\nvar customData = $execution.customData.get(\"key\")",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "`execution.id`",
+      "id": "`execution.id`"
+    },
+    {
+      "level": "h2",
+      "text": "`execution.resumeUrl`",
+      "id": "`execution.resumeurl`"
+    },
+    {
+      "level": "h2",
+      "text": "`execution.customData`",
+      "id": "`execution.customdata`"
+    }
+  ],
+  "url": "llms-txt#`execution`",
+  "links": []
+}

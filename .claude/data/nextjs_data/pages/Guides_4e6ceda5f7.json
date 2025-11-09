@@ -1,0 +1,265 @@
+{
+  "url": "https://nextjs.org/docs/app/guides",
+  "title": "Guides",
+  "content": "",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Guides",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Analytics",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Authentication",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Backend for Frontend",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Caching",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "CI Build Caching",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Content Security Policy",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "CSS-in-JS",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Custom Server",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Data Security",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Debugging",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Draft Mode",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Environment Variables",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Forms",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "ISR",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Instrumentation",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Internationalization",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "JSON-LD",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Lazy Loading",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Development Environment",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Next.js MCP Server",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "MDX",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Memory Usage",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Migrating",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Multi-tenant",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Multi-zones",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "OpenTelemetry",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Package Bundling",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Prefetching",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Production",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "PWAs",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Redirecting",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Sass",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Scripts",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Self-Hosting",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "SPAs",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Static Exports",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Tailwind CSS v3",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Testing",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Third Party Libraries",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Upgrading",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Videos",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/guides/analytics",
+    "https://nextjs.org/docs/app/guides/authentication",
+    "https://nextjs.org/docs/app/guides/backend-for-frontend",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/guides/ci-build-caching",
+    "https://nextjs.org/docs/app/guides/content-security-policy",
+    "https://nextjs.org/docs/app/guides/css-in-js",
+    "https://nextjs.org/docs/app/guides/custom-server",
+    "https://nextjs.org/docs/app/guides/data-security",
+    "https://nextjs.org/docs/app/guides/debugging",
+    "https://nextjs.org/docs/app/guides/draft-mode",
+    "https://nextjs.org/docs/app/guides/environment-variables",
+    "https://nextjs.org/docs/app/guides/forms",
+    "https://nextjs.org/docs/app/guides/incremental-static-regeneration",
+    "https://nextjs.org/docs/app/guides/instrumentation",
+    "https://nextjs.org/docs/app/guides/internationalization",
+    "https://nextjs.org/docs/app/guides/json-ld",
+    "https://nextjs.org/docs/app/guides/lazy-loading",
+    "https://nextjs.org/docs/app/guides/local-development",
+    "https://nextjs.org/docs/app/guides/mcp",
+    "https://nextjs.org/docs/app/guides/mdx",
+    "https://nextjs.org/docs/app/guides/memory-usage",
+    "https://nextjs.org/docs/app/guides/migrating",
+    "https://nextjs.org/docs/app/guides/multi-tenant",
+    "https://nextjs.org/docs/app/guides/multi-zones",
+    "https://nextjs.org/docs/app/guides/open-telemetry",
+    "https://nextjs.org/docs/app/guides/package-bundling",
+    "https://nextjs.org/docs/app/guides/prefetching",
+    "https://nextjs.org/docs/app/guides/production-checklist",
+    "https://nextjs.org/docs/app/guides/progressive-web-apps",
+    "https://nextjs.org/docs/app/guides/redirecting",
+    "https://nextjs.org/docs/app/guides/sass",
+    "https://nextjs.org/docs/app/guides/scripts",
+    "https://nextjs.org/docs/app/guides/self-hosting",
+    "https://nextjs.org/docs/app/guides/single-page-applications",
+    "https://nextjs.org/docs/app/guides/static-exports",
+    "https://nextjs.org/docs/app/guides/tailwind-v3-css",
+    "https://nextjs.org/docs/app/guides/testing",
+    "https://nextjs.org/docs/app/guides/third-party-libraries",
+    "https://nextjs.org/docs/app/guides/upgrading",
+    "https://nextjs.org/docs/app/guides/videos",
+    "https://nextjs.org/docs/app/getting-started/upgrading"
+  ]
+}

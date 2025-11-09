@@ -1,0 +1,151 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions",
+  "title": "File-system conventions",
+  "content": "",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "File-system conventions",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "default.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Dynamic Segments",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "error.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "forbidden.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "instrumentation.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "instrumentation-client.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Intercepting Routes",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "layout.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "loading.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "mdx-components.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "not-found.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "page.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Parallel Routes",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "proxy.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "public",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "route.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Route Groups",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Route Segment Config",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "src",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "template.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "unauthorized.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Metadata Files",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/default",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/error",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/forbidden",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/instrumentation",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/instrumentation-client",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/intercepting-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/mdx-components",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/not-found",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/parallel-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/public-folder",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-groups",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/src-folder",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/template",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/unauthorized",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata",
+    "https://nextjs.org/docs/app/api-reference/components/script"
+  ]
+}

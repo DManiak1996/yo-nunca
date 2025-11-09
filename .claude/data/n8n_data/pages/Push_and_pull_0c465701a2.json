@@ -1,0 +1,49 @@
+{
+  "title": "Push and pull",
+  "content": "If your n8n instance connects to a Git repository, you need to keep your work in sync with Git.\n\nThis document assumes some familiarity with Git concepts and terminology. Refer to [Git and n8n](../../understand/git/) for an introduction to how n8n works with Git.\n\nRecommendation: don't push and pull to the same n8n instance\n\nYou can push work from an instance to a branch, and pull to the same instance. n8n doesn't recommend this. To reduce the risk of merge conflicts and overwriting work, try to create a process where work goes in one direction: either to Git, or from Git, but not both.\n\n## Fetch other people's work\n\nn8n roles control which users can pull (fetch) changes\n\nYou must be an instance owner or instance admin to pull changes from git.\n\nTo pull work from Git, select **Pull** in the main menu.\n\nPull and push buttons when menu is closed\n\nPull and push buttons when menu is open\n\nn8n may display a warning about overriding local changes. Select **Pull and override** to override your local work with the content in Git.\n\nWhen the changes include new variable or credential stubs, n8n notifies you that you need to populate the values for the items before using them.\n\nHow deleted resources are handled\n\nWhen workflows, credentials, variables, and tags are deleted from the repository, your local versions of these resources aren't deleted automatically. Instead, when you pull repository changes, n8n notifies you about any outdated resources and asks if you'd like to delete them.\n\n### Workflow and credential owner may change on pull\n\nWhen you pull from Git to an n8n instance, n8n tries to assign workflows and credentials to a matching user or project.\n\nIf the original owner is a user:\n\nIf the same owner is available on both instances (matching email), the owner remains the same. If the original owner isn't on the new instance, n8n sets the user performing the pull as the workflow owner.\n\nIf the original owner is a [project](../../../user-management/rbac/):\n\nn8n tries to match the original project name to a project name on the new instance. If no matching project exists, n8n creates a new project with the name, assigns the current user as project owner, and imports the workflows and credentials to the project.\n\n### Pulling may cause brief service interruption\n\nIf you pull changes to an active workflow, n8n sets the workflow to inactive while pulling, then reactivates it. This may result in a few seconds of downtime for the workflow.\n\n## Send your work to Git\n\nn8n roles control which users can push changes\n\nYou must be an instance owner, instance admin, or project admin to push changes to git.\n\n1. Select **Push** in the main menu.\n\nPull and push buttons when menu is closed\n\nPull and push buttons when menu is open\n\n1. In the **Commit and push changes** modal, select which workflows you want to push. You can filter by status (new, modified, deleted) and search for workflows. n8n automatically pushes tags, and variable and credential stubs.\n\n1. Enter a commit message. This should be a one sentence description of the changes you're making.\n\n1. Select **Commit and Push**. n8n sends the work to Git, and displays a success message on completion.\n\n## What gets committed\n\nn8n commits the following to Git:\n\n- Workflows, including their tags and the email address of the workflow owner. You can choose which workflows to push.\n- Credential stubs (ID, name, type)\n- Variable stubs (ID and name)\n- Projects\n- Folders\n\n## Merge behaviors and conflicts\n\nn8n's implementation of source control is opinionated. It resolves merge conflicts for credentials and variables automatically. n8n can't detect conflicts on workflows.\n\nYou have to explicitly tell n8n what to do about workflows when pushing or pulling. The Git repository acts as the source of truth.\n\nWhen pulling, you might get warned that your local copy of a workflow differs from Git, and if you accept, your local copy would be overridden. Be careful not to lose relevant changes when pulling.\n\nWhen you push, your local workflow will override what's in Git, so make sure that you have the most up to date version or you risk overriding recent changes.\n\nTo prevent the issue described above, you should immediately push your changes to a workflow once you finish working on it. Then it's safe to pull.\n\nTo avoid losing data:\n\n- Design your source control setup so that workflows flow in one direction. For example, make edits on a development instance, push to Git, then pull to production. Don't make edits on the production instance and push them.\n- Don't push all workflows. Select the ones you need.\n- Be cautious about manually editing files in the Git repository.\n\n### Credentials, variables and workflow tags\n\nCredentials and variables can't have merge issues, as n8n chooses the version to keep.\n\n- If the tag, variable or credential doesn't exist, n8n creates it.\n- If the tag, variable or credential already exists, n8n doesn't update it, unless:\n  - You set the value of a variable using the API or externally. The new value overwrites any existing value.\n  - The credential name has changed. n8n uses the version in Git.\n  - The name of a tag has changed. n8n updates the tag name. Be careful when renaming tags as tag names are unique and this could cause database issues when it comes to uniqueness during the pull process.\n\n- n8n overwrites the entire variables and tags files.\n- If a credential already exists, n8n overwrites it with the changes, but doesn't apply these changes to existing credentials on pull.\n\nManage credentials with an external secrets vault\n\nIf you need different credentials on different n8n environments, use [external secrets](../../../external-secrets/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Fetch other people's work",
+      "id": "fetch-other-people's-work"
+    },
+    {
+      "level": "h3",
+      "text": "Workflow and credential owner may change on pull",
+      "id": "workflow-and-credential-owner-may-change-on-pull"
+    },
+    {
+      "level": "h3",
+      "text": "Pulling may cause brief service interruption",
+      "id": "pulling-may-cause-brief-service-interruption"
+    },
+    {
+      "level": "h2",
+      "text": "Send your work to Git",
+      "id": "send-your-work-to-git"
+    },
+    {
+      "level": "h2",
+      "text": "What gets committed",
+      "id": "what-gets-committed"
+    },
+    {
+      "level": "h2",
+      "text": "Merge behaviors and conflicts",
+      "id": "merge-behaviors-and-conflicts"
+    },
+    {
+      "level": "h3",
+      "text": "Workflows",
+      "id": "workflows"
+    },
+    {
+      "level": "h3",
+      "text": "Credentials, variables and workflow tags",
+      "id": "credentials,-variables-and-workflow-tags"
+    }
+  ],
+  "url": "llms-txt#push-and-pull",
+  "links": []
+}

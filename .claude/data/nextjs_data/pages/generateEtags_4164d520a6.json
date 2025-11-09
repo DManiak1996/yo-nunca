@@ -1,0 +1,25 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/generateEtags",
+  "title": "generateEtags",
+  "content": "Next.js will generate etags for every page by default. You may want to disable etag generation for HTML pages depending on your cache strategy.\n\nOpen next.config.js and disable the generateEtags option:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "generateEtags",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  generateEtags: false,\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/generateBuildId",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/headers"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Generate a response",
+  "content": "Source: https://docs.ollama.com/api/generate\n\nopenapi.yaml post /api/generate\nGenerates a response for the provided prompt",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#generate-a-response",
+  "links": []
+}

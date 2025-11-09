@@ -1,0 +1,53 @@
+{
+  "title": "Gmail Trigger node Poll Mode options",
+  "content": "Use the [Gmail Trigger node's](../) **Poll Time** parameter to set how often to trigger the poll. Your **Mode** selection will add or remove relevant fields.\n\nRefer to the sections below for details on using each **Mode**.\n\nEnter the **Minute** of the hour to trigger the poll, from `0` to `59`.\n\n- Enter the **Hour** of the day to trigger the poll in 24-hour format, from `0` to `23`.\n- Enter the **Minute** of the hour to trigger the poll, from `0` to `59`.\n\n- Enter the **Hour** of the day to trigger the poll in 24-hour format, from `0` to `23`.\n- Enter the **Minute** of the hour to trigger the poll, from `0` to `59`.\n- Select the **Weekday** to trigger the poll.\n\n- Enter the **Hour** of the day to trigger the poll in 24-hour format, from `0` to `23`.\n- Enter the **Minute** of the hour to trigger the poll, from `0` to `59`.\n- Enter the **Day of the Month** to trigger the poll, from `0` to `31`.\n\n- Enter the **Value** of measurement for how often to trigger the poll in either minutes or hours.\n- Select the **Unit** for the value. Supported units are **Minutes** and **Hours**.\n\nEnter a custom **Cron Expression** to trigger the poll. Use these values and ranges:\n\n- Seconds: `0` - `59`\n- Minutes: `0` - `59`\n- Hours: `0` - `23`\n- Day of Month: `1` - `31`\n- Months: `0` - `11` (Jan - Dec)\n- Day of Week: `0` - `6` (Sun - Sat)\n\nTo generate a Cron expression, you can use [crontab guru](https://crontab.guru). Paste the Cron expression that you generated using crontab guru in the **Cron Expression** field in n8n.\n\nIf you want to trigger your workflow every day at 04:08:30, enter the following in the **Cron Expression** field.\n\nIf you want to trigger your workflow every day at 04:08, enter the following in the **Cron Expression** field.\n\n#### Why there are six asterisks in the Cron expression\n\nThe sixth asterisk in the Cron expression represents seconds. Setting this is optional. The node will execute even if you don't set the value for seconds.\n\n| \\*     | \\*     | \\*   | \\*           | \\*    | \\*          |\n| ------ | ------ | ---- | ------------ | ----- | ----------- |\n| second | minute | hour | day of month | month | day of week |",
+  "code_samples": [
+    {
+      "code": "30 8 4 * * *",
+      "language": "unknown"
+    },
+    {
+      "code": "8 4 * * *",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Poll mode options",
+      "id": "poll-mode-options"
+    },
+    {
+      "level": "h3",
+      "text": "Every Hour mode",
+      "id": "every-hour-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Every Day mode",
+      "id": "every-day-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Every Week mode",
+      "id": "every-week-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Every Month mode",
+      "id": "every-month-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Every X mode",
+      "id": "every-x-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Custom mode",
+      "id": "custom-mode"
+    }
+  ],
+  "url": "llms-txt#gmail-trigger-node-poll-mode-options",
+  "links": []
+}

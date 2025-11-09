@@ -1,0 +1,8 @@
+{
+  "title": "Data mapping",
+  "content": "Data mapping means referencing data from previous nodes.\n\nThis section contains guidance on:\n\n- Mapping data in most scenarios: [Data mapping in the UI](data-mapping-ui/) and [Data mapping in expression](data-mapping-expressions/)\n- How to handle [item linking](data-item-linking/) when using the Code node or building your own nodes.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#data-mapping",
+  "links": []
+}

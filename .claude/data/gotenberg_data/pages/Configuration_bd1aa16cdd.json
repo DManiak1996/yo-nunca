@@ -1,0 +1,129 @@
+{
+  "url": "https://gotenberg.dev/docs/configuration",
+  "title": "Configuration",
+  "content": "The Docker image includes a binary with flags to configure its modules. This guide lists all available flags so you can fine-tune Gotenberg to your needs.\n\nTo set one or more flags, it's necessary to override the Docker image's default command.\n\nFor example, with the Docker CLI:\n\nOr with Docker Compose:\n\nDo not redefine the Gotenberg Docker image default entrypoint, but override the command instead. See this issue for more details.\n\nAlternatively, you can set environment variables that directly correspond to the command-line flags.\n\nFor example, with the Docker CLI:\n\nOr with Docker Compose:\n\nThe API module is an HTTP/1 and HTTP/2 (with H2C support) server.\n\nThe following flags allow you to configure the API module:\n\nThe Chromium module interacts with the Chromium browser to convert HTML documents to PDF.\n\nA single Chromium browser manages the conversions in a stateful mode, enabling quicker single conversions. However, due to a lock mechanism, a Chromium browser cannot execute parallel operations.\n\nDuring periods of heavy load, incoming requests will accumulate in the queue until they are processed, time out, or the queue reaches its maximum capacity. In the latter case, the request will be terminated prematurely.\n\nTo maintain performance under a heavy load, consider increasing the number of Gotenberg instances.\n\nBefore Gotenberg 8.22.0, the amd64 image used Google Chrome (stable), while other architectures used Chromium. Now all architectures use Chromium.\n\nThe following flags allow you to configure the Chromium module:\n\n*Prior to Gotenberg 8.15.2, restarting Chromium resulted in zombie processes.\n\nThe LibreOffice module interacts with LibreOffice to convert numerous documents to PDF, thanks to unoconv.\n\nA single LibreOffice instance manages the conversions in a stateful mode, enabling quicker single conversions. However, due to a lock mechanism, a LibreOffice instance cannot execute parallel operations.\n\nDuring periods of heavy load, incoming requests will accumulate in the queue until they are processed, time out, or the queue reaches its maximum capacity. In the latter case, the request will be terminated prematurely.\n\nTo maintain performance under a heavy load, consider increasing the number of Gotenberg instances.\n\nThe following flags allow you to configure the LibreOffice module:\n\nBy default, LibreOffice uses the English language when it converts documents to PDF. You may override this behavior by building your own Docker image.\n\nFor instance, with the German language:\n\nGotenberg 8.23.1 and after\n\nPrior Gotenberg 8.22.0\n\nThe PDF Engines module gathers all engines that can manipulate PDF files. It calls each engine until one successfully handles a task. A PDF engine is an external tool that Gotenberg leverages to perform a specific task, such as merging PDF files.\n\nCurrently, Gotenberg supports the following PDF engines:\n\nPDFtk and QPDF only supports the split mode pages with unification.\n\nThe following flags allow you to configure the PDF Engines module:\n\nAs of Gotenberg 8.13.0, the flag --pdfengines-engines has been deprecated.\n\nThe webhook feature enables Gotenberg to upload the output file originating from multipart/form-data routes to a selected destination.\n\nThe following flags allow you to configure the Webhook module:\n\nThe Prometheus module collects metrics from other modules and exposes an HTTP endpoint that can be scraped by Prometheus.\n\nThe following flags allow you to configure the Prometheus module:\n\nGotenberg employs a logger that generates structured logs. Structured logs are formatted in a standardized, machine-readable way, making them extremely beneficial for centralized log management.\n\nThe following flags allow you to configure the logger:\n\nAs of Gotenberg 8.19.0, the flag --log-enable-gcp-severity has been deprecated in favor of --log-enable-gcp-fields.\n\nTo ensure running tasks have enough time to complete, Gotenberg waits for a specific duration before initiating the shutdown process.\n\nThe following flag allows you to configure this duration:\n\nFor Gotenberg versions prior to 8.21.0, when using the webhook feature, make sure this duration is equal to or longer than the API timeout. This ensures that all asynchronous processes finish before Gotenberg begins its shutdown sequence.\n\nThe following flag allows you to hide the startup banner with:\n\nThe default Docker image is pre-packaged with an extensive assortment of fonts, including Asian ones. If your application requires additional or specific fonts not included in this collection, you'll need to construct a tailored Docker image to incorporate those fonts.\n\nOr, if you have many fonts:\n\nYou could also mount a volume containing your fonts to /usr/local/share/fonts/ as suggested in this comment.\n\nThe Docker image employs a specific non-root user, named gotenberg, with a User ID (uid) and Group ID (gid) of 1001. If you want to change these identifiers, you will have to build a custom Docker image:\n\nSince Gotenberg 8.21.0, the image also supports arbitrary user IDs (OpenShift).",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Configuration",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "How To​",
+      "id": "how-to"
+    },
+    {
+      "level": "h2",
+      "text": "API​",
+      "id": "api"
+    },
+    {
+      "level": "h2",
+      "text": "Chromium​",
+      "id": "chromium"
+    },
+    {
+      "level": "h2",
+      "text": "LibreOffice​",
+      "id": "libreoffice"
+    },
+    {
+      "level": "h3",
+      "text": "Switch Language​",
+      "id": "switch-language"
+    },
+    {
+      "level": "h2",
+      "text": "PDF Engines​",
+      "id": "pdf-engines"
+    },
+    {
+      "level": "h2",
+      "text": "Webhook​",
+      "id": "webhook"
+    },
+    {
+      "level": "h2",
+      "text": "Prometheus​",
+      "id": "prometheus"
+    },
+    {
+      "level": "h2",
+      "text": "Logging​",
+      "id": "logging"
+    },
+    {
+      "level": "h2",
+      "text": "Graceful Shutdown​",
+      "id": "graceful-shutdown"
+    },
+    {
+      "level": "h2",
+      "text": "Hide Banner​",
+      "id": "hide-banner"
+    },
+    {
+      "level": "h2",
+      "text": "Docker Image​",
+      "id": "docker-image"
+    },
+    {
+      "level": "h3",
+      "text": "Fonts​",
+      "id": "fonts"
+    },
+    {
+      "level": "h3",
+      "text": "Ownership​",
+      "id": "ownership"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "docker run --rm -p \"3000:3000\" gotenberg/gotenberg:8 gotenberg --my-module-property=foo",
+      "language": "bash"
+    },
+    {
+      "code": "services:  # Your other services.  gotenberg:    image: gotenberg/gotenberg:8    command:      - \"gotenberg\"      - \"--my-module-property=foo\"",
+      "language": "yaml"
+    },
+    {
+      "code": "docker run --rm -p \"3000:3000\" -e MY_MODULE_PROPERTY=foo gotenberg/gotenberg:8",
+      "language": "bash"
+    },
+    {
+      "code": "services:  # Your other services.  gotenberg:    image: gotenberg/gotenberg:8    environment:      MY_MODULE_PROPERTY: \"foo\"",
+      "language": "yaml"
+    },
+    {
+      "code": "FROM gotenberg/gotenberg:8USER rootRUN apt-get update -qq &&\\    DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends -t trixie-backports libreoffice-l10n-de &&\\    sed -i '/de_DE.UTF-8/s/^# //g' /etc/locale.gen &&\\    locale-gen &&\\    # Cleanup.    # Note: the Debian image does automatically a clean after each install thanks to a hook.    # Therefore, there is no need for apt-get clean.    # See https://stackoverflow.com/a/24417119/3248473.    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*ENV LANG de_DE.UTF-8ENV LANGUAGE de_DE:deENV LC_ALL de_DE.UTF-8USER gotenberg",
+      "language": "docker"
+    },
+    {
+      "code": "FROM gotenberg/gotenberg:8USER rootRUN apt-get update -qq &&\\    DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends -t bookworm-backports libreoffice-l10n-de &&\\    sed -i '/de_DE.UTF-8/s/^# //g' /etc/locale.gen &&\\    locale-gen &&\\    # Cleanup.    # Note: the Debian image does automatically a clean after each install thanks to a hook.    # Therefore, there is no need for apt-get clean.    # See https://stackoverflow.com/a/24417119/3248473.    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*ENV LANG de_DE.UTF-8ENV LANGUAGE de_DE:deENV LC_ALL de_DE.UTF-8USER gotenberg",
+      "language": "docker"
+    },
+    {
+      "code": "FROM gotenberg/gotenberg:8USER rootCOPY /local/path/to/{font}.ttf /usr/local/share/fonts/{font}.ttfUSER gotenberg",
+      "language": "docker"
+    },
+    {
+      "code": "FROM gotenberg/gotenberg:8USER rootCOPY /local/path/to/fonts/* /usr/local/share/fonts/USER gotenberg",
+      "language": "docker"
+    },
+    {
+      "code": "FROM gotenberg/gotenberg:8USER rootRUN DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends my-fonts-packageUSER gotenberg",
+      "language": "docker"
+    },
+    {
+      "code": "FROM gotenberg/gotenberg:8USER rootRUN usermod -u {uid} -g {gid} gotenbergUSER gotenberg",
+      "language": "docker"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://gotenberg.dev/docs/configuration",
+    "https://gotenberg.dev/docs/webhook"
+  ]
+}

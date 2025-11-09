@@ -1,0 +1,54 @@
+{
+  "title": "Objects",
+  "content": "A reference document listing built-in convenience functions to support data transformation in expressions for objects.\n\nJavaScript in expressions\n\nYou can use any JavaScript in expressions. Refer to [Expressions](../../../expressions/) for more information.\n\n### isEmpty(): Boolean\n\nChecks if the Object has no key-value pairs.\n\n______________________________________________________________________\n\n### merge(object: Object): Object\n\nMerges two Objects into a single Object using the first as the base Object. If a key exists in both Objects, the key in the base Object takes precedence.\n\n#### Function parameters\n\nThe Object to merge with the base Object.\n\n______________________________________________________________________\n\n### hasField(fieldName: String): Boolean\n\nChecks if the Object has a given field. Only top-level keys are supported.\n\n#### Function parameters\n\nfieldNameRequiredString\n\nThe field to search for.\n\n______________________________________________________________________\n\n### removeField(key: String): Object\n\nRemoves a given field from the Object\n\n#### Function parameters\n\nThe field key of the field to remove.\n\n______________________________________________________________________\n\n### removeFieldsContaining(value: String): Object\n\nRemoves fields with a given value from the Object.\n\n#### Function parameters\n\nThe field value of the field to remove.\n\n______________________________________________________________________\n\n### keepFieldsContaining(value: String): Object\n\nRemoves fields that do not match the given value from the Object.\n\n#### Function parameters\n\nThe field value of the field to keep.\n\n______________________________________________________________________\n\n### compact(): Object\n\nRemoves empty values from an Object.\n\n______________________________________________________________________\n\n### toJsonString(): String\n\nConvert an object to a JSON string. Equivalent of `JSON.stringify`.\n\n______________________________________________________________________\n\n### urlEncode(): String\n\nTransforms an Object into a URL parameter list. Only top-level keys are supported.\n\n______________________________________________________________________",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h3",
+      "text": "isEmpty(): Boolean",
+      "id": "isempty():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "merge(object: Object): Object",
+      "id": "merge(object:-object):-object"
+    },
+    {
+      "level": "h3",
+      "text": "hasField(fieldName: String): Boolean",
+      "id": "hasfield(fieldname:-string):-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "removeField(key: String): Object",
+      "id": "removefield(key:-string):-object"
+    },
+    {
+      "level": "h3",
+      "text": "removeFieldsContaining(value: String): Object",
+      "id": "removefieldscontaining(value:-string):-object"
+    },
+    {
+      "level": "h3",
+      "text": "keepFieldsContaining(value: String): Object",
+      "id": "keepfieldscontaining(value:-string):-object"
+    },
+    {
+      "level": "h3",
+      "text": "compact(): Object",
+      "id": "compact():-object"
+    },
+    {
+      "level": "h3",
+      "text": "toJsonString(): String",
+      "id": "tojsonstring():-string"
+    },
+    {
+      "level": "h3",
+      "text": "urlEncode(): String",
+      "id": "urlencode():-string"
+    }
+  ],
+  "url": "llms-txt#objects",
+  "links": []
+}

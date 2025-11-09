@@ -1,0 +1,152 @@
+{
+  "url": "https://nextjs.org/docs/15/app/getting-started/metadata-and-og-images",
+  "title": "Metadata and OG images",
+  "content": "The Metadata APIs can be used to define your application metadata for improved SEO and web shareability and include:\n\nWith all the options above, Next.js will automatically generate the relevant <head> tags for your page, which can be inspected in the browser's developer tools.\n\nThe metadata object and generateMetadata function exports are only supported in Server Components.\n\nThere are two default meta tags that are always added even if a route doesn't define metadata:\n\nThe other metadata fields can be defined with the Metadata object (for static metadata) or the generateMetadata function (for generated metadata).\n\nTo define static metadata, export a Metadata object from a static layout.js or page.js file. For example, to add a title and description to the blog route:\n\nYou can view a full list of available options, in the generateMetadata documentation.\n\nYou can use generateMetadata function to fetch metadata that depends on data. For example, to fetch the title and description for a specific blog post:\n\nFor dynamically rendered pages, Next.js streams metadata separately, injecting it into the HTML once generateMetadata resolves, without blocking UI rendering.\n\nStreaming metadata improves perceived performance by allowing visual content to stream first.\n\nStreaming metadata is disabled for bots and crawlers that expect metadata to be in the <head> tag (e.g. Twitterbot, Slackbot, Bingbot). These are detected by using the User Agent header from the incoming request.\n\nYou can customize or disable streaming metadata completely, with the htmlLimitedBots option in your Next.js config file.\n\nStatically rendered pages don’t use streaming since metadata is resolved at build time.\n\nLearn more about streaming metadata.\n\nThere may be cases where you need to fetch the same data for metadata and the page itself. To avoid duplicate requests, you can use React's cache function to memoize the return value and only fetch the data once. For example, to fetch the blog post information for both the metadata and the page:\n\nThe following special files are available for metadata:\n\nYou can use these for static metadata, or you can programmatically generate these files with code.\n\nFavicons are small icons that represent your site in bookmarks and search results. To add a favicon to your application, create a favicon.ico and add to the root of the app folder.\n\nYou can also programmatically generate favicons using code. See the favicon docs for more information.\n\nOpen Graph (OG) images are images that represent your site in social media. To add a static OG image to your application, create a opengraph-image.png file in the root of the app folder.\n\nYou can also add OG images for specific routes by creating a opengraph-image.png deeper down the folder structure. For example, to create an OG image specific to the /blog route, add a opengraph-image.jpg file inside the blog folder.\n\nThe more specific image will take precedence over any OG images above it in the folder structure.\n\nOther image formats such as jpeg, png, and gif are also supported. See the Open Graph Image docs for more information.\n\nThe ImageResponse constructor allows you to generate dynamic images using JSX and CSS. This is useful for OG images that depend on data.\n\nFor example, to generate a unique OG image for each blog post, add a opengraph-image.ts file inside the blog folder, and import the ImageResponse constructor from next/og:\n\nImageResponse supports common CSS properties including flexbox and absolute positioning, custom fonts, text wrapping, centering, and nested images. See the full list of supported CSS properties.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Metadata and OG images",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Default fields",
+      "id": "default-fields"
+    },
+    {
+      "level": "h2",
+      "text": "Static metadata",
+      "id": "static-metadata"
+    },
+    {
+      "level": "h2",
+      "text": "Generated metadata",
+      "id": "generated-metadata"
+    },
+    {
+      "level": "h3",
+      "text": "Streaming metadata",
+      "id": "streaming-metadata"
+    },
+    {
+      "level": "h3",
+      "text": "Memoizing data requests",
+      "id": "memoizing-data-requests"
+    },
+    {
+      "level": "h2",
+      "text": "File-based metadata",
+      "id": "file-based-metadata"
+    },
+    {
+      "level": "h2",
+      "text": "Favicons",
+      "id": "favicons"
+    },
+    {
+      "level": "h2",
+      "text": "Static Open Graph images",
+      "id": "static-open-graph-images"
+    },
+    {
+      "level": "h2",
+      "text": "Generated Open Graph images",
+      "id": "generated-open-graph-images"
+    },
+    {
+      "level": "h2",
+      "text": "API Reference",
+      "id": "api-reference"
+    },
+    {
+      "level": "h3",
+      "text": "generateMetadata",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "generateViewport",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "ImageResponse",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Metadata Files",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "favicon, icon, and apple-icon",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "opengraph-image and twitter-image",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "robots.txt",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "sitemap.xml",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "htmlLimitedBots",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "<meta charset=\"utf-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "import type { Metadata } from 'next'\n \nexport const metadata: Metadata = {\n  title: 'My Blog',\n  description: '...',\n}\n \nexport default function Layout() {}",
+      "language": "python"
+    },
+    {
+      "code": "import type { Metadata, ResolvingMetadata } from 'next'\n \ntype Props = {\n  params: Promise<{ slug: string }>\n  searchParams: Promise<{ [key: string]: string | string[] | undefined }>\n}\n \nexport async function generateMetadata(\n  { params, searchParams }: Props,\n  parent: ResolvingMetadata\n): Promise<Metadata> {\n  const slug = (await params).slug\n \n  // fetch post information\n  const post = await fetch(`https://api.vercel.app/blog/${slug}`).then((res) =>\n    res.json()\n  )\n \n  return {\n    title: post.title,\n    description: post.description,\n  }\n}\n \nexport default function Page({ params, searchParams }: Props) {}",
+      "language": "python"
+    },
+    {
+      "code": "import { cache } from 'react'\nimport { db } from '@/app/lib/db'\n \n// getPost will be used twice, but execute only once\nexport const getPost = cache(async (slug: string) => {\n  const res = await db.query.posts.findFirst({ where: eq(posts.slug, slug) })\n  return res\n})",
+      "language": "python"
+    },
+    {
+      "code": "import { getPost } from '@/app/lib/data'\n \nexport async function generateMetadata({\n  params,\n}: {\n  params: { slug: string }\n}) {\n  const post = await getPost(params.slug)\n  return {\n    title: post.title,\n    description: post.description,\n  }\n}\n \nexport default async function Page({ params }: { params: { slug: string } }) {\n  const post = await getPost(params.slug)\n  return <div>{post.title}</div>\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { ImageResponse } from 'next/og'\nimport { getPost } from '@/app/lib/data'\n \n// Image metadata\nexport const size = {\n  width: 1200,\n  height: 630,\n}\n \nexport const contentType = 'image/png'\n \n// Image generation\nexport default async function Image({ params }: { params: { slug: string } }) {\n  const post = await getPost(params.slug)\n \n  return new ImageResponse(\n    (\n      // ImageResponse JSX element\n      <div\n        style={{\n          fontSize: 128,\n          background: 'white',\n          width: '100%',\n          height: '100%',\n          display: 'flex',\n          alignItems: 'center',\n          justifyContent: 'center',\n        }}\n      >\n        {post.title}\n      </div>\n    )\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/15/app",
+    "https://nextjs.org/docs/15/app/getting-started",
+    "https://nextjs.org/docs/15/app/getting-started/metadata-and-og-images",
+    "https://nextjs.org/docs/15/app/api-reference/file-conventions/metadata",
+    "https://nextjs.org/docs/15/app/api-reference/functions/generate-metadata",
+    "https://nextjs.org/docs/15/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/15/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/15/app/api-reference/config/next-config-js/htmlLimitedBots",
+    "https://nextjs.org/docs/15/app/api-reference/file-conventions/metadata/app-icons",
+    "https://nextjs.org/docs/15/app/api-reference/file-conventions/metadata/opengraph-image",
+    "https://nextjs.org/docs/15/app/api-reference/file-conventions/metadata/robots",
+    "https://nextjs.org/docs/15/app/api-reference/file-conventions/metadata/sitemap",
+    "https://nextjs.org/docs/15/app/api-reference/functions/image-response",
+    "https://nextjs.org/docs/15/app/api-reference/functions/generate-viewport",
+    "https://nextjs.org/docs/15/app/getting-started/fonts",
+    "https://nextjs.org/docs/15/app/getting-started/route-handlers-and-middleware"
+  ]
+}

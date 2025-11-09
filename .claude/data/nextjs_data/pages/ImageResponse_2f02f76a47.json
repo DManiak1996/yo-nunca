@@ -1,0 +1,84 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/image-response",
+  "title": "ImageResponse",
+  "content": "The ImageResponse constructor allows you to generate dynamic images using JSX and CSS. This is useful for generating social media images such as Open Graph images, Twitter cards, and more.\n\nThe following parameters are available for ImageResponse:\n\nExamples are available in the Vercel OG Playground.\n\nImageResponse supports common CSS properties including flexbox and absolute positioning, custom fonts, text wrapping, centering, and nested images.\n\nPlease refer to Satori’s documentation for a list of supported HTML and CSS features.\n\nImageResponse can be used in Route Handlers to generate images dynamically at request time.\n\nYou can use ImageResponse in a opengraph-image.tsx file to generate Open Graph images at build time or dynamically at request time.\n\nYou can use custom fonts in your ImageResponse by providing a fonts array in the options.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "ImageResponse",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Supported HTML and CSS features",
+      "id": "supported-html-and-css-features"
+    },
+    {
+      "level": "h2",
+      "text": "Behavior",
+      "id": "behavior"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Route Handlers",
+      "id": "route-handlers"
+    },
+    {
+      "level": "h3",
+      "text": "File-based Metadata",
+      "id": "file-based-metadata"
+    },
+    {
+      "level": "h3",
+      "text": "Custom fonts",
+      "id": "custom-fonts"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { ImageResponse } from 'next/og'\n \nnew ImageResponse(\n  element: ReactElement,\n  options: {\n    width?: number = 1200\n    height?: number = 630\n    emoji?: 'twemoji' | 'blobmoji' | 'noto' | 'openmoji' = 'twemoji',\n    fonts?: {\n      name: string,\n      data: ArrayBuffer,\n      weight: number,\n      style: 'normal' | 'italic'\n    }[]\n    debug?: boolean = false\n \n    // Options that will be passed to the HTTP response\n    status?: number = 200\n    statusText?: string\n    headers?: Record<string, string>\n  },\n)",
+      "language": "python"
+    },
+    {
+      "code": "import { ImageResponse } from 'next/og'\n \nexport async function GET() {\n  try {\n    return new ImageResponse(\n      (\n        <div\n          style={{\n            height: '100%',\n            width: '100%',\n            display: 'flex',\n            flexDirection: 'column',\n            alignItems: 'center',\n            justifyContent: 'center',\n            backgroundColor: 'white',\n            padding: '40px',\n          }}\n        >\n          <div\n            style={{\n              fontSize: 60,\n              fontWeight: 'bold',\n              color: 'black',\n              textAlign: 'center',\n            }}\n          >\n            Welcome to My Site\n          </div>\n          <div\n            style={{\n              fontSize: 30,\n              color: '#666',\n              marginTop: '20px',\n            }}\n          >\n            Generated with Next.js ImageResponse\n          </div>\n        </div>\n      ),\n      {\n        width: 1200,\n        height: 630,\n      }\n    )\n  } catch (e) {\n    console.log(`${e.message}`)\n    return new Response(`Failed to generate the image`, {\n      status: 500,\n    })\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { ImageResponse } from 'next/og'\n \n// Image metadata\nexport const alt = 'My site'\nexport const size = {\n  width: 1200,\n  height: 630,\n}\n \nexport const contentType = 'image/png'\n \n// Image generation\nexport default async function Image() {\n  return new ImageResponse(\n    (\n      // ImageResponse JSX element\n      <div\n        style={{\n          fontSize: 128,\n          background: 'white',\n          width: '100%',\n          height: '100%',\n          display: 'flex',\n          alignItems: 'center',\n          justifyContent: 'center',\n        }}\n      >\n        My site\n      </div>\n    ),\n    // ImageResponse options\n    {\n      // For convenience, we can re-use the exported opengraph-image\n      // size config to also set the ImageResponse's width and height.\n      ...size,\n    }\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { ImageResponse } from 'next/og'\nimport { readFile } from 'node:fs/promises'\nimport { join } from 'node:path'\n \n// Image metadata\nexport const alt = 'My site'\nexport const size = {\n  width: 1200,\n  height: 630,\n}\n \nexport const contentType = 'image/png'\n \n// Image generation\nexport default async function Image() {\n  // Font loading, process.cwd() is Next.js project directory\n  const interSemiBold = await readFile(\n    join(process.cwd(), 'assets/Inter-SemiBold.ttf')\n  )\n \n  return new ImageResponse(\n    (\n      // ...\n    ),\n    // ImageResponse options\n    {\n      // For convenience, we can re-use the exported opengraph-image\n      // size config to also set the ImageResponse's width and height.\n      ...size,\n      fonts: [\n        {\n          name: 'Inter',\n          data: interSemiBold,\n          style: 'normal',\n          weight: 400,\n        },\n      ],\n    }\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/functions/image-response",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image",
+    "https://nextjs.org/docs/app/api-reference/functions/headers",
+    "https://nextjs.org/docs/app/api-reference/functions/next-request"
+  ]
+}

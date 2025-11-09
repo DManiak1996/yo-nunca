@@ -1,0 +1,64 @@
+{
+  "title": "Filter",
+  "content": "Filter items based on a condition. If the item meets the condition, the Filter node passes it on to the next node in the Filter node output. If the item doesn't meet the condition, the Filter node omits the item from its output.\n\nCreate filter comparison **Conditions** to perform your filter.\n\n- Use the data type dropdown to select the data type and comparison operation type for your condition. For example, to filter for dates after a particular date, select **Date & Time > is after**.\n- The fields and values to enter into the condition change based on the data type and comparison you select. Refer to [Available data type comparisons](#available-data-type-comparisons) for a full list of all comparisons by data type.\n\nSelect **Add condition** to create more conditions.\n\n### Combining conditions\n\nYou can choose to keep items:\n\n- When they meet all conditions: Create two or more conditions and select **AND** in the dropdown between them.\n- When they meet any of the conditions: Create two or more conditions and select **OR** in the dropdown between them.\n\nYou can't create a mix of AND and OR rules.\n\n- **Ignore Case**: Whether to ignore letter case (turned on) or be case sensitive (turned off).\n- **Less Strict Type Validation**: Whether you want n8n to attempt to convert value types based on the operator you choose (turned on) or not (turned off). Turn this on when facing a \"wrong type:\" error in your node.\n\n## Templates and examples\n\n**Scrape business emails from Google Maps without the use of any third party APIs**\n\n[View template details](https://n8n.io/workflows/2567-scrape-business-emails-from-google-maps-without-the-use-of-any-third-party-apis/)\n\n**Build Your First AI Data Analyst Chatbot**\n\n[View template details](https://n8n.io/workflows/3050-build-your-first-ai-data-analyst-chatbot/)\n\n**Generate Leads with Google Maps**\n\n[View template details](https://n8n.io/workflows/2605-generate-leads-with-google-maps/)\n\n[Browse Filter integration templates](https://n8n.io/integrations/filter/), or [search all templates](https://n8n.io/workflows/)\n\n## Available data type comparisons\n\nString data type supports these comparisons:\n\n- exists\n- does not exist\n- is empty\n- is not empty\n- is equal to\n- is not equal to\n- contains\n- does not contain\n- starts with\n- does not start with\n- ends with\n- does not end with\n- matches regex\n- does not match regex\n\nNumber data type supports these comparisons:\n\n- exists\n- does not exist\n- is empty\n- is not empty\n- is equal to\n- is not equal to\n- is greater than\n- is less than\n- is greater than or equal to\n- is less than or equal to\n\nDate & Time data type supports these comparisons:\n\n- exists\n- does not exist\n- is empty\n- is not empty\n- is equal to\n- is not equal to\n- is after\n- is before\n- is after or equal to\n- is before or equal to\n\nBoolean data type supports these comparisons:\n\n- exists\n- does not exist\n- is empty\n- is not empty\n- is true\n- is false\n- is equal to\n- is not equal to\n\nArray data type supports these comparisons:\n\n- exists\n- does not exist\n- is empty\n- is not empty\n- contains\n- does not contain\n- length equal to\n- length not equal to\n- length greater than\n- length less than\n- length greater than or equal to\n- length less than or equal to\n\nObject data type supports these comparisons:\n\n- exists\n- does not exist\n- is empty\n- is not empty",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Combining conditions",
+      "id": "combining-conditions"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Available data type comparisons",
+      "id": "available-data-type-comparisons"
+    },
+    {
+      "level": "h3",
+      "text": "String",
+      "id": "string"
+    },
+    {
+      "level": "h3",
+      "text": "Number",
+      "id": "number"
+    },
+    {
+      "level": "h3",
+      "text": "Date & Time",
+      "id": "date-&-time"
+    },
+    {
+      "level": "h3",
+      "text": "Boolean",
+      "id": "boolean"
+    },
+    {
+      "level": "h3",
+      "text": "Array",
+      "id": "array"
+    },
+    {
+      "level": "h3",
+      "text": "Object",
+      "id": "object"
+    }
+  ],
+  "url": "llms-txt#filter",
+  "links": []
+}

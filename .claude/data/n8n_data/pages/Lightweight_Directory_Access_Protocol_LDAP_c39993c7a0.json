@@ -1,0 +1,29 @@
+{
+  "title": "Lightweight Directory Access Protocol (LDAP)",
+  "content": "- Available on Self-hosted Enterprise and Cloud Enterprise plans.\n- You need access to the n8n instance owner account.\n\nThis page tells you how to enable LDAP in n8n. It assumes you're familiar with LDAP, and have an existing LDAP server set up.\n\nLDAP allows users to sign in to n8n with their organization credentials, instead of an n8n login.\n\n1. Log in to n8n as the instance owner.\n1. Select **Settings** > **LDAP**.\n1. Toggle on **Enable LDAP Login**.\n1. Complete the fields with details from your LDAP server.\n1. Select **Test connection** to check your connection setup, or **Save connection** to create the connection.\n\nAfter enabling LDAP, anyone on your LDAP server can sign in to the n8n instance, unless you exclude them using the **User Filter** setting.\n\nYou can still create non-LDAP users (email users) on the **Settings** > **Users** page.\n\n## Merging n8n and LDAP accounts\n\nIf n8n finds matching accounts (matching emails) for email users and LDAP users, the user must sign in with their LDAP account. n8n instance owner accounts are excluded from this: n8n never converts owner accounts to LDAP users.\n\n## LDAP user accounts in n8n\n\nOn first sign in, n8n creates a user account in n8n for the LDAP user.\n\nYou must manage user details on the LDAP server, not in n8n. If you update or delete a user on your LDAP server, the n8n account updates at the next scheduled sync, or when the user next tries to log in, whichever happens first.\n\nIf you remove a user from your LDAP server, they lose n8n access on the next sync.\n\n1. Log in to n8n as the instance owner.\n1. Select **Settings** > **LDAP**.\n1. Toggle off **Enable LDAP Login**.\n\nIf you turn LDAP off, n8n converts existing LDAP users to email users on their next login. The users must reset their password.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Enable LDAP",
+      "id": "enable-ldap"
+    },
+    {
+      "level": "h2",
+      "text": "Merging n8n and LDAP accounts",
+      "id": "merging-n8n-and-ldap-accounts"
+    },
+    {
+      "level": "h2",
+      "text": "LDAP user accounts in n8n",
+      "id": "ldap-user-accounts-in-n8n"
+    },
+    {
+      "level": "h2",
+      "text": "Turn LDAP off",
+      "id": "turn-ldap-off"
+    }
+  ],
+  "url": "llms-txt#lightweight-directory-access-protocol-(ldap)",
+  "links": []
+}

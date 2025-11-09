@@ -1,0 +1,8 @@
+{
+  "title": "Pull latest (stable) version",
+  "content": "docker pull docker.n8n.io/n8nio/n8n",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#pull-latest-(stable)-version",
+  "links": []
+}

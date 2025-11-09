@@ -1,0 +1,19 @@
+{
+  "title": "ConvertKit Trigger node",
+  "content": "[ConvertKit](https://www.convertkit.com/) is a fully featured email marketing platform. Use ConvertKit to build an email list, send email broadcasts, automate sequences, create segments, and build landing pages.\n\nYou can find authentication information for this node [here](../../credentials/convertkit/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [ConvertKit Trigger integrations](https://n8n.io/integrations/convertkit-trigger/) page.\n\n- Form subscribe\n- Link click\n- Product purchase\n- Purchase created\n- Purchase complete\n- Sequence complete\n- Sequence subscribe\n- Subscriber activated\n- Subscriber unsubscribe\n- Tag add\n- Tag Remove\n\nn8n provides an app node for ConvertKit. You can find the node docs [here](../../app-nodes/n8n-nodes-base.convertkit/).\n\nView [example workflows and related content](https://n8n.io/integrations/convertkit-trigger/) on n8n's website.\n\nRefer to [ConvertKit's documentation](https://developers.kit.com/v4#introduction) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#convertkit-trigger-node",
+  "links": []
+}

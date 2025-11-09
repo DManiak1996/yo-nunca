@@ -1,0 +1,74 @@
+{
+  "url": "https://react.dev/reference/react-dom/components/meta",
+  "title": "<meta>",
+  "content": "The built-in browser <meta> component lets you add metadata to the document.\n\nTo add document metadata, render the built-in browser <meta> component. You can render <meta> from any component and React will always place the corresponding DOM element in the document head.\n\nSee more examples below.\n\n<meta> supports all common element props.\n\nIt should have exactly one of the following props: name, httpEquiv, charset, itemProp. The <meta> component does something different depending on which of these props is specified.\n\nReact will always place the DOM element corresponding to the <meta> component within the document’s <head>, regardless of where in the React tree it is rendered. The <head> is the only valid place for <meta> to exist within the DOM, yet it’s convenient and keeps things composable if a component representing a specific page can render <meta> components itself.\n\nThere is one exception to this: if <meta> has an itemProp prop, there is no special behavior, because in this case it doesn’t represent metadata about the document but rather metadata about a specific part of the page.\n\nYou can annotate the document with metadata such as keywords, a summary, or the author’s name. React will place this metadata within the document <head> regardless of where in the React tree it is rendered.\n\nYou can render the <meta> component from any component. React will put a <meta> DOM node in the document <head>.\n\nYou can use the <meta> component with the itemProp prop to annotate specific items within the document with metadata. In this case, React will not place these annotations within the document <head> but will place them like any other React component.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "<meta>",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "<meta>",
+      "id": "meta"
+    },
+    {
+      "level": "h4",
+      "text": "Props",
+      "id": "props"
+    },
+    {
+      "level": "h4",
+      "text": "Special rendering behavior",
+      "id": "special-rendering-behavior"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Annotating the document with metadata",
+      "id": "annotating-the-document-with-metadata"
+    },
+    {
+      "level": "h3",
+      "text": "Annotating specific items within the document with metadata",
+      "id": "annotating-specific-items-within-the-document-with-metadata"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "<meta name=\"keywords\" content=\"React, JavaScript, semantic markup, html\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "<meta name=\"keywords\" content=\"React, JavaScript, semantic markup, html\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "<meta name=\"author\" content=\"John Smith\" /><meta name=\"keywords\" content=\"React, JavaScript, semantic markup, html\" /><meta name=\"description\" content=\"API reference for the <meta> component in React DOM\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "<section itemScope>  <h3>Annotating specific items</h3>  <meta itemProp=\"description\" content=\"API reference for using <meta> with itemProp\" />  <p>...</p></section>",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-dom/components",
+    "https://react.dev/reference/react-dom/components/meta",
+    "https://react.dev/reference/react-dom/components/common",
+    "https://react.dev/reference/react-dom/components/link",
+    "https://react.dev/reference/react-dom/components/script"
+  ]
+}

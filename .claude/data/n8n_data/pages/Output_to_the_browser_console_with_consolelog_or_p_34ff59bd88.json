@@ -1,0 +1,41 @@
+{
+  "title": "Output to the browser console with `console.log()` or `print()` in the Code node",
+  "content": "You can use `console.log()` or `print()` in the Code node to help when writing and debugging your code.\n\nFor help opening your browser console, refer to [this guide by Balsamiq](https://balsamiq.com/support/faqs/browserconsole/).\n\n## console.log (JavaScript)\n\nFor technical information on `console.log()`, refer to the [MDN developer docs](https://developer.mozilla.org/en-US/docs/Web/API/Console/log).\n\nFor example, copy the following code into a Code node, then open your console and run the node:\n\nFor technical information on `print()`, refer to the [Real Python's guide](https://realpython.com/python-print/).\n\nFor example, set your Code node **Language** to **Python**, copy the following code into the node, then open your console and run the node:\n\n### Handling an output of `[object Object]`\n\nIf the console displays `[object Object]` when you print, check the data type, then convert it as needed.\n\nTo check the data type:\n\nIf `type()` outputs `<class 'pyodide.ffi.JsProxy'>`, you need to convert the JsProxy to a native Python object using `to_py()`. This occurs when working with data in the n8n node data structure, such as node inputs and outputs. For example, if you want to print the data from a previous node in the workflow:\n\nRefer to the Pyodide documentation on [JsProxy](https://pyodide.org/en/stable/usage/api/python-api/ffi.html#pyodide.ffi.JsProxy) for more information on this class.",
+  "code_samples": [
+    {
+      "code": "let a = \"apple\";\nconsole.log(a);",
+      "language": "unknown"
+    },
+    {
+      "code": "a = \"apple\"\nprint(a)",
+      "language": "unknown"
+    },
+    {
+      "code": "print(type(myData))",
+      "language": "unknown"
+    },
+    {
+      "code": "previousNodeData = _(\"<node-name>\").all();\nfor item in previousNodeData:\n\t# item is of type <class 'pyodide.ffi.JsProxy'>\n\t# You need to convert it to a Dict\n\titemDict = item.json.to_py()\n\tprint(itemDict)",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "console.log (JavaScript)",
+      "id": "console.log-(javascript)"
+    },
+    {
+      "level": "h2",
+      "text": "print (Python)",
+      "id": "print-(python)"
+    },
+    {
+      "level": "h3",
+      "text": "Handling an output of `[object Object]`",
+      "id": "handling-an-output-of-`[object-object]`"
+    }
+  ],
+  "url": "llms-txt#output-to-the-browser-console-with-`console.log()`-or-`print()`-in-the-code-node",
+  "links": []
+}

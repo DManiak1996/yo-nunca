@@ -1,0 +1,91 @@
+{
+  "url": "https://nextjs.org/docs/app/guides/lazy-loading",
+  "title": "How to lazy load Client Components and libraries",
+  "content": "Lazy loading in Next.js helps improve the initial loading performance of an application by decreasing the amount of JavaScript needed to render a route.\n\nIt allows you to defer loading of Client Components and imported libraries, and only include them in the client bundle when they're needed. For example, you might want to defer loading a modal until a user clicks to open it.\n\nThere are two ways you can implement lazy loading in Next.js:\n\nBy default, Server Components are automatically code split, and you can use streaming to progressively send pieces of UI from the server to the client. Lazy loading applies to Client Components.\n\nnext/dynamic is a composite of React.lazy() and Suspense. It behaves the same way in the app and pages directories to allow for incremental migration.\n\nNote: When a Server Component dynamically imports a Client Component, automatic code splitting is currently not supported.\n\nWhen using React.lazy() and Suspense, Client Components will be prerendered (SSR) by default.\n\nNote: ssr: false option will only work for Client Components, move it into Client Components ensure the client code-splitting working properly.\n\nIf you want to disable pre-rendering for a Client Component, you can use the ssr option set to false:\n\nIf you dynamically import a Server Component, only the Client Components that are children of the Server Component will be lazy-loaded - not the Server Component itself. It will also help preload the static assets such as CSS when you're using it in Server Components.\n\nNote: ssr: false option is not supported in Server Components. You will see an error if you try to use it in Server Components. ssr: false is not allowed with next/dynamic in Server Components. Please move it into a Client Component.\n\nExternal libraries can be loaded on demand using the import() function. This example uses the external library fuse.js for fuzzy search. The module is only loaded on the client after the user types in the search input.\n\nTo dynamically import a named export, you can return it from the Promise returned by import() function:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to lazy load Client Components and libraries",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "next/dynamic",
+      "id": "nextdynamic"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Importing Client Components",
+      "id": "importing-client-components"
+    },
+    {
+      "level": "h3",
+      "text": "Skipping SSR",
+      "id": "skipping-ssr"
+    },
+    {
+      "level": "h3",
+      "text": "Importing Server Components",
+      "id": "importing-server-components"
+    },
+    {
+      "level": "h3",
+      "text": "Loading External Libraries",
+      "id": "loading-external-libraries"
+    },
+    {
+      "level": "h3",
+      "text": "Adding a custom loading component",
+      "id": "adding-a-custom-loading-component"
+    },
+    {
+      "level": "h3",
+      "text": "Importing Named Exports",
+      "id": "importing-named-exports"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "'use client'\n \nimport { useState } from 'react'\nimport dynamic from 'next/dynamic'\n \n// Client Components:\nconst ComponentA = dynamic(() => import('../components/A'))\nconst ComponentB = dynamic(() => import('../components/B'))\nconst ComponentC = dynamic(() => import('../components/C'), { ssr: false })\n \nexport default function ClientComponentExample() {\n  const [showMore, setShowMore] = useState(false)\n \n  return (\n    <div>\n      {/* Load immediately, but in a separate client bundle */}\n      <ComponentA />\n \n      {/* Load on demand, only when/if the condition is met */}\n      {showMore && <ComponentB />}\n      <button onClick={() => setShowMore(!showMore)}>Toggle</button>\n \n      {/* Load only on the client side */}\n      <ComponentC />\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "const ComponentC = dynamic(() => import('../components/C'), { ssr: false })",
+      "language": "javascript"
+    },
+    {
+      "code": "import dynamic from 'next/dynamic'\n \n// Server Component:\nconst ServerComponent = dynamic(() => import('../components/ServerComponent'))\n \nexport default function ServerComponentExample() {\n  return (\n    <div>\n      <ServerComponent />\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { useState } from 'react'\n \nconst names = ['Tim', 'Joe', 'Bel', 'Lee']\n \nexport default function Page() {\n  const [results, setResults] = useState()\n \n  return (\n    <div>\n      <input\n        type=\"text\"\n        placeholder=\"Search\"\n        onChange={async (e) => {\n          const { value } = e.currentTarget\n          // Dynamically load fuse.js\n          const Fuse = (await import('fuse.js')).default\n          const fuse = new Fuse(names)\n \n          setResults(fuse.search(value))\n        }}\n      />\n      <pre>Results: {JSON.stringify(results, null, 2)}</pre>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport dynamic from 'next/dynamic'\n \nconst WithCustomLoading = dynamic(\n  () => import('../components/WithCustomLoading'),\n  {\n    loading: () => <p>Loading...</p>,\n  }\n)\n \nexport default function Page() {\n  return (\n    <div>\n      {/* The loading component will be rendered while  <WithCustomLoading/> is loading */}\n      <WithCustomLoading />\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nexport function Hello() {\n  return <p>Hello!</p>\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import dynamic from 'next/dynamic'\n \nconst ClientComponent = dynamic(() =>\n  import('../components/hello').then((mod) => mod.Hello)\n)",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/guides",
+    "https://nextjs.org/docs/app/guides/lazy-loading",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/app/guides/json-ld",
+    "https://nextjs.org/docs/app/guides/local-development"
+  ]
+}

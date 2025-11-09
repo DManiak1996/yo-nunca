@@ -1,0 +1,132 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons",
+  "title": "favicon, icon, and apple-icon",
+  "content": "The favicon, icon, or apple-icon file conventions allow you to set icons for your application.\n\nThey are useful for adding app icons that appear in places like web browser tabs, phone home screens, and search engine results.\n\nThere are two ways to set app icons:\n\nUse an image file to set an app icon by placing a favicon, icon, or apple-icon image file within your /app directory. The favicon image can only be located in the top level of app/.\n\nNext.js will evaluate the file and automatically add the appropriate tags to your app's <head> element.\n\nAdd a favicon.ico image file to the root /app route segment.\n\nAdd an icon.(ico|jpg|jpeg|png|svg) image file.\n\nAdd an apple-icon.(jpg|jpeg|png) image file.\n\nIn addition to using literal image files, you can programmatically generate icons using code.\n\nGenerate an app icon by creating an icon or apple-icon route that default exports a function.\n\nThe easiest way to generate an icon is to use the ImageResponse API from next/og.\n\nThe default export function receives the following props:\n\nA promise that resolves to an object containing the dynamic route parameters object from the root segment down to the segment icon or apple-icon is colocated in.\n\nGood to know: If you use generateImageMetadata, the function will also receive an id prop that is a promise resolving to the id value from one of the items returned by generateImageMetadata.\n\nThe default export function should return a Blob | ArrayBuffer | TypedArray | DataView | ReadableStream | Response.\n\nGood to know: ImageResponse satisfies this return type.\n\nYou can optionally configure the icon's metadata by exporting size and contentType variables from the icon or apple-icon route.\n\nicon and apple-icon are specialized Route Handlers that can use the same route segment configuration options as Pages and Layouts.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "favicon, icon, and apple-icon",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Image files (.ico, .jpg, .png)",
+      "id": "image-files-ico-jpg-png"
+    },
+    {
+      "level": "h3",
+      "text": "favicon",
+      "id": "favicon"
+    },
+    {
+      "level": "h3",
+      "text": "icon",
+      "id": "icon"
+    },
+    {
+      "level": "h3",
+      "text": "apple-icon",
+      "id": "apple-icon"
+    },
+    {
+      "level": "h2",
+      "text": "Generate icons using code (.js, .ts, .tsx)",
+      "id": "generate-icons-using-code-js-ts-tsx"
+    },
+    {
+      "level": "h3",
+      "text": "Props",
+      "id": "props"
+    },
+    {
+      "level": "h4",
+      "text": "params (optional)",
+      "id": "params-optional"
+    },
+    {
+      "level": "h3",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h3",
+      "text": "Config exports",
+      "id": "config-exports"
+    },
+    {
+      "level": "h4",
+      "text": "size",
+      "id": "size"
+    },
+    {
+      "level": "h4",
+      "text": "contentType",
+      "id": "contenttype"
+    },
+    {
+      "level": "h4",
+      "text": "Route Segment Config",
+      "id": "route-segment-config"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "<link rel=\"icon\" href=\"/favicon.ico\" sizes=\"any\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "<link\n  rel=\"icon\"\n  href=\"/icon?<generated>\"\n  type=\"image/<generated>\"\n  sizes=\"<generated>\"\n/>",
+      "language": "unknown"
+    },
+    {
+      "code": "<link\n  rel=\"apple-touch-icon\"\n  href=\"/apple-icon?<generated>\"\n  type=\"image/<generated>\"\n  sizes=\"<generated>\"\n/>",
+      "language": "unknown"
+    },
+    {
+      "code": "import { ImageResponse } from 'next/og'\n \n// Image metadata\nexport const size = {\n  width: 32,\n  height: 32,\n}\nexport const contentType = 'image/png'\n \n// Image generation\nexport default function Icon() {\n  return new ImageResponse(\n    (\n      // ImageResponse JSX element\n      <div\n        style={{\n          fontSize: 24,\n          background: 'black',\n          width: '100%',\n          height: '100%',\n          display: 'flex',\n          alignItems: 'center',\n          justifyContent: 'center',\n          color: 'white',\n        }}\n      >\n        A\n      </div>\n    ),\n    // ImageResponse options\n    {\n      // For convenience, we can re-use the exported icons size metadata\n      // config to also set the ImageResponse's width and height.\n      ...size,\n    }\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "<link rel=\"icon\" href=\"/icon?<generated>\" type=\"image/png\" sizes=\"32x32\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "export default async function Icon({\n  params,\n}: {\n  params: Promise<{ slug: string }>\n}) {\n  const { slug } = await params\n  // ...\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export const size = { width: 32, height: 32 }\n \nexport default function Icon() {}",
+      "language": "javascript"
+    },
+    {
+      "code": "<link rel=\"icon\" sizes=\"32x32\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "export const contentType = 'image/png'\n \nexport default function Icon() {}",
+      "language": "javascript"
+    },
+    {
+      "code": "<link rel=\"icon\" type=\"image/png\" />",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons",
+    "https://nextjs.org/docs/app/api-reference/functions/image-response",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-image-metadata",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/manifest"
+  ]
+}

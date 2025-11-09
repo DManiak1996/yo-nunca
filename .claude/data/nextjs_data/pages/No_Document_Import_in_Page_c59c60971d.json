@@ -1,0 +1,39 @@
+{
+  "url": "https://nextjs.org/docs/messages/no-document-import-in-page",
+  "title": "No Document Import in Page",
+  "content": "Prevent importing next/document outside of pages/_document.js.\n\nnext/document was imported in a page outside of pages/_document.js (or pages/_document.tsx if you are using TypeScript). This can cause unexpected issues in your application.\n\nOnly import and use next/document within pages/_document.js (or pages/_document.tsx) to override the default Document component:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "No Document Import in Page",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Document, { Html, Head, Main, NextScript } from 'next/document'\n \nclass MyDocument extends Document {\n  //...\n}\n \nexport default MyDocument",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/no-document-import-in-page",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-document"
+  ]
+}

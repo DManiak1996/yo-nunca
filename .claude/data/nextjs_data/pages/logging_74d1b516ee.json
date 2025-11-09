@@ -1,0 +1,63 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/logging",
+  "title": "logging",
+  "content": "You can configure the logging level and whether the full URL is logged to the console when running Next.js in development mode.\n\nCurrently, logging only applies to data fetching using the fetch API. It does not yet apply to other logs inside of Next.js.\n\nAny fetch requests that are restored from the Server Components HMR cache are not logged by default. However, this can be enabled by setting logging.fetches.hmrRefreshes to true.\n\nBy default all the incoming requests will be logged in the console during development. You can use the incomingRequests option to decide which requests to ignore. Since this is only logged in development, this option doesn't affect production builds.\n\nOr you can disable incoming request logging by setting incomingRequests to false.\n\nIn addition, you can disable the development logging by setting logging to false.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "logging",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h3",
+      "text": "Fetching",
+      "id": "fetching"
+    },
+    {
+      "level": "h3",
+      "text": "Incoming Requests",
+      "id": "incoming-requests"
+    },
+    {
+      "level": "h3",
+      "text": "Disabling Logging",
+      "id": "disabling-logging"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  logging: {\n    fetches: {\n      fullUrl: true,\n    },\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  logging: {\n    fetches: {\n      hmrRefreshes: true,\n    },\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  logging: {\n    incomingRequests: {\n      ignore: [/\\api\\/v1\\/health/],\n    },\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  logging: {\n    incomingRequests: false,\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  logging: false,\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/logging",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/serverComponentsHmrCache",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/isolatedDevBuild",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/mdxRs"
+  ]
+}

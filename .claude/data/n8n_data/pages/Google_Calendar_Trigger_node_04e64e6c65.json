@@ -1,0 +1,19 @@
+{
+  "title": "Google Calendar Trigger node",
+  "content": "[Google Calendar](https://www.google.com/calendar/) is a time-management and scheduling calendar service developed by Google.\n\nYou can find authentication information for this node [here](../../credentials/google/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Google Calendar Trigger integrations](https://n8n.io/integrations/google-calendar-trigger/) page.\n\n- **Event Cancelled**\n- **Event Created**\n- **Event Ended**\n- **Event Started**\n- **Event Updated**\n\n[Browse Google Calendar Trigger integration templates](https://n8n.io/integrations/google-calendar-trigger/), or [search all templates](https://n8n.io/workflows/)\n\nn8n provides an app node for Google Calendar. You can find the node docs [here](../../app-nodes/n8n-nodes-base.googlecalendar/).\n\nView [example workflows and related content](https://n8n.io/integrations/google-calendar-trigger/) on n8n's website.\n\nRefer to [Google Calendar's documentation](https://developers.google.com/calendar/api/v3/reference) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#google-calendar-trigger-node",
+  "links": []
+}

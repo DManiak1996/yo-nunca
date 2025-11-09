@@ -1,0 +1,60 @@
+{
+  "title": "Code node common issues",
+  "content": "Here are some common errors and issues with the [Code node](../) and steps to resolve or troubleshoot them.\n\n## Code doesn't return items properly\n\nThis error occurs when the code in your Code node doesn't return data in the expected format.\n\nIn n8n, all data passed between nodes is an array of objects. Each of these objects wraps another object with the `json` key:\n\nTo troubleshoot this error, check the following:\n\n- Read the [data structure](../../../../../data/data-structure/) to understand the data you receive in the Code node and the requirements for outputting data from the node.\n- Understand how data items work and how to connect data items from previous nodes with [item linking](../../../../../data/data-mapping/data-item-linking/).\n\n## A 'json' property isn't an object\n\nThis error occurs when the Code node returns data where the `json` key isn't pointing to an object.\n\nThis may happen if you set `json` to a different data structure, like an array:\n\nTo resolve this, ensure that the `json` key references an object in your return data:\n\n## Code doesn't return an object\n\nThis error may occur when your Code node doesn't return anything or if it returns an unexpected result.\n\nTo resolve this, ensure that your Code node returns the [expected data structure](../../../../../data/data-structure/):\n\nThis error may also occur if the code you provided returns `'undefined'` instead of the expected result. In that case, ensure that the data you are referencing in your Code node exists in each execution and that it has the structure your code expects.\n\n## 'import' and 'export' may only appear at the top level\n\nThis error occurs if you try to use `import` or `export` in the Code node. These aren't supported by n8n's JavaScript sandbox. Instead, use the `require` function to load modules.\n\nTo resolve this issue, try changing your `import` statements to use `require`:\n\n## Cannot find module '<module>'\n\nThis error occurs if you try to use `require` in the Code node and n8n can't find the module.\n\nn8n doesn't support importing modules in the [Cloud](../../../../../manage-cloud/overview/) version.\n\nIf you're [self-hosting](../../../../../hosting/) n8n, follow these steps:\n\n- Install the module into your n8n environment.\n  - If you are running n8n with [npm](../../../../../hosting/installation/npm/), install the module in the same environment as n8n.\n  - If you are running n8n with [Docker](../../../../../hosting/installation/docker/), you need to extend the official n8n image with a [custom image](https://docs.docker.com/build/building/base-images/) that includes your module.\n- Set the `NODE_FUNCTION_ALLOW_BUILTIN` and `NODE_FUNCTION_ALLOW_EXTERNAL` [environment variables](../../../../../hosting/configuration/configuration-examples/modules-in-code-node/) to allow importing modules.\n\n## Using global variables\n\nSometimes you may wish to set and retrieve simple global data related to a workflow across and within executions. For example, you may wish to include the date of the previous report when compiling a report with a list of project updates.\n\nTo set, update, and retrieve data directly to a workflow, use the [static data](../../../../../code/cookbook/builtin/get-workflow-static-data/) functions within your code. You can manage data either globally or tied to specific nodes.\n\nUse Remove Duplicates when possible\n\nIf you're interested in using variables to avoid processing the same data items more than once, consider using the [Remove Duplicates node](../../n8n-nodes-base.removeduplicates/) instead. The Remove Duplicates node can save information across executions to avoid processing the same items multiple times.",
+  "code_samples": [
+    {
+      "code": "[\n  {\n    \"json\": {\n\t  // your data goes here\n\t}\n  }\n]",
+      "language": "unknown"
+    },
+    {
+      "code": "[\n  {\n    \"json\": [\n\t  // Setting `json` to an array like this will produce an error\n\t]\n  }\n]",
+      "language": "unknown"
+    },
+    {
+      "code": "[\n  {\n    \"json\": {\n\t  // Setting `json` to an object as expected\n\t}\n  }\n]",
+      "language": "unknown"
+    },
+    {
+      "code": "[\n  {\n    \"json\": {\n\t  // your data goes here\n\t}\n  }\n]",
+      "language": "unknown"
+    },
+    {
+      "code": "// Original code:\n// import express from \"express\";\n// New code:\nconst express = require(\"express\");",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Code doesn't return items properly",
+      "id": "code-doesn't-return-items-properly"
+    },
+    {
+      "level": "h2",
+      "text": "A 'json' property isn't an object",
+      "id": "a-'json'-property-isn't-an-object"
+    },
+    {
+      "level": "h2",
+      "text": "Code doesn't return an object",
+      "id": "code-doesn't-return-an-object"
+    },
+    {
+      "level": "h2",
+      "text": "'import' and 'export' may only appear at the top level",
+      "id": "'import'-and-'export'-may-only-appear-at-the-top-level"
+    },
+    {
+      "level": "h2",
+      "text": "Cannot find module '<module>'",
+      "id": "cannot-find-module-'<module>'"
+    },
+    {
+      "level": "h2",
+      "text": "Using global variables",
+      "id": "using-global-variables"
+    }
+  ],
+  "url": "llms-txt#code-node-common-issues",
+  "links": []
+}

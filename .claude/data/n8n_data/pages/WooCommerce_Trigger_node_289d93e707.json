@@ -1,0 +1,14 @@
+{
+  "title": "WooCommerce Trigger node",
+  "content": "[WooCommerce](https://woocommerce.com/) is a customizable, open-source e-commerce plugin for WordPress.\n\nYou can find authentication information for this node [here](../../credentials/woocommerce/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [WooCommerce Trigger integrations](https://n8n.io/integrations/woocommerce-trigger/) page.\n\n- coupon.created\n- coupon.updated\n- coupon.deleted\n- customer.created\n- customer.updated\n- customer.deleted\n- order.created\n- order.updated\n- order.deleted\n- product.created\n- product.updated\n- product.deleted",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    }
+  ],
+  "url": "llms-txt#woocommerce-trigger-node",
+  "links": []
+}

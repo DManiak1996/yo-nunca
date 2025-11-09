@@ -1,0 +1,24 @@
+{
+  "title": "WordPress node",
+  "content": "Use the WordPress node to automate work in WordPress, and integrate WordPress with other applications. n8n has built-in support for a wide range of WordPress features, including creating, updating, and getting posts and users.\n\nOn this page, you'll find a list of operations the WordPress node supports and links to more resources.\n\nRefer to [WordPress credentials](../../credentials/wordpress/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- Post\n  - Create a post\n  - Get a post\n  - Get all posts\n  - Update a post\n- Pages\n  - Create a page\n  - Get a page\n  - Get all pages\n  - Update a page\n- User\n  - Create a user\n  - Get a user\n  - Get all users\n  - Update a user\n\n## Templates and examples\n\n**Write a WordPress post with AI (starting from a few keywords)**\n\n[View template details](https://n8n.io/workflows/2187-write-a-wordpress-post-with-ai-starting-from-a-few-keywords/)\n\n**🔍🛠️Generate SEO-Optimized WordPress Content with AI Powered Perplexity Research**\n\n[View template details](https://n8n.io/workflows/3291-generate-seo-optimized-wordpress-content-with-ai-powered-perplexity-research/)\n\n**Automate Content Generator for WordPress with DeepSeek R1**\n\n[View template details](https://n8n.io/workflows/2813-automate-content-generator-for-wordpress-with-deepseek-r1/)\n\n[Browse WordPress integration templates](https://n8n.io/integrations/wordpress/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#wordpress-node",
+  "links": []
+}

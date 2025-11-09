@@ -1,0 +1,49 @@
+{
+  "title": "Respond to Chat node",
+  "content": "Use the Respond to Chat node in correspondence with the [Chat Trigger](../n8n-nodes-langchain.chattrigger/) node to send a response into the chat and optionally wait for a response from the user. This allows you to have multiple chat interactions within a single execution and enables human-in-the-loop use cases in the chat.\n\nThe Respond to Chat node requires a [Chat Trigger](../n8n-nodes-langchain.chattrigger/) node to be present in the workflow, with the [Response Mode](../n8n-nodes-langchain.chattrigger/#response-mode) set to 'Using Response Nodes'.\n\nThe message to send to the chat.\n\n### Wait for User Reply\n\nSet whether the workflow execution should wait for a response from the user (enabled) or continue immediately after sending the message (disabled).\n\n### Add Memory Input Connection\n\nChoose whether you want to commit the messages from the Respond to Chat node to a connected memory. Using a shared memory between an agent or chain [root node](../../cluster-nodes/root-nodes/) and the Respond to Chat node attaches the same session key to these messages and lets you capture the full message history.\n\nWhen you enable **Wait for User Reply**, this option decides whether the workflow automatically resumes execution after a specific limit (enabled) or not (disabled).\n\nView n8n's [Advanced AI](../../../../advanced-ai/) documentation.\n\nFor common questions or issues and suggested solutions, refer to [Common Issues](../n8n-nodes-langchain.chattrigger/common-issues/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Message",
+      "id": "message"
+    },
+    {
+      "level": "h3",
+      "text": "Wait for User Reply",
+      "id": "wait-for-user-reply"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h3",
+      "text": "Add Memory Input Connection",
+      "id": "add-memory-input-connection"
+    },
+    {
+      "level": "h3",
+      "text": "Limit Wait Time",
+      "id": "limit-wait-time"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    }
+  ],
+  "url": "llms-txt#respond-to-chat-node",
+  "links": []
+}

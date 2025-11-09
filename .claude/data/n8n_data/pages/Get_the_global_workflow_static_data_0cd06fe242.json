@@ -1,0 +1,8 @@
+{
+  "title": "Get the global workflow static data",
+  "content": "workflowStaticData = _getWorkflowStaticData('global')",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#get-the-global-workflow-static-data",
+  "links": []
+}

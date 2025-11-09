@@ -1,0 +1,182 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/directives/use-cache",
+  "title": "use cache",
+  "content": "The use cache directive allows you to mark a route, React component, or a function as cacheable. It can be used at the top of a file to indicate that all exports in the file should be cached, or inline at the top of function or component to cache the return value.\n\nGood to know: For caching user-specific content that requires access to cookies or headers, see 'use cache: private'.\n\nuse cache is a Cache Components feature. To enable it, add the cacheComponents option to your next.config.ts file:\n\nThen, add use cache at the file, component, or function level:\n\nA cache entry's key is generated using a serialized version of its inputs, which includes:\n\nThe arguments passed to the cached function, as well as any values it reads from the parent scope automatically become a part of the key. This means, the same cache entry will be reused as long as its inputs are the same.\n\nAny non-serializable arguments, props, or closed-over values will turn into references inside the cached function, and can be only passed through and not inspected nor modified. These non-serializable values will be filled in at the request time and won't become a part of the cache key.\n\nFor example, a cached function can take in JSX as a children prop and return <div>{children}</div>, but it won't be able to introspect the actual children object. This allows you to nest uncached content inside a cached component.\n\nThe return value of the cacheable function must be serializable props. This ensures that the cached data can be stored and retrieved correctly.\n\nGood to know: The supported types for arguments and the supported types for returned values are not the same. For more details, refer to Serializable Parameters and Return Values for function arguments and Serializable Types for return values.\n\nWhen used at the top of a layout or page, the route segment will be prerendered, allowing it to later be revalidated.\n\nThis means use cache cannot be used with runtime data like cookies or headers.\n\nNote: If you need to cache content that depends on cookies, headers, or search params, use 'use cache: private' instead.\n\nOn the server, the cache entries of individual components or functions will be cached in-memory.\n\nThen, on the client, any content returned from the server cache will be stored in the browser's memory for the duration of the session or until revalidated.\n\nBy default, use cache has server-side revalidation period of 15 minutes. While this period may be useful for content that doesn't require frequent updates, you can use the cacheLife and cacheTag APIs to configure when the individual cache entries should be revalidated.\n\nBoth of these APIs integrate across the client and server caching layers, meaning you can configure your caching semantics in one place and have them apply everywhere.\n\nSee the cacheLife and cacheTag API docs for more information.\n\nTo pre-render an entire route, add use cache to the top of both the layout and page files. Each of these segments are treated as separate entry points in your application, and will be cached independently.\n\nAny components imported and nested in page file are part of the cache output associated with the page.\n\nYou can use use cache at the component level to cache any fetches or computations performed within that component. The cache entry will be reused as long as the serialized props produce the same value in each instance.\n\nSince you can add use cache to any asynchronous function, you aren't limited to caching components or routes only. You might want to cache a network request, a database query, or a slow computation.\n\nIn React, composition with children or slots is a well-known pattern for building flexible components. When using use cache, you can continue to compose your UI in this way. Anything included as children, or other compositional slots, in the returned JSX will be passed through the cached component without affecting its cache entry.\n\nAs long as you don't directly reference any of the JSX slots inside the body of the cacheable function itself, their presence in the returned output won't affect the cache entry.\n\nYou can also pass Server Actions through cached components to Client Components without invoking them inside the cacheable function.\n\nLearn how to configure caching when self-hosting Next.js.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "use cache",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h2",
+      "text": "How use cache works",
+      "id": "how-use-cache-works"
+    },
+    {
+      "level": "h3",
+      "text": "Cache keys",
+      "id": "cache-keys"
+    },
+    {
+      "level": "h2",
+      "text": "Non-serializable arguments",
+      "id": "non-serializable-arguments"
+    },
+    {
+      "level": "h2",
+      "text": "Return values",
+      "id": "return-values"
+    },
+    {
+      "level": "h2",
+      "text": "use cache at build time",
+      "id": "use-cache-at-build-time"
+    },
+    {
+      "level": "h2",
+      "text": "use cache at runtime",
+      "id": "use-cache-at-runtime"
+    },
+    {
+      "level": "h2",
+      "text": "During revalidation",
+      "id": "during-revalidation"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Caching an entire route with use cache",
+      "id": "caching-an-entire-route-with-use-cache"
+    },
+    {
+      "level": "h3",
+      "text": "Caching a component's output with use cache",
+      "id": "caching-a-components-output-with-use-cache"
+    },
+    {
+      "level": "h3",
+      "text": "Caching function output with use cache",
+      "id": "caching-function-output-with-use-cache"
+    },
+    {
+      "level": "h3",
+      "text": "Interleaving",
+      "id": "interleaving"
+    },
+    {
+      "level": "h2",
+      "text": "Platform Support",
+      "id": "platform-support"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    },
+    {
+      "level": "h2",
+      "text": "Related",
+      "id": "related"
+    },
+    {
+      "level": "h3",
+      "text": "use cache: private",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheComponents",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheLife",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheTag",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheLife",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "revalidateTag",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  cacheComponents: true,\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "// File level\n'use cache'\n \nexport default async function Page() {\n  // ...\n}\n \n// Component level\nexport async function MyComponent() {\n  'use cache'\n  return <></>\n}\n \n// Function level\nexport async function getData() {\n  'use cache'\n  const data = await fetch('/api/data')\n  return data\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "async function CachedComponent({ children }: { children: ReactNode }) {\n  'use cache'\n  return <div>{children}</div>\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "'use cache'\n \nexport default async function Layout({ children }: { children: ReactNode }) {\n  return <div>{children}</div>\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "'use cache'\n \nasync function Users() {\n  const users = await fetch('/api/users')\n  // loop through users\n}\n \nexport default async function Page() {\n  return (\n    <main>\n      <Users />\n    </main>\n  )\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function Bookings({ type = 'haircut' }: BookingsProps) {\n  'use cache'\n  async function getBookingsData() {\n    const data = await fetch(`/api/bookings?type=${encodeURIComponent(type)}`)\n    return data\n  }\n  return //...\n}\n \ninterface BookingsProps {\n  type: string\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function getData() {\n  'use cache'\n \n  const data = await fetch('/api/data')\n  return data\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export default async function Page() {\n  const uncachedData = await getData()\n  return (\n    // Pass compositional slots as props, e.g. header and children\n    <CacheComponent header={<h1>Home</h1>}>\n      {/* DynamicComponent is provided as the children slot */}\n      <DynamicComponent data={uncachedData} />\n    </CacheComponent>\n  )\n}\n \nasync function CacheComponent({\n  header, // header: a compositional slot, injected as a prop\n  children, // children: another slot for nested composition\n}: {\n  header: ReactNode\n  children: ReactNode\n}) {\n  'use cache'\n  const cachedData = await fetch('/api/cached-data')\n  return (\n    <div>\n      {header}\n      <PrerenderedComponent data={cachedData} />\n      {children}\n    </div>\n  )\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import ClientComponent from './ClientComponent'\n \nexport default async function Page() {\n  const performUpdate = async () => {\n    'use server'\n    // Perform some server-side update\n    await db.update(...)\n  }\n \n  return <CacheComponent performUpdate={performUpdate} />\n}\n \nasync function CachedComponent({\n  performUpdate,\n}: {\n  performUpdate: () => Promise<void>\n}) {\n  'use cache'\n  // Do not call performUpdate here\n  return <ClientComponent action={performUpdate} />\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nexport default function ClientComponent({\n  action,\n}: {\n  action: () => Promise<void>\n}) {\n  return <button onClick={action}>Update</button>\n}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/directives",
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache-private",
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/getting-started/cache-components",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheLife",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheTag",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/getting-started/deploying",
+    "https://nextjs.org/docs/app/guides/self-hosting",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheLife",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidateTag"
+  ]
+}

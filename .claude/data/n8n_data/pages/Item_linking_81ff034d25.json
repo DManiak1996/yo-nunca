@@ -1,0 +1,13 @@
+{
+  "title": "Item linking",
+  "content": "Programmatic-style nodes only\n\nThis guidance applies to programmatic-style nodes. If you're using declarative style, n8n handles paired items for you automatically.\n\nUse n8n's item linking to access data from items that precede the current item. n8n needs to know which input item a given output item comes from. If this information is missing, expressions in other nodes may break. As a node developer, you must ensure any items returned by your node support this.\n\nThis applies to programmatic nodes (including trigger nodes). You don't need to consider item linking when building a declarative-style node. Refer to [Choose your node building approach](../../../plan/choose-node-method/) for more information on node styles.\n\nStart by reading [Item linking concepts](../../../../../data/data-mapping/data-item-linking/item-linking-concepts/), which provides a conceptual overview of item linking, and details of the scenarios where n8n can handle the linking automatically.\n\nIf you need to handle item linking manually, do this by setting `pairedItem` on each item your node returns:",
+  "code_samples": [
+    {
+      "code": "// Use the pairedItem information of the incoming item\nnewItem = {\n\t\"json\": { . . . },\n\t\"pairedItem\": {\n\t\t\"item\": item.pairedItem,\n\t\t// Optional: choose the input to use\n\t\t// Set this if your node combines multiple inputs\n\t\t\"input\": 0\n};\n\n// Or set the index manually\nnewItem = {\n\t\t\"json\": { . . . }\n\t\t\"pairedItem\": {\n\t\t\t\"item\": i,\n\t\t\t// Optional: choose the input to use\n\t\t\t// Set this if your node combines multiple inputs\n\t\t\t\"input\": 0\n\t\t},\n};",
+      "language": "unknown"
+    }
+  ],
+  "headings": [],
+  "url": "llms-txt#item-linking",
+  "links": []
+}

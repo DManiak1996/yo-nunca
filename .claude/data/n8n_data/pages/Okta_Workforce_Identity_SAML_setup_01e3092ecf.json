@@ -1,0 +1,19 @@
+{
+  "title": "Okta Workforce Identity SAML setup",
+  "content": "Set up SAML SSO in n8n with Okta.\n\nWorkforce Identity and Customer Identity\n\nThis guide covers setting up Workforce Identity. This is the original Okta product. Customer Identity is Okta's name for Auth0, which they've acquired.\n\nYou need an Okta Workforce Identity account, and the redirect URL and entity ID from n8n's SAML settings.\n\nOkta Workforce may enforce two factor authentication for users, depending on your Okta configuration.\n\nRead the [Set up SAML](../setup/) guide first.\n\n1. In your Okta admin panel, select **Applications** > **Applications**.\n\n1. Select **Create App Integration**. Okta opens the app creation modal.\n\n1. Select **SAML 2.0**, then select **Next**.\n\n1. On the **General Settings** tab, enter `n8n` as the **App name**.\n\n1. On the **Configure SAML** tab, complete the following **General** fields:\n\n- **Single sign-on URL**: the **Redirect URL** from n8n.\n   - **Audience URI (SP Entity ID)**: the **Entity ID** from n8n.\n   - **Default RelayState**: leave this empty.\n   - **Name ID format**: `EmailAddress`.\n   - **Application username**: `Okta username`.\n   - **Update application username on**: `Create and update`.\n\n1. Create **Attribute Statements**:\n\n| **Name**                                                             | **Name format** | **Value**      |\n   | -------------------------------------------------------------------- | --------------- | -------------- |\n   | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/firstname`    | URI Reference   | user.firstName |\n   | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/lastname`     | URI Reference   | user.lastName  |\n   | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn`          | URI Reference   | user.login     |\n   | `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress` | URI Reference   | user.email     |\n\n1. Select **Next**. Okta may prompt you to complete a marketing form, or may take you directly to your new n8n Okta app.\n\n1. Assign the n8n app to people:\n\n1. On the n8n app dashboard in Okta, select **Assignments**.\n   1. Select **Assign** > **Assign to People**. Okta displays a modal with a list of available people.\n   1. Select **Assign** next to the person you want to add. Okta displays a prompt to confirm the username.\n   1. Leave the username as email address. Select **Save and Go Back**.\n   1. Select **Done**.\n\n1. Get the metadata XML: on the **Sign On** tab, copy the Metadata URL. Navigate to it, and copy the XML. Paste this into **Identity Provider Settings** in n8n.\n\n1. Select **Save settings**.\n\n1. Select **Test settings**. n8n opens a new tab. If you're not currently logged in, Okta prompts you to sign in. n8n then displays a success message confirming the attributes returned by Okta.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Prerequisites",
+      "id": "prerequisites"
+    },
+    {
+      "level": "h2",
+      "text": "Setup",
+      "id": "setup"
+    }
+  ],
+  "url": "llms-txt#okta-workforce-identity-saml-setup",
+  "links": []
+}

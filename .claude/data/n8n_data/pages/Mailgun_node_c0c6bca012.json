@@ -1,0 +1,24 @@
+{
+  "title": "Mailgun node",
+  "content": "Use the Mailgun node to automate work in Mailgun, and integrate Mailgun with other applications. n8n has built-in support for sending emails with Mailgun.\n\nOn this page, you'll find a list of operations the Mailgun node supports and links to more resources.\n\nRefer to [Mailgun credentials](../../credentials/mailgun/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n## Templates and examples\n\n**Handle errors from a different workflow**\n\n[View template details](https://n8n.io/workflows/8-handle-errors-from-a-different-workflow/)\n\n**Report phishing websites to Steam and CloudFlare**\n\n[View template details](https://n8n.io/workflows/122-report-phishing-websites-to-steam-and-cloudflare/)\n\n**AI Agent Creates Content to Be Picked by ChatGPT, Gemini, Google**\n\n[View template details](https://n8n.io/workflows/4652-ai-agent-creates-content-to-be-picked-by-chatgpt-gemini-google/)\n\n[Browse Mailgun integration templates](https://n8n.io/integrations/mailgun/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#mailgun-node",
+  "links": []
+}

@@ -1,0 +1,42 @@
+{
+  "url": "https://nextjs.org/docs/architecture",
+  "title": "Architecture",
+  "content": "Learn about the Next.js architecture and how it works under the hood.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Architecture",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Accessibility",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Fast Refresh",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Next.js Compiler",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Supported Browsers",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/architecture/accessibility",
+    "https://nextjs.org/docs/architecture/fast-refresh",
+    "https://nextjs.org/docs/architecture/nextjs-compiler",
+    "https://nextjs.org/docs/architecture/supported-browsers",
+    "https://nextjs.org/docs/pages/api-reference/turbopack"
+  ]
+}

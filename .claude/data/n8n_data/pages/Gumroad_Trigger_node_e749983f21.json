@@ -1,0 +1,8 @@
+{
+  "title": "Gumroad Trigger node",
+  "content": "[Gumroad](https://gumroad.com) is an online platform that enables creators to sell products directly to consumers.\n\nYou can find authentication information for this node [here](../../credentials/gumroad/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Gumroad Trigger integrations](https://n8n.io/integrations/gumroad-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#gumroad-trigger-node",
+  "links": []
+}

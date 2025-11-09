@@ -1,0 +1,19 @@
+{
+  "title": "Odoo node",
+  "content": "Use the Odoo node to automate work in Odoo, and integrate Odoo with other applications. n8n has built-in support for a wide range of Odoo features, including creating, updating, deleting, and getting contracts, resources, and opportunities.\n\nOn this page, you'll find a list of operations the Odoo node supports and links to more resources.\n\nRefer to [Odoo credentials](../../credentials/odoo/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- Contact\n  - Create a new contact\n  - Delete a contact\n  - Get a contact\n  - Get all contacts\n  - Update a contact\n- Custom Resource\n  - Create a new item\n  - Delete an item\n  - Get an item\n  - Get all items\n  - Update an item\n- Note\n  - Create a new note\n  - Delete a note\n  - Get a note\n  - Get all notes\n  - Update a note\n- Opportunity\n  - Create a new opportunity\n  - Delete an opportunity\n  - Get an opportunity\n  - Get all opportunities\n  - Update an opportunity\n\n## Templates and examples\n\n**ERP AI chatbot for Odoo sales module with OpenAI**\n\n[View template details](https://n8n.io/workflows/2325-erp-ai-chatbot-for-odoo-sales-module-with-openai/)\n\n**Summarize emails and save them as notes on sales opportunity in Odoo**\n\n[View template details](https://n8n.io/workflows/2336-summarize-emails-and-save-them-as-notes-on-sales-opportunity-in-odoo/)\n\n**Import Odoo Product Images from Google Drive**\n\n[View template details](https://n8n.io/workflows/3181-import-odoo-product-images-from-google-drive/)\n\n[Browse Odoo integration templates](https://n8n.io/integrations/odoo/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#odoo-node",
+  "links": []
+}

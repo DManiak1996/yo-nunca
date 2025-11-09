@@ -1,0 +1,118 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap",
+  "title": "sitemap.xml",
+  "content": "sitemap.(xml|js|ts) is a special file that matches the Sitemaps XML format to help search engine crawlers index your site more efficiently.\n\nFor smaller applications, you can create a sitemap.xml file and place it in the root of your app directory.\n\nYou can use the sitemap.(js|ts) file convention to programmatically generate a sitemap by exporting a default function that returns an array of URLs. If using TypeScript, a Sitemap type is available.\n\nGood to know: sitemap.js is a special Route Handler that is cached by default unless it uses a Dynamic API or dynamic config option.\n\nYou can use images property to create image sitemaps. Learn more details in the Google Developer Docs.\n\nYou can use videos property to create video sitemaps. Learn more details in the Google Developer Docs.\n\nWhile a single sitemap will work for most applications. For large web applications, you may need to split a sitemap into multiple files.\n\nThere are two ways you can create multiple sitemaps:\n\nFor example, to split a sitemap using generateSitemaps, return an array of objects with the sitemap id. Then, use the id to generate the unique sitemaps.\n\nYour generated sitemaps will be available at /.../sitemap/[id]. For example, /product/sitemap/1.xml.\n\nSee the generateSitemaps API reference for more information.\n\nThe default function exported from sitemap.(xml|ts|js) should return an array of objects with the following properties:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "sitemap.xml",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Sitemap files (.xml)",
+      "id": "sitemap-files-xml"
+    },
+    {
+      "level": "h3",
+      "text": "Generating a sitemap using code (.js, .ts)",
+      "id": "generating-a-sitemap-using-code-js-ts"
+    },
+    {
+      "level": "h3",
+      "text": "Image Sitemaps",
+      "id": "image-sitemaps"
+    },
+    {
+      "level": "h3",
+      "text": "Video Sitemaps",
+      "id": "video-sitemaps"
+    },
+    {
+      "level": "h3",
+      "text": "Generate a localized Sitemap",
+      "id": "generate-a-localized-sitemap"
+    },
+    {
+      "level": "h3",
+      "text": "Generating multiple sitemaps",
+      "id": "generating-multiple-sitemaps"
+    },
+    {
+      "level": "h2",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "generateSitemaps",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url>\n    <loc>https://acme.com</loc>\n    <lastmod>2023-04-06T15:02:24.021Z</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>1</priority>\n  </url>\n  <url>\n    <loc>https://acme.com/about</loc>\n    <lastmod>2023-04-06T15:02:24.021Z</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n  <url>\n    <loc>https://acme.com/blog</loc>\n    <lastmod>2023-04-06T15:02:24.021Z</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.5</priority>\n  </url>\n</urlset>",
+      "language": "unknown"
+    },
+    {
+      "code": "import type { MetadataRoute } from 'next'\n \nexport default function sitemap(): MetadataRoute.Sitemap {\n  return [\n    {\n      url: 'https://acme.com',\n      lastModified: new Date(),\n      changeFrequency: 'yearly',\n      priority: 1,\n    },\n    {\n      url: 'https://acme.com/about',\n      lastModified: new Date(),\n      changeFrequency: 'monthly',\n      priority: 0.8,\n    },\n    {\n      url: 'https://acme.com/blog',\n      lastModified: new Date(),\n      changeFrequency: 'weekly',\n      priority: 0.5,\n    },\n  ]\n}",
+      "language": "python"
+    },
+    {
+      "code": "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url>\n    <loc>https://acme.com</loc>\n    <lastmod>2023-04-06T15:02:24.021Z</lastmod>\n    <changefreq>yearly</changefreq>\n    <priority>1</priority>\n  </url>\n  <url>\n    <loc>https://acme.com/about</loc>\n    <lastmod>2023-04-06T15:02:24.021Z</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n  <url>\n    <loc>https://acme.com/blog</loc>\n    <lastmod>2023-04-06T15:02:24.021Z</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.5</priority>\n  </url>\n</urlset>",
+      "language": "unknown"
+    },
+    {
+      "code": "import type { MetadataRoute } from 'next'\n \nexport default function sitemap(): MetadataRoute.Sitemap {\n  return [\n    {\n      url: 'https://example.com',\n      lastModified: '2021-01-01',\n      changeFrequency: 'weekly',\n      priority: 0.5,\n      images: ['https://example.com/image.jpg'],\n    },\n  ]\n}",
+      "language": "python"
+    },
+    {
+      "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset\n  xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"\n  xmlns:image=\"http://www.google.com/schemas/sitemap-image/1.1\"\n>\n  <url>\n    <loc>https://example.com</loc>\n    <image:image>\n      <image:loc>https://example.com/image.jpg</image:loc>\n    </image:image>\n    <lastmod>2021-01-01</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.5</priority>\n  </url>\n</urlset>",
+      "language": "unknown"
+    },
+    {
+      "code": "import type { MetadataRoute } from 'next'\n \nexport default function sitemap(): MetadataRoute.Sitemap {\n  return [\n    {\n      url: 'https://example.com',\n      lastModified: '2021-01-01',\n      changeFrequency: 'weekly',\n      priority: 0.5,\n      videos: [\n        {\n          title: 'example',\n          thumbnail_loc: 'https://example.com/image.jpg',\n          description: 'this is the description',\n        },\n      ],\n    },\n  ]\n}",
+      "language": "python"
+    },
+    {
+      "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset\n  xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"\n  xmlns:video=\"http://www.google.com/schemas/sitemap-video/1.1\"\n>\n  <url>\n    <loc>https://example.com</loc>\n    <video:video>\n      <video:title>example</video:title>\n      <video:thumbnail_loc>https://example.com/image.jpg</video:thumbnail_loc>\n      <video:description>this is the description</video:description>\n    </video:video>\n    <lastmod>2021-01-01</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.5</priority>\n  </url>\n</urlset>",
+      "language": "unknown"
+    },
+    {
+      "code": "import type { MetadataRoute } from 'next'\n \nexport default function sitemap(): MetadataRoute.Sitemap {\n  return [\n    {\n      url: 'https://acme.com',\n      lastModified: new Date(),\n      alternates: {\n        languages: {\n          es: 'https://acme.com/es',\n          de: 'https://acme.com/de',\n        },\n      },\n    },\n    {\n      url: 'https://acme.com/about',\n      lastModified: new Date(),\n      alternates: {\n        languages: {\n          es: 'https://acme.com/es/about',\n          de: 'https://acme.com/de/about',\n        },\n      },\n    },\n    {\n      url: 'https://acme.com/blog',\n      lastModified: new Date(),\n      alternates: {\n        languages: {\n          es: 'https://acme.com/es/blog',\n          de: 'https://acme.com/de/blog',\n        },\n      },\n    },\n  ]\n}",
+      "language": "python"
+    },
+    {
+      "code": "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">\n  <url>\n    <loc>https://acme.com</loc>\n    <xhtml:link\n      rel=\"alternate\"\n      hreflang=\"es\"\n      href=\"https://acme.com/es\"/>\n    <xhtml:link\n      rel=\"alternate\"\n      hreflang=\"de\"\n      href=\"https://acme.com/de\"/>\n    <lastmod>2023-04-06T15:02:24.021Z</lastmod>\n  </url>\n  <url>\n    <loc>https://acme.com/about</loc>\n    <xhtml:link\n      rel=\"alternate\"\n      hreflang=\"es\"\n      href=\"https://acme.com/es/about\"/>\n    <xhtml:link\n      rel=\"alternate\"\n      hreflang=\"de\"\n      href=\"https://acme.com/de/about\"/>\n    <lastmod>2023-04-06T15:02:24.021Z</lastmod>\n  </url>\n  <url>\n    <loc>https://acme.com/blog</loc>\n    <xhtml:link\n      rel=\"alternate\"\n      hreflang=\"es\"\n      href=\"https://acme.com/es/blog\"/>\n    <xhtml:link\n      rel=\"alternate\"\n      hreflang=\"de\"\n      href=\"https://acme.com/de/blog\"/>\n    <lastmod>2023-04-06T15:02:24.021Z</lastmod>\n  </url>\n</urlset>",
+      "language": "unknown"
+    },
+    {
+      "code": "import type { MetadataRoute } from 'next'\nimport { BASE_URL } from '@/app/lib/constants'\n \nexport async function generateSitemaps() {\n  // Fetch the total number of products and calculate the number of sitemaps needed\n  return [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }]\n}\n \nexport default async function sitemap(props: {\n  id: Promise<number>\n}): Promise<MetadataRoute.Sitemap> {\n  const id = await props.id\n  // Google's limit is 50,000 URLs per sitemap\n  const start = id * 50000\n  const end = start + 50000\n  const products = await getProducts(\n    `SELECT id, date FROM products WHERE id BETWEEN ${start} AND ${end}`\n  )\n  return products.map((product) => ({\n    url: `${BASE_URL}/product/${product.id}`,\n    lastModified: product.date,\n  }))\n}",
+      "language": "python"
+    },
+    {
+      "code": "type Sitemap = Array<{\n  url: string\n  lastModified?: string | Date\n  changeFrequency?:\n    | 'always'\n    | 'hourly'\n    | 'daily'\n    | 'weekly'\n    | 'monthly'\n    | 'yearly'\n    | 'never'\n  priority?: number\n  alternates?: {\n    languages?: Languages<string>\n  }\n}>",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-sitemaps",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots",
+    "https://nextjs.org/docs/app/api-reference/functions"
+  ]
+}

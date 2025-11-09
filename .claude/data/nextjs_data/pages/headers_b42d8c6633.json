@@ -1,0 +1,181 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/headers",
+  "title": "headers",
+  "content": "Headers allow you to set custom HTTP headers on the response to an incoming request on a given path.\n\nTo set custom HTTP headers you can use the headers key in next.config.js:\n\nheaders is an async function that expects an array to be returned holding objects with source and headers properties:\n\nHeaders are checked before the filesystem which includes pages and /public files.\n\nIf two headers match the same path and set the same header key, the last header key will override the first. Using the below headers, the path /hello will result in the header x-hello being world due to the last header value set being world.\n\nPath matches are allowed, for example /blog/:slug will match /blog/first-post (no nested paths):\n\nThe pattern /blog/:slug matches /blog/first-post and /blog/post-1 but not a nested path like /blog/a/b. Patterns are anchored to the start, /blog/:slug will not match /archive/blog/first-post.\n\nYou can use modifiers on parameters: * (zero or more), + (one or more), ? (zero or one). For example, /blog/:slug* matches /blog, /blog/a, and /blog/a/b/c.\n\nRead more details on path-to-regexp documentation.\n\nTo match a wildcard path you can use * after a parameter, for example /blog/:slug* will match /blog/a/b/c/d/hello-world:\n\nTo match a regex path you can wrap the regex in parenthesis after a parameter, for example /blog/:slug(\\\\d{1,}) will match /blog/123 but not /blog/abc:\n\nThe following characters (, ), {, }, :, *, +, ? are used for regex path matching, so when used in the source as non-special values they must be escaped by adding \\\\ before them:\n\nTo only apply a header when header, cookie, or query values also match the has field or don't match the missing field can be used. Both the source and all has items must match and all missing items must not match for the header to be applied.\n\nhas and missing items can have the following fields:\n\nWhen leveraging basePath support with headers each source is automatically prefixed with the basePath unless you add basePath: false to the header:\n\nWhen leveraging i18n support with headers each source is automatically prefixed to handle the configured locales unless you add locale: false to the header. If locale: false is used you must prefix the source with a locale for it to be matched correctly.\n\nNext.js sets the Cache-Control header of public, max-age=31536000, immutable for truly immutable assets. It cannot be overridden. These immutable files contain a SHA-hash in the file name, so they can be safely cached indefinitely. For example, Static Image Imports. You cannot set Cache-Control headers in next.config.js for these assets.\n\nHowever, you can set Cache-Control headers for other responses or data.\n\nLearn more about caching with the App Router.\n\nCross-Origin Resource Sharing (CORS) is a security feature that allows you to control which sites can access your resources. You can set the Access-Control-Allow-Origin header to allow a specific origin to access your Route Handlers.\n\nThis header controls DNS prefetching, allowing browsers to proactively perform domain name resolution on external links, images, CSS, JavaScript, and more. This prefetching is performed in the background, so the DNS is more likely to be resolved by the time the referenced items are needed. This reduces latency when the user clicks a link.\n\nThis header informs browsers it should only be accessed using HTTPS, instead of using HTTP. Using the configuration below, all present and future subdomains will use HTTPS for a max-age of 2 years. This blocks access to pages or subdomains that can only be served over HTTP.\n\nThis header indicates whether the site should be allowed to be displayed within an iframe. This can prevent against clickjacking attacks.\n\nThis header has been superseded by CSP's frame-ancestors option, which has better support in modern browsers (see Content Security Policy for configuration details).\n\nThis header allows you to control which features and APIs can be used in the browser. It was previously named Feature-Policy.\n\nThis header prevents the browser from attempting to guess the type of content if the Content-Type header is not explicitly set. This can prevent XSS exploits for websites that allow users to upload and share files.\n\nFor example, a user trying to download an image, but having it treated as a different Content-Type like an executable, which could be malicious. This header also applies to downloading browser extensions. The only valid value for this header is nosniff.\n\nThis header controls how much information the browser includes when navigating from the current website (origin) to another.\n\nLearn more about adding a Content Security Policy to your application.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "headers",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Header Overriding Behavior",
+      "id": "header-overriding-behavior"
+    },
+    {
+      "level": "h2",
+      "text": "Path Matching",
+      "id": "path-matching"
+    },
+    {
+      "level": "h3",
+      "text": "Wildcard Path Matching",
+      "id": "wildcard-path-matching"
+    },
+    {
+      "level": "h3",
+      "text": "Regex Path Matching",
+      "id": "regex-path-matching"
+    },
+    {
+      "level": "h2",
+      "text": "Header, Cookie, and Query Matching",
+      "id": "header-cookie-and-query-matching"
+    },
+    {
+      "level": "h2",
+      "text": "Headers with basePath support",
+      "id": "headers-with-basepath-support"
+    },
+    {
+      "level": "h2",
+      "text": "Headers with i18n support",
+      "id": "headers-with-i18n-support"
+    },
+    {
+      "level": "h2",
+      "text": "Cache-Control",
+      "id": "cache-control"
+    },
+    {
+      "level": "h2",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h3",
+      "text": "CORS",
+      "id": "cors"
+    },
+    {
+      "level": "h3",
+      "text": "X-DNS-Prefetch-Control",
+      "id": "x-dns-prefetch-control"
+    },
+    {
+      "level": "h3",
+      "text": "Strict-Transport-Security",
+      "id": "strict-transport-security"
+    },
+    {
+      "level": "h3",
+      "text": "X-Frame-Options",
+      "id": "x-frame-options"
+    },
+    {
+      "level": "h3",
+      "text": "Permissions-Policy",
+      "id": "permissions-policy"
+    },
+    {
+      "level": "h3",
+      "text": "X-Content-Type-Options",
+      "id": "x-content-type-options"
+    },
+    {
+      "level": "h3",
+      "text": "Referrer-Policy",
+      "id": "referrer-policy"
+    },
+    {
+      "level": "h3",
+      "text": "Content-Security-Policy",
+      "id": "content-security-policy"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  async headers() {\n    return [\n      {\n        source: '/about',\n        headers: [\n          {\n            key: 'x-custom-header',\n            value: 'my custom header value',\n          },\n          {\n            key: 'x-another-custom-header',\n            value: 'my other custom header value',\n          },\n        ],\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async headers() {\n    return [\n      {\n        source: '/:path*',\n        headers: [\n          {\n            key: 'x-hello',\n            value: 'there',\n          },\n        ],\n      },\n      {\n        source: '/hello',\n        headers: [\n          {\n            key: 'x-hello',\n            value: 'world',\n          },\n        ],\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async headers() {\n    return [\n      {\n        source: '/blog/:slug',\n        headers: [\n          {\n            key: 'x-slug',\n            value: ':slug', // Matched parameters can be used in the value\n          },\n          {\n            key: 'x-slug-:slug', // Matched parameters can be used in the key\n            value: 'my other custom header value',\n          },\n        ],\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async headers() {\n    return [\n      {\n        source: '/blog/:slug*',\n        headers: [\n          {\n            key: 'x-slug',\n            value: ':slug*', // Matched parameters can be used in the value\n          },\n          {\n            key: 'x-slug-:slug*', // Matched parameters can be used in the key\n            value: 'my other custom header value',\n          },\n        ],\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async headers() {\n    return [\n      {\n        source: '/blog/:post(\\\\d{1,})',\n        headers: [\n          {\n            key: 'x-post',\n            value: ':post',\n          },\n        ],\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async headers() {\n    return [\n      {\n        // this will match `/english(default)/something` being requested\n        source: '/english\\\\(default\\\\)/:slug',\n        headers: [\n          {\n            key: 'x-header',\n            value: 'value',\n          },\n        ],\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async headers() {\n    return [\n      // if the header `x-add-header` is present,\n      // the `x-another-header` header will be applied\n      {\n        source: '/:path*',\n        has: [\n          {\n            type: 'header',\n            key: 'x-add-header',\n          },\n        ],\n        headers: [\n          {\n            key: 'x-another-header',\n            value: 'hello',\n          },\n        ],\n      },\n      // if the header `x-no-header` is not present,\n      // the `x-another-header` header will be applied\n      {\n        source: '/:path*',\n        missing: [\n          {\n            type: 'header',\n            key: 'x-no-header',\n          },\n        ],\n        headers: [\n          {\n            key: 'x-another-header',\n            value: 'hello',\n          },\n        ],\n      },\n      // if the source, query, and cookie are matched,\n      // the `x-authorized` header will be applied\n      {\n        source: '/specific/:path*',\n        has: [\n          {\n            type: 'query',\n            key: 'page',\n            // the page value will not be available in the\n            // header key/values since value is provided and\n            // doesn't use a named capture group e.g. (?<page>home)\n            value: 'home',\n          },\n          {\n            type: 'cookie',\n            key: 'authorized',\n            value: 'true',\n          },\n        ],\n        headers: [\n          {\n            key: 'x-authorized',\n            value: ':authorized',\n          },\n        ],\n      },\n      // if the header `x-authorized` is present and\n      // contains a matching value, the `x-another-header` will be applied\n      {\n        source: '/:path*',\n        has: [\n          {\n            type: 'header',\n            key: 'x-authorized',\n            value: '(?<authorized>yes|true)',\n          },\n        ],\n        headers: [\n          {\n            key: 'x-another-header',\n            value: ':authorized',\n          },\n        ],\n      },\n      // if the host is `example.com`,\n      // this header will be applied\n      {\n        source: '/:path*',\n        has: [\n          {\n            type: 'host',\n            value: 'example.com',\n          },\n        ],\n        headers: [\n          {\n            key: 'x-another-header',\n            value: ':authorized',\n          },\n        ],\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  basePath: '/docs',\n \n  async headers() {\n    return [\n      {\n        source: '/with-basePath', // becomes /docs/with-basePath\n        headers: [\n          {\n            key: 'x-hello',\n            value: 'world',\n          },\n        ],\n      },\n      {\n        source: '/without-basePath', // is not modified since basePath: false is set\n        headers: [\n          {\n            key: 'x-hello',\n            value: 'world',\n          },\n        ],\n        basePath: false,\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  i18n: {\n    locales: ['en', 'fr', 'de'],\n    defaultLocale: 'en',\n  },\n \n  async headers() {\n    return [\n      {\n        source: '/with-locale', // automatically handles all locales\n        headers: [\n          {\n            key: 'x-hello',\n            value: 'world',\n          },\n        ],\n      },\n      {\n        // does not handle locales automatically since locale: false is set\n        source: '/nl/with-locale-manual',\n        locale: false,\n        headers: [\n          {\n            key: 'x-hello',\n            value: 'world',\n          },\n        ],\n      },\n      {\n        // this matches '/' since `en` is the defaultLocale\n        source: '/en',\n        locale: false,\n        headers: [\n          {\n            key: 'x-hello',\n            value: 'world',\n          },\n        ],\n      },\n      {\n        // this gets converted to /(en|fr|de)/(.*) so will not match the top-level\n        // `/` or `/fr` routes like /:path* would\n        source: '/(.*)',\n        headers: [\n          {\n            key: 'x-hello',\n            value: 'world',\n          },\n        ],\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "async headers() {\n    return [\n      {\n        source: \"/api/:path*\",\n        headers: [\n          {\n            key: \"Access-Control-Allow-Origin\",\n            value: \"*\", // Set your origin\n          },\n          {\n            key: \"Access-Control-Allow-Methods\",\n            value: \"GET, POST, PUT, DELETE, OPTIONS\",\n          },\n          {\n            key: \"Access-Control-Allow-Headers\",\n            value: \"Content-Type, Authorization\",\n          },\n        ],\n      },\n    ];\n  },",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  key: 'X-DNS-Prefetch-Control',\n  value: 'on'\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  key: 'Strict-Transport-Security',\n  value: 'max-age=63072000; includeSubDomains; preload'\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  key: 'X-Frame-Options',\n  value: 'SAMEORIGIN'\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  key: 'Permissions-Policy',\n  value: 'camera=(), microphone=(), geolocation=(), browsing-topics=()'\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  key: 'X-Content-Type-Options',\n  value: 'nosniff'\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  key: 'Referrer-Policy',\n  value: 'origin-when-cross-origin'\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/headers",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath",
+    "https://nextjs.org/docs/app/guides/internationalization",
+    "https://nextjs.org/docs/app/getting-started/images",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/guides/content-security-policy",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/generateEtags",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/htmlLimitedBots"
+  ]
+}

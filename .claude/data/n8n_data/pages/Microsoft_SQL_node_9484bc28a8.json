@@ -1,0 +1,19 @@
+{
+  "title": "Microsoft SQL node",
+  "content": "Use the Microsoft SQL node to automate work in Microsoft SQL, and integrate Microsoft SQL with other applications. n8n has built-in support for a wide range of Microsoft SQL features, including executing SQL queries, and inserting rows into the database.\n\nOn this page, you'll find a list of operations the Microsoft SQL node supports and links to more resources.\n\nRefer to [Microsoft SQL credentials](../../credentials/microsoftsql/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- Execute an SQL query\n- Insert rows in database\n- Update rows in database\n- Delete rows in database\n\n## Templates and examples\n\n**Generate Monthly Financial Reports with Gemini AI, SQL, and Outlook**\n\n[View template details](https://n8n.io/workflows/3617-generate-monthly-financial-reports-with-gemini-ai-sql-and-outlook/)\n\n**Execute an SQL query in Microsoft SQL**\n\n[View template details](https://n8n.io/workflows/479-execute-an-sql-query-in-microsoft-sql/)\n\n**Export SQL table into CSV file**\n\n[View template details](https://n8n.io/workflows/1914-export-sql-table-into-csv-file/)\n\n[Browse Microsoft SQL integration templates](https://n8n.io/integrations/microsoft-sql/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#microsoft-sql-node",
+  "links": []
+}

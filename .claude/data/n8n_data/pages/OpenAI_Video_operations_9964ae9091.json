@@ -1,0 +1,19 @@
+{
+  "title": "OpenAI Video operations",
+  "content": "Use this operation to generate a video in OpenAI. Refer to [OpenAI](../) for more information on the OpenAI node itself.\n\nUse this operation to generate a video from a text prompt.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [OpenAI credential](../../../credentials/openai/).\n- **Resource**: Select **Video**.\n- **Operation**: Select **Generate Video**.\n- **Model**: Select the model you want to use to generate a video. Currently supports `sora-2` and `sora-2-pro`.\n- **Prompt**: The prompt to generate a video from.\n- **Seconds**: Clip duration in seconds (up to 25).\n- **Size**: Output resolution formatted as width x height. 1024x1792 and 1792x1024 are only supported by Sora 2 Pro.\n\n- **Reference**: Optional image reference that guides generation. Has to be passed in as a binary item.\n- **Wait Timeout**: Time to wait for the video to be generated in seconds. Defaults to 300.\n- **Output Field Name**: The name of the output field to put the binary file data in. Defaults to `data`.\n\nRefer to [Video Generation | OpenAI](https://platform.openai.com/docs/guides/video-generation) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Generate Video",
+      "id": "generate-video"
+    },
+    {
+      "level": "h3",
+      "text": "Options",
+      "id": "options"
+    }
+  ],
+  "url": "llms-txt#openai-video-operations",
+  "links": []
+}

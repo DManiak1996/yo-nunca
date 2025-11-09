@@ -1,0 +1,19 @@
+{
+  "title": "Using community nodes",
+  "content": "To use community nodes, you first need to [install](../installation/) them.\n\n## Adding community nodes to your workflow\n\nAfter installing a community node, you can use it like any other node. n8n displays the node in search results in the **Nodes** panel. n8n marks community nodes with a **Package** icon in the nodes panel.\n\n## Community nodes with duplicate names\n\nIt's possible for several community nodes to have the same name. If you use two nodes with the same name in your workflow, they'll look the same, unless they have different icons.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Adding community nodes to your workflow",
+      "id": "adding-community-nodes-to-your-workflow"
+    },
+    {
+      "level": "h2",
+      "text": "Community nodes with duplicate names",
+      "id": "community-nodes-with-duplicate-names"
+    }
+  ],
+  "url": "llms-txt#using-community-nodes",
+  "links": []
+}

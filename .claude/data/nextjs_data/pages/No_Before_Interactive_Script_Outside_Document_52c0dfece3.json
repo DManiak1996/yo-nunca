@@ -1,0 +1,54 @@
+{
+  "url": "https://nextjs.org/docs/messages/no-before-interactive-script-outside-document",
+  "title": "No Before Interactive Script Outside Document",
+  "content": "Prevent usage of next/script's beforeInteractive strategy outside of app/layout.jsx or pages/_document.js.\n\nYou cannot use the next/script component with the beforeInteractive strategy outside app/layout.jsx or pages/_document.js. That's because beforeInteractive strategy only works inside app/layout.jsx or pages/_document.js and is designed to load scripts that are needed by the entire site (i.e. the script will load when any page in the application has been loaded server-side).\n\nIf you want a global script, and you are using the App Router, move the script inside app/layout.jsx.\n\nIf you want a global script, and you are using the Pages Router, move the script inside pages/_document.js.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "No Before Interactive Script Outside Document",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h3",
+      "text": "App Router",
+      "id": "app-router"
+    },
+    {
+      "level": "h3",
+      "text": "Pages Router",
+      "id": "pages-router"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Script from 'next/script'\n \nexport default function RootLayout({ children }) {\n  return (\n    <html lang=\"en\">\n      <body>{children}</body>\n      <Script\n        src=\"https://example.com/script.js\"\n        strategy=\"beforeInteractive\"\n      />\n    </html>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Html, Head, Main, NextScript } from 'next/document'\nimport Script from 'next/script'\n \nexport default function Document() {\n  return (\n    <Html>\n      <Head />\n      <body>\n        <Main />\n        <NextScript />\n        <Script\n          src=\"https://example.com/script.js\"\n          strategy=\"beforeInteractive\"\n        ></Script>\n      </body>\n    </Html>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/no-before-interactive-script-outside-document",
+    "https://nextjs.org/docs/app/guides/scripts",
+    "https://nextjs.org/docs/pages/guides/scripts"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Shopify Trigger node",
+  "content": "[Shopify](https://www.shopify.com/) is an e-commerce platform that allows users to set up an online store and sell their products.\n\nYou can find authentication information for this node [here](../../credentials/shopify/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Shopify Trigger integrations](https://n8n.io/integrations/shopify-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#shopify-trigger-node",
+  "links": []
+}

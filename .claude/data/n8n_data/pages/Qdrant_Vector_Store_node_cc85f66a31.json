@@ -1,0 +1,94 @@
+{
+  "title": "Qdrant Vector Store node",
+  "content": "Use the Qdrant node to interact with your Qdrant collection as a [vector store](../../../../../glossary/#ai-vector-store). You can insert documents into a vector database, get documents from a vector database, retrieve documents to provide them to a retriever connected to a [chain](../../../../../glossary/#ai-chain) or connect it directly to an [agent](../../../../../glossary/#ai-agent) to use as a [tool](../../../../../glossary/#ai-tool).\n\nOn this page, you'll find the node parameters for the Qdrant node, and links to more resources.\n\nYou can find authentication information for this node [here](../../../credentials/qdrant/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n## Node usage patterns\n\nYou can use the Qdrant Vector Store node in the following patterns.\n\n### Use as a regular node to insert and retrieve documents\n\nYou can use the Qdrant Vector Store as a regular node to insert or get documents. This pattern places the Qdrant Vector Store in the regular connection flow without using an agent.\n\nYou can see an example of this in the first part of [this template](https://n8n.io/workflows/2440-building-rag-chatbot-for-movie-recommendations-with-qdrant-and-open-ai/).\n\n### Connect directly to an AI agent as a tool\n\nYou can connect the Qdrant Vector Store node directly to the tool connector of an [AI agent](../n8n-nodes-langchain.agent/) to use a vector store as a resource when answering queries.\n\nHere, the connection would be: AI agent (tools connector) -> Qdrant Vector Store node.\n\n### Use a retriever to fetch documents\n\nYou can use the [Vector Store Retriever](../../sub-nodes/n8n-nodes-langchain.retrievervectorstore/) node with the Qdrant Vector Store node to fetch documents from the Qdrant Vector Store node. This is often used with the [Question and Answer Chain](../n8n-nodes-langchain.chainretrievalqa/) node to fetch documents from the vector store that match the given chat input.\n\nAn [example of the connection flow](https://n8n.io/workflows/2183-ai-crew-to-automate-fundamental-stock-analysis-qanda-workflow/) would be: Question and Answer Chain (Retriever connector) -> Vector Store Retriever (Vector Store connector) -> Qdrant Vector Store.\n\n### Use the Vector Store Question Answer Tool to answer questions\n\nAnother pattern uses the [Vector Store Question Answer Tool](../../sub-nodes/n8n-nodes-langchain.toolvectorstore/) to summarize results and answer questions from the Qdrant Vector Store node. Rather than connecting the Qdrant Vector Store directly as a tool, this pattern uses a tool specifically designed to summarizes data in the vector store.\n\nThe [connections flow](https://n8n.io/workflows/2464-scale-deal-flow-with-a-pitch-deck-ai-vision-chatbot-and-qdrant-vector-store/) in this case would look like this: AI agent (tools connector) -> Vector Store Question Answer Tool (Vector Store connector) -> Qdrant Vector store.\n\nThis Vector Store node has four modes: **Get Many**, **Insert Documents**, **Retrieve Documents (As Vector Store for Chain/Tool)**, and **Retrieve Documents (As Tool for AI Agent)**. The mode you select determines the operations you can perform with the node and what inputs and outputs are available.\n\nIn this mode, you can retrieve multiple documents from your vector database by providing a prompt. The prompt is embedded and used for similarity search. The node returns the documents that are most similar to the prompt with their similarity score. This is useful if you want to retrieve a list of similar documents and pass them to an agent as additional context.\n\n#### Insert Documents\n\nUse insert documents mode to insert new documents into your vector database.\n\n#### Retrieve Documents (as Vector Store for Chain/Tool)\n\nUse Retrieve Documents (As Vector Store for Chain/Tool) mode with a vector-store retriever to retrieve documents from a vector database and provide them to the retriever connected to a chain. In this mode you must connect the node to a retriever node or root node.\n\n#### Retrieve Documents (as Tool for AI Agent)\n\nUse Retrieve Documents (As Tool for AI Agent) mode to use the vector store as a tool resource when answering queries. When formulating responses, the agent uses the vector store when the vector store name and description match the question details.\n\nEnables [reranking](../../../../../glossary/#ai-reranking). If you enable this option, you must connect a reranking node to the vector store. That node will then rerank the results for queries. You can use this option with the `Get Many`, `Retrieve Documents (As Vector Store for Chain/Tool)` and `Retrieve Documents (As Tool for AI Agent)` modes.\n\n### Get Many parameters\n\n- **Qdrant collection name**: Enter the name of the Qdrant collection to use.\n- **Prompt**: Enter the search query.\n- **Limit**: Enter how many results to retrieve from the vector store. For example, set this to `10` to get the ten best results.\n\nThis Operation Mode includes one **Node option**, the [Metadata Filter](#metadata-filter).\n\n### Insert Documents parameters\n\n- **Qdrant collection name**: Enter the name of the Qdrant collection to use.\n\nThis Operation Mode includes one **Node option**:\n\n- **Collection Config**: Enter JSON options for creating a Qdrant collection creation configuration. Refer to the Qdrant [Collections](https://qdrant.tech/documentation/concepts/collections/) documentation for more information.\n\n### Retrieve Documents (As Vector Store for Chain/Tool) parameters\n\n- **Qdrant Collection**: Enter the name of the Qdrant collection to use.\n\nThis Operation Mode includes one **Node option**, the [Metadata Filter](#metadata-filter).\n\n### Retrieve Documents (As Tool for AI Agent) parameters\n\n- **Name**: The name of the vector store.\n- **Description**: Explain to the LLM what this tool does. A good, specific description allows LLMs to produce expected results more often.\n- **Qdrant Collection**: Enter the name of the Qdrant collection to use.\n- **Limit**: Enter how many results to retrieve from the vector store. For example, set this to `10` to get the ten best results.\n\nAvailable in **Get Many** mode. When searching for data, use this to match with metadata associated with the document.\n\nThis is an `AND` query. If you specify more than one metadata filter field, all of them must match.\n\nWhen inserting data, the metadata is set using the document loader. Refer to [Default Data Loader](../../sub-nodes/n8n-nodes-langchain.documentdefaultdataloader/) for more information on loading documents.\n\n## Templates and examples\n\n**🤖 AI Powered RAG Chatbot for Your Docs + Google Drive + Gemini + Qdrant**\n\n[View template details](https://n8n.io/workflows/2982-ai-powered-rag-chatbot-for-your-docs-google-drive-gemini-qdrant/)\n\n**AI Voice Chatbot with ElevenLabs & OpenAI for Customer Service and Restaurants**\n\n[View template details](https://n8n.io/workflows/2846-ai-voice-chatbot-with-elevenlabs-and-openai-for-customer-service-and-restaurants/)\n\n**Complete business WhatsApp AI-Powered RAG Chatbot using OpenAI**\n\n[View template details](https://n8n.io/workflows/2845-complete-business-whatsapp-ai-powered-rag-chatbot-using-openai/)\n\n[Browse Qdrant Vector Store integration templates](https://n8n.io/integrations/qdrant-vector-store/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChain's Qdrant documentation](https://js.langchain.com/docs/integrations/vectorstores/qdrant) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.\n\n## Self-hosted AI Starter Kit\n\nNew to working with AI and using self-hosted n8n? Try n8n's [self-hosted AI Starter Kit](../../../../../hosting/starter-kits/ai-starter-kit/) to get started with a proof-of-concept or demo playground using Ollama, Qdrant, and PostgreSQL.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node usage patterns",
+      "id": "node-usage-patterns"
+    },
+    {
+      "level": "h3",
+      "text": "Use as a regular node to insert and retrieve documents",
+      "id": "use-as-a-regular-node-to-insert-and-retrieve-documents"
+    },
+    {
+      "level": "h3",
+      "text": "Connect directly to an AI agent as a tool",
+      "id": "connect-directly-to-an-ai-agent-as-a-tool"
+    },
+    {
+      "level": "h3",
+      "text": "Use a retriever to fetch documents",
+      "id": "use-a-retriever-to-fetch-documents"
+    },
+    {
+      "level": "h3",
+      "text": "Use the Vector Store Question Answer Tool to answer questions",
+      "id": "use-the-vector-store-question-answer-tool-to-answer-questions"
+    },
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Operation Mode",
+      "id": "operation-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Rerank Results",
+      "id": "rerank-results"
+    },
+    {
+      "level": "h3",
+      "text": "Get Many parameters",
+      "id": "get-many-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Insert Documents parameters",
+      "id": "insert-documents-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Retrieve Documents (As Vector Store for Chain/Tool) parameters",
+      "id": "retrieve-documents-(as-vector-store-for-chain/tool)-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Retrieve Documents (As Tool for AI Agent) parameters",
+      "id": "retrieve-documents-(as-tool-for-ai-agent)-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h3",
+      "text": "Metadata Filter",
+      "id": "metadata-filter"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Self-hosted AI Starter Kit",
+      "id": "self-hosted-ai-starter-kit"
+    }
+  ],
+  "url": "llms-txt#qdrant-vector-store-node",
+  "links": []
+}

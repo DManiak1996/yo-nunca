@@ -1,0 +1,65 @@
+{
+  "url": "https://nextjs.org/docs/app/getting-started/images",
+  "title": "Image Optimization",
+  "content": "The Next.js <Image> component extends the HTML <img> element to provide:\n\nTo start using <Image>, import it from next/image and render it within your component.\n\nThe src property can be a local or remote image.\n\n🎥 Watch: Learn more about how to use next/image → YouTube (9 minutes).\n\nYou can store static files, like images and fonts, under a folder called public in the root directory. Files inside public can then be referenced by your code starting from the base URL (/).\n\nIf the image is statically imported, Next.js will automatically determine the intrinsic width and height. These values are used to determine the image ratio and prevent Cumulative Layout Shift while your image is loading.\n\nTo use a remote image, you can provide a URL string for the src property.\n\nSince Next.js does not have access to remote files during the build process, you'll need to provide the width, height and optional blurDataURL props manually. The width and height are used to infer the correct aspect ratio of image and avoid layout shift from the image loading in. Alternatively, you can use the fill property to make the image fill the size of the parent element.\n\nTo safely allow images from remote servers, you need to define a list of supported URL patterns in next.config.js. Be as specific as possible to prevent malicious usage. For example, the following configuration will only allow images from a specific AWS S3 bucket:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Image Optimization",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Local images",
+      "id": "local-images"
+    },
+    {
+      "level": "h2",
+      "text": "Remote images",
+      "id": "remote-images"
+    },
+    {
+      "level": "h2",
+      "text": "API Reference",
+      "id": "api-reference"
+    },
+    {
+      "level": "h3",
+      "text": "Image Component",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Image from 'next/image'\n \nexport default function Page() {\n  return <Image src=\"\" alt=\"\" />\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Image from 'next/image'\n \nexport default function Page() {\n  return (\n    <Image\n      src=\"/profile.png\"\n      alt=\"Picture of the author\"\n      width={500}\n      height={500}\n    />\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Image from 'next/image'\nimport ProfileImage from './profile.png'\n \nexport default function Page() {\n  return (\n    <Image\n      src={ProfileImage}\n      alt=\"Picture of the author\"\n      // width={500} automatically provided\n      // height={500} automatically provided\n      // blurDataURL=\"data:...\" automatically provided\n      // placeholder=\"blur\" // Optional blur-up while loading\n    />\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Image from 'next/image'\n \nexport default function Page() {\n  return (\n    <Image\n      src=\"https://s3.amazonaws.com/my-bucket/profile.png\"\n      alt=\"Picture of the author\"\n      width={500}\n      height={500}\n    />\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst config: NextConfig = {\n  images: {\n    remotePatterns: [\n      {\n        protocol: 'https',\n        hostname: 's3.amazonaws.com',\n        port: '',\n        pathname: '/my-bucket/**',\n        search: '',\n      },\n    ],\n  },\n}\n \nexport default config",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/getting-started",
+    "https://nextjs.org/docs/app/api-reference/components/image",
+    "https://nextjs.org/docs/app/getting-started/images",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/public-folder",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/getting-started/css",
+    "https://nextjs.org/docs/app/getting-started/fonts"
+  ]
+}

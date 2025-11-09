@@ -1,0 +1,19 @@
+{
+  "title": "Notion Trigger node",
+  "content": "[Notion](https://notion.so) is an all-in-one workspace for your notes, tasks, wikis, and databases.\n\nYou can find authentication information for this node [here](../../credentials/notion/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Notion Trigger integrations](https://n8n.io/integrations/notion-trigger-beta/) page.\n\n- Page added to database\n- Page updated in database\n\nn8n provides an app node for Notion. You can find the node docs [here](../../app-nodes/n8n-nodes-base.notion/).\n\nView [example workflows and related content](https://n8n.io/integrations/notion-trigger-beta/) on n8n's website.\n\nRefer to [Notion's documentation](https://developers.notion.com/) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#notion-trigger-node",
+  "links": []
+}

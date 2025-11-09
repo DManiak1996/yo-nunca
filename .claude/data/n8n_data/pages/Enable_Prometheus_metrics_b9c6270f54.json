@@ -1,0 +1,19 @@
+{
+  "title": "Enable Prometheus metrics",
+  "content": "To collect and expose metrics, n8n uses the [prom-client](https://www.npmjs.com/package/prom-client) library.\n\nThe `/metrics` endpoint is disabled by default, but it's possible to enable it using the `N8N_METRICS` environment variable.\n\nRefer to the respective [Environment Variables](../../environment-variables/endpoints/) (`N8N_METRICS_INCLUDE_*`) for configuring which metrics and labels should get exposed.\n\nBoth `main` and `worker` instances are able to expose metrics.\n\nTo enable queue metrics, set the `N8N_METRICS_INCLUDE_QUEUE_METRICS` env var to `true`. You can adjust the refresh rate with `N8N_METRICS_QUEUE_METRICS_INTERVAL`.\n\nn8n gathers these metrics from Bull and exposes them on the main instances. On multi-main setups, when aggregating queries, you can identify the leader using the `instance_role_leader` gauge, set to `1` for the leader main and `0` otherwise.",
+  "code_samples": [
+    {
+      "code": "export N8N_METRICS=true",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Queue metrics",
+      "id": "queue-metrics"
+    }
+  ],
+  "url": "llms-txt#enable-prometheus-metrics",
+  "links": []
+}

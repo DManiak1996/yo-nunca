@@ -1,0 +1,45 @@
+{
+  "title": "Custom executions data",
+  "content": "You can set custom data on your workflow using the Code node or the [Execution Data node](../../../integrations/builtin/core-nodes/n8n-nodes-base.executiondata/). n8n records this with each execution. You can then use this data when filtering the executions list, or fetch it in your workflows using the Code node.\n\nCustom executions data is available on:\n\n- Cloud: Pro, Enterprise\n- Self-Hosted: Enterprise, registered Community\n\n## Set and access custom data using the Code node\n\nThis section describes how to set and access data using the Code node. Refer to [Execution Data node](../../../integrations/builtin/core-nodes/n8n-nodes-base.executiondata/) for information on using the Execution Data node to set data. You can't retrieve custom data using the Execution Data node.\n\n### Set custom executions data\n\nSet a single piece of extra data:\n\nSet all extra data. This overwrites the whole custom data object for this execution:\n\nThere are limitations:\n\n- They must be strings\n- `key` has a maximum length of 50 characters\n- `value` has a maximum length of 255 characters\n- n8n supports a maximum of 10 items of custom data\n\n### Access the custom data object during execution\n\nYou can retrieve the custom data object, or a specific value in it, during an execution:",
+  "code_samples": [
+    {
+      "code": "$execution.customData.set(\"key\", \"value\");",
+      "language": "unknown"
+    },
+    {
+      "code": "_execution.customData.set(\"key\", \"value\");",
+      "language": "unknown"
+    },
+    {
+      "code": "$execution.customData.setAll({\"key1\": \"value1\", \"key2\": \"value2\"})",
+      "language": "unknown"
+    },
+    {
+      "code": "_execution.customData.setAll({\"key1\": \"value1\", \"key2\": \"value2\"})",
+      "language": "unknown"
+    },
+    {
+      "code": "// Access the current state of the object during the execution\nconst customData = $execution.customData.getAll();\n\n// Access a specific value set during this execution\nconst customData = $execution.customData.get(\"key\");",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Set and access custom data using the Code node",
+      "id": "set-and-access-custom-data-using-the-code-node"
+    },
+    {
+      "level": "h3",
+      "text": "Set custom executions data",
+      "id": "set-custom-executions-data"
+    },
+    {
+      "level": "h3",
+      "text": "Access the custom data object during execution",
+      "id": "access-the-custom-data-object-during-execution"
+    }
+  ],
+  "url": "llms-txt#custom-executions-data",
+  "links": []
+}

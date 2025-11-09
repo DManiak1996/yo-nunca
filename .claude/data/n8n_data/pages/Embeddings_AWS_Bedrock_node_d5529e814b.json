@@ -1,0 +1,24 @@
+{
+  "title": "Embeddings AWS Bedrock node",
+  "content": "Use the Embeddings AWS Bedrock node to generate [embeddings](../../../../../glossary/#ai-embedding) for a given text.\n\nOn this page, you'll find the node parameters for the Embeddings AWS Bedrock node, and links to more resources.\n\nYou can find authentication information for this node [here](../../../credentials/aws/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Model**: Select the model to use to generate the embedding.\n\nLearn more about available models in the [Amazon Bedrock documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html).\n\n## Templates and examples\n\n[Browse Embeddings AWS Bedrock integration templates](https://n8n.io/integrations/embeddings-aws-bedrock/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChains's AWS Bedrock embeddings documentation](https://js.langchain.com/docs/integrations/platforms/aws/#text-embedding-models) and the [AWS Bedrock documentation](https://docs.aws.amazon.com/bedrock/) for more information about AWS Bedrock.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#embeddings-aws-bedrock-node",
+  "links": []
+}

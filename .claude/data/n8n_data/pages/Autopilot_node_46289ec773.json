@@ -1,0 +1,19 @@
+{
+  "title": "Autopilot node",
+  "content": "Use the Autopilot node to automate work in Autopilot, and integrate Autopilot with other applications. n8n has built-in support for a wide range of Autopilot features, including creating, deleting, and updating contacts, as well as adding contacts to a list.\n\nOn this page, you'll find a list of operations the Autopilot node supports and links to more resources.\n\nAutopilot branding change\n\nAutopilot has become Ortto. The Autopilot credentials and nodes are only compatible with Autopilot, not the new Ortto API.\n\nRefer to [Autopilot credentials](../../credentials/autopilot/) for guidance on setting up authentication.\n\n- Contact\n  - Create/Update a contact\n  - Delete a contact\n  - Get a contact\n  - Get all contacts\n- Contact Journey\n  - Add contact to list\n- Contact List\n  - Add contact to list\n  - Check if contact is on list\n  - Get all contacts on list\n  - Remove a contact from a list\n- List\n  - Create a list\n  - Get all lists\n\n## Templates and examples\n\n**Twitch Auto-Clip-Generator: Fetch from Streamers, Clip & Edit on Autopilot**\n\n[View template details](https://n8n.io/workflows/3521-twitch-auto-clip-generator-fetch-from-streamers-clip-and-edit-on-autopilot/)\n\n**Viral ASMR Video Factory: Automatically generate viral videos on autopilot.**\n\n[View template details](https://n8n.io/workflows/5324-viral-asmr-video-factory-automatically-generate-viral-videos-on-autopilot/)\n\n**Manage contacts via Autopilot**\n\n[View template details](https://n8n.io/workflows/990-manage-contacts-via-autopilot/)\n\n[Browse Autopilot integration templates](https://n8n.io/integrations/autopilot/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#autopilot-node",
+  "links": []
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Structure of the node base file",
+  "content": "The node base file follows this basic structure:\n\n1. Add import statements.\n1. Create a class for the node.\n1. Within the node class, create a `description` object, which defines the node.\n\nA programmatic-style node also has an `execute()` method, which reads incoming data and parameters, then builds a request. The declarative style handles this using the `routing` key in the `properties` object, within `descriptions`.\n\n## Outline structure for a declarative-style node\n\nThis code snippet gives an outline of the node structure.\n\nRefer to [Standard parameters](../standard-parameters/) for information on parameters available to all node types. Refer to [Declarative-style parameters](../declarative-style-parameters/) for the parameters available for declarative-style nodes.\n\n## Outline structure for a programmatic-style node\n\nThis code snippet gives an outline of the node structure.\n\nRefer to [Standard parameters](../standard-parameters/) for information on parameters available to all node types. Refer to [Programmatic-style parameters](../programmatic-style-parameters/) and [Programmatic-style execute method](../programmatic-style-execute-method/) for more information on working with programmatic-style nodes.",
+  "code_samples": [
+    {
+      "code": "import { INodeType, INodeTypeDescription } from 'n8n-workflow';\n\nexport class ExampleNode implements INodeType {\n\tdescription: INodeTypeDescription = {\n\t\t// Basic node details here\n\t\tproperties: [\n\t\t\t// Resources and operations here\n\t\t]\n\t};\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import { IExecuteFunctions } from 'n8n-core';\nimport { INodeExecutionData, INodeType, INodeTypeDescription } from 'n8n-workflow';\n\nexport class ExampleNode implements INodeType {\n\tdescription: INodeTypeDescription = {\n    // Basic node details here\n    properties: [\n      // Resources and operations here\n    ]\n  };\n\n  async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {\n    // Process data and return\n  }\n};",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Outline structure for a declarative-style node",
+      "id": "outline-structure-for-a-declarative-style-node"
+    },
+    {
+      "level": "h2",
+      "text": "Outline structure for a programmatic-style node",
+      "id": "outline-structure-for-a-programmatic-style-node"
+    }
+  ],
+  "url": "llms-txt#structure-of-the-node-base-file",
+  "links": []
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Expressions cookbook",
+  "content": "This section contains examples and recipes for tasks you can do with [expressions](../../../glossary/#expression-n8n).\n\nYou can use Python in the Code node. It isn't available in expressions.\n\n- [Check incoming data](/code/cookbook/expressions/check-incoming-data/)\n- [Common issues](/code/cookbook/expressions/common-issues/)\n\n- [Built-in methods and variables reference](../../builtin/overview/)\n- [Expressions](../../expressions/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#expressions-cookbook",
+  "links": []
+}

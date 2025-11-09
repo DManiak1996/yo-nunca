@@ -1,0 +1,122 @@
+{
+  "url": "https://react.dev/reference/react-compiler/directives/use-memo",
+  "title": "use memo",
+  "content": "\"use memo\" marks a function for React Compiler optimization.\n\nIn most cases, you don’t need \"use memo\". It’s primarily needed in annotation mode where you must explicitly mark functions for optimization. In infer mode, the compiler automatically detects components and hooks by their naming patterns (PascalCase for components, use prefix for hooks). If a component or hook isn’t being compiled in infer mode, you should fix its naming convention rather than forcing compilation with \"use memo\".\n\nAdd \"use memo\" at the beginning of a function to mark it for React Compiler optimization.\n\nWhen a function contains \"use memo\", the React Compiler will analyze and optimize it during build time. The compiler will automatically memoize values and components to prevent unnecessary re-computations and re-renders.\n\nIn a React app that uses the React Compiler, functions are analyzed at build time to determine if they can be optimized. By default, the compiler automatically infers which components to memoize, but this can depend on your compilationMode setting if you’ve set it.\n\n\"use memo\" explicitly marks a function for optimization, overriding the default behavior:\n\nThe directive creates a clear boundary in your codebase between optimized and non-optimized code, giving you fine-grained control over the compilation process.\n\nYou should consider using \"use memo\" when:\n\nIn compilationMode: 'annotation', the directive is required for any function you want optimized:\n\nStart with annotation mode and selectively optimize stable components:\n\nThe behavior of \"use memo\" changes based on your compiler configuration:\n\nIn infer mode, the compiler automatically detects components and hooks by their naming patterns (PascalCase for components, use prefix for hooks). If a component or hook isn’t being compiled in infer mode, you should fix its naming convention rather than forcing compilation with \"use memo\".\n\nTo confirm your component is being optimized:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "use memo",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Note",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "\"use memo\"",
+      "id": "use-memo"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h3",
+      "text": "How \"use memo\" marks functions for optimization",
+      "id": "how-use-memo-marks"
+    },
+    {
+      "level": "h3",
+      "text": "When to use \"use memo\"",
+      "id": "when-to-use"
+    },
+    {
+      "level": "h4",
+      "text": "You’re using annotation mode",
+      "id": "annotation-mode-use"
+    },
+    {
+      "level": "h4",
+      "text": "You’re gradually adopting React Compiler",
+      "id": "gradual-adoption"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Working with different compilation modes",
+      "id": "compilation-modes"
+    },
+    {
+      "level": "h4",
+      "text": "Annotation mode",
+      "id": "annotation-mode-example"
+    },
+    {
+      "level": "h4",
+      "text": "Infer mode (default)",
+      "id": "infer-mode-example"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "Verifying optimization",
+      "id": "verifying-optimization"
+    },
+    {
+      "level": "h3",
+      "text": "See also",
+      "id": "see-also"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "function MyComponent() {  \"use memo\";  // ...}",
+      "language": "unknown"
+    },
+    {
+      "code": "// ✅ This component will be optimizedfunction OptimizedList() {  \"use memo\";  // ...}// ❌ This component won't be optimizedfunction SimpleWrapper() {  // ...}",
+      "language": "unknown"
+    },
+    {
+      "code": "// Start by optimizing leaf componentsfunction Button({ onClick, children }) {  \"use memo\";  // ...}// Gradually move up the tree as you verify behaviorfunction ButtonGroup({ buttons }) {  \"use memo\";  // ...}",
+      "language": "unknown"
+    },
+    {
+      "code": "// babel.config.jsmodule.exports = {  plugins: [    ['babel-plugin-react-compiler', {      compilationMode: 'annotation' // or 'infer' or 'all'    }]  ]};",
+      "language": "unknown"
+    },
+    {
+      "code": "// ✅ Optimized with \"use memo\"function ProductCard({ product }) {  \"use memo\";  // ...}// ❌ Not optimized (no directive)function ProductList({ products }) {  // ...}",
+      "language": "unknown"
+    },
+    {
+      "code": "// Automatically memoized because this is named like a Componentfunction ComplexDashboard({ data }) {  // ...}// Skipped: Is not named like a Componentfunction simpleDisplay({ text }) {  // ...}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-compiler/directives",
+    "https://react.dev/reference/react-compiler/directives/use-memo",
+    "https://react.dev/reference/react-compiler/compilationMode",
+    "https://react.dev/reference/react-compiler/directives/use-no-memo",
+    "https://react.dev/learn/react-compiler"
+  ]
+}

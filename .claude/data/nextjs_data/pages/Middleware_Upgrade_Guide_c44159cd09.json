@@ -1,0 +1,242 @@
+{
+  "url": "https://nextjs.org/docs/messages/middleware-upgrade-guide",
+  "title": "Middleware Upgrade Guide",
+  "content": "As we work on improving Middleware for General Availability (GA), we've made some changes to the Middleware APIs (and how you define Middleware in your application) based on your feedback.\n\nThis upgrade guide will help you understand the changes, why they were made, and how to migrate your existing Middleware to the new API. The guide is for Next.js developers who:\n\nYou can start upgrading your Middleware usage today with the latest release (npm i next@latest).\n\nNote: These changes described in this guide are included in Next.js 12.2. You can keep your current site structure, including nested Middleware, until you move to 12.2 (or a canary build of Next.js).\n\nIf you have ESLint configured, you will need to run npm i eslint-config-next@latest --save-dev to upgrade your ESLint configuration to ensure the same version is being used as the Next.js version. You might also need to restart VSCode for the changes to take effect.\n\nIf you're using Next.js on Vercel, your existing deploys using Middleware will continue to work, and you can continue to deploy your site using Middleware. When you upgrade your site to the next stable version of Next.js (v12.2), you will need to follow this upgrade guide to update your Middleware.\n\nPreviously, you could create a _middleware.ts file under the pages directory at any level. Middleware execution was based on the file path where it was created.\n\nBased on customer feedback, we have replaced this API with a single root Middleware, which provides the following improvements:\n\nYou should declare one single Middleware file in your application, which should be located next to the pages directory and named without an _ prefix. Your Middleware file can still have either a .ts or .js extension.\n\nMiddleware will be invoked for every route in the app, and a custom matcher can be used to define matching filters. The following is an example for a Middleware that triggers for /about/* and /dashboard/:path*, the custom matcher is defined in an exported config object:\n\nThe matcher config also allows full regex so matching like negative lookaheads or character matching is supported. An example of a negative lookahead to match all except specific paths can be seen here:\n\nWhile the config option is preferred since it doesn't get invoked on every request, you can also use conditional statements to only run the Middleware when it matches specific paths. One advantage of using conditionals is defining explicit ordering for when Middleware executes. The following example shows how you can merge two previously nested Middleware:\n\nTo respect the differences in client-side and server-side navigation, and to help ensure that developers do not build insecure Middleware, we are removing the ability to send response bodies in Middleware. This ensures that Middleware is only used to rewrite, redirect, or modify the incoming request (e.g. setting cookies).\n\nThe following patterns will no longer work:\n\nFor cases where Middleware is used to respond (such as authorization), you should migrate to use rewrite/redirect to pages that show an authorization error, login forms, or to an API Route.\n\nIf you were previously using Middleware to forward headers to an external API, you can now use Edge API Routes:\n\nBased on beta feedback, we are changing the Cookies API in NextRequest and NextResponse to align more to a get/set model. The Cookies API extends Map, including methods like entries and values.\n\nNextResponse now has a cookies instance with:\n\nAs well as other extended methods from Map.\n\nTo help reduce the size of your Middleware, we have extracted the user agent from the request object and created a new helper userAgent.\n\nThe helper is imported from next/server and allows you to opt in to using the user agent. The helper gives you access to the same properties that were available from the request object.\n\nCurrently, Middleware estimates whether you are serving an asset of a Page based on the Next.js routes manifest (internal configuration). This value is surfaced through request.page.\n\nTo make page and asset matching more accurate, we are now using the web standard URLPattern API.\n\nUse URLPattern to check if a Middleware is being invoked for a certain page match.\n\nPrior to Next.js v12.2, Middleware was not executed for _next requests.\n\nFor cases where Middleware is used for authorization, you should migrate to use rewrite/redirect to Pages that show an authorization error, login forms, or to an API Route.\n\nSee No Response Body for an example of how to migrate to use rewrite/redirect.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Middleware Upgrade Guide",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Using Next.js Middleware on Vercel",
+      "id": "using-nextjs-middleware-on-vercel"
+    },
+    {
+      "level": "h2",
+      "text": "Breaking changes",
+      "id": "breaking-changes"
+    },
+    {
+      "level": "h2",
+      "text": "No Nested Middleware",
+      "id": "no-nested-middleware"
+    },
+    {
+      "level": "h3",
+      "text": "Summary of changes",
+      "id": "summary-of-changes"
+    },
+    {
+      "level": "h3",
+      "text": "Explanation",
+      "id": "explanation"
+    },
+    {
+      "level": "h3",
+      "text": "How to upgrade",
+      "id": "how-to-upgrade"
+    },
+    {
+      "level": "h2",
+      "text": "No Response Body",
+      "id": "no-response-body"
+    },
+    {
+      "level": "h3",
+      "text": "Summary of changes",
+      "id": "summary-of-changes-1"
+    },
+    {
+      "level": "h3",
+      "text": "Explanation",
+      "id": "explanation-1"
+    },
+    {
+      "level": "h3",
+      "text": "How to upgrade",
+      "id": "how-to-upgrade-1"
+    },
+    {
+      "level": "h4",
+      "text": "Before",
+      "id": "before"
+    },
+    {
+      "level": "h4",
+      "text": "After",
+      "id": "after"
+    },
+    {
+      "level": "h4",
+      "text": "Edge API Routes",
+      "id": "edge-api-routes"
+    },
+    {
+      "level": "h2",
+      "text": "Cookies API Revamped",
+      "id": "cookies-api-revamped"
+    },
+    {
+      "level": "h3",
+      "text": "Summary of changes",
+      "id": "summary-of-changes-2"
+    },
+    {
+      "level": "h3",
+      "text": "Explanation",
+      "id": "explanation-2"
+    },
+    {
+      "level": "h3",
+      "text": "How to upgrade",
+      "id": "how-to-upgrade-2"
+    },
+    {
+      "level": "h4",
+      "text": "Before",
+      "id": "before-1"
+    },
+    {
+      "level": "h4",
+      "text": "After",
+      "id": "after-1"
+    },
+    {
+      "level": "h2",
+      "text": "New User-Agent Helper",
+      "id": "new-user-agent-helper"
+    },
+    {
+      "level": "h3",
+      "text": "Summary of changes",
+      "id": "summary-of-changes-3"
+    },
+    {
+      "level": "h3",
+      "text": "Explanation",
+      "id": "explanation-3"
+    },
+    {
+      "level": "h3",
+      "text": "How to upgrade",
+      "id": "how-to-upgrade-3"
+    },
+    {
+      "level": "h4",
+      "text": "Before",
+      "id": "before-2"
+    },
+    {
+      "level": "h4",
+      "text": "After",
+      "id": "after-2"
+    },
+    {
+      "level": "h2",
+      "text": "No More Page Match Data",
+      "id": "no-more-page-match-data"
+    },
+    {
+      "level": "h3",
+      "text": "Summary of changes",
+      "id": "summary-of-changes-4"
+    },
+    {
+      "level": "h3",
+      "text": "Explanation",
+      "id": "explanation-4"
+    },
+    {
+      "level": "h3",
+      "text": "How to upgrade",
+      "id": "how-to-upgrade-4"
+    },
+    {
+      "level": "h4",
+      "text": "Before",
+      "id": "before-3"
+    },
+    {
+      "level": "h4",
+      "text": "After",
+      "id": "after-3"
+    },
+    {
+      "level": "h2",
+      "text": "Executing Middleware on Internal Next.js Requests",
+      "id": "executing-middleware-on-internal-nextjs-requests"
+    },
+    {
+      "level": "h3",
+      "text": "Summary of changes",
+      "id": "summary-of-changes-5"
+    },
+    {
+      "level": "h3",
+      "text": "Explanation",
+      "id": "explanation-5"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { NextResponse } from 'next/server'\nimport type { NextRequest } from 'next/server'\n \nexport function middleware(request: NextRequest) {\n  return NextResponse.rewrite(new URL('/about-2', request.url))\n}\n \n// Supports both a single string value or an array of matchers\nexport const config = {\n  matcher: ['/about/:path*', '/dashboard/:path*'],\n}",
+      "language": "python"
+    },
+    {
+      "code": "export const config = {\n  matcher: [\n    /*\n     * Match all request paths except for the ones starting with:\n     * - api (API routes)\n     * - _next/static (static files)\n     * - favicon.ico (favicon file)\n     */\n    '/((?!api|_next/static|favicon.ico).*)',\n  ],\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import type { NextRequest } from 'next/server'\n \nexport function middleware(request: NextRequest) {\n  if (request.nextUrl.pathname.startsWith('/about')) {\n    // This logic is only applied to /about\n  }\n \n  if (request.nextUrl.pathname.startsWith('/dashboard')) {\n    // This logic is only applied to /dashboard\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "new Response('a text value')\nnew Response(streamOrBuffer)\nnew Response(JSON.stringify(obj), { headers: 'application/json' })\nNextResponse.json()",
+      "language": "unknown"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\nimport type { NextRequest } from 'next/server'\nimport { isAuthValid } from './lib/auth'\n \nexport function middleware(request: NextRequest) {\n  // Example function to validate auth\n  if (isAuthValid(request)) {\n    return NextResponse.next()\n  }\n \n  return NextResponse.json({ message: 'Auth required' }, { status: 401 })\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\nimport type { NextRequest } from 'next/server'\nimport { isAuthValid } from './lib/auth'\n \nexport function middleware(request: NextRequest) {\n  // Example function to validate auth\n  if (isAuthValid(request)) {\n    return NextResponse.next()\n  }\n \n  const loginUrl = new URL('/login', request.url)\n  loginUrl.searchParams.set('from', request.nextUrl.pathname)\n \n  return NextResponse.redirect(loginUrl)\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { type NextRequest } from 'next/server'\n \nexport const config = {\n  runtime: 'edge',\n}\n \nexport default async function handler(req: NextRequest) {\n  const authorization = req.cookies.get('authorization')\n  return fetch('https://backend-api.com/api/protected', {\n    method: req.method,\n    headers: {\n      authorization,\n    },\n    redirect: 'manual',\n  })\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\nimport type { NextRequest } from 'next/server'\n \nexport function middleware(request: NextRequest) {\n  // create an instance of the class to access the public methods. This uses `next()`,\n  // you could use `redirect()` or `rewrite()` as well\n  let response = NextResponse.next()\n  // get the cookies from the request\n  let cookieFromRequest = request.cookies['my-cookie']\n  // set the `cookie`\n  response.cookie('hello', 'world')\n  // set the `cookie` with options\n  const cookieWithOptions = response.cookie('hello', 'world', {\n    path: '/',\n    maxAge: 1000 * 60 * 60 * 24 * 7,\n    httpOnly: true,\n    sameSite: 'strict',\n    domain: 'example.com',\n  })\n  // clear the `cookie`\n  response.clearCookie('hello')\n \n  return response\n}",
+      "language": "python"
+    },
+    {
+      "code": "export function middleware() {\n  const response = new NextResponse()\n \n  // set a cookie\n  response.cookies.set('vercel', 'fast')\n \n  // set another cookie with options\n  response.cookies.set('nextjs', 'awesome', { path: '/test' })\n \n  // get all the details of a cookie\n  const { value, ...options } = response.cookies.getWithOptions('vercel')\n  console.log(value) // => 'fast'\n  console.log(options) // => { name: 'vercel', Path: '/test' }\n \n  // deleting a cookie will mark it as expired\n  response.cookies.delete('vercel')\n \n  return response\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { NextRequest, NextResponse } from 'next/server'\n \nexport function middleware(request: NextRequest) {\n  const url = request.nextUrl\n  const viewport = request.ua.device.type === 'mobile' ? 'mobile' : 'desktop'\n  url.searchParams.set('viewport', viewport)\n  return NextResponse.rewrite(url)\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextRequest, NextResponse, userAgent } from 'next/server'\n \nexport function middleware(request: NextRequest) {\n  const url = request.nextUrl\n  const { device } = userAgent(request)\n  const viewport = device.type === 'mobile' ? 'mobile' : 'desktop'\n  url.searchParams.set('viewport', viewport)\n  return NextResponse.rewrite(url)\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\nimport type { NextRequest, NextFetchEvent } from 'next/server'\n \nexport function middleware(request: NextRequest, event: NextFetchEvent) {\n  const { params } = event.request.page\n  const { locale, slug } = params\n \n  if (locale && slug) {\n    const { search, protocol, host } = request.nextUrl\n    const url = new URL(`${protocol}//${locale}.${host}/${slug}${search}`)\n    return NextResponse.redirect(url)\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\nimport type { NextRequest } from 'next/server'\n \nconst PATTERNS = [\n  [\n    new URLPattern({ pathname: '/:locale/:slug' }),\n    ({ pathname }) => pathname.groups,\n  ],\n]\n \nconst params = (url) => {\n  const input = url.split('?')[0]\n  let result = {}\n \n  for (const [pattern, handler] of PATTERNS) {\n    const patternResult = pattern.exec(input)\n    if (patternResult !== null && 'pathname' in patternResult) {\n      result = handler(patternResult)\n      break\n    }\n  }\n  return result\n}\n \nexport function middleware(request: NextRequest) {\n  const { locale, slug } = params(request.url)\n \n  if (locale && slug) {\n    const { search, protocol, host } = request.nextUrl\n    const url = new URL(`${protocol}//${locale}.${host}/${slug}${search}`)\n    return NextResponse.redirect(url)\n  }\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/middleware-upgrade-guide",
+    "https://nextjs.org/docs/pages/building-your-application/routing/api-routes"
+  ]
+}

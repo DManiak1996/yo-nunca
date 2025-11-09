@@ -1,0 +1,19 @@
+{
+  "title": "Quick Base node",
+  "content": "Use the Quick Base node to automate work in Quick Base, and integrate Quick Base with other applications. n8n has built-in support for a wide range of Quick Base features, including creating, updating, deleting, and getting records, as well as getting fields, and downloading files.\n\nOn this page, you'll find a list of operations the Quick Base node supports and links to more resources.\n\nRefer to [Quick Base credentials](../../credentials/quickbase/) for guidance on setting up authentication.\n\n- Field\n  - Get all fields\n- File\n  - Delete a file\n  - Download a file\n- Record\n  - Create a record\n  - Delete a record\n  - Get all records\n  - Update a record\n  - Upsert a record\n- Report\n  - Get a report\n  - Run a report\n\n## Templates and examples\n\n[Browse Quick Base integration templates](https://n8n.io/integrations/quick-base/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#quick-base-node",
+  "links": []
+}

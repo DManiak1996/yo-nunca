@@ -1,0 +1,19 @@
+{
+  "title": "Workflow development",
+  "content": "The [Webhook node](../) works a bit differently from other core nodes. n8n recommends following these processes for building, testing, and using your Webhook node in production.\n\nn8n generates two **Webhook URLs** for each Webhook node: a **Test URL** and a **Production URL**.\n\n## Build and test workflows\n\nWhile building or testing a workflow, use the **Test** webhook URL.\n\nUsing a test webhook ensures that you can view the incoming data in the editor UI, which is useful for debugging. Select **Listen for test event** to register the webhook before sending the data to the test webhook. The test webhook stays active for 120 seconds.\n\nWhen using the Webhook node on localhost on a [self-hosted](../../../../../hosting/) n8n instance, run n8n in tunnel mode:\n\n- [npm with tunnel](../../../../../hosting/installation/npm/#n8n-with-tunnel)\n- [Docker with tunnel](../../../../../hosting/installation/docker/#n8n-with-tunnel)\n\n[](/_video/integrations/builtin/core-nodes/webhook/webhook-node-intro.mp4)\n\n## Production workflows\n\nWhen your workflow is ready, switch to using the **Production** webhook URL. You can then activate your workflow, and n8n runs it automatically when an external service calls the webhook URL.\n\nWhen working with a Production webhook, ensure that you have saved and activated the workflow. Data flowing through the webhook isn't visible in the editor UI with the production webhook.\n\nRefer to [Create a workflow](../../../../../workflows/create/) for more information on activating workflows.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Build and test workflows",
+      "id": "build-and-test-workflows"
+    },
+    {
+      "level": "h2",
+      "text": "Production workflows",
+      "id": "production-workflows"
+    }
+  ],
+  "url": "llms-txt#workflow-development",
+  "links": []
+}

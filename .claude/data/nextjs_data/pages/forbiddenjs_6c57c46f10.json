@@ -1,0 +1,52 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/forbidden",
+  "title": "forbidden.js",
+  "content": "The forbidden file is used to render UI when the forbidden function is invoked during authentication. Along with allowing you to customize the UI, Next.js will return a 403 status code.\n\nforbidden.js components do not accept any props.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "forbidden.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Props",
+      "id": "props"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "forbidden",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Forbidden() {\n  return (\n    <div>\n      <h2>Forbidden</h2>\n      <p>You are not authorized to access this resource.</p>\n      <Link href=\"/\">Return Home</Link>\n    </div>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/functions/forbidden",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/forbidden",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/error",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/instrumentation"
+  ]
+}

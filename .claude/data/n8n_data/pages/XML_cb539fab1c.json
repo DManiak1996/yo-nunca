@@ -1,0 +1,34 @@
+{
+  "title": "XML",
+  "content": "Use the XML node to convert data from and to XML.\n\nIf your XML is within a binary file, use the [Extract from File](../n8n-nodes-base.extractfromfile/) node to convert it to text first.\n\n- **Mode**: The format the data should be converted from and to.\n  - **JSON to XML**: Converts data from JSON to XML.\n  - **XML to JSON**: Converts data from XML to JSON.\n- **Property Name**: Enter the name of the property which contains the data to convert.\n\nThese options are available regardless of the **Mode** you select:\n\n- **Attribute Key**: Enter the prefix used to access the attributes. Default is `$`.\n- **Character Key**: Enter the prefix used to access the character content. Default is `_`.\n\nAll other options depend on the selected **Mode**.\n\n### JSON to XML options\n\nThese options only appear if you select **JSON to XML** as the **Mode**:\n\n- **Allow Surrogate Chars**: Set whether to allow using characters from the Unicode surrogate blocks (turned on) or not (turned off).\n- **Cdata**: Set whether to wrap text nodes in `<![CDATA[ ... ]]>` instead of escaping when it's required (turned on) or not (turned off).\n  - Turning this option on doesn't add `<![CDATA[ ... ]]>` if it's not required.\n- **Headless**: Set whether to omit the XML header (turned on) or include it (turned off).\n- **Root Name**: Enter the root element name to use.\n\n### XML to JSON options\n\nThese options only appear if you select **XML to JSON** as the **Mode**:\n\n- **Explicit Array**: Set whether to put child nodes in an array (turned on) or create an array only if there's more than one child node (turned off).\n- **Explicit Root**: Set whether to get the root node in the resulting object (turned on) or not (turned off).\n- **Ignore Attributes**: Set whether to ignore all XML attributes and only create text nodes (turned on) or not (turned off).\n- **Merge Attributes**: Set whether to merge attributes and child elements as properties of the parent (turned on) or key attributes off a child attribute object (turned off). This option is ignored if **Ignore Attribute** is turned on.\n- **Normalize**: Set whether to trim whitespaces inside the text nodes (turned on) or not to trim them (turned off).\n- **Normalize Tags**: Set whether to normalize all tag names to lowercase (turned on) or keep tag names as-is (turned off).\n- **Trim**: Set whether to trim the whitespace at the beginning and end of text nodes (turned on) or to leave the whitespace as-is (turned off).\n\n## Templates and examples\n\n**Generating Keywords using Google Autosuggest**\n\n[View template details](https://n8n.io/workflows/2155-generating-keywords-using-google-autosuggest/)\n\n**💡🌐 Essential Multipage Website Scraper with Jina.ai**\n\n[View template details](https://n8n.io/workflows/2957-essential-multipage-website-scraper-with-jinaai/)\n\n**Extract Google Trends Keywords & Summarize Articles in Google Sheets**\n\n[View template details](https://n8n.io/workflows/3132-extract-google-trends-keywords-and-summarize-articles-in-google-sheets/)\n\n[Browse XML integration templates](https://n8n.io/integrations/xml/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h3",
+      "text": "JSON to XML options",
+      "id": "json-to-xml-options"
+    },
+    {
+      "level": "h3",
+      "text": "XML to JSON options",
+      "id": "xml-to-json-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#xml",
+  "links": []
+}

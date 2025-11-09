@@ -1,0 +1,29 @@
+{
+  "title": "npm node",
+  "content": "Use the npm node to automate work in npm, and integrate npm with other applications.\n\nOn this page, you'll find a list of operations the npm node supports and links to more resources.\n\nRefer to [npm credentials](../../credentials/npm/) for guidance on setting up authentication.\n\n- Package\n  - Get Package Metadata\n  - Get Package Versions\n  - Search for Packages\n- Distribution Tag\n  - Get All Tags\n  - Update a Tag\n\n## Templates and examples\n\n[Browse npm integration templates](https://n8n.io/integrations/npm/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [npm's documentation](https://docs.npmjs.com/) for more information about the service.\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#npm-node",
+  "links": []
+}

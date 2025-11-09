@@ -1,0 +1,8 @@
+{
+  "title": "Generate embeddings",
+  "content": "Source: https://docs.ollama.com/api/embed\n\nopenapi.yaml post /api/embed\nCreates vector embeddings representing the input text",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#generate-embeddings",
+  "links": []
+}

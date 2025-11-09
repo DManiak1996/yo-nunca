@@ -1,0 +1,8 @@
+{
+  "title": "How old (hours) a finished execution must be to qualify for soft-deletion",
+  "content": "export EXECUTIONS_DATA_MAX_AGE=168",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#how-old-(hours)-a-finished-execution-must-be-to-qualify-for-soft-deletion",
+  "links": []
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Run your node locally",
+  "content": "You can test your node as you build it by running it in a local n8n instance.\n\n1. Install n8n using npm:\n\n1. When you are ready to test your node, publish it locally:\n\n1. Install the node into your local n8n instance:\n\nMake sure you run `npm link <node-name>` in the nodes directory within your n8n installation. This can be:\n\n- `~/.n8n/custom/`\n   - `~/.n8n/<your-custom-name>`: if your n8n installation set a different name using `N8N_CUSTOM_EXTENSIONS`.\n\n1. Open n8n in your browser. You should see your nodes when you search for them in the nodes panel.\n\nMake sure you search using the node name, not the package name. For example, if your npm package name is `n8n-nodes-weather-nodes`, and the package contains nodes named `rain`, `sun`, `snow`, you should search for `rain`, not `weather-nodes`.\n\nIf there's no `custom` directory in `~/.n8n` local installation, you have to create `custom` directory manually and run `npm init`:",
+  "code_samples": [
+    {
+      "code": "npm install n8n -g",
+      "language": "unknown"
+    },
+    {
+      "code": "# In your node directory\n   npm run build\n   npm link",
+      "language": "unknown"
+    },
+    {
+      "code": "# In the nodes directory within your n8n installation\n   # node-package-name is the name from the package.json\n   npm link <node-package-name>",
+      "language": "unknown"
+    },
+    {
+      "code": "n8n start",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h3",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    }
+  ],
+  "url": "llms-txt#run-your-node-locally",
+  "links": []
+}

@@ -1,0 +1,114 @@
+{
+  "url": "https://nextjs.org/docs/15/app/getting-started/partial-prerendering",
+  "title": "Partial Prerendering",
+  "content": "Partial Prerendering (PPR) is a rendering strategy that allows you to combine static and dynamic content in the same route. This improves the initial page performance while still supporting personalized, dynamic data.\n\nWhen a user visits a route:\n\n🎥 Watch: Why PPR and how it works → YouTube (10 minutes).\n\nTo understand Partial Prerendering, it helps to be familiar with the rendering strategies available in Next.js.\n\nWith Static Rendering, HTML is generated ahead of time—either at build time or through revalidation. The result is cached and shared across users and requests.\n\nIn Partial Prerendering, Next.js prerenders a static shell for a route. This can include the layout and any other components that don't depend on request-time data.\n\nWith Dynamic Rendering, HTML is generated at request time. This allows you to serve personalized content based on request-time data.\n\nA component becomes dynamic if it uses the following APIs:\n\nIn Partial Prerendering, using these APIs throws a special React error that informs Next.js the component cannot be statically rendered, causing a build error. You can use a Suspense boundary to wrap your component to defer rendering until runtime.\n\nReact Suspense is used to defer rendering parts of your application until some condition is met.\n\nIn Partial Prerendering, Suspense is used to mark dynamic boundaries in your component tree.\n\nAt build time, Next.js prerenders the static content and the fallback UI. The dynamic content is postponed until the user requests the route.\n\nWrapping a component in Suspense doesn't make the component itself dynamic (your API usage does), but rather Suspense is used as a boundary that encapsulates dynamic content and enable streaming\n\nStreaming splits the route into chunks and progressively streams them to the client as they become ready. This allows the user to see parts of the page immediately, before the entire content has finished rendering.\n\nIn Partial Prerendering, dynamic components wrapped in Suspense start streaming from the server in parallel.\n\nTo reduce network overhead, the full response—including static HTML and streamed dynamic parts—is sent in a single HTTP request. This avoids extra roundtrips and improves both initial load and overall performance.\n\nYou can enable PPR by adding the ppr option to your next.config.ts file:\n\nThe 'incremental' value allows you to adopt PPR for specific routes:\n\nRoutes that don't have experimental_ppr will default to false and will not be prerendered using PPR. You need to explicitly opt-in to PPR for each route.\n\nWhen using Dynamic APIs that require looking at the incoming request, Next.js will opt into dynamic rendering for the route. To continue using PPR, wrap the component with Suspense. For example, the <User /> component is dynamic because it uses the cookies API:\n\nThe <User /> component will be streamed while any other content inside <Page /> will be prerendered and become part of the static shell.\n\nComponents only opt into dynamic rendering when the value is accessed. For example, if you are reading searchParams from a <Page /> component, you can forward this value to another component as a prop:\n\nInside of the table component, accessing the value from searchParams will make the component dynamic while the rest of the page will be prerendered.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Partial Prerendering",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "How does Partial Prerendering work?",
+      "id": "how-does-partial-prerendering-work"
+    },
+    {
+      "level": "h3",
+      "text": "Static Rendering",
+      "id": "static-rendering"
+    },
+    {
+      "level": "h3",
+      "text": "Dynamic Rendering",
+      "id": "dynamic-rendering"
+    },
+    {
+      "level": "h3",
+      "text": "Suspense",
+      "id": "suspense"
+    },
+    {
+      "level": "h3",
+      "text": "Streaming",
+      "id": "streaming"
+    },
+    {
+      "level": "h2",
+      "text": "Enabling Partial Prerendering",
+      "id": "enabling-partial-prerendering"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Dynamic APIs",
+      "id": "dynamic-apis"
+    },
+    {
+      "level": "h3",
+      "text": "Passing dynamic props",
+      "id": "passing-dynamic-props"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "ppr",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { Suspense } from 'react'\nimport StaticComponent from './StaticComponent'\nimport DynamicComponent from './DynamicComponent'\nimport Fallback from './Fallback'\n \nexport const experimental_ppr = true\n \nexport default function Page() {\n  return (\n    <>\n      <StaticComponent />\n      <Suspense fallback={<Fallback />}>\n        <DynamicComponent />\n      </Suspense>\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    ppr: 'incremental',\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "export const experimental_ppr = true\n \nexport default function Layout({ children }: { children: React.ReactNode }) {\n  // ...\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { cookies } from 'next/headers'\n \nexport async function User() {\n  const session = (await cookies()).get('session')?.value\n  return '...'\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Suspense } from 'react'\nimport { User, AvatarSkeleton } from './user'\n \nexport const experimental_ppr = true\n \nexport default function Page() {\n  return (\n    <section>\n      <h1>This will be prerendered</h1>\n      <Suspense fallback={<AvatarSkeleton />}>\n        <User />\n      </Suspense>\n    </section>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Table, TableSkeleton } from './table'\nimport { Suspense } from 'react'\n \nexport default function Page({\n  searchParams,\n}: {\n  searchParams: Promise<{ sort: string }>\n}) {\n  return (\n    <section>\n      <h1>This will be prerendered</h1>\n      <Suspense fallback={<TableSkeleton />}>\n        <Table searchParams={searchParams} />\n      </Suspense>\n    </section>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "export async function Table({\n  searchParams,\n}: {\n  searchParams: Promise<{ sort: string }>\n}) {\n  const sort = (await searchParams).sort === 'true'\n  return '...'\n}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/15/app",
+    "https://nextjs.org/docs/15/app/getting-started",
+    "https://nextjs.org/docs/15/app/getting-started/partial-prerendering",
+    "https://nextjs.org/docs/15/app/guides/incremental-static-regeneration",
+    "https://nextjs.org/docs/15/app/api-reference/functions/cookies",
+    "https://nextjs.org/docs/15/app/api-reference/functions/headers",
+    "https://nextjs.org/docs/15/app/api-reference/functions/connection",
+    "https://nextjs.org/docs/15/app/api-reference/functions/draft-mode",
+    "https://nextjs.org/docs/15/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/15/app/api-reference/functions/unstable_noStore",
+    "https://nextjs.org/docs/15/app/api-reference/functions/fetch",
+    "https://nextjs.org/docs/15/app/api-reference/config/next-config-js/ppr",
+    "https://nextjs.org/docs/15/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/15/app/getting-started/fetching-data"
+  ]
+}

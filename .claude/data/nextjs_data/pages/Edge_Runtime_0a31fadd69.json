@@ -1,0 +1,79 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/edge",
+  "title": "Edge Runtime",
+  "content": "Next.js has two server runtimes you can use in your application:\n\nThe Edge Runtime supports the following APIs:\n\nYou can use process.env to access Environment Variables for both next dev and next build.\n\nThe Edge Runtime has some restrictions including:\n\nThe following JavaScript language features are disabled, and will not work:\n\nIn rare cases, your code could contain (or import) some dynamic code evaluation statements which can not be reached at runtime and which can not be removed by treeshaking. You can relax the check to allow specific files with your Proxy configuration:\n\nunstable_allowDynamic is a glob, or an array of globs, ignoring dynamic code evaluation for specific files. The globs are relative to your application root folder.\n\nBe warned that if these statements are executed on the Edge, they will throw and cause a runtime error.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Edge Runtime",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Network APIs",
+      "id": "network-apis"
+    },
+    {
+      "level": "h3",
+      "text": "Encoding APIs",
+      "id": "encoding-apis"
+    },
+    {
+      "level": "h3",
+      "text": "Stream APIs",
+      "id": "stream-apis"
+    },
+    {
+      "level": "h3",
+      "text": "Crypto APIs",
+      "id": "crypto-apis"
+    },
+    {
+      "level": "h3",
+      "text": "Web Standard APIs",
+      "id": "web-standard-apis"
+    },
+    {
+      "level": "h3",
+      "text": "Next.js Specific Polyfills",
+      "id": "nextjs-specific-polyfills"
+    },
+    {
+      "level": "h3",
+      "text": "Environment Variables",
+      "id": "environment-variables"
+    },
+    {
+      "level": "h3",
+      "text": "Unsupported APIs",
+      "id": "unsupported-apis"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export const config = {\n  unstable_allowDynamic: [\n    // allows a single file\n    '/lib/utilities.js',\n    // use a glob to allow anything in the function-bind 3rd party module\n    '**/node_modules/function-bind/**',\n  ],\n}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/edge",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/app/guides/environment-variables",
+    "https://nextjs.org/docs/app/api-reference/cli/next",
+    "https://nextjs.org/docs/app/api-reference/turbopack"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Wise Trigger node",
+  "content": "[Wise](https://wise.com) allows you to transfer money abroad with low-cost money transfers, receive money with international account details, and track transactions on your phone.\n\nYou can find authentication information for this node [here](../../credentials/wise/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Wise Trigger integrations](https://n8n.io/integrations/wise-trigger/) page.\n\n- Triggered every time a balance account is credited\n- Triggered every time a balance account is credited or debited\n- Triggered every time a transfer's list of active cases is updated\n- Triggered every time a transfer's status is updated",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    }
+  ],
+  "url": "llms-txt#wise-trigger-node",
+  "links": []
+}

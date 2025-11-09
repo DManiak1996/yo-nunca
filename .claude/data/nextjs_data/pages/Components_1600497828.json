@@ -1,0 +1,49 @@
+{
+  "url": "https://nextjs.org/docs/15/app/api-reference/components",
+  "title": "Components",
+  "content": "",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Components",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Font",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Form Component",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Image Component",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Link Component",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Script Component",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/15/app",
+    "https://nextjs.org/docs/15/app/api-reference",
+    "https://nextjs.org/docs/15/app/api-reference/components/font",
+    "https://nextjs.org/docs/15/app/api-reference/components/form",
+    "https://nextjs.org/docs/15/app/api-reference/components/image",
+    "https://nextjs.org/docs/15/app/api-reference/components/link",
+    "https://nextjs.org/docs/15/app/api-reference/components/script",
+    "https://nextjs.org/docs/15/app/api-reference/directives/use-server"
+  ]
+}

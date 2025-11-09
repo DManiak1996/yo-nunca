@@ -1,0 +1,63 @@
+{
+  "title": "Structured Outputs",
+  "content": "Source: https://docs.ollama.com/capabilities/structured-outputs\n\nStructured outputs let you enforce a JSON schema on model responses so you can reliably extract structured data, describe images, or keep every reply consistent.\n\n## Generating structured JSON\n\n<Tabs>\n  <Tab title=\"cURL\">\n    \n  </Tab>\n\n<Tab title=\"Python\">\n    \n  </Tab>\n\n<Tab title=\"JavaScript\">\n    \n  </Tab>\n</Tabs>\n\n## Generating structured JSON with a schema\n\nProvide a JSON schema to the `format` field.\n\n<Note>\n  It is ideal to also pass the JSON schema as a string in the prompt to ground the model's response.\n</Note>\n\n<Tabs>\n  <Tab title=\"cURL\">\n    \n  </Tab>\n\n<Tab title=\"Python\">\n    Use Pydantic models and pass `model_json_schema()` to `format`, then validate the response:\n\n<Tab title=\"JavaScript\">\n    Serialize a Zod schema with `zodToJsonSchema()` and parse the structured response:\n\n## Example: Extract structured data\n\nDefine the objects you want returned and let the model populate the fields:\n\n## Example: Vision with structured outputs\n\nVision models accept the same `format` parameter, enabling deterministic descriptions of images:\n\n## Tips for reliable structured outputs\n\n* Define schemas with Pydantic (Python) or Zod (JavaScript) so they can be reused for validation.\n* Lower the temperature (e.g., set it to `0`) for more deterministic completions.\n* Structured outputs work through the OpenAI-compatible API via `response_format`",
+  "code_samples": [
+    {
+      "code": "</Tab>\n\n  <Tab title=\"Python\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"JavaScript\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n</Tabs>\n\n## Generating structured JSON with a schema\n\nProvide a JSON schema to the `format` field.\n\n<Note>\n  It is ideal to also pass the JSON schema as a string in the prompt to ground the model's response.\n</Note>\n\n<Tabs>\n  <Tab title=\"cURL\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"Python\">\n    Use Pydantic models and pass `model_json_schema()` to `format`, then validate the response:",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"JavaScript\">\n    Serialize a Zod schema with `zodToJsonSchema()` and parse the structured response:",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n</Tabs>\n\n## Example: Extract structured data\n\nDefine the objects you want returned and let the model populate the fields:",
+      "language": "unknown"
+    },
+    {
+      "code": "## Example: Vision with structured outputs\n\nVision models accept the same `format` parameter, enabling deterministic descriptions of images:",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Generating structured JSON",
+      "id": "generating-structured-json"
+    },
+    {
+      "level": "h2",
+      "text": "Generating structured JSON with a schema",
+      "id": "generating-structured-json-with-a-schema"
+    },
+    {
+      "level": "h2",
+      "text": "Example: Extract structured data",
+      "id": "example:-extract-structured-data"
+    },
+    {
+      "level": "h2",
+      "text": "Example: Vision with structured outputs",
+      "id": "example:-vision-with-structured-outputs"
+    },
+    {
+      "level": "h2",
+      "text": "Tips for reliable structured outputs",
+      "id": "tips-for-reliable-structured-outputs"
+    }
+  ],
+  "url": "llms-txt#structured-outputs",
+  "links": []
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Download workflows",
+  "content": "n8n Cloud instance owners can download workflows from the most recent backup.\n\nYou can do this with the [Cloud admin dashboard](../cloud-admin-dashboard/).\n\n## How to download workflows\n\n1. [Log in to n8n](https://app.n8n.cloud/magic-link).\n1. Select **Admin Dashboard** to open the dashboard.\n1. In the **Manage** section, select the **Export** tab.\n1. Select **Download Workflows**.\n\n## Accessing workflows after your free trial\n\nYou have **90 days** to download your workflows after your free trial ends. After that, all workflows will be **permanently deleted** and are unrecoverable.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "How to download workflows",
+      "id": "how-to-download-workflows"
+    },
+    {
+      "level": "h2",
+      "text": "Accessing workflows after your free trial",
+      "id": "accessing-workflows-after-your-free-trial"
+    }
+  ],
+  "url": "llms-txt#download-workflows",
+  "links": []
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Redis Trigger node",
+  "content": "[Redis](https://redis.io/) is an open-source, in-memory data structure store, used as a database, cache and message broker.\n\nUse the Redis Trigger node to subscribe to a Redis channel. The workflow starts whenever the channel receives a new message.\n\nYou can find authentication information for this node [here](../../credentials/redis/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Redis Trigger integrations](https://n8n.io/integrations/redis-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#redis-trigger-node",
+  "links": []
+}

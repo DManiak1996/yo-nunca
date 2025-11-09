@@ -1,0 +1,19 @@
+{
+  "title": "Customer.io Trigger node",
+  "content": "[Customer.io](https://customer.io/) enables users to send newsletters to selected segments of customers using their website data. You can send targeted emails, push notifications, and SMS to lower churn, create stronger relationships, and drive subscriptions.\n\nYou can find authentication information for this node [here](../../credentials/customerio/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Customer.io Trigger integrations](https://n8n.io/integrations/customerio-trigger/) page.\n\n- Customer\n- Subscribed\n- Unsubscribe\n- Email\n- Bounced\n- Clicked\n- Converted\n- Delivered\n- Drafted\n- Failed\n- Opened\n- Sent\n- Spammed\n- Push\n- Attempted\n- Bounced\n- Clicked\n- Delivered\n- Drafted\n- Failed\n- Opened\n- Sent\n- Slack\n- Attempted\n- Clicked\n- Drafted\n- Failed\n- Sent\n- Sms\n- Attempted\n- Bounced\n- Clicked\n- Delivered\n- Drafted\n- Failed\n- Sent\n\nn8n provides an app node for Customer.io. You can find the node docs [here](../../app-nodes/n8n-nodes-base.customerio/).\n\nView [example workflows and related content](https://n8n.io/integrations/customerio-trigger/) on n8n's website.\n\nRefer to [Customer.io's documentation](https://docs.customer.io/api/) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#customer.io-trigger-node",
+  "links": []
+}

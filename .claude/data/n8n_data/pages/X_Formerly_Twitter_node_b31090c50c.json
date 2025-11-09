@@ -1,0 +1,19 @@
+{
+  "title": "X (Formerly Twitter) node",
+  "content": "Use the X node to automate work in X and integrate X with other applications. n8n has built-in support for a wide range of X features, including creating direct messages and deleting, searching, liking, and retweeting a tweet.\n\nOn this page, you'll find a list of operations the X node supports and links to more resources.\n\nRefer to [X credentials](../../credentials/twitter/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- Direct Message\n  - Create a direct message\n- Tweet\n  - Create or reply a tweet\n  - Delete a tweet\n  - Search tweets\n  - Like a tweet\n  - Retweet a tweet\n- User\n  - Get a user\n- List\n  - Add a member to a list\n\n## Templates and examples\n\n**✨🤖Automate Multi-Platform Social Media Content Creation with AI**\n\n[View template details](https://n8n.io/workflows/3066-automate-multi-platform-social-media-content-creation-with-ai/)\n\n**AI-Powered Social Media Content Generator & Publisher**\n\n[View template details](https://n8n.io/workflows/2950-ai-powered-social-media-content-generator-and-publisher/)\n\n**✨🩷Automated Social Media Content Publishing Factory + System Prompt Composition**\n\n[View template details](https://n8n.io/workflows/3135-automated-social-media-content-publishing-factory-system-prompt-composition/)\n\n[Browse X (Formerly Twitter) integration templates](https://n8n.io/integrations/twitter/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#x-(formerly-twitter)-node",
+  "links": []
+}

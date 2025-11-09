@@ -1,0 +1,25 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/poweredByHeader",
+  "title": "poweredByHeader",
+  "content": "By default Next.js will add the x-powered-by header. To opt-out of it, open next.config.js and disable the poweredByHeader config:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "poweredByHeader",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  poweredByHeader: false,\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/pageExtensions",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/productionBrowserSourceMaps"
+  ]
+}

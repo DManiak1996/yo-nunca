@@ -1,0 +1,14 @@
+{
+  "title": "Acuity Scheduling Trigger node",
+  "content": "[Acuity Scheduling](https://acuityscheduling.com/) is a cloud-based appointment scheduling software solution that enables business owners to manage their appointments online. It has the capability to automatically sync calendars according to users' time zones and can send regular alerts and reminders to users regarding their appointment schedules.\n\nYou can find authentication information for this node [here](../../credentials/acuityscheduling/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Acuity Scheduling Trigger integrations](https://n8n.io/integrations/acuity-scheduling-trigger/) page.\n\n- Appointment canceled\n- Appointment changed\n- Appointment rescheduled\n- Appointment scheduled\n- Order completed",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    }
+  ],
+  "url": "llms-txt#acuity-scheduling-trigger-node",
+  "links": []
+}

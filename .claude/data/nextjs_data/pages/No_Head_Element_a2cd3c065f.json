@@ -1,0 +1,39 @@
+{
+  "url": "https://nextjs.org/docs/messages/no-head-element",
+  "title": "No Head Element",
+  "content": "Prevent usage of <head> element.\n\nA <head> element was used to include page-level metadata, but this can cause unexpected behavior in a Next.js application. Use Next.js' built-in next/head component instead.\n\nImport and use the <Head /> component:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "No Head Element",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Head from 'next/head'\n \nfunction Index() {\n  return (\n    <>\n      <Head>\n        <title>My page title</title>\n        <meta name=\"viewport\" content=\"initial-scale=1.0, width=device-width\" />\n      </Head>\n    </>\n  )\n}\n \nexport default Index",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/no-head-element",
+    "https://nextjs.org/docs/pages/api-reference/components/head"
+  ]
+}

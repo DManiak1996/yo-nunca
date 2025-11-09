@@ -1,0 +1,29 @@
+{
+  "title": "4. Setting Values for Processing Orders",
+  "content": "In this step of the workflow, you will learn how to select and set data before transferring it to Airtable using the Edit Fields (Set) node. After this step, your workflow should look like this:\n\n[View workflow file](/_workflows//courses/level-one/chapter-5/chapter-5.4.json)\n\nThe next step in Nathan's workflow is to filter the data to only insert the `employeeName` and `orderID` of all `processing` orders into Airtable.\n\nFor this, you need to use the [Edit Fields (Set) node](../../../../integrations/builtin/core-nodes/n8n-nodes-base.set/), which allows you to select and set the data you want to transfer from one node to another.\n\nThe Edit Fields node can set completely new data as well as overwrite data that already exists. This node is crucial in workflows which expect incoming data from previous nodes, such as when inserting values into spreadsheets or databases.\n\n## Add another node before the Airtable node\n\nIn your workflow, add another node before the **Airtable node** from the **If node** in the same way we did it in the [Filtering Orders](../chapter-5.3/#add-if-node-before-the-airtable-node) lesson on the If node's `true` connector. Feel free to drag the Airtable node further away if your canvas feels crowded.\n\n## Configure the Edit Fields node\n\nNow search for the **Edit Fields (Set) node** after you've selected the **+** sign coming off the If node's `true` connector.\n\nWith the Edit Fields node window open, configure these parameters:\n\n- Ensure **Mode** is set to **Manual Mapping**.\n- While you can use the **Expression editor** we used in the [Filtering Orders](../chapter-5.3/) lesson, this time, let's drag the fields from the **Input** into the **Fields to Set**:\n  - Drag **If** > **orderID** as the first field.\n  - Drag **If** > **employeeName** as the second field.\n- Ensure that **Include Other Input Fields** is set to false.\n\nSelect **Execute step**. You should see the following results:\n\n*Edit Fields (Set) node*\n\n## Add data to Airtable\n\nNext, let's insert these values into Airtable:\n\n1. Go to your Airtable base.\n\n1. Add a new table called `processingOrders`.\n\n1. Replace the existing columns with two new columns:\n\n- `orderID` (primary field): Number\n   - `employeeName`: Single line text\n\nIf you get stuck, refer to the [Inserting data into Airtable](../chapter-5.2/) lesson.\n\n1. Delete the three empty rows in the new table.\n\n1. In n8n, connect the Edit Fields node **connector to the** Airtable node\\*\\*.\n\n1. Update the Airtable node configuration to point to the new `processingOrders` table instead of the `orders` table.\n\n1. Test your Airtable node to be sure it inserts records into the new `processingOrders` table.\n\nAt this stage, your workflow should now look like this:\n\n[View workflow file](/_workflows//courses/level-one/chapter-5/chapter-5.4.json)\n\n**Nathan 🙋**: You've already automated half of my work! Now I still need to calculate the booked orders for my colleagues. Can we automate that as well?\n\n**You 👩‍🔧**: Yes! In the next step, I'll use some JavaScript code in a node to calculate the booked orders.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Add another node before the Airtable node",
+      "id": "add-another-node-before-the-airtable-node"
+    },
+    {
+      "level": "h2",
+      "text": "Configure the Edit Fields node",
+      "id": "configure-the-edit-fields-node"
+    },
+    {
+      "level": "h2",
+      "text": "Add data to Airtable",
+      "id": "add-data-to-airtable"
+    },
+    {
+      "level": "h2",
+      "text": "What's next?",
+      "id": "what's-next?"
+    }
+  ],
+  "url": "llms-txt#4.-setting-values-for-processing-orders",
+  "links": []
+}

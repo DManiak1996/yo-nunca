@@ -1,0 +1,34 @@
+{
+  "title": "Workflow Retriever node",
+  "content": "Use the Workflow Retriever node to retrieve data from an n8n workflow for use in a Retrieval QA Chain or another Retriever node.\n\nOn this page, you'll find the node parameters for the Workflow Retriever node, and links to more resources.\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\nTell n8n which workflow to call. You can choose either:\n\n- **Database** and enter a workflow ID.\n- **Parameter** and copy in a complete [workflow JSON](../../../../../workflows/export-import/).\n\nSet values to pass to the workflow you're calling.\n\nThese values appear in the output data of the trigger node in the workflow you call. You can access these values in expressions in the workflow. For example, if you have:\n\n- **Workflow Values** with a **Name** of `myCustomValue`\n- A workflow with an Execute Sub-workflow Trigger node as its trigger\n\nThe expression to access the value of `myCustomValue` is `{{ $('Execute Sub-workflow Trigger').item.json.myCustomValue }}`.\n\n## Templates and examples\n\n**AI Crew to Automate Fundamental Stock Analysis - Q&A Workflow**\n\n[View template details](https://n8n.io/workflows/2183-ai-crew-to-automate-fundamental-stock-analysis-qanda-workflow/)\n\n**Build a PDF Document RAG System with Mistral OCR, Qdrant and Gemini AI**\n\n[View template details](https://n8n.io/workflows/4400-build-a-pdf-document-rag-system-with-mistral-ocr-qdrant-and-gemini-ai/)\n\n**AI: Ask questions about any data source (using the n8n workflow retriever)**\n\n[View template details](https://n8n.io/workflows/1958-ai-ask-questions-about-any-data-source-using-the-n8n-workflow-retriever/)\n\n[Browse Workflow Retriever integration templates](https://n8n.io/integrations/workflow-retriever/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChain's general retriever documentation](https://js.langchain.com/docs/concepts/retrievers/) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Source",
+      "id": "source"
+    },
+    {
+      "level": "h3",
+      "text": "Workflow values",
+      "id": "workflow-values"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#workflow-retriever-node",
+  "links": []
+}

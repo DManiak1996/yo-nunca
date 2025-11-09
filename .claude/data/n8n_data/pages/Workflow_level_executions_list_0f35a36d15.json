@@ -1,0 +1,24 @@
+{
+  "title": "Workflow-level executions list",
+  "content": "The **Executions** list in a workflow shows all executions for that workflow.\n\nWhen you delete a workflow, n8n deletes its execution history as well. This means you can't view executions for deleted workflows.\n\nExecution history and workflow history\n\nDon't confuse the execution list with [Workflow history](../../history/).\n\nExecutions are workflow runs. With the executions list, you can see previous runs of the current version of the workflow. You can copy previous executions into the editor to [Debug and re-run past executions](../debug/) in your current workflow.\n\nWorkflow history is previous versions of the workflow: for example, a version with a different node, or different parameters set.\n\n## View executions for a single workflow\n\nIn the workflow, select the **Executions** tab in the top menu. You can preview all executions of that workflow.\n\nYou can filter the executions list.\n\n1. In your workflow, select **Executions**.\n1. Select **Filters**.\n1. Enter your filters. You can filter by:\n   - **Status**: choose from **Failed**, **Running**, **Success**, or **Waiting**.\n\n- **Execution start**: see executions that started in the given time.\n\n- **Saved custom data**: this is data you create within the workflow using the Code node. Enter the key and value to filter. Refer to [Custom executions data](../custom-executions-data/) for information on adding custom data.\n\nCustom executions data is available on:\n\n- Cloud: Pro, Enterprise\n     - Self-Hosted: Enterprise, registered Community\n\n## Retry failed workflows\n\nIf your workflow execution fails, you can retry the execution. To retry a failed workflow:\n\n1. Open the **Executions** list.\n1. For the workflow execution you want to retry, select **Refresh** .\n1. Select either of the following options to retry the execution:\n   - **Retry with currently saved workflow**: Once you make changes to your workflow, you can select this option to execute the workflow with the previous execution data.\n   - **Retry with original workflow**: If you want to retry the execution without making changes to your workflow, you can select this option to retry the execution with the previous execution data.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "View executions for a single workflow",
+      "id": "view-executions-for-a-single-workflow"
+    },
+    {
+      "level": "h2",
+      "text": "Filter executions",
+      "id": "filter-executions"
+    },
+    {
+      "level": "h2",
+      "text": "Retry failed workflows",
+      "id": "retry-failed-workflows"
+    }
+  ],
+  "url": "llms-txt#workflow-level-executions-list",
+  "links": []
+}

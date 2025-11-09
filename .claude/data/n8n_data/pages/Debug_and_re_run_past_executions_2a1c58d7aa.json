@@ -1,0 +1,14 @@
+{
+  "title": "Debug and re-run past executions",
+  "content": "Available on n8n Cloud and registered Community plans.\n\nYou can load data from a previous execution into your current workflow. This is useful for debugging data from failed production executions: you can see a failed execution, make changes to your workflow to fix it, then re-run it with the previous execution data.\n\nTo load data from a previous execution:\n\n1. In your workflow, select the **Executions** tab to view the **Executions** list.\n1. Select the execution you want to debug. n8n displays options depending on whether the workflow was successful or failed:\n   - For failed executions: select **Debug in editor**.\n   - For successful executions: select **Copy to editor**.\n1. n8n copies the execution data into your current workflow, and [pins the data](../../../data/data-pinning/) in the first node in the workflow.\n\nCheck which executions you save\n\nThe executions available on the **Executions** list depends on your [Workflow settings](../../settings/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Load data",
+      "id": "load-data"
+    }
+  ],
+  "url": "llms-txt#debug-and-re-run-past-executions",
+  "links": []
+}

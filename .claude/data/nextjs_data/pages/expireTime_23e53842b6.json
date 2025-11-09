@@ -1,0 +1,25 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/expireTime",
+  "title": "expireTime",
+  "content": "You can specify a custom stale-while-revalidate expire time for CDNs to consume in the Cache-Control header for ISR enabled pages.\n\nOpen next.config.js and add the expireTime config:\n\nNow when sending the Cache-Control header the expire time will be calculated depending on the specific revalidate period.\n\nFor example, if you have a revalidate of 15 minutes on a path and the expire time is one hour the generated Cache-Control header will be s-maxage=900, stale-while-revalidate=2700 so that it can stay stale for 15 minutes less than the configured expire time.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "expireTime",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  // one hour in seconds\n  expireTime: 3600,\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/env",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/exportPathMap"
+  ]
+}

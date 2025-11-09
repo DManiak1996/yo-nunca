@@ -1,0 +1,68 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/file-conventions/instrumentation",
+  "title": "instrumentation.js",
+  "content": "The instrumentation.js|ts file is used to integrate observability tools into your application, allowing you to track the performance and behavior, and to debug issues in production.\n\nTo use it, place the file in the root of your application or inside a src folder if using one.\n\nThe file exports a register function that is called once when a new Next.js server instance is initiated. register can be an async function.\n\nYou can optionally export an onRequestError function to track server errors to any custom observability provider.\n\nThe function accepts three parameters: error, request, and context.\n\nThe instrumentation.js file works in both the Node.js and Edge runtime, however, you can use process.env.NEXT_RUNTIME to target a specific runtime.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "instrumentation.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Exports",
+      "id": "exports"
+    },
+    {
+      "level": "h3",
+      "text": "register (optional)",
+      "id": "register-optional"
+    },
+    {
+      "level": "h3",
+      "text": "onRequestError (optional)",
+      "id": "onrequesterror-optional"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Specifying the runtime",
+      "id": "specifying-the-runtime"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { registerOTel } from '@vercel/otel'\n \nexport function register() {\n  registerOTel('next-app')\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { type Instrumentation } from 'next'\n \nexport const onRequestError: Instrumentation.onRequestError = async (\n  err,\n  request,\n  context\n) => {\n  await fetch('https://.../report-error', {\n    method: 'POST',\n    body: JSON.stringify({\n      message: err.message,\n      request,\n      context,\n    }),\n    headers: {\n      'Content-Type': 'application/json',\n    },\n  })\n}",
+      "language": "python"
+    },
+    {
+      "code": "export function onRequestError(\n  error: { digest: string } & Error,\n  request: {\n    path: string // resource path, e.g. /blog?name=foo\n    method: string // request method. e.g. GET, POST, etc\n    headers: { [key: string]: string | string[] }\n  },\n  context: {\n    routerKind: 'Pages Router' | 'App Router' // the router type\n    routePath: string // the route file path, e.g. /app/blog/[dynamic]\n    routeType: 'render' | 'route' | 'action' | 'proxy' // the context in which the error occurred\n    renderSource:\n      | 'react-server-components'\n      | 'react-server-components-payload'\n      | 'server-rendering'\n    revalidateReason: 'on-demand' | 'stale' | undefined // undefined is a normal request without revalidation\n    renderType: 'dynamic' | 'dynamic-resume' // 'dynamic-resume' for PPR\n  }\n): void | Promise<void>",
+      "language": "unknown"
+    },
+    {
+      "code": "export function register() {\n  if (process.env.NEXT_RUNTIME === 'edge') {\n    return require('./register.edge')\n  } else {\n    return require('./register.node')\n  }\n}\n \nexport function onRequestError() {\n  if (process.env.NEXT_RUNTIME === 'edge') {\n    return require('./on-request-error.edge')\n  } else {\n    return require('./on-request-error.node')\n  }\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/api-reference",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/src-folder",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions/instrumentation",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions/proxy"
+  ]
+}

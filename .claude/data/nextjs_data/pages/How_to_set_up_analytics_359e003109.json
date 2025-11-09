@@ -1,0 +1,89 @@
+{
+  "url": "https://nextjs.org/docs/pages/guides/analytics",
+  "title": "How to set up analytics",
+  "content": "Next.js has built-in support for measuring and reporting performance metrics. You can either use the useReportWebVitals hook to manage reporting yourself, or alternatively, Vercel provides a managed service to automatically collect and visualize metrics for you.\n\nFor more advanced analytics and monitoring needs, Next.js provides a instrumentation-client.js|ts file that runs before your application's frontend code starts executing. This is ideal for setting up global analytics, error tracking, or performance monitoring tools.\n\nTo use it, create an instrumentation-client.js or instrumentation-client.ts file in your application's root directory:\n\nView the API Reference for more information.\n\nWeb Vitals are a set of useful metrics that aim to capture the user experience of a web page. The following web vitals are all included:\n\nYou can handle all the results of these metrics using the name property.\n\nIn addition to the core metrics listed above, there are some additional custom metrics that measure the time it takes for the page to hydrate and render:\n\nYou can handle all the results of these metrics separately:\n\nThese metrics work in all browsers that support the User Timing API.\n\nYou can send results to any endpoint to measure and track real user performance on your site. For example:\n\nGood to know: If you use Google Analytics, using the id value can allow you to construct metric distributions manually (to calculate percentiles, etc.)\n\nRead more about sending results to Google Analytics.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to set up analytics",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Client Instrumentation",
+      "id": "client-instrumentation"
+    },
+    {
+      "level": "h2",
+      "text": "Build Your Own",
+      "id": "build-your-own"
+    },
+    {
+      "level": "h2",
+      "text": "Web Vitals",
+      "id": "web-vitals"
+    },
+    {
+      "level": "h2",
+      "text": "Custom Metrics",
+      "id": "custom-metrics"
+    },
+    {
+      "level": "h2",
+      "text": "Sending results to external systems",
+      "id": "sending-results-to-external-systems"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// Initialize analytics before the app starts\nconsole.log('Analytics initialized')\n \n// Set up global error tracking\nwindow.addEventListener('error', (event) => {\n  // Send to your error tracking service\n  reportError(event.error)\n})",
+      "language": "javascript"
+    },
+    {
+      "code": "import { useReportWebVitals } from 'next/web-vitals'\n \nfunction MyApp({ Component, pageProps }) {\n  useReportWebVitals((metric) => {\n    console.log(metric)\n  })\n \n  return <Component {...pageProps} />\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { useReportWebVitals } from 'next/web-vitals'\n \nfunction MyApp({ Component, pageProps }) {\n  useReportWebVitals((metric) => {\n    switch (metric.name) {\n      case 'FCP': {\n        // handle FCP results\n      }\n      case 'LCP': {\n        // handle LCP results\n      }\n      // ...\n    }\n  })\n \n  return <Component {...pageProps} />\n}",
+      "language": "python"
+    },
+    {
+      "code": "export function reportWebVitals(metric) {\n  switch (metric.name) {\n    case 'Next.js-hydration':\n      // handle hydration results\n      break\n    case 'Next.js-route-change-to-render':\n      // handle route-change to render results\n      break\n    case 'Next.js-render':\n      // handle render results\n      break\n    default:\n      break\n  }\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "useReportWebVitals((metric) => {\n  const body = JSON.stringify(metric)\n  const url = 'https://example.com/analytics'\n \n  // Use `navigator.sendBeacon()` if available, falling back to `fetch()`.\n  if (navigator.sendBeacon) {\n    navigator.sendBeacon(url, body)\n  } else {\n    fetch(url, { body, method: 'POST', keepalive: true })\n  }\n})",
+      "language": "javascript"
+    },
+    {
+      "code": "useReportWebVitals((metric) => {\n  // Use `window.gtag` if you initialized Google Analytics as this example:\n  // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics\n  window.gtag('event', metric.name, {\n    value: Math.round(\n      metric.name === 'CLS' ? metric.value * 1000 : metric.value\n    ), // values must be integers\n    event_label: metric.id, // id unique to current page load\n    non_interaction: true, // avoids affecting bounce rate.\n  })\n})",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "Pages RouterGuidesAnalyticsCopy pageHow to set up analytics Next.js has built-in support for measuring and reporting performance metrics. You can either use the useReportWebVitals hook to manage reporting yourself, or alternatively, Vercel provides a managed service to automatically collect and visualize metrics for you. Client Instrumentation For more advanced analytics and monitoring needs, Next.js provides a instrumentation-client.js|ts file that runs before your application's frontend code starts executing. This is ideal for setting up global analytics, error tracking, or performance monitoring tools. To use it, create an instrumentation-client.js or instrumentation-client.ts file in your application's root directory: instrumentation-client.js// Initialize analytics before the app starts console.log('Analytics initialized') // Set up global error tracking window.addEventListener('error', (event) => { // Send to your error tracking service reportError(event.error) }) Build Your Own pages/_app.jsimport { useReportWebVitals } from 'next/web-vitals' function MyApp({ Component, pageProps }) { useReportWebVitals((metric) => { console.log(metric) }) return <Component {...pageProps} /> }View the API Reference for more information. Web Vitals Web Vitals are a set of useful metrics that aim to capture the user experience of a web page. The following web vitals are all included: Time to First Byte (TTFB) First Contentful Paint (FCP) Largest Contentful Paint (LCP) First Input Delay (FID) Cumulative Layout Shift (CLS) Interaction to Next Paint (INP) You can handle all the results of these metrics using the name property. pages/_app.jsimport { useReportWebVitals } from 'next/web-vitals' function MyApp({ Component, pageProps }) { useReportWebVitals((metric) => { switch (metric.name) { case 'FCP': { // handle FCP results } case 'LCP': { // handle LCP results } // ... } }) return <Component {...pageProps} /> } Custom Metrics In addition to the core metrics listed above, there are some additional custom metrics that measure the time it takes for the page to hydrate and render: Next.js-hydration: Length of time it takes for the page to start and finish hydrating (in ms) Next.js-route-change-to-render: Length of time it takes for a page to start rendering after a route change (in ms) Next.js-render: Length of time it takes for a page to finish render after a route change (in ms) You can handle all the results of these metrics separately:export function reportWebVitals(metric) { switch (metric.name) { case 'Next.js-hydration': // handle hydration results break case 'Next.js-route-change-to-render': // handle route-change to render results break case 'Next.js-render': // handle render results break default: break } }These metrics work in all browsers that support the User Timing API. Sending results to external systems You can send results to any endpoint to measure and track real user performance on your site. For example: useReportWebVitals((metric) => { const body = JSON.stringify(metric) const url = 'https://example.com/analytics' // Use `navigator.sendBeacon()` if available, falling back to `fetch()`. if (navigator.sendBeacon) { navigator.sendBeacon(url, body) } else { fetch(url, { body, method: 'POST', keepalive: true }) } }) Good to know: If you use Google Analytics, using the id value can allow you to construct metric distributions manually (to calculate percentiles, etc.) useReportWebVitals((metric) => { // Use `window.gtag` if you initialized Google Analytics as this example: // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics window.gtag('event', metric.name, { value: Math.round( metric.name === 'CLS' ? metric.value * 1000 : metric.value ), // values must be integers event_label: metric.id, // id unique to current page load non_interaction: true, // avoids affecting bounce rate. }) }) Read more about sending results to Google Analytics.",
+      "code": "useReportWebVitals"
+    },
+    {
+      "description": "How to set up analytics Next.js has built-in support for measuring and reporting performance metrics. You can either use the useReportWebVitals hook to manage reporting yourself, or alternatively, Vercel provides a managed service to automatically collect and visualize metrics for you. Client Instrumentation For more advanced analytics and monitoring needs, Next.js provides a instrumentation-client.js|ts file that runs before your application's frontend code starts executing. This is ideal for setting up global analytics, error tracking, or performance monitoring tools. To use it, create an instrumentation-client.js or instrumentation-client.ts file in your application's root directory: instrumentation-client.js// Initialize analytics before the app starts console.log('Analytics initialized') // Set up global error tracking window.addEventListener('error', (event) => { // Send to your error tracking service reportError(event.error) }) Build Your Own pages/_app.jsimport { useReportWebVitals } from 'next/web-vitals' function MyApp({ Component, pageProps }) { useReportWebVitals((metric) => { console.log(metric) }) return <Component {...pageProps} /> }View the API Reference for more information. Web Vitals Web Vitals are a set of useful metrics that aim to capture the user experience of a web page. The following web vitals are all included: Time to First Byte (TTFB) First Contentful Paint (FCP) Largest Contentful Paint (LCP) First Input Delay (FID) Cumulative Layout Shift (CLS) Interaction to Next Paint (INP) You can handle all the results of these metrics using the name property. pages/_app.jsimport { useReportWebVitals } from 'next/web-vitals' function MyApp({ Component, pageProps }) { useReportWebVitals((metric) => { switch (metric.name) { case 'FCP': { // handle FCP results } case 'LCP': { // handle LCP results } // ... } }) return <Component {...pageProps} /> } Custom Metrics In addition to the core metrics listed above, there are some additional custom metrics that measure the time it takes for the page to hydrate and render: Next.js-hydration: Length of time it takes for the page to start and finish hydrating (in ms) Next.js-route-change-to-render: Length of time it takes for a page to start rendering after a route change (in ms) Next.js-render: Length of time it takes for a page to finish render after a route change (in ms) You can handle all the results of these metrics separately:export function reportWebVitals(metric) { switch (metric.name) { case 'Next.js-hydration': // handle hydration results break case 'Next.js-route-change-to-render': // handle route-change to render results break case 'Next.js-render': // handle render results break default: break } }These metrics work in all browsers that support the User Timing API. Sending results to external systems You can send results to any endpoint to measure and track real user performance on your site. For example: useReportWebVitals((metric) => { const body = JSON.stringify(metric) const url = 'https://example.com/analytics' // Use `navigator.sendBeacon()` if available, falling back to `fetch()`. if (navigator.sendBeacon) { navigator.sendBeacon(url, body) } else { fetch(url, { body, method: 'POST', keepalive: true }) } }) Good to know: If you use Google Analytics, using the id value can allow you to construct metric distributions manually (to calculate percentiles, etc.) useReportWebVitals((metric) => { // Use `window.gtag` if you initialized Google Analytics as this example: // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics window.gtag('event', metric.name, { value: Math.round( metric.name === 'CLS' ? metric.value * 1000 : metric.value ), // values must be integers event_label: metric.id, // id unique to current page load non_interaction: true, // avoids affecting bounce rate. }) }) Read more about sending results to Google Analytics.",
+      "code": "useReportWebVitals"
+    },
+    {
+      "description": "You can send results to any endpoint to measure and track real user performance on your site. For example:",
+      "code": "useReportWebVitals((metric) => {\n  const body = JSON.stringify(metric)\n  const url = 'https://example.com/analytics'\n \n  // Use `navigator.sendBeacon()` if available, falling back to `fetch()`.\n  if (navigator.sendBeacon) {\n    navigator.sendBeacon(url, body)\n  } else {\n    fetch(url, { body, method: 'POST', keepalive: true })\n  }\n})"
+    },
+    {
+      "description": "useReportWebVitals((metric) => { // Use `window.gtag` if you initialized Google Analytics as this example: // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics window.gtag('event', metric.name, { value: Math.round( metric.name === 'CLS' ? metric.value * 1000 : metric.value ), // values must be integers event_label: metric.id, // id unique to current page load non_interaction: true, // avoids affecting bounce rate. }) })",
+      "code": "useReportWebVitals((metric) => {\n  // Use `window.gtag` if you initialized Google Analytics as this example:\n  // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics\n  window.gtag('event', metric.name, {\n    value: Math.round(\n      metric.name === 'CLS' ? metric.value * 1000 : metric.value\n    ), // values must be integers\n    event_label: metric.id, // id unique to current page load\n    non_interaction: true, // avoids affecting bounce rate.\n  })\n})"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/guides",
+    "https://nextjs.org/docs/app/api-reference/functions/use-report-web-vitals",
+    "https://nextjs.org/docs/pages/guides/analytics",
+    "https://nextjs.org/docs/pages/api-reference/functions/use-report-web-vitals",
+    "https://nextjs.org/docs/pages/guides/authentication"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Data table",
+  "content": "Use the Data Table node to permanently save data across workflow executions in a table format. It provides functionality to perform various data operations on stored data. See [Data tables](../../../../data/data-tables/).\n\nSelect the resource on which you want to operate.\n\nSelect the operation you want to run on the resource:\n\n- **Delete:** Delete one or more rows.\n- **Dry Run:** Simulate a deletion before finalizing it. If you switch on this option, n8n returns the rows that will be deleted by the operation. Default state is `off`.\n- **Get:** Get one or more rows from your table based on defined filters.\n- **Limit**: The number of rows you want to return, specified as a number. Default value is 50.\n- **Return all:** Switch on to return all data. Default value is `off`.\n- **If Row Exists:** Specify a set of conditions to match input items that exist in the data table.\n- **If Row Does Not Exist:** Specify a set of conditions to match input items that don't exist in the data table.\n- **Insert:** Insert rows into an existing table.\n- **Optimize Bulk**: Optimize the speed of insertions when working with many rows. If you switch on this option, n8n won't return the data that was inserted. Default state is `off`.\n- **Update:** Update one or more rows.\n- **Upsert:** Upsert one or more rows. If the row exists, it's updated; otherwise, a new row is created.\n\n[Data tables](../../../../data/data-tables/) explains how to create and manage data tables.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Resource",
+      "id": "resource"
+    },
+    {
+      "level": "h3",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#data-table",
+  "links": []
+}

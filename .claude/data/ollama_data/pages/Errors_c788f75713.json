@@ -1,0 +1,29 @@
+{
+  "title": "Errors",
+  "content": "Source: https://docs.ollama.com/api/errors\n\nEndpoints return appropriate HTTP status codes based on the success or failure of the request in the HTTP status line (e.g. `HTTP/1.1 200 OK` or `HTTP/1.1 400 Bad Request`). Common status codes are:\n\n* `200`: Success\n* `400`: Bad Request (missing parameters, invalid JSON, etc.)\n* `404`: Not Found (model doesn't exist, etc.)\n* `429`: Too Many Requests (e.g. when a rate limit is exceeded)\n* `500`: Internal Server Error\n* `502`: Bad Gateway (e.g. when a cloud model cannot be reached)\n\nErrors are returned in the `application/json` format with the following structure, with the error message in the `error` property:\n\n## Errors that occur while streaming\n\nIf an error occurs mid-stream, the error will be returned as an object in the `application/x-ndjson` format with an `error` property. Since the response has already started, the status code of the response will not be changed.",
+  "code_samples": [
+    {
+      "code": "## Errors that occur while streaming\n\nIf an error occurs mid-stream, the error will be returned as an object in the `application/x-ndjson` format with an `error` property. Since the response has already started, the status code of the response will not be changed.",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Status codes",
+      "id": "status-codes"
+    },
+    {
+      "level": "h2",
+      "text": "Error messages",
+      "id": "error-messages"
+    },
+    {
+      "level": "h2",
+      "text": "Errors that occur while streaming",
+      "id": "errors-that-occur-while-streaming"
+    }
+  ],
+  "url": "llms-txt#errors",
+  "links": []
+}

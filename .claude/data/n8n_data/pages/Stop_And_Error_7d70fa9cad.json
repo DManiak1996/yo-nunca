@@ -1,0 +1,39 @@
+{
+  "title": "Stop And Error",
+  "content": "Use the Stop And Error node to display custom error messages, cause executions to fail under certain conditions, and send custom error information to error workflows.\n\n- Error Message\n- Error Object\n\nBoth operations include one node parameter, the **Error Type**. Use this parameter to select the type of error to throw. Choose between the two operations: **Error Message** and **Error Object**.\n\nThe other parameters depend on which operation you select.\n\n### Error Message parameters\n\nThe Error Message Error Type adds one parameter, the **Error Message** field. Enter the message you'd like to throw.\n\n### Error Object parameters\n\nThe Error Object Error Type adds one parameter, the **Error Object**. Enter a JSON object that contains the error properties you'd like to throw.\n\n## Templates and examples\n\n**Generate Leads with Google Maps**\n\n[View template details](https://n8n.io/workflows/2605-generate-leads-with-google-maps/)\n\n**Host Your Own AI Deep Research Agent with n8n, Apify and OpenAI o3**\n\n[View template details](https://n8n.io/workflows/2878-host-your-own-ai-deep-research-agent-with-n8n-apify-and-openai-o3/)\n\n**Telegram chat with PDF**\n\nby felipe biava cataneo\n\n[View template details](https://n8n.io/workflows/2392-telegram-chat-with-pdf/)\n\n[Browse Stop And Error integration templates](https://n8n.io/integrations/stop-and-error/), or [search all templates](https://n8n.io/workflows/)\n\nYou can use the Stop And Error node with the [Error trigger](../n8n-nodes-base.errortrigger/) node.\n\nRead more about [Error workflows](../../../../flow-logic/error-handling/) in n8n workflows.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Error Message parameters",
+      "id": "error-message-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Error Object parameters",
+      "id": "error-object-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#stop-and-error",
+  "links": []
+}

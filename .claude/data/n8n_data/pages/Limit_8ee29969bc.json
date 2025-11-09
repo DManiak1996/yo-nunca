@@ -1,0 +1,34 @@
+{
+  "title": "Limit",
+  "content": "Use the Limit node to remove items beyond a defined maximum number. You can choose whether n8n takes the items from the beginning or end of the input data.\n\nConfigure this node using the following parameters.\n\nEnter the maximum number of items that n8n should keep. If the input data contains more than this value, n8n removes the items.\n\nIf the node has to remove items, select where it keeps the input items from:\n\n- **First Items**: Keeps the **Max Items** number of items from the beginning of the input data.\n- **Last Items**: Keeps the **Max Items** number of items from the end of the input data.\n\n## Templates and examples\n\n**Scrape and summarize webpages with AI**\n\n[View template details](https://n8n.io/workflows/1951-scrape-and-summarize-webpages-with-ai/)\n\n**Generate Leads with Google Maps**\n\n[View template details](https://n8n.io/workflows/2605-generate-leads-with-google-maps/)\n\n**Chat with OpenAI Assistant (by adding a memory)**\n\n[View template details](https://n8n.io/workflows/2098-chat-with-openai-assistant-by-adding-a-memory/)\n\n[Browse Limit integration templates](https://n8n.io/integrations/limit/), or [search all templates](https://n8n.io/workflows/)\n\nLearn more about [data structure and data flow](../../../../data/) in n8n workflows.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Max Items",
+      "id": "max-items"
+    },
+    {
+      "level": "h3",
+      "text": "Keep",
+      "id": "keep"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#limit",
+  "links": []
+}

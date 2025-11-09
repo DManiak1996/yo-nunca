@@ -1,0 +1,17 @@
+# Chromadb - Collections
+
+**Pages:** 1
+
+---
+
+## Reference
+
+**URL:** llms-txt#reference
+
+- [Chroma Reference](https://docs.trychroma.com/reference/chroma-reference.md): The page provides an overview of Chroma's client APIs for Python and Javascript, as well as instructions for accessing Chroma's backend Swagger REST API documentation.
+- [JS Client](https://docs.trychroma.com/reference/js/client.md): The page provides an overview of the ChromaClient JavaScript class, detailing its constructor, methods (such as countCollections, createCollection, deleteCollection, and more), and usage examples.
+- [Class: Collection](https://docs.trychroma.com/reference/js/collection.md): The page details the `Collection` class in Chroma, including its properties and various methods for managing collections such as adding, counting, deleting, getting, modifying, peeking, querying, updating, and upserting items.
+- [Python Client](https://docs.trychroma.com/reference/python/client.md): The page provides an overview of the Python Client API for Chroma, detailing various client types for different environments (EphemeralClient, PersistentClient, HttpClient, AsyncHttpClient, CloudClient), their configuration options, and core methods for managing collections, databases, and tenants.
+- [Python Collection](https://docs.trychroma.com/reference/python/collection.md): The page describes the `Collection` class in Python for managing collections of embeddings in a data store, detailing methods for counting, adding, retrieving, peeking, querying, modifying, updating, upserting, and deleting embeddings and associated data.
+
+---

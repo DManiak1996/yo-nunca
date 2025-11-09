@@ -1,0 +1,33 @@
+{
+  "title": "Declarative-style parameters",
+  "content": "These are the parameters available for [node base file](../) of declarative-style nodes.\n\nThis document gives short code snippets to help understand the code structure and concepts. For a full walk-through of building a node, including real-world code examples, refer to [Build a declarative-style node](../../../declarative-style-node/).\n\nRefer to [Standard parameters](../standard-parameters/) for parameters available to all nodes.\n\n## `methods` and `loadOptions`\n\n*Object* | *Optional*\n\n`methods` contains the `loadOptions` object. You can use `loadOptions` to query the service to get user-specific settings, then return them and render them in the GUI so the user can include them in subsequent queries. The object must include routing information for how to query the service, and output settings that define how to handle the returned options. For example:\n\n*Object* | *Required*\n\n`routing` is an object used within an `options` array in operations and input field objects. It contains the details of an API call.\n\nThe code example below comes from the [Declarative-style tutorial](../../../declarative-style-node/). It sets up an integration with a NASA API. It shows how to use `requestDefaults` to set up the basic API call details, and `routing` to add information for each operation.\n\n*Number* or *Array* | *Optional*\n\nIf you have one version of your node, this can be a number. If you want to support more than one version, turn this into an array, containing numbers for each node version.\n\nn8n supports two methods of node versioning, but declarative-style nodes must use the light versioning approach. Refer to [Node versioning](../../node-versioning/) for more information.",
+  "code_samples": [
+    {
+      "code": "methods : {\n\tloadOptions: {\n\t\trouting: {\n\t\t\trequest: {\n\t\t\t\turl: '/webhook/example-option-parameters',\n\t\t\t\tmethod: 'GET',\n\t\t\t},\n\t\t\toutput: {\n\t\t\t\tpostReceive: [\n\t\t\t\t\t{\n\t\t\t\t\t\t// When the returned data is nested under another property\n\t\t\t\t\t\t// Specify that property key\n\t\t\t\t\t\ttype: 'rootProperty',\n\t\t\t\t\t\tproperties: {\n\t\t\t\t\t\t\tproperty: 'responseData',\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\ttype: 'setKeyValue',\n\t\t\t\t\t\tproperties: {\n\t\t\t\t\t\t\tname: '={{$responseItem.key}} ({{$responseItem.value}})',\n\t\t\t\t\t\t\tvalue: '={{$responseItem.value}}',\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t// If incoming data is an array of objects, sort alphabetically by key\n\t\t\t\t\t\ttype: 'sort',\n\t\t\t\t\t\tproperties: {\n\t\t\t\t\t\t\tkey: 'name',\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t],\n\t\t\t},\n\t\t},\n\t}\n},",
+      "language": "unknown"
+    },
+    {
+      "code": "description: INodeTypeDescription = {\n  // Other node info here\n  requestDefaults: {\n\t\t\tbaseURL: 'https://api.nasa.gov',\n\t\t\turl: '',\n\t\t\theaders: {\n\t\t\t\tAccept: 'application/json',\n\t\t\t\t'Content-Type': 'application/json',\n\t\t\t},\n\t\t},\n    properties: [\n      // Resources here\n      {\n        displayName: 'Operation'\n        // Other operation details\n        options: [\n          {\n            name: 'Get'\n            value: 'get',\n            description: '',\n            routing: {\n              request: {\n                method: 'GET',\n                url: '/planetary/apod'\n              }\n            }\n          }\n        ]\n      }\n    ]\n}",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "`methods` and `loadOptions`",
+      "id": "`methods`-and-`loadoptions`"
+    },
+    {
+      "level": "h2",
+      "text": "`routing`",
+      "id": "`routing`"
+    },
+    {
+      "level": "h2",
+      "text": "`version`",
+      "id": "`version`"
+    }
+  ],
+  "url": "llms-txt#declarative-style-parameters",
+  "links": []
+}

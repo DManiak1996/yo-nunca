@@ -1,0 +1,49 @@
+{
+  "title": "Basic LLM Chain node",
+  "content": "Use the Basic LLM Chain node to set the prompt that the model will use along with setting an optional parser for the response.\n\nOn this page, you'll find the node parameters for the Basic LLM Chain node and links to more resources.\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Basic LLM Chain integrations](https://n8n.io/integrations/basic-llm-chain/) page.\n\nSelect how you want the node to construct the prompt (also known as the user's query or input from the chat).\n\n- **Take from previous node automatically**: If you select this option, the node expects an input from a previous node called `chatInput`.\n- **Define below**: If you select this option, provide either static text or an expression for dynamic content to serve as the prompt in the **Prompt (User Message)** field.\n\n### Require Specific Output Format\n\nThis parameter controls whether you want the node to require a specific output format. When turned on, n8n prompts you to connect one of these output parsers to the node:\n\n- [Auto-fixing Output Parser](../../sub-nodes/n8n-nodes-langchain.outputparserautofixing/)\n- [Item List Output Parser](../../sub-nodes/n8n-nodes-langchain.outputparseritemlist/)\n- [Structured Output Parser](../../sub-nodes/n8n-nodes-langchain.outputparserstructured/)\n\nUse **Chat Messages** when you're using a chat model to set a message.\n\nn8n ignores these options if you don't connect a chat model. Select the **Type Name or ID** you want the node to use:\n\nEnter a sample expected response in the **Message** field. The model will try to respond in the same way in its messages.\n\nEnter a system **Message** to include with the user input to help guide the model in what it should do.\n\nUse this option for things like defining tone, for example: `Always respond talking like a pirate`.\n\nEnter a sample user input. Using this with the AI option can help improve the output of the agent. Using both together provides a sample of an input and expected response (the **AI Message**) for the model to follow.\n\nSelect one of these input types:\n\n- **Text**: Enter a sample user input as a text **Message**.\n- **Image (Binary)**: Select a binary input from a previous node. Enter the **Image Data Field Name** to identify which binary field from the previous node contains the image data.\n- **Image (URL)**: Use this option to feed an image in from a URL. Enter the **Image URL**.\n\nFor both the **Image** types, select the **Image Details** to control how the model processes the image and generates its textual understanding. Choose from:\n\n- **Auto**: The model uses the auto setting, which looks at the image input size and decide if it should use the Low or High setting.\n- **Low**: The model receives a low-resolution 512px x 512px version of the image and represents the image with a budget of 65 tokens. This allows the API to return faster responses and consume fewer input tokens. Use this option for use cases that don't require high detail.\n- **High**: The model can access the low-resolution image and then creates detailed crops of input images as 512px squares based on the input image size. Each of the detailed crops uses twice the token budget (65 tokens) for a total of 129 tokens. Use this option for use cases that require high detail.\n\n## Templates and examples\n\n**Chat with PDF docs using AI (quoting sources)**\n\n[View template details](https://n8n.io/workflows/2165-chat-with-pdf-docs-using-ai-quoting-sources/)\n\n**Respond to WhatsApp Messages with AI Like a Pro!**\n\n[View template details](https://n8n.io/workflows/2466-respond-to-whatsapp-messages-with-ai-like-a-pro/)\n\n**🚀Transform Podcasts into Viral TikTok Clips with Gemini+ Multi-Platform Posting✅**\n\n[View template details](https://n8n.io/workflows/4568-transform-podcasts-into-viral-tiktok-clips-with-gemini-multi-platform-posting/)\n\n[Browse Basic LLM Chain integration templates](https://n8n.io/integrations/basic-llm-chain/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChain's documentation on Basic LLM Chains](https://js.langchain.com/docs/tutorials/llm_chain/) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.\n\nHere are some common errors and issues with the Basic LLM Chain node and steps to resolve or troubleshoot them.\n\n### No prompt specified error\n\nThis error displays when the **Prompt** is empty or invalid.\n\nYou might see this error in one of two scenarios:\n\n1. When you've set the **Prompt** to **Define below** and haven't entered anything in the **Text** field.\n   - To resolve, enter a valid prompt in the **Text** field.\n1. When you've set the **Prompt** to **Connected Chat Trigger Node** and the incoming data has no field called `chatInput`.\n   - The node expects the `chatInput` field. If your previous node doesn't have this field, add an [Edit Fields (Set)](../../../core-nodes/n8n-nodes-base.set/) node to edit an incoming field name to `chatInput`.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Prompt",
+      "id": "prompt"
+    },
+    {
+      "level": "h3",
+      "text": "Require Specific Output Format",
+      "id": "require-specific-output-format"
+    },
+    {
+      "level": "h2",
+      "text": "Chat Messages",
+      "id": "chat-messages"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    },
+    {
+      "level": "h3",
+      "text": "No prompt specified error",
+      "id": "no-prompt-specified-error"
+    }
+  ],
+  "url": "llms-txt#basic-llm-chain-node",
+  "links": []
+}

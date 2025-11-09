@@ -1,0 +1,66 @@
+{
+  "url": "https://nextjs.org/docs/15/app/getting-started/deploying",
+  "title": "Deploying",
+  "content": "Next.js can be deployed as a Node.js server, Docker container, static export, or adapted to run on different platforms.\n\nNext.js can be deployed to any provider that supports Node.js. Ensure your package.json has the \"build\" and \"start\" scripts:\n\nThen, run npm run build to build your application and npm run start to start the Node.js server. This server supports all Next.js features. If needed, you can also eject to a custom server.\n\nNode.js deployments support all Next.js features. Learn how to configure them for your infrastructure.\n\nNext.js can be deployed to any provider that supports Docker containers. This includes container orchestrators like Kubernetes or a cloud provider that runs Docker.\n\nDocker deployments support all Next.js features. Learn how to configure them for your infrastructure.\n\nNote for development: While Docker is excellent for production deployments, consider using local development (npm run dev) instead of Docker during development on Mac and Windows for better performance. Learn more about optimizing local development.\n\nNext.js enables starting as a static site or Single-Page Application (SPA), then later optionally upgrading to use features that require a server.\n\nSince Next.js supports static exports, it can be deployed and hosted on any web server that can serve HTML/CSS/JS static assets. This includes tools like AWS S3, Nginx, or Apache.\n\nRunning as a static export does not support Next.js features that require a server. Learn more.\n\nNext.js can be adapted to run on different platforms to support their infrastructure capabilities.\n\nRefer to each provider's documentation for information on supported Next.js features:\n\nNote: We are working on a Deployment Adapters API for all platforms to adopt. After completion, we will add documentation on how to write your own adapters.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Deploying",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Node.js server",
+      "id": "nodejs-server"
+    },
+    {
+      "level": "h3",
+      "text": "Templates",
+      "id": "templates"
+    },
+    {
+      "level": "h2",
+      "text": "Docker",
+      "id": "docker"
+    },
+    {
+      "level": "h3",
+      "text": "Templates",
+      "id": "templates-1"
+    },
+    {
+      "level": "h2",
+      "text": "Static export",
+      "id": "static-export"
+    },
+    {
+      "level": "h3",
+      "text": "Templates",
+      "id": "templates-2"
+    },
+    {
+      "level": "h2",
+      "text": "Adapters",
+      "id": "adapters"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "{\n  \"scripts\": {\n    \"dev\": \"next dev\",\n    \"build\": \"next build\",\n    \"start\": \"next start\"\n  }\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/15/app",
+    "https://nextjs.org/docs/15/app/getting-started",
+    "https://nextjs.org/docs/15/app/getting-started/deploying",
+    "https://nextjs.org/docs/15/app/guides/custom-server",
+    "https://nextjs.org/docs/15/app/guides/self-hosting",
+    "https://nextjs.org/docs/15/app/guides/local-development",
+    "https://nextjs.org/docs/15/app/guides/single-page-applications",
+    "https://nextjs.org/docs/15/app/guides/static-exports",
+    "https://nextjs.org/docs/15/app/getting-started/route-handlers-and-middleware",
+    "https://nextjs.org/docs/15/app/getting-started/upgrading"
+  ]
+}

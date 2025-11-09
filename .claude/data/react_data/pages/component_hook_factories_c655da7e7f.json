@@ -1,0 +1,64 @@
+{
+  "url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/component-hook-factories",
+  "title": "component-hook-factories",
+  "content": "Validates against higher order functions defining nested components or hooks. Components and hooks should be defined at the module level.\n\nDefining components or hooks inside other functions creates new instances on every call. React treats each as a completely different component, destroying and recreating the entire component tree, losing all state, and causing performance problems.\n\nExamples of incorrect code for this rule:\n\nExamples of correct code for this rule:\n\nYou might think you need a factory to create customized components:\n\nPass JSX as children instead:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "component-hook-factories",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Rule Details",
+      "id": "rule-details"
+    },
+    {
+      "level": "h3",
+      "text": "Invalid",
+      "id": "invalid"
+    },
+    {
+      "level": "h3",
+      "text": "Valid",
+      "id": "valid"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "I need dynamic component behavior",
+      "id": "dynamic-behavior"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// ❌ Factory function creating componentsfunction createComponent(defaultValue) {  return function Component() {    // ...  };}// ❌ Component defined inside componentfunction Parent() {  function Child() {    // ...  }  return <Child />;}// ❌ Hook factory functionfunction createCustomHook(endpoint) {  return function useData() {    // ...  };}",
+      "language": "unknown"
+    },
+    {
+      "code": "// ✅ Component defined at module levelfunction Component({ defaultValue }) {  // ...}// ✅ Custom hook at module levelfunction useData(endpoint) {  // ...}",
+      "language": "unknown"
+    },
+    {
+      "code": "// ❌ Wrong: Factory patternfunction makeButton(color) {  return function Button({children}) {    return (      <button style={{backgroundColor: color}}>        {children}      </button>    );  };}const RedButton = makeButton('red');const BlueButton = makeButton('blue');",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Better: Pass JSX as childrenfunction Button({color, children}) {  return (    <button style={{backgroundColor: color}}>      {children}    </button>  );}function App() {  return (    <>      <Button color=\"red\">Red</Button>      <Button color=\"blue\">Blue</Button>    </>  );}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/eslint-plugin-react-hooks",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/component-hook-factories",
+    "https://react.dev/learn/passing-props-to-a-component",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/rules-of-hooks",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/config"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "title": "MCP Server Trigger node",
+  "content": "Use the MCP Server Trigger node to allow n8n to act as a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) server, making n8n tools and workflows available to MCP clients.\n\nYou can find authentication information for this node [here](../../credentials/httprequest/).\n\n## How the MCP Server Trigger node works\n\nThe MCP Server Trigger node acts as an entry point into n8n for MCP clients. It operates by exposing a URL that MCP clients can interact with to access n8n tools.\n\nUnlike conventional [trigger nodes](../../../../glossary/#trigger-node-n8n), which respond to events and pass their output to the next [connected node](../../../../workflows/components/connections/), the MCP Server Trigger node only connects to and executes [tool](../../../../advanced-ai/examples/understand-tools/) nodes. Clients can list the available tools and call individual tools to perform work.\n\nYou can expose n8n workflows to clients by attaching them with the [Custom n8n Workflow Tool](../../cluster-nodes/sub-nodes/n8n-nodes-langchain.toolworkflow/) node.\n\nServer-Sent Events (SSE) and streamable HTTP support\n\nThe MCP Server Trigger node supports both [Server-Sent Events (SSE)](https://modelcontextprotocol.io/docs/concepts/transports#server-sent-events-sse), a long-lived transport built on top of HTTP, and [streamable HTTP](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#streamable-http) for connections between clients and the server. It currently doesn't support [standard input/output (stdio)](https://modelcontextprotocol.io/docs/concepts/transports#standard-input%2Foutput-stdio) transport.\n\nUse these parameters to configure your node.\n\nThe MCP Server Trigger node has two **MCP URLs**: test and production. n8n displays the URLs at the top of the node panel.\n\nSelect **Test URL** or **Production URL** to toggle which URL n8n displays.\n\n- **Test**: n8n registers a test MCP URL when you select **Listen for Test Event** or **Execute workflow**, if the workflow isn't active. When you call the MCP URL, n8n displays the data in the workflow.\n- **Production**: n8n registers a production MCP URL when you activate the workflow. When using the production URL, n8n doesn't display the data in the workflow. You can still view workflow data for a production execution: select the **Executions** tab in the workflow, then select the workflow execution you want to view.\n\nYou can require authentication for clients connecting to your MCP URL. Choose from these authentication methods:\n\n- Bearer auth\n- Header auth\n\nRefer to the [HTTP request credentials](../../credentials/httprequest/) for more information on setting up each credential type.\n\nBy default, this field contains a randomly generated MCP URL path, to avoid conflicts with other MCP Server Trigger nodes.\n\nYou can manually specify a URL path, including adding route parameters. For example, you may need to do this if you use n8n to prototype an API and want consistent endpoint URLs.\n\n## Templates and examples\n\n**Build an MCP Server with Google Calendar and Custom Functions**\n\n[View template details](https://n8n.io/workflows/3514-build-an-mcp-server-with-google-calendar-and-custom-functions/)\n\n**Build your own N8N Workflows MCP Server**\n\n[View template details](https://n8n.io/workflows/3770-build-your-own-n8n-workflows-mcp-server/)\n\n**Build a Personal Assistant with Google Gemini, Gmail and Calendar using MCP**\n\n[View template details](https://n8n.io/workflows/3905-build-a-personal-assistant-with-google-gemini-gmail-and-calendar-using-mcp/)\n\n[Browse MCP Server Trigger integration templates](https://n8n.io/integrations/mcp-server-trigger/), or [search all templates](https://n8n.io/workflows/)\n\n### Integrating with Claude Desktop\n\nYou can connect to the MCP Server Trigger node from [Claude Desktop](https://claude.ai/download) by running a gateway to proxy SSE messages to stdio-based servers.\n\nTo do so, add the following to your Claude Desktop configuration:\n\nBe sure to replace the `<MCP_URL>` and `<MCP_BEARER_TOKEN>` placeholders with the values from your MCP Server Trigger node parameters and credentials.\n\n### Configuring the MCP Server Trigger node with webhook replicas\n\nThe MCP Server Trigger node relies on Server-Sent Events (SSE) or streamable HTTP, which require the same server instance to handle persistent connections. This can cause problems when running n8n in [queue mode](../../../../hosting/scaling/queue-mode/) depending on your [webhook processor](../../../../hosting/scaling/queue-mode/#webhook-processors) configuration:\n\n- If you use queue mode with a **single webhook replica**, the MCP Server Trigger node works as expected.\n- If you run **multiple webhook replicas**, you need to route all `/mcp*` requests to a single, dedicated webhook replica. Create a separate replica set with one webhook container for MCP requests. Afterward, update your ingress or load balancer configuration to direct all `/mcp*` traffic to that instance.\n\nCaution when running with multiple webhook replicas\n\nIf you run an MCP Server Trigger node with multiple webhook replicas and don't route all `/mcp*` requests to a single, dedicated webhook replica, your SSE and streamable HTTP connections will frequently break or fail to reliably deliver events.\n\nn8n also provides an [MCP Client Tool](../../cluster-nodes/sub-nodes/n8n-nodes-langchain.toolmcp/) node that allows you to connect your n8n AI agents to external tools.\n\nRefer to the [MCP documentation](https://modelcontextprotocol.io/introduction) and [MCP specification](https://modelcontextprotocol.io/specification/) for more details about the protocol, servers, and clients.\n\nHere are some common errors and issues with the MCP Server Trigger node and steps to resolve or troubleshoot them.\n\n### Running the MCP Server Trigger node with a reverse proxy\n\nWhen running n8n behind a reverse proxy like nginx, you may experience problems if the MCP endpoint isn't configured for SSE or streamable HTTP.\n\nSpecifically, you need to disable proxy buffering for the endpoint. Other items you might want to adjust include disabling gzip compression (n8n handles this itself), disabling chunked transfer encoding, and setting the `Connection` to an empty string to remove it from the forwarded headers. Explicitly disabling these in the MCP endpoint ensures they're not inherited from other places in your nginx configuration.\n\nAn example nginx location block for serving MCP traffic with these settings may look like this:",
+  "code_samples": [
+    {
+      "code": "{\n  \"mcpServers\": {\n    \"n8n\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"mcp-remote\",\n        \"<MCP_URL>\",\n        \"--header\",\n        \"Authorization: Bearer ${AUTH_TOKEN}\"\n      ],\n      \"env\": {\n        \"AUTH_TOKEN\": \"<MCP_BEARER_TOKEN>\"\n      }\n    }\n  }\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "location /mcp/ {\n    proxy_http_version          1.1;\n    proxy_buffering             off;\n    gzip                        off;\n    chunked_transfer_encoding   off;\n\n    proxy_set_header            Connection '';\n\n    # The rest of your proxy headers and settings\n    # . . .\n}",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "How the MCP Server Trigger node works",
+      "id": "how-the-mcp-server-trigger-node-works"
+    },
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "MCP URL",
+      "id": "mcp-url"
+    },
+    {
+      "level": "h3",
+      "text": "Authentication",
+      "id": "authentication"
+    },
+    {
+      "level": "h3",
+      "text": "Path",
+      "id": "path"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h3",
+      "text": "Integrating with Claude Desktop",
+      "id": "integrating-with-claude-desktop"
+    },
+    {
+      "level": "h2",
+      "text": "Limitations",
+      "id": "limitations"
+    },
+    {
+      "level": "h3",
+      "text": "Configuring the MCP Server Trigger node with webhook replicas",
+      "id": "configuring-the-mcp-server-trigger-node-with-webhook-replicas"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    },
+    {
+      "level": "h3",
+      "text": "Running the MCP Server Trigger node with a reverse proxy",
+      "id": "running-the-mcp-server-trigger-node-with-a-reverse-proxy"
+    }
+  ],
+  "url": "llms-txt#mcp-server-trigger-node",
+  "links": []
+}

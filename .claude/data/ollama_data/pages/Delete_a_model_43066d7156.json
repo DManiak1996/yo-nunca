@@ -1,0 +1,8 @@
+{
+  "title": "Delete a model",
+  "content": "Source: https://docs.ollama.com/api/delete\n\nopenapi.yaml delete /api/delete",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#delete-a-model",
+  "links": []
+}

@@ -1,0 +1,34 @@
+{
+  "title": "Workflow sharing",
+  "content": "Available on Pro and Enterprise Cloud plans, and Enterprise self-hosted plans.\n\nWorkflow sharing allows you to share workflows between users of the same n8n instance.\n\nUsers can share workflows they created. Instance owners, and users with the admin role, can view and share all workflows in the instance. Refer to [Account types](../../user-management/account-types/) for more information about owners and admins.\n\n1. Open the workflow you want to share.\n1. Select **Share**.\n1. In **Add users**, find and select the users you want to share with.\n1. Select **Save**.\n\n## View shared workflows\n\nYou can browse and search workflows on the **Workflows** list. The workflows in the list depend on the project:\n\n- **Overview** lists all workflows you can access. This includes:\n  - Your own workflows.\n  - Workflows shared with you.\n  - Workflows in projects you're a member of.\n  - If you log in as the instance owner or admin: all workflows in the instance.\n- Other projects: all workflows in the project.\n\n## Workflow roles and permissions\n\nThere are two workflow roles: creator and editor. The creator is the user who created the workflow. Editors are other users with access to the workflow.\n\nYou can't change the workflow owner, except when deleting the user.\n\nWorkflow sharing allows editors to use all [credentials](../../glossary/#credential-n8n) used in the workflow. This includes credentials that aren't explicitly shared with them using [credential sharing](../../credentials/credential-sharing/).\n\n| Permissions               | Creator | Editor |\n| ------------------------- | ------- | ------ |\n| View workflow (read-only) |         |        |\n| View executions           |         |        |\n| Update (including tags)   |         |        |\n| Run                       |         |        |\n| Share                     |         |        |\n| Export                    |         |        |\n| Delete                    |         |        |\n\n## Node editing restrictions with unshared credentials\n\nSharing in n8n works on the principle of least privilege. This means that if a user shares a workflow with you, but they don't share their credentials, you can't edit the nodes within the workflow that use those credentials. You can view and run the workflow, and edit nodes that don't use unshared credentials.\n\nRefer to [Credential sharing](../../credentials/credential-sharing/) for guidance on sharing credentials.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Share a workflow",
+      "id": "share-a-workflow"
+    },
+    {
+      "level": "h2",
+      "text": "View shared workflows",
+      "id": "view-shared-workflows"
+    },
+    {
+      "level": "h2",
+      "text": "Workflow roles and permissions",
+      "id": "workflow-roles-and-permissions"
+    },
+    {
+      "level": "h3",
+      "text": "Permissions",
+      "id": "permissions"
+    },
+    {
+      "level": "h2",
+      "text": "Node editing restrictions with unshared credentials",
+      "id": "node-editing-restrictions-with-unshared-credentials"
+    }
+  ],
+  "url": "llms-txt#workflow-sharing",
+  "links": []
+}

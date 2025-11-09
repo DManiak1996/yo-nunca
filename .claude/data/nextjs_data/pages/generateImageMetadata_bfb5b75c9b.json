@@ -1,0 +1,100 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/generate-image-metadata",
+  "title": "generateImageMetadata",
+  "content": "You can use generateImageMetadata to generate different versions of one image or return multiple images for one route segment. This is useful for when you want to avoid hard-coding metadata values, such as for icons.\n\ngenerateImageMetadata function accepts the following parameters:\n\nAn object containing the dynamic route parameters object from the root segment down to the segment generateImageMetadata is called from.\n\nThe generateImageMetadata function should return an array of objects containing the image's metadata such as alt and size. In addition, each item must include an id value which will be passed as a promise to the props of the image generating function.\n\nWhen using generateImageMetadata, the default export image generation function receives the following props:\n\nA promise that resolves to the id value from one of the items returned by generateImageMetadata. The id will be a string or number depending on what was returned from generateImageMetadata.\n\nA promise that resolves to an object containing the dynamic route parameters from the root segment down to the segment the image is colocated in.\n\nThis example uses the params object and external data to generate multiple Open Graph images for a route segment.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "generateImageMetadata",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "params (optional)",
+      "id": "params-optional"
+    },
+    {
+      "level": "h2",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Image generation function props",
+      "id": "image-generation-function-props"
+    },
+    {
+      "level": "h4",
+      "text": "id",
+      "id": "id"
+    },
+    {
+      "level": "h4",
+      "text": "params (optional)",
+      "id": "params-optional-1"
+    },
+    {
+      "level": "h3",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h4",
+      "text": "Using external data",
+      "id": "using-external-data"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "Metadata Files",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export function generateImageMetadata({\n  params,\n}: {\n  params: { slug: string }\n}) {\n  // ...\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import { ImageResponse } from 'next/og'\n \nexport function generateImageMetadata() {\n  return [\n    {\n      contentType: 'image/png',\n      size: { width: 48, height: 48 },\n      id: 'small',\n    },\n    {\n      contentType: 'image/png',\n      size: { width: 72, height: 72 },\n      id: 'medium',\n    },\n  ]\n}\n \nexport default async function Icon({ id }: { id: Promise<string | number> }) {\n  const iconId = await id\n  return new ImageResponse(\n    (\n      <div\n        style={{\n          width: '100%',\n          height: '100%',\n          display: 'flex',\n          alignItems: 'center',\n          justifyContent: 'center',\n          fontSize: 88,\n          background: '#000',\n          color: '#fafafa',\n        }}\n      >\n        Icon {iconId}\n      </div>\n    )\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "export default async function Icon({ id }: { id: Promise<string | number> }) {\n  const iconId = await id\n  // Use iconId to generate the image\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export default async function Icon({\n  params,\n}: {\n  params: Promise<{ slug: string }>\n}) {\n  const { slug } = await params\n  // Use slug to generate the image\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { ImageResponse } from 'next/og'\nimport { getCaptionForImage, getOGImages } from '@/app/utils/images'\n \nexport async function generateImageMetadata({\n  params,\n}: {\n  params: { id: string }\n}) {\n  const images = await getOGImages(params.id)\n \n  return images.map((image, idx) => ({\n    id: idx,\n    size: { width: 1200, height: 600 },\n    alt: image.text,\n    contentType: 'image/png',\n  }))\n}\n \nexport default async function Image({\n  params,\n  id,\n}: {\n  params: Promise<{ id: string }>\n  id: Promise<number>\n}) {\n  const productId = (await params).id\n  const imageId = await id\n  const text = await getCaptionForImage(productId, imageId)\n \n  return new ImageResponse(\n    (\n      <div\n        style={\n          {\n            // ...\n          }\n        }\n      >\n        {text}\n      </div>\n    )\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-image-metadata",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata",
+    "https://nextjs.org/docs/app/api-reference/functions/forbidden",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-metadata"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Help Scout Trigger node",
+  "content": "[Help Scout](https://www.helpscout.com/) is a help desk software that provides an email-based customer support platform, knowledge base tool, and an embeddable search/contact widget for customer service professionals.\n\nYou can find authentication information for this node [here](../../credentials/helpscout/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Help Scout Trigger integrations](https://n8n.io/integrations/helpscout-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#help-scout-trigger-node",
+  "links": []
+}

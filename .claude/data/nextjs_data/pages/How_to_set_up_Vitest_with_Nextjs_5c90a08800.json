@@ -1,0 +1,75 @@
+{
+  "url": "https://nextjs.org/docs/app/guides/testing/vitest",
+  "title": "How to set up Vitest with Next.js",
+  "content": "Vitest and React Testing Library are frequently used together for Unit Testing. This guide will show you how to setup Vitest with Next.js and write your first tests.\n\nGood to know: Since async Server Components are new to the React ecosystem, Vitest currently does not support them. While you can still run unit tests for synchronous Server and Client Components, we recommend using E2E tests for async components.\n\nYou can use create-next-app with the Next.js with-vitest example to quickly get started:\n\nTo manually set up Vitest, install vitest and the following packages as dev dependencies:\n\nCreate a vitest.config.mts|js file in the root of your project, and add the following options:\n\nFor more information on configuring Vitest, please refer to the Vitest Configuration docs.\n\nThen, add a test script to your package.json:\n\nWhen you run npm run test, Vitest will watch for changes in your project by default.\n\nCheck that everything is working by creating a test to check if the <Page /> component successfully renders a heading:\n\nGood to know: The example above uses the common __tests__ convention, but test files can also be colocated inside the app router.\n\nThen, run the following command to run your tests:\n\nYou may find these resources helpful:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to set up Vitest with Next.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Quickstart",
+      "id": "quickstart"
+    },
+    {
+      "level": "h2",
+      "text": "Manual Setup",
+      "id": "manual-setup"
+    },
+    {
+      "level": "h2",
+      "text": "Creating your first Vitest Unit Test",
+      "id": "creating-your-first-vitest-unit-test"
+    },
+    {
+      "level": "h2",
+      "text": "Running your tests",
+      "id": "running-your-tests"
+    },
+    {
+      "level": "h2",
+      "text": "Additional Resources",
+      "id": "additional-resources"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "npx create-next-app@latest --example with-vitest with-vitest-app",
+      "language": "unknown"
+    },
+    {
+      "code": "# Using TypeScript\nnpm install -D vitest @vitejs/plugin-react jsdom @testing-library/react @testing-library/dom vite-tsconfig-paths\n# Using JavaScript\nnpm install -D vitest @vitejs/plugin-react jsdom @testing-library/react @testing-library/dom",
+      "language": "unknown"
+    },
+    {
+      "code": "import { defineConfig } from 'vitest/config'\nimport react from '@vitejs/plugin-react'\nimport tsconfigPaths from 'vite-tsconfig-paths'\n \nexport default defineConfig({\n  plugins: [tsconfigPaths(), react()],\n  test: {\n    environment: 'jsdom',\n  },\n})",
+      "language": "python"
+    },
+    {
+      "code": "{\n  \"scripts\": {\n    \"dev\": \"next dev\",\n    \"build\": \"next build\",\n    \"start\": \"next start\",\n    \"test\": \"vitest\"\n  }\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Page() {\n  return (\n    <div>\n      <h1>Home</h1>\n      <Link href=\"/about\">About</Link>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { expect, test } from 'vitest'\nimport { render, screen } from '@testing-library/react'\nimport Page from '../app/page'\n \ntest('Page', () => {\n  render(<Page />)\n  expect(screen.getByRole('heading', { level: 1, name: 'Home' })).toBeDefined()\n})",
+      "language": "python"
+    },
+    {
+      "code": "npm run test\n# or\nyarn test\n# or\npnpm test\n# or\nbun test",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/guides",
+    "https://nextjs.org/docs/app/guides/testing",
+    "https://nextjs.org/docs/app/guides/testing/vitest",
+    "https://nextjs.org/docs/app/guides/testing/playwright",
+    "https://nextjs.org/docs/app/guides/third-party-libraries"
+  ]
+}

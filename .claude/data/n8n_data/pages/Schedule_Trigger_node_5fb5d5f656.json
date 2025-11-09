@@ -1,0 +1,59 @@
+{
+  "title": "Schedule Trigger node",
+  "content": "Use the Schedule Trigger node to run workflows at fixed intervals and times. This works in a similar way to the Cron software utility in Unix-like systems.\n\nYou must activate the workflow\n\nIf a workflow uses the Schedule node as a trigger, make sure that you save and activate the workflow.\n\nThe node relies on the timezone setting. n8n uses either:\n\n1. The workflow timezone, if set. Refer to [Workflow settings](../../../../workflows/settings/) for more information.\n1. The n8n instance timezone, if the workflow timezone isn't set. The default is `America/New York` for self-hosted instances. n8n Cloud tries to detect the instance owner's timezone when they sign up, falling back to GMT as the default. Self-hosted users can change the instance setting using [Environment variables](../../../../hosting/configuration/environment-variables/timezone-localization/). Cloud admins can change the instance timezone in the [Admin dashboard](../../../../manage-cloud/set-cloud-timezone/).\n\nAdd **Trigger Rules** to determine when the trigger should run.\n\nUse the **Trigger Interval** to select the time interval unit of measure to schedule the trigger for. All other parameters depend on the interval you select. Choose from:\n\n- [Seconds trigger interval](#seconds-trigger-interval)\n- [Minutes trigger interval](#minutes-trigger-interval)\n- [Hours trigger interval](#hours-trigger-interval)\n- [Days trigger interval](#days-trigger-interval)\n- [Weeks trigger interval](#weeks-trigger-interval)\n- [Months trigger interval](#months-trigger-interval)\n- [Custom (Cron) interval](#custom-cron-interval)\n\nYou can add multiple **Trigger Rules** to run the node on different schedules.\n\nRefer to the sections below for more detail on configuring each **Trigger Interval**. Refer to [Templates and examples](#templates-and-examples) for further examples.\n\n### Seconds trigger interval\n\n- **Seconds Between Triggers**: Enter the number of seconds between each workflow trigger. For example, if you enter `30` here, the trigger will run every 30 seconds.\n\n### Minutes trigger interval\n\n- **Minutes Between Triggers**: Enter the number of minutes between each workflow trigger. For example, if you enter `5` here, the trigger will run every 5 minutes.\n\n### Hours trigger interval\n\n- **Hours Between Triggers**: Enter the number of hours between each workflow trigger.\n- **Trigger at Minute**: Enter the minute past the hour to trigger the node when it runs, from `0` to `59`.\n\nFor example, if you enter `6` **Hours Between Triggers** and `30` **Trigger at Minute**, the node will run every six hours at 30 minutes past the hour.\n\n### Days trigger interval\n\n- **Days Between Triggers**: Enter the number of days between each workflow trigger.\n- **Trigger at Hour**: Select the hour of the day to trigger the node.\n- **Trigger at Minute**: Enter the minute past the hour to trigger the node when it runs, from `0` to `59`.\n\nFor example, if you enter `2` **Days Between Triggers**, **9am** for **Trigger at Hour**, and `15` **Trigger at Minute**, the node will run every two days at 9:15am.\n\n### Weeks trigger interval\n\n- **Weeks Between Triggers**: Enter the number of weeks between each workflow trigger.\n- **Trigger on Weekdays**: Select the day(s) of the week you want to trigger the node.\n- **Trigger at Hour**: Select the hour of the day to trigger the node.\n- **Trigger at Minute**: Enter the minute past the hour to trigger the node when it runs, from `0` to `59`.\n\nFor example, if you enter `2` **Weeks Between Triggers**, **Monday** for **Trigger on Weekdays**, **3pm** for **Trigger at Hour**, and `30` **Trigger at Minute**, the node will run every two weeks on Monday at 3:30 PM.\n\n### Months trigger interval\n\n- **Months Between Triggers**: Enter the number of months between each workflow trigger.\n- **Trigger at Day of Month**: Enter the day of the month the day should trigger at, from `1` to `31`. If a month doesn't have this day, the node won't trigger. For example, if you enter `30` here, the node won't trigger in February.\n- **Trigger at Hour**: Select the hour of the day to trigger the node.\n- **Trigger at Minute**: Enter the minute past the hour to trigger the node when it runs, from `0` to `59`.\n\nFor example, if you enter `3` **Months Between Triggers**, `28` **Trigger at Day of Month**, **9am** for **Trigger at Hour**, and `0` **Trigger at Minute**, the node will run each quarter on the 28th day of the month at 9:00 AM.\n\n### Custom (Cron) interval\n\nEnter a custom cron **Expression** to set the schedule for the trigger.\n\nTo generate a Cron expression, you can use [crontab guru](https://crontab.guru). Paste the Cron expression that you generated using crontab guru in the **Expression** field in n8n.\n\n| Type                | Cron Expression    | Description                                                  |\n| ------------------- | ------------------ | ------------------------------------------------------------ |\n| Every X Seconds     | `*/10 * * * * *`   | Every 10 seconds.                                            |\n| Every X Minutes     | `*/5 * * * *`      | Every 5 minutes.                                             |\n| Hourly              | `0 * * * *`        | Every hour on the hour.                                      |\n| Daily               | `0 6 * * *`        | At 6:00 AM every day.                                        |\n| Weekly              | `0 12 * * 1`       | At noon every Monday.                                        |\n| Monthly             | `0 0 1 * *`        | At midnight on the 1st of every month.                       |\n| Every X Days        | `0 0 */3 * *`      | At midnight every 3rd day.                                   |\n| Only Weekdays       | `0 9 * * 1-5`      | At 9:00 AM Monday through Friday.                            |\n| Custom Hourly Range | `0 9-17 * * *`     | Every hour from 9:00 AM to 5:00 PM every day.                |\n| Quarterly           | `0 0 1 1,4,7,10 *` | At midnight on the 1st of January, April, July, and October. |\n\nUsing variables in the Cron expression\n\nWhile variables can be used in the scheduled trigger, their values only get evaluated when the workflow is activated. If you alter a variable's value in the settings after a workflow is activated, the changes won't alter the cron schedule. To re-evaluate the variable, set the workflow to **Inactive** and then back to **Active** again\n\n#### Why there are six asterisks in the Cron expression\n\nThe sixth asterisk in the Cron expression represents seconds. Setting this is optional. The node will execute even if you don't set the value for seconds.\n\n| (\\*)     | \\*     | \\*   | \\*           | \\*    | \\*                   |\n| -------- | ------ | ---- | ------------ | ----- | -------------------- |\n| (second) | minute | hour | day of month | month | day of week(Sun-Sat) |\n\n## Templates and examples\n\n[Browse Schedule Trigger integration templates](https://n8n.io/integrations/schedule-trigger/), or [search all templates](https://n8n.io/workflows/)\n\nFor common questions or issues and suggested solutions, refer to [Common Issues](common-issues/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Seconds trigger interval",
+      "id": "seconds-trigger-interval"
+    },
+    {
+      "level": "h3",
+      "text": "Minutes trigger interval",
+      "id": "minutes-trigger-interval"
+    },
+    {
+      "level": "h3",
+      "text": "Hours trigger interval",
+      "id": "hours-trigger-interval"
+    },
+    {
+      "level": "h3",
+      "text": "Days trigger interval",
+      "id": "days-trigger-interval"
+    },
+    {
+      "level": "h3",
+      "text": "Weeks trigger interval",
+      "id": "weeks-trigger-interval"
+    },
+    {
+      "level": "h3",
+      "text": "Months trigger interval",
+      "id": "months-trigger-interval"
+    },
+    {
+      "level": "h3",
+      "text": "Custom (Cron) interval",
+      "id": "custom-(cron)-interval"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    }
+  ],
+  "url": "llms-txt#schedule-trigger-node",
+  "links": []
+}

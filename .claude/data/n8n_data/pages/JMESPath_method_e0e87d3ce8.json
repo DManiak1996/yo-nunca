@@ -1,0 +1,8 @@
+{
+  "title": "JMESPath method",
+  "content": "This is an n8n-provided method for working with the [JMESPath](../../cookbook/jmespath/) library.\n\nYou can use Python in the Code node. It isn't available in expressions.\n\n| Method        | Description                                       | Available in Code node? |\n| ------------- | ------------------------------------------------- | ----------------------- |\n| `$jmespath()` | Perform a search on a JSON object using JMESPath. |                         |\n\n| Method        | Description                                       |\n| ------------- | ------------------------------------------------- |\n| `_jmespath()` | Perform a search on a JSON object using JMESPath. |",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#jmespath-method",
+  "links": []
+}

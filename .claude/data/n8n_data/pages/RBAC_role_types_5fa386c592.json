@@ -1,0 +1,24 @@
+{
+  "title": "RBAC role types",
+  "content": "- The Project Editor role is available on Pro Cloud and Self-hosted Enterprise plans.\n- The Project Viewer role is only available on Self-hosted Enterprise and Cloud Enterprise plans.\n\nWithin projects, there are three user roles: Admin, Editor, and Viewer. These roles control what the user can do in a project. A user can have different roles within different projects.\n\nA Project Admin role has the highest level of permissions. Project admins can:\n\n- Manage project settings: Change name, delete project.\n- Manage project members: Invite members and remove members, change members' roles.\n- View, create, update, and delete any workflows, credentials, or executions within a project.\n\nA Project Editor can view, create, update, and delete any workflows, credentials, or executions within a project.\n\nA Project Viewer is effectively a `read-only` role with access to all workflows, credentials, and executions within a project.\n\nViewers aren't able to manually execute any workflows that exist in a project.\n\nRole types and account types\n\nRole types and [account types](../../account-types/) are different things. Every account has one type. The account can have different role types for different [projects](../projects/).\n\n| Permission                      | Admin | Editor | Viewer |\n| ------------------------------- | ----- | ------ | ------ |\n| View workflows in the project   |       |        |        |\n| View credentials in the project |       |        |        |\n| View executions                 |       |        |        |\n| Edit credentials and workflows  |       |        |        |\n| Add workflows and credentials   |       |        |        |\n| Execute workflows               |       |        |        |\n| Manage members                  |       |        |        |\n| Modify the project              |       |        |        |\n\n[Variables](../../../code/variables/) and [tags](../../../workflows/tags/) aren't affected by RBAC: they're global across the n8n instance.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Project Admin",
+      "id": "project-admin"
+    },
+    {
+      "level": "h2",
+      "text": "Project Editor",
+      "id": "project-editor"
+    },
+    {
+      "level": "h2",
+      "text": "Project Viewer",
+      "id": "project-viewer"
+    }
+  ],
+  "url": "llms-txt#rbac-role-types",
+  "links": []
+}

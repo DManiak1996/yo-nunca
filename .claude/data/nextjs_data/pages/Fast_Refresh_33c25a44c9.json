@@ -1,0 +1,58 @@
+{
+  "url": "https://nextjs.org/docs/architecture/fast-refresh",
+  "title": "Fast Refresh",
+  "content": "Fast refresh is a React feature integrated into Next.js that allows you to live reload the browser page while maintaining temporary client-side state when you save changes to a file. It's enabled by default in all Next.js applications on 9.4 or newer. With Fast Refresh enabled, most edits should be visible within a second.\n\nIf you make a syntax error during development, you can fix it and save the file again. The error will disappear automatically, so you won't need to reload the app. You will not lose component state.\n\nIf you make a mistake that leads to a runtime error inside your component, you'll be greeted with a contextual overlay. Fixing the error will automatically dismiss the overlay, without reloading the app.\n\nComponent state will be retained if the error did not occur during rendering. If the error did occur during rendering, React will remount your application using the updated code.\n\nIf you have error boundaries in your app (which is a good idea for graceful failures in production), they will retry rendering on the next edit after a rendering error. This means having an error boundary can prevent you from always getting reset to the root app state. However, keep in mind that error boundaries shouldn't be too granular. They are used by React in production, and should always be designed intentionally.\n\nFast Refresh tries to preserve local React state in the component you're editing, but only if it's safe to do so. Here's a few reasons why you might see local state being reset on every edit to a file:\n\nAs more of your codebase moves to function components and Hooks, you can expect state to be preserved in more cases.\n\nWhen possible, Fast Refresh attempts to preserve the state of your component between edits. In particular, useState and useRef preserve their previous values as long as you don't change their arguments or the order of the Hook calls.\n\nHooks with dependencies—such as useEffect, useMemo, and useCallback—will always update during Fast Refresh. Their list of dependencies will be ignored while Fast Refresh is happening.\n\nFor example, when you edit useMemo(() => x * 2, [x]) to useMemo(() => x * 10, [x]), it will re-run even though x (the dependency) has not changed. If React didn't do that, your edit wouldn't reflect on the screen!\n\nSometimes, this can lead to unexpected results. For example, even a useEffect with an empty array of dependencies would still re-run once during Fast Refresh.\n\nHowever, writing code resilient to occasional re-running of useEffect is a good practice even without Fast Refresh. It will make it easier for you to introduce new dependencies to it later on and it's enforced by React Strict Mode, which we highly recommend enabling.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Fast Refresh",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "How It Works",
+      "id": "how-it-works"
+    },
+    {
+      "level": "h2",
+      "text": "Error Resilience",
+      "id": "error-resilience"
+    },
+    {
+      "level": "h3",
+      "text": "Syntax Errors",
+      "id": "syntax-errors"
+    },
+    {
+      "level": "h3",
+      "text": "Runtime Errors",
+      "id": "runtime-errors"
+    },
+    {
+      "level": "h2",
+      "text": "Limitations",
+      "id": "limitations"
+    },
+    {
+      "level": "h2",
+      "text": "Tips",
+      "id": "tips"
+    },
+    {
+      "level": "h2",
+      "text": "Fast Refresh and Hooks",
+      "id": "fast-refresh-and-hooks"
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/architecture",
+    "https://nextjs.org/docs/architecture/fast-refresh",
+    "https://nextjs.org/docs/pages/guides/upgrading/codemods",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/reactStrictMode",
+    "https://nextjs.org/docs/architecture/accessibility",
+    "https://nextjs.org/docs/architecture/nextjs-compiler"
+  ]
+}

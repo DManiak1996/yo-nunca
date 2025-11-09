@@ -1,0 +1,24 @@
+{
+  "title": "Log streaming",
+  "content": "Log Streaming is available on all Enterprise plans.\n\nLog streaming allows you to send events from n8n to your own logging tools. This allows you to manage your n8n monitoring in your own alerting and logging processes.\n\n## Set up log streaming\n\nTo use log streaming, you have to add a streaming destination.\n\n1. Navigate to **Settings** > **Log Streaming**.\n1. Select **Add new destination**.\n1. Choose your destination type. n8n opens the **New Event Destination** modal.\n1. In the **New Event Destination** modal, enter the configuration information for your event destination. These depend on the type of destination you're using.\n1. Select **Events** to choose which events to stream.\n1. Select **Save**.\n\nIf you self-host n8n, you can configure additional log streaming behavior using [Environment variables](../hosting/configuration/environment-variables/logs/#log-streaming).\n\nThe following events are available. You can choose which events to stream in **Settings** > **Log Streaming** > **Events**.\n\n- Workflow\n  - Started\n  - Success\n  - Failed\n- Node executions\n  - Started\n  - Finished\n- Audit\n  - User signed up\n  - User updated\n  - User deleted\n  - User invited\n  - User invitation accepted\n  - User re-invited\n  - User email failed\n  - User reset requested\n  - User reset\n  - User credentials created\n  - User credentials shared\n  - User credentials updated\n  - User credentials deleted\n  - User API created\n  - User API deleted\n  - Package installed\n  - Package updated\n  - Package deleted\n  - Workflow created\n  - Workflow deleted\n  - Workflow updated\n- AI node logs\n  - Memory get messages\n  - Memory added message\n  - Output parser get instructions\n  - Output parser parsed\n  - Retriever get relevant documents\n  - Embeddings embedded document\n  - Embeddings embedded query\n  - Document processed\n  - Text splitter split\n  - Tool called\n  - Vector store searched\n  - LLM generated\n  - Vector store populated\n- Runner\n  - Task requested\n  - Response received\n- Queue\n  - Job enqueued\n  - Job dequeued\n  - Job completed\n  - Job failed\n  - Job stalled\n\nn8n supports three destination types:\n\n- A syslog server\n- A generic webhook\n- A Sentry client",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Set up log streaming",
+      "id": "set-up-log-streaming"
+    },
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Destinations",
+      "id": "destinations"
+    }
+  ],
+  "url": "llms-txt#log-streaming",
+  "links": []
+}

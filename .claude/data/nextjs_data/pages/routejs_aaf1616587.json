@@ -1,0 +1,232 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+  "title": "route.js",
+  "content": "Route Handlers allow you to create custom request handlers for a given route using the Web Request and Response APIs.\n\nA route file allows you to create custom request handlers for a given route. The following HTTP methods are supported: GET, POST, PUT, PATCH, DELETE, HEAD, and OPTIONS.\n\nThe request object is a NextRequest object, which is an extension of the Web Request API. NextRequest gives you further control over the incoming request, including easily accessing cookies and an extended, parsed, URL object nextUrl.\n\nYou can type the Route Handler context using RouteContext to get strongly typed params from a route literal. RouteContext is a globally available helper.\n\nYou can read or set cookies with cookies from next/headers.\n\nAlternatively, you can return a new Response using the Set-Cookie header.\n\nYou can also use the underlying Web APIs to read cookies from the request (NextRequest):\n\nYou can read headers with headers from next/headers.\n\nThis headers instance is read-only. To set headers, you need to return a new Response with new headers.\n\nYou can also use the underlying Web APIs to read headers from the request (NextRequest):\n\nYou can revalidate cached data using the revalidate route segment config option.\n\nRoute Handlers can use Dynamic Segments to create request handlers from dynamic data.\n\nThe request object passed to the Route Handler is a NextRequest instance, which includes some additional convenience methods, such as those for more easily handling query parameters.\n\nStreaming is commonly used in combination with Large Language Models (LLMs), such as OpenAI, for AI-generated content. Learn more about the AI SDK.\n\nThese abstractions use the Web APIs to create a stream. You can also use the underlying Web APIs directly.\n\nYou can read the Request body using the standard Web API methods:\n\nYou can read the FormData using the request.formData() function:\n\nSince formData data are all strings, you may want to use zod-form-data to validate the request and retrieve data in the format you prefer (e.g. number).\n\nYou can set CORS headers for a specific Route Handler using the standard Web API methods:\n\nYou can use a Route Handler to receive webhooks from third-party services:\n\nNotably, unlike API Routes with the Pages Router, you do not need to use bodyParser to use any additional configuration.\n\nYou can use Route Handlers to return non-UI content. Note that sitemap.xml, robots.txt, app icons, and open graph images all have built-in support.\n\nRoute Handlers use the same route segment configuration as pages and layouts.\n\nSee the API reference for more details.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "route.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "HTTP Methods",
+      "id": "http-methods"
+    },
+    {
+      "level": "h3",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "request (optional)",
+      "id": "request-optional"
+    },
+    {
+      "level": "h4",
+      "text": "context (optional)",
+      "id": "context-optional"
+    },
+    {
+      "level": "h3",
+      "text": "Route Context Helper",
+      "id": "route-context-helper"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Cookies",
+      "id": "cookies"
+    },
+    {
+      "level": "h3",
+      "text": "Headers",
+      "id": "headers"
+    },
+    {
+      "level": "h3",
+      "text": "Revalidating Cached Data",
+      "id": "revalidating-cached-data"
+    },
+    {
+      "level": "h3",
+      "text": "Redirects",
+      "id": "redirects"
+    },
+    {
+      "level": "h3",
+      "text": "Dynamic Route Segments",
+      "id": "dynamic-route-segments"
+    },
+    {
+      "level": "h3",
+      "text": "URL Query Parameters",
+      "id": "url-query-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Streaming",
+      "id": "streaming"
+    },
+    {
+      "level": "h3",
+      "text": "Request Body",
+      "id": "request-body"
+    },
+    {
+      "level": "h3",
+      "text": "Request Body FormData",
+      "id": "request-body-formdata"
+    },
+    {
+      "level": "h3",
+      "text": "CORS",
+      "id": "cors"
+    },
+    {
+      "level": "h3",
+      "text": "Webhooks",
+      "id": "webhooks"
+    },
+    {
+      "level": "h3",
+      "text": "Non-UI Responses",
+      "id": "non-ui-responses"
+    },
+    {
+      "level": "h3",
+      "text": "Segment Config Options",
+      "id": "segment-config-options"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export async function GET() {\n  return Response.json({ message: 'Hello World' })\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export async function GET(request: Request) {}\n \nexport async function HEAD(request: Request) {}\n \nexport async function POST(request: Request) {}\n \nexport async function PUT(request: Request) {}\n \nexport async function DELETE(request: Request) {}\n \nexport async function PATCH(request: Request) {}\n \n// If `OPTIONS` is not defined, Next.js will automatically implement `OPTIONS` and set the appropriate Response `Allow` header depending on the other methods defined in the Route Handler.\nexport async function OPTIONS(request: Request) {}",
+      "language": "unknown"
+    },
+    {
+      "code": "import type { NextRequest } from 'next/server'\n \nexport async function GET(request: NextRequest) {\n  const url = request.nextUrl\n}",
+      "language": "python"
+    },
+    {
+      "code": "export async function GET(\n  request: Request,\n  { params }: { params: Promise<{ team: string }> }\n) {\n  const { team } = await params\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import type { NextRequest } from 'next/server'\n \nexport async function GET(_req: NextRequest, ctx: RouteContext<'/users/[id]'>) {\n  const { id } = await ctx.params\n  return Response.json({ id })\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cookies } from 'next/headers'\n \nexport async function GET(request: NextRequest) {\n  const cookieStore = await cookies()\n \n  const a = cookieStore.get('a')\n  const b = cookieStore.set('b', '1')\n  const c = cookieStore.delete('c')\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cookies } from 'next/headers'\n \nexport async function GET(request: Request) {\n  const cookieStore = await cookies()\n  const token = cookieStore.get('token')\n \n  return new Response('Hello, Next.js!', {\n    status: 200,\n    headers: { 'Set-Cookie': `token=${token.value}` },\n  })\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { type NextRequest } from 'next/server'\n \nexport async function GET(request: NextRequest) {\n  const token = request.cookies.get('token')\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { headers } from 'next/headers'\nimport type { NextRequest } from 'next/server'\n \nexport async function GET(request: NextRequest) {\n  const headersList = await headers()\n  const referer = headersList.get('referer')\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { headers } from 'next/headers'\n \nexport async function GET(request: Request) {\n  const headersList = await headers()\n  const referer = headersList.get('referer')\n \n  return new Response('Hello, Next.js!', {\n    status: 200,\n    headers: { referer: referer },\n  })\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { type NextRequest } from 'next/server'\n \nexport async function GET(request: NextRequest) {\n  const requestHeaders = new Headers(request.headers)\n}",
+      "language": "python"
+    },
+    {
+      "code": "export const revalidate = 60\n \nexport async function GET() {\n  const data = await fetch('https://api.vercel.app/blog')\n  const posts = await data.json()\n \n  return Response.json(posts)\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { redirect } from 'next/navigation'\n \nexport async function GET(request: Request) {\n  redirect('https://nextjs.org/')\n}",
+      "language": "python"
+    },
+    {
+      "code": "export async function GET(\n  request: Request,\n  { params }: { params: Promise<{ slug: string }> }\n) {\n  const { slug } = await params // 'a', 'b', or 'c'\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { type NextRequest } from 'next/server'\n \nexport function GET(request: NextRequest) {\n  const searchParams = request.nextUrl.searchParams\n  const query = searchParams.get('query')\n  // query is \"hello\" for /api/search?query=hello\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { openai } from '@ai-sdk/openai'\nimport { StreamingTextResponse, streamText } from 'ai'\n \nexport async function POST(req: Request) {\n  const { messages } = await req.json()\n  const result = await streamText({\n    model: openai('gpt-4-turbo'),\n    messages,\n  })\n \n  return new StreamingTextResponse(result.toAIStream())\n}",
+      "language": "python"
+    },
+    {
+      "code": "// https://developer.mozilla.org/docs/Web/API/ReadableStream#convert_async_iterator_to_stream\nfunction iteratorToStream(iterator: any) {\n  return new ReadableStream({\n    async pull(controller) {\n      const { value, done } = await iterator.next()\n \n      if (done) {\n        controller.close()\n      } else {\n        controller.enqueue(value)\n      }\n    },\n  })\n}\n \nfunction sleep(time: number) {\n  return new Promise((resolve) => {\n    setTimeout(resolve, time)\n  })\n}\n \nconst encoder = new TextEncoder()\n \nasync function* makeIterator() {\n  yield encoder.encode('<p>One</p>')\n  await sleep(200)\n  yield encoder.encode('<p>Two</p>')\n  await sleep(200)\n  yield encoder.encode('<p>Three</p>')\n}\n \nexport async function GET() {\n  const iterator = makeIterator()\n  const stream = iteratorToStream(iterator)\n \n  return new Response(stream)\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function POST(request: Request) {\n  const res = await request.json()\n  return Response.json({ res })\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function POST(request: Request) {\n  const formData = await request.formData()\n  const name = formData.get('name')\n  const email = formData.get('email')\n  return Response.json({ name, email })\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function GET(request: Request) {\n  return new Response('Hello, Next.js!', {\n    status: 200,\n    headers: {\n      'Access-Control-Allow-Origin': '*',\n      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',\n      'Access-Control-Allow-Headers': 'Content-Type, Authorization',\n    },\n  })\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export async function POST(request: Request) {\n  try {\n    const text = await request.text()\n    // Process the webhook payload\n  } catch (error) {\n    return new Response(`Webhook error: ${error.message}`, {\n      status: 400,\n    })\n  }\n \n  return new Response('Success!', {\n    status: 200,\n  })\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function GET() {\n  return new Response(\n    `<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<rss version=\"2.0\">\n \n<channel>\n  <title>Next.js Documentation</title>\n  <link>https://nextjs.org/docs</link>\n  <description>The React Framework for the Web</description>\n</channel>\n \n</rss>`,\n    {\n      headers: {\n        'Content-Type': 'text/xml',\n      },\n    }\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export const dynamic = 'auto'\nexport const dynamicParams = true\nexport const revalidate = false\nexport const fetchCache = 'auto'\nexport const runtime = 'nodejs'\nexport const preferredRegion = 'auto'",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/functions/next-request",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes",
+    "https://nextjs.org/docs/app/api-reference/functions/cookies",
+    "https://nextjs.org/docs/app/api-reference/functions/headers",
+    "https://nextjs.org/docs/app/guides/incremental-static-regeneration",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/headers",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config",
+    "https://nextjs.org/docs/app/guides/upgrading/codemods",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/public-folder",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-groups"
+  ]
+}

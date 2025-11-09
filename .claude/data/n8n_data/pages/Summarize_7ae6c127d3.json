@@ -1,0 +1,59 @@
+{
+  "title": "Summarize",
+  "content": "Use the Summarize node to aggregate items together, in a manner similar to Excel pivot tables.\n\n### Fields to Summarize\n\nUse these fields to define how you want to summarize your input data.\n\n- **Aggregation**: Select the aggregation method to use on a given field. Options include:\n  - **Append**: Append\n    - If you select this option, decide whether you want to **Include Empty Values** or not.\n  - **Average**: Calculate the numeric average of your input data.\n  - **Concatenate**: Combine together values in your input data.\n    - If you select this option, decide whether you want to **Include Empty Values** or not.\n    - **Separator**: Select the separator you want to insert between concatenated values.\n  - **Count**: Count the total number of values in your input data.\n  - **Count Unique**: Count the number of unique values in your input data.\n  - **Max**: Find the highest numeric value in your input data.\n  - **Min**: Find the lowest numeric value in your input data.\n  - **Sum**: Add together the numeric values in your input data.\n- **Field**: Enter the name of the field you want to perform the aggregation on.\n\n### Fields to Split By\n\nEnter the name of the input fields that you want to split the summary by (similar to a group by statement). This allows you to get separate summaries based on values in other fields.\n\nFor example, if our input data contains columns for `Sales Rep` and `Deal Amount` and we're performing a **Sum** on the `Deal Amount` field, we could split by `Sales Rep` to get a **Sum** total for each Sales Rep.\n\nTo enter multiple fields to split by, enter a comma-separated list.\n\n### Continue if Field Not Found\n\nBy default, if a **Field to Summarize** isn't in any items, the node throws an error. Use this option to continue and return a single empty item (turned on) instead or keep the default error behavior (turned off).\n\n### Disable Dot Notation\n\nBy default, n8n enables dot notation to reference child fields in the format `parent.child`. Use this option to disable dot notation (turned on) or to continue using dot (turned off).\n\nSelect the format for your output format. This option is recommended if you're using **Fields to Split By**\n\n- **Each Split in a Separate Item**: Use this option to generate a separate output item for each split out field.\n- **All Splits in a Single Item**: Use this option to generate a single item that lists the split out fields.\n\n## Ignore items without valid fields to group by\n\nSet whether to ignore input items that don't contain the **Fields to Split By** (turned on) or not (turned off).\n\n## Templates and examples\n\n**Scrape and summarize webpages with AI**\n\n[View template details](https://n8n.io/workflows/1951-scrape-and-summarize-webpages-with-ai/)\n\n**⚡AI-Powered YouTube Video Summarization & Analysis**\n\n[View template details](https://n8n.io/workflows/2679-ai-powered-youtube-video-summarization-and-analysis/)\n\n**🤖 AI Powered RAG Chatbot for Your Docs + Google Drive + Gemini + Qdrant**\n\n[View template details](https://n8n.io/workflows/2982-ai-powered-rag-chatbot-for-your-docs-google-drive-gemini-qdrant/)\n\n[Browse Summarize integration templates](https://n8n.io/integrations/summarize/), or [search all templates](https://n8n.io/workflows/)\n\nLearn more about [data structure and data flow](../../../../data/) in n8n workflows.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Fields to Summarize",
+      "id": "fields-to-summarize"
+    },
+    {
+      "level": "h3",
+      "text": "Fields to Split By",
+      "id": "fields-to-split-by"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h3",
+      "text": "Continue if Field Not Found",
+      "id": "continue-if-field-not-found"
+    },
+    {
+      "level": "h3",
+      "text": "Disable Dot Notation",
+      "id": "disable-dot-notation"
+    },
+    {
+      "level": "h3",
+      "text": "Output Format",
+      "id": "output-format"
+    },
+    {
+      "level": "h2",
+      "text": "Ignore items without valid fields to group by",
+      "id": "ignore-items-without-valid-fields-to-group-by"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#summarize",
+  "links": []
+}

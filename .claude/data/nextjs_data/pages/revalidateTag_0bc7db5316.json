@@ -1,0 +1,86 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/revalidateTag",
+  "title": "revalidateTag",
+  "content": "revalidateTag allows you to invalidate cached data on-demand for a specific cache tag.\n\nThis function is ideal for content where a slight delay in updates is acceptable, such as blog posts, product catalogs, or documentation. Users receive stale content while fresh data loads in the background.\n\nrevalidateTag can be called in Server Functions and Route Handlers.\n\nrevalidateTag cannot be called in Client Components or Proxy, as it only works in server environments.\n\nThe revalidation behavior depends on whether you provide the second argument:\n\nGood to know: When using profile=\"max\", revalidateTag marks tagged data as stale, but fresh data is only fetched when pages using that tag are next visited. This means calling revalidateTag will not immediately trigger many revalidations at once. The invalidation only happens when any page using that tag is next visited.\n\nTags must first be assigned to cached data. You can do this in two ways:\n\nGood to know: The single-argument form revalidateTag(tag) is deprecated. It currently works if TypeScript errors are suppressed, but this behavior may be removed in a future version. Update to the two-argument signature.\n\nrevalidateTag does not return a value.\n\nrevalidateTag invalidates data with specific tags across all pages that use those tags, while revalidatePath invalidates specific page or layout paths.\n\nGood to know: These functions serve different purposes and may need to be used together for comprehensive data consistency. For detailed examples and considerations, see relationship with revalidateTag and updateTag for more information.\n\nThe following examples demonstrate how to use revalidateTag in different contexts. In both cases, we're using profile=\"max\" to mark data as stale and use stale-while-revalidate semantics, which is the recommended approach for most use cases.\n\nGood to know: For webhooks or third-party services that need immediate expiration, you can pass { expire: 0 } as the second argument: revalidateTag(tag, { expire: 0 }). This pattern is necessary when external systems call your Route Handlers and require data to expire immediately. For all other cases, it's recommended to use updateTag in Server Actions for immediate updates instead.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "revalidateTag",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Revalidation Behavior",
+      "id": "revalidation-behavior"
+    },
+    {
+      "level": "h2",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Relationship with revalidatePath",
+      "id": "relationship-with-revalidatepath"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Server Action",
+      "id": "server-action"
+    },
+    {
+      "level": "h3",
+      "text": "Route Handler",
+      "id": "route-handler"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "revalidateTag(tag: string, profile: string | { expire?: number }): void;",
+      "language": "unknown"
+    },
+    {
+      "code": "fetch(url, { next: { tags: ['posts'] } })",
+      "language": "unknown"
+    },
+    {
+      "code": "import { cacheTag } from 'next/cache'\n \nasync function getData() {\n  'use cache'\n  cacheTag('posts')\n  // ...\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nimport { revalidateTag } from 'next/cache'\n \nexport default async function submit() {\n  await addPost()\n  revalidateTag('posts', 'max')\n}",
+      "language": "python"
+    },
+    {
+      "code": "import type { NextRequest } from 'next/server'\nimport { revalidateTag } from 'next/cache'\n \nexport async function GET(request: NextRequest) {\n  const tag = request.nextUrl.searchParams.get('tag')\n \n  if (tag) {\n    revalidateTag(tag, 'max')\n    return Response.json({ revalidated: true, now: Date.now() })\n  }\n \n  return Response.json({\n    revalidated: false,\n    now: Date.now(),\n    message: 'Missing tag to revalidate',\n  })\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidateTag",
+    "https://nextjs.org/docs/app/api-reference/functions/updateTag",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheLife",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheTag",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidatePath",
+    "https://nextjs.org/docs/app/api-reference/functions/unauthorized"
+  ]
+}

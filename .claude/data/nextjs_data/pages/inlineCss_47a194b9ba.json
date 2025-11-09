@@ -1,0 +1,46 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/inlineCss",
+  "title": "inlineCss",
+  "content": "Experimental support for inlining CSS in the <head>. When this flag is enabled, all places where we normally generate a <link> tag will instead have a generated <style> tag.\n\nInlining CSS can be beneficial in several scenarios:\n\nFirst-Time Visitors: Since CSS files are render-blocking resources, inlining eliminates the initial download delay that first-time visitors experience, improving page load performance.\n\nPerformance Metrics: By removing the additional network requests for CSS files, inlining can significantly improve key metrics like First Contentful Paint (FCP) and Largest Contentful Paint (LCP).\n\nSlow Connections: For users on slower networks where each request adds considerable latency, inlining CSS can provide a noticeable performance boost by reducing network roundtrips.\n\nAtomic CSS Bundles (e.g., Tailwind): With utility-first frameworks like Tailwind CSS, the size of the styles required for a page is often O(1) relative to the complexity of the design. This makes inlining a compelling choice because the entire set of styles for the current page is lightweight and doesn’t grow with the page size. Inlining Tailwind styles ensures minimal payload and eliminates the need for additional network requests, which can further enhance performance.\n\nWhile inlining CSS offers significant benefits for performance, there are scenarios where it may not be the best choice:\n\nLarge CSS Bundles: If your CSS bundle is too large, inlining it may significantly increase the size of the HTML, resulting in slower Time to First Byte (TTFB) and potentially worse performance for users with slow connections.\n\nDynamic or Page-Specific CSS: For applications with highly dynamic styles or pages that use different sets of CSS, inlining may lead to redundancy and bloat, as the full CSS for all pages may need to be inlined repeatedly.\n\nBrowser Caching: In cases where visitors frequently return to your site, external CSS files allow browsers to cache styles efficiently, reducing data transfer for subsequent visits. Inlining CSS eliminates this benefit.\n\nEvaluate these trade-offs carefully, and consider combining inlining with other strategies, such as critical CSS extraction or a hybrid approach, for the best results tailored to your site's needs.\n\nThis feature is currently experimental and has some known limitations:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "inlineCss",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h2",
+      "text": "Trade-Offs",
+      "id": "trade-offs"
+    },
+    {
+      "level": "h3",
+      "text": "When to Use Inline CSS",
+      "id": "when-to-use-inline-css"
+    },
+    {
+      "level": "h3",
+      "text": "When Not to Use Inline CSS",
+      "id": "when-not-to-use-inline-css"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    inlineCss: true,\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/inlineCss",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/incrementalCacheHandlerPath",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/isolatedDevBuild"
+  ]
+}

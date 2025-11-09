@@ -1,0 +1,8 @@
+{
+  "title": "Server setups",
+  "content": "Self-host with Docker Compose:\n\n- [Digital Ocean](digital-ocean/)\n- [Heroku](heroku/)\n- [Hetzner Cloud](hetzner/)\n\nSelf-host with Google Cloud Run (with access to n8n workflow tools for Google Workspace, e.g. Gmail, Drive):\n\n- [Google Cloud Run](google-cloud-run/)\n\nStarting points for a Kubernetes setup:\n\n- [AWS](aws/)\n- [Azure](azure/)\n- [Google Kubernetes Engine (GKE)](google-kubernetes-engine/)\n\nConfiguration guides to help you get started on other platforms:\n\n- [Docker Compose](docker-compose/)",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#server-setups",
+  "links": []
+}

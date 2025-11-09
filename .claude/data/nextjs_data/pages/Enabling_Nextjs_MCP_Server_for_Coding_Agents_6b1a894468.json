@@ -1,0 +1,116 @@
+{
+  "url": "https://nextjs.org/docs/app/guides/mcp",
+  "title": "Enabling Next.js MCP Server for Coding Agents",
+  "content": "The Model Context Protocol (MCP) is an open standard that allows AI agents and coding assistants to interact with your applications through a standardized interface.\n\nNext.js 16+ includes MCP support that enables coding agents to access your application's internals in real-time. To use this functionality, install the next-devtools-mcp package.\n\nRequirements: Next.js 16 or above\n\nAdd next-devtools-mcp to the .mcp.json file at the root of your project:\n\nThat's it! When you start your development server, next-devtools-mcp will automatically discover and connect to your running Next.js instance.\n\nFor more configuration options, see the next-devtools-mcp repository.\n\nnext-devtools-mcp provides coding agents with a growing set of capabilities:\n\nNote: The Next.js team is actively expanding these capabilities. New tools and features are added regularly to improve the agent development experience.\n\nYour Coding Agent will automatically connect to the running Next.js instance via next-devtools-mcp\n\nOpen your application in the browser to view pages\n\nQuery your agent for insights and diagnostics (see examples below)\n\nThrough next-devtools-mcp, agents can use the following tools:\n\nMCP-compatible Coding Agents can automatically discover and connect to your Next.js development server, providing them with rich context about your project.\n\nAsk your agent about errors in real-time:\n\nGet help with Next.js concepts and migrations:\n\nThe agent will analyze your current version, guide you through automated migrations with codemods, and provide step-by-step instructions for handling breaking changes.\n\nAsk conceptual questions:\n\nThe agent will query the Next.js knowledge base and provide documentation-backed explanations with examples from your codebase.\n\nNext.js 16+ includes a built-in MCP endpoint at /_next/mcp that runs within your development server. The next-devtools-mcp package automatically discovers and communicates with these endpoints, allowing it to:\n\nThis architecture decouples the agent interface from the internal implementation, enabling next-devtools-mcp to work seamlessly across different Next.js projects.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Enabling Next.js MCP Server for Coding Agents",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Getting started",
+      "id": "getting-started"
+    },
+    {
+      "level": "h2",
+      "text": "Capabilities",
+      "id": "capabilities"
+    },
+    {
+      "level": "h3",
+      "text": "Application Runtime Access",
+      "id": "application-runtime-access"
+    },
+    {
+      "level": "h3",
+      "text": "Development Tools",
+      "id": "development-tools"
+    },
+    {
+      "level": "h2",
+      "text": "Development workflow",
+      "id": "development-workflow"
+    },
+    {
+      "level": "h3",
+      "text": "Available tools",
+      "id": "available-tools"
+    },
+    {
+      "level": "h2",
+      "text": "Using with agents",
+      "id": "using-with-agents"
+    },
+    {
+      "level": "h3",
+      "text": "Benefits for agent-assisted development",
+      "id": "benefits-for-agent-assisted-development"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Error detection and diagnosis",
+      "id": "error-detection-and-diagnosis"
+    },
+    {
+      "level": "h3",
+      "text": "Upgrading and best practices",
+      "id": "upgrading-and-best-practices"
+    },
+    {
+      "level": "h2",
+      "text": "How it works",
+      "id": "how-it-works"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "MCP server not connecting",
+      "id": "mcp-server-not-connecting"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "{\n  \"mcpServers\": {\n    \"next-devtools\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"next-devtools-mcp@latest\"]\n    }\n  }\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "npm run dev",
+      "language": "unknown"
+    },
+    {
+      "code": "User: \"What errors are currently in my application?\"",
+      "language": "unknown"
+    },
+    {
+      "code": "> fix errors on the page\n \n⏺ I'll help you fix the errors on the page. Let me first check what errors exist by looking at the\n  current state of the project.\n \n⏺ next-devtools - nextjs_runtime (MCP)(action: \"discover_servers\")\n⏺ next-devtools - nextjs_runtime (MCP)(action: \"call_tool\", toolName: \"get_errors\")\n \n⏺ I found a hydration error on the /about page. The error shows that the server is rendering\n  \"server\" but the client is rendering \"client\", causing a mismatch. Let me create a todo list and fix\n   this issue.\n \n⏺ Perfect! Now let me check for errors on the page.           01:14 PM  claude-sonnet-4-5-20250929\n \n⏺ next-devtools - nextjs_runtime (MCP)(action: \"call_tool\", toolName: \"get_errors\")\n  ⎿ {\n      \"success\": true,\n      \"port\": 3000,\n      \"toolName\": \"get_errors\",\n      \"result\": {\n        \"content\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"# Found errors in 1 browser session(s)\\n\\n## Session: /about\\n\\n**1 error(s)\n     found**\\n\\n### Runtime Errors\\n\\n#### Error 1 (Type: recoverable)\\n\\n**Error**: Hydration failed",
+      "language": "javascript"
+    },
+    {
+      "code": "User: \"Help me upgrade my Next.js app to version 16\"",
+      "language": "unknown"
+    },
+    {
+      "code": "User: \"When should I use 'use client' in App Router?\"",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/guides",
+    "https://nextjs.org/docs/app/guides/mcp",
+    "https://nextjs.org/docs/app/guides/local-development",
+    "https://nextjs.org/docs/app/guides/mdx"
+  ]
+}

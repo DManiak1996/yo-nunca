@@ -1,0 +1,8 @@
+{
+  "title": "TYPE n8n_scaling_mode_queue_jobs_active gauge",
+  "content": "n8n_scaling_mode_queue_jobs_active 0",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#type-n8n_scaling_mode_queue_jobs_active-gauge",
+  "links": []
+}

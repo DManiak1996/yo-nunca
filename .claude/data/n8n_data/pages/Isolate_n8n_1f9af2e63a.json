@@ -1,0 +1,17 @@
+{
+  "title": "Isolate n8n",
+  "content": "By default, a self-hosted n8n instance sends data to n8n's servers. It notifies users about available updates, workflow templates, and diagnostics.\n\nTo prevent your n8n instance from connecting to n8n's servers, set these environment variables to false:\n\nUnset n8n's diagnostics configuration:\n\nRefer to [Environment variables reference](../../environment-variables/deployment/) for more information on these variables.",
+  "code_samples": [
+    {
+      "code": "N8N_DIAGNOSTICS_ENABLED=false\nN8N_VERSION_NOTIFICATIONS_ENABLED=false\nN8N_TEMPLATES_ENABLED=false",
+      "language": "unknown"
+    },
+    {
+      "code": "EXTERNAL_FRONTEND_HOOKS_URLS=\nN8N_DIAGNOSTICS_CONFIG_FRONTEND=\nN8N_DIAGNOSTICS_CONFIG_BACKEND=",
+      "language": "unknown"
+    }
+  ],
+  "headings": [],
+  "url": "llms-txt#isolate-n8n",
+  "links": []
+}

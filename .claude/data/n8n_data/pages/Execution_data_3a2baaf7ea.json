@@ -1,0 +1,29 @@
+{
+  "title": "Execution Data",
+  "content": "Use this node to save metadata for workflow executions. You can then search by this data in the **Executions** list.\n\nYou can retrieve custom execution data during workflow execution using the Code node. Refer to [Custom executions data](../../../../workflows/executions/custom-executions-data/) for more information.\n\nCustom executions data is available on:\n\n- Cloud: Pro, Enterprise\n- Self-Hosted: Enterprise, registered Community\n\n- Save Execution Data for Search\n\nAdd a **Saved Field** for each key/value pair of metadata you'd like to save.\n\nThe Execution Data node has the following restrictions when storing execution metadata:\n\n- `key`: limited to 50 characters\n- `value`: limited to 512 characters\n\nIf either the `key` or `value` exceed the above limitations, n8n truncates to their maximum length and outputs a log entry.\n\n## Templates and examples\n\n**Host Your Own AI Deep Research Agent with n8n, Apify and OpenAI o3**\n\n[View template details](https://n8n.io/workflows/2878-host-your-own-ai-deep-research-agent-with-n8n-apify-and-openai-o3/)\n\n**API Schema Extractor**\n\n[View template details](https://n8n.io/workflows/2658-api-schema-extractor/)\n\n**Realtime Notion Todoist 2-way Sync with Redis**\n\n[View template details](https://n8n.io/workflows/2772-realtime-notion-todoist-2-way-sync-with-redis/)\n\n[Browse Execution Data integration templates](https://n8n.io/integrations/execution-data/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Data to Save",
+      "id": "data-to-save"
+    },
+    {
+      "level": "h2",
+      "text": "Limitations",
+      "id": "limitations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#execution-data",
+  "links": []
+}

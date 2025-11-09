@@ -1,0 +1,8 @@
+{
+  "title": "Built-in methods and variables",
+  "content": "n8n provides built-in methods and variables for working with data and accessing n8n data. This section provides a reference of available methods and variables for use in [expressions](../../../glossary/#expression-n8n), with a short description.\n\nAvailability in the expressions editor and the Code node\n\nSome methods and variables aren't available in the Code node. These aren't in the documentation.\n\nAll data transformation functions are only available in the expressions editor.\n\nThe [Cookbook](../../) contains examples for some common tasks, including some [Code node only](../../cookbook/code-node/) functions.\n\n- [Current node input](/code/builtin/current-node-input/)\n- [Output of other nodes](/code/builtin/output-other-nodes/)\n- [Date and time](/code/builtin/date-time/)\n- [JMESPath](/code/builtin/jmespath/)\n- [HTTP node](/code/builtin/http-node-variables/)\n- [LangChain Code node](/code/builtin/langchain-methods/)\n- [n8n metadata](/code/builtin/n8n-metadata/)\n- [Convenience methods](/code/builtin/convenience/)\n- [Data transformation functions](/code/builtin/data-transformation-functions/)",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#built-in-methods-and-variables",
+  "links": []
+}

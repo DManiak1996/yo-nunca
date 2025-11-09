@@ -1,0 +1,114 @@
+{
+  "url": "https://nextjs.org/docs/app/getting-started/route-handlers",
+  "title": "Route Handlers",
+  "content": "Route Handlers allow you to create custom request handlers for a given route using the Web Request and Response APIs.\n\nGood to know: Route Handlers are only available inside the app directory. They are the equivalent of API Routes inside the pages directory meaning you do not need to use API Routes and Route Handlers together.\n\nRoute Handlers are defined in a route.js|ts file inside the app directory:\n\nRoute Handlers can be nested anywhere inside the app directory, similar to page.js and layout.js. But there cannot be a route.js file at the same route segment level as page.js.\n\nThe following HTTP methods are supported: GET, POST, PUT, PATCH, DELETE, HEAD, and OPTIONS. If an unsupported method is called, Next.js will return a 405 Method Not Allowed response.\n\nIn addition to supporting the native Request and Response APIs, Next.js extends them with NextRequest and NextResponse to provide convenient helpers for advanced use cases.\n\nRoute Handlers are not cached by default. You can, however, opt into caching for GET methods. Other supported HTTP methods are not cached. To cache a GET method, use a route config option such as export const dynamic = 'force-static' in your Route Handler file.\n\nGood to know: Other supported HTTP methods are not cached, even if they are placed alongside a GET method that is cached, in the same file.\n\nWhen using Cache Components, you can use the use cache directive to cache data fetching within your Route Handlers. Route Handlers are dynamic by default, but can be pre-rendered at build time if they don't use runtime or dynamic data.\n\nSee the Cache Components documentation for more details on caching strategies and revalidation.\n\nSpecial Route Handlers like sitemap.ts, opengraph-image.tsx, and icon.tsx, and other metadata files remain static by default unless they use Dynamic APIs or dynamic config options.\n\nYou can consider a route the lowest level routing primitive.\n\nEach route.js or page.js file takes over all HTTP verbs for that route.\n\nRead more about how Route Handlers complement your frontend application, or explore the Route Handlers API Reference.\n\nIn TypeScript, you can type the context parameter for Route Handlers with the globally available RouteContext helper:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Route Handlers",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Route Handlers",
+      "id": "route-handlers"
+    },
+    {
+      "level": "h3",
+      "text": "Convention",
+      "id": "convention"
+    },
+    {
+      "level": "h3",
+      "text": "Supported HTTP Methods",
+      "id": "supported-http-methods"
+    },
+    {
+      "level": "h3",
+      "text": "Extended NextRequest and NextResponse APIs",
+      "id": "extended-nextrequest-and-nextresponse-apis"
+    },
+    {
+      "level": "h3",
+      "text": "Caching",
+      "id": "caching"
+    },
+    {
+      "level": "h4",
+      "text": "With Cache Components",
+      "id": "with-cache-components"
+    },
+    {
+      "level": "h3",
+      "text": "Special Route Handlers",
+      "id": "special-route-handlers"
+    },
+    {
+      "level": "h3",
+      "text": "Route Resolution",
+      "id": "route-resolution"
+    },
+    {
+      "level": "h3",
+      "text": "Route Context Helper",
+      "id": "route-context-helper"
+    },
+    {
+      "level": "h2",
+      "text": "API Reference",
+      "id": "api-reference"
+    },
+    {
+      "level": "h3",
+      "text": "route.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Backend for Frontend",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export async function GET(request: Request) {}",
+      "language": "unknown"
+    },
+    {
+      "code": "export const dynamic = 'force-static'\n \nexport async function GET() {\n  const res = await fetch('https://data.mongodb-api.com/...', {\n    headers: {\n      'Content-Type': 'application/json',\n      'API-Key': process.env.DATA_API_KEY,\n    },\n  })\n  const data = await res.json()\n \n  return Response.json({ data })\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { cacheTag } from 'next/cache'\n \nasync function getPosts() {\n  'use cache'\n  cacheTag('posts')\n \n  const posts = await fetchPosts()\n  return posts\n}\n \nexport async function GET() {\n  const posts = await getPosts()\n  return Response.json(posts)\n}",
+      "language": "python"
+    },
+    {
+      "code": "export default function Page() {\n  return <h1>Hello, Next.js!</h1>\n}\n \n// Conflict\n// `app/route.ts`\nexport async function POST(request: Request) {}",
+      "language": "unknown"
+    },
+    {
+      "code": "import type { NextRequest } from 'next/server'\n \nexport async function GET(_req: NextRequest, ctx: RouteContext<'/users/[id]'>) {\n  const { id } = await ctx.params\n  return Response.json({ id })\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/getting-started",
+    "https://nextjs.org/docs/app/getting-started/route-handlers",
+    "https://nextjs.org/docs/pages/building-your-application/routing/api-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/functions/next-request",
+    "https://nextjs.org/docs/app/api-reference/functions/next-response",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config",
+    "https://nextjs.org/docs/app/getting-started/cache-components",
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata",
+    "https://nextjs.org/docs/app/guides/backend-for-frontend",
+    "https://nextjs.org/docs/app/getting-started/metadata-and-og-images",
+    "https://nextjs.org/docs/app/getting-started/proxy"
+  ]
+}

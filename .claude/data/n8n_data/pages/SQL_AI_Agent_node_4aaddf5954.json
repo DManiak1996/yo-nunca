@@ -1,0 +1,69 @@
+{
+  "title": "SQL AI Agent node",
+  "content": "n8n removed this functionality in February 2025.\n\nThe SQL Agent uses a SQL database as a data source. It can understand natural language questions, convert them into SQL queries, execute the queries, and present the results in a user-friendly format. This agent is valuable for building natural language interfaces to databases.\n\nRefer to [AI Agent](../) for more information on the AI Agent node itself.\n\nConfigure the SQL Agent using the following parameters.\n\nChoose the database to use as a data source for the node. Options include:\n\n- **MySQL**: Select this option to use a MySQL database.\n  - Also select the **Credential for MySQL**.\n- **SQLite**: Select this option to use a SQLite database.\n  - You must add a [Read/Write File From Disk](../../../../core-nodes/n8n-nodes-base.readwritefile/) node before the Agent to read your SQLite file.\n  - Also enter the **Input Binary Field** name of your SQLite file coming from the Read/Write File From Disk node.\n- **Postgres**: Select this option to use a Postgres database.\n  - Also select the **Credential for Postgres**.\n\nPostgres and MySQL Agents\n\nIf you are using [Postgres](../../../../credentials/postgres/) or [MySQL](../../../../credentials/mysql/), this agent doesn't support the credential tunnel options.\n\nSelect how you want the node to construct the prompt (also known as the user's query or input from the chat).\n\n- **Take from previous node automatically**: If you select this option, the node expects an input from a previous node called `chatInput`.\n- **Define below**: If you select this option, provide either static text or an expression for dynamic content to serve as the prompt in the **Prompt (User Message)** field.\n\nRefine the SQL Agent node's behavior using these options:\n\nIf you'd like the node to ignore any tables from the database, enter a comma-separated list of tables you'd like it to ignore.\n\nIf left empty, the agent doesn't ignore any tables.\n\n### Include Sample Rows\n\nEnter the number of sample rows to include in the prompt to the agent. Default is `3`.\n\nSample rows help the agent understand the schema of the database, but they also increase the number of tokens used.\n\nIf you'd only like to include specific tables from the database, enter a comma-separated list of tables to include.\n\nIf left empty, the agent includes all tables.\n\nEnter a message you'd like to send to the agent before the **Prompt** text. This initial message can provide more context and guidance to the agent about what it can and can't do, and how to format the response.\n\nn8n fills this field with an example.\n\nEnter a message you'd like to send to the agent after the **Prompt** text.\n\nAvailable LangChain expressions:\n\n- `{chatHistory}`: A history of messages in this conversation, useful for maintaining context.\n- `{input}`: Contains the user prompt.\n- `{agent_scratchpad}`: Information to remember for the next iteration.\n\nn8n fills this field with an example.\n\nEnter the maximum number of results to return.\n\n## Templates and examples\n\nRefer to the main AI Agent node's [Templates and examples](../#templates-and-examples) section.\n\nFor common questions or issues and suggested solutions, refer to [Common issues](../common-issues/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Data Source",
+      "id": "data-source"
+    },
+    {
+      "level": "h3",
+      "text": "Prompt",
+      "id": "prompt"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h3",
+      "text": "Ignored Tables",
+      "id": "ignored-tables"
+    },
+    {
+      "level": "h3",
+      "text": "Include Sample Rows",
+      "id": "include-sample-rows"
+    },
+    {
+      "level": "h3",
+      "text": "Included Tables",
+      "id": "included-tables"
+    },
+    {
+      "level": "h3",
+      "text": "Prefix Prompt",
+      "id": "prefix-prompt"
+    },
+    {
+      "level": "h3",
+      "text": "Suffix Prompt",
+      "id": "suffix-prompt"
+    },
+    {
+      "level": "h3",
+      "text": "Limit",
+      "id": "limit"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    }
+  ],
+  "url": "llms-txt#sql-ai-agent-node",
+  "links": []
+}

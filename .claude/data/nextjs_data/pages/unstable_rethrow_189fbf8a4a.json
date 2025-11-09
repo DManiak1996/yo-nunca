@@ -1,0 +1,35 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/unstable_rethrow",
+  "title": "unstable_rethrow",
+  "content": "unstable_rethrow can be used to avoid catching internal errors thrown by Next.js when attempting to handle errors thrown in your application code.\n\nFor example, calling the notFound function will throw an internal Next.js error and render the not-found.js component. However, if used inside the try block of a try/catch statement, the error will be caught, preventing not-found.js from rendering:\n\nYou can use unstable_rethrow API to re-throw the internal error and continue with the expected behavior:\n\nThe following Next.js APIs rely on throwing an error which should be rethrown and handled by Next.js itself:\n\nIf a route segment is marked to throw an error unless it's static, a Dynamic API call will also throw an error that should similarly not be caught by the developer. Note that Partial Prerendering (PPR) affects this behavior as well. These APIs are:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "unstable_rethrow",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { notFound } from 'next/navigation'\n \nexport default async function Page() {\n  try {\n    const post = await fetch('https://.../posts/1').then((res) => {\n      if (res.status === 404) notFound()\n      if (!res.ok) throw new Error(res.statusText)\n      return res.json()\n    })\n  } catch (err) {\n    console.error(err)\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { notFound, unstable_rethrow } from 'next/navigation'\n \nexport default async function Page() {\n  try {\n    const post = await fetch('https://.../posts/1').then((res) => {\n      if (res.status === 404) notFound()\n      if (!res.ok) throw new Error(res.statusText)\n      return res.json()\n    })\n  } catch (err) {\n    unstable_rethrow(err)\n    console.error(err)\n  }\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/not-found",
+    "https://nextjs.org/docs/app/api-reference/functions/not-found",
+    "https://nextjs.org/docs/app/guides/redirecting",
+    "https://nextjs.org/docs/app/api-reference/functions/cookies",
+    "https://nextjs.org/docs/app/api-reference/functions/headers",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/api-reference/functions/unstable_noStore",
+    "https://nextjs.org/docs/app/api-reference/functions/updateTag"
+  ]
+}

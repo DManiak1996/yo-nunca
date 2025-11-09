@@ -1,0 +1,64 @@
+{
+  "title": "Dates",
+  "content": "A reference document listing built-in convenience functions to support data transformation in [expressions](../../../../glossary/#expression-n8n) for dates.\n\nJavaScript in expressions\n\nYou can use any JavaScript in expressions. Refer to [Expressions](../../../expressions/) for more information.\n\n### beginningOf(unit?: DurationUnit): Date\n\nTransforms a Date to the start of the given time period. Returns either a JavaScript Date or Luxon Date, depending on input.\n\n#### Function parameters\n\nunitOptionalString enum\n\nA valid string specifying the time unit.\n\nOne of: `second`, `minute`, `hour`, `day`, `week`, `month`, `year`\n\n______________________________________________________________________\n\n### endOfMonth(): Date\n\nTransforms a Date to the end of the month.\n\n______________________________________________________________________\n\n### extract(datePart?: DurationUnit): Number\n\nExtracts the part defined in datePart from a Date. Returns either a JavaScript Date or Luxon Date, depending on input.\n\n#### Function parameters\n\ndatePartOptionalString enum\n\nA valid string specifying the time unit.\n\nOne of: `second`, `minute`, `hour`, `day`, `week`, `month`, `year`\n\n______________________________________________________________________\n\n### format(fmt: TimeFormat): String\n\nFormats a Date in the given structure\n\n#### Function parameters\n\nfmtRequiredString enum\n\nA valid string specifying the time format. Refer to [Luxon | Table of tokens](https://moment.github.io/luxon/#/formatting?id=table-of-tokens) for formats.\n\n______________________________________________________________________\n\n### isBetween(date1: Date | DateTime, date2: Date | DateTime): Boolean\n\nChecks if a Date is between two given dates.\n\n#### Function parameters\n\ndate1RequiredDate or DateTime\n\nThe first date in the range.\n\ndate2RequiredDate or DateTime\n\nThe last date in the range.\n\n______________________________________________________________________\n\nChecks if a Date is within Daylight Savings Time.\n\n______________________________________________________________________\n\n### isInLast(n?: Number, unit?: DurationUnit): Boolean\n\nChecks if a Date is within a given time period.\n\n#### Function parameters\n\nThe number of units. For example, to check if the date is in the last nine weeks, enter 9.\n\nunitOptionalString enum\n\nA valid string specifying the time unit.\n\nOne of: `second`, `minute`, `hour`, `day`, `week`, `month`, `year`\n\n______________________________________________________________________\n\n### isWeekend(): Boolean\n\nChecks if the Date falls on a Saturday or Sunday.\n\n______________________________________________________________________\n\n### minus(n: Number, unit?: DurationUnit): Date\n\nSubtracts a given time period from a Date. Returns either a JavaScript Date or Luxon Date, depending on input.\n\n#### Function parameters\n\nThe number of units. For example, to subtract nine seconds, enter 9 here.\n\nunitOptionalString enum\n\nA valid string specifying the time unit.\n\nDefault: `milliseconds`\n\nOne of: `second`, `minute`, `hour`, `day`, `week`, `month`, `year`\n\n______________________________________________________________________\n\n### plus(n: Number, unit?: DurationUnit): Date\n\nAdds a given time period to a Date. Returns either a JavaScript Date or Luxon Date, depending on input.\n\n#### Function parameters\n\nThe number of units. For example, to add nine seconds, enter 9 here.\n\nunitOptionalString enum\n\nA valid string specifying the time unit.\n\nDefault: `milliseconds`\n\nOne of: `second`, `minute`, `hour`, `day`, `week`, `month`, `year`\n\n______________________________________________________________________\n\n### toDateTime(): Date\n\nConverts a JavaScript date to a [Luxon date object](https://docs.n8n.io/code/cookbook/luxon/).\n\n______________________________________________________________________",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h3",
+      "text": "beginningOf(unit?: DurationUnit): Date",
+      "id": "beginningof(unit?:-durationunit):-date"
+    },
+    {
+      "level": "h3",
+      "text": "endOfMonth(): Date",
+      "id": "endofmonth():-date"
+    },
+    {
+      "level": "h3",
+      "text": "extract(datePart?: DurationUnit): Number",
+      "id": "extract(datepart?:-durationunit):-number"
+    },
+    {
+      "level": "h3",
+      "text": "format(fmt: TimeFormat): String",
+      "id": "format(fmt:-timeformat):-string"
+    },
+    {
+      "level": "h3",
+      "text": "isBetween(date1: Date | DateTime, date2: Date | DateTime): Boolean",
+      "id": "isbetween(date1:-date-|-datetime,-date2:-date-|-datetime):-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "isDst(): Boolean",
+      "id": "isdst():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "isInLast(n?: Number, unit?: DurationUnit): Boolean",
+      "id": "isinlast(n?:-number,-unit?:-durationunit):-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "isWeekend(): Boolean",
+      "id": "isweekend():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "minus(n: Number, unit?: DurationUnit): Date",
+      "id": "minus(n:-number,-unit?:-durationunit):-date"
+    },
+    {
+      "level": "h3",
+      "text": "plus(n: Number, unit?: DurationUnit): Date",
+      "id": "plus(n:-number,-unit?:-durationunit):-date"
+    },
+    {
+      "level": "h3",
+      "text": "toDateTime(): Date",
+      "id": "todatetime():-date"
+    }
+  ],
+  "url": "llms-txt#dates",
+  "links": []
+}

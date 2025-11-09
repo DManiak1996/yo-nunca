@@ -1,0 +1,73 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/output",
+  "title": "output",
+  "content": "During a build, Next.js will automatically trace each page and its dependencies to determine all of the files that are needed for deploying a production version of your application.\n\nThis feature helps reduce the size of deployments drastically. Previously, when deploying with Docker you would need to have all files from your package's dependencies installed to run next start. Starting with Next.js 12, you can leverage Output File Tracing in the .next/ directory to only include the necessary files.\n\nFurthermore, this removes the need for the deprecated serverless target which can cause various issues and also creates unnecessary duplication.\n\nDuring next build, Next.js will use @vercel/nft to statically analyze import, require, and fs usage to determine all files that a page might load.\n\nNext.js' production server is also traced for its needed files and output at .next/next-server.js.nft.json which can be leveraged in production.\n\nTo leverage the .nft.json files emitted to the .next output directory, you can read the list of files in each trace that are relative to the .nft.json file and then copy them to your deployment location.\n\nNext.js can automatically create a standalone folder that copies only the necessary files for a production deployment including select files in node_modules.\n\nTo leverage this automatic copying you can enable it in your next.config.js:\n\nThis will create a folder at .next/standalone which can then be deployed on its own without installing node_modules.\n\nAdditionally, a minimal server.js file is also output which can be used instead of next start. This minimal server does not copy the public or .next/static folders by default as these should ideally be handled by a CDN instead, although these folders can be copied to the standalone/public and standalone/.next/static folders manually, after which server.js file will serve these automatically.\n\nTo copy these manually, you can use the cp command-line tool after you next build:\n\nTo start your minimal server.js file locally, run the following command:\n\nGood to know: In a monorepo, project root refers to the Next.js project root (the folder containing next.config.js, e.g., packages/web-app), not necessarily the monorepo root.\n\nUsing a src/ directory does not change how you write these options:\n\nYou can also target all routes using a global key like '/*':\n\nThese options are applied to server traces and do not affect routes that do not produce a server trace file:\n\nIn monorepos or when you need to include files outside the app folder, combine outputFileTracingRoot with includes:\n\nCommon include patterns for native/runtime assets:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "output",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "How it Works",
+      "id": "how-it-works"
+    },
+    {
+      "level": "h2",
+      "text": "Automatically Copying Traced Files",
+      "id": "automatically-copying-traced-files"
+    },
+    {
+      "level": "h2",
+      "text": "Caveats",
+      "id": "caveats"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  output: 'standalone',\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/",
+      "language": "unknown"
+    },
+    {
+      "code": "node .next/standalone/server.js",
+      "language": "unknown"
+    },
+    {
+      "code": "const path = require('path')\n \nmodule.exports = {\n  // this includes files from the monorepo base two directories up\n  outputFileTracingRoot: path.join(__dirname, '../../'),\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "module.exports = {\n  outputFileTracingExcludes: {\n    '/api/hello': ['./un-necessary-folder/**/*'],\n  },\n  outputFileTracingIncludes: {\n    '/api/another': ['./necessary-folder/**/*'],\n    '/api/login/\\\\[\\\\[\\\\.\\\\.\\\\.slug\\\\]\\\\]': [\n      './node_modules/aws-crt/dist/bin/**/*',\n    ],\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  outputFileTracingIncludes: {\n    '/products/*': ['src/lib/payments/**/*'],\n    '/*': ['src/config/runtime/**/*.json'],\n  },\n  outputFileTracingExcludes: {\n    '/api/*': ['src/temp/**/*', 'public/large-logs/**/*'],\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  outputFileTracingIncludes: {\n    '/*': ['src/i18n/locales/**/*.json'],\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "const path = require('path')\n \nmodule.exports = {\n  // Trace from the monorepo root\n  outputFileTracingRoot: path.join(__dirname, '../../'),\n  outputFileTracingIncludes: {\n    '/route1': ['../shared/assets/**/*'],\n  },\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "module.exports = {\n  outputFileTracingIncludes: {\n    '/*': ['node_modules/sharp/**/*', 'node_modules/aws-crt/dist/bin/**/*'],\n  },\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/output",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/optimizePackageImports",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/pageExtensions"
+  ]
+}

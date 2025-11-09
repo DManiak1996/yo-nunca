@@ -1,0 +1,8 @@
+{
+  "title": "Enable executions pruning",
+  "content": "export EXECUTIONS_DATA_PRUNE=true",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#enable-executions-pruning",
+  "links": []
+}

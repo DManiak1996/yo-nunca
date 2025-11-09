@@ -1,0 +1,155 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/generate-static-params",
+  "title": "generateStaticParams",
+  "content": "The generateStaticParams function can be used in combination with dynamic route segments to statically generate routes at build time instead of on-demand at request time.\n\noptions.params (optional)\n\nIf multiple dynamic segments in a route use generateStaticParams, the child generateStaticParams function is executed once for each set of params the parent generates.\n\nThe params object contains the populated params from the parent generateStaticParams, which can be used to generate the params in a child segment.\n\ngenerateStaticParams should return an array of objects where each object represents the populated dynamic segments of a single route.\n\nTo statically render all paths at build time, supply the full list of paths to generateStaticParams:\n\nTo statically render a subset of paths at build time, and the rest the first time they're visited at runtime, return a partial list of paths:\n\nThen, by using the dynamicParams segment config option, you can control what happens when a dynamic segment is visited that was not generated with generateStaticParams.\n\nTo statically render all paths the first time they're visited, return an empty array (no paths will be rendered at build time) or utilize export const dynamic = 'force-static':\n\nGood to know: You must always return an array from generateStaticParams, even if it's empty. Otherwise, the route will be dynamically rendered.\n\nTo prevent unspecified paths from being statically rendered at runtime, add the export const dynamicParams = false option in a route segment. When this config option is used, only paths provided by generateStaticParams will be served, and unspecified routes will 404 or match (in the case of catch-all routes).\n\nYou can generate params for dynamic segments above the current layout or page, but not below. For example, given the app/products/[category]/[product] route:\n\nThere are two approaches to generating params for a route with multiple dynamic segments:\n\nGenerate multiple dynamic segments from the child route segment.\n\nGenerate the parent segments first and use the result to generate the child segments.\n\nA child route segment's generateStaticParams function is executed once for each segment a parent generateStaticParams generates.\n\nThe child generateStaticParams function can use the params returned from the parent generateStaticParams function to dynamically generate its own segments.\n\nNotice that the params argument can be accessed synchronously and includes only parent segment params.\n\nFor type completion, you can make use of the TypeScript Awaited helper in combination with either Page Props helper or Layout Props helper:\n\nGood to know: fetch requests are automatically memoized for the same data across all generate-prefixed functions, Layouts, Pages, and Server Components. React cache can be used if fetch is unavailable.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "generateStaticParams",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Single Dynamic Segment",
+      "id": "single-dynamic-segment"
+    },
+    {
+      "level": "h2",
+      "text": "Multiple Dynamic Segments",
+      "id": "multiple-dynamic-segments"
+    },
+    {
+      "level": "h2",
+      "text": "Catch-all Dynamic Segment",
+      "id": "catch-all-dynamic-segment"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Static Rendering",
+      "id": "static-rendering"
+    },
+    {
+      "level": "h4",
+      "text": "All paths at build time",
+      "id": "all-paths-at-build-time"
+    },
+    {
+      "level": "h4",
+      "text": "Subset of paths at build time",
+      "id": "subset-of-paths-at-build-time"
+    },
+    {
+      "level": "h4",
+      "text": "All paths at runtime",
+      "id": "all-paths-at-runtime"
+    },
+    {
+      "level": "h3",
+      "text": "Disable rendering for unspecified paths",
+      "id": "disable-rendering-for-unspecified-paths"
+    },
+    {
+      "level": "h3",
+      "text": "Multiple Dynamic Segments in a Route",
+      "id": "multiple-dynamic-segments-in-a-route"
+    },
+    {
+      "level": "h4",
+      "text": "Generate params from the bottom up",
+      "id": "generate-params-from-the-bottom-up"
+    },
+    {
+      "level": "h4",
+      "text": "Generate params from the top down",
+      "id": "generate-params-from-the-top-down"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// Return a list of `params` to populate the [slug] dynamic segment\nexport async function generateStaticParams() {\n  const posts = await fetch('https://.../posts').then((res) => res.json())\n \n  return posts.map((post) => ({\n    slug: post.slug,\n  }))\n}\n \n// Multiple versions of this page will be statically generated\n// using the `params` returned by `generateStaticParams`\nexport default async function Page({\n  params,\n}: {\n  params: Promise<{ slug: string }>\n}) {\n  const { slug } = await params\n  // ...\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export function generateStaticParams() {\n  return [{ id: '1' }, { id: '2' }, { id: '3' }]\n}\n \n// Three versions of this page will be statically generated\n// using the `params` returned by `generateStaticParams`\n// - /product/1\n// - /product/2\n// - /product/3\nexport default async function Page({\n  params,\n}: {\n  params: Promise<{ id: string }>\n}) {\n  const { id } = await params\n  // ...\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export function generateStaticParams() {\n  return [\n    { category: 'a', product: '1' },\n    { category: 'b', product: '2' },\n    { category: 'c', product: '3' },\n  ]\n}\n \n// Three versions of this page will be statically generated\n// using the `params` returned by `generateStaticParams`\n// - /products/a/1\n// - /products/b/2\n// - /products/c/3\nexport default async function Page({\n  params,\n}: {\n  params: Promise<{ category: string; product: string }>\n}) {\n  const { category, product } = await params\n  // ...\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export function generateStaticParams() {\n  return [{ slug: ['a', '1'] }, { slug: ['b', '2'] }, { slug: ['c', '3'] }]\n}\n \n// Three versions of this page will be statically generated\n// using the `params` returned by `generateStaticParams`\n// - /product/a/1\n// - /product/b/2\n// - /product/c/3\nexport default async function Page({\n  params,\n}: {\n  params: Promise<{ slug: string[] }>\n}) {\n  const { slug } = await params\n  // ...\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function generateStaticParams() {\n  const posts = await fetch('https://.../posts').then((res) => res.json())\n \n  return posts.map((post) => ({\n    slug: post.slug,\n  }))\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function generateStaticParams() {\n  const posts = await fetch('https://.../posts').then((res) => res.json())\n \n  // Render the first 10 posts at build time\n  return posts.slice(0, 10).map((post) => ({\n    slug: post.slug,\n  }))\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "// All posts besides the top 10 will be a 404\nexport const dynamicParams = false\n \nexport async function generateStaticParams() {\n  const posts = await fetch('https://.../posts').then((res) => res.json())\n  const topPosts = posts.slice(0, 10)\n \n  return topPosts.map((post) => ({\n    slug: post.slug,\n  }))\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function generateStaticParams() {\n  return []\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export const dynamic = 'force-static'",
+      "language": "javascript"
+    },
+    {
+      "code": "// Generate segments for both [category] and [product]\nexport async function generateStaticParams() {\n  const products = await fetch('https://.../products').then((res) => res.json())\n \n  return products.map((product) => ({\n    category: product.category.slug,\n    product: product.id,\n  }))\n}\n \nexport default function Page({\n  params,\n}: {\n  params: Promise<{ category: string; product: string }>\n}) {\n  // ...\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "// Generate segments for [category]\nexport async function generateStaticParams() {\n  const products = await fetch('https://.../products').then((res) => res.json())\n \n  return products.map((product) => ({\n    category: product.category.slug,\n  }))\n}\n \nexport default function Layout({\n  params,\n}: {\n  params: Promise<{ category: string }>\n}) {\n  // ...\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "// Generate segments for [product] using the `params` passed from\n// the parent segment's `generateStaticParams` function\nexport async function generateStaticParams({\n  params: { category },\n}: {\n  params: { category: string }\n}) {\n  const products = await fetch(\n    `https://.../products?category=${category}`\n  ).then((res) => res.json())\n \n  return products.map((product) => ({\n    product: product.id,\n  }))\n}\n \nexport default function Page({\n  params,\n}: {\n  params: Promise<{ category: string; product: string }>\n}) {\n  // ...\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function generateStaticParams({\n  params: { category },\n}: {\n  params: Awaited<LayoutProps<'/products/[category]'>['params']>\n}) {\n  const products = await fetch(\n    `https://.../products?category=${category}`\n  ).then((res) => res.json())\n \n  return products.map((product) => ({\n    product: product.id,\n  }))\n}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-static-params",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-static-paths",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-sitemaps",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-viewport"
+  ]
+}

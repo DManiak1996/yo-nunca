@@ -1,0 +1,19 @@
+{
+  "title": "CoinGecko node",
+  "content": "Use the CoinGecko node to automate work in CoinGecko, and integrate CoinGecko with other applications. n8n has built-in support for a wide range of CoinGecko features, including getting coins and events.\n\nOn this page, you'll find a list of operations the CoinGecko node supports and links to more resources.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- Coin\n  - Get a candlestick open-high-low-close chart for the selected currency\n  - Get current data for a coin\n  - Get all coins\n  - Get historical data (name, price, market, stats) at a given date for a coin\n  - Get prices and market related data for all trading pairs that match the selected currency\n  - Get historical market data include price, market cap, and 24h volume (granularity auto)\n  - Get the current price of any cryptocurrencies in any other supported currencies that you need\n  - Get coin tickers\n- Event\n  - Get all events\n\n## Templates and examples\n\n**Analyze Crypto Market with CoinGecko: Volatility Metrics & Investment Signals**\n\n[View template details](https://n8n.io/workflows/4115-analyze-crypto-market-with-coingecko-volatility-metrics-and-investment-signals/)\n\n**Tracking your crypto portfolio in Airtable**\n\n[View template details](https://n8n.io/workflows/859-tracking-your-crypto-portfolio-in-airtable/)\n\n**Get the price of BTC in EUR and send an SMS**\n\n[View template details](https://n8n.io/workflows/704-get-the-price-of-btc-in-eur-and-send-an-sms/)\n\n[Browse CoinGecko integration templates](https://n8n.io/integrations/coingecko/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#coingecko-node",
+  "links": []
+}

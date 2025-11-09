@@ -1,0 +1,29 @@
+{
+  "title": "AI Agent Tool node",
+  "content": "The AI Agent Tool node allows a root-level [agent](../../../../../glossary/#ai-agent) in your workflow to call other agents as tools to simplify multi-agent orchestration.\n\nThe [primary agent](../../root-nodes/n8n-nodes-langchain.agent/tools-agent/) can supervise and delegate work to AI Agent Tool nodes that specialize in different tasks and knowledge. This allows you to use multiple agents in a single workflow without the complexity of managing context and variables that sub-workflows require. You can nest AI Agent Tool nodes into multiple layers for more complex multi-tiered use cases.\n\nOn this page, you'll find the node parameters for the AI Agent Tool node, and links to more resources.\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\nConfigure the AI Agent Tool node using these parameters:\n\n- **Description**: Give a description to the LLM of this agent's purpose and scope of responsibility. A good, specific description tells the parent agent when to delegate tasks to this agent for processing.\n- **Prompt (User Message)**: The prompt to the LLM explaining what actions to perform and what information to return.\n- **Require Specific Output Format**: Whether you want the node to require a specific output format. When turned on, n8n prompts you to connect one of the output parsers [described on the main agent page](../../root-nodes/n8n-nodes-langchain.agent/tools-agent/#require-specific-output-format).\n- **Enable Fallback Model**: Whether to enable a fallback model. When enabled, n8n prompts you to connect a backup chat model to use in case the primary model fails or isn't available.\n\nRefine the AI Agent Tool node's behavior using these options:\n\n- **System Message**: A message to send to the agent before the conversation starts.\n- **Max Iterations**: The maximum number of times the model should run to generate a response before stopping.\n- **Return Intermediate Steps**: Whether to include intermediate steps the agent took in the final output.\n- **Automatically Passthrough Binary Images**: Whether binary images should be automatically passed through to the agent as image type messages.\n- **Batch Processing**: Whether to enable the following batch processing options for rate limiting:\n  - **Batch Size**: The number of items to process in parallel. This helps with rate limiting but may impact the log output ordering.\n  - **Delay Between Batches**: The number of milliseconds to wait between batches.\n\n## Templates and examples\n\n**Building Your First WhatsApp Chatbot**\n\n[View template details](https://n8n.io/workflows/2465-building-your-first-whatsapp-chatbot/)\n\n**Generate AI Viral Videos with Seedance and Upload to TikTok, YouTube & Instagram**\n\n[View template details](https://n8n.io/workflows/5338-generate-ai-viral-videos-with-seedance-and-upload-to-tiktok-youtube-and-instagram/)\n\n**AI agent that can scrape webpages**\n\n[View template details](https://n8n.io/workflows/2006-ai-agent-that-can-scrape-webpages/)\n\n[Browse AI Agent Tool integration templates](https://n8n.io/integrations/ai-agent-tool/), or [search all templates](https://n8n.io/workflows/)\n\n## Dynamic parameters for tools with `$fromAI()`\n\nTo learn how to dynamically populate parameters for app node tools, refer to [Let AI specify tool parameters with `$fromAI()`](../../../../../advanced-ai/examples/using-the-fromai-function/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Dynamic parameters for tools with `$fromAI()`",
+      "id": "dynamic-parameters-for-tools-with-`$fromai()`"
+    }
+  ],
+  "url": "llms-txt#ai-agent-tool-node",
+  "links": []
+}

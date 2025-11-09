@@ -1,0 +1,34 @@
+{
+  "title": "Model Selector",
+  "content": "The Model Selector node dynamically selects one of the connected language models during workflow execution based on a set of defined conditions. This enables implementing fallback mechanisms for error handling or choosing the optimal model for specific tasks.\n\nThis page covers node parameters for the Model Selector node and includes links to related resources.\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\nSpecifies the number of input connections available for attaching language models.\n\nEach rule defines the model to use when specific conditions match.\n\nThe Model Selector node evaluates rules sequentially, starting from the first input, and stops evaluation as soon as it finds a match. This means that if multiple rules would match, n8n will only use the model defined by the first matching rule.\n\n## Templates and examples\n\n**AI Orchestrator: dynamically Selects Models Based on Input Type**\n\n[View template details](https://n8n.io/workflows/7004-ai-orchestrator-dynamically-selects-models-based-on-input-type/)\n\n**Dynamic AI Model Selector with GDPR Compliance via Requesty and Google Sheets**\n\n[View template details](https://n8n.io/workflows/5862-dynamic-ai-model-selector-with-gdpr-compliance-via-requesty-and-google-sheets/)\n\n**Hotel Receptionist with WhatsApp, Gemini Model-Switching, Redis & Google Sheets**\n\n[View template details](https://n8n.io/workflows/10214-hotel-receptionist-with-whatsapp-gemini-model-switching-redis-and-google-sheets/)\n\n[Browse Model Selector integration templates](https://n8n.io/integrations/model-selector/), or [search all templates](https://n8n.io/workflows/)\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Number of Inputs",
+      "id": "number-of-inputs"
+    },
+    {
+      "level": "h3",
+      "text": "Rules",
+      "id": "rules"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#model-selector",
+  "links": []
+}

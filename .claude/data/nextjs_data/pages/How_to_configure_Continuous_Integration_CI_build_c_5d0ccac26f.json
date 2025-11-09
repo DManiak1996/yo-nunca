@@ -1,0 +1,118 @@
+{
+  "url": "https://nextjs.org/docs/pages/guides/ci-build-caching",
+  "title": "How to configure Continuous Integration (CI) build caching",
+  "content": "To improve build performance, Next.js saves a cache to .next/cache that is shared between builds.\n\nTo take advantage of this cache in Continuous Integration (CI) environments, your CI workflow will need to be configured to correctly persist the cache between builds.\n\nIf your CI is not configured to persist .next/cache between builds, you may see a No Cache Detected error.\n\nHere are some example cache configurations for common CI providers:\n\nNext.js caching is automatically configured for you. There's no action required on your part. If you are using Turborepo on Vercel, learn more here.\n\nEdit your save_cache step in .circleci/config.yml to include .next/cache:\n\nIf you do not have a save_cache key, please follow CircleCI's documentation on setting up build caching.\n\nAdd or merge the following into your .travis.yml:\n\nAdd or merge the following into your .gitlab-ci.yml:\n\nUse Netlify Plugins with @netlify/plugin-nextjs.\n\nAdd (or merge in) the following to your buildspec.yml:\n\nUsing GitHub's actions/cache, add the following step in your workflow file:\n\nAdd or merge the following into your bitbucket-pipelines.yml at the top level (same level as pipelines):\n\nThen reference it in the caches section of your pipeline's step:\n\nUsing Heroku's custom cache, add a cacheDirectories array in your top-level package.json:\n\nUsing Azure Pipelines' Cache task, add the following task to your pipeline yaml file somewhere prior to the task that executes next build:\n\nUsing Jenkins' Job Cacher plugin, add the following build step to your Jenkinsfile where you would normally run next build or npm install:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to configure Continuous Integration (CI) build caching",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Vercel",
+      "id": "vercel"
+    },
+    {
+      "level": "h2",
+      "text": "CircleCI",
+      "id": "circleci"
+    },
+    {
+      "level": "h2",
+      "text": "Travis CI",
+      "id": "travis-ci"
+    },
+    {
+      "level": "h2",
+      "text": "GitLab CI",
+      "id": "gitlab-ci"
+    },
+    {
+      "level": "h2",
+      "text": "Netlify CI",
+      "id": "netlify-ci"
+    },
+    {
+      "level": "h2",
+      "text": "AWS CodeBuild",
+      "id": "aws-codebuild"
+    },
+    {
+      "level": "h2",
+      "text": "GitHub Actions",
+      "id": "github-actions"
+    },
+    {
+      "level": "h2",
+      "text": "Bitbucket Pipelines",
+      "id": "bitbucket-pipelines"
+    },
+    {
+      "level": "h2",
+      "text": "Heroku",
+      "id": "heroku"
+    },
+    {
+      "level": "h2",
+      "text": "Azure Pipelines",
+      "id": "azure-pipelines"
+    },
+    {
+      "level": "h2",
+      "text": "Jenkins (Pipeline)",
+      "id": "jenkins-pipeline"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "steps:\n  - save_cache:\n      key: dependency-cache-{{ checksum \"yarn.lock\" }}\n      paths:\n        - ./node_modules\n        - ./.next/cache",
+      "language": "unknown"
+    },
+    {
+      "code": "cache:\n  directories:\n    - $HOME/.cache/yarn\n    - node_modules\n    - .next/cache",
+      "language": "unknown"
+    },
+    {
+      "code": "cache:\n  key: ${CI_COMMIT_REF_SLUG}\n  paths:\n    - node_modules/\n    - .next/cache/",
+      "language": "unknown"
+    },
+    {
+      "code": "cache:\n  paths:\n    - 'node_modules/**/*' # Cache `node_modules` for faster `yarn` or `npm i`\n    - '.next/cache/**/*' # Cache Next.js for faster application rebuilds",
+      "language": "unknown"
+    },
+    {
+      "code": "uses: actions/cache@v4\nwith:\n  # See here for caching with `yarn`, `bun` or other package managers https://github.com/actions/cache/blob/main/examples.md or you can leverage caching with actions/setup-node https://github.com/actions/setup-node\n  path: |\n    ~/.npm\n    ${{ github.workspace }}/.next/cache\n  # Generate a new cache whenever packages or source files change.\n  key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}\n  # If source files changed but packages didn't, rebuild from a prior cache.\n  restore-keys: |\n    ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-",
+      "language": "unknown"
+    },
+    {
+      "code": "definitions:\n  caches:\n    nextcache: .next/cache",
+      "language": "unknown"
+    },
+    {
+      "code": "- step:\n    name: your_step_name\n    caches:\n      - node\n      - nextcache",
+      "language": "unknown"
+    },
+    {
+      "code": "\"cacheDirectories\": [\".next/cache\"]",
+      "language": "unknown"
+    },
+    {
+      "code": "- task: Cache@2\n  displayName: 'Cache .next/cache'\n  inputs:\n    key: next | $(Agent.OS) | yarn.lock\n    path: '$(System.DefaultWorkingDirectory)/.next/cache'",
+      "language": "unknown"
+    },
+    {
+      "code": "stage(\"Restore npm packages\") {\n    steps {\n        // Writes lock-file to cache based on the GIT_COMMIT hash\n        writeFile file: \"next-lock.cache\", text: \"$GIT_COMMIT\"\n \n        cache(caches: [\n            arbitraryFileCache(\n                path: \"node_modules\",\n                includes: \"**/*\",\n                cacheValidityDecidingFile: \"package-lock.json\"\n            )\n        ]) {\n            sh \"npm install\"\n        }\n    }\n}\nstage(\"Build\") {\n    steps {\n        // Writes lock-file to cache based on the GIT_COMMIT hash\n        writeFile file: \"next-lock.cache\", text: \"$GIT_COMMIT\"\n \n        cache(caches: [\n            arbitraryFileCache(\n                path: \".next/cache\",\n                includes: \"**/*\",\n                cacheValidityDecidingFile: \"next-lock.cache\"\n            )\n        ]) {\n            // aka `next build`\n            sh \"npm run build\"\n        }\n    }\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/guides",
+    "https://nextjs.org/docs/messages/no-cache",
+    "https://nextjs.org/docs/pages/guides/ci-build-caching",
+    "https://nextjs.org/docs/pages/guides/babel",
+    "https://nextjs.org/docs/pages/guides/content-security-policy"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "title": "2. Inserting data into Airtable",
+  "content": "In this step of the workflow, you will learn how to insert the data received from the HTTP Request node into Airtable using the [Airtable node](../../../../integrations/builtin/app-nodes/n8n-nodes-base.airtable/).\n\nYou can replace the Airtable node with another spreadsheet app/service. For example, n8n also has a node for [**Google Sheets**](../../../../integrations/builtin/app-nodes/n8n-nodes-base.googlesheets/).\n\nAfter this step, your workflow should look like this:\n\n[View workflow file](/_workflows//courses/level-one/chapter-5/chapter-5.2.json)\n\n## Configure your table\n\nIf we're going to insert data into Airtable, we first need to set up a table there. To do this:\n\n1. [Create an Airtable account](https://airtable.com/signup).\n\n1. In your Airtable workspace add a new base from scratch and name it, for example, *beginner course*.\n\n*Create an Airtable base*\n\n1. In the beginner course base, by default, you have a table called **Table 1** with four fields: `Name`, `Notes`, `Assignee`, and `Status`. These fields aren't relevant for us since they aren't in our \"orders\" data set. This brings us to the next point: the names of the fields in Airtable have to match the names of the columns in the node result. Prepare the table by doing the following:\n\n- Rename the table from **Table 1** to **orders** to make it easier to identify.\n   - Delete the 3 blank records created by default.\n   - Delete the `Notes`, `Assignee`, and `Status` fields.\n   - Edit the `Name` field (the primary field) to read `orderID`, with the **Number** field type.\n   - Add the rest of the fields, and their field types, using the table below as a reference:\n\n| Field name     | Field type       |\n   | -------------- | ---------------- |\n   | `orderID`      | Number           |\n   | `customerID`   | Number           |\n   | `employeeName` | Single line text |\n   | `orderPrice`   | Number           |\n   | `orderStatus`  | Single line text |\n\nNow your table should look like this:\n\n*Orders table in Airtable*\n\nNow that the table is ready, let's return to the workflow in the n8n Editor UI.\n\n## Add an Airtable node to the HTTP Request node\n\nAdd an Airtable node connected to the HTTP Request node.\n\nYou can add a node connected to an existing node by selecting the **+** icon next to the existing node.\n\n1. Search for Airtable.\n1. Select **Create a record** from the **Record Actions** search results.\n\nThis will add the Airtable node to your canvas and open the node details window.\n\nIn the Airtable node window, configure the following parameters:\n\n- **Credential to connect with**:\n  - Select **Create new credential**.\n  - Keep the default option **Connect using: Access Token** selected.\n  - **Access token**: Follow the instructions from the [Airtable credential](../../../../integrations/builtin/credentials/airtable/) page to create your token. Use the recommended scopes and add access to your beginners course base. Save the credential and close the Credential window when you're finished.\n- **Resource**: Record.\n- **Operation**: Create. This operation will create new records in the table.\n- **Base**: You can pick your base from a list (for example, beginner course).\n- **Table**: orders.\n- **Mapping Column Mode**: Map automatically. In this mode, the incoming data fields must have the same as the columns in Airtable.\n\n## Test the Airtable node\n\nOnce you've finished configuring the Airtable node, execute it by selecting **Execute step**. This might take a moment to process, but you can follow the progress by viewing the base in Airtable.\n\nYour results should look like this:\n\n*Airtable node results*\n\nAll 30 data records will now appear in the orders table in Airtable:\n\n*Imported records in the orders table*\n\n**Nathan 🙋**: Wow, this automation is already so useful! But this inserts all collected data from the HTTP Request node into Airtable. Remember that I actually need to insert only processing orders in the table and calculate the price of booked orders?\n\n**You 👩‍🔧**: Sure, no problem. As a next step, I'll use a new node to filter the orders based on their status.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Configure your table",
+      "id": "configure-your-table"
+    },
+    {
+      "level": "h2",
+      "text": "Add an Airtable node to the HTTP Request node",
+      "id": "add-an-airtable-node-to-the-http-request-node"
+    },
+    {
+      "level": "h2",
+      "text": "Test the Airtable node",
+      "id": "test-the-airtable-node"
+    },
+    {
+      "level": "h2",
+      "text": "What's next?",
+      "id": "what's-next?"
+    }
+  ],
+  "url": "llms-txt#2.-inserting-data-into-airtable",
+  "links": []
+}

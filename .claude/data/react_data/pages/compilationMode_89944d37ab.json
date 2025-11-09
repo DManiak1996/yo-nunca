@@ -1,0 +1,126 @@
+{
+  "url": "https://react.dev/reference/react-compiler/compilationMode",
+  "title": "compilationMode",
+  "content": "The compilationMode option controls how the React Compiler selects which functions to compile.\n\nControls the strategy for determining which functions the React Compiler will optimize.\n\n'infer' (default): The compiler uses intelligent heuristics to identify React components and hooks:\n\n'annotation': Only compile functions explicitly marked with the \"use memo\" directive. Ideal for incremental adoption.\n\n'syntax': Only compile components and hooks that use Flow’s component and hook syntax.\n\n'all': Compile all top-level functions. Not recommended as it may compile non-React functions.\n\nThe default 'infer' mode works well for most codebases that follow React conventions:\n\nWith this mode, these functions will be compiled:\n\nFor gradual migration, use 'annotation' mode to only compile marked functions:\n\nThen explicitly mark functions to compile:\n\nIf your codebase uses Flow instead of TypeScript:\n\nThen use Flow’s component syntax:\n\nRegardless of compilation mode, use \"use no memo\" to skip compilation:\n\nIn 'infer' mode, ensure your component follows React conventions:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "compilationMode",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "compilationMode",
+      "id": "compilationmode"
+    },
+    {
+      "level": "h4",
+      "text": "Type",
+      "id": "type"
+    },
+    {
+      "level": "h4",
+      "text": "Default value",
+      "id": "default-value"
+    },
+    {
+      "level": "h4",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Default inference mode",
+      "id": "default-inference-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Incremental adoption with annotation mode",
+      "id": "incremental-adoption"
+    },
+    {
+      "level": "h3",
+      "text": "Using Flow syntax mode",
+      "id": "flow-syntax-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Opting out specific functions",
+      "id": "opting-out"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "Component not being compiled in infer mode",
+      "id": "component-not-compiled-infer"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "{  compilationMode: 'infer' // or 'annotation', 'syntax', 'all'}",
+      "language": "unknown"
+    },
+    {
+      "code": "'infer' | 'syntax' | 'annotation' | 'all'",
+      "language": "unknown"
+    },
+    {
+      "code": "{  compilationMode: 'infer'}",
+      "language": "unknown"
+    },
+    {
+      "code": "// ✅ Compiled: Named like a component + returns JSXfunction Button(props) {  return <button>{props.label}</button>;}// ✅ Compiled: Named like a hook + calls hooksfunction useCounter() {  const [count, setCount] = useState(0);  return [count, setCount];}// ✅ Compiled: Explicit directivefunction expensiveCalculation(data) {  \"use memo\";  return data.reduce(/* ... */);}// ❌ Not compiled: Not a component/hook patternfunction calculateTotal(items) {  return items.reduce((a, b) => a + b, 0);}",
+      "language": "javascript"
+    },
+    {
+      "code": "{  compilationMode: 'annotation'}",
+      "language": "unknown"
+    },
+    {
+      "code": "// Only this function will be compiledfunction ExpensiveList(props) {  \"use memo\";  return (    <ul>      {props.items.map(item => (        <li key={item.id}>{item.name}</li>      ))}    </ul>  );}// This won't be compiled without the directivefunction NormalComponent(props) {  return <div>{props.content}</div>;}",
+      "language": "javascript"
+    },
+    {
+      "code": "{  compilationMode: 'syntax'}",
+      "language": "unknown"
+    },
+    {
+      "code": "// Compiled: Flow component syntaxcomponent Button(label: string) {  return <button>{label}</button>;}// Compiled: Flow hook syntaxhook useCounter(initial: number) {  const [count, setCount] = useState(initial);  return [count, setCount];}// Not compiled: Regular function syntaxfunction helper(data) {  return process(data);}",
+      "language": "javascript"
+    },
+    {
+      "code": "function ComponentWithSideEffects() {  \"use no memo\"; // Prevent compilation  // This component has side effects that shouldn't be memoized  logToAnalytics('component_rendered');  return <div>Content</div>;}",
+      "language": "unknown"
+    },
+    {
+      "code": "// ❌ Won't be compiled: lowercase namefunction button(props) {  return <button>{props.label}</button>;}// ✅ Will be compiled: PascalCase namefunction Button(props) {  return <button>{props.label}</button>;}// ❌ Won't be compiled: doesn't create JSX or call hooksfunction useData() {  return window.localStorage.getItem('data');}// ✅ Will be compiled: calls a hookfunction useData() {  const [data] = useState(() => window.localStorage.getItem('data'));  return data;}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-compiler/configuration",
+    "https://react.dev/reference/react-compiler/compilationMode",
+    "https://react.dev/reference/react-compiler/gating"
+  ]
+}

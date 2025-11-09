@@ -1,0 +1,8 @@
+{
+  "title": "Eventbrite Trigger node",
+  "content": "[Eventbrite](https://www.eventbrite.com/) is an event management and ticketing website. The service allows users to browse, create, and promote local events.\n\nYou can find authentication information for this node [here](../../credentials/eventbrite/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Eventbrite Trigger integrations](https://n8n.io/integrations/eventbrite-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#eventbrite-trigger-node",
+  "links": []
+}

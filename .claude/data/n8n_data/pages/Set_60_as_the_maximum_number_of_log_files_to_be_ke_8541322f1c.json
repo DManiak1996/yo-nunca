@@ -1,0 +1,39 @@
+{
+  "title": "Set 60 as the maximum number of log files to be kept",
+  "content": "export N8N_LOG_FILE_COUNT_MAX=60\n\n// You have to import the LoggerProxy. We rename it to Logger to make it easier\n\nimport {\n\tLoggerProxy as Logger\n} from 'n8n-workflow';\n\n// Info-level logging of a trigger function, with workflow name and workflow ID as additional metadata properties\n\nLogger.info(`Polling trigger initiated for workflow \"${workflow.name}\"`, {workflowName: workflow.name, workflowId: workflow.id});\n```\n\nWhen creating new loggers, some useful standards to keep in mind are:\n\n- Craft log messages to be as human-readable as possible. For example, always wrap names in quotes.\n- Duplicating information in the log message and metadata, like workflow name in the above example, can be useful as messages are easier to search and metadata enables easier filtering.\n- Include multiple IDs (for example, `executionId`, `workflowId`, and `sessionId`) throughout all logs.\n- Use node types instead of node names (or both) as this is more consistent, and so easier to search.\n\nAs of now, front-end logs aren't available. Using `Logger` or `LoggerProxy` would yield errors in the `editor-ui` package. This functionality will get implemented in the future versions.",
+  "code_samples": [
+    {
+      "code": "### Log levels\n\nn8n uses standard log levels to report:\n\n- `silent`: outputs nothing at all\n- `error`: outputs only errors and nothing else\n- `warn`: outputs errors and warning messages\n- `info`: contains useful information about progress\n- `debug`: the most verbose output. n8n outputs a lot of information to help you debug issues.\n\n## Development\n\nDuring development, adding log messages is a good practice. It assists in debugging errors. To configure logging for development, follow the guide below.\n\n### Implementation details\n\nn8n uses the `LoggerProxy` class, located in the `workflow` package. Calling the `LoggerProxy.init()` by passing in an instance of `Logger`, initializes the class before the usage.\n\nThe initialization process happens only once. The [`start.ts`](https://github.com/n8n-io/n8n/blob/master/packages/cli/src/commands/start.ts) file already does this process for you. If you are creating a new command from scratch, you need to initialize the `LoggerProxy` class.\n\nOnce the `Logger` implementation gets created in the `cli` package, it can be obtained by calling the `getInstance` convenience method from the exported module.\n\nCheck the [start.ts](https://github.com/n8n-io/n8n/blob/master/packages/cli/src/commands/start.ts) file to learn more about how this process works.\n\n### Adding logs\n\nOnce the `LoggerProxy` class gets initialized in the project, you can import it to any other file and add logs.\n\nConvenience methods are provided for all logging levels, so new logs can be added whenever needed using the format `Logger.<logLevel>('<message>', ...meta)`, where `meta` represents any additional properties desired beyond `message`.\n\nIn the example above, we use the standard log levels described [above](#log-levels). The `message` argument is a string, and `meta` is a data object.",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h3",
+      "text": "Log levels",
+      "id": "log-levels"
+    },
+    {
+      "level": "h2",
+      "text": "Development",
+      "id": "development"
+    },
+    {
+      "level": "h3",
+      "text": "Implementation details",
+      "id": "implementation-details"
+    },
+    {
+      "level": "h3",
+      "text": "Adding logs",
+      "id": "adding-logs"
+    },
+    {
+      "level": "h2",
+      "text": "Front-end logs",
+      "id": "front-end-logs"
+    }
+  ],
+  "url": "llms-txt#set-60-as-the-maximum-number-of-log-files-to-be-kept",
+  "links": []
+}

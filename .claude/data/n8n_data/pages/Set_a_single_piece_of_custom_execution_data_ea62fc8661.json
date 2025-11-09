@@ -1,0 +1,8 @@
+{
+  "title": "Set a single piece of custom execution data",
+  "content": "_execution.customData.set(\"key\", \"value\");",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#set-a-single-piece-of-custom-execution-data",
+  "links": []
+}

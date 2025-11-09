@@ -1,0 +1,36 @@
+{
+  "title": "Register the `docker` group membership with current session without changing your primary group",
+  "content": "exec sg docker newgrp\n\nsudo usermod -aG docker <USER_TO_RUN_DOCKER>\n\nmkdir n8n-compose\ncd n8n-compose",
+  "code_samples": [
+    {
+      "code": "To grant access to a different user, type the following, substituting `<USER_TO_RUN_DOCKER>` with the appropriate username:",
+      "language": "unknown"
+    },
+    {
+      "code": "You will need to run `exec sg docker newgrp` from any of that user's existing sessions for it to access the new group permissions.\n\nYou can verify that your current session recognizes the `docker` group by typing:",
+      "language": "unknown"
+    },
+    {
+      "code": "## 3. DNS setup\n\nTo host n8n online or on a network, create a dedicated subdomain pointed at your server.\n\nAdd an A record to route the subdomain accordingly:\n\n| Record type | Name                              | Destination                |\n| ----------- | --------------------------------- | -------------------------- |\n| A           | `n8n` (or your desired subdomain) | `<your_server_IP_address>` |\n\n## 4. Create an `.env` file\n\nCreate a project directory to store your n8n environment configuration and Docker Compose files and navigate inside:",
+      "language": "unknown"
+    },
+    {
+      "code": "Inside the `n8n-compose` directory, create an `.env` file to customize your n8n instance's details. Change it to match your own information:",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "3. DNS setup",
+      "id": "3.-dns-setup"
+    },
+    {
+      "level": "h2",
+      "text": "4. Create an `.env` file",
+      "id": "4.-create-an-`.env`-file"
+    }
+  ],
+  "url": "llms-txt#register-the-`docker`-group-membership-with-current-session-without-changing-your-primary-group",
+  "links": []
+}

@@ -1,0 +1,89 @@
+{
+  "title": "Using the Code node",
+  "content": "Use the Code node to write custom JavaScript or Python and run it as a step in your workflow.\n\nThis page gives usage information about the Code node. For more guidance on coding in n8n, refer to the [Code](../) section. It includes:\n\n- Reference documentation on [Built-in methods and variables](../builtin/overview/)\n- Guidance on [Handling dates](../cookbook/luxon/) and [Querying JSON](../cookbook/jmespath/)\n- A growing collection of examples in the [Cookbook](../cookbook/code-node/)\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Code integrations](https://n8n.io/integrations/code/) page.\n\nFunction and Function Item nodes\n\nThe Code node replaces the Function and Function Item nodes from version 0.198.0. If you're using an older version of n8n, you can still view the [Function node documentation](https://github.com/n8n-io/n8n-docs/blob/67935ad2528e2e30d7984ea917e4af2910a096ec/docs/integrations/builtin/core-nodes/n8n-nodes-base.function.md) and [Function Item node documentation](https://github.com/n8n-io/n8n-docs/blob/67935ad2528e2e30d7984ea917e4af2910a096ec/docs/integrations/builtin/core-nodes/n8n-nodes-base.functionItem.md).\n\nHow to use the Code node.\n\n- **Run Once for All Items**: this is the default. When your workflow runs, the code in the code node executes once, regardless of how many input items there are.\n- **Run Once for Each Item**: choose this if you want your code to run for every input item.\n\nThe Code node supports Node.js.\n\n### Supported JavaScript features\n\nThe Code node supports:\n\n- Promises. Instead of returning the items directly, you can return a promise which resolves accordingly.\n- Writing to your browser console using `console.log`. This is useful for debugging and troubleshooting your workflows.\n\n### External libraries\n\nIf you self-host n8n, you can import and use built-in and external npm modules in the Code node. To learn how to enable external modules, refer to the [Enable modules in Code node](../../hosting/configuration/configuration-examples/modules-in-code-node/) guide.\n\nIf you use n8n Cloud, you can't import external npm modules. n8n makes two modules available for you:\n\n- [crypto Node.js module](https://nodejs.org/docs/latest-v18.x/api/crypto.html)\n- [moment npm package](https://www.npmjs.com/package/moment)\n\n### Built-in methods and variables\n\nn8n provides built-in methods and variables for working with data and accessing n8n data. Refer to [Built-in methods and variables](../builtin/overview/) for more information.\n\nThe syntax to use the built-in methods and variables is `$variableName` or `$methodName()`. Type `$` in the Code node or expressions editor to see a list of suggested methods and variables.\n\n### Keyboard shortcuts\n\nThe Code node editing environment supports time-saving and useful keyboard shortcuts for a range of operations from autocompletion to code-folding and using multiple-cursors. See the full list of [keyboard shortcuts](../../integrations/builtin/core-nodes/n8n-nodes-base.code/keyboard-shortcuts/).\n\n## Python (Pyodide - legacy)\n\nPyodide is a legacy feature. Future versions of n8n will no longer support this feature.\n\nn8n added Python support in version 1.0. It doesn't include a Python executable. Instead, n8n provides Python support using [Pyodide](https://pyodide.org/en/stable/), which is a port of CPython to WebAssembly. This limits the available Python packages to the [Packages included with Pyodide](https://pyodide.org/en/stable/usage/packages-in-pyodide.html#packages-in-pyodide). n8n downloads the package automatically the first time you use it.\n\nSlower than JavaScript\n\nThe Code node takes longer to process Python than JavaScript. This is due to the extra compilation steps.\n\n### Built-in methods and variables\n\nn8n provides built-in methods and variables for working with data and accessing n8n data. Refer to [Built-in methods and variables](../builtin/overview/) for more information.\n\nThe syntax to use the built-in methods and variables is `_variableName` or `_methodName()`. Type `_` in the Code node to see a list of suggested methods and variables.\n\n### Keyboard shortcuts\n\nThe Code node editing environment supports time-saving and useful keyboard shortcuts for a range of operations from autocompletion to code-folding and using multiple-cursors. See the full list of [keyboard shortcuts](../../integrations/builtin/core-nodes/n8n-nodes-base.code/keyboard-shortcuts/).\n\n## File system and HTTP requests\n\nYou can't access the file system or make HTTP requests. Use the following nodes instead:\n\n- [Read/Write File From Disk](../../integrations/builtin/core-nodes/n8n-nodes-base.readwritefile/)\n- [HTTP Request](../../integrations/builtin/core-nodes/n8n-nodes-base.httprequest/)\n\n## Python (Native - beta)\n\nn8n added native Python support using task runners (beta) in version 1.111.0.\n\nMain differences from Pyodide:\n\n- Native Python supports only `_items` in all-items mode and `_item` in per-item mode. It doesn't support other n8n built-in methods and variables.\n- Native Python supports importing native Python modules from the standard library and from third-parties, if the `n8nio/runners` image includes them and explicitly allowlists them. See [adding extra dependencies for task runners](../../hosting/configuration/task-runners/#adding-extra-dependencies) for more details.\n- Native Python denies insecure built-ins by default. See [task runners environment variables](../../hosting/configuration/environment-variables/task-runners/) for more details.\n- Unlike Pyodide, which accepts dot access notation, for example, `item.json.myNewField`, native Python only accepts bracket access notation, for example, `item[\"json\"][\"my_new_field\"]`. There may be other minor syntax differences where Pyodide accepts constructs that aren't legal in native Python.\n\nKeep in mind upgrading to native Python is a breaking change, so you may need to adjust your Python scripts to use the native Python runner.\n\nThis feature is in beta and is subject to change. As it becomes stable, n8n will roll it out progressively to n8n cloud users during 2025. Self-hosting users can [try it out](../../hosting/configuration/task-runners/) and provide feedback.\n\nThere are two places where you can use code in n8n: the Code node and the expressions editor. When using either area, there are some key concepts you need to know, as well as some built-in methods and variables to help with common tasks.\n\nWhen working with the Code node, you need to understand the following concepts:\n\n- [Data structure](../../data/data-structure/): understand the data you receive in the Code node, and requirements for outputting data from the node.\n- [Item linking](../../data/data-mapping/data-item-linking/): learn how data items work, and how to link to items from previous nodes. You need to handle item linking in your code when the number of input and output items doesn't match.\n\n### Built-in methods and variables\n\nn8n includes built-in methods and variables. These provide support for:\n\n- Accessing specific item data\n- Accessing data about workflows, executions, and your n8n environment\n- Convenience variables to help with data and time\n\nRefer to [Built-in methods and variables](../builtin/overview/) for more information.\n\n## Use AI in the Code node\n\nAI assistance in the Code node is available to Cloud users. It isn't available in self-hosted n8n.\n\nAI generated code overwrites your code\n\nIf you've already written some code on the **Code** tab, the AI generated code will replace it. n8n recommends using AI as a starting point to create your initial code, then editing it as needed.\n\nTo use ChatGPT to generate code in the Code node:\n\n1. In the Code node, set **Language** to **JavaScript**.\n1. Select the **Ask AI** tab.\n1. Write your query.\n1. Select **Generate Code**. n8n sends your query to ChatGPT, then displays the result in the **Code** tab.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Choose a mode",
+      "id": "choose-a-mode"
+    },
+    {
+      "level": "h2",
+      "text": "JavaScript",
+      "id": "javascript"
+    },
+    {
+      "level": "h3",
+      "text": "Supported JavaScript features",
+      "id": "supported-javascript-features"
+    },
+    {
+      "level": "h3",
+      "text": "External libraries",
+      "id": "external-libraries"
+    },
+    {
+      "level": "h3",
+      "text": "Built-in methods and variables",
+      "id": "built-in-methods-and-variables"
+    },
+    {
+      "level": "h3",
+      "text": "Keyboard shortcuts",
+      "id": "keyboard-shortcuts"
+    },
+    {
+      "level": "h2",
+      "text": "Python (Pyodide - legacy)",
+      "id": "python-(pyodide---legacy)"
+    },
+    {
+      "level": "h3",
+      "text": "Built-in methods and variables",
+      "id": "built-in-methods-and-variables"
+    },
+    {
+      "level": "h3",
+      "text": "Keyboard shortcuts",
+      "id": "keyboard-shortcuts"
+    },
+    {
+      "level": "h2",
+      "text": "File system and HTTP requests",
+      "id": "file-system-and-http-requests"
+    },
+    {
+      "level": "h2",
+      "text": "Python (Native - beta)",
+      "id": "python-(native---beta)"
+    },
+    {
+      "level": "h2",
+      "text": "Coding in n8n",
+      "id": "coding-in-n8n"
+    },
+    {
+      "level": "h3",
+      "text": "Key concepts",
+      "id": "key-concepts"
+    },
+    {
+      "level": "h3",
+      "text": "Built-in methods and variables",
+      "id": "built-in-methods-and-variables"
+    },
+    {
+      "level": "h2",
+      "text": "Use AI in the Code node",
+      "id": "use-ai-in-the-code-node"
+    }
+  ],
+  "url": "llms-txt#using-the-code-node",
+  "links": []
+}

@@ -1,0 +1,108 @@
+{
+  "url": "https://nextjs.org/docs/app/guides/production-checklist",
+  "title": "How to optimize your Next.js application for production",
+  "content": "Before taking your Next.js application to production, there are some optimizations and patterns you should consider implementing for the best user experience, performance, and security.\n\nThis page provides best practices that you can use as a reference when building your application and before going to production, as well as the automatic Next.js optimizations you should be aware of.\n\nThese Next.js optimizations are enabled by default and require no configuration:\n\nThese defaults aim to improve your application's performance, and reduce the cost and amount of data transferred on each network request.\n\nWhile building your application, we recommend using the following features to ensure the best performance and user experience:\n\nGood to know: Partial Prerendering (experimental) will allow parts of a route to be dynamic without opting the whole route into dynamic rendering.\n\nBefore going to production, you can run next build to build your application locally and catch any build errors, then run next start to measure the performance of your application in a production-like environment.\n\nUse the @next/bundle-analyzer plugin to analyze the size of your JavaScript bundles and identify large modules and dependencies that might be impacting your application's performance.\n\nAdditionally, the following tools can help you understand the impact of adding new dependencies to your application:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to optimize your Next.js application for production",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Automatic optimizations",
+      "id": "automatic-optimizations"
+    },
+    {
+      "level": "h2",
+      "text": "During development",
+      "id": "during-development"
+    },
+    {
+      "level": "h3",
+      "text": "Routing and rendering",
+      "id": "routing-and-rendering"
+    },
+    {
+      "level": "h3",
+      "text": "Data fetching and caching",
+      "id": "data-fetching-and-caching"
+    },
+    {
+      "level": "h3",
+      "text": "UI and accessibility",
+      "id": "ui-and-accessibility"
+    },
+    {
+      "level": "h3",
+      "text": "Security",
+      "id": "security"
+    },
+    {
+      "level": "h3",
+      "text": "Metadata and SEO",
+      "id": "metadata-and-seo"
+    },
+    {
+      "level": "h3",
+      "text": "Type safety",
+      "id": "type-safety"
+    },
+    {
+      "level": "h2",
+      "text": "Before going to production",
+      "id": "before-going-to-production"
+    },
+    {
+      "level": "h3",
+      "text": "Core Web Vitals",
+      "id": "core-web-vitals"
+    },
+    {
+      "level": "h3",
+      "text": "Analyzing bundles",
+      "id": "analyzing-bundles"
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/guides",
+    "https://nextjs.org/docs/app/guides/production-checklist",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/getting-started/linking-and-navigating",
+    "https://nextjs.org/docs/app/guides/lazy-loading",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/app/api-reference/components/link",
+    "https://nextjs.org/docs/app/getting-started/error-handling",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/not-found",
+    "https://nextjs.org/docs/app/api-reference/functions/cookies",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/getting-started/fetching-data",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/app/api-reference/functions/unstable_cache",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/public-folder",
+    "https://nextjs.org/docs/app/guides/forms",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/error",
+    "https://nextjs.org/docs/app/api-reference/components/font",
+    "https://nextjs.org/docs/app/api-reference/components/image",
+    "https://nextjs.org/docs/app/guides/scripts",
+    "https://nextjs.org/docs/architecture/accessibility",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/taint",
+    "https://nextjs.org/docs/app/getting-started/updating-data",
+    "https://nextjs.org/docs/app/guides/environment-variables",
+    "https://nextjs.org/docs/app/guides/content-security-policy",
+    "https://nextjs.org/docs/app/getting-started/metadata-and-og-images",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-sitemaps",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots",
+    "https://nextjs.org/docs/app/api-reference/config/typescript",
+    "https://nextjs.org/docs/app/api-reference/functions/use-report-web-vitals",
+    "https://nextjs.org/docs/app/guides/package-bundling",
+    "https://nextjs.org/docs/app/guides/prefetching",
+    "https://nextjs.org/docs/app/guides/progressive-web-apps"
+  ]
+}

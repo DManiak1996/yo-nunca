@@ -1,0 +1,29 @@
+{
+  "title": "Google Vertex Chat Model node",
+  "content": "Use the Google Vertex AI Chat Model node to use Google's Vertex AI chat models with conversational [agents](../../../../../glossary/#ai-agent).\n\nOn this page, you'll find the node parameters for the Google Vertex AI Chat Model node, and links to more resources.\n\nYou can find authentication information for this node [here](../../../credentials/google/service-account/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Project ID**: Select the project ID from your Google Cloud account to use. n8n dynamically loads projects from the Google Cloud account, but you can also enter it manually.\n- **Model Name**: Select the name of the model to use to generate the completion, for example `gemini-1.5-flash-001`, `gemini-1.5-pro-001`, etc. Refer to [Google models](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) for a list of available models.\n\n- **Maximum Number of Tokens**: Enter the maximum number of tokens used, which sets the completion length.\n- **Sampling Temperature**: Use this option to control the randomness of the sampling process. A higher temperature creates more diverse sampling, but increases the risk of hallucinations.\n- **Thinking Budget**: Controls reasoning tokens for thinking models. Set to `0` to disable automatic thinking. Set to `-1` for dynamic thinking. Leave empty for auto mode.\n- **Top K**: Enter the number of token choices the model uses to generate the next token.\n- **Top P**: Use this option to set the probability the completion should use. Use a lower value to ignore less probable options.\n- **Safety Settings**: Gemini supports adjustable safety settings. Refer to Google's [Gemini API safety settings](https://ai.google.dev/docs/safety_setting_gemini) for information on the available filters and levels.\n\n## Templates and examples\n\n**Extract text from PDF and image using Vertex AI (Gemini) into CSV**\n\n[View template details](https://n8n.io/workflows/2614-extract-text-from-pdf-and-image-using-vertex-ai-gemini-into-csv/)\n\n**Automated Stale User Re-Engagement System with Supabase, Google Sheets & Gmail**\n\n[View template details](https://n8n.io/workflows/5603-automated-stale-user-re-engagement-system-with-supabase-google-sheets-and-gmail/)\n\n**Create Structured Notion Workspaces from Notes & Voice Using Gemini & GPT**\n\n[View template details](https://n8n.io/workflows/7972-create-structured-notion-workspaces-from-notes-and-voice-using-gemini-and-gpt/)\n\n[Browse Google Vertex Chat Model integration templates](https://n8n.io/integrations/google-vertex-chat-model/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChain's Google Vertex AI documentation](https://js.langchain.com/docs/integrations/chat/google_vertex_ai/) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#google-vertex-chat-model-node",
+  "links": []
+}

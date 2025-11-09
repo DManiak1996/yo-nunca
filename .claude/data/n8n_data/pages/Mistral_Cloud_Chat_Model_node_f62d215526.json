@@ -1,0 +1,29 @@
+{
+  "title": "Mistral Cloud Chat Model node",
+  "content": "Use the Mistral Cloud Chat Model node to combine Mistral Cloud's chat models with conversational [agents](../../../../../glossary/#ai-agent).\n\nOn this page, you'll find the node parameters for the Mistral Cloud Chat Model node, and links to more resources.\n\nYou can find authentication information for this node [here](../../../credentials/mistral/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Model**: Select the model to use to generate the completion. n8n dynamically loads models from Mistral Cloud and you'll only see the models available to your account.\n\n- **Maximum Number of Tokens**: Enter the maximum number of tokens used, which sets the completion length.\n- **Sampling Temperature**: Use this option to control the randomness of the sampling process. A higher temperature creates more diverse sampling, but increases the risk of hallucinations.\n- **Timeout**: Enter the maximum request time in milliseconds.\n- **Max Retries**: Enter the maximum number of times to retry a request.\n- **Top P**: Use this option to set the probability the completion should use. Use a lower value to ignore less probable options.\n- **Enable Safe Mode**: Enable safe mode by injecting a safety prompt at the beginning of the completion. This helps prevent the model from generating offensive content.\n- **Random Seed**: Enter a seed to use for random sampling. If set, different calls will generate deterministic results.\n\n## Templates and examples\n\n**🤖 AI content generation for Auto Service 🚘 Automate your social media📲!**\n\n[View template details](https://n8n.io/workflows/4600-ai-content-generation-for-auto-service-automate-your-social-media/)\n\n**Breakdown Documents into Study Notes using Templating MistralAI and Qdrant**\n\n[View template details](https://n8n.io/workflows/2339-breakdown-documents-into-study-notes-using-templating-mistralai-and-qdrant/)\n\n**Build a Financial Documents Assistant using Qdrant and Mistral.ai**\n\n[View template details](https://n8n.io/workflows/2335-build-a-financial-documents-assistant-using-qdrant-and-mistralai/)\n\n[Browse Mistral Cloud Chat Model integration templates](https://n8n.io/integrations/mistral-cloud-chat-model/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChains's Mistral documentation](https://js.langchain.com/docs/integrations/chat/mistral) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#mistral-cloud-chat-model-node",
+  "links": []
+}

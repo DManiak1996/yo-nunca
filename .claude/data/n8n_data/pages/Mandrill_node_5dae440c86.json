@@ -1,0 +1,19 @@
+{
+  "title": "Mandrill node",
+  "content": "Use the Mandrill node to automate work in Mandrill, and integrate Mandrill with other applications. n8n supports sending messages based on templates or HTML with Mandrill.\n\nOn this page, you'll find a list of operations the Mandrill node supports and links to more resources.\n\nRefer to [Mandrill credentials](../../credentials/mandrill/) for guidance on setting up authentication.\n\n- Message\n  - Send message based on template.\n  - Send message based on HTML.\n\n## Templates and examples\n\n[Browse Mandrill integration templates](https://n8n.io/integrations/mandrill/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#mandrill-node",
+  "links": []
+}

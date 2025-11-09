@@ -1,0 +1,47 @@
+{
+  "url": "https://nextjs.org/docs/pages/building-your-application/routing/custom-document",
+  "title": "Custom Document",
+  "content": "A custom Document can update the <html> and <body> tags used to render a Page.\n\nTo override the default Document, create the file pages/_document as shown below:\n\nCustomizing renderPage is advanced and only needed for libraries like CSS-in-JS to support server-side rendering. This is not needed for built-in styled-jsx support.\n\nWe do not recommend using this pattern. Instead, consider incrementally adopting the App Router, which allows you to more easily fetch data for pages and layouts.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Custom Document",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Customizing renderPage",
+      "id": "customizing-renderpage"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { Html, Head, Main, NextScript } from 'next/document'\n \nexport default function Document() {\n  return (\n    <Html lang=\"en\">\n      <Head />\n      <body>\n        <Main />\n        <NextScript />\n      </body>\n    </Html>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Document, {\n  Html,\n  Head,\n  Main,\n  NextScript,\n  DocumentContext,\n  DocumentInitialProps,\n} from 'next/document'\n \nclass MyDocument extends Document {\n  static async getInitialProps(\n    ctx: DocumentContext\n  ): Promise<DocumentInitialProps> {\n    const originalRenderPage = ctx.renderPage\n \n    // Run the React rendering logic synchronously\n    ctx.renderPage = () =>\n      originalRenderPage({\n        // Useful for wrapping the whole react tree\n        enhanceApp: (App) => App,\n        // Useful for wrapping in a per-page basis\n        enhanceComponent: (Component) => Component,\n      })\n \n    // Run the parent `getInitialProps`, it now includes the custom `renderPage`\n    const initialProps = await Document.getInitialProps(ctx)\n \n    return initialProps\n  }\n \n  render() {\n    return (\n      <Html lang=\"en\">\n        <Head />\n        <body>\n          <Main />\n          <NextScript />\n        </body>\n      </Html>\n    )\n  }\n}\n \nexport default MyDocument",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/building-your-application",
+    "https://nextjs.org/docs/pages/building-your-application/routing",
+    "https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-document",
+    "https://nextjs.org/docs/pages/api-reference/components/head",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props",
+    "https://nextjs.org/docs/app/guides/migrating/app-router-migration",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-initial-props",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-app",
+    "https://nextjs.org/docs/pages/building-your-application/routing/api-routes"
+  ]
+}

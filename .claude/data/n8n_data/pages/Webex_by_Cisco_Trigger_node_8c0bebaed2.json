@@ -1,0 +1,8 @@
+{
+  "title": "Webex by Cisco Trigger node",
+  "content": "[Webex by Cisco](https://webex.com/) is a web conferencing and videoconferencing application.\n\nYou can find authentication information for this node [here](../../credentials/ciscowebex/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Webex by Cisco Trigger integrations](https://n8n.io/integrations/webex-by-cisco-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#webex-by-cisco-trigger-node",
+  "links": []
+}

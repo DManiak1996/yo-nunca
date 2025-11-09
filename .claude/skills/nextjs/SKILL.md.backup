@@ -1,0 +1,185 @@
+---
+name: nextjs
+description: Next.js React framework for production. Use for server-side rendering, static site generation, API routes, routing, and full-stack React applications.
+---
+
+# Nextjs Skill
+
+Comprehensive assistance with nextjs development, generated from official documentation.
+
+## When to Use This Skill
+
+This skill should be triggered when:
+- Working with nextjs
+- Asking about nextjs features or APIs
+- Implementing nextjs solutions
+- Debugging nextjs code
+- Learning nextjs best practices
+
+## Quick Reference
+
+### Common Patterns
+
+**Pattern 1:** App RouterAPI ReferenceTurbopackYou are currently viewing documentation for version 15 of Next.js.Turbopack Turbopack is an incremental bundler optimized for JavaScript and TypeScript, written in Rust, and built into Next.js. You can use Turbopack with both the Pages and App Router for a much faster local development experience. Why Turbopack? We built Turbopack to push the performance of Next.js, including: Unified Graph: Next.js supports multiple output environments (e.g., client and server). Managing multiple compilers and stitching bundles together can be tedious. Turbopack uses a single, unified graph for all environments. Bundling vs Native ESM: Some tools skip bundling in development and rely on the browser's native ESM. This works well for small apps but can slow down large apps due to excessive network requests. Turbopack bundles in dev, but in an optimized way to keep large apps fast. Incremental Computation: Turbopack parallelizes work across cores and caches results down to the function level. Once a piece of work is done, Turbopack won’t repeat it. Lazy Bundling: Turbopack only bundles what is actually requested by the dev server. This lazy approach can reduce initial compile times and memory usage. Getting started To enable Turbopack in your Next.js project, add the --turbopack flag to the dev and build scripts in your package.json file: package.json{ "scripts": { "dev": "next dev --turbopack", "build": "next build --turbopack", "start": "next start" } } Currently, Turbopack for dev is stable, while build is in beta. We are actively working on production support as Turbopack moves closer to stability. Supported features Turbopack in Next.js has zero-configuration for the common use cases. Below is a summary of what is supported out of the box, plus some references to how you can configure Turbopack further when needed. Language features FeatureStatusNotesJavaScript & TypeScriptSupportedUses SWC under the hood. Type-checking is not done by Turbopack (run tsc --watch or rely on your IDE for type checks).ECMAScript (ESNext)SupportedTurbopack supports the latest ECMAScript features, matching SWC’s coverage.CommonJSSupportedrequire() syntax is handled out of the box.ESMSupportedStatic and dynamic import are fully supported.BabelPartially UnsupportedTurbopack does not include Babel by default. However, you can configure babel-loader via the Turbopack config. Framework and React features FeatureStatusNotesJSX / TSXSupportedSWC handles JSX/TSX compilation.Fast RefreshSupportedNo configuration needed.React Server Components (RSC)SupportedFor the Next.js App Router. Turbopack ensures correct server/client bundling.Root layout creationUnsupportedAutomatic creation of a root layout in App Router is not supported. Turbopack will instruct you to create it manually. CSS and styling FeatureStatusNotesGlobal CSSSupportedImport .css files directly in your application.CSS ModulesSupported.module.css files work natively (Lightning CSS).CSS NestingSupportedLightning CSS supports modern CSS nesting.@import syntaxSupportedCombine multiple CSS files.PostCSSSupportedAutomatically processes postcss.config.js in a Node.js worker pool. Useful for Tailwind, Autoprefixer, etc.Sass / SCSSSupported (Next.js)For Next.js, Sass is supported out of the box. In the future, Turbopack standalone usage will likely require a loader config.LessPlanned via pluginsNot yet supported by default. Will likely require a loader config once custom loaders are stable.Lightning CSSIn UseHandles CSS transformations. Some low-usage CSS Modules features (like :local/:global as standalone pseudo-classes) are not yet supported. See below for more details. Assets FeatureStatusNotesStatic Assets (images, fonts)SupportedImporting import img from './img.png' works out of the box. In Next.js, returns an object for the <Image /> component.JSON ImportsSupportedNamed or default imports from .json are supported. Module resolution FeatureStatusNotesPath AliasesSupportedReads tsconfig.json's paths and baseUrl, matching Next.js behavior.Manual AliasesSupportedConfigure resolveAlias in next.config.js (similar to webpack.resolve.alias).Custom ExtensionsSupportedConfigure resolveExtensions in next.config.js.AMDPartially SupportedBasic transforms work; advanced AMD usage is limited. Performance and Fast Refresh FeatureStatusNotesFast RefreshSupportedUpdates JavaScript, TypeScript, and CSS without a full refresh.Incremental BundlingSupportedTurbopack lazily builds only what’s requested by the dev server, speeding up large apps. Known gaps with webpack There are a number of non-trivial behavior differences between webpack and Turbopack that are important to be aware of when migrating an application. Generally, these are less of a concern for new applications. CSS Module Ordering Turbopack will follow JS import order to order CSS modules which are not otherwise ordered. For example: components/BlogPost.jsximport utilStyles from './utils.module.css' import buttonStyles from './button.module.css' export default function BlogPost() { return ( <div className={utilStyles.container}> <button className={buttonStyles.primary}>Click me</button> </div> ) } In this example, Turbopack will ensure that utils.module.css will appear before button.module.css in the produced CSS chunk, following the import order Webpack generally does this as well, but there are cases where it will ignore JS inferred ordering, for example if it infers the JS file is side-effect-free. This can lead to subtle rendering changes when adopting Turbopack, if applications have come to rely on an arbitrary ordering. Generally, the solution is easy, e.g. have button.module.css @import utils.module.css to force the ordering, or identify the conflicting rules and change them to not target the same properties. Bundle Sizes Turbopack does not yet have an equivalent to the Inner Graph Optimization in webpack. This optimization is useful to tree shake large modules. For example: import heavy from 'some-heavy-dependency.js' export function usesHeavy() { return heavy.run() } export const CONSTANT_VALUE = 3 If an application only uses CONSTANT_VALUE Turbopack will detect this and delete the usesHeavy export but not the corresponding import. However, with the optimization.innerGraph = true option enabled, webpack can delete the import too. We are planning to offer an equivalent to the innerGraph optimization in Turbopack but it is still under development. If you are affected by this gap, consider manually splitting these modules. Build Caching Webpack supports disk build caching to speed up builds. We are planning to support an analogous feature in Turbopack but it is not ready yet. On the next@canary release you can experiment with our solution by enabling the experimental.turbopackPersistentCaching flag. Good to know: For this reason, when comparing webpack and Turbopack performance, make sure to delete the .next folder between builds to see a fair comparison. Webpack plugins Turbopack does not support webpack plugins. This affects third-party tools that rely on webpack's plugin system for integration. We do support webpack loaders. If you depend on webpack plugins, you'll need to find Turbopack-compatible alternatives or continue using webpack until equivalent functionality is available. Unsupported and unplanned features Some features are not yet implemented or not planned: Legacy CSS Modules features Standalone :local and :global pseudo-classes (only the function variant :global(...) is supported). The @value rule (superseded by CSS variables). :import and :export ICSS rules. composes in .module.css composing a .css file. In webpack this would treat the .css file as a CSS Module, with Turbopack the .css file will always be global. This means that if you want to use composes in a CSS Module, you need to change the .css file to a .module.css file. @import in CSS Modules importing .css as a CSS Module. In webpack this would treat the .css file as a CSS Module, with Turbopack the .css file will always be global. This means that if you want to use @import in a CSS Module, you need to change the .css file to a .module.css file. webpack() configuration in next.config.js Turbopack replaces webpack, so webpack() configs are not recognized. Use the turbopack config instead. AMP Not planned for Turbopack support in Next.js. Yarn PnP Not planned for Turbopack support in Next.js. experimental.urlImports Not planned for Turbopack. experimental.esmExternals Not planned. Turbopack does not support the legacy esmExternals configuration in Next.js. Some Next.js Experimental Flags experimental.nextScriptWorkers experimental.sri.algorithm experimental.fallbackNodePolyfills We plan to implement these in the future. For a full, detailed breakdown of each feature flag and its status, see the Turbopack API Reference. Configuration Turbopack can be configured via next.config.js (or next.config.ts) under the turbopack key. Configuration options include: rules Define additional webpack loaders for file transformations. resolveAlias Create manual aliases (like resolve.alias in webpack). resolveExtensions Change or extend file extensions for module resolution. moduleIds Set how module IDs are generated ('named' vs 'deterministic'). memoryLimit Set a memory limit (in bytes) for Turbopack. next.config.jsmodule.exports = { turbopack: { // Example: adding an alias and custom file extension resolveAlias: { underscore: 'lodash', }, resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.json'], }, } For more in-depth configuration examples, see the Turbopack config documentation. Generating trace files for performance debugging If you encounter performance or memory issues and want to help the Next.js team diagnose them, you can generate a trace file by appending NEXT_TURBOPACK_TRACING=1 to your dev command: NEXT_TURBOPACK_TRACING=1 next dev --turbopack This will produce a .next/trace-turbopack file. Include that file when creating a GitHub issue on the Next.js repo to help us investigate. Summary Turbopack is a Rust-based, incremental bundler designed to make local development and builds fast—especially for large applications. It is integrated into Next.js, offering zero-config CSS, React, and TypeScript support. Stay tuned for more updates as we continue to improve Turbopack and add production build support. In the meantime, give it a try with next dev --turbopack and let us know your feedback. Version Changes VersionChangesv15.5.0Turbopack support for build betav15.3.0Experimental support for buildv15.0.0Turbopack for dev stable
+
+```
+--turbopack
+```
+
+**Pattern 2:** Turbopack will follow JS import order to order CSS modules which are not otherwise ordered. For example:
+
+```
+import utilStyles from './utils.module.css'
+import buttonStyles from './button.module.css'
+export default function BlogPost() {
+  return (
+    <div className={utilStyles.container}>
+      <button className={buttonStyles.primary}>Click me</button>
+    </div>
+  )
+}
+```
+
+**Pattern 3:** Turbopack does not yet have an equivalent to the Inner Graph Optimization in webpack. This optimization is useful to tree shake large modules. For example:
+
+```
+import heavy from 'some-heavy-dependency.js'
+ 
+export function usesHeavy() {
+  return heavy.run()
+}
+ 
+export const CONSTANT_VALUE = 3
+```
+
+**Pattern 4:** next.config.jsmodule.exports = { turbopack: { // Example: adding an alias and custom file extension resolveAlias: { underscore: 'lodash', }, resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.json'], }, }
+
+```
+module.exports = {
+  turbopack: {
+    // Example: adding an alias and custom file extension
+    resolveAlias: {
+      underscore: 'lodash',
+    },
+    resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.json'],
+  },
+}
+```
+
+**Pattern 5:** API ReferenceFunctionsuseReportWebVitalsCopy pageuseReportWebVitals The useReportWebVitals hook allows you to report Core Web Vitals, and can be used in combination with your analytics service. New functions passed to useReportWebVitals are called with the available metrics up to that point. To prevent reporting duplicated data, ensure that the callback function reference does not change (as shown in the code examples below). app/_components/web-vitals.js'use client' import { useReportWebVitals } from 'next/web-vitals' const logWebVitals = (metric) => { console.log(metric) } export function WebVitals() { useReportWebVitals(logWebVitals) return null }app/layout.jsimport { WebVitals } from './_components/web-vitals' export default function Layout({ children }) { return ( <html> <body> <WebVitals /> {children} </body> </html> ) } Since the useReportWebVitals hook requires the 'use client' directive, the most performant approach is to create a separate component that the root layout imports. This confines the client boundary exclusively to the WebVitals component. useReportWebVitals The metric object passed as the hook's argument consists of a number of properties: id: Unique identifier for the metric in the context of the current page load name: The name of the performance metric. Possible values include names of Web Vitals metrics (TTFB, FCP, LCP, FID, CLS) specific to a web application. delta: The difference between the current value and the previous value of the metric. The value is typically in milliseconds and represents the change in the metric's value over time. entries: An array of Performance Entries associated with the metric. These entries provide detailed information about the performance events related to the metric. navigationType: Indicates the type of navigation that triggered the metric collection. Possible values include "navigate", "reload", "back_forward", and "prerender". rating: A qualitative rating of the metric value, providing an assessment of the performance. Possible values are "good", "needs-improvement", and "poor". The rating is typically determined by comparing the metric value against predefined thresholds that indicate acceptable or suboptimal performance. value: The actual value or duration of the performance entry, typically in milliseconds. The value provides a quantitative measure of the performance aspect being tracked by the metric. The source of the value depends on the specific metric being measured and can come from various Performance APIs. Web Vitals Web Vitals are a set of useful metrics that aim to capture the user experience of a web page. The following web vitals are all included: Time to First Byte (TTFB) First Contentful Paint (FCP) Largest Contentful Paint (LCP) First Input Delay (FID) Cumulative Layout Shift (CLS) Interaction to Next Paint (INP) You can handle all the results of these metrics using the name property. app/components/web-vitals.tsxTypeScriptJavaScriptTypeScript'use client' import { useReportWebVitals } from 'next/web-vitals' type ReportWebVitalsCallback = Parameters<typeof useReportWebVitals>[0] const handleWebVitals: ReportWebVitalsCallback = (metric) => { switch (metric.name) { case 'FCP': { // handle FCP results } case 'LCP': { // handle LCP results } // ... } } export function WebVitals() { useReportWebVitals(handleWebVitals) } Sending results to external systems You can send results to any endpoint to measure and track real user performance on your site. For example: function postWebVitals(metrics) { const body = JSON.stringify(metric) const url = 'https://example.com/analytics' // Use `navigator.sendBeacon()` if available, falling back to `fetch()`. if (navigator.sendBeacon) { navigator.sendBeacon(url, body) } else { fetch(url, { body, method: 'POST', keepalive: true }) } } useReportWebVitals(postWebVitals) Good to know: If you use Google Analytics, using the id value can allow you to construct metric distributions manually (to calculate percentiles, etc.) useReportWebVitals(metric => { // Use `window.gtag` if you initialized Google Analytics as this example: // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics window.gtag('event', metric.name, { value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value), // values must be integers event_label: metric.id, // id unique to current page load non_interaction: true, // avoids affecting bounce rate. }); } Read more about sending results to Google Analytics.
+
+```
+useReportWebVitals
+```
+
+**Pattern 6:** GuidesUpgradingVersion 13Copy pageHow to upgrade to version 13Upgrading from 12 to 13 To update to Next.js version 13, run the following command using your preferred package manager: Terminalnpm i next@13 react@latest react-dom@latest eslint-config-next@13 Terminalyarn add next@13 react@latest react-dom@latest eslint-config-next@13 Terminalpnpm i next@13 react@latest react-dom@latest eslint-config-next@13 Terminalbun add next@13 react@latest react-dom@latest eslint-config-next@13 Good to know: If you are using TypeScript, ensure you also upgrade @types/react and @types/react-dom to their latest versions. v13 Summary The Supported Browsers have been changed to drop Internet Explorer and target modern browsers. The minimum Node.js version has been bumped from 12.22.0 to 16.14.0, since 12.x and 14.x have reached end-of-life. The minimum React version has been bumped from 17.0.2 to 18.2.0. The swcMinify configuration property was changed from false to true. See Next.js Compiler for more info. The next/image import was renamed to next/legacy/image. The next/future/image import was renamed to next/image. A codemod is available to safely and automatically rename your imports. The next/link child can no longer be <a>. Add the legacyBehavior prop to use the legacy behavior or remove the <a> to upgrade. A codemod is available to automatically upgrade your code. The target configuration property has been removed and superseded by Output File Tracing. Migrating shared features Next.js 13 introduces a new app directory with new features and conventions. However, upgrading to Next.js 13 does not require using the new app Router. You can continue using pages with new features that work in both directories, such as the updated Image component, Link component, Script component, and Font optimization. <Image/> Component Next.js 12 introduced many improvements to the Image Component with a temporary import: next/future/image. These improvements included less client-side JavaScript, easier ways to extend and style images, better accessibility, and native browser lazy loading. Starting in Next.js 13, this new behavior is now the default for next/image. There are two codemods to help you migrate to the new Image Component: next-image-to-legacy-image: This codemod will safely and automatically rename next/image imports to next/legacy/image to maintain the same behavior as Next.js 12. We recommend running this codemod to quickly update to Next.js 13 automatically. next-image-experimental: After running the previous codemod, you can optionally run this experimental codemod to upgrade next/legacy/image to the new next/image, which will remove unused props and add inline styles. Please note this codemod is experimental and only covers static usage (such as <Image src={img} layout="responsive" />) but not dynamic usage (such as <Image {...props} />). Alternatively, you can manually update by following the migration guide and also see the legacy comparison. <Link> Component The <Link> Component no longer requires manually adding an <a> tag as a child. This behavior was added as an experimental option in version 12.2 and is now the default. In Next.js 13, <Link> always renders <a> and allows you to forward props to the underlying tag. For example: import Link from 'next/link' // Next.js 12: `<a>` has to be nested otherwise it's excluded <Link href="/about"> <a>About</a> </Link> // Next.js 13: `<Link>` always renders `<a>` under the hood <Link href="/about"> About </Link> To upgrade your links to Next.js 13, you can use the new-link codemod. <Script> Component The behavior of next/script has been updated to support both pages and app. If incrementally adopting app, read the upgrade guide. Font Optimization Previously, Next.js helped you optimize fonts by inlining font CSS. Version 13 introduces the new next/font module which gives you the ability to customize your font loading experience while still ensuring great performance and privacy. See Optimizing Fonts to learn how to use next/font.
+
+```
+npm i next@13 react@latest react-dom@latest eslint-config-next@13
+```
+
+**Pattern 7:** For example:
+
+```
+import Link from 'next/link'
+ 
+// Next.js 12: `<a>` has to be nested otherwise it's excluded
+<Link href="/about">
+  <a>About</a>
+</Link>
+ 
+// Next.js 13: `<Link>` always renders `<a>` under the hood
+<Link href="/about">
+  About
+</Link>
+```
+
+**Pattern 8:** App RouterGetting StartedCaching and RevalidatingYou are currently viewing documentation for version 15 of Next.js.Caching and RevalidatingCaching is a technique for storing the result of data fetching and other computations so that future requests for the same data can be served faster, without doing the work again. While revalidation allows you to update cache entries without having to rebuild your entire application. Next.js provides a few APIs to handle caching and revalidation. This guide will walk you through when and how to use them. fetch unstable_cache revalidatePath revalidateTag fetch By default, fetch requests are not cached. You can cache individual requests by setting the cache option to 'force-cache'. app/page.tsxTypeScriptJavaScriptTypeScriptexport default async function Page() { const data = await fetch('https://...', { cache: 'force-cache' }) } Good to know: Although fetch requests are not cached by default, Next.js will prerender routes that have fetch requests and cache the HTML. If you want to guarantee a route is dynamic, use the connection API. To revalidate the data returned by a fetch request, you can use the next.revalidate option. app/page.tsxTypeScriptJavaScriptTypeScriptexport default async function Page() { const data = await fetch('https://...', { next: { revalidate: 3600 } }) } This will revalidate the data after a specified amount of seconds. See the fetch API reference to learn more. unstable_cache unstable_cache allows you to cache the result of database queries and other async functions. To use it, wrap unstable_cache around the function. For example: import { db } from '@/lib/db' export async function getUserById(id: string) { return db .select() .from(users) .where(eq(users.id, id)) .then((res) => res[0]) } app/page.tsxTypeScriptJavaScriptTypeScriptimport { unstable_cache } from 'next/cache' import { getUserById } from '@/app/lib/data' export default async function Page({ params, }: { params: Promise<{ userId: string }> }) { const { userId } = await params const getCachedUser = unstable_cache( async () => { return getUserById(userId) }, [userId] // add the user ID to the cache key ) } The function accepts a third optional object to define how the cache should be revalidated. It accepts: tags: an array of tags used by Next.js to revalidate the cache. revalidate: the number of seconds after cache should be revalidated. app/page.tsxTypeScriptJavaScriptTypeScriptconst getCachedUser = unstable_cache( async () => { return getUserById(userId) }, [userId], { tags: ['user'], revalidate: 3600, } ) See the unstable_cache API reference to learn more. revalidateTag revalidateTag is used to revalidate cache entries based on a tag and following an event. To use it with fetch, start by tagging the function with the next.tags option: app/lib/data.tsTypeScriptJavaScriptTypeScriptexport async function getUserById(id: string) { const data = await fetch(`https://...`, { next: { tags: ['user'], }, }) } Alternatively, you can mark an unstable_cache function with the tags option: app/lib/data.tsTypeScriptJavaScriptTypeScriptexport const getUserById = unstable_cache( async (id: string) => { return db.query.users.findFirst({ where: eq(users.id, id) }) }, ['user'], // Needed if variables are not passed as parameters { tags: ['user'], } ) Then, call revalidateTag in a Route Handler or Server Action: app/lib/actions.tsTypeScriptJavaScriptTypeScriptimport { revalidateTag } from 'next/cache' export async function updateUser(id: string) { // Mutate data revalidateTag('user') } You can reuse the same tag in multiple functions to revalidate them all at once. See the revalidateTag API reference to learn more. revalidatePath revalidatePath is used to revalidate a route and following an event. To use it, call it in a Route Handler or Server Action: app/lib/actions.tsTypeScriptJavaScriptTypeScriptimport { revalidatePath } from 'next/cache' export async function updateUser(id: string) { // Mutate data revalidatePath('/profile') See the revalidatePath API reference to learn more.API ReferenceLearn more about the features mentioned in this page by reading the API Reference.Next.js Docs...FunctionsfetchAPI reference for the extended fetch function.Next.js Docs...Functionsunstable_cacheAPI Reference for the unstable_cache function.Next.js Docs...FunctionsrevalidatePathAPI Reference for the revalidatePath function.Next.js Docs...FunctionsrevalidateTagAPI Reference for the revalidateTag function.
+
+```
+fetch
+```
+
+### Example Code Patterns
+
+**Example 1** (javascript):
+```javascript
+export default async function Page() {
+  const data = await fetch('https://...', { cache: 'force-cache' })
+}
+```
+
+**Example 2** (javascript):
+```javascript
+export default async function Page() {
+  const data = await fetch('https://...', { next: { revalidate: 3600 } })
+}
+```
+
+**Example 3** (javascript):
+```javascript
+export async function getProducts() {
+  'use cache'
+  const data = await db.query('SELECT * FROM products')
+  return data
+}
+```
+
+**Example 4** (python):
+```python
+import { GoogleAnalytics } from '@next/third-parties/google'
+ 
+export default function Page() {
+  return <GoogleAnalytics gaId="G-XYZ" />
+}
+```
+
+## Reference Files
+
+This skill includes comprehensive documentation in `references/`:
+
+- **data_fetching.md** - Data Fetching documentation
+- **getting_started.md** - Getting Started documentation
+- **other.md** - Other documentation
+- **routing.md** - Routing documentation
+
+Use `view` to read specific reference files when detailed information is needed.
+
+## Working with This Skill
+
+### For Beginners
+Start with the getting_started or tutorials reference files for foundational concepts.
+
+### For Specific Features
+Use the appropriate category reference file (api, guides, etc.) for detailed information.
+
+### For Code Examples
+The quick reference section above contains common patterns extracted from the official docs.
+
+## Resources
+
+### references/
+Organized documentation extracted from official sources. These files contain:
+- Detailed explanations
+- Code examples with language annotations
+- Links to original documentation
+- Table of contents for quick navigation
+
+### scripts/
+Add helper scripts here for common automation tasks.
+
+### assets/
+Add templates, boilerplate, or example projects here.
+
+## Notes
+
+- This skill was automatically generated from official documentation
+- Reference files preserve the structure and examples from source docs
+- Code examples include language detection for better syntax highlighting
+- Quick reference patterns are extracted from common usage examples in the docs
+
+## Updating
+
+To refresh this skill with updated documentation:
+1. Re-run the scraper with the same configuration
+2. The skill will be rebuilt with the latest information

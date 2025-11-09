@@ -1,0 +1,92 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/updateTag",
+  "title": "updateTag",
+  "content": "updateTag allows you to update cached data on-demand for a specific cache tag from within Server Actions.\n\nThis function is designed for read-your-own-writes scenarios, where a user makes a change (like creating a post), and the UI immediately shows the change, rather than stale data.\n\nupdateTag can only be called from within Server Actions. It cannot be used in Route Handlers, Client Components, or any other context.\n\nIf you need to invalidate cache tags in Route Handlers or other contexts, use revalidateTag instead.\n\nGood to know: updateTag immediately expires the cached data for the specified tag. The next request will wait to fetch fresh data rather than serving stale content from the cache, ensuring users see their changes immediately.\n\nTags must first be assigned to cached data. You can do this in two ways:\n\nupdateTag does not return a value.\n\nWhile both updateTag and revalidateTag invalidate cached data, they serve different purposes:\n\nUse revalidateTag instead when:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "updateTag",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h2",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Differences from revalidateTag",
+      "id": "differences-from-revalidatetag"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Server Action with Read-Your-Own-Writes",
+      "id": "server-action-with-read-your-own-writes"
+    },
+    {
+      "level": "h3",
+      "text": "Error when used outside Server Actions",
+      "id": "error-when-used-outside-server-actions"
+    },
+    {
+      "level": "h2",
+      "text": "When to use updateTag",
+      "id": "when-to-use-updatetag"
+    },
+    {
+      "level": "h2",
+      "text": "Related",
+      "id": "related"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "updateTag(tag: string): void;",
+      "language": "unknown"
+    },
+    {
+      "code": "fetch(url, { next: { tags: ['posts'] } })",
+      "language": "unknown"
+    },
+    {
+      "code": "import { cacheTag } from 'next/cache'\n \nasync function getData() {\n  'use cache'\n  cacheTag('posts')\n  // ...\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nimport { updateTag } from 'next/cache'\nimport { redirect } from 'next/navigation'\n \nexport async function createPost(formData: FormData) {\n  const title = formData.get('title')\n  const content = formData.get('content')\n \n  // Create the post in your database\n  const post = await db.post.create({\n    data: { title, content },\n  })\n \n  // Invalidate cache tags so the new post is immediately visible\n  // 'posts' tag: affects any page that displays a list of posts\n  updateTag('posts')\n  // 'post-{id}' tag: affects the individual post detail page\n  updateTag(`post-${post.id}`)\n \n  // Redirect to the new post - user will see fresh data, not cached\n  redirect(`/posts/${post.id}`)\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { updateTag } from 'next/cache'\n \nexport async function POST() {\n  // This will throw an error\n  updateTag('posts')\n  // Error: updateTag can only be called from within a Server Action\n \n  // Use revalidateTag instead in Route Handlers\n  revalidateTag('posts', 'max')\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/getting-started/updating-data",
+    "https://nextjs.org/docs/app/api-reference/functions/updateTag",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidateTag",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheTag",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidatePath",
+    "https://nextjs.org/docs/app/api-reference/functions/unstable_rethrow",
+    "https://nextjs.org/docs/app/api-reference/functions/use-link-status"
+  ]
+}

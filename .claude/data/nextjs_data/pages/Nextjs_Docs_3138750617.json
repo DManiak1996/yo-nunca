@@ -1,0 +1,68 @@
+{
+  "url": "https://nextjs.org/docs/15",
+  "title": "Next.js Docs",
+  "content": "Welcome to the Next.js documentation!\n\nNext.js is a React framework for building full-stack web applications. You use React Components to build user interfaces, and Next.js for additional features and optimizations.\n\nIt also automatically configures lower-level tools like bundlers and compilers. You can instead focus on building your product and shipping quickly.\n\nWhether you're an individual developer or part of a larger team, Next.js can help you build interactive, dynamic, and fast React applications.\n\nThe docs are organized into 3 sections:\n\nUse the sidebar to navigate through the sections, or search (Ctrl+K or Cmd+K) to quickly find a page.\n\nNext.js has two different routers:\n\nAt the top of the sidebar, you'll notice a dropdown menu that allows you to switch between the App Router and the Pages Router docs.\n\nThe App Router and Pages Router handle React versions differently:\n\nApp Router: Uses React canary releases built-in, which include all the stable React 19 changes, as well as newer features being validated in frameworks, prior to a new React release.\n\nPages Router: Uses the React version installed in your project's package.json.\n\nThis approach ensures new React features work reliably in the App Router while maintaining backwards compatibility for existing Pages Router applications.\n\nOur documentation assumes some familiarity with web development. Before getting started, it'll help if you're comfortable with:\n\nIf you're new to React or need a refresher, we recommend starting with our React Foundations course, and the Next.js Foundations course that has you building an application as you learn.\n\nFor the best experience when using a screen reader, we recommend using Firefox and NVDA, or Safari and VoiceOver.\n\nIf you have questions about anything related to Next.js, you're always welcome to ask our community on GitHub Discussions, Discord, X (Twitter), and Reddit.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Next.js Docs",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "What is Next.js?",
+      "id": "what-is-nextjs"
+    },
+    {
+      "level": "h2",
+      "text": "How to use the docs",
+      "id": "how-to-use-the-docs"
+    },
+    {
+      "level": "h2",
+      "text": "App Router and Pages Router",
+      "id": "app-router-and-pages-router"
+    },
+    {
+      "level": "h3",
+      "text": "React version handling",
+      "id": "react-version-handling"
+    },
+    {
+      "level": "h2",
+      "text": "Pre-requisite knowledge",
+      "id": "pre-requisite-knowledge"
+    },
+    {
+      "level": "h2",
+      "text": "Accessibility",
+      "id": "accessibility"
+    },
+    {
+      "level": "h2",
+      "text": "Join our Community",
+      "id": "join-our-community"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "Getting Started",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/15",
+    "https://nextjs.org/docs/15/app/getting-started",
+    "https://nextjs.org/docs/15/app/guides",
+    "https://nextjs.org/docs/15/app/api-reference",
+    "https://nextjs.org/docs/15/app",
+    "https://nextjs.org/docs/15/pages",
+    "https://nextjs.org/docs/14/community/contribution-guide"
+  ]
+}

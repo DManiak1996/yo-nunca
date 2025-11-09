@@ -1,0 +1,19 @@
+{
+  "title": "Matrix node",
+  "content": "Use the Matrix node to automate work in Matrix, and integrate Matrix with other applications. n8n has built-in support for a wide range of Matrix features, including getting current user's account information, sending media and messages to a room, and getting room members and messages.\n\nOn this page, you'll find a list of operations the Matrix node supports and links to more resources.\n\nRefer to [Matrix credentials](../../credentials/matrix/) for guidance on setting up authentication.\n\n- Account\n  - Get current user's account information\n- Event\n  - Get single event by ID\n- Media\n  - Send media to a chat room\n- Message\n  - Send a message to a room\n  - Gets all messages from a room\n- Room\n  - New chat room with defined settings\n  - Invite a user to a room\n  - Join a new room\n  - Kick a user from a room\n  - Leave a room\n- Room Member\n  - Get all members\n\n## Templates and examples\n\n**Manage room members in Matrix**\n\n[View template details](https://n8n.io/workflows/724-manage-room-members-in-matrix/)\n\n**Weekly Coffee Chat (Matrix Version)**\n\n[View template details](https://n8n.io/workflows/854-weekly-coffee-chat-matrix-version/)\n\n**🛠️ Matrix Tool MCP Server 💪 all 11 operations**\n\n[View template details](https://n8n.io/workflows/5185-matrix-tool-mcp-server-all-11-operations/)\n\n[Browse Matrix integration templates](https://n8n.io/integrations/matrix/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#matrix-node",
+  "links": []
+}

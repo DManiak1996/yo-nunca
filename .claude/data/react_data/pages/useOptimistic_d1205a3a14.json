@@ -1,0 +1,60 @@
+{
+  "url": "https://react.dev/reference/react/useOptimistic",
+  "title": "useOptimistic",
+  "content": "useOptimistic is a React Hook that lets you optimistically update the UI.\n\nuseOptimistic is a React Hook that lets you show a different state while an async action is underway. It accepts some state as an argument and returns a copy of that state that can be different during the duration of an async action such as a network request. You provide a function that takes the current state and the input to the action, and returns the optimistic state to be used while the action is pending.\n\nThis state is called the “optimistic” state because it is usually used to immediately present the user with the result of performing an action, even though the action actually takes time to complete.\n\nSee more examples below.\n\nThe useOptimistic Hook provides a way to optimistically update the user interface before a background operation, like a network request, completes. In the context of forms, this technique helps to make apps feel more responsive. When a user submits a form, instead of waiting for the server’s response to reflect the changes, the interface is immediately updated with the expected outcome.\n\nFor example, when a user types a message into the form and hits the “Send” button, the useOptimistic Hook allows the message to immediately appear in the list with a “Sending…” label, even before the message is actually sent to a server. This “optimistic” approach gives the impression of speed and responsiveness. The form then attempts to truly send the message in the background. Once the server confirms the message has been received, the “Sending…” label is removed.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "useOptimistic",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "useOptimistic(state, updateFn)",
+      "id": "use"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Optimistically updating forms",
+      "id": "optimistically-updating-with-forms"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);",
+      "language": "javascript"
+    },
+    {
+      "code": "import { useOptimistic } from 'react';function AppContainer() {  const [optimisticState, addOptimistic] = useOptimistic(    state,    // updateFn    (currentState, optimisticValue) => {      // merge and return new state      // with optimistic value    }  );}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react/hooks",
+    "https://react.dev/reference/react/useOptimistic",
+    "https://react.dev/reference/react/useMemo",
+    "https://react.dev/reference/react/useReducer"
+  ]
+}

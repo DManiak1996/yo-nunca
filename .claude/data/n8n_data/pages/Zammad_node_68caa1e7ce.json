@@ -1,0 +1,19 @@
+{
+  "title": "Zammad node",
+  "content": "Use the Zammad node to automate work in Zammad, and integrate Zammad with other applications. n8n has built-in support for a wide range of Zammad features, including creating, retrieving, and deleting groups and organizations.\n\nOn this page, you'll find a list of operations the Zammad node supports and links to more resources.\n\nRefer to [Zammad credentials](../../credentials/zammad/) for guidance on setting up authentication.\n\n- Group\n  - Create\n  - Delete\n  - Get\n  - Get many\n  - Update\n- Organization\n  - Create\n  - Delete\n  - Get\n  - Get many\n  - Update\n- Ticket\n  - Create\n  - Delete\n  - Get\n  - Get many\n- User\n  - Create\n  - Delete\n  - Get\n  - Get many\n  - Get self\n  - Update\n\n## Templates and examples\n\n**Update people through Zulip about open tickets in Zammad**\n\n[View template details](https://n8n.io/workflows/1575-update-people-through-zulip-about-open-tickets-in-zammad/)\n\n**Export Zammad Objects (Users, Roles, Groups, Organizations) to Excel**\n\n[View template details](https://n8n.io/workflows/2596-export-zammad-objects-users-roles-groups-organizations-to-excel/)\n\n**Sync Entra User to Zammad User**\n\n[View template details](https://n8n.io/workflows/2587-sync-entra-user-to-zammad-user/)\n\n[Browse Zammad integration templates](https://n8n.io/integrations/zammad/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#zammad-node",
+  "links": []
+}

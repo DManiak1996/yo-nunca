@@ -1,0 +1,8 @@
+{
+  "title": "Set a save location for the log file",
+  "content": "export N8N_LOG_FILE_LOCATION=/home/jim/n8n/logs/n8n.log",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#set-a-save-location-for-the-log-file",
+  "links": []
+}

@@ -1,0 +1,82 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/fetch",
+  "title": "fetch",
+  "content": "Next.js extends the Web fetch() API to allow each request on the server to set its own persistent caching and revalidation semantics.\n\nIn the browser, the cache option indicates how a fetch request will interact with the browser's HTTP cache. With this extension, cache indicates how a server-side fetch request will interact with the framework's persistent Data Cache.\n\nYou can call fetch with async and await directly within Server Components.\n\nSince Next.js extends the Web fetch() API, you can use any of the native options available.\n\nConfigure how the request should interact with Next.js Data Cache.\n\nSet the cache lifetime of a resource (in seconds). Data Cache.\n\nSet the cache tags of a resource. Data can then be revalidated on-demand using revalidateTag. The max length for a custom tag is 256 characters and the max tag items is 128.\n\nNext.js caches fetch responses in Server Components across Hot Module Replacement (HMR) in local development for faster responses and to reduce costs for billed API calls.\n\nBy default, the HMR cache applies to all fetch requests, including those with the default auto no cache and cache: 'no-store' option. This means uncached requests will not show fresh data between HMR refreshes. However, the cache will be cleared on navigation or full-page reloads.\n\nSee the serverComponentsHmrCache docs for more information.\n\nIn development mode, if the request includes the cache-control: no-cache header, options.cache, options.next.revalidate, and options.next.tags are ignored, and the fetch request is served from the source.\n\nBrowsers typically include cache-control: no-cache when the cache is disabled in developer tools or during a hard refresh.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "fetch",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "fetch(url, options)",
+      "id": "fetchurl-options"
+    },
+    {
+      "level": "h3",
+      "text": "options.cache",
+      "id": "optionscache"
+    },
+    {
+      "level": "h3",
+      "text": "options.next.revalidate",
+      "id": "optionsnextrevalidate"
+    },
+    {
+      "level": "h3",
+      "text": "options.next.tags",
+      "id": "optionsnexttags"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "Fetch default auto no store and cache: 'no-store' not showing fresh data in development",
+      "id": "fetch-default-auto-no-store-and-cache-no-store-not-showing-fresh-data-in-development"
+    },
+    {
+      "level": "h3",
+      "text": "Hard refresh and caching in development",
+      "id": "hard-refresh-and-caching-in-development"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export default async function Page() {\n  let data = await fetch('https://api.vercel.app/blog')\n  let posts = await data.json()\n  return (\n    <ul>\n      {posts.map((post) => (\n        <li key={post.id}>{post.title}</li>\n      ))}\n    </ul>\n  )\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "fetch(`https://...`, { cache: 'force-cache' | 'no-store' })",
+      "language": "unknown"
+    },
+    {
+      "code": "fetch(`https://...`, { next: { revalidate: false | 0 | number } })",
+      "language": "unknown"
+    },
+    {
+      "code": "fetch(`https://...`, { next: { tags: ['collection'] } })",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/functions/fetch",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidateTag",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/serverComponentsHmrCache",
+    "https://nextjs.org/docs/app/api-reference/functions/draft-mode",
+    "https://nextjs.org/docs/app/api-reference/functions/forbidden"
+  ]
+}

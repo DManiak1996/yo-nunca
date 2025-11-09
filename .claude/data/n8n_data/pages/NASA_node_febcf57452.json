@@ -1,0 +1,19 @@
+{
+  "title": "NASA node",
+  "content": "Use the NASA node to automate work in NASA, and integrate NASA with other applications. n8n has built-in support for a wide range of NASA features, including retrieving imagery and data.\n\nOn this page, you'll find a list of operations the NASA node supports and links to more resources.\n\nRefer to [NASA credentials](../../credentials/nasa/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- Astronomy Picture of the Day\n  - Get the Astronomy Picture of the Day\n- Asteroid Neo-Feed\n  - Retrieve a list of asteroids based on their closest approach date to Earth\n- Asteroid Neo-Lookup\n  - Look up an asteroid based on its NASA SPK-ID\n- Asteroid Neo-Browse\n  - Browse the overall asteroid dataset\n- DONKI Coronal Mass Ejection\n  - Retrieve DONKI coronal mass ejection data\n- DONKI Interplanetary Shock\n  - Retrieve DONKI interplanetary shock data\n- DONKI Solar Flare\n  - Retrieve DONKI solar flare data\n- DONKI Solar Energetic Particle\n  - Retrieve DONKI solar energetic particle data\n- DONKI Magnetopause Crossing\n  - Retrieve data on DONKI magnetopause crossings\n- DONKI Radiation Belt Enhancement\n  - Retrieve DONKI radiation belt enhancement data\n- DONKI High Speed Stream\n  - Retrieve DONKI high speed stream data\n- DONKI WSA+EnlilSimulation\n  - Retrieve DONKI WSA+EnlilSimulation data\n- DONKI Notifications\n  - Retrieve DONKI notifications data\n- Earth Imagery\n  - Retrieve Earth imagery\n- Earth Assets\n  - Retrieve Earth assets\n\n## Templates and examples\n\n**Set credentials dynamically using expressions**\n\n[View template details](https://n8n.io/workflows/2223-set-credentials-dynamically-using-expressions/)\n\n**Send the astronomy picture of the day daily to a Telegram channel**\n\n[View template details](https://n8n.io/workflows/828-send-the-astronomy-picture-of-the-day-daily-to-a-telegram-channel/)\n\n**Retrieve NASA Space Weather & Asteroid Data with GPT-4o-mini and Telegram**\n\n[View template details](https://n8n.io/workflows/3834-retrieve-nasa-space-weather-and-asteroid-data-with-gpt-4o-mini-and-telegram/)\n\n[Browse NASA integration templates](https://n8n.io/integrations/nasa/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#nasa-node",
+  "links": []
+}

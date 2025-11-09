@@ -1,0 +1,8 @@
+{
+  "title": "Don't save node progress for each execution",
+  "content": "export EXECUTIONS_DATA_SAVE_ON_PROGRESS=false",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#don't-save-node-progress-for-each-execution",
+  "links": []
+}

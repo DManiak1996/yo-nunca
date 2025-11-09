@@ -1,0 +1,58 @@
+{
+  "title": "Compare Datasets",
+  "content": "The Compare Datasets node helps you compare data from two input streams.\n\n1. Decide which fields to compare. In **Input A Field**, enter the name of the field you want to use from input stream A. In **Input B Field**, enter the name of the field you want to use from input stream B.\n1. **Optional**: You can compare by multiple fields. Select **Add Fields to Match** to set up more comparisons.\n1. Choose how to handle differences between the datasets. In **When There Are Differences**, select one of the following:\n   - **Use Input A Version** to treat input stream A as the source of truth.\n   - **Use Input B Version** to treat input stream B as the source of truth.\n   - **Use a Mix of Versions** to use different inputs for different fields.\n     - Use **Prefer** to select either **Input A Version** or **Input B Version** as the main source of truth.\n     - Enter input fields that are exceptions to **For Everything Except** to pull from the other input source. To add multiple input fields, enter a comma-separated list.\n   - **Include Both Versions** to include both input streams in the output, which may make the structure more complex.\n1. Decide whether to use **Fuzzy Compare**. When turned on, the comparison will tolerate small type differences when comparing fields. For example, the number 3 and the string `3` are treated as the same with **Fuzzy Compare** turned on, but wouldn't be treated the same with it turned off.\n\n## Understand item comparison\n\nItem comparison is a two stage process:\n\n1. n8n checks if the values of the fields you selected to compare match across both inputs.\n1. If the fields to compare match, n8n then compares all fields within the items, to determine if the items are the same or different.\n\nUse the node **Options** to refine your comparison or tweak comparison behavior.\n\n### Fields to Skip Comparing\n\nEnter field names that you want to ignore in the comparison.\n\nFor example, if you compare the two datasets below using `person.language` as the **Fields to Match**, n8n returns them as different. If you add `person.name` to **Fields to Skip Comparing**, n8n returns them as matching.\n\n### Disable Dot Notation\n\nWhether to disallow referencing child fields using `parent.child` in the field name (turned on) or allow it (turned off, default).\n\nChoose how to handle duplicate data. The default is **Include All Matches**. You can choose **Include First Match Only**.\n\nFor example, given these two datasets:\n\nn8n returns three items in the **Same Branch** tab. The data is the same in both branches.\n\nIf you select **Include First Match Only**, n8n returns two items, in the **Same Branch** tab. The data is the same in both branches, but n8n only returns the first occurrence of the matching \"apple\" items.\n\n## Understand the output\n\nThere are four output options:\n\n- **In A only Branch**: Contains data that occurs only in the first input.\n- **Same Branch**: Contains data that's the same in both inputs.\n- **Different Branch**: Contains data that's different between inputs.\n- **In B only Branch**: Contains data that occurs only in the second output.\n\n## Templates and examples\n\n**Intelligent Email Organization with AI-Powered Content Classification for Gmail**\n\n[View template details](https://n8n.io/workflows/4557-intelligent-email-organization-with-ai-powered-content-classification-for-gmail/)\n\n**Two way sync Pipedrive and MySQL**\n\n[View template details](https://n8n.io/workflows/1822-two-way-sync-pipedrive-and-mysql/)\n\n**Sync Google Sheets data with MySQL**\n\n[View template details](https://n8n.io/workflows/1964-sync-google-sheets-data-with-mysql/)\n\n[Browse Compare Datasets integration templates](https://n8n.io/integrations/compare-datasets/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [
+    {
+      "code": "// Input 1\n\t[\n\t\t{\n\t\t\t\"person\":\n\t\t\t{\n\t\t\t\t\"name\":\t\"Stefan\",\n\t\t\t\t\"language\":\t\"de\"\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"person\":\n\t\t\t{\n\t\t\t\t\"name\":\t\"Jim\",\n\t\t\t\t\"language\":\t\"en\"\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"person\":\n\t\t\t{\n\t\t\t\t\"name\":\t\"Hans\",\n\t\t\t\t\"language\":\t\"de\"\n\t\t\t}\n\t\t}\n\t]\n\t// Input 2\n\t\t[\n\t\t{\n\t\t\t\"person\":\n\t\t\t{\n\t\t\t\t\"name\":\t\"Sara\",\n\t\t\t\t\"language\":\t\"de\"\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"person\":\n\t\t\t{\n\t\t\t\t\"name\":\t\"Jane\",\n\t\t\t\t\"language\":\t\"en\"\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"person\":\n\t\t\t{\n\t\t\t\t\"name\":\t\"Harriet\",\n\t\t\t\t\"language\":\t\"de\"\n\t\t\t}\n\t\t}\n\t]",
+      "language": "unknown"
+    },
+    {
+      "code": "// Input 1\n\t[\n\t\t{\n\t\t\t\"fruit\": {\n\t\t\t\t\"type\": \"apple\",\n\t\t\t\t\"color\": \"red\"\n\t\t\t}\n\t\t},\n\t\t\t\t{\n\t\t\t\"fruit\": {\n\t\t\t\t\"type\": \"apple\",\n\t\t\t\t\"color\": \"red\"\n\t\t\t}\n\t\t},\n\t\t\t\t{\n\t\t\t\"fruit\": {\n\t\t\t\t\"type\": \"banana\",\n\t\t\t\t\"color\": \"yellow\"\n\t\t\t}\n\t\t}\n\t]\n\t// Input 2\n\t[\n\t\t{\n\t\t\t\"fruit\": {\n\t\t\t\t\"type\": \"apple\",\n\t\t\t\t\"color\": \"red\"\n\t\t\t}\n\t\t},\n\t\t\t\t{\n\t\t\t\"fruit\": {\n\t\t\t\t\"type\": \"apple\",\n\t\t\t\t\"color\": \"red\"\n\t\t\t}\n\t\t},\n\t\t\t\t{\n\t\t\t\"fruit\": {\n\t\t\t\t\"type\": \"banana\",\n\t\t\t\t\"color\": \"yellow\"\n\t\t\t}\n\t\t}\n\t]",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Understand item comparison",
+      "id": "understand-item-comparison"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h3",
+      "text": "Fields to Skip Comparing",
+      "id": "fields-to-skip-comparing"
+    },
+    {
+      "level": "h3",
+      "text": "Disable Dot Notation",
+      "id": "disable-dot-notation"
+    },
+    {
+      "level": "h3",
+      "text": "Multiple Matches",
+      "id": "multiple-matches"
+    },
+    {
+      "level": "h2",
+      "text": "Understand the output",
+      "id": "understand-the-output"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#compare-datasets",
+  "links": []
+}

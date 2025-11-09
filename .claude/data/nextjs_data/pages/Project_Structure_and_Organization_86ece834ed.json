@@ -1,0 +1,66 @@
+{
+  "url": "https://nextjs.org/docs/pages/getting-started/project-structure",
+  "title": "Project Structure and Organization",
+  "content": "This page provides an overview of all the folder and file conventions in Next.js, and recommendations for organizing your project.\n\nTop-level folders are used to organize your application's code and static assets.\n\nTop-level files are used to configure your application, manage dependencies, run proxy, integrate monitoring tools, and define environment variables.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Project Structure and Organization",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Folder and file conventions",
+      "id": "folder-and-file-conventions"
+    },
+    {
+      "level": "h3",
+      "text": "Top-level folders",
+      "id": "top-level-folders"
+    },
+    {
+      "level": "h3",
+      "text": "Top-level files",
+      "id": "top-level-files"
+    },
+    {
+      "level": "h3",
+      "text": "File conventions",
+      "id": "file-conventions"
+    },
+    {
+      "level": "h3",
+      "text": "Routes",
+      "id": "routes"
+    },
+    {
+      "level": "h3",
+      "text": "Dynamic routes",
+      "id": "dynamic-routes-1"
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/getting-started",
+    "https://nextjs.org/docs/pages/getting-started/project-structure",
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/pages/building-your-application/routing",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/public-folder",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/src-folder",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/getting-started/installation",
+    "https://nextjs.org/docs/app/guides/instrumentation",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/app/guides/environment-variables",
+    "https://nextjs.org/docs/app/api-reference/config/eslint",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-app",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-document",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-error",
+    "https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts",
+    "https://nextjs.org/docs/pages/building-your-application/routing/dynamic-routes",
+    "https://nextjs.org/docs/pages/getting-started/installation",
+    "https://nextjs.org/docs/pages/getting-started/images"
+  ]
+}

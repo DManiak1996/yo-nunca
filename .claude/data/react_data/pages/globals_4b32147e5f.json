@@ -1,0 +1,46 @@
+{
+  "url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/globals",
+  "title": "globals",
+  "content": "Validates against assignment/mutation of globals during render, part of ensuring that side effects must run outside of render.\n\nGlobal variables exist outside React’s control. When you modify them during render, you break React’s assumption that rendering is pure. This can cause components to behave differently in development vs production, break Fast Refresh, and make your app impossible to optimize with features like React Compiler.\n\nExamples of incorrect code for this rule:\n\nExamples of correct code for this rule:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "globals",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Rule Details",
+      "id": "rule-details"
+    },
+    {
+      "level": "h3",
+      "text": "Invalid",
+      "id": "invalid"
+    },
+    {
+      "level": "h3",
+      "text": "Valid",
+      "id": "valid"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// ❌ Global counterlet renderCount = 0;function Component() {  renderCount++; // Mutating global  return <div>Count: {renderCount}</div>;}// ❌ Modifying window propertiesfunction Component({userId}) {  window.currentUser = userId; // Global mutation  return <div>User: {userId}</div>;}// ❌ Global array pushconst events = [];function Component({event}) {  events.push(event); // Mutating global array  return <div>Events: {events.length}</div>;}// ❌ Cache manipulationconst cache = {};function Component({id}) {  if (!cache[id]) {    cache[id] = fetchData(id); // Modifying cache during render  }  return <div>{cache[id]}</div>;}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Use state for countersfunction Component() {  const [clickCount, setClickCount] = useState(0);  const handleClick = () => {    setClickCount(c => c + 1);  };  return (    <button onClick={handleClick}>      Clicked: {clickCount} times    </button>  );}// ✅ Use context for global valuesfunction Component() {  const user = useContext(UserContext);  return <div>User: {user.id}</div>;}// ✅ Synchronize external state with Reactfunction Component({title}) {  useEffect(() => {    document.title = title; // OK in effect  }, [title]);  return <div>Page: {title}</div>;}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/eslint-plugin-react-hooks",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/globals",
+    "https://react.dev/reference/rules/components-and-hooks-must-be-pure",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/gating",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/immutability"
+  ]
+}

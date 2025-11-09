@@ -1,0 +1,59 @@
+{
+  "title": "WhatsApp Business Cloud node",
+  "content": "Use the WhatsApp Business Cloud node to automate work in WhatsApp Business, and integrate WhatsApp Business with other applications. n8n has built-in support for a wide range of WhatsApp Business features, including sending messages, and uploading, downloading, and deleting media.\n\nOn this page, you'll find a list of operations the WhatsApp Business Cloud node supports and links to more resources.\n\nRefer to [WhatsApp Business Cloud credentials](../../credentials/whatsapp/) for guidance on setting up authentication.\n\n- Message\n  - Send\n  - Send and Wait for Response\n  - Send Template\n- Media\n  - Upload\n  - Download\n  - Delete\n\n## Waiting for a response\n\nBy choosing the **Send and Wait for a Response** operation, you can send a message and pause the workflow execution until a person confirms the action or provides more information.\n\nYou can choose between the following types of waiting and approval actions:\n\n- **Approval**: Users can approve or disapprove from within the message.\n- **Free Text**: Users can submit a response with a form.\n- **Custom Form**: Users can submit a response with a custom form.\n\nYou can customize the waiting and response behavior depending on which response type you choose. You can configure these options in any of the above response types:\n\n- **Limit Wait Time**: Whether the workflow will automatically resume execution after a specified time limit. This can be an interval or a specific wall time.\n- **Append n8n Attribution**: Whether to mention in the message that it was sent automatically with n8n (turned on) or not (turned off).\n\n### Approval response customization\n\nWhen using the Approval response type, you can choose whether to present only an approval button or both approval *and* disapproval buttons.\n\nYou can also customize the button labels for the buttons you include.\n\n### Free Text response customization\n\nWhen using the Free Text response type, you can customize the message button label, the form title and description, and the response button label.\n\n### Custom Form response customization\n\nWhen using the Custom Form response type, you build a form using the fields and options you want.\n\nYou can customize each form element with the settings outlined in the [n8n Form trigger's form elements](../../core-nodes/n8n-nodes-base.formtrigger/#form-elements). To add more fields, select the **Add Form Element** button.\n\nYou'll also be able to customize the message button label, the form title and description, and the response button label.\n\n## Templates and examples\n\n**Building Your First WhatsApp Chatbot**\n\n[View template details](https://n8n.io/workflows/2465-building-your-first-whatsapp-chatbot/)\n\n**Respond to WhatsApp Messages with AI Like a Pro!**\n\n[View template details](https://n8n.io/workflows/2466-respond-to-whatsapp-messages-with-ai-like-a-pro/)\n\n**AI-Powered WhatsApp Chatbot 🤖📲 for Text, Voice, Images & PDFs with memory 🧠**\n\n[View template details](https://n8n.io/workflows/3586-ai-powered-whatsapp-chatbot-for-text-voice-images-and-pdfs-with-memory/)\n\n[Browse WhatsApp Business Cloud integration templates](https://n8n.io/integrations/whatsapp-business-cloud/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [WhatsApp Business Platform's Cloud API documentation](https://developers.facebook.com/docs/whatsapp/cloud-api) for details about the operations.\n\nFor common errors or issues and suggested resolution steps, refer to [Common Issues](common-issues/).\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Waiting for a response",
+      "id": "waiting-for-a-response"
+    },
+    {
+      "level": "h3",
+      "text": "Response Type",
+      "id": "response-type"
+    },
+    {
+      "level": "h3",
+      "text": "Approval response customization",
+      "id": "approval-response-customization"
+    },
+    {
+      "level": "h3",
+      "text": "Free Text response customization",
+      "id": "free-text-response-customization"
+    },
+    {
+      "level": "h3",
+      "text": "Custom Form response customization",
+      "id": "custom-form-response-customization"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#whatsapp-business-cloud-node",
+  "links": []
+}

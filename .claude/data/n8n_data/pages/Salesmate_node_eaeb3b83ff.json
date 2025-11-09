@@ -1,0 +1,19 @@
+{
+  "title": "Salesmate node",
+  "content": "Use the Salesmate node to automate work in Salesmate, and integrate Salesmate with other applications. n8n has built-in support for a wide range of Salesmate features, including creating, updating, deleting, and getting activities, companies, and deals.\n\nOn this page, you'll find a list of operations the Salesmate node supports and links to more resources.\n\nRefer to [Salesmate credentials](../../credentials/salesmate/) for guidance on setting up authentication.\n\n- Activity\n  - Create an activity\n  - Delete an activity\n  - Get an activity\n  - Get all companies\n  - Update an activity\n- Company\n  - Create a company\n  - Delete a company\n  - Get a company\n  - Get all companies\n  - Update a company\n- Deal\n  - Create a deal\n  - Delete a deal\n  - Get a deal\n  - Get all deals\n  - Update a deal\n\n## Templates and examples\n\n[Browse Salesmate integration templates](https://n8n.io/integrations/salesmate/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#salesmate-node",
+  "links": []
+}

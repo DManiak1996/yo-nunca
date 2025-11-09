@@ -1,0 +1,26 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/typedRoutes",
+  "title": "typedRoutes",
+  "content": "Note: This option has been marked as stable, so you should use typedRoutes instead of experimental.typedRoutes.\n\nSupport for statically typed links. This feature requires using TypeScript in your project.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "typedRoutes",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  typedRoutes: true,\n}\n \nmodule.exports = nextConfig",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/typescript",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopackFileSystemCache",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/typescript"
+  ]
+}

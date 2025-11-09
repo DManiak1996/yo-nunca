@@ -1,0 +1,95 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes",
+  "title": "Dynamic Route Segments",
+  "content": "When you don't know the exact route segment names ahead of time and want to create routes from dynamic data, you can use Dynamic Segments that are filled in at request time or prerendered at build time.\n\nA Dynamic Segment can be created by wrapping a folder's name in square brackets: [folderName]. For example, a blog could include the following route app/blog/[slug]/page.js where [slug] is the Dynamic Segment for blog posts.\n\nDynamic Segments are passed as the params prop to layout, page, route, and generateMetadata functions.\n\nIn a Client Component page, dynamic segments from props can be accessed using the use hook.\n\nAlternatively Client Components can use the useParams hook to access the params anywhere in the Client Component tree.\n\nDynamic Segments can be extended to catch-all subsequent segments by adding an ellipsis inside the brackets [...folderName].\n\nFor example, app/shop/[...slug]/page.js will match /shop/clothes, but also /shop/clothes/tops, /shop/clothes/tops/t-shirts, and so on.\n\nCatch-all Segments can be made optional by including the parameter in double square brackets: [[...folderName]].\n\nFor example, app/shop/[[...slug]]/page.js will also match /shop, in addition to /shop/clothes, /shop/clothes/tops, /shop/clothes/tops/t-shirts.\n\nThe difference between catch-all and optional catch-all segments is that with optional, the route without the parameter is also matched (/shop in the example above).\n\nWhen using TypeScript, you can add types for params depending on your configured route segment — use PageProps<'/route'>, LayoutProps<'/route'>, or RouteContext<'/route'> to type params in page, layout, and route respectively.\n\nRoute params values are typed as string, string[], or undefined (for optional catch-all segments), because their values aren't known until runtime. Users can enter any URL into the address bar, and these broad types help ensure that your application code handles all these possible cases.\n\nIf you're working on a route where params can only have a fixed number of valid values, such as a [locale] param with a known set of language codes, you can use runtime validation to handle any invalid params a user may enter, and let the rest of your application work with the narrower type from your known set.\n\nThe generateStaticParams function can be used to statically generate routes at build time instead of on-demand at request time.\n\nWhen using fetch inside the generateStaticParams function, the requests are automatically deduplicated. This avoids multiple network calls for the same data Layouts, Pages, and other generateStaticParams functions, speeding up build time.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Dynamic Route Segments",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Convention",
+      "id": "convention"
+    },
+    {
+      "level": "h3",
+      "text": "In Client Components",
+      "id": "in-client-components"
+    },
+    {
+      "level": "h3",
+      "text": "Catch-all Segments",
+      "id": "catch-all-segments"
+    },
+    {
+      "level": "h3",
+      "text": "Optional Catch-all Segments",
+      "id": "optional-catch-all-segments"
+    },
+    {
+      "level": "h3",
+      "text": "TypeScript",
+      "id": "typescript"
+    },
+    {
+      "level": "h2",
+      "text": "Behavior",
+      "id": "behavior"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "With generateStaticParams",
+      "id": "with-generatestaticparams"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "generateStaticParams",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export default async function Page({\n  params,\n}: {\n  params: Promise<{ slug: string }>\n}) {\n  const { slug } = await params\n  return <div>My Post: {slug}</div>\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "'use client'\nimport { use } from 'react'\n \nexport default function BlogPostPage({\n  params,\n}: {\n  params: Promise<{ slug: string }>\n}) {\n  const { slug } = use(params)\n \n  return (\n    <div>\n      <p>{slug}</p>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { notFound } from 'next/navigation'\nimport type { Locale } from '@i18n/types'\nimport { isValidLocale } from '@i18n/utils'\n \nfunction assertValidLocale(value: string): asserts value is Locale {\n  if (!isValidLocale(value)) notFound()\n}\n \nexport default async function Page(props: PageProps<'/[locale]'>) {\n  const { locale } = await props.params // locale is typed as string\n  assertValidLocale(locale)\n  // locale is now typed as Locale\n}",
+      "language": "python"
+    },
+    {
+      "code": "export async function generateStaticParams() {\n  const posts = await fetch('https://.../posts').then((res) => res.json())\n \n  return posts.map((post) => ({\n    slug: post.slug,\n  }))\n}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-metadata",
+    "https://nextjs.org/docs/app/api-reference/functions/use-params",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-static-params",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/default",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/error"
+  ]
+}

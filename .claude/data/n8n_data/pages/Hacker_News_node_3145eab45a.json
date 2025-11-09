@@ -1,0 +1,19 @@
+{
+  "title": "Hacker News node",
+  "content": "Use the Hacker News node to automate work in Hacker News, and integrate Hacker News with other applications. n8n has built-in support for a wide range of Hacker News features, including getting articles, and users.\n\nOn this page, you'll find a list of operations the Hacker News node supports and links to more resources.\n\nThis node doesn't require authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- All\n  - Get all items\n- Article\n  - Get a Hacker News article\n- User\n  - Get a Hacker News user\n\n## Templates and examples\n\n**Hacker News to Video Content**\n\n[View template details](https://n8n.io/workflows/2557-hacker-news-to-video-content/)\n\n**AI chat with any data source (using the n8n workflow tool)**\n\n[View template details](https://n8n.io/workflows/2026-ai-chat-with-any-data-source-using-the-n8n-workflow-tool/)\n\n**Community Insights using Qdrant, Python and Information Extractor**\n\n[View template details](https://n8n.io/workflows/2374-community-insights-using-qdrant-python-and-information-extractor/)\n\n[Browse Hacker News integration templates](https://n8n.io/integrations/hacker-news/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#hacker-news-node",
+  "links": []
+}

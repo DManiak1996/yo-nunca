@@ -1,0 +1,89 @@
+{
+  "url": "https://nextjs.org/docs/pages/guides/static-exports",
+  "title": "How to create a static export of your Next.js application",
+  "content": "Next.js enables starting as a static site or Single-Page Application (SPA), then later optionally upgrading to use features that require a server.\n\nWhen running next build, Next.js generates an HTML file per route. By breaking a strict SPA into individual HTML files, Next.js can avoid loading unnecessary JavaScript code on the client-side, reducing the bundle size and enabling faster page loads.\n\nSince Next.js supports this static export, it can be deployed and hosted on any web server that can serve HTML/CSS/JS static assets.\n\nTo enable a static export, change the output mode inside next.config.js:\n\nAfter running next build, Next.js will create an out folder with the HTML/CSS/JS assets for your application.\n\nYou can utilize getStaticProps and getStaticPaths to generate an HTML file for each page in your pages directory (or more for dynamic routes).\n\nThe majority of core Next.js features needed to build a static site are supported, including:\n\nImage Optimization through next/image can be used with a static export by defining a custom image loader in next.config.js. For example, you can optimize images with a service like Cloudinary:\n\nThis custom loader will define how to fetch images from a remote source. For example, the following loader will construct the URL for Cloudinary:\n\nYou can then use next/image in your application, defining relative paths to the image in Cloudinary:\n\nFeatures that require a Node.js server, or dynamic logic that cannot be computed during the build process, are not supported:\n\nWith a static export, Next.js can be deployed and hosted on any web server that can serve HTML/CSS/JS static assets.\n\nWhen running next build, Next.js generates the static export into the out folder. For example, let's say you have the following routes:\n\nAfter running next build, Next.js will generate the following files:\n\nIf you are using a static host like Nginx, you can configure rewrites from incoming requests to the correct files:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to create a static export of your Next.js application",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Configuration",
+      "id": "configuration"
+    },
+    {
+      "level": "h2",
+      "text": "Supported Features",
+      "id": "supported-features-1"
+    },
+    {
+      "level": "h3",
+      "text": "Image Optimization",
+      "id": "image-optimization"
+    },
+    {
+      "level": "h2",
+      "text": "Unsupported Features",
+      "id": "unsupported-features"
+    },
+    {
+      "level": "h2",
+      "text": "Deploying",
+      "id": "deploying"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "/**\n * @type {import('next').NextConfig}\n */\nconst nextConfig = {\n  output: 'export',\n \n  // Optional: Change links `/me` -> `/me/` and emit `/me.html` -> `/me/index.html`\n  // trailingSlash: true,\n \n  // Optional: Prevent automatic `/me` -> `/me/`, instead preserve `href`\n  // skipTrailingSlashRedirect: true,\n \n  // Optional: Change the output directory `out` -> `dist`\n  // distDir: 'dist',\n}\n \nmodule.exports = nextConfig",
+      "language": "javascript"
+    },
+    {
+      "code": "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  output: 'export',\n  images: {\n    loader: 'custom',\n    loaderFile: './my-loader.ts',\n  },\n}\n \nmodule.exports = nextConfig",
+      "language": "javascript"
+    },
+    {
+      "code": "export default function cloudinaryLoader({\n  src,\n  width,\n  quality,\n}: {\n  src: string\n  width: number\n  quality?: number\n}) {\n  const params = ['f_auto', 'c_limit', `w_${width}`, `q_${quality || 'auto'}`]\n  return `https://res.cloudinary.com/demo/image/upload/${params.join(\n    ','\n  )}${src}`\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import Image from 'next/image'\n \nexport default function Page() {\n  return <Image alt=\"turtles\" src=\"/turtles.jpg\" width={300} height={300} />\n}",
+      "language": "python"
+    },
+    {
+      "code": "server {\n  listen 80;\n  server_name acme.com;\n \n  root /var/www/out;\n \n  location / {\n      try_files $uri $uri.html $uri/ =404;\n  }\n \n  # This is necessary when `trailingSlash: false`.\n  # You can omit this when `trailingSlash: true`.\n  location /blog/ {\n      rewrite ^/blog/(.*)$ /blog/$1.html break;\n  }\n \n  error_page 404 /404.html;\n  location = /404.html {\n      internal;\n  }\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/guides",
+    "https://nextjs.org/docs/pages/guides/static-exports",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-paths",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes",
+    "https://nextjs.org/docs/pages/guides/lazy-loading",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/client-side",
+    "https://nextjs.org/docs/app/api-reference/components/image",
+    "https://nextjs.org/docs/pages/guides/internationalization",
+    "https://nextjs.org/docs/pages/building-your-application/routing/api-routes",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/rewrites",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/redirects",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/headers",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/pages/guides/incremental-static-regeneration",
+    "https://nextjs.org/docs/pages/api-reference/components/image",
+    "https://nextjs.org/docs/pages/guides/draft-mode",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-static-paths",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props",
+    "https://nextjs.org/docs/pages/guides/self-hosting",
+    "https://nextjs.org/docs/pages/guides/tailwind-v3-css"
+  ]
+}

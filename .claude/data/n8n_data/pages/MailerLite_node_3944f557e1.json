@@ -1,0 +1,19 @@
+{
+  "title": "MailerLite node",
+  "content": "Use the MailerLite node to automate work in MailerLite, and integrate MailerLite with other applications. n8n has built-in support for a wide range of MailerLite features, including creating, updating, deleting, and getting subscribers.\n\nOn this page, you'll find a list of operations the MailerLite node supports and links to more resources.\n\nRefer to [MailerLite credentials](../../credentials/mailerlite/) for guidance on setting up authentication.\n\n- Subscriber\n  - Create a new subscriber\n  - Get an subscriber\n  - Get all subscribers\n  - Update an subscriber\n\n## Templates and examples\n\n**Create, update and get a subscriber using the MailerLite node**\n\n[View template details](https://n8n.io/workflows/751-create-update-and-get-a-subscriber-using-the-mailerlite-node/)\n\n**Receive updates when a subscriber is added to a group in MailerLite**\n\n[View template details](https://n8n.io/workflows/759-receive-updates-when-a-subscriber-is-added-to-a-group-in-mailerlite/)\n\n**Capture Gumroad sales, add buyer to MailerLite group, log to Google Sheets CRM**\n\n[View template details](https://n8n.io/workflows/3676-capture-gumroad-sales-add-buyer-to-mailerlite-group-log-to-google-sheets-crm/)\n\n[Browse MailerLite integration templates](https://n8n.io/integrations/mailerlite/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#mailerlite-node",
+  "links": []
+}

@@ -1,0 +1,19 @@
+{
+  "title": "GitHub Trigger node",
+  "content": "[GitHub](https://github.com/) provides hosting for software development and version control using Git. It offers the distributed version control and source code management (SCM) functionality of Git, access control and several collaboration features such as bug tracking, feature requests, task management, and wikis for every project.\n\nYou can find authentication information for this node [here](../../credentials/github/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [GitHub Trigger integrations](https://n8n.io/integrations/github-trigger/) page.\n\n- Check run\n- Check suite\n- Commit comment\n- Create\n- Delete\n- Deploy key\n- Deployment\n- Deployment status\n- Fork\n- GitHub app authorization\n- Gollum\n- Installation\n- Installation repositories\n- Issue comment\n- Label\n- Marketplace purchase\n- Member\n- Membership\n- Meta\n- Milestone\n- Org block\n- Organization\n- Page build\n- Project\n- Project card\n- Project column\n- Public\n- Pull request\n- Pull request review\n- Pull request review comment\n- Push\n- Release\n- Repository\n- Repository import\n- Repository vulnerability alert\n- Security advisory\n- Star\n- Status\n- Team\n- Team add\n- Watch\n\nn8n provides an app node for GitHub. You can find the node docs [here](../../app-nodes/n8n-nodes-base.github/).\n\nView [example workflows and related content](https://n8n.io/integrations/github-trigger/) on n8n's website.\n\nRefer to [GitHub's documentation](https://docs.github.com/en/rest) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#github-trigger-node",
+  "links": []
+}

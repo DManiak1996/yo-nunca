@@ -1,0 +1,36 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/isolatedDevBuild",
+  "title": "isolatedDevBuild",
+  "content": "The experimental isolatedDevBuild option separates development and production build outputs into different directories. When enabled, the development server (next dev) writes its output to .next/dev instead of .next, preventing conflicts when running next dev and next build concurrently.\n\nThis is especially helpful when automated tools (for example, AI agents) run next build to validate changes while your development server is running, ensuring the dev server is not affected by changes made by the build process.\n\nThis feature is enabled by default to keep development and production outputs separate and prevent conflicts.\n\nTo opt out of this feature, set isolatedDevBuild to false in your configuration:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "isolatedDevBuild",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Configuration",
+      "id": "configuration"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    isolatedDevBuild: false, // defaults to true\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/isolatedDevBuild",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/inlineCss",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/logging"
+  ]
+}

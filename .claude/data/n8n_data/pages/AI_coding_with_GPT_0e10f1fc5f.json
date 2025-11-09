@@ -1,0 +1,66 @@
+{
+  "title": "AI coding with GPT",
+  "content": "Not available on self-hosted.\n\nPython isn't supported. ///\n\n## Use AI in the Code node\n\nAI assistance in the Code node is available to Cloud users. It isn't available in self-hosted n8n.\n\nAI generated code overwrites your code\n\nIf you've already written some code on the **Code** tab, the AI generated code will replace it. n8n recommends using AI as a starting point to create your initial code, then editing it as needed.\n\nTo use ChatGPT to generate code in the Code node:\n\n1. In the Code node, set **Language** to **JavaScript**.\n1. Select the **Ask AI** tab.\n1. Write your query.\n1. Select **Generate Code**. n8n sends your query to ChatGPT, then displays the result in the **Code** tab.\n\nDuring the trial phase there are no usage limits. If n8n makes the feature permanent, there may be usage limits as part of your pricing tier.\n\nThe ChatGPT implementation in n8n has the following limitations:\n\n- The AI writes code that manipulates data from the n8n workflow. You can't ask it to pull in data from other sources.\n- The AI doesn't know your data, just the schema, so you need to tell it things like how to find the data you want to extract, or how to check for null.\n- Nodes before the Code node must execute and deliver data to the Code node before you run your AI query.\n- Doesn't work with large incoming data schemas.\n- May have issues if there are a lot of nodes before the code node.\n\n## Writing good prompts\n\nWriting good prompts increases the chance of getting useful code back.\n\n- Provide examples: if possible, give a sample expected output. This helps the AI to better understand the transformation or logic you’re aiming for.\n- Describe the processing steps: if there are specific processing steps or logic that should apply to the data, list them in sequence. For example: \"First, filter out all users under 18. Then, sort the remaining users by their last name.\"\n- Avoid ambiguities: while the AI understands various instructions, being clear and direct ensures you get the most accurate code. Instead of saying \"Get the older users,\" you might say \"Filter users who are 60 years and above.\"\n- Be clear about what you expect as the output. Do you want the data transformed, filtered, aggregated, or sorted? Provide as much detail as possible.\n\nAnd some n8n-specific guidance:\n\n- Think about the input data: make sure ChatGPT knows which pieces of the data you want to access, and what the incoming data represents. You may need to tell ChatGPT about the availability of n8n's built-in methods and variables.\n- Declare interactions between nodes: if your logic involves data from multiple nodes, specify how they should interact. \"Merge the output of 'Node A' with 'Node B' based on the 'userID' property\". if you prefer data to come from certain nodes or to ignore others, be clear: \"Only consider data from the 'Purchases' node and ignore the 'Refunds' node.\"\n- Ensure the output is compatible with n8n. Refer to [Data structure](../../data/data-structure/) for more information on the data structure n8n requires.\n\nThese examples show a range of possible prompts and tasks.\n\n#### Example 1: Find a piece of data inside a second dataset\n\nTo try the example yourself, [download the example workflow](../../_workflows/ai-code/find-a-piece-of-data.json) and import it into n8n.\n\nIn the third Code node, enter this prompt:\n\n> The slack data contains only one item. The input data represents all Notion users. Sometimes the person property that holds the email can be null. I want to find the notionId of the Slack user and return it.\n\nTake a look at the code the AI generates.\n\nThis is the JavaScript you need:\n\n#### Example 2: Data transformation\n\nTo try the example yourself, [download the example workflow](../../_workflows/ai-code/data-transformation.json) and import it into n8n.\n\nIn the **Join items** Code node, enter this prompt:\n\n> Return a single line of text that has all usernames listed with a comma. Each username should be enquoted with a double quotation mark.\n\nTake a look at the code the AI generates.\n\nThis is the JavaScript you need:\n\n#### Example 3: Summarize data and create a Slack message\n\nTo try the example yourself, [download the example workflow](../../_workflows/ai-code/summarize-data.json) and import it into n8n.\n\nIn the **Summarize** Code node, enter this prompt:\n\n> Create a markdown text for Slack that counts how many ideas, features and bugs have been submitted. The type of submission is saved in the property_type field. A feature has the property \"Feature\", a bug has the property \"Bug\" and an idea has the property \"Bug\". Also, list the five top submissions by vote in that message. Use \"\" as markdown for links.\n\nTake a look at the code the AI generates.\n\nThis is the JavaScript you need:\n\n### Reference incoming node data explicitly\n\nIf your incoming data contains nested fields, using dot notation to reference them can help the AI understand what data you want.\n\nTo try the example yourself, [download the example workflow](../../_workflows/ai-code/reference-incoming-data-explicitly.json) and import it into n8n.\n\nIn the second Code node, enter this prompt:\n\n> The data in \"Mock data\" represents a list of people. For each person, return a new item containing personal_info.first_name and work_info.job_title.\n\nThis is the JavaScript you need:\n\n### Related resources\n\nPluralsight offer a short guide on [How to use ChatGPT to write code](https://www.pluralsight.com/blog/software-development/how-use-chatgpt-programming-coding), which includes example prompts.\n\nThe AI-generated code may work without any changes, but you may have to edit it. You need to be aware of n8n's [Data structure](../../data/data-structure/). You may also find n8n's built-in methods and variables useful.",
+  "code_samples": [
+    {
+      "code": "const slackUser = $(\"Mock Slack\").all()[0];\nconst notionUsers = $input.all();\nconst slackUserEmail = slackUser.json.email;\n\nconst notionUser = notionUsers.find(\n  (user) => user.json.person && user.json.person.email === slackUserEmail\n);\n\nreturn notionUser ? [{ json: { notionId: notionUser.json.id } }] : [];",
+      "language": "unknown"
+    },
+    {
+      "code": "const items = $input.all();\nconst usernames = items.map((item) => `\"${item.json.username}\"`);\nconst result = usernames.join(\", \");\nreturn [{ json: { usernames: result } }];",
+      "language": "unknown"
+    },
+    {
+      "code": "const submissions = $input.all();\n\n// Count the number of ideas, features, and bugs\nlet ideaCount = 0;\nlet featureCount = 0;\nlet bugCount = 0;\n\nsubmissions.forEach((submission) => {\n  switch (submission.json.property_type[0]) {\n    case \"Idea\":\n      ideaCount++;\n      break;\n    case \"Feature\":\n      featureCount++;\n      break;\n    case \"Bug\":\n      bugCount++;\n      break;\n  }\n});\n\n// Sort submissions by votes and take the top 5\nconst topSubmissions = submissions\n  .sort((a, b) => b.json.property_votes - a.json.property_votes)\n  .slice(0, 5);\n\nlet topSubmissionText = \"\";\ntopSubmissions.forEach((submission) => {\n  topSubmissionText += `<${submission.json.url}|${submission.json.name}> with ${submission.json.property_votes} votes\\n`;\n});\n\n// Construct the Slack message\nconst slackMessage = `*Summary of Submissions*\\n\nIdeas: ${ideaCount}\\n\nFeatures: ${featureCount}\\n\nBugs: ${bugCount}\\n\nTop 5 Submissions:\\n\n${topSubmissionText}`;\n\nreturn [{ json: { slackMessage } }];",
+      "language": "unknown"
+    },
+    {
+      "code": "const items = $input.all();\nconst newItems = items.map((item) => {\n  const firstName = item.json.personal_info.first_name;\n  const jobTitle = item.json.work_info.job_title;\n  return {\n    json: {\n      firstName,\n      jobTitle,\n    },\n  };\n});\nreturn newItems;",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Use AI in the Code node",
+      "id": "use-ai-in-the-code-node"
+    },
+    {
+      "level": "h2",
+      "text": "Usage limits",
+      "id": "usage-limits"
+    },
+    {
+      "level": "h2",
+      "text": "Feature limits",
+      "id": "feature-limits"
+    },
+    {
+      "level": "h2",
+      "text": "Writing good prompts",
+      "id": "writing-good-prompts"
+    },
+    {
+      "level": "h3",
+      "text": "Example prompts",
+      "id": "example-prompts"
+    },
+    {
+      "level": "h3",
+      "text": "Reference incoming node data explicitly",
+      "id": "reference-incoming-node-data-explicitly"
+    },
+    {
+      "level": "h3",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Fixing the code",
+      "id": "fixing-the-code"
+    }
+  ],
+  "url": "llms-txt#ai-coding-with-gpt",
+  "links": []
+}

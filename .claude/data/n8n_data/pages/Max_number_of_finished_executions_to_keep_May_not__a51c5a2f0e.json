@@ -1,0 +1,13 @@
+{
+  "title": "Max number of finished executions to keep. May not strictly prune back down to the exact max count. Set to `0` for unlimited.",
+  "content": "export EXECUTIONS_DATA_PRUNE_MAX_COUNT=50000",
+  "code_samples": [
+    {
+      "code": "",
+      "language": "unknown"
+    }
+  ],
+  "headings": [],
+  "url": "llms-txt#max-number-of-finished-executions-to-keep.-may-not-strictly-prune-back-down-to-the-exact-max-count.-set-to-`0`-for-unlimited.",
+  "links": []
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Workflow components",
+  "content": "This section contains:\n\n- [Nodes](nodes/): integrations and operations.\n- [Connections](connections/): node connectors.\n- [Sticky notes](sticky-notes/): document your workflows.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#workflow-components",
+  "links": []
+}

@@ -1,0 +1,100 @@
+{
+  "url": "https://nextjs.org/docs/app/guides/testing/cypress",
+  "title": "How to set up Cypress with Next.js",
+  "content": "Cypress is a test runner used for End-to-End (E2E) and Component Testing. This page will show you how to set up Cypress with Next.js and write your first tests.\n\nYou can use create-next-app with the with-cypress example to quickly get started.\n\nTo manually set up Cypress, install cypress as a dev dependency:\n\nAdd the Cypress open command to the package.json scripts field:\n\nRun Cypress for the first time to open the Cypress testing suite:\n\nYou can choose to configure E2E Testing and/or Component Testing. Selecting any of these options will automatically create a cypress.config.js file and a cypress folder in your project.\n\nEnsure your cypress.config file has the following configuration:\n\nThen, create two new Next.js files:\n\nAdd a test to check your navigation is working correctly:\n\nCypress will simulate a user navigating your application, this requires your Next.js server to be running. We recommend running your tests against your production code to more closely resemble how your application will behave.\n\nRun npm run build && npm run start to build your Next.js application, then run npm run cypress:open in another terminal window to start Cypress and run your E2E Testing suite.\n\nComponent tests build and mount a specific component without having to bundle your whole application or start a server.\n\nSelect Component Testing in the Cypress app, then select Next.js as your front-end framework. A cypress/component folder will be created in your project, and a cypress.config.js file will be updated to enable Component Testing.\n\nEnsure your cypress.config file has the following configuration:\n\nAssuming the same components from the previous section, add a test to validate a component is rendering the expected output:\n\nRun npm run cypress:open in your terminal to start Cypress and run your Component Testing suite.\n\nIn addition to interactive testing, you can also run Cypress headlessly using the cypress run command, which is better suited for CI environments:\n\nYou can learn more about Cypress and Continuous Integration from these resources:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to set up Cypress with Next.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Quickstart",
+      "id": "quickstart"
+    },
+    {
+      "level": "h2",
+      "text": "Manual setup",
+      "id": "manual-setup"
+    },
+    {
+      "level": "h2",
+      "text": "Creating your first Cypress E2E test",
+      "id": "creating-your-first-cypress-e2e-test"
+    },
+    {
+      "level": "h3",
+      "text": "Running E2E Tests",
+      "id": "running-e2e-tests"
+    },
+    {
+      "level": "h2",
+      "text": "Creating your first Cypress component test",
+      "id": "creating-your-first-cypress-component-test"
+    },
+    {
+      "level": "h3",
+      "text": "Running Component Tests",
+      "id": "running-component-tests"
+    },
+    {
+      "level": "h2",
+      "text": "Continuous Integration (CI)",
+      "id": "continuous-integration-ci"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "npx create-next-app@latest --example with-cypress with-cypress-app",
+      "language": "unknown"
+    },
+    {
+      "code": "npm install -D cypress\n# or\nyarn add -D cypress\n# or\npnpm install -D cypress",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  \"scripts\": {\n    \"dev\": \"next dev\",\n    \"build\": \"next build\",\n    \"start\": \"next start\",\n    \"lint\": \"eslint\",\n    \"cypress:open\": \"cypress open\"\n  }\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "npm run cypress:open",
+      "language": "unknown"
+    },
+    {
+      "code": "import { defineConfig } from 'cypress'\n \nexport default defineConfig({\n  e2e: {\n    setupNodeEvents(on, config) {},\n  },\n})",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Page() {\n  return (\n    <div>\n      <h1>Home</h1>\n      <Link href=\"/about\">About</Link>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Page() {\n  return (\n    <div>\n      <h1>About</h1>\n      <Link href=\"/\">Home</Link>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "describe('Navigation', () => {\n  it('should navigate to the about page', () => {\n    // Start from the index page\n    cy.visit('http://localhost:3000/')\n \n    // Find a link with an href attribute containing \"about\" and click it\n    cy.get('a[href*=\"about\"]').click()\n \n    // The new url should include \"/about\"\n    cy.url().should('include', '/about')\n \n    // The new page should contain an h1 with \"About\"\n    cy.get('h1').contains('About')\n  })\n})",
+      "language": "javascript"
+    },
+    {
+      "code": "import { defineConfig } from 'cypress'\n \nexport default defineConfig({\n  component: {\n    devServer: {\n      framework: 'next',\n      bundler: 'webpack',\n    },\n  },\n})",
+      "language": "python"
+    },
+    {
+      "code": "import Page from '../../app/page'\n \ndescribe('<Page />', () => {\n  it('should render and display expected content', () => {\n    // Mount the React component for the Home page\n    cy.mount(<Page />)\n \n    // The new page should contain an h1 with \"Home\"\n    cy.get('h1').contains('Home')\n \n    // Validate that a link with the expected URL is present\n    // Following the link is better suited to an E2E test\n    cy.get('a[href=\"/about\"]').should('be.visible')\n  })\n})",
+      "language": "python"
+    },
+    {
+      "code": "{\n  \"scripts\": {\n    //...\n    \"e2e\": \"start-server-and-test dev http://localhost:3000 \\\"cypress open --e2e\\\"\",\n    \"e2e:headless\": \"start-server-and-test dev http://localhost:3000 \\\"cypress run --e2e\\\"\",\n    \"component\": \"cypress open --component\",\n    \"component:headless\": \"cypress run --component\"\n  }\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/guides",
+    "https://nextjs.org/docs/app/guides/testing",
+    "https://nextjs.org/docs/app/guides/testing/cypress",
+    "https://nextjs.org/docs/app/guides/testing/jest"
+  ]
+}

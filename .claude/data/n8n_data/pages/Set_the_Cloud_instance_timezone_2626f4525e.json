@@ -1,0 +1,8 @@
+{
+  "title": "Set the Cloud instance timezone",
+  "content": "You can change the timezone for your n8n instance. This affects the [Schedule Trigger](../../integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/) and [Date & Time node](../../integrations/builtin/core-nodes/n8n-nodes-base.datetime/). Users can configure the timezone for individual workflows in [Workflow settings](../../workflows/settings/).\n\n1. On your dashboard, select **Manage**.\n1. Change the **Timezone** dropdown to the timezone you want.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#set-the-cloud-instance-timezone",
+  "links": []
+}

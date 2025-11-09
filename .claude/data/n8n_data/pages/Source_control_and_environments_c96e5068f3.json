@@ -1,0 +1,8 @@
+{
+  "title": "Source control and environments",
+  "content": "- Available on Enterprise.\n- You must be an n8n instance owner or instance admin to enable and configure source control.\n- Instance owners and instance admins can push changes to and pull changes from the connected repository.\n- Project admins can push changes to the connected repository. They can't pull changes from the repository.\n\nn8n uses Git-based source control to support environments. Linking your n8n instances to a Git repository lets you create multiple n8n environments, backed by Git branches.\n\n- [Understand](understand/):\n  - [Environments in n8n](understand/environments/): The purpose of environments, and how they work in n8n.\n  - [Git and n8n](understand/git/): How n8n uses Git.\n  - [Branch patterns](understand/patterns/): The possible relationships between n8n instances and Git branches.\n- [Set up source control for environments](setup/): How to connect your n8n instance to Git.\n- [Using](using/):\n  - [Push and pull](using/push-pull/): Send work to Git, and fetch work from Git to your instance.\n  - [Copy work between environments](using/copy-work/): How to copy work between different n8n instances.\n- [Tutorial: Create environments with source control](create-environments/): An end-to-end tutorial, setting up environments using n8n's recommended configurations.\n\n- [Variables](../code/variables/): reusable values.\n- [External secrets](../external-secrets/): manage [credentials](../glossary/#credential-n8n) with an external secrets vault.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#source-control-and-environments",
+  "links": []
+}

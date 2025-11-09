@@ -1,0 +1,14 @@
+{
+  "title": "Autopilot Trigger node",
+  "content": "[Autopilot](https://www.autopilothq.com/) is a visual marketing software that allows you to automate and personalize your marketing across the entire customer journey.\n\nYou can find authentication information for this node [here](../../credentials/autopilot/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Autopilot Trigger integrations](https://n8n.io/integrations/autopilot-trigger/) page.\n\n- Contact added\n- Contact added to a list\n- Contact entered to a segment\n- Contact left a segment\n- Contact removed from a list\n- Contact unsubscribed\n- Contact updated",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    }
+  ],
+  "url": "llms-txt#autopilot-trigger-node",
+  "links": []
+}

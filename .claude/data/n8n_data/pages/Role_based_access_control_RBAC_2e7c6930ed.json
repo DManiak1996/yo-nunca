@@ -1,0 +1,34 @@
+{
+  "title": "Role-based access control (RBAC)",
+  "content": "RBAC is available on all plans except the Community edition. Different plans have different numbers of projects and roles. Refer to n8n's [pricing page](https://n8n.io/pricing/) for plan details.\n\nRole types and account types\n\nRole types and [account types](../account-types/) are different things. Every account has one type. The account can have different role types for different [projects](projects/).\n\nRBAC is a way of managing access to workflows and [credentials](../../glossary/#credential-n8n) based on user roles and projects. You group workflows into projects, and user access depends on the user's project role. This section provides guidance on using RBAC in n8n.\n\n- [Role types](/user-management/rbac/role-types/)\n- [Projects](/user-management/rbac/projects/)\n\nRBAC is available on all plans except the Community edition. Different plans have different numbers of projects and roles. Refer to n8n's [pricing page](https://n8n.io/pricing/) for plan details.\n\nn8n uses projects to group workflows and [credentials](../../../glossary/#credential-n8n), and assigns [roles](../role-types/) to users in each project. This means that a single user can have different roles in different projects, giving them different levels of access.\n\nInstance owners and instance admins can create projects.\n\n1. Select **Add project**.\n1. Fill out the project settings.\n1. Select **Save**.\n\n## Add and remove users in a project\n\nProject admins can add and remove users.\n\nTo add a user to a project:\n\n1. Select the project.\n1. Select **Project settings**.\n1. Under **Project members**, browse for users or search by username or email address.\n1. Select the user you want to add.\n1. Check the [role type](../role-types/) and change it if needed.\n1. Select **Save**.\n\nTo remove a user from a project:\n\n1. Select the project.\n1. Select **Project settings**.\n1. In the **three-dot menu** for the user you want to remove, select **Remove user**.\n1. Select **Save**.\n\n1. Select the project.\n1. Select **Project settings**.\n1. Select **Delete project**.\n1. Choose what to do with the workflows and credentials. You can select:\n   - **Transfer its workflows and credentials to another project**: n8n prompts you to choose a project to move the data to.\n   - **Delete its workflows and credentials**: n8n prompts you to confirm that you want to delete all the data in the project.\n\n## Move workflows and credentials between projects or users\n\nWorkflow and credential owners can move workflows or credentials (changing ownership) to other users or projects they have access to.\n\nMoving revokes sharing\n\nMoving workflows or credentials removes all existing sharing. Be aware that this could impact other workflows currently sharing these resources.\n\n1. Select **Workflow menu** or **Credential menu** > **Move**.\n\nMoving workflows with credentials\n\nWhen moving a workflow with credentials you have permission to share, you can choose to share the credentials as well. This ensures that the workflow continues to have access to the credentials it needs to execute. n8n will note any credentials that can't be moved (credentials you don't have permission to share).\n\n1. Select the project or user you want to move to.\n\n1. Confirm you understand the impact of the move: workflows may stop working if the credentials they need aren't available in the target project, and n8n removes any current individual sharing.\n\n1. Select **Confirm move to new project**.\n\n## Using external secrets in projects\n\nTo use [external secrets](../../../external-secrets/) in a project, you must have an [instance owner or instance admin](../../account-types/) as a member of the project.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Create a project",
+      "id": "create-a-project"
+    },
+    {
+      "level": "h2",
+      "text": "Add and remove users in a project",
+      "id": "add-and-remove-users-in-a-project"
+    },
+    {
+      "level": "h2",
+      "text": "Delete a project",
+      "id": "delete-a-project"
+    },
+    {
+      "level": "h2",
+      "text": "Move workflows and credentials between projects or users",
+      "id": "move-workflows-and-credentials-between-projects-or-users"
+    },
+    {
+      "level": "h2",
+      "text": "Using external secrets in projects",
+      "id": "using-external-secrets-in-projects"
+    }
+  ],
+  "url": "llms-txt#role-based-access-control-(rbac)",
+  "links": []
+}

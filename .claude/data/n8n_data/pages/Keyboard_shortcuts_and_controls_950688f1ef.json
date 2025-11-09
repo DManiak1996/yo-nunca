@@ -1,0 +1,99 @@
+{
+  "title": "Keyboard shortcuts and controls",
+  "content": "n8n provides keyboard shortcuts for some actions.\n\n- **Ctrl** + **Alt** + **n**: create new workflow\n- **Ctrl** + **o**: open workflow\n- **Ctrl** + **s**: save the current workflow\n- **Ctrl** + **z**: undo\n- **Ctrl** + **shift** + **z**: redo\n- **Ctrl** + **Enter**: execute workflow\n\n- **Ctrl** + **Left Mouse Button** + drag: move node view\n- **Ctrl** + **Middle mouse button** + drag: move node view\n- **Space** + drag: move node view\n- **Middle mouse button** + drag: move node view\n- Two fingers on a touch screen: move node view\n\n- **+** or **=**: zoom in\n- **-** or **\\_**: zoom out\n- **0**: reset zoom level\n- **1**: zoom to fit workflow\n- **Ctrl** + **Mouse wheel**: zoom in/out\n\n### Nodes on the canvas\n\n- **Double click** on a node: open the node details\n- **Ctrl/Cmd** + **Double click** on a sub-workflow node: open the sub-workflow in a new tab\n- **Ctrl** + **a**: select all nodes\n- **Ctrl** + **v**: paste nodes\n- **Shift** + **s**: add sticky note\n\n### With one or more nodes selected in canvas\n\n- **ArrowDown**: select sibling node below the current one\n- **ArrowLeft**: select node left of the current one\n- **ArrowRight**: select node right of the current one\n- **ArrowUp**: select sibling node above the current one\n- **Ctrl** + **c**: copy\n- **Ctrl** + **x**: cut\n- **D**: deactivate\n- **Delete**: delete\n- **Enter**: open\n- **F2**: rename\n- **P**: pin data in node. Refer to [Data pinning](../data/data-pinning/) for more information.\n- **Shift** + **ArrowLeft**: select all nodes left of the current one\n- **Shift** + **ArrowRight**: select all nodes right of the current one\n- **Ctrl/Cmd** + **Shift** + **o** on a sub-workflow node: open the sub-workflow in a new tab\n\n- **Tab**: open the Node Panel\n- **Enter**: insert selected node into workflow\n- **Escape**: close Node panel\n\n### Node panel categories\n\n- **Enter**: insert node into workflow, collapse/expand category, open subcategory\n- **ArrowRight**: expand category, open subcategory\n- **ArrowLeft**: collapse category, close subcategory view\n\n- **=**: in an empty parameter input, this switches to [expressions](../glossary/#expression-n8n) mode.\n\nThis guide outlines a series of tutorials and resources designed to get you started with n8n.\n\nIt's not necessary to complete all items listed to start using n8n. Use this as a reference to navigate to the most relevant parts of the documentation and other resources according to your needs.\n\n## Join the community\n\nn8n has an active community where you can get and offer help. Connect, share, and learn with other n8n users:\n\n- [Ask questions](https://community.n8n.io/t/readme-welcome-to-the-n8n-community/44381) and [make feature requests](https://community.n8n.io/c/feature-requests) in the Community Forum.\n- [Report bugs](https://github.com/n8n-io/n8n/issues) and [contribute](https://github.com/n8n-io/n8n/blob/master/CONTRIBUTING.md) on GitHub.\n\nIf you don't have an account yet, sign up to a [free trial on n8n Cloud](https://app.n8n.cloud/register) or install n8n's community edition with [Docker](../hosting/installation/docker/) (recommended) or [npm](../hosting/installation/npm/). See [Choose your n8n](../choose-n8n/) for more details.\n\nStart with the quickstart guides to help you get up and running with building basic workflows.\n\n- [A very quick quickstart](../try-it-out/quickstart/)\n- [A longer introduction](../try-it-out/tutorial-first-workflow/)\n- [Build an AI workflow in n8n](../advanced-ai/intro-tutorial/)\n\n## Structured Courses\n\nn8n offers two sets of courses.\n\nLearn key concepts and n8n features, while building examples as you go.\n\n- The [Beginner](https://www.youtube.com/playlist?list=PLlET0GsrLUL59YbxstZE71WszP3pVnZfI) course covers the basics of n8n.\n- The [Advanced](https://www.youtube.com/playlist?list=PLlET0GsrLUL5bxmx5c1H1Ms_OtOPYZIEG) course covers more complex workflows, more technical nodes, and enterprise features\n\nBuild more complex workflows while learning key concepts along the way. Earn a badge and an avatar in your community profile.\n\n- [Level 1: Beginner Course](https://blog.n8n.io/announcing-the-n8n-certification-course-for-beginners-level-1/)\n- [Level 2: Intermediate Course](https://blog.n8n.io/announcing-course-level-two/)\n\nExplore various [self-hosting options in n8n](../hosting/). If you’re not sure where to start, these are two popular options:\n\n- [Hosting n8n on DigitalOcean](../hosting/installation/server-setups/digital-ocean/)\n- [Hosting n8n on Amazon Web Services](../hosting/installation/server-setups/aws/)\n\nIf you can't find a node for a specific app or a service, you can build a node yourself and share with the community. See what others have built on [npm website](https://www.npmjs.com/search?q=keywords:n8n-community-node-package).\n\n- [Build a declarative-style node](../integrations/creating-nodes/build/declarative-style-node/)\n- [Learn how to build your own n8n nodes (Youtube Video)](https://www.youtube.com/live/OI6zHJ56eW0?si=SMD7L1J5fZ2mf79W)\n\n- Follow new features and bug fixes in the [Release Notes](../release-notes/)\n- Follow n8n on socials: [Twitter/X](https://twitter.com/n8n_io), [Discord](https://discord.com/invite/vWwMVThRta), [LinkedIn](https://www.linkedin.com/company/n8n/), [YouTube](https://www.youtube.com/@n8n-io)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Workflow controls",
+      "id": "workflow-controls"
+    },
+    {
+      "level": "h2",
+      "text": "Canvas",
+      "id": "canvas"
+    },
+    {
+      "level": "h3",
+      "text": "Move the canvas",
+      "id": "move-the-canvas"
+    },
+    {
+      "level": "h3",
+      "text": "Canvas zoom",
+      "id": "canvas-zoom"
+    },
+    {
+      "level": "h3",
+      "text": "Nodes on the canvas",
+      "id": "nodes-on-the-canvas"
+    },
+    {
+      "level": "h3",
+      "text": "With one or more nodes selected in canvas",
+      "id": "with-one-or-more-nodes-selected-in-canvas"
+    },
+    {
+      "level": "h2",
+      "text": "Node panel",
+      "id": "node-panel"
+    },
+    {
+      "level": "h3",
+      "text": "Node panel categories",
+      "id": "node-panel-categories"
+    },
+    {
+      "level": "h2",
+      "text": "Within nodes",
+      "id": "within-nodes"
+    },
+    {
+      "level": "h2",
+      "text": "Join the community",
+      "id": "join-the-community"
+    },
+    {
+      "level": "h2",
+      "text": "Set up your n8n",
+      "id": "set-up-your-n8n"
+    },
+    {
+      "level": "h2",
+      "text": "Try it out",
+      "id": "try-it-out"
+    },
+    {
+      "level": "h2",
+      "text": "Structured Courses",
+      "id": "structured-courses"
+    },
+    {
+      "level": "h3",
+      "text": "Video courses",
+      "id": "video-courses"
+    },
+    {
+      "level": "h3",
+      "text": "Text courses",
+      "id": "text-courses"
+    },
+    {
+      "level": "h2",
+      "text": "Self-hosting n8n",
+      "id": "self-hosting-n8n"
+    },
+    {
+      "level": "h2",
+      "text": "Build a node",
+      "id": "build-a-node"
+    },
+    {
+      "level": "h2",
+      "text": "Stay updated",
+      "id": "stay-updated"
+    }
+  ],
+  "url": "llms-txt#keyboard-shortcuts-and-controls",
+  "links": []
+}

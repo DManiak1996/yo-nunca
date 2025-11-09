@@ -1,0 +1,34 @@
+{
+  "title": "Sub-workflows",
+  "content": "You can call one workflow from another workflow. This allows you to build modular, microservice-like workflows. It can also help if your workflow grows large enough to encounter [memory issues](../../hosting/scaling/memory-errors/). Creating sub-workflows uses the [Execute Workflow](../../integrations/builtin/core-nodes/n8n-nodes-base.executeworkflow/) and [Execute Sub-workflow Trigger](../../integrations/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger/) nodes.\n\nSub-wokflow executions don't count towards your plan's monthly execution or active workflow limits.\n\n## Set up and use a sub-workflow\n\nThis section walks through setting up both the parent workflow and sub-workflow.\n\n### Create the sub-workflow\n\n1. Create a new workflow.\n\nCreate sub-workflows from existing workflows\n\nYou can optionally create a sub-workflow directly from an existing parent workflow using the [Execute Sub-workflow](../../integrations/builtin/core-nodes/n8n-nodes-base.executeworkflow/) node. In the node, select the **Database** and **From list** options and select **Create a sub-workflow** in the list.\n\nYou can also extract selected nodes directly using [Sub-workflow conversion](../../workflows/subworkflow-conversion/) in the context menu.\n\n1. **Optional**: configure which workflows can call the sub-workflow:\n\n1. Select the **Options** menu > **Settings**. n8n opens the **Workflow settings** modal.\n   1. Change the **This workflow can be called by** setting. Refer to [Workflow settings](../../workflows/settings/) for more information on configuring your workflows.\n\n1. Add the **Execute Sub-workflow** trigger node (if you are searching under trigger nodes, this is also titled **When Executed by Another Workflow**).\n\n1. Set the **Input data mode** to choose how you will define the sub-workflow's input data:\n\n- **Define using fields below**: Choose this mode to define individual input names and data types that the calling workflow needs to provide. The [Execute Sub-workflow node](../../integrations/builtin/core-nodes/n8n-nodes-base.executeworkflow/) or [Call n8n Workflow Tool node](../../integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolworkflow/) in the calling workflow will automatically pull in the fields defined here.\n   - **Define using JSON example**: Choose this mode to provide an example JSON object that demonstrates the expected input items and their types.\n   - **Accept all data**: Choose this mode to accept all data unconditionally. The sub-workflow won't define any required input items. This sub-workflow must handle any input inconsistencies or missing values.\n\n1. Add other nodes as needed to build your sub-workflow functionality.\n\n1. Save the sub-workflow.\n\nSub-workflow mustn't contain errors\n\nIf there are errors in the sub-workflow, the parent workflow can't trigger it.\n\nLoad data into sub-workflow before building\n\nThis requires the ability to [load data from previous executions](../../workflows/executions/debug/), which is available on n8n Cloud and registered Community plans.\n\nIf you want to load data into your sub-workflow to use while building it:\n\n1. Create the sub-workflow and add the **Execute Sub-workflow Trigger**.\n1. Set the node's **Input data mode** to **Accept all data** or define the input items using fields or JSON if they're already known.\n1. In the sub-workflow [settings](../../workflows/settings/), set **Save successful production executions** to **Save**.\n1. Skip ahead to setting up the parent workflow, and run it.\n1. Follow the steps to [load data from previous executions](../../workflows/executions/debug/).\n1. Adjust the **Input data mode** to match the input sent by the parent workflow if necessary.\n\nYou can now pin example data in the trigger node, enabling you to work with real data while configuring the rest of the workflow.\n\n### Call the sub-workflow\n\n1. Open the workflow where you want to call the sub-workflow.\n\n1. Add the **Execute Sub-workflow** node.\n\n1. In the **Execute Sub-workflow** node, set the sub-workflow you want to call. You can choose to call the workflow by ID, load a workflow from a local file, add workflow JSON as a parameter in the node, or target a workflow by URL.\n\nFind your workflow ID\n\nYour sub-workflow's ID is the alphanumeric string at the end of its URL.\n\n1. Fill in the required input items defined by the sub-workflow.\n\n1. Save your workflow.\n\nWhen your workflow executes, it will send data to the sub-workflow, and run it.\n\nYou can follow the execution flow from the parent workflow to the sub-workflow by opening the Execute Sub-workflow node and selecting the **View sub-execution** link. Likewise, the sub-workflow's execution contains a link back to the parent workflow's execution to navigate in the other direction.\n\n## How data passes between workflows\n\nAs an example, imagine you have an Execute Sub-workflow node in **Workflow A**. The Execute Sub-workflow node calls another workflow called **Workflow B**:\n\n1. The Execute Sub-workflow node passes the data to the Execute Sub-workflow Trigger node (titled \"When executed by another node\" in the canvas) of **Workflow B**.\n1. The last node of **Workflow B** sends the data back to the Execute Sub-workflow node in **Workflow A**.\n\n## Sub-workflow conversion\n\nSee [sub-workflow conversion](../../workflows/subworkflow-conversion/) for how to divide your existing workflows into sub-workflows.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Set up and use a sub-workflow",
+      "id": "set-up-and-use-a-sub-workflow"
+    },
+    {
+      "level": "h3",
+      "text": "Create the sub-workflow",
+      "id": "create-the-sub-workflow"
+    },
+    {
+      "level": "h3",
+      "text": "Call the sub-workflow",
+      "id": "call-the-sub-workflow"
+    },
+    {
+      "level": "h2",
+      "text": "How data passes between workflows",
+      "id": "how-data-passes-between-workflows"
+    },
+    {
+      "level": "h2",
+      "text": "Sub-workflow conversion",
+      "id": "sub-workflow-conversion"
+    }
+  ],
+  "url": "llms-txt#sub-workflows",
+  "links": []
+}

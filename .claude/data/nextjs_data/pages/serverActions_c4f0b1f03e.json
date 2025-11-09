@@ -1,0 +1,49 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/serverActions",
+  "title": "serverActions",
+  "content": "Options for configuring Server Actions behavior in your Next.js application.\n\nA list of extra safe origin domains from which Server Actions can be invoked. Next.js compares the origin of a Server Action request with the host domain, ensuring they match to prevent CSRF attacks. If not provided, only the same origin is allowed.\n\nBy default, the maximum size of the request body sent to a Server Action is 1MB, to prevent the consumption of excessive server resources in parsing large amounts of data, as well as potential DDoS attacks.\n\nHowever, you can configure this limit using the serverActions.bodySizeLimit option. It can take the number of bytes or any string format supported by bytes, for example 1000, '500kb' or '3mb'.\n\nServer Actions became a stable feature in Next.js 14, and are enabled by default. However, if you are using an earlier version of Next.js, you can enable them by setting experimental.serverActions to true.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "serverActions",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "allowedOrigins",
+      "id": "allowedorigins"
+    },
+    {
+      "level": "h2",
+      "text": "bodySizeLimit",
+      "id": "bodysizelimit"
+    },
+    {
+      "level": "h2",
+      "text": "Enabling Server Actions (v13)",
+      "id": "enabling-server-actions-v13"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "/** @type {import('next').NextConfig} */\n \nmodule.exports = {\n  experimental: {\n    serverActions: {\n      allowedOrigins: ['my-proxy.com', '*.my-proxy.com'],\n    },\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "/** @type {import('next').NextConfig} */\n \nmodule.exports = {\n  experimental: {\n    serverActions: {\n      bodySizeLimit: '2mb',\n    },\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "/** @type {import('next').NextConfig} */\nconst config = {\n  experimental: {\n    serverActions: true,\n  },\n}\n \nmodule.exports = config",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/serverActions",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/sassOptions",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/serverComponentsHmrCache"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Stop the container with the `<container_id>`",
+  "content": "docker stop <container_id>",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#stop-the-container-with-the-`<container_id>`",
+  "links": []
+}

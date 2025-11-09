@@ -1,0 +1,8 @@
+{
+  "title": "Keap Trigger node",
+  "content": "[Keap](https://keap.com/) is an e-mail marketing and sales platform for small businesses, including products to manage and optimize the customer lifecycle, customer relationship management, marketing automation, lead capture, and e-commerce.\n\nYou can find authentication information for this node [here](../../credentials/keap/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Keap Trigger integrations](https://n8n.io/integrations/keap-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#keap-trigger-node",
+  "links": []
+}

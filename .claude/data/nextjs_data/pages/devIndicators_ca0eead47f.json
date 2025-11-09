@@ -1,0 +1,62 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/devIndicators",
+  "title": "devIndicators",
+  "content": "devIndicators allows you to configure the on-screen indicator that gives context about the current route you're viewing during development.\n\nSetting devIndicators to false will hide the indicator, however Next.js will continue to surface any build or runtime errors that were encountered.\n\nIf you expect a route to be static and the indicator has marked it as dynamic, it's likely the route has opted out of static rendering.\n\nYou can confirm if a route is static or dynamic by building your application using next build --debug, and checking the output in your terminal. Static (or prerendered) routes will display a ○ symbol, whereas dynamic routes will display a ƒ symbol. For example:\n\nThere are two reasons a route might opt out of static rendering:\n\nCheck your route for any of these conditions, and if you are not able to statically render the route, then consider using loading.js or <Suspense /> to leverage streaming.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "devIndicators",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "Indicator not marking a route as static",
+      "id": "indicator-not-marking-a-route-as-static"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "devIndicators: false | {\n    position?: 'bottom-right'\n    | 'bottom-left'\n    | 'top-right'\n    | 'top-left', // defaults to 'bottom-left',\n  },",
+      "language": "unknown"
+    },
+    {
+      "code": "Route (app)\n┌ ○ /_not-found\n└ ƒ /products/[id]\n \n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "Configurationnext.config.jsdevIndicatorsCopy pagedevIndicatorsdevIndicators allows you to configure the on-screen indicator that gives context about the current route you're viewing during development. Types devIndicators: false | { position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left', // defaults to 'bottom-left', }, Setting devIndicators to false will hide the indicator, however Next.js will continue to surface any build or runtime errors that were encountered. Troubleshooting Indicator not marking a route as static If you expect a route to be static and the indicator has marked it as dynamic, it's likely the route has opted out of static rendering. You can confirm if a route is static or dynamic by building your application using next build --debug, and checking the output in your terminal. Static (or prerendered) routes will display a ○ symbol, whereas dynamic routes will display a ƒ symbol. For example: Build OutputRoute (app) ┌ ○ /_not-found └ ƒ /products/[id] ○ (Static) prerendered as static content ƒ (Dynamic) server-rendered on demand There are two reasons a route might opt out of static rendering: The presence of Dynamic APIs which rely on runtime information. An uncached data request, like a call to an ORM or database driver. Check your route for any of these conditions, and if you are not able to statically render the route, then consider using loading.js or <Suspense /> to leverage streaming. Version History VersionChangesv16.0.0appIsrStatus, buildActivity, and buildActivityPosition options have been removed.v15.2.0Improved on-screen indicator with new position option. appIsrStatus, buildActivity, and buildActivityPosition options have been deprecated.v15.0.0Static on-screen indicator added with appIsrStatus option.",
+      "code": "devIndicators"
+    },
+    {
+      "description": "devIndicatorsdevIndicators allows you to configure the on-screen indicator that gives context about the current route you're viewing during development. Types devIndicators: false | { position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left', // defaults to 'bottom-left', }, Setting devIndicators to false will hide the indicator, however Next.js will continue to surface any build or runtime errors that were encountered. Troubleshooting Indicator not marking a route as static If you expect a route to be static and the indicator has marked it as dynamic, it's likely the route has opted out of static rendering. You can confirm if a route is static or dynamic by building your application using next build --debug, and checking the output in your terminal. Static (or prerendered) routes will display a ○ symbol, whereas dynamic routes will display a ƒ symbol. For example: Build OutputRoute (app) ┌ ○ /_not-found └ ƒ /products/[id] ○ (Static) prerendered as static content ƒ (Dynamic) server-rendered on demand There are two reasons a route might opt out of static rendering: The presence of Dynamic APIs which rely on runtime information. An uncached data request, like a call to an ORM or database driver. Check your route for any of these conditions, and if you are not able to statically render the route, then consider using loading.js or <Suspense /> to leverage streaming. Version History VersionChangesv16.0.0appIsrStatus, buildActivity, and buildActivityPosition options have been removed.v15.2.0Improved on-screen indicator with new position option. appIsrStatus, buildActivity, and buildActivityPosition options have been deprecated.v15.0.0Static on-screen indicator added with appIsrStatus option.",
+      "code": "devIndicators"
+    },
+    {
+      "description": "You can confirm if a route is static or dynamic by building your application using next build --debug, and checking the output in your terminal. Static (or prerendered) routes will display a ○ symbol, whereas dynamic routes will display a ƒ symbol. For example:",
+      "code": "next build --debug"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/devIndicators",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/getting-started/fetching-data",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/app/getting-started/linking-and-navigating",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cssChunking",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/distDir"
+  ]
+}

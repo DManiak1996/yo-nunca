@@ -1,0 +1,58 @@
+{
+  "url": "https://nextjs.org/docs/messages/no-html-link-for-pages",
+  "title": "No HTML link for pages",
+  "content": "Prevent usage of <a> elements to navigate to internal Next.js pages.\n\nAn <a> element was used to navigate to a page route without using the next/link component, causing unnecessary full-page refreshes.\n\nThe Link component is required to enable client-side route transitions between pages and provide a single-page app experience.\n\nMake sure to import the Link component and wrap anchor elements that route to different page routes.\n\nThis rule can normally locate your pages directory automatically.\n\nIf you're working in a monorepo, we recommend configuring the rootDir setting in eslint-plugin-next, which pagesDir will use to locate your pages directory.\n\nIn some cases, you may also need to configure this rule directly by providing a pages directory. This can be a path or an array of paths.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "No HTML link for pages",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h3",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h4",
+      "text": "pagesDir",
+      "id": "pagesdir"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "function Home() {\n  return (\n    <div>\n      <a href=\"/about\">About Us</a>\n    </div>\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nfunction Home() {\n  return (\n    <div>\n      <Link href=\"/about\">About Us</Link>\n    </div>\n  )\n}\n \nexport default Home",
+      "language": "python"
+    },
+    {
+      "code": "{\n  \"rules\": {\n    \"@next/next/no-html-link-for-pages\": [\"error\", \"packages/my-app/pages/\"]\n  }\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/no-html-link-for-pages",
+    "https://nextjs.org/docs/pages/api-reference/config/eslint",
+    "https://nextjs.org/docs/pages/api-reference/components/link"
+  ]
+}

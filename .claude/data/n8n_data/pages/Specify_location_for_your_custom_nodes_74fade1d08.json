@@ -1,0 +1,13 @@
+{
+  "title": "Specify location for your custom nodes",
+  "content": "Every user can add custom nodes that get loaded by n8n on startup. The default location is in the subfolder `.n8n/custom` of the user who started n8n.\n\nYou can define more folders with an environment variable:\n\nRefer to [Environment variables reference](../../environment-variables/nodes/) for more information on this variable.",
+  "code_samples": [
+    {
+      "code": "export N8N_CUSTOM_EXTENSIONS=\"/home/jim/n8n/custom-nodes;/data/n8n/nodes\"",
+      "language": "unknown"
+    }
+  ],
+  "headings": [],
+  "url": "llms-txt#specify-location-for-your-custom-nodes",
+  "links": []
+}

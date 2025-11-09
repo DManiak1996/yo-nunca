@@ -1,0 +1,126 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config",
+  "title": "Route Segment Config",
+  "content": "The Route Segment options allows you to configure the behavior of a Page, Layout, or Route Handler by directly exporting the following variables:\n\nChange the dynamic behavior of a layout or page to fully static or fully dynamic.\n\nGood to know: The new model in the app directory favors granular caching control at the fetch request level over the binary all-or-nothing model of getServerSideProps and getStaticProps at the page-level in the pages directory. The dynamic option is a way to opt back in to the previous model as a convenience and provides a simpler migration path.\n\n'auto' (default): The default option to cache as much as possible without preventing any components from opting into dynamic behavior.\n\n'force-dynamic': Force dynamic rendering, which will result in routes being rendered for each user at request time. This option is equivalent to:\n\n'error': Force static rendering and cache the data of a layout or page by causing an error if any components use Dynamic APIs or uncached data. This option is equivalent to:\n\n'force-static': Force static rendering and cache the data of a layout or page by forcing cookies, headers() and useSearchParams() to return empty values. It is possible to revalidate, revalidatePath, or revalidateTag, in pages or layouts rendered with force-static.\n\nControl what happens when a dynamic segment is visited that was not generated with generateStaticParams.\n\nSet the default revalidation time for a layout or page. This option does not override the revalidate value set by individual fetch requests.\n\nBy default, Next.js will cache any fetch() requests that are reachable before any Dynamic APIs are used and will not cache fetch requests that are discovered after Dynamic APIs are used.\n\nfetchCache allows you to override the default cache option of all fetch requests in a layout or page.\n\nWe recommend using the Node.js runtime for rendering your application. This option cannot be used in Proxy.\n\nGood to know: Using runtime: 'edge' is not supported for Cache Components.\n\nSupport for preferredRegion, and regions supported, is dependent on your deployment platform.\n\nBy default, Next.js does not limit the execution of server-side logic (rendering a page or handling an API). Deployment platforms can use maxDuration from the Next.js build output to add specific execution limits.\n\nNote: This setting requires Next.js 13.4.10 or higher.\n\nThe generateStaticParams function can be used in combination with dynamic route segments to define the list of route segment parameters that will be statically generated at build time instead of on-demand at request time.\n\nSee the API reference for more details.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Route Segment Config",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h3",
+      "text": "dynamic",
+      "id": "dynamic"
+    },
+    {
+      "level": "h3",
+      "text": "dynamicParams",
+      "id": "dynamicparams"
+    },
+    {
+      "level": "h3",
+      "text": "revalidate",
+      "id": "revalidate"
+    },
+    {
+      "level": "h4",
+      "text": "Revalidation Frequency",
+      "id": "revalidation-frequency"
+    },
+    {
+      "level": "h3",
+      "text": "fetchCache",
+      "id": "fetchcache"
+    },
+    {
+      "level": "h4",
+      "text": "Cross-route segment behavior",
+      "id": "cross-route-segment-behavior"
+    },
+    {
+      "level": "h3",
+      "text": "runtime",
+      "id": "runtime"
+    },
+    {
+      "level": "h3",
+      "text": "preferredRegion",
+      "id": "preferredregion"
+    },
+    {
+      "level": "h3",
+      "text": "maxDuration",
+      "id": "maxduration"
+    },
+    {
+      "level": "h3",
+      "text": "generateStaticParams",
+      "id": "generatestaticparams"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export const dynamic = 'auto'\n// 'auto' | 'force-dynamic' | 'error' | 'force-static'",
+      "language": "javascript"
+    },
+    {
+      "code": "export const dynamicParams = true // true | false",
+      "language": "javascript"
+    },
+    {
+      "code": "export const revalidate = false\n// false | 0 | number",
+      "language": "javascript"
+    },
+    {
+      "code": "export const fetchCache = 'auto'\n// 'auto' | 'default-cache' | 'only-cache'\n// 'force-cache' | 'force-no-store' | 'default-no-store' | 'only-no-store'",
+      "language": "javascript"
+    },
+    {
+      "code": "export const runtime = 'nodejs'\n// 'nodejs' | 'edge'",
+      "language": "javascript"
+    },
+    {
+      "code": "export const preferredRegion = 'auto'\n// 'auto' | 'global' | 'home' | ['iad1', 'sfo1']",
+      "language": "javascript"
+    },
+    {
+      "code": "export const maxDuration = 5",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/functions/cookies",
+    "https://nextjs.org/docs/app/api-reference/functions/headers",
+    "https://nextjs.org/docs/app/api-reference/functions/use-search-params",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidatePath",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidateTag",
+    "https://nextjs.org/docs/app/guides/migrating/app-router-migration",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-static-params",
+    "https://nextjs.org/docs/app/getting-started/linking-and-navigating",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/app/getting-started/updating-data",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes",
+    "https://nextjs.org/docs/app/guides/upgrading/codemods",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-groups",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/src-folder"
+  ]
+}

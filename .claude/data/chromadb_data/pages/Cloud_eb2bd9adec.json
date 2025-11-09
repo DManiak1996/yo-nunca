@@ -1,0 +1,8 @@
+{
+  "title": "Cloud",
+  "content": "- [Chroma Cloud](https://docs.trychroma.com/cloud/getting-started.md): The page introduces Chroma Cloud, a fully managed, serverless, and scalable service based on the open-source Chroma engine, emphasizing its ease of use, reliability, security, deployment options, and features like a web dashboard for data management.\n- [Pricing](https://docs.trychroma.com/cloud/pricing.md): The page outlines Chroma Cloud's usage-based pricing model, detailing costs associated with writes, reads, and storage, alongside FAQs and a pricing calculator link.\n- [Quotas & Limits](https://docs.trychroma.com/cloud/quotas-limits.md): The page outlines the quotas and limits enforced by Chroma Cloud to maintain stability and fairness in a multi-tenant environment, and provides details on various specific limits and the possibility of increasing quotas upon request.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#cloud",
+  "links": []
+}

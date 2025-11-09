@@ -1,0 +1,44 @@
+{
+  "title": "Read/Write Files from Disk",
+  "content": "Use the Read/Write Files from Disk node to read and write files from/to the machine where n8n is running.\n\nThis node isn't available on n8n Cloud.\n\n- [**Read File(s) From Disk**](#read-files-from-disk): Use this operation to retrieve one or more files from the computer that runs n8n.\n- [**Write File to Disk**](#write-file-to-disk): Use this operation to create a binary file on the computer that runs n8n.\n\nRefer to the sections below for more information on configuring the node for each operation.\n\n## Read File(s) From Disk\n\nConfigure this operation with these parameters:\n\n- **File(s) Selector**: Enter the path of the file you want to read.\n  - To enter multiple files, enter a page path pattern. You can use these characters to define a path pattern:\n    - `*`: Matches any character zero or more times, excluding path separators.\n    - `**`: Matches any character zero or more times, include path separators.\n    - `?`: Matches any character except for path separators one time.\n    - `[]`: Matches any characters inside the brackets. For example, `[abc]` would match the characters `a`, `b`, or `c`, and nothing else.\n\nRefer to [Picomatch's Basic globbing](https://github.com/micromatch/picomatch#basic-globbing) documentation for more information on these characters and their expected behavior.\n\n### Read File(s) From Disk options\n\nYou can also configure this operation with these **Options**:\n\n- **File Extension**: Enter the extension for the file in the node output.\n- **File Name**: Enter the name for the file in the node output.\n- **MIME Type**: Enter the file's MIME type in the node output. Refer to [Common MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types) for a list of file extensions and their MIME types.\n- **Put Output File in Field**: Enter the name of the field in the output data to contain the file.\n\n## Write File to Disk\n\nConfigure this operation with these parameters:\n\n- **File Path and Name**: Enter the destination for the file, the file's name, and the file's extension.\n- **Input Binary Field**: Enter the name of the field in the node input data that will contain the binary file.\n\n### Write File to Disk options\n\nYou can also configure this operation with these **Options**:\n\nThis operation includes a single option, whether to **Append** data to an existing file instead of creating a new one (turned on) or to create a new file instead of appending to existing (turned off).\n\n## Templates and examples\n\n**Generate SQL queries from schema only - AI-powered**\n\n[View template details](https://n8n.io/workflows/2508-generate-sql-queries-from-schema-only-ai-powered/)\n\n**Breakdown Documents into Study Notes using Templating MistralAI and Qdrant**\n\n[View template details](https://n8n.io/workflows/2339-breakdown-documents-into-study-notes-using-templating-mistralai-and-qdrant/)\n\n**Talk to your SQLite database with a LangChain AI Agent 🧠💬**\n\n[View template details](https://n8n.io/workflows/2292-talk-to-your-sqlite-database-with-a-langchain-ai-agent/)\n\n[Browse Read/Write Files from Disk integration templates](https://n8n.io/integrations/readwrite-files-from-disk/), or [search all templates](https://n8n.io/workflows/)\n\nIf you run n8n in Docker, your command runs in the n8n container and not the Docker host.\n\nThis node looks for files relative to the n8n install path. n8n recommends using absolute file paths to prevent any errors.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Read File(s) From Disk",
+      "id": "read-file(s)-from-disk"
+    },
+    {
+      "level": "h3",
+      "text": "Read File(s) From Disk options",
+      "id": "read-file(s)-from-disk-options"
+    },
+    {
+      "level": "h2",
+      "text": "Write File to Disk",
+      "id": "write-file-to-disk"
+    },
+    {
+      "level": "h3",
+      "text": "Write File to Disk options",
+      "id": "write-file-to-disk-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "File locations",
+      "id": "file-locations"
+    }
+  ],
+  "url": "llms-txt#read/write-files-from-disk",
+  "links": []
+}

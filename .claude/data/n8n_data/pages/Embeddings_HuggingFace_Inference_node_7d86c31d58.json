@@ -1,0 +1,29 @@
+{
+  "title": "Embeddings HuggingFace Inference node",
+  "content": "Use the Embeddings HuggingFace Inference node to generate [embeddings](../../../../../glossary/#ai-embedding) for a given text.\n\nOn this page, you'll find the node parameters for the Embeddings HuggingFace Inference, and links to more resources.\n\nYou can find authentication information for this node [here](../../../credentials/huggingface/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Model**: Select the model to use to generate the embedding.\n\nRefer to the [Hugging Face models documentation](https://huggingface.co/models?other=embeddings) for available models.\n\n- **Custom Inference Endpoint**: Enter the URL of your deployed model, hosted by HuggingFace. If you set this, n8n ignores the **Model Name**.\n\nRefer to [HuggingFace's guide to inference](https://huggingface.co/inference-endpoints) for more information.\n\n## Templates and examples\n\n[Browse Embeddings HuggingFace Inference integration templates](https://n8n.io/integrations/embeddings-hugging-face-inference/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [Langchain's HuggingFace Inference embeddings documentation](https://js.langchain.com/docs/integrations/text_embedding/hugging_face_inference/) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#embeddings-huggingface-inference-node",
+  "links": []
+}

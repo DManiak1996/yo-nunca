@@ -1,0 +1,8 @@
+{
+  "title": "Jira Trigger node",
+  "content": "[Jira](https://www.atlassian.com/software/jira) is a proprietary issue tracking product developed by Atlassian that allows bug tracking and agile project management.\n\nYou can find authentication information for this node [here](../../credentials/jira/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Jira trigger integrations](https://n8n.io/integrations/jira-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#jira-trigger-node",
+  "links": []
+}

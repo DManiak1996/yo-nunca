@@ -1,0 +1,67 @@
+{
+  "url": "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props",
+  "title": "getServerSideProps",
+  "content": "getServerSideProps is a Next.js function that can be used to fetch data and render the contents of a page at request time.\n\nYou can use getServerSideProps by exporting it from a Page Component. The example below shows how you can fetch data from a 3rd party API in getServerSideProps, and pass the data to the page as props:\n\nYou should use getServerSideProps if you need to render a page that relies on personalized user data, or information that can only be known at request time. For example, authorization headers or a geolocation.\n\nIf you do not need to fetch the data at request time, or would prefer to cache the data and pre-rendered HTML, we recommend using getStaticProps.\n\nIf an error is thrown inside getServerSideProps, it will show the pages/500.js file. Check out the documentation for 500 page to learn more on how to create it. During development, this file will not be used and the development error overlay will be shown instead.\n\nYou can use caching headers (Cache-Control) inside getServerSideProps to cache dynamic responses. For example, using stale-while-revalidate.\n\nHowever, before reaching for cache-control, we recommend seeing if getStaticProps with ISR is a better fit for your use case.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "getServerSideProps",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Example",
+      "id": "example"
+    },
+    {
+      "level": "h2",
+      "text": "When should I use getServerSideProps?",
+      "id": "when-should-i-use-getserversideprops"
+    },
+    {
+      "level": "h2",
+      "text": "Behavior",
+      "id": "behavior"
+    },
+    {
+      "level": "h2",
+      "text": "Error Handling",
+      "id": "error-handling"
+    },
+    {
+      "level": "h2",
+      "text": "Edge Cases",
+      "id": "edge-cases"
+    },
+    {
+      "level": "h3",
+      "text": "Caching with Server-Side Rendering (SSR)",
+      "id": "caching-with-server-side-rendering-ssr"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'\n \ntype Repo = {\n  name: string\n  stargazers_count: number\n}\n \nexport const getServerSideProps = (async () => {\n  // Fetch data from external API\n  const res = await fetch('https://api.github.com/repos/vercel/next.js')\n  const repo: Repo = await res.json()\n  // Pass data to the page via props\n  return { props: { repo } }\n}) satisfies GetServerSideProps<{ repo: Repo }>\n \nexport default function Page({\n  repo,\n}: InferGetServerSidePropsType<typeof getServerSideProps>) {\n  return (\n    <main>\n      <p>{repo.stargazers_count}</p>\n    </main>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "// This value is considered fresh for ten seconds (s-maxage=10).\n// If a request is repeated within the next 10 seconds, the previously\n// cached value will still be fresh. If the request is repeated before 59 seconds,\n// the cached value will be stale but still render (stale-while-revalidate=59).\n//\n// In the background, a revalidation request will be made to populate the cache\n// with a fresh value. If you refresh the page, you will see the new value.\nexport async function getServerSideProps({ req, res }) {\n  res.setHeader(\n    'Cache-Control',\n    'public, s-maxage=10, stale-while-revalidate=59'\n  )\n \n  return {\n    props: {},\n  }\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/building-your-application",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props",
+    "https://nextjs.org/docs/pages/api-reference/components/link",
+    "https://nextjs.org/docs/pages/api-reference/functions/use-router",
+    "https://nextjs.org/docs/pages/building-your-application/routing/api-routes",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-server-side-props",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-error",
+    "https://nextjs.org/docs/pages/guides/incremental-static-regeneration",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/forms-and-mutations",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/client-side"
+  ]
+}

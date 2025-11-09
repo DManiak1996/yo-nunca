@@ -1,0 +1,8 @@
+{
+  "title": "Security Assertion Markup Language (SAML)",
+  "content": "- Available on Enterprise plans.\n- You need to be an instance owner or admin to enable and configure SAML.\n\nThis section tells you how to enable SAML SSO (single sign-on) in n8n. It assumes you're familiar with SAML. If you're not, [SAML Explained in Plain English](https://www.onelogin.com/learn/saml) can help you understand how SAML works, and its benefits.\n\n- [Set up SAML](setup/): a general guide to setting up SAML in n8n, and links to resources for common IdPs.\n- [Okta Workforce Identity SAML setup](okta/): step-by-step guidance to configuring Okta.\n- [Troubleshooting](troubleshooting/): a list of things to check if you encounter issues.\n- [Managing users with SAML](managing/): performing user management tasks with SAML enabled.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#security-assertion-markup-language-(saml)",
+  "links": []
+}

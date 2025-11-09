@@ -1,0 +1,33 @@
+{
+  "title": "Notion node common issues",
+  "content": "Here are some common errors and issues with the [Notion node](../) and steps to resolve or troubleshoot them.\n\n## Relation property not displaying\n\nThe Notion node only supports displaying the data relation property for [two-way relations](https://www.notion.com/help/relations-and-rollups). When you connect two Notion databases with a two-way relationship, you can select or filter by the relation property when working with the Notion node's **Database Page** resource.\n\nTo enable two-way relations, edit the relation property in Notion and enable the **Show on [name of related database]** option to create a reverse relation. Select a name to use for the relation in the new context. The relation is now accessible in n8n when filtering or selecting.\n\nIf you need to work with Notion databases with one-way relationship, you can use the [HTTP Request](../../../core-nodes/n8n-nodes-base.httprequest/) with your existing Notion credentials. For example, to update a one-way relationship, you can send a `PATCH` request to the following URL:\n\nEnable **Send Body**, set the **Body Content Type** to **JSON**, and set **Specify Body** to **Using JSON**. Afterward, you can enter a JSON object like the following into the **JSON** field:\n\n## Create toggle heading\n\nThe Notion node allows you to create headings and toggles when adding blocks to **Page**, **Database Page**, or **Block** resources. Creating toggleable headings isn't yet supported by the Notion node itself.\n\nYou can work around this be creating a regular heading and then modifying it to enable the [`is_toggleable` property](https://developers.notion.com/reference/block#headings):\n\n1. Add a heading with Notion node.\n1. Select the resource you want to add a heading to:\n   - To add a new page with a heading, select the **Page** or **Database Page** resources with the **Create** operation.\n   - To add a heading to an existing page, select the **Block** resource with the **Append After** operation.\n1. Select **Add Block** and set the **Type Name or ID** to either **Heading 1**, **Heading 2**, or **Heading 3**.\n1. Add an [HTTP Request](../../../core-nodes/n8n-nodes-base.httprequest/) node connected to the Notion node and select the `GET` method.\n1. Set the **URL** to `https://api.notion.com/v1/blocks/<block_ID>`. For example, if your added the heading to an existing page, you could use the following URL: `https://api.notion.com/v1/blocks/{{ $json.results[0].id }}`. If you created a new page instead of appending a block, you may need to discover the block ID by querying the page contents first.\n1. Select **Predefined Credential Type** and connect your existing Notion credentials.\n1. Add an [Edit Fields (Set)](../../../core-nodes/n8n-nodes-base.set/) node after the HTTP Request node.\n1. Add `heading_1.is_toggleable` as a new **Boolean** field set to `true`. Swap `heading_1` for a different heading number as necessary.\n1. Add a second HTTP Request node after the Edit Fields (Set) node.\n1. Set the **Method** to `PATCH` and use `https://api.notion.com/v1/blocks/{{ $json.id }}` as the **URL** value.\n1. Select **Predefined Credential Type** and connect your existing Notion credentials.\n1. Enable **Send Body** and set a parameter.\n1. Set the parameter **Name** to `heading_1` (substitute `heading_1` for the heading level you are using).\n1. Set the parameter **Value** to `{{ $json.heading_1 }}` (substitute `heading_1` for the heading level you are using).\n\nThe above sequence will create a regular heading block. It will query the newly created header, add the `is_toggleable` property, and update the heading block.\n\n## Handle null and empty values\n\nYou may receive a validation error when working with the Notion node if you submit fields with empty or null values. This can occur any time you populate fields from previous nodes when that data is missing.\n\nTo work around this, check for the existence of the field data before sending it to Notion or use a default value.\n\nTo check for the data before executing the Notion node, use an [If](../../../core-nodes/n8n-nodes-base.if/) node to check whether the field is unset. This allows you to use the [Edit Fields (Set)](../../../core-nodes/n8n-nodes-base.set/) node to conditionally remove the field when it doesn't have a valid value.\n\nAs an alternative, you can set a [default value](../../../../../code/cookbook/expressions/check-incoming-data/) if the incoming data doesn't provide one.",
+  "code_samples": [
+    {
+      "code": "https://api.notion.com/v1/pages/<page_id>",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n\t\"properties\": {\n\t\t\"Account\": {\n\t\t\t\"relation\": [\n\t\t\t\t{\n\t\t\t\t\t\"id\": \"<your_relation_ID>\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t}\n}",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Relation property not displaying",
+      "id": "relation-property-not-displaying"
+    },
+    {
+      "level": "h2",
+      "text": "Create toggle heading",
+      "id": "create-toggle-heading"
+    },
+    {
+      "level": "h2",
+      "text": "Handle null and empty values",
+      "id": "handle-null-and-empty-values"
+    }
+  ],
+  "url": "llms-txt#notion-node-common-issues",
+  "links": []
+}

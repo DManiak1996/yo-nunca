@@ -1,0 +1,76 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/use-router",
+  "title": "useRouter",
+  "content": "The useRouter hook allows you to programmatically change routes inside Client Components.\n\nRecommendation: Use the <Link> component for navigation unless you have a specific requirement for using useRouter.\n\nView the full migration guide.\n\nYou can listen for page changes by composing other Client Component hooks like usePathname and useSearchParams.\n\nWhich can be imported into a layout.\n\nGood to know: <NavigationEvents> is wrapped in a Suspense boundary becauseuseSearchParams() causes client-side rendering up to the closest Suspense boundary during static rendering. Learn more.\n\nBy default, Next.js will scroll to the top of the page when navigating to a new route. You can disable this behavior by passing scroll: false to router.push() or router.replace().",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "useRouter",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "useRouter()",
+      "id": "userouter"
+    },
+    {
+      "level": "h3",
+      "text": "Migrating from next/router",
+      "id": "migrating-from-nextrouter"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Router events",
+      "id": "router-events"
+    },
+    {
+      "level": "h3",
+      "text": "Disabling scroll to top",
+      "id": "disabling-scroll-to-top"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "'use client'\n \nimport { useRouter } from 'next/navigation'\n \nexport default function Page() {\n  const router = useRouter()\n \n  return (\n    <button type=\"button\" onClick={() => router.push('/dashboard')}>\n      Dashboard\n    </button>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { useEffect } from 'react'\nimport { usePathname, useSearchParams } from 'next/navigation'\n \nexport function NavigationEvents() {\n  const pathname = usePathname()\n  const searchParams = useSearchParams()\n \n  useEffect(() => {\n    const url = `${pathname}?${searchParams}`\n    console.log(url)\n    // You can now use the current URL\n    // ...\n  }, [pathname, searchParams])\n \n  return '...'\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Suspense } from 'react'\nimport { NavigationEvents } from './components/navigation-events'\n \nexport default function Layout({ children }) {\n  return (\n    <html lang=\"en\">\n      <body>\n        {children}\n \n        <Suspense fallback={null}>\n          <NavigationEvents />\n        </Suspense>\n      </body>\n    </html>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { useRouter } from 'next/navigation'\n \nexport default function Page() {\n  const router = useRouter()\n \n  return (\n    <button\n      type=\"button\"\n      onClick={() => router.push('/dashboard', { scroll: false })}\n    >\n      Dashboard\n    </button>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/api-reference/components/link",
+    "https://nextjs.org/docs/app/api-reference/functions/use-router",
+    "https://nextjs.org/docs/app/getting-started/linking-and-navigating",
+    "https://nextjs.org/docs/app/guides/prefetching",
+    "https://nextjs.org/docs/app/api-reference/functions/use-pathname",
+    "https://nextjs.org/docs/app/api-reference/functions/use-search-params",
+    "https://nextjs.org/docs/app/guides/migrating/app-router-migration",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/functions/use-report-web-vitals"
+  ]
+}

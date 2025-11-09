@@ -1,0 +1,29 @@
+{
+  "title": "AWS IAM node",
+  "content": "Use the AWS IAM node to automate work in AWS Identity and Access Management (IAM) and integrate AWS IAM with other applications. n8n has built-in support for a wide range of AWS IAM features, which includes creating, updating, getting and deleting users and groups as well as managing group membership.\n\nOn this page, you'll find a list of operations the AWS IAM node supports, and links to more resources.\n\nYou can find authentication information for this node [here](../../credentials/aws/).\n\n- **User**:\n  - **Add to Group**: Add an existing user to a group.\n  - **Create**: Create a new user.\n  - **Delete**: Delete a user.\n  - **Get**: Retrieve a user.\n  - **Get Many**: Retrieve a list of users.\n  - **Remove From Group**: Remove a user from a group.\n  - **Update**: Update an existing user.\n- **Group**:\n  - **Create**: Create a new group.\n  - **Delete**: Create a new group.\n  - **Get**: Retrieve a group.\n  - **Get Many**: Retrieve a list of groups.\n  - **Update**: Update an existing group.\n\n## Templates and examples\n\n**Automated GitHub Scanner for Exposed AWS IAM Keys**\n\n[View template details](https://n8n.io/workflows/5021-automated-github-scanner-for-exposed-aws-iam-keys/)\n\n**Automated AWS IAM Key Compromise Response with Slack & Claude AI**\n\n[View template details](https://n8n.io/workflows/5123-automated-aws-iam-key-compromise-response-with-slack-and-claude-ai/)\n\n**Send Slack Alerts for AWS IAM Access Keys Older Than 365 Days**\n\n[View template details](https://n8n.io/workflows/7501-send-slack-alerts-for-aws-iam-access-keys-older-than-365-days/)\n\n[Browse AWS IAM integration templates](https://n8n.io/integrations/aws-iam/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to the [AWS IAM documentation](https://docs.aws.amazon.com/IAM/latest/APIReference/welcome.html) for more information about the service.\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#aws-iam-node",
+  "links": []
+}

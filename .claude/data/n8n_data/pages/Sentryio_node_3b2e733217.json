@@ -1,0 +1,29 @@
+{
+  "title": "Sentry.io node",
+  "content": "Use the Sentry.io node to automate work in Sentry.io, and integrate Sentry.io with other applications. n8n has built-in support for a wide range of Sentry.io features, including creating, updating, deleting, and getting, issues, projects, and releases, as well as getting all events.\n\nOn this page, you'll find a list of operations the Sentry.io node supports and links to more resources.\n\nRefer to [Sentry.io credentials](../../credentials/sentryio/) for guidance on setting up authentication.\n\n- Event\n  - Get event by ID\n  - Get all events\n- Issue\n  - Delete an issue\n  - Get issue by ID\n  - Get all issues\n  - Update an issue\n- Project\n  - Create a new project\n  - Delete a project\n  - Get project by ID\n  - Get all projects\n  - Update a project\n- Release\n  - Create a release\n  - Delete a release\n  - Get release by version identifier\n  - Get all releases\n  - Update a release\n- Organization\n  - Create an organization\n  - Get organization by slug\n  - Get all organizations\n  - Update an organization\n- Team\n  - Create a new team\n  - Delete a team\n  - Get team by slug\n  - Get all teams\n  - Update a team\n\n## Templates and examples\n\n[Browse Sentry.io integration templates](https://n8n.io/integrations/sentryio/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [Sentry.io's documentation](https://docs.sentry.io/api/) for more information about the service.\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#sentry.io-node",
+  "links": []
+}

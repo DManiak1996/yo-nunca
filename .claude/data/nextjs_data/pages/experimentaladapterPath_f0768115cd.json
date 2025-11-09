@@ -1,0 +1,174 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/adapterPath",
+  "title": "experimental.adapterPath",
+  "content": "Next.js provides an experimental API that allows you to create custom adapters to hook into the build process. This is useful for deployment platforms or custom build integrations that need to modify the Next.js configuration or process the build output.\n\nTo use an adapter, specify the path to your adapter module in experimental.adapterPath:\n\nAn adapter is a module that exports an object implementing the NextAdapter interface:\n\nHere's a minimal adapter example:\n\nCalled for any CLI command that loads the next.config to allow modification of the configuration.\n\nReturns: The modified configuration object (can be async)\n\nCalled after the build process completes with detailed information about routes and outputs.\n\nThe outputs object contains arrays of different output types:\n\nReact pages from the pages/ directory:\n\nAPI routes from pages/api/:\n\nReact pages from the app/ directory with page.{js,ts,jsx,tsx}:\n\nAPI and metadata routes from app/ with route.{js,ts,jsx,tsx}:\n\nISR-enabled routes and static prerenders:\n\nStatic assets and auto-statically optimized pages:\n\nMiddleware function (if present):\n\nThe routes object in onBuildComplete provides complete routing information with processed patterns ready for deployment:\n\nEach header route includes:\n\nEach redirect route includes:\n\nRewrites are categorized into three phases:\n\nEach rewrite includes source, sourceRegex, destination, has, and missing.\n\nGenerated from dynamic route segments (e.g., [slug], [...path]). Each includes:\n\nCommon use cases for adapters include:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "experimental.adapterPath",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Configuration",
+      "id": "configuration"
+    },
+    {
+      "level": "h2",
+      "text": "Creating an Adapter",
+      "id": "creating-an-adapter"
+    },
+    {
+      "level": "h3",
+      "text": "Basic Adapter Structure",
+      "id": "basic-adapter-structure"
+    },
+    {
+      "level": "h2",
+      "text": "API Reference",
+      "id": "api-reference"
+    },
+    {
+      "level": "h3",
+      "text": "modifyConfig(config, context)",
+      "id": "modifyconfigconfig-context"
+    },
+    {
+      "level": "h3",
+      "text": "onBuildComplete(context)",
+      "id": "onbuildcompletecontext"
+    },
+    {
+      "level": "h2",
+      "text": "Output Types",
+      "id": "output-types"
+    },
+    {
+      "level": "h3",
+      "text": "Pages (outputs.pages)",
+      "id": "pages-outputspages"
+    },
+    {
+      "level": "h3",
+      "text": "API Routes (outputs.pagesApi)",
+      "id": "api-routes-outputspagesapi"
+    },
+    {
+      "level": "h3",
+      "text": "App Pages (outputs.appPages)",
+      "id": "app-pages-outputsapppages"
+    },
+    {
+      "level": "h3",
+      "text": "App Routes (outputs.appRoutes)",
+      "id": "app-routes-outputsapproutes"
+    },
+    {
+      "level": "h3",
+      "text": "Prerenders (outputs.prerenders)",
+      "id": "prerenders-outputsprerenders"
+    },
+    {
+      "level": "h3",
+      "text": "Static Files (outputs.staticFiles)",
+      "id": "static-files-outputsstaticfiles"
+    },
+    {
+      "level": "h3",
+      "text": "Middleware (outputs.middleware)",
+      "id": "middleware-outputsmiddleware"
+    },
+    {
+      "level": "h2",
+      "text": "Routes Information",
+      "id": "routes-information"
+    },
+    {
+      "level": "h3",
+      "text": "Headers",
+      "id": "headers"
+    },
+    {
+      "level": "h3",
+      "text": "Redirects",
+      "id": "redirects"
+    },
+    {
+      "level": "h3",
+      "text": "Rewrites",
+      "id": "rewrites"
+    },
+    {
+      "level": "h3",
+      "text": "Dynamic Routes",
+      "id": "dynamic-routes"
+    },
+    {
+      "level": "h2",
+      "text": "Use Cases",
+      "id": "use-cases"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  experimental: {\n    adapterPath: require.resolve('./my-adapter.js'),\n  },\n}\n \nmodule.exports = nextConfig",
+      "language": "javascript"
+    },
+    {
+      "code": "export interface NextAdapter {\n  name: string\n  modifyConfig?: (\n    config: NextConfigComplete,\n    ctx: {\n      phase: PHASE_TYPE\n    }\n  ) => Promise<NextConfigComplete> | NextConfigComplete\n  onBuildComplete?: (ctx: {\n    routes: {\n      headers: Array<ManifestHeaderRoute>\n      redirects: Array<ManifestRedirectRoute>\n      rewrites: {\n        beforeFiles: Array<ManifestRewriteRoute>\n        afterFiles: Array<ManifestRewriteRoute>\n        fallback: Array<ManifestRewriteRoute>\n      }\n      dynamicRoutes: ReadonlyArray<ManifestRoute>\n    }\n    outputs: AdapterOutputs\n    projectDir: string\n    repoRoot: string\n    distDir: string\n    config: NextConfigComplete\n    nextVersion: string\n  }) => Promise<void> | void\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "/** @type {import('next').NextAdapter} */\nconst adapter = {\n  name: 'my-custom-adapter',\n \n  async modifyConfig(config, { phase }) {\n    // Modify the Next.js config based on the build phase\n    if (phase === 'phase-production-build') {\n      return {\n        ...config,\n        // Add your modifications\n      }\n    }\n    return config\n  },\n \n  async onBuildComplete({\n    routes,\n    outputs,\n    projectDir,\n    repoRoot,\n    distDir,\n    config,\n    nextVersion,\n  }) {\n    // Process the build output\n    console.log('Build completed with', outputs.pages.length, 'pages')\n \n    // Access different output types\n    for (const page of outputs.pages) {\n      console.log('Page:', page.pathname, 'at', page.filePath)\n    }\n \n    for (const apiRoute of outputs.pagesApi) {\n      console.log('API Route:', apiRoute.pathname, 'at', apiRoute.filePath)\n    }\n \n    for (const appPage of outputs.appPages) {\n      console.log('App Page:', appPage.pathname, 'at', appPage.filePath)\n    }\n \n    for (const prerender of outputs.prerenders) {\n      console.log('Prerendered:', prerender.pathname)\n    }\n  },\n}\n \nmodule.exports = adapter",
+      "language": "javascript"
+    },
+    {
+      "code": "{\n  type: 'PAGES'\n  id: string           // Route identifier\n  filePath: string     // Path to the built file\n  pathname: string     // URL pathname\n  sourcePage: string   // Original source file path in pages/ directory\n  runtime: 'nodejs' | 'edge'\n  assets: Record<string, string>  // Traced dependencies (key: relative path from repo root, value: absolute path)\n  wasmAssets?: Record<string, string>  // Bundled wasm files (key: name, value: absolute path)\n  config: {\n    maxDuration?: number\n    preferredRegion?: string | string[]\n    env?: Record<string, string>  // Environment variables (edge runtime only)\n  }\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  type: 'PAGES_API'\n  id: string\n  filePath: string\n  pathname: string\n  sourcePage: string   // Original relative source file path\n  runtime: 'nodejs' | 'edge'\n  assets: Record<string, string>\n  wasmAssets?: Record<string, string>\n  config: {\n    maxDuration?: number\n    preferredRegion?: string | string[]\n    env?: Record<string, string>\n  }\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  type: 'APP_PAGE'\n  id: string\n  filePath: string\n  pathname: string     // Includes .rsc suffix for RSC routes\n  sourcePage: string   // Original relative source file path\n  runtime: 'nodejs' | 'edge'\n  assets: Record<string, string>\n  wasmAssets?: Record<string, string>\n  config: {\n    maxDuration?: number\n    preferredRegion?: string | string[]\n    env?: Record<string, string>\n  }\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  type: 'APP_ROUTE'\n  id: string\n  filePath: string\n  pathname: string\n  sourcePage: string\n  runtime: 'nodejs' | 'edge'\n  assets: Record<string, string>\n  wasmAssets?: Record<string, string>\n  config: {\n    maxDuration?: number\n    preferredRegion?: string | string[]\n    env?: Record<string, string>\n  }\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  type: 'PRERENDER'\n  id: string\n  pathname: string\n  parentOutputId: string  // ID of the source page/route\n  groupId: number        // Revalidation group identifier (prerenders with same groupId revalidate together)\n  pprChain?: {\n    headers: Record<string, string>  // PPR chain headers (e.g., 'x-nextjs-resume': '1')\n  }\n  parentFallbackMode?: 'blocking' | false | null  // Fallback mode from getStaticPaths\n  fallback?: {\n    filePath: string\n    initialStatus?: number\n    initialHeaders?: Record<string, string | string[]>\n    initialExpiration?: number\n    initialRevalidate?: number\n    postponedState?: string  // PPR postponed state\n  }\n  config: {\n    allowQuery?: string[]     // Allowed query parameters\n    allowHeader?: string[]    // Allowed headers for ISR\n    bypassFor?: RouteHas[]    // Cache bypass conditions\n    renderingMode?: RenderingMode\n    bypassToken?: string\n  }\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  type: 'STATIC_FILE'\n  id: string\n  filePath: string\n  pathname: string\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  type: 'MIDDLEWARE'\n  id: string\n  filePath: string\n  pathname: string      // Always '/_middleware'\n  sourcePage: string    // Always 'middleware'\n  runtime: 'nodejs' | 'edge'\n  assets: Record<string, string>\n  wasmAssets?: Record<string, string>\n  config: {\n    maxDuration?: number\n    preferredRegion?: string | string[]\n    env?: Record<string, string>\n    matchers?: Array<{\n      source: string\n      sourceRegex: string\n      has: RouteHas[] | undefined\n      missing: RouteHas[] | undefined\n    }>\n  }\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "Configurationnext.config.jsexperimental.adapterPathCopy pageexperimental.adapterPathNext.js provides an experimental API that allows you to create custom adapters to hook into the build process. This is useful for deployment platforms or custom build integrations that need to modify the Next.js configuration or process the build output. Configuration To use an adapter, specify the path to your adapter module in experimental.adapterPath: next.config.js/** @type {import('next').NextConfig} */ const nextConfig = { experimental: { adapterPath: require.resolve('./my-adapter.js'), }, } module.exports = nextConfig Creating an Adapter An adapter is a module that exports an object implementing the NextAdapter interface: export interface NextAdapter { name: string modifyConfig?: ( config: NextConfigComplete, ctx: { phase: PHASE_TYPE } ) => Promise<NextConfigComplete> | NextConfigComplete onBuildComplete?: (ctx: { routes: { headers: Array<ManifestHeaderRoute> redirects: Array<ManifestRedirectRoute> rewrites: { beforeFiles: Array<ManifestRewriteRoute> afterFiles: Array<ManifestRewriteRoute> fallback: Array<ManifestRewriteRoute> } dynamicRoutes: ReadonlyArray<ManifestRoute> } outputs: AdapterOutputs projectDir: string repoRoot: string distDir: string config: NextConfigComplete nextVersion: string }) => Promise<void> | void } Basic Adapter Structure Here's a minimal adapter example: my-adapter.js/** @type {import('next').NextAdapter} */ const adapter = { name: 'my-custom-adapter', async modifyConfig(config, { phase }) { // Modify the Next.js config based on the build phase if (phase === 'phase-production-build') { return { ...config, // Add your modifications } } return config }, async onBuildComplete({ routes, outputs, projectDir, repoRoot, distDir, config, nextVersion, }) { // Process the build output console.log('Build completed with', outputs.pages.length, 'pages') // Access different output types for (const page of outputs.pages) { console.log('Page:', page.pathname, 'at', page.filePath) } for (const apiRoute of outputs.pagesApi) { console.log('API Route:', apiRoute.pathname, 'at', apiRoute.filePath) } for (const appPage of outputs.appPages) { console.log('App Page:', appPage.pathname, 'at', appPage.filePath) } for (const prerender of outputs.prerenders) { console.log('Prerendered:', prerender.pathname) } }, } module.exports = adapter API Reference modifyConfig(config, context) Called for any CLI command that loads the next.config to allow modification of the configuration. Parameters: config: The complete Next.js configuration object context.phase: The current build phase (see phases) Returns: The modified configuration object (can be async) onBuildComplete(context) Called after the build process completes with detailed information about routes and outputs. Parameters: routes: Object containing route manifests for headers, redirects, rewrites, and dynamic routes routes.headers: Array of header route objects with source, sourceRegex, headers, has, missing, and optional priority fields routes.redirects: Array of redirect route objects with source, sourceRegex, destination, statusCode, has, missing, and optional priority fields routes.rewrites: Object with beforeFiles, afterFiles, and fallback arrays, each containing rewrite route objects with source, sourceRegex, destination, has, and missing fields routes.dynamicRoutes: Array of dynamic route objects with source, sourceRegex, destination, has, and missing fields outputs: Detailed information about all build outputs organized by type projectDir: Absolute path to the Next.js project directory repoRoot: Absolute path to the detected repository root distDir: Absolute path to the build output directory config: The final Next.js configuration (with modifyConfig applied) nextVersion: Version of Next.js being used buildId: Unique identifier for the current build Output Types The outputs object contains arrays of different output types: Pages (outputs.pages) React pages from the pages/ directory: { type: 'PAGES' id: string // Route identifier filePath: string // Path to the built file pathname: string // URL pathname sourcePage: string // Original source file path in pages/ directory runtime: 'nodejs' | 'edge' assets: Record<string, string> // Traced dependencies (key: relative path from repo root, value: absolute path) wasmAssets?: Record<string, string> // Bundled wasm files (key: name, value: absolute path) config: { maxDuration?: number preferredRegion?: string | string[] env?: Record<string, string> // Environment variables (edge runtime only) } } API Routes (outputs.pagesApi) API routes from pages/api/: { type: 'PAGES_API' id: string filePath: string pathname: string sourcePage: string // Original relative source file path runtime: 'nodejs' | 'edge' assets: Record<string, string> wasmAssets?: Record<string, string> config: { maxDuration?: number preferredRegion?: string | string[] env?: Record<string, string> } } App Pages (outputs.appPages) React pages from the app/ directory with page.{js,ts,jsx,tsx}: { type: 'APP_PAGE' id: string filePath: string pathname: string // Includes .rsc suffix for RSC routes sourcePage: string // Original relative source file path runtime: 'nodejs' | 'edge' assets: Record<string, string> wasmAssets?: Record<string, string> config: { maxDuration?: number preferredRegion?: string | string[] env?: Record<string, string> } } App Routes (outputs.appRoutes) API and metadata routes from app/ with route.{js,ts,jsx,tsx}: { type: 'APP_ROUTE' id: string filePath: string pathname: string sourcePage: string runtime: 'nodejs' | 'edge' assets: Record<string, string> wasmAssets?: Record<string, string> config: { maxDuration?: number preferredRegion?: string | string[] env?: Record<string, string> } } Prerenders (outputs.prerenders) ISR-enabled routes and static prerenders: { type: 'PRERENDER' id: string pathname: string parentOutputId: string // ID of the source page/route groupId: number // Revalidation group identifier (prerenders with same groupId revalidate together) pprChain?: { headers: Record<string, string> // PPR chain headers (e.g., 'x-nextjs-resume': '1') } parentFallbackMode?: 'blocking' | false | null // Fallback mode from getStaticPaths fallback?: { filePath: string initialStatus?: number initialHeaders?: Record<string, string | string[]> initialExpiration?: number initialRevalidate?: number postponedState?: string // PPR postponed state } config: { allowQuery?: string[] // Allowed query parameters allowHeader?: string[] // Allowed headers for ISR bypassFor?: RouteHas[] // Cache bypass conditions renderingMode?: RenderingMode bypassToken?: string } } Static Files (outputs.staticFiles) Static assets and auto-statically optimized pages: { type: 'STATIC_FILE' id: string filePath: string pathname: string } Middleware (outputs.middleware) Middleware function (if present): { type: 'MIDDLEWARE' id: string filePath: string pathname: string // Always '/_middleware' sourcePage: string // Always 'middleware' runtime: 'nodejs' | 'edge' assets: Record<string, string> wasmAssets?: Record<string, string> config: { maxDuration?: number preferredRegion?: string | string[] env?: Record<string, string> matchers?: Array<{ source: string sourceRegex: string has: RouteHas[] | undefined missing: RouteHas[] | undefined }> } } Routes Information The routes object in onBuildComplete provides complete routing information with processed patterns ready for deployment: Headers Each header route includes: source: Original route pattern (e.g., /about) sourceRegex: Compiled regex for matching requests headers: Key-value pairs of headers to apply has: Optional conditions that must be met missing: Optional conditions that must not be met priority: Optional flag for internal routes Redirects Each redirect route includes: source: Original route pattern sourceRegex: Compiled regex for matching destination: Target URL (can include captured groups) statusCode: HTTP status code (301, 302, 307, 308) has: Optional positive conditions missing: Optional negative conditions priority: Optional flag for internal routes Rewrites Rewrites are categorized into three phases: beforeFiles: Checked before filesystem (including pages and public files) afterFiles: Checked after pages/public files but before dynamic routes fallback: Checked after all other routes Each rewrite includes source, sourceRegex, destination, has, and missing. Dynamic Routes Generated from dynamic route segments (e.g., [slug], [...path]). Each includes: source: Route pattern sourceRegex: Compiled regex with named capture groups destination: Internal destination with parameter substitution has: Optional positive conditions missing: Optional negative conditions Use Cases Common use cases for adapters include: Deployment Platform Integration: Automatically configure build outputs for specific hosting platforms Asset Processing: Transform or optimize build outputs Monitoring Integration: Collect build metrics and route information Custom Bundling: Package outputs in platform-specific formats Build Validation: Ensure outputs meet specific requirements Route Generation: Use processed route information to generate platform-specific routing configs",
+      "code": "experimental.adapterPath"
+    },
+    {
+      "description": "experimental.adapterPathNext.js provides an experimental API that allows you to create custom adapters to hook into the build process. This is useful for deployment platforms or custom build integrations that need to modify the Next.js configuration or process the build output. Configuration To use an adapter, specify the path to your adapter module in experimental.adapterPath: next.config.js/** @type {import('next').NextConfig} */ const nextConfig = { experimental: { adapterPath: require.resolve('./my-adapter.js'), }, } module.exports = nextConfig Creating an Adapter An adapter is a module that exports an object implementing the NextAdapter interface: export interface NextAdapter { name: string modifyConfig?: ( config: NextConfigComplete, ctx: { phase: PHASE_TYPE } ) => Promise<NextConfigComplete> | NextConfigComplete onBuildComplete?: (ctx: { routes: { headers: Array<ManifestHeaderRoute> redirects: Array<ManifestRedirectRoute> rewrites: { beforeFiles: Array<ManifestRewriteRoute> afterFiles: Array<ManifestRewriteRoute> fallback: Array<ManifestRewriteRoute> } dynamicRoutes: ReadonlyArray<ManifestRoute> } outputs: AdapterOutputs projectDir: string repoRoot: string distDir: string config: NextConfigComplete nextVersion: string }) => Promise<void> | void } Basic Adapter Structure Here's a minimal adapter example: my-adapter.js/** @type {import('next').NextAdapter} */ const adapter = { name: 'my-custom-adapter', async modifyConfig(config, { phase }) { // Modify the Next.js config based on the build phase if (phase === 'phase-production-build') { return { ...config, // Add your modifications } } return config }, async onBuildComplete({ routes, outputs, projectDir, repoRoot, distDir, config, nextVersion, }) { // Process the build output console.log('Build completed with', outputs.pages.length, 'pages') // Access different output types for (const page of outputs.pages) { console.log('Page:', page.pathname, 'at', page.filePath) } for (const apiRoute of outputs.pagesApi) { console.log('API Route:', apiRoute.pathname, 'at', apiRoute.filePath) } for (const appPage of outputs.appPages) { console.log('App Page:', appPage.pathname, 'at', appPage.filePath) } for (const prerender of outputs.prerenders) { console.log('Prerendered:', prerender.pathname) } }, } module.exports = adapter API Reference modifyConfig(config, context) Called for any CLI command that loads the next.config to allow modification of the configuration. Parameters: config: The complete Next.js configuration object context.phase: The current build phase (see phases) Returns: The modified configuration object (can be async) onBuildComplete(context) Called after the build process completes with detailed information about routes and outputs. Parameters: routes: Object containing route manifests for headers, redirects, rewrites, and dynamic routes routes.headers: Array of header route objects with source, sourceRegex, headers, has, missing, and optional priority fields routes.redirects: Array of redirect route objects with source, sourceRegex, destination, statusCode, has, missing, and optional priority fields routes.rewrites: Object with beforeFiles, afterFiles, and fallback arrays, each containing rewrite route objects with source, sourceRegex, destination, has, and missing fields routes.dynamicRoutes: Array of dynamic route objects with source, sourceRegex, destination, has, and missing fields outputs: Detailed information about all build outputs organized by type projectDir: Absolute path to the Next.js project directory repoRoot: Absolute path to the detected repository root distDir: Absolute path to the build output directory config: The final Next.js configuration (with modifyConfig applied) nextVersion: Version of Next.js being used buildId: Unique identifier for the current build Output Types The outputs object contains arrays of different output types: Pages (outputs.pages) React pages from the pages/ directory: { type: 'PAGES' id: string // Route identifier filePath: string // Path to the built file pathname: string // URL pathname sourcePage: string // Original source file path in pages/ directory runtime: 'nodejs' | 'edge' assets: Record<string, string> // Traced dependencies (key: relative path from repo root, value: absolute path) wasmAssets?: Record<string, string> // Bundled wasm files (key: name, value: absolute path) config: { maxDuration?: number preferredRegion?: string | string[] env?: Record<string, string> // Environment variables (edge runtime only) } } API Routes (outputs.pagesApi) API routes from pages/api/: { type: 'PAGES_API' id: string filePath: string pathname: string sourcePage: string // Original relative source file path runtime: 'nodejs' | 'edge' assets: Record<string, string> wasmAssets?: Record<string, string> config: { maxDuration?: number preferredRegion?: string | string[] env?: Record<string, string> } } App Pages (outputs.appPages) React pages from the app/ directory with page.{js,ts,jsx,tsx}: { type: 'APP_PAGE' id: string filePath: string pathname: string // Includes .rsc suffix for RSC routes sourcePage: string // Original relative source file path runtime: 'nodejs' | 'edge' assets: Record<string, string> wasmAssets?: Record<string, string> config: { maxDuration?: number preferredRegion?: string | string[] env?: Record<string, string> } } App Routes (outputs.appRoutes) API and metadata routes from app/ with route.{js,ts,jsx,tsx}: { type: 'APP_ROUTE' id: string filePath: string pathname: string sourcePage: string runtime: 'nodejs' | 'edge' assets: Record<string, string> wasmAssets?: Record<string, string> config: { maxDuration?: number preferredRegion?: string | string[] env?: Record<string, string> } } Prerenders (outputs.prerenders) ISR-enabled routes and static prerenders: { type: 'PRERENDER' id: string pathname: string parentOutputId: string // ID of the source page/route groupId: number // Revalidation group identifier (prerenders with same groupId revalidate together) pprChain?: { headers: Record<string, string> // PPR chain headers (e.g., 'x-nextjs-resume': '1') } parentFallbackMode?: 'blocking' | false | null // Fallback mode from getStaticPaths fallback?: { filePath: string initialStatus?: number initialHeaders?: Record<string, string | string[]> initialExpiration?: number initialRevalidate?: number postponedState?: string // PPR postponed state } config: { allowQuery?: string[] // Allowed query parameters allowHeader?: string[] // Allowed headers for ISR bypassFor?: RouteHas[] // Cache bypass conditions renderingMode?: RenderingMode bypassToken?: string } } Static Files (outputs.staticFiles) Static assets and auto-statically optimized pages: { type: 'STATIC_FILE' id: string filePath: string pathname: string } Middleware (outputs.middleware) Middleware function (if present): { type: 'MIDDLEWARE' id: string filePath: string pathname: string // Always '/_middleware' sourcePage: string // Always 'middleware' runtime: 'nodejs' | 'edge' assets: Record<string, string> wasmAssets?: Record<string, string> config: { maxDuration?: number preferredRegion?: string | string[] env?: Record<string, string> matchers?: Array<{ source: string sourceRegex: string has: RouteHas[] | undefined missing: RouteHas[] | undefined }> } } Routes Information The routes object in onBuildComplete provides complete routing information with processed patterns ready for deployment: Headers Each header route includes: source: Original route pattern (e.g., /about) sourceRegex: Compiled regex for matching requests headers: Key-value pairs of headers to apply has: Optional conditions that must be met missing: Optional conditions that must not be met priority: Optional flag for internal routes Redirects Each redirect route includes: source: Original route pattern sourceRegex: Compiled regex for matching destination: Target URL (can include captured groups) statusCode: HTTP status code (301, 302, 307, 308) has: Optional positive conditions missing: Optional negative conditions priority: Optional flag for internal routes Rewrites Rewrites are categorized into three phases: beforeFiles: Checked before filesystem (including pages and public files) afterFiles: Checked after pages/public files but before dynamic routes fallback: Checked after all other routes Each rewrite includes source, sourceRegex, destination, has, and missing. Dynamic Routes Generated from dynamic route segments (e.g., [slug], [...path]). Each includes: source: Route pattern sourceRegex: Compiled regex with named capture groups destination: Internal destination with parameter substitution has: Optional positive conditions missing: Optional negative conditions Use Cases Common use cases for adapters include: Deployment Platform Integration: Automatically configure build outputs for specific hosting platforms Asset Processing: Transform or optimize build outputs Monitoring Integration: Collect build metrics and route information Custom Bundling: Package outputs in platform-specific formats Build Validation: Ensure outputs meet specific requirements Route Generation: Use processed route information to generate platform-specific routing configs",
+      "code": "experimental.adapterPath"
+    },
+    {
+      "description": "Here's a minimal adapter example:",
+      "code": "/** @type {import('next').NextAdapter} */\nconst adapter = {\n  name: 'my-custom-adapter',\n \n  async modifyConfig(config, { phase }) {\n    // Modify the Next.js config based on the build phase\n    if (phase === 'phase-production-build') {\n      return {\n        ...config,\n        // Add your modifications\n      }\n    }\n    return config\n  },\n \n  async onBuildComplete({\n    routes,\n    outputs,\n    projectDir,\n    repoRoot,\n    distDir,\n    config,\n    nextVersion,\n  }) {\n    // Process the build output\n    console.log('Build completed with', outputs.pages.length, 'pages')\n \n    // Access different output types\n    for (const page of outputs.pages) {\n      console.log('Page:', page.pathname, 'at', page.filePath)\n    }\n \n    for (const apiRoute of outputs.pagesApi) {\n      console.log('API Route:', apiRoute.pathname, 'at', apiRoute.filePath)\n    }\n \n    for (const appPage of outputs.appPages) {\n      console.log('App Page:', appPage.pathname, 'at', appPage.filePath)\n    }\n \n    for (const prerender of outputs.prerenders) {\n      console.log('Prerendered:', prerender.pathname)\n    }\n  },\n}\n \nmodule.exports = adapter"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/adapterPath",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins"
+  ]
+}

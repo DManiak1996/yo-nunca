@@ -1,0 +1,24 @@
+{
+  "title": "Spotify node",
+  "content": "Use the Spotify node to automate work in Spotify, and integrate Spotify with other applications. n8n has built-in support for a wide range of Spotify features, including getting album and artist information.\n\nOn this page, you'll find a list of operations the Spotify node supports and links to more resources.\n\nRefer to [Spotify credentials](../../credentials/spotify/) for guidance on setting up authentication.\n\n- Album\n  - Get an album by URI or ID.\n  - Get a list of new album releases.\n  - Get an album's tracks by URI or ID.\n  - Search albums by keyword.\n- Artist\n  - Get an artist by URI or ID.\n  - Get an artist's albums by URI or ID.\n  - Get an artist's related artists by URI or ID.\n  - Get an artist's top tracks by URI or ID.\n  - Search artists by keyword.\n- Library\n  - Get the user's liked tracks.\n- My Data\n  - Get your followed artists.\n- Player\n  - Add a song to your queue.\n  - Get your currently playing track.\n  - Skip to your next track.\n  - Pause your music.\n  - Skip to your previous song.\n  - Get your recently played tracks.\n  - Resume playback on the current active device.\n  - Set volume on the current active device.\n  - Start playing a playlist, artist, or album.\n- Playlist\n  - Add tracks from a playlist by track and playlist URI or ID.\n  - Create a new playlist.\n  - Get a playlist by URI or ID.\n  - Get a playlist's tracks by URI or ID.\n  - Get a user's playlists.\n  - Remove tracks from a playlist by track and playlist URI or ID.\n  - Search playlists by keyword.\n- Track\n  - Get a track by its URI or ID.\n  - Get audio features for a track by URI or ID.\n  - Search tracks by keyword\n\n## Templates and examples\n\n**Add liked songs to a Spotify monthly playlist**\n\n[View template details](https://n8n.io/workflows/1074-add-liked-songs-to-a-spotify-monthly-playlist/)\n\n**IOT Button Remote / Spotify Control Integration with MQTT**\n\n[View template details](https://n8n.io/workflows/2383-iot-button-remote-spotify-control-integration-with-mqtt/)\n\n**Download recently liked songs automatically with Spotify**\n\n[View template details](https://n8n.io/workflows/2285-download-recently-liked-songs-automatically-with-spotify/)\n\n[Browse Spotify integration templates](https://n8n.io/integrations/spotify/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#spotify-node",
+  "links": []
+}

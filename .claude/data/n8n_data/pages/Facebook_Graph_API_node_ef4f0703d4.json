@@ -1,0 +1,24 @@
+{
+  "title": "Facebook Graph API node",
+  "content": "Use the Facebook Graph API node to automate work in Facebook Graph API, and integrate Facebook Graph API with other applications. n8n has built-in support for a wide range of Facebook Graph API features, including using queries GET POST DELETE for several parameters like host URL, request methods and much more.\n\nOn this page, you'll find a list of operations the Facebook Graph API node supports and links to more resources.\n\nRefer to [Facebook Graph API credentials](../../credentials/facebookgraph/) for guidance on setting up authentication.\n\n- **Default**\n  - GET\n  - POST\n  - DELETE\n- **Video Uploads**\n  - GET\n  - POST\n  - DELETE\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- **Host URL**: The host URL for the request. The following options are available:\n  - **Default**: Requests are passed to the `graph.facebook.com` host URL. Used for the majority of requests.\n  - **Video**: Requests are passed to the `graph-video.facebook.com` host URL. Used for video upload requests only.\n- **HTTP Request Method**: The method to be used for this request, from the following options:\n  - **GET**\n  - **POST**\n  - **DELETE**\n- **Graph API Version**: The version of the [Facebook Graph API](https://developers.facebook.com/docs/graph-api/changelog) to be used for this request.\n- **Node**: The node on which to operate, for example `/<page-id>/feed`. Read more about it in the [official Facebook Developer documentation](https://developers.facebook.com/docs/graph-api/using-graph-api).\n- **Edge**: Edge of the node on which to operate. Edges represent collections of objects which are attached to the node.\n- **Ignore SSL Issues**: Toggle to still download the response even if SSL certificate validation isn't possible.\n- **Send Binary File**: Available for `POST` operations. If enabled binary data is sent as the body. Requires setting the following:\n  - **Input Binary Field**: Name of the binary property which contains the data for the file to be uploaded.\n\n## Templates and examples\n\n**✨🤖Automate Multi-Platform Social Media Content Creation with AI**\n\n[View template details](https://n8n.io/workflows/3066-automate-multi-platform-social-media-content-creation-with-ai/)\n\n**AI-Powered Social Media Content Generator & Publisher**\n\n[View template details](https://n8n.io/workflows/2950-ai-powered-social-media-content-generator-and-publisher/)\n\n**Generate Instagram Content from Top Trends with AI Image Generation**\n\nby mustafa kendigüzel\n\n[View template details](https://n8n.io/workflows/2803-generate-instagram-content-from-top-trends-with-ai-image-generation/)\n\n[Browse Facebook Graph API integration templates](https://n8n.io/integrations/facebook-graph-api/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h3",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#facebook-graph-api-node",
+  "links": []
+}

@@ -1,0 +1,47 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/manifest",
+  "title": "manifest.json",
+  "content": "Add or generate a manifest.(json|webmanifest) file that matches the Web Manifest Specification in the root of app directory to provide information about your web application for the browser.\n\nAdd a manifest.js or manifest.ts file that returns a Manifest object.\n\nGood to know: manifest.js is special Route Handlers that is cached by default unless it uses a Dynamic API or dynamic config option.\n\nThe manifest object contains an extensive list of options that may be updated due to new web standards. For information on all the current options, refer to the MetadataRoute.Manifest type in your code editor if using TypeScript or see the MDN docs.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "manifest.json",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Static Manifest file",
+      "id": "static-manifest-file"
+    },
+    {
+      "level": "h2",
+      "text": "Generate a Manifest file",
+      "id": "generate-a-manifest-file"
+    },
+    {
+      "level": "h3",
+      "text": "Manifest Object",
+      "id": "manifest-object"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "{\n  \"name\": \"My Next.js Application\",\n  \"short_name\": \"Next.js App\",\n  \"description\": \"An application built with Next.js\",\n  \"start_url\": \"/\"\n  // ...\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import type { MetadataRoute } from 'next'\n \nexport default function manifest(): MetadataRoute.Manifest {\n  return {\n    name: 'Next.js App',\n    short_name: 'Next.js App',\n    description: 'Next.js App',\n    start_url: '/',\n    display: 'standalone',\n    background_color: '#fff',\n    theme_color: '#fff',\n    icons: [\n      {\n        src: '/favicon.ico',\n        sizes: 'any',\n        type: 'image/x-icon',\n      },\n    ],\n  }\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/manifest",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/config/typescript",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image"
+  ]
+}

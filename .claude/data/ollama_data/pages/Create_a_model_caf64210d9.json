@@ -1,0 +1,8 @@
+{
+  "title": "Create a model",
+  "content": "Source: https://docs.ollama.com/api/create\n\nopenapi.yaml post /api/create",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#create-a-model",
+  "links": []
+}

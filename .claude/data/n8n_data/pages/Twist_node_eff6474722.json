@@ -1,0 +1,29 @@
+{
+  "title": "Twist node",
+  "content": "Use the Twist node to automate work in Twist, and integrate Twist with other applications. n8n has built-in support for a wide range of Twist features, including creating conversations in a channel, as well as creating and deleting comments on a thread.\n\nOn this page, you'll find a list of operations the Twist node supports and links to more resources.\n\nRefer to [Twist credentials](../../credentials/twist/) for guidance on setting up authentication.\n\n- Channel\n  - Archive a channel\n  - Initiates a public or private channel-based conversation\n  - Delete a channel\n  - Get information about a channel\n  - Get all channels\n  - Unarchive a channel\n  - Update a channel\n- Comment\n  - Create a new comment to a thread\n  - Delete a comment\n  - Get information about a comment\n  - Get all comments\n  - Update a comment\n- Message Conversation\n  - Create a message in a conversation\n  - Delete a message in a conversation\n  - Get a message in a conversation\n  - Get all messages in a conversation\n  - Update a message in a conversation\n- Thread\n  - Create a new thread in a channel\n  - Delete a thread\n  - Get information about a thread\n  - Get all threads\n  - Update a thread\n\n## Templates and examples\n\n[Browse Twist integration templates](https://n8n.io/integrations/twist/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.\n\nTo get the User ID for a user:\n\n1. Open the **Team** tab.\n1. Select a user's avatar.\n1. Copy the string of characters located after `/u/` in your Twist URL. This string is the User ID. For example, if the URL is `https://twist.com/a/4qw45/people/u/475370` the User ID is `475370`.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    },
+    {
+      "level": "h2",
+      "text": "Get the User ID",
+      "id": "get-the-user-id"
+    }
+  ],
+  "url": "llms-txt#twist-node",
+  "links": []
+}

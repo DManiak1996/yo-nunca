@@ -1,0 +1,24 @@
+{
+  "title": "Bitly node",
+  "content": "Use the Bitly node to automate work in Bitly, and integrate Bitly with other applications. n8n has built-in support for a wide range of Bitly features, including creating, getting, and updating links.\n\nOn this page, you'll find a list of operations the Bitly node supports and links to more resources.\n\nRefer to [Bitly credentials](../../credentials/bitly/) for guidance on setting up authentication.\n\n- Link\n  - Create a link\n  - Get a link\n  - Update a link\n\n## Templates and examples\n\n**Explore n8n Nodes in a Visual Reference Library**\n\n[View template details](https://n8n.io/workflows/3891-explore-n8n-nodes-in-a-visual-reference-library/)\n\n**Create a URL on Bitly**\n\n[View template details](https://n8n.io/workflows/442-create-a-url-on-bitly/)\n\n**Automate URL Shortening with Bitly Using Llama3 Chat Interface**\n\n[View template details](https://n8n.io/workflows/3885-automate-url-shortening-with-bitly-using-llama3-chat-interface/)\n\n[Browse Bitly integration templates](https://n8n.io/integrations/bitly/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#bitly-node",
+  "links": []
+}

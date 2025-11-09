@@ -1,0 +1,92 @@
+{
+  "url": "https://react.dev/reference/react/createRef",
+  "title": "createRef",
+  "content": "createRef is mostly used for class components. Function components typically rely on useRef instead.\n\ncreateRef creates a ref object which can contain arbitrary value.\n\nCall createRef to declare a ref inside a class component.\n\nSee more examples below.\n\ncreateRef takes no parameters.\n\ncreateRef returns an object with a single property:\n\nTo declare a ref inside a class component, call createRef and assign its result to a class field:\n\nIf you now pass ref={this.inputRef} to an <input> in your JSX, React will populate this.inputRef.current with the input DOM node. For example, here is how you make a button that focuses the input:\n\ncreateRef is mostly used for class components. Function components typically rely on useRef instead.\n\nWe recommend using function components instead of class components in new code. If you have some existing class components using createRef, here is how you can convert them. This is the original code:\n\nWhen you convert this component from a class to a function, replace calls to createRef with calls to useRef:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "createRef",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Pitfall",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "createRef()",
+      "id": "createref"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Declaring a ref in a class component",
+      "id": "declaring-a-ref-in-a-class-component"
+    },
+    {
+      "level": "h3",
+      "text": "Pitfall",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Alternatives",
+      "id": "alternatives"
+    },
+    {
+      "level": "h3",
+      "text": "Migrating from a class with createRef to a function with useRef",
+      "id": "migrating-from-a-class-with-createref-to-a-function-with-useref"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "class MyInput extends Component {  inputRef = createRef();  // ...}",
+      "language": "unknown"
+    },
+    {
+      "code": "import { createRef, Component } from 'react';class MyComponent extends Component {  intervalRef = createRef();  inputRef = createRef();  // ...",
+      "language": "python"
+    },
+    {
+      "code": "import { Component, createRef } from 'react';class Form extends Component {  inputRef = createRef();  // ...}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react/legacy",
+    "https://react.dev/reference/react/createRef",
+    "https://react.dev/reference/react/Component",
+    "https://react.dev/reference/react/useRef",
+    "https://react.dev/learn/referencing-values-with-refs",
+    "https://react.dev/reference/react/createElement",
+    "https://react.dev/reference/react/forwardRef"
+  ]
+}

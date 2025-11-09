@@ -1,0 +1,19 @@
+{
+  "title": "Affinity node",
+  "content": "Use the Affinity node to automate work in Affinity, and integrate Affinity with other applications. n8n has built-in support for a wide range of Affinity features, including creating, getting, updating and deleting lists, entries, organization, and persons.\n\nOn this page, you'll find a list of operations the Affinity node supports and links to more resources.\n\nRefer to [Affinity credentials](../../credentials/affinity/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- List\n  - Get a list\n  - Get all lists\n- List Entry\n  - Create a list entry\n  - Delete a list entry\n  - Get a list entry\n  - Get all list entries\n- Organization\n  - Create an organization\n  - Delete an organization\n  - Get an organization\n  - Get all organizations\n  - Update an organization\n- Person\n  - Create a person\n  - Delete a person\n  - Get a person\n  - Get all persons\n  - Update a person\n\n## Templates and examples\n\n**Create an organization in Affinity**\n\n[View template details](https://n8n.io/workflows/476-create-an-organization-in-affinity/)\n\n**Receive updates when a new list is created in Affinity**\n\n[View template details](https://n8n.io/workflows/672-receive-updates-when-a-new-list-is-created-in-affinity/)\n\n**🛠️ Affinity Tool MCP Server 💪 all 16 operations**\n\n[View template details](https://n8n.io/workflows/5335-affinity-tool-mcp-server-all-16-operations/)\n\n[Browse Affinity integration templates](https://n8n.io/integrations/affinity/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#affinity-node",
+  "links": []
+}

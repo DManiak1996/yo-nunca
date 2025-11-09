@@ -1,0 +1,40 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/viewTransition",
+  "title": "viewTransition",
+  "content": "viewTransition is an experimental flag that enables the new View Transitions API in React. This API allows you to leverage the native View Transitions browser API to create seamless transitions between UI states.\n\nTo enable this feature, you need to set the viewTransition property to true in your next.config.js file.\n\nImportant Notice: The <ViewTransition> Component is already available in React's Canary release channel. experimental.viewTransition is only required to enable deeper integration with Next.js features e.g. automatically adding Transition types for navigations. Next.js specific transition types are not implemented yet.\n\nYou can import the <ViewTransition> Component from React in your application:\n\nCheck out our Next.js View Transition Demo to see this feature in action.\n\nAs this API evolves, we will update our documentation and share more examples. However, for now, we strongly advise against using this feature in production.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "viewTransition",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Live Demo",
+      "id": "live-demo"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  experimental: {\n    viewTransition: true,\n  },\n}\n \nmodule.exports = nextConfig",
+      "language": "javascript"
+    },
+    {
+      "code": "import { ViewTransition } from 'react'",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/viewTransition",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/useLightningcss",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/webpack"
+  ]
+}

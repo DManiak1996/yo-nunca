@@ -1,0 +1,8 @@
+{
+  "title": "Invoice Ninja Trigger node",
+  "content": "[Invoice Ninja](https://www.invoiceninja.com/) is a free open-source online invoicing app for freelancers & businesses. It offers invoicing, payments, expense tracking, & time-tasks.\n\nYou can find authentication information for this node [here](../../credentials/invoiceninja/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Invoice Ninja Trigger integrations](https://n8n.io/integrations/invoice-ninja-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#invoice-ninja-trigger-node",
+  "links": []
+}

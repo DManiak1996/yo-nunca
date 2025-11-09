@@ -1,0 +1,43 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/file-conventions",
+  "title": "File-system conventions",
+  "content": "",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "File-system conventions",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "instrumentation.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Proxy",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "public",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "src Directory",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/api-reference",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions/instrumentation",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions/public-folder",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions/src-folder",
+    "https://nextjs.org/docs/pages/api-reference/components/script"
+  ]
+}

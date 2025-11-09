@@ -1,0 +1,73 @@
+{
+  "url": "https://react.dev/reference/react-dom/server/resumeToPipeableStream",
+  "title": "resumeToPipeableStream",
+  "content": "resumeToPipeableStream streams a pre-rendered React tree to a pipeable Node.js Stream.\n\nThis API is specific to Node.js. Environments with Web Streams, like Deno and modern edge runtimes, should use resume instead.\n\nCall resume to resume rendering a pre-rendered React tree as HTML into a Node.js Stream.\n\nSee more examples below.\n\nresume returns an object with two methods:\n\nResuming behaves like renderToReadableStream. For more examples, check out the usage section of renderToReadableStream. The usage section of prerender includes examples of how to use prerenderToNodeStream specifically.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "resumeToPipeableStream",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Note",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "resumeToPipeableStream(node, postponed, options?)",
+      "id": "resume-to-pipeable-stream"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Further reading",
+      "id": "further-reading"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "const {pipe, abort} = await resumeToPipeableStream(reactNode, postponedState, options?)",
+      "language": "javascript"
+    },
+    {
+      "code": "import { resume } from 'react-dom/server';import {getPostponedState} from './storage';async function handler(request, response) {  const postponed = await getPostponedState(request);  const {pipe} = resumeToPipeableStream(<App />, postponed, {    onShellReady: () => {      pipe(response);    }  });}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-dom/server",
+    "https://react.dev/reference/react-dom/server/resumeToPipeableStream",
+    "https://react.dev/reference/react-dom/server/renderToReadableStream",
+    "https://react.dev/reference/react-dom/static/index",
+    "https://react.dev/reference/react-dom/static/prerender",
+    "https://react.dev/reference/react-dom/server/resume",
+    "https://react.dev/reference/react-dom/static"
+  ]
+}

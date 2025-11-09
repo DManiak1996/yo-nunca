@@ -1,0 +1,13 @@
+{
+  "name": "docker",
+  "total_pages": 1,
+  "base_url": "https://docs.docker.com/",
+  "llms_txt_detected": true,
+  "llms_txt_variant": null,
+  "pages": [
+    {
+      "title": "Docker Documentation",
+      "url": "llms-txt#docker-documentation"
+    }
+  ]
+}

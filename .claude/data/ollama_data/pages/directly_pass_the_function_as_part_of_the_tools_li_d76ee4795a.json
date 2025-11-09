@@ -1,0 +1,8 @@
+{
+  "title": "directly pass the function as part of the tools list",
+  "content": "response = chat(model='qwen3', messages=messages, tools=available_functions.values(), think=True)\n```",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#directly-pass-the-function-as-part-of-the-tools-list",
+  "links": []
+}

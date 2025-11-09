@@ -1,0 +1,19 @@
+{
+  "title": "Stackby node",
+  "content": "Use the Stackby node to automate work in Stackby, and integrate Stackby with other applications. n8n has built-in support for a wide range of Stackby features, including appending, deleting, listing and reading.\n\nOn this page, you'll find a list of operations the Stackby node supports and links to more resources.\n\nRefer to [Stackby credentials](../../credentials/stackby/) for guidance on setting up authentication.\n\n- Append\n- Delete\n- List\n- Read\n\n## Templates and examples\n\n[Browse Stackby integration templates](https://n8n.io/integrations/stackby/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#stackby-node",
+  "links": []
+}

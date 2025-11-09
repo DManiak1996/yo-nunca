@@ -1,0 +1,265 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+  "title": "proxy.js",
+  "content": "Note: The middleware file convention is deprecated and has been renamed to proxy. See Migration to Proxy for more details.\n\nThe proxy.js|ts file is used to write Proxy and run code on the server before a request is completed. Then, based on the incoming request, you can modify the response by rewriting, redirecting, modifying the request or response headers, or responding directly.\n\nProxy executes before routes are rendered. It's particularly useful for implementing custom server-side logic like authentication, logging, or handling redirects.\n\nProxy is meant to be invoked separately of your render code and in optimized cases deployed to your CDN for fast redirect/rewrite handling, you should not attempt relying on shared modules or globals.\n\nTo pass information from Proxy to your application, use headers, cookies, rewrites, redirects, or the URL.\n\nCreate a proxy.ts (or .js) file in the project root, or inside src if applicable, so that it is located at the same level as pages or app.\n\nIf you’ve customized pageExtensions, for example to .page.ts or .page.js, name your file proxy.page.ts or proxy.page.js accordingly.\n\nThe file must export a single function, either as a default export or named proxy. Note that multiple proxy from the same file are not supported.\n\nOptionally, a config object can be exported alongside the Proxy function. This object includes the matcher to specify paths where the Proxy applies.\n\nThe matcher option allows you to target specific paths for the Proxy to run on. You can specify these paths in several ways:\n\nAdditionally, the matcher option supports complex path specifications using regular expressions. For example, you can exclude certain paths with a regular expression matcher:\n\nThis enables precise control over which paths to include or exclude.\n\nThe matcher option accepts an array of objects with the following keys:\n\nRead more details on path-to-regexp documentation.\n\nWhen defining Proxy, the default export function accepts a single parameter, request. This parameter is an instance of NextRequest, which represents the incoming HTTP request.\n\nThe NextResponse API allows you to:\n\nTo produce a response from Proxy, you can:\n\nGood to know: For redirects, you can also use Response.redirect instead of NextResponse.redirect.\n\nProxy will be invoked for every route in your project. Given this, it's crucial to use matchers to precisely target or exclude specific routes. The following is the execution order:\n\nProxy defaults to using the Node.js runtime. The runtime config option is not available in Proxy files. Setting the runtime config option in Proxy will throw an error.\n\nIn v13.1 of Next.js two additional flags were introduced for proxy, skipMiddlewareUrlNormalize and skipTrailingSlashRedirect to handle advanced use cases.\n\nskipTrailingSlashRedirect disables Next.js redirects for adding or removing trailing slashes. This allows custom handling inside proxy to maintain the trailing slash for some paths but not others, which can make incremental migrations easier.\n\nskipMiddlewareUrlNormalize allows for disabling the URL normalization in Next.js to make handling direct visits and client-transitions the same. In some advanced cases, this option provides full control by using the original URL.\n\nCookies are regular headers. On a Request, they are stored in the Cookie header. On a Response they are in the Set-Cookie header. Next.js provides a convenient way to access and manipulate these cookies through the cookies extension on NextRequest and NextResponse.\n\nYou can set request and response headers using the NextResponse API (setting request headers is available since Next.js v13.0.0).\n\nNote that the snippet uses:\n\nLearn more in NextResponse headers in Proxy.\n\nGood to know: Avoid setting large headers as it might cause 431 Request Header Fields Too Large error depending on your backend web server configuration.\n\nYou can set CORS headers in Proxy to allow cross-origin requests, including simple and preflighted requests.\n\nGood to know: You can configure CORS headers for individual routes in Route Handlers.\n\nYou can respond from Proxy directly by returning a Response or NextResponse instance. (This is available since Next.js v13.1.0)\n\nThe matcher config allows full regex so matching like negative lookaheads or character matching is supported. An example of a negative lookahead to match all except specific paths can be seen here:\n\nYou can also bypass Proxy for certain requests by using the missing or has arrays, or a combination of both:\n\nEven when _next/data is excluded in a negative matcher pattern, proxy will still be invoked for _next/data routes. This is intentional behavior to prevent accidental security issues where you might protect a page but forget to protect the corresponding data route.\n\nThe NextFetchEvent object extends the native FetchEvent object, and includes the waitUntil() method.\n\nThe waitUntil() method takes a promise as an argument, and extends the lifetime of the Proxy until the promise settles. This is useful for performing work in the background.\n\nStarting in Next.js 15.1, the next/experimental/testing/server package contains utilities to help unit test proxy files. Unit testing proxy can help ensure that it's only run on desired paths and that custom routing logic works as intended before code reaches production.\n\nThe unstable_doesProxyMatch function can be used to assert whether proxy will run for the provided URL, headers, and cookies.\n\nThe entire proxy function can also be tested.\n\nLearn how to configure Proxy when self-hosting Next.js.\n\nThe reason behind the renaming of middleware is that the term \"middleware\" can often be confused with Express.js middleware, leading to a misinterpretation of its purpose. Also, Middleware is highly capable, so it may encourage the usage; however, this feature is recommended to be used as a last resort.\n\nNext.js is moving forward to provide better APIs with better ergonomics so that developers can achieve their goals without Middleware. This is the reason behind the renaming of middleware.\n\nThe name Proxy clarifies what Middleware is capable of. The term \"proxy\" implies that it has a network boundary in front of the app, which is the behavior of Middleware. Also, Middleware defaults to run at the Edge Runtime, which can run closer to the client, separated from the app's region. These behaviors align better with the term \"proxy\" and provide a clearer purpose of the feature.\n\nWe recommend users avoid relying on Middleware unless no other options exist. Our goal is to give them APIs with better ergonomics so they can achieve their goals without Middleware.\n\nThe term “middleware” often confuses users with Express.js middleware, which can encourage misuse. To clarify our direction, we are renaming the file convention to “proxy.” This highlights that we are moving away from Middleware, breaking down its overloaded features, and making the Proxy clear in its purpose.\n\nNext.js provides a codemod to migrate from middleware.ts to proxy.ts. You can run the following command to migrate:\n\nThe codemod will rename the file and the function name from middleware to proxy.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "proxy.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Exports",
+      "id": "exports"
+    },
+    {
+      "level": "h3",
+      "text": "Proxy function",
+      "id": "proxy-function"
+    },
+    {
+      "level": "h3",
+      "text": "Config object (optional)",
+      "id": "config-object-optional"
+    },
+    {
+      "level": "h3",
+      "text": "Matcher",
+      "id": "matcher"
+    },
+    {
+      "level": "h2",
+      "text": "Params",
+      "id": "params"
+    },
+    {
+      "level": "h3",
+      "text": "request",
+      "id": "request"
+    },
+    {
+      "level": "h2",
+      "text": "NextResponse",
+      "id": "nextresponse"
+    },
+    {
+      "level": "h2",
+      "text": "Execution order",
+      "id": "execution-order"
+    },
+    {
+      "level": "h2",
+      "text": "Runtime",
+      "id": "runtime"
+    },
+    {
+      "level": "h2",
+      "text": "Advanced Proxy flags",
+      "id": "advanced-proxy-flags"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Conditional Statements",
+      "id": "conditional-statements"
+    },
+    {
+      "level": "h3",
+      "text": "Using Cookies",
+      "id": "using-cookies"
+    },
+    {
+      "level": "h3",
+      "text": "Setting Headers",
+      "id": "setting-headers"
+    },
+    {
+      "level": "h3",
+      "text": "CORS",
+      "id": "cors"
+    },
+    {
+      "level": "h3",
+      "text": "Producing a response",
+      "id": "producing-a-response"
+    },
+    {
+      "level": "h3",
+      "text": "Negative matching",
+      "id": "negative-matching"
+    },
+    {
+      "level": "h3",
+      "text": "waitUntil and NextFetchEvent",
+      "id": "waituntil-and-nextfetchevent"
+    },
+    {
+      "level": "h3",
+      "text": "Unit testing (experimental)",
+      "id": "unit-testing-experimental"
+    },
+    {
+      "level": "h2",
+      "text": "Platform support",
+      "id": "platform-support"
+    },
+    {
+      "level": "h2",
+      "text": "Migration to Proxy",
+      "id": "migration-to-proxy"
+    },
+    {
+      "level": "h3",
+      "text": "Why the Change",
+      "id": "why-the-change"
+    },
+    {
+      "level": "h3",
+      "text": "Why \"Proxy\"",
+      "id": "why-proxy"
+    },
+    {
+      "level": "h3",
+      "text": "How to Migrate",
+      "id": "how-to-migrate"
+    },
+    {
+      "level": "h2",
+      "text": "Version history",
+      "id": "version-history"
+    },
+    {
+      "level": "h2",
+      "text": "Learn more about Proxy",
+      "id": "learn-more-about-proxy"
+    },
+    {
+      "level": "h3",
+      "text": "NextRequest",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "NextResponse",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { NextResponse, NextRequest } from 'next/server'\n \n// This function can be marked `async` if using `await` inside\nexport function proxy(request: NextRequest) {\n  return NextResponse.redirect(new URL('/home', request.url))\n}\n \nexport const config = {\n  matcher: '/about/:path*',\n}",
+      "language": "python"
+    },
+    {
+      "code": "// Example of default export\nexport default function proxy(request) {\n  // Proxy logic\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export const config = {\n  matcher: ['/about/:path*', '/dashboard/:path*'],\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export const config = {\n  matcher: [\n    // Exclude API routes, static files, image optimizations, and .png files\n    '/((?!api|_next/static|_next/image|.*\\\\.png$).*)',\n  ],\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export const config = {\n  matcher: [\n    {\n      source: '/api/:path*',\n      locale: false,\n      has: [\n        { type: 'header', key: 'Authorization', value: 'Bearer Token' },\n        { type: 'query', key: 'userId', value: '123' },\n      ],\n      missing: [{ type: 'cookie', key: 'session', value: 'active' }],\n    },\n  ],\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import type { NextRequest } from 'next/server'\n \nexport function proxy(request: NextRequest) {\n  // Proxy logic goes here\n}",
+      "language": "python"
+    },
+    {
+      "code": "module.exports = {\n  skipTrailingSlashRedirect: true,\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "const legacyPrefixes = ['/docs', '/blog']\n \nexport default async function proxy(req) {\n  const { pathname } = req.nextUrl\n \n  if (legacyPrefixes.some((prefix) => pathname.startsWith(prefix))) {\n    return NextResponse.next()\n  }\n \n  // apply trailing slash handling\n  if (\n    !pathname.endsWith('/') &&\n    !pathname.match(/((?!\\.well-known(?:\\/.*)?)(?:[^/]+\\/)*[^/]+\\.\\w+)/)\n  ) {\n    return NextResponse.redirect(\n      new URL(`${req.nextUrl.pathname}/`, req.nextUrl)\n    )\n  }\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "module.exports = {\n  skipMiddlewareUrlNormalize: true,\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export default async function proxy(req) {\n  const { pathname } = req.nextUrl\n \n  // GET /_next/data/build-id/hello.json\n \n  console.log(pathname)\n  // with the flag this now /_next/data/build-id/hello.json\n  // without the flag this would be normalized to /hello\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\nimport type { NextRequest } from 'next/server'\n \nexport function proxy(request: NextRequest) {\n  if (request.nextUrl.pathname.startsWith('/about')) {\n    return NextResponse.rewrite(new URL('/about-2', request.url))\n  }\n \n  if (request.nextUrl.pathname.startsWith('/dashboard')) {\n    return NextResponse.rewrite(new URL('/dashboard/user', request.url))\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\nimport type { NextRequest } from 'next/server'\n \nexport function proxy(request: NextRequest) {\n  // Assume a \"Cookie:nextjs=fast\" header to be present on the incoming request\n  // Getting cookies from the request using the `RequestCookies` API\n  let cookie = request.cookies.get('nextjs')\n  console.log(cookie) // => { name: 'nextjs', value: 'fast', Path: '/' }\n  const allCookies = request.cookies.getAll()\n  console.log(allCookies) // => [{ name: 'nextjs', value: 'fast' }]\n \n  request.cookies.has('nextjs') // => true\n  request.cookies.delete('nextjs')\n  request.cookies.has('nextjs') // => false\n \n  // Setting cookies on the response using the `ResponseCookies` API\n  const response = NextResponse.next()\n  response.cookies.set('vercel', 'fast')\n  response.cookies.set({\n    name: 'vercel',\n    value: 'fast',\n    path: '/',\n  })\n  cookie = response.cookies.get('vercel')\n  console.log(cookie) // => { name: 'vercel', value: 'fast', Path: '/' }\n  // The outgoing response will have a `Set-Cookie:vercel=fast;path=/` header.\n \n  return response\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\nimport type { NextRequest } from 'next/server'\n \nexport function proxy(request: NextRequest) {\n  // Clone the request headers and set a new header `x-hello-from-proxy1`\n  const requestHeaders = new Headers(request.headers)\n  requestHeaders.set('x-hello-from-proxy1', 'hello')\n \n  // You can also set request headers in NextResponse.next\n  const response = NextResponse.next({\n    request: {\n      // New request headers\n      headers: requestHeaders,\n    },\n  })\n \n  // Set a new response header `x-hello-from-proxy2`\n  response.headers.set('x-hello-from-proxy2', 'hello')\n  return response\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextRequest, NextResponse } from 'next/server'\n \nconst allowedOrigins = ['https://acme.com', 'https://my-app.org']\n \nconst corsOptions = {\n  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',\n  'Access-Control-Allow-Headers': 'Content-Type, Authorization',\n}\n \nexport function proxy(request: NextRequest) {\n  // Check the origin from the request\n  const origin = request.headers.get('origin') ?? ''\n  const isAllowedOrigin = allowedOrigins.includes(origin)\n \n  // Handle preflighted requests\n  const isPreflight = request.method === 'OPTIONS'\n \n  if (isPreflight) {\n    const preflightHeaders = {\n      ...(isAllowedOrigin && { 'Access-Control-Allow-Origin': origin }),\n      ...corsOptions,\n    }\n    return NextResponse.json({}, { headers: preflightHeaders })\n  }\n \n  // Handle simple requests\n  const response = NextResponse.next()\n \n  if (isAllowedOrigin) {\n    response.headers.set('Access-Control-Allow-Origin', origin)\n  }\n \n  Object.entries(corsOptions).forEach(([key, value]) => {\n    response.headers.set(key, value)\n  })\n \n  return response\n}\n \nexport const config = {\n  matcher: '/api/:path*',\n}",
+      "language": "python"
+    },
+    {
+      "code": "import type { NextRequest } from 'next/server'\nimport { isAuthenticated } from '@lib/auth'\n \n// Limit the proxy to paths starting with `/api/`\nexport const config = {\n  matcher: '/api/:function*',\n}\n \nexport function proxy(request: NextRequest) {\n  // Call our authentication function to check the request\n  if (!isAuthenticated(request)) {\n    // Respond with JSON indicating an error message\n    return Response.json(\n      { success: false, message: 'authentication failed' },\n      { status: 401 }\n    )\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "export const config = {\n  matcher: [\n    /*\n     * Match all request paths except for the ones starting with:\n     * - api (API routes)\n     * - _next/static (static files)\n     * - _next/image (image optimization files)\n     * - favicon.ico, sitemap.xml, robots.txt (metadata files)\n     */\n    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',\n  ],\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export const config = {\n  matcher: [\n    /*\n     * Match all request paths except for the ones starting with:\n     * - api (API routes)\n     * - _next/static (static files)\n     * - _next/image (image optimization files)\n     * - favicon.ico, sitemap.xml, robots.txt (metadata files)\n     */\n    {\n      source:\n        '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',\n      missing: [\n        { type: 'header', key: 'next-router-prefetch' },\n        { type: 'header', key: 'purpose', value: 'prefetch' },\n      ],\n    },\n \n    {\n      source:\n        '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',\n      has: [\n        { type: 'header', key: 'next-router-prefetch' },\n        { type: 'header', key: 'purpose', value: 'prefetch' },\n      ],\n    },\n \n    {\n      source:\n        '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',\n      has: [{ type: 'header', key: 'x-present' }],\n      missing: [{ type: 'header', key: 'x-missing', value: 'prefetch' }],\n    },\n  ],\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export const config = {\n  matcher:\n    '/((?!api|_next/data|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',\n}\n \n// Proxy will still run for /_next/data/* routes despite being excluded",
+      "language": "javascript"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\nimport type { NextFetchEvent, NextRequest } from 'next/server'\n \nexport function proxy(req: NextRequest, event: NextFetchEvent) {\n  event.waitUntil(\n    fetch('https://my-analytics-platform.com', {\n      method: 'POST',\n      body: JSON.stringify({ pathname: req.nextUrl.pathname }),\n    })\n  )\n \n  return NextResponse.next()\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { unstable_doesProxyMatch } from 'next/experimental/testing/server'\n \nexpect(\n  unstable_doesProxyMatch({\n    config,\n    nextConfig,\n    url: '/test',\n  })\n).toEqual(false)",
+      "language": "python"
+    },
+    {
+      "code": "import { isRewrite, getRewrittenUrl } from 'next/experimental/testing/server'\n \nconst request = new NextRequest('https://nextjs.org/docs')\nconst response = await proxy(request)\nexpect(isRewrite(response)).toEqual(true)\nexpect(getRewrittenUrl(response)).toEqual('https://other-domain.com/docs')\n// getRedirectUrl could also be used if the response were a redirect",
+      "language": "python"
+    },
+    {
+      "code": "npx @next/codemod@canary middleware-to-proxy .",
+      "language": "unknown"
+    },
+    {
+      "code": "// middleware.ts -> proxy.ts\n \n- export function middleware() {\n+ export function proxy() {",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/app/getting-started/proxy",
+    "https://nextjs.org/docs/app/api-reference/functions/next-response",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/pageExtensions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config",
+    "https://nextjs.org/docs/app/getting-started/deploying",
+    "https://nextjs.org/docs/app/guides/self-hosting",
+    "https://nextjs.org/docs/app/api-reference/edge",
+    "https://nextjs.org/docs/messages/middleware-upgrade-guide",
+    "https://nextjs.org/docs/app/api-reference/functions/next-request",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/parallel-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/public-folder"
+  ]
+}

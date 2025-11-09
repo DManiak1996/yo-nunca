@@ -1,0 +1,8 @@
+{
+  "title": "Copy a model",
+  "content": "Source: https://docs.ollama.com/api/copy\n\nopenapi.yaml post /api/copy",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#copy-a-model",
+  "links": []
+}

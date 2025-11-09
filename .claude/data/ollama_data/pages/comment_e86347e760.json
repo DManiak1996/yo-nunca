@@ -1,0 +1,24 @@
+{
+  "title": "comment",
+  "content": "INSTRUCTION arguments",
+  "code_samples": [
+    {
+      "code": "| Instruction                         | Description                                                    |\n| ----------------------------------- | -------------------------------------------------------------- |\n| [`FROM`](#from-required) (required) | Defines the base model to use.                                 |\n| [`PARAMETER`](#parameter)           | Sets the parameters for how Ollama will run the model.         |\n| [`TEMPLATE`](#template)             | The full prompt template to be sent to the model.              |\n| [`SYSTEM`](#system)                 | Specifies the system message that will be set in the template. |\n| [`ADAPTER`](#adapter)               | Defines the (Q)LoRA adapters to apply to the model.            |\n| [`LICENSE`](#license)               | Specifies the legal license.                                   |\n| [`MESSAGE`](#message)               | Specify message history.                                       |\n\n## Examples\n\n### Basic `Modelfile`\n\nAn example of a `Modelfile` creating a mario blueprint:",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Basic `Modelfile`",
+      "id": "basic-`modelfile`"
+    }
+  ],
+  "url": "llms-txt#comment",
+  "links": []
+}

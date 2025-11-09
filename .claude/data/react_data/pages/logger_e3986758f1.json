@@ -1,0 +1,88 @@
+{
+  "url": "https://react.dev/reference/react-compiler/logger",
+  "title": "logger",
+  "content": "The logger option provides custom logging for React Compiler events during compilation.\n\nConfigures custom logging to track compiler behavior and debug issues.\n\nTrack compilation success and failures:\n\nGet specific information about compilation failures:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "logger",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "logger",
+      "id": "logger"
+    },
+    {
+      "level": "h4",
+      "text": "Type",
+      "id": "type"
+    },
+    {
+      "level": "h4",
+      "text": "Default value",
+      "id": "default-value"
+    },
+    {
+      "level": "h4",
+      "text": "Methods",
+      "id": "methods"
+    },
+    {
+      "level": "h4",
+      "text": "Event types",
+      "id": "event-types"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Basic logging",
+      "id": "basic-logging"
+    },
+    {
+      "level": "h3",
+      "text": "Detailed error logging",
+      "id": "detailed-error-logging"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "{  logger: {    logEvent(filename, event) {      console.log(`[Compiler] ${event.kind}: ${filename}`);    }  }}",
+      "language": "unknown"
+    },
+    {
+      "code": "{  logEvent: (filename: string | null, event: LoggerEvent) => void;} | null",
+      "language": "javascript"
+    },
+    {
+      "code": "{  logger: {    logEvent(filename, event) {      switch (event.kind) {        case 'CompileSuccess': {          console.log(`✅ Compiled: ${filename}`);          break;        }        case 'CompileError': {          console.log(`❌ Skipped: ${filename}`);          break;        }        default: {}      }    }  }}",
+      "language": "unknown"
+    },
+    {
+      "code": "{  logger: {    logEvent(filename, event) {      if (event.kind === 'CompileError') {        console.error(`\\nCompilation failed: ${filename}`);        console.error(`Reason: ${event.detail.reason}`);        if (event.detail.description) {          console.error(`Details: ${event.detail.description}`);        }        if (event.detail.loc) {          const { line, column } = event.detail.loc.start;          console.error(`Location: Line ${line}, Column ${column}`);        }        if (event.detail.suggestions) {          console.error('Suggestions:', event.detail.suggestions);        }      }    }  }}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-compiler/configuration",
+    "https://react.dev/reference/react-compiler/logger",
+    "https://react.dev/reference/react-compiler/gating",
+    "https://react.dev/reference/react-compiler/panicThreshold"
+  ]
+}

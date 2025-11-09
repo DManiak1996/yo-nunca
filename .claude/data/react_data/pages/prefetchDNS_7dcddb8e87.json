@@ -1,0 +1,78 @@
+{
+  "url": "https://react.dev/reference/react-dom/prefetchDNS",
+  "title": "prefetchDNS",
+  "content": "prefetchDNS lets you eagerly look up the IP of a server that you expect to load resources from.\n\nTo look up a host, call the prefetchDNS function from react-dom.\n\nSee more examples below.\n\nThe prefetchDNS function provides the browser with a hint that it should look up the IP address of a given server. If the browser chooses to do so, this can speed up the loading of resources from that server.\n\nprefetchDNS returns nothing.\n\nCall prefetchDNS when rendering a component if you know that its children will load external resources from that host.\n\nCall prefetchDNS in an event handler before transitioning to a page or state where external resources will be needed. This gets the process started earlier than if you call it during the rendering of the new page or state.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "prefetchDNS",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "prefetchDNS(href)",
+      "id": "prefetchdns"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Prefetching DNS when rendering",
+      "id": "prefetching-dns-when-rendering"
+    },
+    {
+      "level": "h3",
+      "text": "Prefetching DNS in an event handler",
+      "id": "prefetching-dns-in-an-event-handler"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "prefetchDNS(\"https://example.com\");",
+      "language": "unknown"
+    },
+    {
+      "code": "import { prefetchDNS } from 'react-dom';function AppRoot() {  prefetchDNS(\"https://example.com\");  // ...}",
+      "language": "python"
+    },
+    {
+      "code": "import { prefetchDNS } from 'react-dom';function AppRoot() {  prefetchDNS(\"https://example.com\");  return ...;}",
+      "language": "python"
+    },
+    {
+      "code": "import { prefetchDNS } from 'react-dom';function CallToAction() {  const onClick = () => {    prefetchDNS('http://example.com');    startWizard();  }  return (    <button onClick={onClick}>Start Wizard</button>  );}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-dom",
+    "https://react.dev/reference/react-dom/prefetchDNS",
+    "https://react.dev/reference/react-dom/preconnect",
+    "https://react.dev/reference/react-dom/preinit"
+  ]
+}

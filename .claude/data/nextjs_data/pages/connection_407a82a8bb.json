@@ -1,0 +1,62 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/connection",
+  "title": "connection",
+  "content": "The connection() function allows you to indicate rendering should wait for an incoming user request before continuing.\n\nIt's useful when a component doesn't use Dynamic APIs, but you want it to be dynamically rendered at runtime and not statically rendered at build time. This usually occurs when you access external information that you intentionally want to change the result of a render, such as Math.random() or new Date().",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "connection",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Type",
+      "id": "type"
+    },
+    {
+      "level": "h3",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Good to know",
+      "id": "good-to-know"
+    },
+    {
+      "level": "h3",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { connection } from 'next/server'\n \nexport default async function Page() {\n  await connection()\n  // Everything below will be excluded from prerendering\n  const rand = Math.random()\n  return <span>{rand}</span>\n}",
+      "language": "python"
+    },
+    {
+      "code": "function connection(): Promise<void>",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/functions/connection",
+    "https://nextjs.org/docs/app/api-reference/functions/unstable_noStore",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheTag",
+    "https://nextjs.org/docs/app/api-reference/functions/cookies"
+  ]
+}

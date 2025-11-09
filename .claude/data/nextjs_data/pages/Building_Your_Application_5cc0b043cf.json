@@ -1,0 +1,43 @@
+{
+  "url": "https://nextjs.org/docs/pages/building-your-application",
+  "title": "Building Your Application",
+  "content": "",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Building Your Application",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Routing",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Rendering",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Data Fetching",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Configuring",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/building-your-application/routing",
+    "https://nextjs.org/docs/pages/building-your-application/rendering",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching",
+    "https://nextjs.org/docs/pages/building-your-application/configuring",
+    "https://nextjs.org/docs/pages/guides/upgrading/version-9"
+  ]
+}

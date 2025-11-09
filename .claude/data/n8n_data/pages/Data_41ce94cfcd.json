@@ -1,0 +1,19 @@
+{
+  "title": "Data",
+  "content": "Data is the information that n8n nodes receive and process. For basic usage of n8n you don't need to understand data structures and manipulation. However, it becomes important if you want to:\n\n- Create your own node\n- Write custom [expressions](../glossary/#expression-n8n)\n- Use the Function or Function Item node\n\n- [Data structure](data-structure/)\n- [Data flow within nodes](data-flow-nodes/)\n- [Transforming data](transforming-data/)\n- [Process data using code](code/)\n- [Pinning](data-pinning/) and [editing](data-editing/) data during workflow development.\n- [Data mapping](data-mapping/) and [Item linking](data-mapping/data-item-linking/): how data items link to each other.\n\n### Data transformation nodes\n\nn8n provides a collection of nodes to transform data:\n\n- [Aggregate](../integrations/builtin/core-nodes/n8n-nodes-base.aggregate/): take separate items, or portions of them, and group them together into individual items.\n- [Limit](../integrations/builtin/core-nodes/n8n-nodes-base.aggregate/): remove items beyond a defined maximum number.\n- [Remove Duplicates](../integrations/builtin/core-nodes/n8n-nodes-base.removeduplicates/): identify and delete items that are identical across all fields or a subset of fields.\n- [Sort](../integrations/builtin/core-nodes/n8n-nodes-base.sort/): organize lists of in a desired ordering, or generate a random selection.\n- [Split Out](../integrations/builtin/core-nodes/n8n-nodes-base.splitout/): separate a single data item containing a list into multiple items.\n- [Summarize](../integrations/builtin/core-nodes/n8n-nodes-base.summarize/): aggregate items together, in a manner similar to Excel pivot tables.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h3",
+      "text": "Data transformation nodes",
+      "id": "data-transformation-nodes"
+    }
+  ],
+  "url": "llms-txt#data",
+  "links": []
+}

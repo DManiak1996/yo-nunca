@@ -1,0 +1,49 @@
+{
+  "title": "AI Assistant",
+  "content": "The n8n AI Assistant helps you build, debug, and optimize your workflows seamlessly. From answering questions about n8n to providing help with coding and [expressions](../../glossary/#expression-n8n), the AI Assistant can streamline your workflow-building process and support you as you navigate n8n's capabilities.\n\n## Current capabilities\n\nThe AI Assistant offers a range of tools to support you:\n\n- **Debug helper**: Identify and troubleshoot node execution issues in your workflows to keep them running without issues.\n- **Answer n8n questions**: Get instant answers to your n8n-related questions, whether they're about specific features or general functionality.\n- **Coding support**: Receive guidance on coding, including SQL and JSON, to optimize your nodes and data processing.\n- **Expression assistance**: Learn how to create and refine [expressions](../../code/expressions/) to get the most out of your workflows.\n- **Credential setup tips**: Find out how to set up and manage node [credentials](../../integrations/builtin/credentials/) securely and efficiently.\n\n## Tips for getting the most out of the Assistant\n\n1. **Engage in a conversation**: The AI Assistant can collaborate with you step-by-step. If a suggestion isn't what you need, let it know! The more context you provide, the better the recommendations will be.\n\n1. **Ask specific questions**: For the best results, ask focused questions (for example, \"How do I set up credentials for Google Sheets?\"). The assistant works best with clear queries.\n\n1. **Iterate on suggestions**: Don't hesitate to build on the assistant's responses. Try different approaches and keep refining based on the assistant's feedback to get closer to your ideal solution.\n\n1. **Things to try out**:\n\n- Debug any error you're seeing\n   - Ask how to setup credentials\n   - \"Explain what this workflow does.\"\n   - \"I need your help to write code: [Explain your code here]\"\n   - \"How can I build X in n8n?\"\n\n### What context does the Assistant have?\n\nThe AI Assistant has access to all elements displayed on your n8n screen, excluding actual input and output data values (like customer information). To learn more about what data n8n shares with the Assistant, refer to [AI in n8n](../../privacy-security/privacy/#ai-in-n8n).\n\n### Who can use the Assistant?\n\nAny user on a Cloud plan can use the assistant.\n\n### How does the Assistant work?\n\nThe underlying logic of the assistant is build with the advanced AI capabilities of n8n. It uses a combination of different [agents](../../glossary/#ai-agent), specialized in different areas of n8n, RAG to gather knowledge from the docs and the community forum, and custom prompts, [memory](../../glossary/#ai-memory) and context.\n\n## Change instance ownership\n\nYou can change the ownership of an instance by navigating to the **Settings** page in the owner's account and editing the **Email** field. After making the changes, scroll down and press **Save**. Note that for the change to be effective, the new email address can't be linked to any other n8n account.\n\nChanging emails will change the owner of the instance, the email you log in with, and the email your invoices and general communication gets sent to.\n\nIf the workspace is deactivated, there will be no **Settings** page and no possibility to change the email address or the owner info.\n\n## Change instance username\n\nIt's not currently possible to change usernames.\n\nIf you want your instance to have a different name you will need to create a new account and transfer your work into it. [The import/export documentation](../../workflows/export-import/) explains how you can transfer your work to a new n8n instance.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Current capabilities",
+      "id": "current-capabilities"
+    },
+    {
+      "level": "h2",
+      "text": "Tips for getting the most out of the Assistant",
+      "id": "tips-for-getting-the-most-out-of-the-assistant"
+    },
+    {
+      "level": "h2",
+      "text": "FAQs",
+      "id": "faqs"
+    },
+    {
+      "level": "h3",
+      "text": "What context does the Assistant have?",
+      "id": "what-context-does-the-assistant-have?"
+    },
+    {
+      "level": "h3",
+      "text": "Who can use the Assistant?",
+      "id": "who-can-use-the-assistant?"
+    },
+    {
+      "level": "h3",
+      "text": "How does the Assistant work?",
+      "id": "how-does-the-assistant-work?"
+    },
+    {
+      "level": "h2",
+      "text": "Change instance ownership",
+      "id": "change-instance-ownership"
+    },
+    {
+      "level": "h2",
+      "text": "Change instance username",
+      "id": "change-instance-username"
+    }
+  ],
+  "url": "llms-txt#ai-assistant",
+  "links": []
+}

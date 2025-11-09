@@ -1,0 +1,105 @@
+{
+  "url": "https://react.dev/reference/react/Profiler",
+  "title": "<Profiler>",
+  "content": "<Profiler> lets you measure rendering performance of a React tree programmatically.\n\nWrap a component tree in a <Profiler> to measure its rendering performance.\n\nReact will call your onRender callback with information about what was rendered.\n\nWrap the <Profiler> component around a React tree to measure its rendering performance.\n\nIt requires two props: an id (string) and an onRender callback (function) which React calls any time a component within the tree “commits” an update.\n\nProfiling adds some additional overhead, so it is disabled in the production build by default. To opt into production profiling, you need to enable a special production build with profiling enabled.\n\n<Profiler> lets you gather measurements programmatically. If you’re looking for an interactive profiler, try the Profiler tab in React Developer Tools. It exposes similar functionality as a browser extension.\n\nComponents wrapped in <Profiler> will also be marked in the Component tracks of React Performance tracks even in profiling builds. In development builds, all components are marked in the Components track regardless of whether they’re wrapped in <Profiler>.\n\nYou can use multiple <Profiler> components to measure different parts of your application:\n\nYou can also nest <Profiler> components:\n\nAlthough <Profiler> is a lightweight component, it should be used only when necessary. Each use adds some CPU and memory overhead to an application.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "<Profiler>",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "<Profiler>",
+      "id": "profiler"
+    },
+    {
+      "level": "h4",
+      "text": "Props",
+      "id": "props"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h3",
+      "text": "onRender callback",
+      "id": "onrender-callback"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "onrender-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Measuring rendering performance programmatically",
+      "id": "measuring-rendering-performance-programmatically"
+    },
+    {
+      "level": "h3",
+      "text": "Pitfall",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Note",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Measuring different parts of the application",
+      "id": "measuring-different-parts-of-the-application"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "<Profiler id=\"App\" onRender={onRender}>  <App /></Profiler>",
+      "language": "unknown"
+    },
+    {
+      "code": "<Profiler id=\"App\" onRender={onRender}>  <App /></Profiler>",
+      "language": "unknown"
+    },
+    {
+      "code": "function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime) {  // Aggregate or log render timings...}",
+      "language": "unknown"
+    },
+    {
+      "code": "<App>  <Profiler id=\"Sidebar\" onRender={onRender}>    <Sidebar />  </Profiler>  <PageContent /></App>",
+      "language": "unknown"
+    },
+    {
+      "code": "<App>  <Profiler id=\"Sidebar\" onRender={onRender}>    <Sidebar />  </Profiler>  <Profiler id=\"Content\" onRender={onRender}>    <Content />  </Profiler></App>",
+      "language": "unknown"
+    },
+    {
+      "code": "<App>  <Profiler id=\"Sidebar\" onRender={onRender}>    <Sidebar />  </Profiler>  <Profiler id=\"Content\" onRender={onRender}>    <Content>      <Profiler id=\"Editor\" onRender={onRender}>        <Editor />      </Profiler>      <Preview />    </Content>  </Profiler></App>",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react/components",
+    "https://react.dev/reference/react/Profiler",
+    "https://react.dev/reference/dev-tools/react-performance-tracks",
+    "https://react.dev/reference/react/memo",
+    "https://react.dev/reference/react/useMemo",
+    "https://react.dev/learn/react-developer-tools",
+    "https://react.dev/reference/react/Fragment",
+    "https://react.dev/reference/react/StrictMode"
+  ]
+}

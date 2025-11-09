@@ -1,0 +1,14 @@
+{
+  "title": "Linear Trigger node",
+  "content": "[Linear](https://linear.app/) is a SaaS issue tracking tool.\n\nYou can find authentication information for this node [here](../../credentials/linear/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Linear Trigger integrations](https://n8n.io/integrations/linear-trigger/) page.\n\n- Comment Reaction\n- Cycle\n- Issue\n- Issue Comment\n- Issue Label\n- Project",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    }
+  ],
+  "url": "llms-txt#linear-trigger-node",
+  "links": []
+}

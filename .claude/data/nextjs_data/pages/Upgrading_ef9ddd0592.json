@@ -1,0 +1,77 @@
+{
+  "url": "https://nextjs.org/docs/app/getting-started/upgrading",
+  "title": "Upgrading",
+  "content": "To update to the latest version of Next.js, you can use the upgrade codemod:\n\nIf you prefer to upgrade manually, install the latest Next.js and React versions:\n\nTo update to the latest canary, make sure you're on the latest version of Next.js and everything is working as expected. Then, run the following command:\n\nThe following features are currently available in canary:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Upgrading",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Latest version",
+      "id": "latest-version"
+    },
+    {
+      "level": "h2",
+      "text": "Canary version",
+      "id": "canary-version"
+    },
+    {
+      "level": "h3",
+      "text": "Features available in canary",
+      "id": "features-available-in-canary"
+    },
+    {
+      "level": "h2",
+      "text": "Version guides",
+      "id": "version-guides"
+    },
+    {
+      "level": "h3",
+      "text": "Version 16",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Version 15",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Version 14",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "npx @next/codemod@latest upgrade latest",
+      "language": "unknown"
+    },
+    {
+      "code": "pnpm i next@latest react@latest react-dom@latest eslint-config-next@latest",
+      "language": "unknown"
+    },
+    {
+      "code": "npm i next@canary",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/getting-started",
+    "https://nextjs.org/docs/app/getting-started/upgrading",
+    "https://nextjs.org/docs/app/api-reference/functions/forbidden",
+    "https://nextjs.org/docs/app/api-reference/functions/unauthorized",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/forbidden",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/unauthorized",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/authInterrupts",
+    "https://nextjs.org/docs/app/guides/upgrading/version-16",
+    "https://nextjs.org/docs/app/guides/upgrading/version-15",
+    "https://nextjs.org/docs/app/guides/upgrading/version-14",
+    "https://nextjs.org/docs/app/getting-started/deploying",
+    "https://nextjs.org/docs/app/guides"
+  ]
+}

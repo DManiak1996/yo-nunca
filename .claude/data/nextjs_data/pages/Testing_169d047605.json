@@ -1,0 +1,59 @@
+{
+  "url": "https://nextjs.org/docs/15/app/guides/testing",
+  "title": "Testing",
+  "content": "In React and Next.js, there are a few different types of tests you can write, each with its own purpose and use cases. This page provides an overview of types and commonly used tools you can use to test your application.\n\nSince async Server Components are new to the React ecosystem, some tools do not fully support them. In the meantime, we recommend using End-to-End Testing over Unit Testing for async components.\n\nSee the guides below to learn how to set up Next.js with these commonly used testing tools:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Testing",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Types of tests",
+      "id": "types-of-tests"
+    },
+    {
+      "level": "h2",
+      "text": "Async Server Components",
+      "id": "async-server-components"
+    },
+    {
+      "level": "h2",
+      "text": "Guides",
+      "id": "guides"
+    },
+    {
+      "level": "h3",
+      "text": "Cypress",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Jest",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Playwright",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Vitest",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/15/app",
+    "https://nextjs.org/docs/15/app/guides",
+    "https://nextjs.org/docs/15/app/guides/testing",
+    "https://nextjs.org/docs/15/app/guides/testing/cypress",
+    "https://nextjs.org/docs/15/app/guides/testing/jest",
+    "https://nextjs.org/docs/15/app/guides/testing/playwright",
+    "https://nextjs.org/docs/15/app/guides/testing/vitest",
+    "https://nextjs.org/docs/15/app/guides/tailwind-v3-css"
+  ]
+}

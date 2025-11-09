@@ -1,0 +1,8 @@
+{
+  "title": "Show model details",
+  "content": "Source: https://docs.ollama.com/api-reference/show-model-details\n\nopenapi.yaml post /api/show",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#show-model-details",
+  "links": []
+}

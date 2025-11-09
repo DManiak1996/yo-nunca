@@ -1,0 +1,57 @@
+{
+  "url": "https://react.dev/learn/react-developer-tools",
+  "title": "React Developer Tools",
+  "content": "Use React Developer Tools to inspect React components, edit props and state, and identify performance problems.\n\nThe easiest way to debug websites built with React is to install the React Developer Tools browser extension. It is available for several popular browsers:\n\nNow, if you visit a website built with React, you will see the Components and Profiler panels.\n\nFor other browsers (for example, Safari), install the react-devtools npm package:\n\nNext open the developer tools from the terminal:\n\nThen connect your website by adding the following <script> tag to the beginning of your website’s <head>:\n\nReload your website in the browser now to view it in developer tools.\n\nTo inspect apps built with React Native, you can use React Native DevTools, the built-in debugger that deeply integrates React Developer Tools. All features work identically to the browser extension, including native element highlighting and selection.\n\nLearn more about debugging in React Native.\n\nFor versions of React Native earlier than 0.76, please use the standalone build of React DevTools by following the Safari and other browsers guide above.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "React Developer Tools",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "You will learn",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Browser extension",
+      "id": "browser-extension"
+    },
+    {
+      "level": "h3",
+      "text": "Safari and other browsers",
+      "id": "safari-and-other-browsers"
+    },
+    {
+      "level": "h2",
+      "text": "Mobile (React Native)",
+      "id": "mobile-react-native"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "# Yarnyarn global add react-devtools# Npmnpm install -g react-devtools",
+      "language": "unknown"
+    },
+    {
+      "code": "react-devtools",
+      "language": "unknown"
+    },
+    {
+      "code": "<html>  <head>    <script src=\"http://localhost:8097\"></script>",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/learn",
+    "https://react.dev/learn/setup",
+    "https://react.dev/learn/react-developer-tools",
+    "https://react.dev/learn/your-first-component",
+    "https://react.dev/learn/passing-props-to-a-component",
+    "https://react.dev/learn/state-a-components-memory",
+    "https://react.dev/learn/typescript",
+    "https://react.dev/learn/react-compiler"
+  ]
+}

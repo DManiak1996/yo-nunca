@@ -1,0 +1,85 @@
+{
+  "url": "https://react.dev/reference/react-dom/static/resumeAndPrerender",
+  "title": "resumeAndPrerender",
+  "content": "resumeAndPrerender continues a prerendered React tree to a static HTML string using a Web Stream.\n\nThis API depends on Web Streams. For Node.js, use resumeAndPrerenderToNodeStream instead.\n\nCall resumeAndPrerender to continue a prerendered React tree to a static HTML string.\n\nOn the client, call hydrateRoot to make the server-generated HTML interactive.\n\nSee more examples below.\n\nprerender returns a Promise:\n\nnonce is not an available option when prerendering. Nonces must be unique per request and if you use nonces to secure your application with CSP it would be inappropriate and insecure to include the nonce value in the prerender itself.\n\nThe static resumeAndPrerender API is used for static server-side generation (SSG). Unlike renderToString, resumeAndPrerender waits for all data to load before resolving. This makes it suitable for generating static HTML for a full page, including data that needs to be fetched using Suspense. To stream content as it loads, use a streaming server-side render (SSR) API like renderToReadableStream.\n\nresumeAndPrerender can be aborted and later either continued with another resumeAndPrerender or resumed with resume to support partial pre-rendering.\n\nresumeAndPrerender behaves similarly to prerender but can be used to continue a previously started prerendering process that was aborted. For more information about resuming a prerendered tree, see the resume documentation.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "resumeAndPrerender",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Note",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "resumeAndPrerender(reactNode, postponedState, options?)",
+      "id": "resumeandprerender"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h3",
+      "text": "Note",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "When should I use resumeAndPrerender?",
+      "id": "when-to-use-prerender"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Further reading",
+      "id": "further-reading"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "const { prelude,postpone } = await resumeAndPrerender(reactNode, postponedState, options?)",
+      "language": "javascript"
+    },
+    {
+      "code": "import { resumeAndPrerender } from 'react-dom/static';import { getPostponedState } from 'storage';async function handler(request, response) {  const postponedState = getPostponedState(request);  const { prelude } = await resumeAndPrerender(<App />, postponedState, {    bootstrapScripts: ['/main.js']  });  return new Response(prelude, {    headers: { 'content-type': 'text/html' },  });}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-dom/static",
+    "https://react.dev/reference/react-dom/static/resumeAndPrerender",
+    "https://react.dev/reference/react-dom/static/resumeAndPrerenderToNodeStream",
+    "https://react.dev/reference/react-dom/client/hydrateRoot",
+    "https://react.dev/reference/react-dom/static/index",
+    "https://react.dev/reference/react-dom/server/resume",
+    "https://react.dev/reference/react-dom/server/renderToReadableStream",
+    "https://react.dev/reference/react-dom/static/prerender",
+    "https://react.dev/reference/react-dom/static/prerenderToNodeStream"
+  ]
+}

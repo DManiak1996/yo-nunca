@@ -1,0 +1,52 @@
+{
+  "url": "https://nextjs.org/docs/messages/no-img-element",
+  "title": "No img element",
+  "content": "Prevent usage of <img> element due to slower LCP and higher bandwidth.\n\nAn <img> element was used to display an image instead of <Image /> from next/image.\n\nNote: If deploying to a managed hosting provider, remember to check provider pricing since optimized images might be charged differently than the original images.\n\nCommon image optimization platform pricing:\n\nNote: If self-hosting, remember to install sharp and check if your server has enough storage to cache the optimized images.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "No img element",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Image from 'next/image'\n \nfunction Home() {\n  return (\n    <Image\n      src=\"https://example.com/hero.jpg\"\n      alt=\"Landscape picture\"\n      width={800}\n      height={500}\n    />\n  )\n}\n \nexport default Home",
+      "language": "python"
+    },
+    {
+      "code": "import Image from 'next/image'\n \nconst UnoptimizedImage = (props) => {\n  return <Image {...props} unoptimized />\n}",
+      "language": "python"
+    },
+    {
+      "code": "function Home() {\n  return (\n    <picture>\n      <source srcSet=\"https://example.com/hero.avif\" type=\"image/avif\" />\n      <source srcSet=\"https://example.com/hero.webp\" type=\"image/webp\" />\n      <img\n        src=\"https://example.com/hero.jpg\"\n        alt=\"Landscape picture\"\n        width={800}\n        height={500}\n      />\n    </picture>\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  images: {\n    loader: 'custom',\n    loaderFile: './my/image/loader.js',\n  },\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/no-img-element",
+    "https://nextjs.org/docs/pages/api-reference/components/image",
+    "https://nextjs.org/docs/pages/getting-started/deploying"
+  ]
+}

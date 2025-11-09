@@ -1,0 +1,39 @@
+{
+  "url": "https://nextjs.org/docs/messages/google-font-preconnect",
+  "title": "Google Font Preconnect",
+  "content": "Note: Next.js automatically adds <link rel=\"preconnect\" /> after version 12.0.1.\n\nEnsure preconnect is used with Google Fonts.\n\nA preconnect resource hint was not used with a request to the Google Fonts domain. Adding preconnect is recommended to initiate an early connection to the origin.\n\nAdd rel=\"preconnect\" to the Google Font domain <link> tag:\n\nNote: a separate link with dns-prefetch can be used as a fallback for browsers that don't support preconnect although this is not required.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Google Font Preconnect",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" />",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/google-font-preconnect",
+    "https://nextjs.org/docs/pages/api-reference/components/font"
+  ]
+}

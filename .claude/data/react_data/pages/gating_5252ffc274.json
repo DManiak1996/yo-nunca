@@ -1,0 +1,46 @@
+{
+  "url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/gating",
+  "title": "gating",
+  "content": "Validates configuration of gating mode.\n\nGating mode lets you gradually adopt React Compiler by marking specific components for optimization. This rule ensures your gating configuration is valid so the compiler knows which components to process.\n\nExamples of incorrect code for this rule:\n\nExamples of correct code for this rule:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "gating",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Rule Details",
+      "id": "rule-details"
+    },
+    {
+      "level": "h3",
+      "text": "Invalid",
+      "id": "invalid"
+    },
+    {
+      "level": "h3",
+      "text": "Valid",
+      "id": "valid"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// ❌ Missing required fieldsmodule.exports = {  plugins: [    ['babel-plugin-react-compiler', {      gating: {        importSpecifierName: '__experimental_useCompiler'        // Missing 'source' field      }    }]  ]};// ❌ Invalid gating typemodule.exports = {  plugins: [    ['babel-plugin-react-compiler', {      gating: '__experimental_useCompiler' // Should be object    }]  ]};",
+      "language": "unknown"
+    },
+    {
+      "code": "// ✅ Complete gating configurationmodule.exports = {  plugins: [    ['babel-plugin-react-compiler', {      gating: {        importSpecifierName: 'isCompilerEnabled', // exported function name        source: 'featureFlags' // module name      }    }]  ]};// featureFlags.jsexport function isCompilerEnabled() {  // ...}// ✅ No gating (compile everything)module.exports = {  plugins: [    ['babel-plugin-react-compiler', {      // No gating field - compiles all components    }]  ]};",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/eslint-plugin-react-hooks",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/gating",
+    "https://react.dev/reference/react-compiler/gating",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/error-boundaries",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/globals"
+  ]
+}

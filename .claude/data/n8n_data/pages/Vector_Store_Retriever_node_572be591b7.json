@@ -1,0 +1,24 @@
+{
+  "title": "Vector Store Retriever node",
+  "content": "Use the Vector Store Retriever node to retrieve documents from a [vector store](../../../../../glossary/#ai-vector-store).\n\nOn this page, you'll find the node parameters for the Vector Store Retriever node, and links to more resources.\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Limit**: Enter the maximum number of results to return.\n\n## Templates and examples\n\n**Ask questions about a PDF using AI**\n\n[View template details](https://n8n.io/workflows/1960-ask-questions-about-a-pdf-using-ai/)\n\n**AI Crew to Automate Fundamental Stock Analysis - Q&A Workflow**\n\n[View template details](https://n8n.io/workflows/2183-ai-crew-to-automate-fundamental-stock-analysis-qanda-workflow/)\n\n**Advanced AI Demo (Presented at AI Developers #14 meetup)**\n\n[View template details](https://n8n.io/workflows/2358-advanced-ai-demo-presented-at-ai-developers-14-meetup/)\n\n[Browse Vector Store Retriever integration templates](https://n8n.io/integrations/vector-store-retriever/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChain's vector store retriever documentation](https://js.langchain.com/docs/how_to/vectorstore_retriever/) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#vector-store-retriever-node",
+  "links": []
+}

@@ -1,0 +1,242 @@
+{
+  "url": "https://nextjs.org/docs/app/guides/backend-for-frontend",
+  "title": "How to use Next.js as a backend for your frontend",
+  "content": "Next.js supports the \"Backend for Frontend\" pattern. This lets you create public endpoints to handle HTTP requests and return any content type—not just HTML. You can also access data sources and perform side effects like updating remote data.\n\nIf you are starting a new project, using create-next-app with the --api flag automatically includes an example route.ts in your new project’s app/ folder, demonstrating how to create an API endpoint.\n\nGood to know: Next.js backend capabilities are not a full backend replacement. They serve as an API layer that:\n\nTo implement this pattern, use:\n\nRoute Handlers are public HTTP endpoints. Any client can access them.\n\nCreate a Route Handler using the route.ts or route.js file convention:\n\nThis handles GET requests sent to /api.\n\nUse try/catch blocks for operations that may throw an exception:\n\nAvoid exposing sensitive information in error messages sent to the client.\n\nTo restrict access, implement authentication and authorization. See Authentication.\n\nRoute Handlers let you serve non-UI responses, including JSON, XML, images, files, and plain text.\n\nNext.js uses file conventions for common endpoints:\n\nYou can also define custom ones, such as:\n\nFor example, app/rss.xml/route.ts creates a Route Handler for rss.xml.\n\nSanitize any input used to generate markup.\n\nUse Request instance methods like .json(), .formData(), or .text() to access the request body.\n\nGET and HEAD requests don’t carry a body.\n\nGood to know: Validate data before passing it to other systems\n\nYou can only read the request body once. Clone the request if you need to read it again:\n\nRoute Handlers can transform, filter, and aggregate data from one or more sources. This keeps logic out of the frontend and avoids exposing internal systems.\n\nYou can also offload heavy computations to the server and reduce client battery and data usage.\n\nGood to know: This example uses POST to avoid putting geo-location data in the URL. GET requests may be cached or logged, which could expose sensitive info.\n\nYou can use a Route Handler as a proxy to another backend. Add validation logic before forwarding the request.\n\nNext.js extends the Request and Response Web APIs with methods that simplify common operations. These extensions are available in both Route Handlers and Proxy.\n\nBoth provide methods for reading and manipulating cookies.\n\nNextRequest includes the nextUrl property, which exposes parsed values from the incoming request, for example, it makes it easier to access request pathname and search params.\n\nNextResponse provides helpers like next(), json(), redirect(), and rewrite().\n\nYou can pass NextRequest to any function expecting Request. Likewise, you can return NextResponse where a Response is expected.\n\nLearn more about NextRequest and NextResponse.\n\nUse Route Handlers to receive event notifications from third-party applications.\n\nFor example, revalidate a route when content changes in a CMS. Configure the CMS to call a specific endpoint on changes.\n\nCallback URLs are another use case. When a user completes a third-party flow, the third party sends them to a callback URL. Use a Route Handler to verify the response and decide where to redirect the user.\n\nLearn more about redirects in redirect and permanentRedirect\n\nOnly one proxy file is allowed per project. Use config.matcher to target specific paths. Learn more about proxy.\n\nUse proxy to generate a response before the request reaches a route path.\n\nYou can also proxy requests using proxy:\n\nAnother type of response proxy can produce are redirects:\n\nBe deliberate about where headers go, and avoid directly passing incoming request headers to the outgoing response.\n\nLearn more in NextResponse headers in Proxy.\n\nYou can implement rate limiting in your Next.js backend. In addition to code-based checks, enable any rate limiting features provided by your host.\n\nNever trust incoming request data. Validate content type and size, and sanitize against XSS before use.\n\nUse timeouts to prevent abuse and protect server resources.\n\nStore user-generated static assets in dedicated services. When possible, upload them from the browser and store the returned URI in your database to reduce request size.\n\nAlways verify credentials before granting access. Do not rely on proxy alone for authentication and authorization.\n\nRemove sensitive or unnecessary data from responses and backend logs.\n\nRotate credentials and API keys regularly.\n\nPreflight requests use the OPTIONS method to ask the server if a request is allowed based on origin, method, and headers.\n\nIf OPTIONS is not defined, Next.js adds it automatically and sets the Allow header based on the other defined methods.\n\nCommunity libraries often use the factory pattern for Route Handlers.\n\nThis creates a shared handler for GET and POST requests. The library customizes behavior based on the method and pathname in the request.\n\nLibraries can also provide a proxy factory.\n\nGood to know: Third-party libraries may still refer to proxy as middleware.\n\nSee more examples on using Router Handlers and the proxy API references.\n\nThese examples include, working with Cookies, Headers, Streaming, Proxy negative matching, and other useful code snippets.\n\nFetch data in Server Components directly from its source, not via Route Handlers.\n\nFor Server Components pre-rendered at build time, using Route Handlers will fail the build step. This is because, while building there is no server listening for these requests.\n\nFor Server Components rendered on demand, fetching from Route Handlers is slower due to the extra HTTP round trip between the handler and the render process.\n\nA server side fetch request uses absolute URLs. This implies an HTTP round trip, to an external server. During development, your own development server acts as the external server. At build time there is no server, and at runtime, the server is available through your public facing domain.\n\nServer Components cover most data-fetching needs. However, fetching data client side might be necessary for:\n\nFor these, use community libraries like swr or react-query.\n\nServer Actions let you run server-side code from the client. Their primary purpose is to mutate data from your frontend client.\n\nServer Actions are queued. Using them for data fetching introduces sequential execution.\n\nexport mode outputs a static site without a runtime server. Features that require the Next.js runtime are not supported, because this mode produces a static site, and no runtime server.\n\nIn export mode, only GET Route Handlers are supported, in combination with the dynamic route segment config, set to 'force-static'.\n\nThis can be used to generate static HTML, JSON, TXT, or other files.\n\nSome hosts deploy Route Handlers as lambda functions. This means:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to use Next.js as a backend for your frontend",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Public Endpoints",
+      "id": "public-endpoints"
+    },
+    {
+      "level": "h2",
+      "text": "Content types",
+      "id": "content-types"
+    },
+    {
+      "level": "h3",
+      "text": "Consuming request payloads",
+      "id": "consuming-request-payloads"
+    },
+    {
+      "level": "h2",
+      "text": "Manipulating data",
+      "id": "manipulating-data"
+    },
+    {
+      "level": "h2",
+      "text": "Proxying to a backend",
+      "id": "proxying-to-a-backend"
+    },
+    {
+      "level": "h2",
+      "text": "NextRequest and NextResponse",
+      "id": "nextrequest-and-nextresponse"
+    },
+    {
+      "level": "h2",
+      "text": "Webhooks and callback URLs",
+      "id": "webhooks-and-callback-urls"
+    },
+    {
+      "level": "h2",
+      "text": "Redirects",
+      "id": "redirects"
+    },
+    {
+      "level": "h2",
+      "text": "Proxy",
+      "id": "proxy"
+    },
+    {
+      "level": "h2",
+      "text": "Security",
+      "id": "security"
+    },
+    {
+      "level": "h3",
+      "text": "Working with headers",
+      "id": "working-with-headers"
+    },
+    {
+      "level": "h3",
+      "text": "Rate limiting",
+      "id": "rate-limiting"
+    },
+    {
+      "level": "h3",
+      "text": "Verify payloads",
+      "id": "verify-payloads"
+    },
+    {
+      "level": "h3",
+      "text": "Access to protected resources",
+      "id": "access-to-protected-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Preflight Requests",
+      "id": "preflight-requests"
+    },
+    {
+      "level": "h2",
+      "text": "Library patterns",
+      "id": "library-patterns"
+    },
+    {
+      "level": "h2",
+      "text": "More examples",
+      "id": "more-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h3",
+      "text": "Server Components",
+      "id": "server-components"
+    },
+    {
+      "level": "h3",
+      "text": "Server Actions",
+      "id": "server-actions"
+    },
+    {
+      "level": "h3",
+      "text": "export mode",
+      "id": "export-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Deployment environment",
+      "id": "deployment-environment"
+    },
+    {
+      "level": "h2",
+      "text": "API Reference",
+      "id": "api-reference"
+    },
+    {
+      "level": "h3",
+      "text": "route.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "proxy.js",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "npx create-next-app@latest --api",
+      "language": "unknown"
+    },
+    {
+      "code": "export function GET(request: Request) {}",
+      "language": "unknown"
+    },
+    {
+      "code": "import { submit } from '@/lib/submit'\n \nexport async function POST(request: Request) {\n  try {\n    await submit(request)\n    return new Response(null, { status: 204 })\n  } catch (reason) {\n    const message =\n      reason instanceof Error ? reason.message : 'Unexpected error'\n \n    return new Response(message, { status: 500 })\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "export async function GET(request: Request) {\n  const rssResponse = await fetch(/* rss endpoint */)\n  const rssData = await rssResponse.json()\n \n  const rssFeed = `<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<rss version=\"2.0\">\n<channel>\n <title>${rssData.title}</title>\n <description>${rssData.description}</description>\n <link>${rssData.link}</link>\n <copyright>${rssData.copyright}</copyright>\n ${rssData.items.map((item) => {\n   return `<item>\n    <title>${item.title}</title>\n    <description>${item.description}</description>\n    <link>${item.link}</link>\n    <pubDate>${item.publishDate}</pubDate>\n    <guid isPermaLink=\"false\">${item.guid}</guid>\n </item>`\n })}\n</channel>\n</rss>`\n \n  const headers = new Headers({ 'content-type': 'application/xml' })\n \n  return new Response(rssFeed, { headers })\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function POST(request: Request) {\n  const res = await request.json()\n  return Response.json({ res })\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { sendMail, validateInputs } from '@/lib/email-transporter'\n \nexport async function POST(request: Request) {\n  const formData = await request.formData()\n  const email = formData.get('email')\n  const contents = formData.get('contents')\n \n  try {\n    await validateInputs({ email, contents })\n    const info = await sendMail({ email, contents })\n \n    return Response.json({ messageId: info.messageId })\n  } catch (reason) {\n    const message =\n      reason instanceof Error ? reason.message : 'Unexpected exception'\n \n    return new Response(message, { status: 500 })\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "export async function POST(request: Request) {\n  try {\n    const clonedRequest = request.clone()\n \n    await request.body()\n    await clonedRequest.body()\n    await request.body() // Throws error\n \n    return new Response(null, { status: 204 })\n  } catch {\n    return new Response(null, { status: 500 })\n  }\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { parseWeatherData } from '@/lib/weather'\n \nexport async function POST(request: Request) {\n  const body = await request.json()\n  const searchParams = new URLSearchParams({ lat: body.lat, lng: body.lng })\n \n  try {\n    const weatherResponse = await fetch(`${weatherEndpoint}?${searchParams}`)\n \n    if (!weatherResponse.ok) {\n      /* handle error */\n    }\n \n    const weatherData = await weatherResponse.text()\n    const payload = parseWeatherData.asJSON(weatherData)\n \n    return new Response(payload, { status: 200 })\n  } catch (reason) {\n    const message =\n      reason instanceof Error ? reason.message : 'Unexpected exception'\n \n    return new Response(message, { status: 500 })\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { isValidRequest } from '@/lib/utils'\n \nexport async function POST(request: Request, { params }) {\n  const clonedRequest = request.clone()\n  const isValid = await isValidRequest(clonedRequest)\n \n  if (!isValid) {\n    return new Response(null, { status: 400, statusText: 'Bad Request' })\n  }\n \n  const { slug } = await params\n  const pathname = slug.join('/')\n  const proxyURL = new URL(pathname, 'https://nextjs.org')\n  const proxyRequest = new Request(proxyURL, request)\n \n  try {\n    return fetch(proxyRequest)\n  } catch (reason) {\n    const message =\n      reason instanceof Error ? reason.message : 'Unexpected exception'\n \n    return new Response(message, { status: 500 })\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { type NextRequest, NextResponse } from 'next/server'\n \nexport async function GET(request: NextRequest) {\n  const nextUrl = request.nextUrl\n \n  if (nextUrl.searchParams.get('redirect')) {\n    return NextResponse.redirect(new URL('/', request.url))\n  }\n \n  if (nextUrl.searchParams.get('rewrite')) {\n    return NextResponse.rewrite(new URL('/', request.url))\n  }\n \n  return NextResponse.json({ pathname: nextUrl.pathname })\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { type NextRequest, NextResponse } from 'next/server'\n \nexport async function GET(request: NextRequest) {\n  const token = request.nextUrl.searchParams.get('token')\n \n  if (token !== process.env.REVALIDATE_SECRET_TOKEN) {\n    return NextResponse.json({ success: false }, { status: 401 })\n  }\n \n  const tag = request.nextUrl.searchParams.get('tag')\n \n  if (!tag) {\n    return NextResponse.json({ success: false }, { status: 400 })\n  }\n \n  revalidateTag(tag)\n \n  return NextResponse.json({ success: true })\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { type NextRequest, NextResponse } from 'next/server'\n \nexport async function GET(request: NextRequest) {\n  const token = request.nextUrl.searchParams.get('session_token')\n  const redirectUrl = request.nextUrl.searchParams.get('redirect_url')\n \n  const response = NextResponse.redirect(new URL(redirectUrl, request.url))\n \n  response.cookies.set({\n    value: token,\n    name: '_token',\n    path: '/',\n    secure: true,\n    httpOnly: true,\n    expires: undefined, // session cookie\n  })\n \n  return response\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { redirect } from 'next/navigation'\n \nexport async function GET(request: Request) {\n  redirect('https://nextjs.org/')\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { isAuthenticated } from '@lib/auth'\n \nexport const config = {\n  matcher: '/api/:function*',\n}\n \nexport function proxy(request: Request) {\n  if (!isAuthenticated(request)) {\n    return Response.json(\n      { success: false, message: 'authentication failed' },\n      { status: 401 }\n    )\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\n \nexport function proxy(request: Request) {\n  if (request.nextUrl.pathname === '/proxy-this-path') {\n    const rewriteUrl = new URL('https://nextjs.org')\n    return NextResponse.rewrite(rewriteUrl)\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\n \nexport function proxy(request: Request) {\n  if (request.nextUrl.pathname === '/v1/docs') {\n    request.nextUrl.pathname = '/v2/docs'\n    return NextResponse.redirect(request.nextUrl)\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\nimport { checkRateLimit } from '@/lib/rate-limit'\n \nexport async function POST(request: Request) {\n  const { rateLimited } = await checkRateLimit(request)\n \n  if (rateLimited) {\n    return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 })\n  }\n \n  return new Response(null, { status: 204 })\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { createHandler } from 'third-party-library'\n \nconst handler = createHandler({\n  /* library-specific options */\n})\n \nexport const GET = handler\n// or\nexport { handler as POST }",
+      "language": "python"
+    },
+    {
+      "code": "import { createMiddleware } from 'third-party-library'\n \nexport default createMiddleware()",
+      "language": "python"
+    },
+    {
+      "code": "export const dynamic = 'force-static'\n \nexport function GET() {\n  return new Response('Hello World', { status: 200 })\n}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/guides",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/pages/building-your-application/routing/api-routes",
+    "https://nextjs.org/docs/app/guides/backend-for-frontend",
+    "https://nextjs.org/docs/app/guides/authentication",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/manifest",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites",
+    "https://nextjs.org/docs/app/api-reference/functions/next-request",
+    "https://nextjs.org/docs/app/api-reference/functions/next-response",
+    "https://nextjs.org/docs/app/api-reference/functions/redirect",
+    "https://nextjs.org/docs/app/api-reference/functions/permanentRedirect",
+    "https://nextjs.org/docs/app/guides/static-exports",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config",
+    "https://nextjs.org/docs/app/guides/caching"
+  ]
+}

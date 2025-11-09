@@ -1,0 +1,29 @@
+{
+  "title": "xAI Grok Chat Model node",
+  "content": "Use the xAI Grok Chat Model node to access xAI Grok's large language models for conversational AI and text generation tasks.\n\nOn this page, you'll find the node parameters for the xAI Grok Chat Model node, and links to more resources.\n\nYou can find authentication information for this node [here](../../../credentials/xai/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Model**: Select the model which will generate the completion. n8n dynamically loads available models from the xAI Grok API. Learn more in the [xAI Grok model documentation](https://docs.x.ai/docs/models).\n\n- **Frequency Penalty**: Use this option to control the chances of the model repeating itself. Higher values reduce the chance of the model repeating itself.\n- **Maximum Number of Tokens**: Enter the maximum number of tokens used, which sets the completion length. Most models have a context length of 2048 tokens with the newest models supporting up to 32,768 tokens.\n- **Response Format**: Choose **Text** or **JSON**. **JSON** ensures the model returns valid JSON.\n- **Presence Penalty**: Use this option to control the chances of the model talking about new topics. Higher values increase the chance of the model talking about new topics.\n- **Sampling Temperature**: Use this option to control the randomness of the sampling process. A higher temperature creates more diverse sampling, but increases the risk of hallucinations.\n- **Timeout**: Enter the maximum request time in milliseconds.\n- **Max Retries**: Enter the maximum number of times to retry a request.\n- **Top P**: Use this option to set the probability the completion should use. Use a lower value to ignore less probable options.\n\n## Templates and examples\n\n**🤖 AI content generation for Auto Service 🚘 Automate your social media📲!**\n\n[View template details](https://n8n.io/workflows/4600-ai-content-generation-for-auto-service-automate-your-social-media/)\n\n**AI Chatbot Call Center: Demo Call Center (Production-Ready, Part 2)**\n\n[View template details](https://n8n.io/workflows/4045-ai-chatbot-call-center-demo-call-center-production-ready-part-2/)\n\n**Homey Pro - Smarthouse integration with LLM**\n\nby Ole Andre Torjussen\n\n[View template details](https://n8n.io/workflows/4058-homey-pro-smarthouse-integration-with-llm/)\n\n[Browse xAI Grok Chat Model integration templates](https://n8n.io/integrations/xai-grok-chat-model/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [xAI Grok's API documentation](https://docs.x.ai/docs/api-reference) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#xai-grok-chat-model-node",
+  "links": []
+}

@@ -1,0 +1,135 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/use-search-params",
+  "title": "useSearchParams",
+  "content": "useSearchParams is a Client Component hook that lets you read the current URL's query string.\n\nuseSearchParams returns a read-only version of the URLSearchParams interface.\n\nuseSearchParams does not take any parameters.\n\nuseSearchParams returns a read-only version of the URLSearchParams interface, which includes utility methods for reading the URL's query string:\n\nURLSearchParams.get(): Returns the first value associated with the search parameter. For example:\n\nURLSearchParams.has(): Returns a boolean value indicating if the given parameter exists. For example:\n\nLearn more about other read-only methods of URLSearchParams, including the getAll(), keys(), values(), entries(), forEach(), and toString().\n\nIf a route is statically rendered, calling useSearchParams will cause the Client Component tree up to the closest Suspense boundary to be client-side rendered.\n\nThis allows a part of the route to be statically rendered while the dynamic part that uses useSearchParams is client-side rendered.\n\nWe recommend wrapping the Client Component that uses useSearchParams in a <Suspense/> boundary. This will allow any Client Components above it to be statically rendered and sent as part of initial HTML. Example.\n\nIf a route is dynamically rendered, useSearchParams will be available on the server during the initial server render of the Client Component.\n\nTo access search params in Pages (Server Components), use the searchParams prop.\n\nUnlike Pages, Layouts (Server Components) do not receive the searchParams prop. This is because a shared layout is not re-rendered during navigation which could lead to stale searchParams between navigations. View detailed explanation.\n\nInstead, use the Page searchParams prop or the useSearchParams hook in a Client Component, which is re-rendered on the client with the latest searchParams.\n\nYou can use useRouter or Link to set new searchParams. After a navigation is performed, the current page.js will receive an updated searchParams prop.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "useSearchParams",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Behavior",
+      "id": "behavior"
+    },
+    {
+      "level": "h3",
+      "text": "Static Rendering",
+      "id": "static-rendering"
+    },
+    {
+      "level": "h3",
+      "text": "Dynamic Rendering",
+      "id": "dynamic-rendering"
+    },
+    {
+      "level": "h3",
+      "text": "Server Components",
+      "id": "server-components"
+    },
+    {
+      "level": "h4",
+      "text": "Pages",
+      "id": "pages"
+    },
+    {
+      "level": "h4",
+      "text": "Layouts",
+      "id": "layouts"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Updating searchParams",
+      "id": "updating-searchparams"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "'use client'\n \nimport { useSearchParams } from 'next/navigation'\n \nexport default function SearchBar() {\n  const searchParams = useSearchParams()\n \n  const search = searchParams.get('search')\n \n  // URL -> `/dashboard?search=my-project`\n  // `search` -> 'my-project'\n  return <>Search: {search}</>\n}",
+      "language": "python"
+    },
+    {
+      "code": "const searchParams = useSearchParams()",
+      "language": "javascript"
+    },
+    {
+      "code": "'use client'\n \nimport { useSearchParams } from 'next/navigation'\n \nexport default function SearchBar() {\n  const searchParams = useSearchParams()\n \n  const search = searchParams.get('search')\n \n  // This will not be logged on the server when using static rendering\n  console.log(search)\n \n  return <>Search: {search}</>\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Suspense } from 'react'\nimport SearchBar from './search-bar'\n \n// This component passed as a fallback to the Suspense boundary\n// will be rendered in place of the search bar in the initial HTML.\n// When the value is available during React hydration the fallback\n// will be replaced with the `<SearchBar>` component.\nfunction SearchBarFallback() {\n  return <>placeholder</>\n}\n \nexport default function Page() {\n  return (\n    <>\n      <nav>\n        <Suspense fallback={<SearchBarFallback />}>\n          <SearchBar />\n        </Suspense>\n      </nav>\n      <h1>Dashboard</h1>\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { useSearchParams } from 'next/navigation'\n \nexport default function SearchBar() {\n  const searchParams = useSearchParams()\n \n  const search = searchParams.get('search')\n \n  // This will be logged on the server during the initial render\n  // and on the client on subsequent navigations.\n  console.log(search)\n \n  return <>Search: {search}</>\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { connection } from 'next/server'\nimport SearchBar from './search-bar'\n \nexport default async function Page() {\n  await connection()\n  return (\n    <>\n      <nav>\n        <SearchBar />\n      </nav>\n      <h1>Dashboard</h1>\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nexport default function ExampleClientComponent() {\n  const router = useRouter()\n  const pathname = usePathname()\n  const searchParams = useSearchParams()\n \n  // Get a new searchParams string by merging the current\n  // searchParams with a provided key/value pair\n  const createQueryString = useCallback(\n    (name: string, value: string) => {\n      const params = new URLSearchParams(searchParams.toString())\n      params.set(name, value)\n \n      return params.toString()\n    },\n    [searchParams]\n  )\n \n  return (\n    <>\n      <p>Sort By</p>\n \n      {/* using useRouter */}\n      <button\n        onClick={() => {\n          // <pathname>?sort=asc\n          router.push(pathname + '?' + createQueryString('sort', 'asc'))\n        }}\n      >\n        ASC\n      </button>\n \n      {/* using <Link> */}\n      <Link\n        href={\n          // <pathname>?sort=desc\n          pathname + '?' + createQueryString('sort', 'desc')\n        }\n      >\n        DESC\n      </Link>\n    </>\n  )\n}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "API ReferenceFunctionsuseSearchParamsCopy pageuseSearchParamsuseSearchParams is a Client Component hook that lets you read the current URL's query string. useSearchParams returns a read-only version of the URLSearchParams interface. app/dashboard/search-bar.tsxTypeScriptJavaScriptTypeScript'use client' import { useSearchParams } from 'next/navigation' export default function SearchBar() { const searchParams = useSearchParams() const search = searchParams.get('search') // URL -> `/dashboard?search=my-project` // `search` -> 'my-project' return <>Search: {search}</> } Parameters const searchParams = useSearchParams() useSearchParams does not take any parameters. Returns useSearchParams returns a read-only version of the URLSearchParams interface, which includes utility methods for reading the URL's query string: URLSearchParams.get(): Returns the first value associated with the search parameter. For example: URLsearchParams.get(\"a\")/dashboard?a=1'1'/dashboard?a=''/dashboard?b=3null/dashboard?a=1&a=2'1' - use getAll() to get all values URLSearchParams.has(): Returns a boolean value indicating if the given parameter exists. For example: URLsearchParams.has(\"a\")/dashboard?a=1true/dashboard?b=3false Learn more about other read-only methods of URLSearchParams, including the getAll(), keys(), values(), entries(), forEach(), and toString(). Good to know: useSearchParams is a Client Component hook and is not supported in Server Components to prevent stale values during partial rendering. If you want to fetch data in a Server Component based on search params, it's often a better option to read the searchParams prop of the corresponding Page. You can then pass it down by props to any component (Server or Client) within that Page. If an application includes the /pages directory, useSearchParams will return ReadonlyURLSearchParams | null. The null value is for compatibility during migration since search params cannot be known during pre-rendering of a page that doesn't use getServerSideProps Behavior Static Rendering If a route is statically rendered, calling useSearchParams will cause the Client Component tree up to the closest Suspense boundary to be client-side rendered. This allows a part of the route to be statically rendered while the dynamic part that uses useSearchParams is client-side rendered. We recommend wrapping the Client Component that uses useSearchParams in a <Suspense/> boundary. This will allow any Client Components above it to be statically rendered and sent as part of initial HTML. Example. For example: app/dashboard/search-bar.tsxTypeScriptJavaScriptTypeScript'use client' import { useSearchParams } from 'next/navigation' export default function SearchBar() { const searchParams = useSearchParams() const search = searchParams.get('search') // This will not be logged on the server when using static rendering console.log(search) return <>Search: {search}</> } app/dashboard/page.tsxTypeScriptJavaScriptTypeScriptimport { Suspense } from 'react' import SearchBar from './search-bar' // This component passed as a fallback to the Suspense boundary // will be rendered in place of the search bar in the initial HTML. // When the value is available during React hydration the fallback // will be replaced with the `<SearchBar>` component. function SearchBarFallback() { return <>placeholder</> } export default function Page() { return ( <> <nav> <Suspense fallback={<SearchBarFallback />}> <SearchBar /> </Suspense> </nav> <h1>Dashboard</h1> </> ) } Good to know: In development, routes are rendered on-demand, so useSearchParams doesn't suspend and things may appear to work without Suspense. During production builds, a static page that calls useSearchParams from a Client Component must be wrapped in a Suspense boundary, otherwise the build fails with the Missing Suspense boundary with useSearchParams error. If you intend the route to be dynamically rendered, prefer using the connection function first in a Server Component to wait for an incoming request, this excludes everything below from prerendering. See what makes a route dynamic in the Dynamic Rendering guide. If you're already in a Server Component Page, consider using the searchParams prop and passing the values to Client Components. You can also pass the Page searchParams prop directly to a Client Component and unwrap it with React's use(). Although this will suspend, so the Client Component should be wrapped with a Suspense boundary. Dynamic Rendering If a route is dynamically rendered, useSearchParams will be available on the server during the initial server render of the Client Component. For example: app/dashboard/search-bar.tsxTypeScriptJavaScriptTypeScript'use client' import { useSearchParams } from 'next/navigation' export default function SearchBar() { const searchParams = useSearchParams() const search = searchParams.get('search') // This will be logged on the server during the initial render // and on the client on subsequent navigations. console.log(search) return <>Search: {search}</> } app/dashboard/page.tsxTypeScriptJavaScriptTypeScriptimport { connection } from 'next/server' import SearchBar from './search-bar' export default async function Page() { await connection() return ( <> <nav> <SearchBar /> </nav> <h1>Dashboard</h1> </> ) } Good to know: Previously, setting export const dynamic = 'force-dynamic' on the page was used to force dynamic rendering. Prefer using connection() instead, as it semantically ties dynamic rendering to the incoming request. Server Components Pages To access search params in Pages (Server Components), use the searchParams prop. Layouts Unlike Pages, Layouts (Server Components) do not receive the searchParams prop. This is because a shared layout is not re-rendered during navigation which could lead to stale searchParams between navigations. View detailed explanation. Instead, use the Page searchParams prop or the useSearchParams hook in a Client Component, which is re-rendered on the client with the latest searchParams. Examples Updating searchParams You can use useRouter or Link to set new searchParams. After a navigation is performed, the current page.js will receive an updated searchParams prop. app/example-client-component.tsxTypeScriptJavaScriptTypeScript'use client' export default function ExampleClientComponent() { const router = useRouter() const pathname = usePathname() const searchParams = useSearchParams() // Get a new searchParams string by merging the current // searchParams with a provided key/value pair const createQueryString = useCallback( (name: string, value: string) => { const params = new URLSearchParams(searchParams.toString()) params.set(name, value) return params.toString() }, [searchParams] ) return ( <> <p>Sort By</p> {/* using useRouter */} <button onClick={() => { // <pathname>?sort=asc router.push(pathname + '?' + createQueryString('sort', 'asc')) }} > ASC </button> {/* using <Link> */} <Link href={ // <pathname>?sort=desc pathname + '?' + createQueryString('sort', 'desc') } > DESC </Link> </> ) } Version History VersionChangesv13.0.0useSearchParams introduced.",
+      "code": "useSearchParams"
+    },
+    {
+      "description": "useSearchParamsuseSearchParams is a Client Component hook that lets you read the current URL's query string. useSearchParams returns a read-only version of the URLSearchParams interface. app/dashboard/search-bar.tsxTypeScriptJavaScriptTypeScript'use client' import { useSearchParams } from 'next/navigation' export default function SearchBar() { const searchParams = useSearchParams() const search = searchParams.get('search') // URL -> `/dashboard?search=my-project` // `search` -> 'my-project' return <>Search: {search}</> } Parameters const searchParams = useSearchParams() useSearchParams does not take any parameters. Returns useSearchParams returns a read-only version of the URLSearchParams interface, which includes utility methods for reading the URL's query string: URLSearchParams.get(): Returns the first value associated with the search parameter. For example: URLsearchParams.get(\"a\")/dashboard?a=1'1'/dashboard?a=''/dashboard?b=3null/dashboard?a=1&a=2'1' - use getAll() to get all values URLSearchParams.has(): Returns a boolean value indicating if the given parameter exists. For example: URLsearchParams.has(\"a\")/dashboard?a=1true/dashboard?b=3false Learn more about other read-only methods of URLSearchParams, including the getAll(), keys(), values(), entries(), forEach(), and toString(). Good to know: useSearchParams is a Client Component hook and is not supported in Server Components to prevent stale values during partial rendering. If you want to fetch data in a Server Component based on search params, it's often a better option to read the searchParams prop of the corresponding Page. You can then pass it down by props to any component (Server or Client) within that Page. If an application includes the /pages directory, useSearchParams will return ReadonlyURLSearchParams | null. The null value is for compatibility during migration since search params cannot be known during pre-rendering of a page that doesn't use getServerSideProps Behavior Static Rendering If a route is statically rendered, calling useSearchParams will cause the Client Component tree up to the closest Suspense boundary to be client-side rendered. This allows a part of the route to be statically rendered while the dynamic part that uses useSearchParams is client-side rendered. We recommend wrapping the Client Component that uses useSearchParams in a <Suspense/> boundary. This will allow any Client Components above it to be statically rendered and sent as part of initial HTML. Example. For example: app/dashboard/search-bar.tsxTypeScriptJavaScriptTypeScript'use client' import { useSearchParams } from 'next/navigation' export default function SearchBar() { const searchParams = useSearchParams() const search = searchParams.get('search') // This will not be logged on the server when using static rendering console.log(search) return <>Search: {search}</> } app/dashboard/page.tsxTypeScriptJavaScriptTypeScriptimport { Suspense } from 'react' import SearchBar from './search-bar' // This component passed as a fallback to the Suspense boundary // will be rendered in place of the search bar in the initial HTML. // When the value is available during React hydration the fallback // will be replaced with the `<SearchBar>` component. function SearchBarFallback() { return <>placeholder</> } export default function Page() { return ( <> <nav> <Suspense fallback={<SearchBarFallback />}> <SearchBar /> </Suspense> </nav> <h1>Dashboard</h1> </> ) } Good to know: In development, routes are rendered on-demand, so useSearchParams doesn't suspend and things may appear to work without Suspense. During production builds, a static page that calls useSearchParams from a Client Component must be wrapped in a Suspense boundary, otherwise the build fails with the Missing Suspense boundary with useSearchParams error. If you intend the route to be dynamically rendered, prefer using the connection function first in a Server Component to wait for an incoming request, this excludes everything below from prerendering. See what makes a route dynamic in the Dynamic Rendering guide. If you're already in a Server Component Page, consider using the searchParams prop and passing the values to Client Components. You can also pass the Page searchParams prop directly to a Client Component and unwrap it with React's use(). Although this will suspend, so the Client Component should be wrapped with a Suspense boundary. Dynamic Rendering If a route is dynamically rendered, useSearchParams will be available on the server during the initial server render of the Client Component. For example: app/dashboard/search-bar.tsxTypeScriptJavaScriptTypeScript'use client' import { useSearchParams } from 'next/navigation' export default function SearchBar() { const searchParams = useSearchParams() const search = searchParams.get('search') // This will be logged on the server during the initial render // and on the client on subsequent navigations. console.log(search) return <>Search: {search}</> } app/dashboard/page.tsxTypeScriptJavaScriptTypeScriptimport { connection } from 'next/server' import SearchBar from './search-bar' export default async function Page() { await connection() return ( <> <nav> <SearchBar /> </nav> <h1>Dashboard</h1> </> ) } Good to know: Previously, setting export const dynamic = 'force-dynamic' on the page was used to force dynamic rendering. Prefer using connection() instead, as it semantically ties dynamic rendering to the incoming request. Server Components Pages To access search params in Pages (Server Components), use the searchParams prop. Layouts Unlike Pages, Layouts (Server Components) do not receive the searchParams prop. This is because a shared layout is not re-rendered during navigation which could lead to stale searchParams between navigations. View detailed explanation. Instead, use the Page searchParams prop or the useSearchParams hook in a Client Component, which is re-rendered on the client with the latest searchParams. Examples Updating searchParams You can use useRouter or Link to set new searchParams. After a navigation is performed, the current page.js will receive an updated searchParams prop. app/example-client-component.tsxTypeScriptJavaScriptTypeScript'use client' export default function ExampleClientComponent() { const router = useRouter() const pathname = usePathname() const searchParams = useSearchParams() // Get a new searchParams string by merging the current // searchParams with a provided key/value pair const createQueryString = useCallback( (name: string, value: string) => { const params = new URLSearchParams(searchParams.toString()) params.set(name, value) return params.toString() }, [searchParams] ) return ( <> <p>Sort By</p> {/* using useRouter */} <button onClick={() => { // <pathname>?sort=asc router.push(pathname + '?' + createQueryString('sort', 'asc')) }} > ASC </button> {/* using <Link> */} <Link href={ // <pathname>?sort=desc pathname + '?' + createQueryString('sort', 'desc') } > DESC </Link> </> ) } Version History VersionChangesv13.0.0useSearchParams introduced.",
+      "code": "useSearchParams"
+    },
+    {
+      "description": "URLSearchParams.get(): Returns the first value associated with the search parameter. For example:",
+      "code": "URLSearchParams.get()"
+    },
+    {
+      "description": "URLSearchParams.has(): Returns a boolean value indicating if the given parameter exists. For example:",
+      "code": "URLSearchParams.has()"
+    },
+    {
+      "description": "For example:",
+      "code": "'use client'\n \nimport { useSearchParams } from 'next/navigation'\n \nexport default function SearchBar() {\n  const searchParams = useSearchParams()\n \n  const search = searchParams.get('search')\n \n  // This will not be logged on the server when using static rendering\n  console.log(search)\n \n  return <>Search: {search}</>\n}"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/functions/use-search-params",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/getting-started/linking-and-navigating",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout",
+    "https://nextjs.org/docs/app/api-reference/functions/connection",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/app/api-reference/functions/use-router",
+    "https://nextjs.org/docs/app/api-reference/components/link",
+    "https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segment"
+  ]
+}

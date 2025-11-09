@@ -1,0 +1,69 @@
+{
+  "title": "Tools AI Agent node",
+  "content": "The Tools Agent uses external [tools](../../../../../../glossary/#ai-tool) and APIs to perform actions and retrieve information. It can understand the capabilities of different tools and determine which tool to use depending on the task. This agent helps integrate LLMs with various external services and databases.\n\nThis agent has an enhanced ability to work with tools and can ensure a standard output format.\n\nThe Tools Agent implements [Langchain's tool calling](https://js.langchain.com/docs/concepts/tool_calling/) interface. This interface describes available tools and their schemas. The agent also has improved output parsing capabilities, as it passes the parser to the model as a formatting tool.\n\nRefer to [AI Agent](../) for more information on the AI Agent node itself.\n\nYou can use this agent with the [Chat Trigger](../../../../core-nodes/n8n-nodes-langchain.chattrigger/) node. Attach a memory sub-node so that users can have an ongoing conversation with multiple queries. Memory doesn't persist between sessions.\n\nThis agent supports the following chat models:\n\n- [OpenAI Chat Model](../../../sub-nodes/n8n-nodes-langchain.lmchatopenai/)\n- [Groq Chat Model](../../../sub-nodes/n8n-nodes-langchain.lmchatgroq/)\n- [Mistral Cloud Chat Model](../../../sub-nodes/n8n-nodes-langchain.lmchatmistralcloud/)\n- [Anthropic Chat Model](../../../sub-nodes/n8n-nodes-langchain.lmchatanthropic/)\n- [Azure OpenAI Chat Model](../../../sub-nodes/n8n-nodes-langchain.lmchatazureopenai/)\n\nThe Tools Agent can use the following tools...\n\n- [Call n8n Workflow](../../../sub-nodes/n8n-nodes-langchain.toolworkflow/)\n- [Code](../../../sub-nodes/n8n-nodes-langchain.toolcode/)\n- [HTTP Request](../../../sub-nodes/n8n-nodes-langchain.toolhttprequest/)\n- [Action Network](../../../../app-nodes/n8n-nodes-base.actionnetwork/)\n- [ActiveCampaign](../../../../app-nodes/n8n-nodes-base.activecampaign/)\n- [Affinity](../../../../app-nodes/n8n-nodes-base.affinity/)\n- [Agile CRM](../../../../app-nodes/n8n-nodes-base.agilecrm/)\n- [Airtable](../../../../app-nodes/n8n-nodes-base.airtable/)\n- [APITemplate.io](../../../../app-nodes/n8n-nodes-base.apitemplateio/)\n- [Asana](../../../../app-nodes/n8n-nodes-base.asana/)\n- [AWS Lambda](../../../../app-nodes/n8n-nodes-base.awslambda/)\n- [AWS S3](../../../../app-nodes/n8n-nodes-base.awss3/)\n- [AWS SES](../../../../app-nodes/n8n-nodes-base.awsses/)\n- [AWS Textract](../../../../app-nodes/n8n-nodes-base.awstextract/)\n- [AWS Transcribe](../../../../app-nodes/n8n-nodes-base.awstranscribe/)\n- [Baserow](../../../../app-nodes/n8n-nodes-base.baserow/)\n- [Bubble](../../../../app-nodes/n8n-nodes-base.bubble/)\n- [Calculator](../../../sub-nodes/n8n-nodes-langchain.toolcalculator/)\n- [ClickUp](../../../../app-nodes/n8n-nodes-base.clickup/)\n- [CoinGecko](../../../../app-nodes/n8n-nodes-base.coingecko/)\n- [Compression](../../../../core-nodes/n8n-nodes-base.compression/)\n- [Crypto](../../../../core-nodes/n8n-nodes-base.crypto/)\n- [DeepL](../../../../app-nodes/n8n-nodes-base.deepl/)\n- [DHL](../../../../app-nodes/n8n-nodes-base.dhl/)\n- [Discord](../../../../app-nodes/n8n-nodes-base.discord/)\n- [Dropbox](../../../../app-nodes/n8n-nodes-base.dropbox/)\n- [Elasticsearch](../../../../app-nodes/n8n-nodes-base.elasticsearch/)\n- [ERPNext](../../../../app-nodes/n8n-nodes-base.erpnext/)\n- [Facebook Graph API](../../../../app-nodes/n8n-nodes-base.facebookgraphapi/)\n- [FileMaker](../../../../app-nodes/n8n-nodes-base.filemaker/)\n- [Ghost](../../../../app-nodes/n8n-nodes-base.ghost/)\n- [Git](../../../../core-nodes/n8n-nodes-base.git/)\n- [GitHub](../../../../app-nodes/n8n-nodes-base.github/)\n- [GitLab](../../../../app-nodes/n8n-nodes-base.gitlab/)\n- [Gmail](../../../../app-nodes/n8n-nodes-base.gmail/)\n- [Google Analytics](../../../../app-nodes/n8n-nodes-base.googleanalytics/)\n- [Google BigQuery](../../../../app-nodes/n8n-nodes-base.googlebigquery/)\n- [Google Calendar](../../../../app-nodes/n8n-nodes-base.googlecalendar/)\n- [Google Chat](../../../../app-nodes/n8n-nodes-base.googlechat/)\n- [Google Cloud Firestore](../../../../app-nodes/n8n-nodes-base.googlecloudfirestore/)\n- [Google Cloud Realtime Database](../../../../app-nodes/n8n-nodes-base.googlecloudrealtimedatabase/)\n- [Google Contacts](../../../../app-nodes/n8n-nodes-base.googlecontacts/)\n- [Google Docs](../../../../app-nodes/n8n-nodes-base.googledocs/)\n- [Google Drive](../../../../app-nodes/n8n-nodes-base.googledrive/)\n- [Google Sheets](../../../../app-nodes/n8n-nodes-base.googlesheets/)\n- [Google Slides](../../../../app-nodes/n8n-nodes-base.googleslides/)\n- [Google Tasks](../../../../app-nodes/n8n-nodes-base.googletasks/)\n- [Google Translate](../../../../app-nodes/n8n-nodes-base.googletranslate/)\n- [Google Workspace Admin](../../../../app-nodes/n8n-nodes-base.gsuiteadmin/)\n- [Gotify](../../../../app-nodes/n8n-nodes-base.gotify/)\n- [Grafana](../../../../app-nodes/n8n-nodes-base.grafana/)\n- [GraphQL](../../../../core-nodes/n8n-nodes-base.graphql/)\n- [Hacker News](../../../../app-nodes/n8n-nodes-base.hackernews/)\n- [Home Assistant](../../../../app-nodes/n8n-nodes-base.homeassistant/)\n- [HubSpot](../../../../app-nodes/n8n-nodes-base.hubspot/)\n- [Jenkins](../../../../app-nodes/n8n-nodes-base.jenkins/)\n- [Jira Software](../../../../app-nodes/n8n-nodes-base.jira/)\n- [JWT](../../../../core-nodes/n8n-nodes-base.jwt/)\n- [Kafka](../../../../app-nodes/n8n-nodes-base.kafka/)\n- [LDAP](../../../../core-nodes/n8n-nodes-base.ldap/)\n- [Line](../../../../app-nodes/n8n-nodes-base.line/)\n- [LinkedIn](../../../../app-nodes/n8n-nodes-base.linkedin/)\n- [Mailcheck](../../../../app-nodes/n8n-nodes-base.mailcheck/)\n- [Mailgun](../../../../app-nodes/n8n-nodes-base.mailgun/)\n- [Mattermost](../../../../app-nodes/n8n-nodes-base.mattermost/)\n- [Mautic](../../../../app-nodes/n8n-nodes-base.mautic/)\n- [Medium](../../../../app-nodes/n8n-nodes-base.medium/)\n- [Microsoft Excel 365](../../../../app-nodes/n8n-nodes-base.microsoftexcel/)\n- [Microsoft OneDrive](../../../../app-nodes/n8n-nodes-base.microsoftonedrive/)\n- [Microsoft Outlook](../../../../app-nodes/n8n-nodes-base.microsoftoutlook/)\n- [Microsoft SQL](../../../../app-nodes/n8n-nodes-base.microsoftsql/)\n- [Microsoft Teams](../../../../app-nodes/n8n-nodes-base.microsoftteams/)\n- [Microsoft To Do](../../../../app-nodes/n8n-nodes-base.microsofttodo/)\n- [Monday.com](../../../../app-nodes/n8n-nodes-base.mondaycom/)\n- [MongoDB](../../../../app-nodes/n8n-nodes-base.mongodb/)\n- [MQTT](../../../../app-nodes/n8n-nodes-base.mqtt/)\n- [MySQL](../../../../app-nodes/n8n-nodes-base.mysql/)\n- [NASA](../../../../app-nodes/n8n-nodes-base.nasa/)\n- [Nextcloud](../../../../app-nodes/n8n-nodes-base.nextcloud/)\n- [NocoDB](../../../../app-nodes/n8n-nodes-base.nocodb/)\n- [Notion](../../../../app-nodes/n8n-nodes-base.notion/)\n- [Odoo](../../../../app-nodes/n8n-nodes-base.odoo/)\n- [OpenWeatherMap](../../../../app-nodes/n8n-nodes-base.openweathermap/)\n- [Pipedrive](../../../../app-nodes/n8n-nodes-base.pipedrive/)\n- [Postgres](../../../../app-nodes/n8n-nodes-base.postgres/)\n- [Pushover](../../../../app-nodes/n8n-nodes-base.pushover/)\n- [QuickBooks Online](../../../../app-nodes/n8n-nodes-base.quickbooks/)\n- [QuickChart](../../../../app-nodes/n8n-nodes-base.quickchart/)\n- [RabbitMQ](../../../../app-nodes/n8n-nodes-base.rabbitmq/)\n- [Reddit](../../../../app-nodes/n8n-nodes-base.reddit/)\n- [Redis](../../../../app-nodes/n8n-nodes-base.redis/)\n- [RocketChat](../../../../app-nodes/n8n-nodes-base.rocketchat/)\n- [S3](../../../../app-nodes/n8n-nodes-base.s3/)\n- [Salesforce](../../../../app-nodes/n8n-nodes-base.salesforce/)\n- [Send Email](../../../../core-nodes/n8n-nodes-base.sendemail/)\n- [SendGrid](../../../../app-nodes/n8n-nodes-base.sendgrid/)\n- [SerpApi (Google Search)](../../../sub-nodes/n8n-nodes-langchain.toolserpapi/)\n- [Shopify](../../../../app-nodes/n8n-nodes-base.shopify/)\n- [Slack](../../../../app-nodes/n8n-nodes-base.slack/)\n- [Spotify](../../../../app-nodes/n8n-nodes-base.spotify/)\n- [Stripe](../../../../app-nodes/n8n-nodes-base.stripe/)\n- [Supabase](../../../../app-nodes/n8n-nodes-base.supabase/)\n- [Telegram](../../../../app-nodes/n8n-nodes-base.telegram/)\n- [Todoist](../../../../app-nodes/n8n-nodes-base.todoist/)\n- [TOTP](../../../../core-nodes/n8n-nodes-base.totp/)\n- [Trello](../../../../app-nodes/n8n-nodes-base.trello/)\n- [Twilio](../../../../app-nodes/n8n-nodes-base.twilio/)\n- [urlscan.io](../../../../app-nodes/n8n-nodes-base.urlscanio/)\n- [Vector Store](../../../sub-nodes/n8n-nodes-langchain.toolvectorstore/)\n- [Webflow](../../../../app-nodes/n8n-nodes-base.webflow/)\n- [Wikipedia](../../../sub-nodes/n8n-nodes-langchain.toolwikipedia/)\n- [Wolfram|Alpha](../../../sub-nodes/n8n-nodes-langchain.toolwolframalpha/)\n- [WooCommerce](../../../../app-nodes/n8n-nodes-base.woocommerce/)\n- [Wordpress](../../../../app-nodes/n8n-nodes-base.wordpress/)\n- [X (Formerly Twitter)](../../../../app-nodes/n8n-nodes-base.twitter/)\n- [YouTube](../../../../app-nodes/n8n-nodes-base.youtube/)\n- [Zendesk](../../../../app-nodes/n8n-nodes-base.zendesk/)\n- [Zoho CRM](../../../../app-nodes/n8n-nodes-base.zohocrm/)\n- [Zoom](../../../../app-nodes/n8n-nodes-base.zoom/)\n\nConfigure the Tools Agent using the following parameters.\n\nSelect how you want the node to construct the prompt (also known as the user's query or input from the chat).\n\n- **Take from previous node automatically**: If you select this option, the node expects an input from a previous node called `chatInput`.\n- **Define below**: If you select this option, provide either static text or an expression for dynamic content to serve as the prompt in the **Prompt (User Message)** field.\n\n### Require Specific Output Format\n\nThis parameter controls whether you want the node to require a specific output format. When turned on, n8n prompts you to connect one of these output parsers to the node:\n\n- [Auto-fixing Output Parser](../../../sub-nodes/n8n-nodes-langchain.outputparserautofixing/)\n- [Item List Output Parser](../../../sub-nodes/n8n-nodes-langchain.outputparseritemlist/)\n- [Structured Output Parser](../../../sub-nodes/n8n-nodes-langchain.outputparserstructured/)\n\nRefine the Tools Agent node's behavior using these options:\n\nIf you'd like to send a message to the agent before the conversation starts, enter the message you'd like to send.\n\nUse this option to guide the agent's decision-making.\n\nEnter the number of times the model should run to try and generate a good answer from the user's prompt.\n\n### Return Intermediate Steps\n\nSelect whether to include intermediate steps the agent took in the final output (turned on) or not (turned off).\n\nThis could be useful for further refining the agent's behavior based on the steps it took.\n\n### Automatically Passthrough Binary Images\n\nUse this option to control whether binary images should be automatically passed through to the agent as image type messages (turned on) or not (turned off).\n\nWhen enabled, the AI Agent sends data back to the user in real-time as it generates the answer. This is useful for long-running generations. This is enabled by default.\n\nStreaming requirements\n\nFor streaming to work, your workflow must use a trigger that supports streaming responses, such as the [Chat Trigger](../../../../core-nodes/n8n-nodes-langchain.chattrigger/) or [Webhook](../../../../core-nodes/n8n-nodes-base.webhook/) node with **Response Mode** set to **Streaming**.\n\n## Templates and examples\n\nRefer to the main AI Agent node's [Templates and examples](../#templates-and-examples) section.\n\n## Dynamic parameters for tools with `$fromAI()`\n\nTo learn how to dynamically populate parameters for app node tools, refer to [Let AI specify tool parameters with `$fromAI()`](../../../../../../advanced-ai/examples/using-the-fromai-function/).\n\nFor common questions or issues and suggested solutions, refer to [Common issues](../common-issues/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Prompt",
+      "id": "prompt"
+    },
+    {
+      "level": "h3",
+      "text": "Require Specific Output Format",
+      "id": "require-specific-output-format"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h3",
+      "text": "System Message",
+      "id": "system-message"
+    },
+    {
+      "level": "h3",
+      "text": "Max Iterations",
+      "id": "max-iterations"
+    },
+    {
+      "level": "h3",
+      "text": "Return Intermediate Steps",
+      "id": "return-intermediate-steps"
+    },
+    {
+      "level": "h3",
+      "text": "Automatically Passthrough Binary Images",
+      "id": "automatically-passthrough-binary-images"
+    },
+    {
+      "level": "h3",
+      "text": "Enable Streaming",
+      "id": "enable-streaming"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Dynamic parameters for tools with `$fromAI()`",
+      "id": "dynamic-parameters-for-tools-with-`$fromai()`"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    }
+  ],
+  "url": "llms-txt#tools-ai-agent-node",
+  "links": []
+}

@@ -1,0 +1,39 @@
+{
+  "title": "Install community nodes from npm in the n8n app",
+  "content": "Only for instance owners of self-hosted n8n instances\n\nOnly the n8n instance owner of a self-hosted n8n instance can install and manage community nodes from npm. The instance owner is the person who sets up and manages user management.\n\nAdmin accounts can also uninstall any community node, verified or unverified. This helps them remove problematic nodes that may affect the instance's health and functionality.\n\n## Install a community node\n\nTo install a community node from npm:\n\n1. Go to **Settings** > **Community Nodes**.\n1. Select **Install**.\n1. Find the node you want to install:\n   1. Select **Browse**. n8n takes you to an npm search results page, showing all npm packages tagged with the keyword `n8n-community-node-package`.\n   1. Browse the list of results. You can filter the results or add more keywords.\n   1. Once you find the package you want, make a note of the package name. If you want to install a specific version, make a note of the version number as well.\n   1. Return to n8n.\n1. Enter the npm package name, and version number if required. For example, consider a community node designed to access a weather API called \"Storms.\" The package name is n8n-node-storms, and it has three major versions.\n   - To install the latest version of a package called n8n-node-weather: enter `n8n-nodes-storms` in **Enter npm package name**.\n   - To install version 2.3: enter `n8n-node-storms@2.3` in **Enter npm package name**.\n1. Agree to the [risks](../../risks/) of using community nodes: select **I understand the risks of installing unverified code from a public source.**\n1. Select **Install**. n8n installs the node, and returns to the **Community Nodes** list in **Settings**.\n\nNodes on the blocklist\n\nn8n maintains a blocklist of community nodes that it prevents you from installing. Refer to [n8n community node blocklist](../../blocklist/) for more information.\n\n## Uninstall a community node\n\nTo uninstall a community node:\n\n1. Go to **Settings** > **Community nodes**.\n1. On the node you want to install, select **Options** .\n1. Select **Uninstall package**.\n1. Select **Uninstall Package** in the confirmation modal.\n\n## Upgrade a community node\n\nBreaking changes in versions\n\nNode developers may introduce breaking changes in new versions of their nodes. A breaking change is an update that breaks previous functionality. Depending on the node versioning approach that a node developer chooses, upgrading to a version with a breaking change could cause all workflows using the node to break. Be careful when upgrading your nodes. If you find that an upgrade causes issues, you can [downgrade](#downgrade-a-community-node).\n\n### Upgrade to the latest version\n\nYou can upgrade community nodes to the latest version from the node list in **Settings** > **community nodes**.\n\nWhen a new version of a community node is available, n8n displays an **Update** button on the node. Click the button to upgrade to the latest version.\n\n### Upgrade to a specific version\n\nTo upgrade to a specific version (a version other than the latest), uninstall the node, then reinstall it, making sure to specify the target version. Follow the [Installation](#install-a-community-node) instructions for more guidance.\n\n## Downgrade a community node\n\nIf there is a problem with a particular version of a community node, you may want to roll back to a previous version.\n\nTo do this, uninstall the community node, then reinstall it, targeting a specific node version. Follow the [Installation](#install-a-community-node) instructions for more guidance.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Install a community node",
+      "id": "install-a-community-node"
+    },
+    {
+      "level": "h2",
+      "text": "Uninstall a community node",
+      "id": "uninstall-a-community-node"
+    },
+    {
+      "level": "h2",
+      "text": "Upgrade a community node",
+      "id": "upgrade-a-community-node"
+    },
+    {
+      "level": "h3",
+      "text": "Upgrade to the latest version",
+      "id": "upgrade-to-the-latest-version"
+    },
+    {
+      "level": "h3",
+      "text": "Upgrade to a specific version",
+      "id": "upgrade-to-a-specific-version"
+    },
+    {
+      "level": "h2",
+      "text": "Downgrade a community node",
+      "id": "downgrade-a-community-node"
+    }
+  ],
+  "url": "llms-txt#install-community-nodes-from-npm-in-the-n8n-app",
+  "links": []
+}

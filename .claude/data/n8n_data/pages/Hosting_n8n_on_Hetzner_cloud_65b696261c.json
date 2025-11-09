@@ -1,0 +1,133 @@
+{
+  "title": "Hosting n8n on Hetzner cloud",
+  "content": "This hosting guide shows you how to self-host n8n on a Hetzner cloud server. It uses:\n\n- [Caddy](https://caddyserver.com) (a reverse proxy) to allow access to the Server from the internet.\n- [Docker Compose](https://docs.docker.com/compose/) to create and define the application components and how they work together.\n\nSelf-hosting knowledge prerequisites\n\nSelf-hosting n8n requires technical knowledge, including:\n\n- Setting up and configuring servers and containers\n- Managing application resources and scaling\n- Securing servers and applications\n- Configuring n8n\n\nn8n recommends self-hosting for expert users. Mistakes can lead to data loss, security issues, and downtime. If you aren't experienced at managing servers, n8n recommends [n8n Cloud](https://n8n.io/cloud/).\n\nLatest and Next versions\n\nn8n releases a new minor version most weeks. The `latest` version is for production use. `next` is the most recent release. You should treat `next` as a beta: it may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).\n\nCurrent `latest`: 1.118.1\\\nCurrent `next`: 1.119.0\n\n1. [Log in](https://console.hetzner.cloud/) to the Hetzner Cloud Console.\n1. Select the project to host the server, or create a new project by selecting **+ NEW PROJECT**.\n1. Select **+ CREATE SERVER** on the project tile you want to add it to.\n\nYou can change most of the settings to suit your needs, but as this guide uses Docker to run the application, under the **Image** section, select \"Docker CE\" from the **APPS** tab.\n\nWhen creating the server, Hetzner asks you to choose a plan. For most usage levels, the CPX11 type is enough.\n\nHetzner lets you choose between SSH and password-based authentication. SSH is more secure. The rest of this guide assumes you are using SSH.\n\n## Log in to your server\n\nThe rest of this guide requires you to log in to the server using a terminal with SSH. Refer to [Access with SSH/rsync/BorgBackup](https://docs.hetzner.com/robot/storage-box/access/access-ssh-rsync-borg) for more information. You can find the public IP in the listing of the servers in your project.\n\n## Install Docker Compose\n\nThe Hetzner Docker app image doesn't have Docker compose installed. Install it with the following commands:\n\n## Clone configuration repository\n\nDocker Compose, n8n, and Caddy require a series of folders and configuration files. You can clone these from [this repository](https://github.com/n8n-io/n8n-docker-caddy) into the root user folder of the server. The following steps will tell you which file to change and what changes to make.\n\nClone the repository with the following command:\n\nAnd change directory to the root of the repository you cloned:\n\n## Default folders and files\n\nThe host operating system (the server) copies the two folders you created to Docker containers to make them available to Docker. The two folders are:\n\n- `caddy_config`: Holds the Caddy configuration files.\n- `local_files`: A folder for files you upload or add using n8n.\n\n### Create Docker volume\n\nTo persist the Caddy cache between restarts and speed up start times, create [a Docker volume](https://docs.docker.com/storage/volumes/) that Docker reuses between restarts:\n\nCreate a Docker volume for the n8n data:\n\nn8n typically operates on a subdomain. Create a DNS record with your provider for the subdomain and point it to the IP address of the server. The exact steps for this depend on your DNS provider, but typically you need to create a new \"A\" record for the n8n subdomain. DigitalOcean provide [An Introduction to DNS Terminology, Components, and Concepts](https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts).\n\nn8n runs as a web application, so the server needs to allow incoming access to traffic on port 80 for non-secure traffic, and port 443 for secure traffic.\n\nOpen the following ports in the server's firewall by running the following two commands:\n\nn8n needs some environment variables set to pass to the application running in the Docker container. The example `.env` file contains placeholders you need to replace with values of your own.\n\nOpen the file with the following command:\n\nThe file contains inline comments to help you know what to change.\n\nRefer to [Environment variables](../../../configuration/environment-variables/) for n8n environment variables details.\n\n## The Docker Compose file\n\nThe Docker Compose file (`docker-compose.yml`) defines the services the application needs, in this case Caddy and n8n.\n\n- The Caddy service definition defines the ports it uses and the local volumes to copy to the containers.\n- The n8n service definition defines the ports it uses, the environment variables n8n needs to run (some defined in the `.env` file), and the volumes it needs to copy to the containers.\n\nThe Docker Compose file uses the environment variables set in the `.env` file, so you shouldn't need to change it's content, but to take a look, run the following command:\n\nCaddy needs to know which domains it should serve, and which port to expose to the outside world. Edit the `Caddyfile` file in the `caddy_config` folder.\n\nChange the placeholder subdomain to yours. If you followed the steps to name the subdomain n8n, your full domain is similar to `n8n.example.com`. The `n8n` in the `reverse_proxy` setting tells Caddy to use the service definition defined in the `docker-compose.yml` file:\n\n## Start Docker Compose\n\nStart n8n and Caddy with the following command:\n\nThis may take a few minutes.\n\nIn your browser, open the URL formed of the subdomain and domain name defined earlier. Enter the user name and password defined earlier, and you should be able to access n8n.\n\n## Stop n8n and Caddy\n\nYou can stop n8n and Caddy with the following command:\n\nIf you run n8n using a Docker Compose file, follow these steps to update n8n:",
+  "code_samples": [
+    {
+      "code": "apt update && apt -y upgrade\napt install docker-compose-plugin",
+      "language": "unknown"
+    },
+    {
+      "code": "git clone https://github.com/n8n-io/n8n-docker-caddy.git",
+      "language": "unknown"
+    },
+    {
+      "code": "cd n8n-docker-caddy",
+      "language": "unknown"
+    },
+    {
+      "code": "docker volume create caddy_data",
+      "language": "unknown"
+    },
+    {
+      "code": "sudo docker volume create n8n_data",
+      "language": "unknown"
+    },
+    {
+      "code": "sudo ufw allow 80\nsudo ufw allow 443",
+      "language": "unknown"
+    },
+    {
+      "code": "nano .env",
+      "language": "unknown"
+    },
+    {
+      "code": "nano docker-compose.yml",
+      "language": "unknown"
+    },
+    {
+      "code": "nano caddy_config/Caddyfile",
+      "language": "unknown"
+    },
+    {
+      "code": "n8n.<domain>.<suffix> {\n    reverse_proxy n8n:5678 {\n      flush_interval -1\n    }\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "docker compose up -d",
+      "language": "unknown"
+    },
+    {
+      "code": "sudo docker compose stop",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Create a server",
+      "id": "create-a-server"
+    },
+    {
+      "level": "h2",
+      "text": "Log in to your server",
+      "id": "log-in-to-your-server"
+    },
+    {
+      "level": "h2",
+      "text": "Install Docker Compose",
+      "id": "install-docker-compose"
+    },
+    {
+      "level": "h2",
+      "text": "Clone configuration repository",
+      "id": "clone-configuration-repository"
+    },
+    {
+      "level": "h2",
+      "text": "Default folders and files",
+      "id": "default-folders-and-files"
+    },
+    {
+      "level": "h3",
+      "text": "Create Docker volume",
+      "id": "create-docker-volume"
+    },
+    {
+      "level": "h2",
+      "text": "Set up DNS",
+      "id": "set-up-dns"
+    },
+    {
+      "level": "h2",
+      "text": "Open ports",
+      "id": "open-ports"
+    },
+    {
+      "level": "h2",
+      "text": "Configure n8n",
+      "id": "configure-n8n"
+    },
+    {
+      "level": "h2",
+      "text": "The Docker Compose file",
+      "id": "the-docker-compose-file"
+    },
+    {
+      "level": "h2",
+      "text": "Configure Caddy",
+      "id": "configure-caddy"
+    },
+    {
+      "level": "h2",
+      "text": "Start Docker Compose",
+      "id": "start-docker-compose"
+    },
+    {
+      "level": "h2",
+      "text": "Test your setup",
+      "id": "test-your-setup"
+    },
+    {
+      "level": "h2",
+      "text": "Stop n8n and Caddy",
+      "id": "stop-n8n-and-caddy"
+    },
+    {
+      "level": "h2",
+      "text": "Updating",
+      "id": "updating"
+    }
+  ],
+  "url": "llms-txt#hosting-n8n-on-hetzner-cloud",
+  "links": []
+}

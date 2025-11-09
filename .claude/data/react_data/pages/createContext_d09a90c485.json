@@ -1,0 +1,143 @@
+{
+  "url": "https://react.dev/reference/react/createContext",
+  "title": "createContext",
+  "content": "createContext lets you create a context that components can provide or read.\n\nCall createContext outside of any components to create a context.\n\nSee more examples below.\n\ncreateContext returns a context object.\n\nThe context object itself does not hold any information. It represents which context other components read or provide. Typically, you will use SomeContext in components above to specify the context value, and call useContext(SomeContext) in components below to read it. The context object has a few properties:\n\nWrap your components into a context provider to specify the value of this context for all components inside:\n\nStarting in React 19, you can render <SomeContext> as a provider.\n\nIn older versions of React, use <SomeContext.Provider>.\n\nBefore useContext existed, there was an older way to read context:\n\nAlthough this older way still works, newly written code should read context with useContext() instead:\n\nContext lets components pass information deep down without explicitly passing props.\n\nCall createContext outside any components to create one or more contexts.\n\ncreateContext returns a context object. Components can read context by passing it to useContext():\n\nBy default, the values they receive will be the default values you have specified when creating the contexts. However, by itself this isn’t useful because the default values never change.\n\nContext is useful because you can provide other, dynamic values from your components:\n\nNow the Page component and any components inside it, no matter how deep, will “see” the passed context values. If the passed context values change, React will re-render the components reading the context as well.\n\nRead more about reading and providing context and see examples.\n\nOften, components in different files will need access to the same context. This is why it’s common to declare contexts in a separate file. Then you can use the export statement to make context available for other files:\n\nComponents declared in other files can then use the import statement to read or provide this context:\n\nThis works similar to importing and exporting components.\n\nCode like this specifies the default context value:\n\nThis value never changes. React only uses this value as a fallback if it can’t find a matching provider above.\n\nTo make context change over time, add state and wrap components in a context provider.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "createContext",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "createContext(defaultValue)",
+      "id": "createcontext"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h3",
+      "text": "SomeContext Provider",
+      "id": "provider"
+    },
+    {
+      "level": "h3",
+      "text": "Note",
+      "id": ""
+    },
+    {
+      "level": "h4",
+      "text": "Props",
+      "id": "provider-props"
+    },
+    {
+      "level": "h3",
+      "text": "SomeContext.Consumer",
+      "id": "consumer"
+    },
+    {
+      "level": "h4",
+      "text": "Props",
+      "id": "consumer-props"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Creating context",
+      "id": "creating-context"
+    },
+    {
+      "level": "h3",
+      "text": "Importing and exporting context from a file",
+      "id": "importing-and-exporting-context-from-a-file"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "I can’t find a way to change the context value",
+      "id": "i-cant-find-a-way-to-change-the-context-value"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "const SomeContext = createContext(defaultValue)",
+      "language": "javascript"
+    },
+    {
+      "code": "import { createContext } from 'react';const ThemeContext = createContext('light');",
+      "language": "python"
+    },
+    {
+      "code": "function App() {  const [theme, setTheme] = useState('light');  // ...  return (    <ThemeContext value={theme}>      <Page />    </ThemeContext>  );}",
+      "language": "javascript"
+    },
+    {
+      "code": "function Button() {  // 🟡 Legacy way (not recommended)  return (    <ThemeContext.Consumer>      {theme => (        <button className={theme} />      )}    </ThemeContext.Consumer>  );}",
+      "language": "javascript"
+    },
+    {
+      "code": "function Button() {  // ✅ Recommended way  const theme = useContext(ThemeContext);  return <button className={theme} />;}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { createContext } from 'react';const ThemeContext = createContext('light');const AuthContext = createContext(null);",
+      "language": "python"
+    },
+    {
+      "code": "function Button() {  const theme = useContext(ThemeContext);  // ...}function Profile() {  const currentUser = useContext(AuthContext);  // ...}",
+      "language": "javascript"
+    },
+    {
+      "code": "function App() {  const [theme, setTheme] = useState('dark');  const [currentUser, setCurrentUser] = useState({ name: 'Taylor' });  // ...  return (    <ThemeContext value={theme}>      <AuthContext value={currentUser}>        <Page />      </AuthContext>    </ThemeContext>  );}",
+      "language": "javascript"
+    },
+    {
+      "code": "// Contexts.jsimport { createContext } from 'react';export const ThemeContext = createContext('light');export const AuthContext = createContext(null);",
+      "language": "python"
+    },
+    {
+      "code": "// Button.jsimport { ThemeContext } from './Contexts.js';function Button() {  const theme = useContext(ThemeContext);  // ...}",
+      "language": "python"
+    },
+    {
+      "code": "// App.jsimport { ThemeContext, AuthContext } from './Contexts.js';function App() {  // ...  return (    <ThemeContext value={theme}>      <AuthContext value={currentUser}>        <Page />      </AuthContext>    </ThemeContext>  );}",
+      "language": "python"
+    },
+    {
+      "code": "const ThemeContext = createContext('light');",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react/apis",
+    "https://react.dev/reference/react/createContext",
+    "https://react.dev/learn/passing-data-deeply-with-context",
+    "https://react.dev/reference/react/useContext",
+    "https://react.dev/learn/importing-and-exporting-components",
+    "https://react.dev/reference/react/captureOwnerStack",
+    "https://react.dev/reference/react/lazy"
+  ]
+}

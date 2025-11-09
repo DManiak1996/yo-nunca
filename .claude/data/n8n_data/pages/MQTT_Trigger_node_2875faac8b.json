@@ -1,0 +1,8 @@
+{
+  "title": "MQTT Trigger node",
+  "content": "[MQTT](https://mqtt.org) is an open OASIS and ISO standard lightweight, publish-subscribe network protocol that transports messages between devices.\n\nYou can find authentication information for this node [here](../../credentials/mqtt/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [MQTT Trigger integrations](https://n8n.io/integrations/mqtt-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#mqtt-trigger-node",
+  "links": []
+}

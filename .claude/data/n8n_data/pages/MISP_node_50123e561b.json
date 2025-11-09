@@ -1,0 +1,24 @@
+{
+  "title": "MISP node",
+  "content": "Use the MISP node to automate work in MISP, and integrate MISP with other applications. n8n has built-in support for a wide range of MISP features, including creating, updating, deleting and getting events, feeds, and organizations.\n\nOn this page, you'll find a list of operations the MISP node supports and links to more resources.\n\nRefer to [MISP credentials](../../credentials/misp/) for guidance on setting up authentication.\n\n- Attribute\n  - Create\n  - Delete\n  - Get\n  - Get All\n  - Search\n  - Update\n- Event\n  - Create\n  - Delete\n  - Get\n  - Get All\n  - Publish\n  - Search\n  - Unpublish\n  - Update\n- Event Tag\n  - Add\n  - Remove\n- Feed\n  - Create\n  - Disable\n  - Enable\n  - Get\n  - Get All\n  - Update\n- Galaxy\n  - Delete\n  - Get\n  - Get All\n- Noticelist\n  - Get\n  - Get All\n- Object\n  - Search\n- Organisation\n  - Create\n  - Delete\n  - Get\n  - Get All\n  - Update\n- Tag\n  - Create\n  - Delete\n  - Get All\n  - Update\n- User\n  - Create\n  - Delete\n  - Get\n  - Get All\n  - Update\n- Warninglist\n  - Get\n  - Get All\n\n## Templates and examples\n\n[Browse MISP integration templates](https://n8n.io/integrations/misp/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#misp-node",
+  "links": []
+}

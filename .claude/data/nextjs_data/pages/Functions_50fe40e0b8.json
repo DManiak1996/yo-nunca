@@ -1,0 +1,241 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions",
+  "title": "Functions",
+  "content": "",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Functions",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "after",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheLife",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheTag",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "connection",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cookies",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "draftMode",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "fetch",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "forbidden",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "generateImageMetadata",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "generateMetadata",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "generateSitemaps",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "generateStaticParams",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "generateViewport",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "headers",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "ImageResponse",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "NextRequest",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "NextResponse",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "notFound",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "permanentRedirect",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "redirect",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "refresh",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "revalidatePath",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "revalidateTag",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "unauthorized",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "unstable_cache",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "unstable_noStore",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "unstable_rethrow",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "updateTag",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "useLinkStatus",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "useParams",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "usePathname",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "useReportWebVitals",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "useRouter",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "useSearchParams",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "useSelectedLayoutSegment",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "useSelectedLayoutSegments",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "userAgent",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions/after",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheLife",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheTag",
+    "https://nextjs.org/docs/app/api-reference/functions/connection",
+    "https://nextjs.org/docs/app/api-reference/functions/cookies",
+    "https://nextjs.org/docs/app/api-reference/functions/draft-mode",
+    "https://nextjs.org/docs/app/api-reference/functions/fetch",
+    "https://nextjs.org/docs/app/api-reference/functions/forbidden",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-image-metadata",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-metadata",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-sitemaps",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-static-params",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-viewport",
+    "https://nextjs.org/docs/app/api-reference/functions/headers",
+    "https://nextjs.org/docs/app/api-reference/functions/image-response",
+    "https://nextjs.org/docs/app/api-reference/functions/next-request",
+    "https://nextjs.org/docs/app/api-reference/functions/next-response",
+    "https://nextjs.org/docs/app/api-reference/functions/not-found",
+    "https://nextjs.org/docs/app/api-reference/functions/permanentRedirect",
+    "https://nextjs.org/docs/app/api-reference/functions/redirect",
+    "https://nextjs.org/docs/app/api-reference/functions/refresh",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidatePath",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidateTag",
+    "https://nextjs.org/docs/app/api-reference/functions/unauthorized",
+    "https://nextjs.org/docs/app/api-reference/functions/unstable_cache",
+    "https://nextjs.org/docs/app/api-reference/functions/unstable_noStore",
+    "https://nextjs.org/docs/app/api-reference/functions/unstable_rethrow",
+    "https://nextjs.org/docs/app/api-reference/functions/updateTag",
+    "https://nextjs.org/docs/app/api-reference/functions/use-link-status",
+    "https://nextjs.org/docs/app/api-reference/functions/use-params",
+    "https://nextjs.org/docs/app/api-reference/functions/use-pathname",
+    "https://nextjs.org/docs/app/api-reference/functions/use-report-web-vitals",
+    "https://nextjs.org/docs/app/api-reference/functions/use-router",
+    "https://nextjs.org/docs/app/api-reference/functions/use-search-params",
+    "https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segment",
+    "https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segments",
+    "https://nextjs.org/docs/app/api-reference/functions/userAgent",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap"
+  ]
+}

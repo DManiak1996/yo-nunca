@@ -1,0 +1,19 @@
+{
+  "title": "Wise node",
+  "content": "Use the Wise node to automate work in Wise, and integrate Wise with other applications. n8n has built-in support for a wide range of Wise features, including getting profiles, exchange rates, and recipients.\n\nOn this page, you'll find a list of operations the Wise node supports and links to more resources.\n\nRefer to [Wise credentials](../../credentials/wise/) for guidance on setting up authentication.\n\n- Account\n  - Retrieve balances for all account currencies of this user.\n  - Retrieve currencies in the borderless account of this user.\n  - Retrieve the statement for the borderless account of this user.\n- Exchange Rate\n  - Get\n- Profile\n  - Get\n  - Get All\n- Recipient\n  - Get All\n- Quote\n  - Create\n  - Get\n- Transfer\n  - Create\n  - Delete\n  - Execute\n  - Get\n  - Get All\n\n## Templates and examples\n\n[Browse Wise integration templates](https://n8n.io/integrations/wise/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#wise-node",
+  "links": []
+}

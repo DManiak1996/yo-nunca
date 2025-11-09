@@ -1,0 +1,13 @@
+{
+  "title": "`vars`",
+  "content": "- Available on Self-hosted Enterprise and Pro and Enterprise Cloud plans.\n- You need access to the n8n instance owner account to create variables.\n\n`vars` contains all [Variables](../../../variables/) for the active environment. It's read-only: you can access variables using `vars`, but must set them using the UI.",
+  "code_samples": [
+    {
+      "code": "// Access a variable\n$vars.<variable-name>",
+      "language": "unknown"
+    }
+  ],
+  "headings": [],
+  "url": "llms-txt#`vars`",
+  "links": []
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Pipedrive Trigger node",
+  "content": "[Pipedrive](https://www.pipedrive.com/) is a cloud-based sales software company that aims to improve the productivity of businesses through the use of their software.\n\nYou can find authentication information for this node [here](../../credentials/pipedrive/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Pipedrive Trigger integrations](https://n8n.io/integrations/pipedrive-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#pipedrive-trigger-node",
+  "links": []
+}

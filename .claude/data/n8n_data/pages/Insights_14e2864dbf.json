@@ -1,0 +1,49 @@
+{
+  "title": "Insights",
+  "content": "Insights gives instance owners and admins visibility into how workflows perform over time. This feature consists of three parts:\n\n- [**Insights summary banner**](#insights-summary-banner): Shows key metrics about your instance from the last 7 days at the top of the overview space.\n- [**Insights dashboard**](#insights-dashboard): A more detailed visual breakdown with per-workflow metrics and historical comparisons.\n- [**Time saved (Workflow ROI)**](#setting-the-time-saved-by-a-workflow): For each workflow, you can set the number of minutes of work that each production execution saves you.\n\nThe insights summary banner displays activity from the last 7 days for all plans. The insights dashboard is only available on Pro (with limited date ranges) and Enterprise plans.\n\n## Insights summary banner\n\nn8n collects several metrics for both the insights summary banner and dashboard. They include:\n\n- Total production executions (not including sub-workflow executions or manual executions)\n- Total failed production executions\n- Production execution failure rate\n- Time saved (when set on at least one or more active workflows)\n- Run time average (including wait time from any wait nodes)\n\n## Insights dashboard\n\nThose on the Pro and Enterprise plans can access the **Insights** section from the side navigation. Each metric from the summary banner is also clickable, taking you to the corresponding chart.\n\nThe insights dashboard also has a table showing individual insights from each workflow including total production executions, failed production executions, failure rate, time saved, and run time average.\n\n## Insights time periods\n\nBy default, the insights summary banner and dashboard show a rolling 7 day window with a comparison to the previous period to identify increases or decreases for each metric. On the dashboard, paid plans also display data for other date ranges:\n\n- Pro: 7 and 14 days\n- Enterprise: 24 hours, 7 days, 14 days, 30 days, 90 days, 6 months, 1 year\n\n## Setting the time saved by a workflow\n\nFor each workflow, you can set the number of minutes of work a workflow saves you each time it runs. You can configure this by navigating to the workflow, selecting the three dots menu in the top right and selecting settings. There you can update the **Estimated time saved** value and save.\n\nThis setting helps you calculate how much time automating a process saves over time vs the manual effort to complete the same task or process. Once set, n8n calculates the amount of time the workflow saves you based on the number of production executions and displays it on the summary banner and dashboard.\n\n## Disable or configure insights metrics collection\n\nIf you self-host n8n, you can disable or configure insights and metrics collection using [environment variables](../hosting/configuration/environment-variables/insights/).\n\n### Which executions do n8n use to calculate the values in the insights banner and dashboard?\n\nn8n insights only collects data from production executions (for example, those from active workflows triggered on a schedule or a webhook) from the main (parent) workflow. This means that it doesn't count manual (test) executions or executions from sub-workflows or error workflows.\n\n### Does n8n use historic execution data when upgrading to a version with insights?\n\nn8n only starts collecting data for insights once you update to the first supported version (1.89.0). This means it only reports on executions from that point forward and you won't see execution data in insights from prior periods.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Insights summary banner",
+      "id": "insights-summary-banner"
+    },
+    {
+      "level": "h2",
+      "text": "Insights dashboard",
+      "id": "insights-dashboard"
+    },
+    {
+      "level": "h2",
+      "text": "Insights time periods",
+      "id": "insights-time-periods"
+    },
+    {
+      "level": "h2",
+      "text": "Setting the time saved by a workflow",
+      "id": "setting-the-time-saved-by-a-workflow"
+    },
+    {
+      "level": "h2",
+      "text": "Disable or configure insights metrics collection",
+      "id": "disable-or-configure-insights-metrics-collection"
+    },
+    {
+      "level": "h2",
+      "text": "Insights FAQs",
+      "id": "insights-faqs"
+    },
+    {
+      "level": "h3",
+      "text": "Which executions do n8n use to calculate the values in the insights banner and dashboard?",
+      "id": "which-executions-do-n8n-use-to-calculate-the-values-in-the-insights-banner-and-dashboard?"
+    },
+    {
+      "level": "h3",
+      "text": "Does n8n use historic execution data when upgrading to a version with insights?",
+      "id": "does-n8n-use-historic-execution-data-when-upgrading-to-a-version-with-insights?"
+    }
+  ],
+  "url": "llms-txt#insights",
+  "links": []
+}

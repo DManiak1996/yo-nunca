@@ -1,0 +1,70 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/unauthorized",
+  "title": "unauthorized.js",
+  "content": "The unauthorized file is used to render UI when the unauthorized function is invoked during authentication. Along with allowing you to customize the UI, Next.js will return a 401 status code.\n\nunauthorized.js components do not accept any props.\n\nYou can use unauthorized function to render the unauthorized.js file with a login UI.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "unauthorized.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Props",
+      "id": "props"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Displaying login UI to unauthenticated users",
+      "id": "displaying-login-ui-to-unauthenticated-users"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "unauthorized",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Login from '@/app/components/Login'\n \nexport default function Unauthorized() {\n  return (\n    <main>\n      <h1>401 - Unauthorized</h1>\n      <p>Please log in to access this page.</p>\n      <Login />\n    </main>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { verifySession } from '@/app/lib/dal'\nimport { unauthorized } from 'next/navigation'\n \nexport default async function DashboardPage() {\n  const session = await verifySession()\n \n  if (!session) {\n    unauthorized()\n  }\n \n  return <div>Dashboard</div>\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Login from '@/app/components/Login'\n \nexport default function UnauthorizedPage() {\n  return (\n    <main>\n      <h1>401 - Unauthorized</h1>\n      <p>Please log in to access this page.</p>\n      <Login />\n    </main>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/functions/unauthorized",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/unauthorized",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/template",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata"
+  ]
+}

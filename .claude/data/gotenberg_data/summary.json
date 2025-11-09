@@ -1,0 +1,25 @@
+{
+  "name": "gotenberg",
+  "total_pages": 4,
+  "base_url": "https://gotenberg.dev/",
+  "llms_txt_detected": false,
+  "llms_txt_variant": null,
+  "pages": [
+    {
+      "title": "Routes",
+      "url": "https://gotenberg.dev/docs/routes"
+    },
+    {
+      "title": "Webhook",
+      "url": "https://gotenberg.dev/docs/webhook"
+    },
+    {
+      "title": "Configuration",
+      "url": "https://gotenberg.dev/docs/configuration"
+    },
+    {
+      "title": "Troubleshooting",
+      "url": "https://gotenberg.dev/docs/troubleshooting"
+    }
+  ]
+}

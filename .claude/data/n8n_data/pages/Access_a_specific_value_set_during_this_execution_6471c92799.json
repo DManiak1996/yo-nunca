@@ -1,0 +1,8 @@
+{
+  "title": "Access a specific value set during this execution",
+  "content": "customData = _execution.customData.get(\"key\");\n```",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#access-a-specific-value-set-during-this-execution",
+  "links": []
+}

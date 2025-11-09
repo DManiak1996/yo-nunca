@@ -1,0 +1,33 @@
+{
+  "title": "Error handling",
+  "content": "When designing your flow logic, it's a good practice to consider potential errors, and set up methods to handle them gracefully. With an error workflow, you can control how n8n responds to a workflow execution failure.\n\nTo investigate failed executions, you can:\n\n- Review your [Executions](../../workflows/executions/), for a [single workflow](../../workflows/executions/single-workflow-executions/) or [all workflows you have access to](../../workflows/executions/all-executions/). You can [load data from previous execution](../../workflows/executions/debug/) into your current workflow.\n- Enable [Log streaming](../../log-streaming/).\n\n## Create and set an error workflow\n\nFor each workflow, you can set an error workflow in **Workflow Settings**. It runs if an execution fails. This means you can, for example, send email or Slack alerts when a workflow execution errors. The error workflow must start with the [Error Trigger](../../integrations/builtin/core-nodes/n8n-nodes-base.errortrigger/).\n\nYou can use the same error workflow for multiple workflows.\n\n1. Create a new workflow, with the Error Trigger as the first node.\n1. Give the workflow a name, for example `Error Handler`.\n1. Select **Save**.\n1. In the workflow where you want to use this error workflow:\n   1. Select **Options** > **Settings**.\n   1. In **Error workflow**, select the workflow you just created. For example, if you used the name Error Handler, select **Error handler**.\n   1. Select **Save**. Now, when this workflow errors, the related error workflow runs.\n\nThe default error data received by the Error Trigger is:\n\nAll information is always present, except:\n\n- `execution.id`: requires the execution to be saved in the database. Not present if the error is in the trigger node of the main workflow, as the workflow doesn't execute.\n- `execution.url`: requires the execution to be saved in the database. Not present if the error is in the trigger node of the main workflow, as the workflow doesn't execute.\n- `execution.retryOf`: only present when the execution is a retry of a failed execution.\n\nIf the error is caused by the trigger node of the main workflow, rather than a later stage, the data sent to the error workflow is different. There's less information in `execution{}` and more in `trigger{}`:\n\n## Cause a workflow execution failure using Stop And Error\n\nWhen you create and set an error workflow, n8n runs it when an execution fails. Usually, this is due to things like errors in node settings, or the workflow running out of memory.\n\nYou can add the [Stop And Error](../../integrations/builtin/core-nodes/n8n-nodes-base.stopanderror/) node to your workflow to force executions to fail under your chosen circumstances, and trigger the error workflow.",
+  "code_samples": [
+    {
+      "code": "[\n\t{\n\t\t\"execution\": {\n\t\t\t\"id\": \"231\",\n\t\t\t\"url\": \"https://n8n.example.com/execution/231\",\n\t\t\t\"retryOf\": \"34\",\n\t\t\t\"error\": {\n\t\t\t\t\"message\": \"Example Error Message\",\n\t\t\t\t\"stack\": \"Stacktrace\"\n\t\t\t},\n\t\t\t\"lastNodeExecuted\": \"Node With Error\",\n\t\t\t\"mode\": \"manual\"\n\t\t},\n\t\t\"workflow\": {\n\t\t\t\"id\": \"1\",\n\t\t\t\"name\": \"Example Workflow\"\n\t\t}\n\t}\n]",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  \"trigger\": {\n    \"error\": {\n      \"context\": {},\n      \"name\": \"WorkflowActivationError\",\n      \"cause\": {\n        \"message\": \"\",\n        \"stack\": \"\"\n      },\n      \"timestamp\": 1654609328787,\n      \"message\": \"\",\n      \"node\": {\n        . . . \n      }\n    },\n    \"mode\": \"trigger\"\n  },\n  \"workflow\": {\n    \"id\": \"\",\n    \"name\": \"\"\n  }\n}",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Create and set an error workflow",
+      "id": "create-and-set-an-error-workflow"
+    },
+    {
+      "level": "h2",
+      "text": "Error data",
+      "id": "error-data"
+    },
+    {
+      "level": "h2",
+      "text": "Cause a workflow execution failure using Stop And Error",
+      "id": "cause-a-workflow-execution-failure-using-stop-and-error"
+    }
+  ],
+  "url": "llms-txt#error-handling",
+  "links": []
+}

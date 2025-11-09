@@ -1,0 +1,44 @@
+{
+  "url": "https://nextjs.org/docs/pages/guides/babel",
+  "title": "How to configure Babel in Next.js",
+  "content": "Next.js includes the next/babel preset to your app, which includes everything needed to compile React applications and server-side code. But if you want to extend the default Babel configs, it's also possible.\n\nTo start, you only need to define a .babelrc file (or babel.config.js) in the root directory of your project. If such a file is found, it will be considered as the source of truth, and therefore it needs to define what Next.js needs as well, which is the next/babel preset.\n\nHere's an example .babelrc file:\n\nYou can take a look at this file to learn about the presets included by next/babel.\n\nTo add presets/plugins without configuring them, you can do it this way:\n\nTo add presets/plugins with custom configuration, do it on the next/babel preset like so:\n\nTo learn more about the available options for each config, visit babel's documentation site.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to configure Babel in Next.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Adding Presets and Plugins",
+      "id": "adding-presets-and-plugins"
+    },
+    {
+      "level": "h2",
+      "text": "Customizing Presets and Plugins",
+      "id": "customizing-presets-and-plugins"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "{\n  \"presets\": [\"next/babel\"],\n  \"plugins\": []\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  \"presets\": [\"next/babel\"],\n  \"plugins\": [\"@babel/plugin-proposal-do-expressions\"]\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  \"presets\": [\n    [\n      \"next/babel\",\n      {\n        \"preset-env\": {},\n        \"transform-runtime\": {},\n        \"styled-jsx\": {},\n        \"class-properties\": {}\n      }\n    ]\n  ],\n  \"plugins\": []\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/guides",
+    "https://nextjs.org/docs/pages/guides/babel",
+    "https://nextjs.org/docs/pages/guides/authentication",
+    "https://nextjs.org/docs/pages/guides/ci-build-caching"
+  ]
+}

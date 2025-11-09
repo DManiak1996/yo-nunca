@@ -1,0 +1,79 @@
+{
+  "url": "https://gotenberg.dev/docs/troubleshooting",
+  "title": "Troubleshooting",
+  "content": "If you encounter an issue not covered here, please:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Troubleshooting",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Chromium​",
+      "id": "chromium"
+    },
+    {
+      "level": "h3",
+      "text": "Large PDF File Size​",
+      "id": "large-pdf-file-size"
+    },
+    {
+      "level": "h3",
+      "text": "Trouble Starting​",
+      "id": "trouble-starting"
+    },
+    {
+      "level": "h3",
+      "text": "Printing Failed (-32000)​",
+      "id": "printing-failed--32000"
+    },
+    {
+      "level": "h3",
+      "text": "Blank PDFs​",
+      "id": "blank-pdfs"
+    },
+    {
+      "level": "h3",
+      "text": "Screenshots Repeated and Clipped​",
+      "id": "screenshots-repeated-and-clipped"
+    },
+    {
+      "level": "h3",
+      "text": "Timeouts (503 Service Unavailable)​",
+      "id": "timeouts-503-service-unavailable"
+    },
+    {
+      "level": "h2",
+      "text": "LibreOffice​",
+      "id": "libreoffice"
+    },
+    {
+      "level": "h3",
+      "text": "PDF/A-1a​",
+      "id": "pdfa-1a"
+    },
+    {
+      "level": "h3",
+      "text": "Internal Server Error (500)​",
+      "id": "internal-server-error-500"
+    },
+    {
+      "level": "h3",
+      "text": "Trouble Starting​",
+      "id": "trouble-starting-1"
+    },
+    {
+      "level": "h3",
+      "text": "Timeouts (503 Service Unavailable)​",
+      "id": "timeouts-503-service-unavailable-1"
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://gotenberg.dev/docs/troubleshooting",
+    "https://gotenberg.dev/docs/configuration",
+    "https://gotenberg.dev/docs/routes"
+  ]
+}

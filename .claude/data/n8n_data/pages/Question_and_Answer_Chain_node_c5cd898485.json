@@ -1,0 +1,34 @@
+{
+  "title": "Question and Answer Chain node",
+  "content": "Use the Question and Answer Chain node to use a [vector store](../../../../../glossary/#ai-vector-store) as a retriever.\n\nOn this page, you'll find the node parameters for the Question and Answer Chain node, and links to more resources.\n\nThe question you want to ask.\n\n## Templates and examples\n\n**Ask questions about a PDF using AI**\n\n[View template details](https://n8n.io/workflows/1960-ask-questions-about-a-pdf-using-ai/)\n\n**AI Crew to Automate Fundamental Stock Analysis - Q&A Workflow**\n\n[View template details](https://n8n.io/workflows/2183-ai-crew-to-automate-fundamental-stock-analysis-qanda-workflow/)\n\n**Advanced AI Demo (Presented at AI Developers #14 meetup)**\n\n[View template details](https://n8n.io/workflows/2358-advanced-ai-demo-presented-at-ai-developers-14-meetup/)\n\n[Browse Question and Answer Chain integration templates](https://n8n.io/integrations/retrieval-qanda-chain/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChain's documentation on retrieval chains](https://js.langchain.com/docs/tutorials/rag/) for examples of how LangChain can use a vector store as a retriever.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.\n\nFor common errors or issues and suggested resolution steps, refer to [Common Issues](common-issues/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Query",
+      "id": "query"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    }
+  ],
+  "url": "llms-txt#question-and-answer-chain-node",
+  "links": []
+}

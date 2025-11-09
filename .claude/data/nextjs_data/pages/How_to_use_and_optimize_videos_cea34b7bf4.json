@@ -1,0 +1,137 @@
+{
+  "url": "https://nextjs.org/docs/15/app/guides/videos",
+  "title": "How to use and optimize videos",
+  "content": "This page outlines how to use videos with Next.js applications, showing how to store and display video files without affecting performance.\n\nVideos can be embedded on the page using the HTML <video> tag for direct video files and <iframe> for external platform-hosted videos.\n\nThe HTML <video> tag can embed self-hosted or directly served video content, allowing full control over the playback and appearance.\n\nGood to know: When using the autoPlay attribute, it is important to also include the muted attribute to ensure the video plays automatically in most browsers and the playsInline attribute for compatibility with iOS devices.\n\nFor a comprehensive list of video attributes, refer to the MDN documentation.\n\nThe HTML <iframe> tag allows you to embed videos from external platforms like YouTube or Vimeo.\n\nFor a comprehensive list of iframe attributes, refer to the MDN documentation.\n\nThere are two ways you can embed videos in your Next.js application:\n\nChoose the embedding method that aligns with your application's requirements and the user experience you aim to deliver.\n\nTo embed videos from external platforms, you can use Next.js to fetch the video information and React Suspense to handle the fallback state while loading.\n\n1. Create a Server Component for video embedding\n\nThe first step is to create a Server Component that generates the appropriate iframe for embedding the video. This component will fetch the source URL for the video and render the iframe.\n\n2. Stream the video component using React Suspense\n\nAfter creating the Server Component to embed the video, the next step is to stream the component using React Suspense.\n\nGood to know: When embedding videos from external platforms, consider the following best practices:\n\nThis approach results in a better user experience as it prevents the page from blocking, meaning the user can interact with the page while the video component streams in.\n\nFor a more engaging and informative loading experience, consider using a loading skeleton as the fallback UI. So instead of showing a simple loading message, you can show a skeleton that resembles the video player like this:\n\nSelf-hosting videos may be preferable for several reasons:\n\nVercel Blob offers an efficient way to host videos, providing a scalable cloud storage solution that works well with Next.js. Here's how you can host a video using Vercel Blob:\n\n1. Uploading a video to Vercel Blob\n\nIn your Vercel dashboard, navigate to the \"Storage\" tab and select your Vercel Blob store. In the Blob table's upper-right corner, find and click the \"Upload\" button. Then, choose the video file you wish to upload. After the upload completes, the video file will appear in the Blob table.\n\nAlternatively, you can upload your video using a server action. For detailed instructions, refer to the Vercel documentation on server-side uploads. Vercel also supports client-side uploads. This method may be preferable for certain use cases.\n\n2. Displaying the video in Next.js\n\nOnce the video is uploaded and stored, you can display it in your Next.js application. Here's an example of how to do this using the <video> tag and React Suspense:\n\nIn this approach, the page uses the video's @vercel/blob URL to display the video using the VideoComponent. React Suspense is used to show a fallback until the video URL is fetched and the video is ready to be displayed.\n\nIf you have subtitles for your video, you can easily add them using the <track> element inside your <video> tag. You can fetch the subtitle file from Vercel Blob in a similar way as the video file. Here's how you can update the <VideoComponent> to include subtitles.\n\nBy following this approach, you can effectively self-host and integrate videos into your Next.js applications.\n\nTo continue learning more about video optimization and best practices, please refer to the following resources:\n\nExplore these video streaming platforms for integrating video into your Next.js projects:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to use and optimize videos",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Using <video> and <iframe>",
+      "id": "using-video-and-iframe"
+    },
+    {
+      "level": "h3",
+      "text": "<video>",
+      "id": "video"
+    },
+    {
+      "level": "h3",
+      "text": "Common <video> tag attributes",
+      "id": "common-video-tag-attributes"
+    },
+    {
+      "level": "h3",
+      "text": "Video best practices",
+      "id": "video-best-practices"
+    },
+    {
+      "level": "h3",
+      "text": "<iframe>",
+      "id": "iframe"
+    },
+    {
+      "level": "h3",
+      "text": "Common <iframe> tag attributes",
+      "id": "common-iframe-tag-attributes"
+    },
+    {
+      "level": "h3",
+      "text": "Choosing a video embedding method",
+      "id": "choosing-a-video-embedding-method"
+    },
+    {
+      "level": "h3",
+      "text": "Embedding externally hosted videos",
+      "id": "embedding-externally-hosted-videos"
+    },
+    {
+      "level": "h2",
+      "text": "Self-hosted videos",
+      "id": "self-hosted-videos"
+    },
+    {
+      "level": "h3",
+      "text": "Using Vercel Blob for video hosting",
+      "id": "using-vercel-blob-for-video-hosting"
+    },
+    {
+      "level": "h3",
+      "text": "Adding subtitles to your video",
+      "id": "adding-subtitles-to-your-video"
+    },
+    {
+      "level": "h2",
+      "text": "Resources",
+      "id": "resources"
+    },
+    {
+      "level": "h3",
+      "text": "Open source next-video component",
+      "id": "open-source-next-video-component"
+    },
+    {
+      "level": "h3",
+      "text": "Cloudinary Integration",
+      "id": "cloudinary-integration"
+    },
+    {
+      "level": "h3",
+      "text": "Mux Video API",
+      "id": "mux-video-api"
+    },
+    {
+      "level": "h3",
+      "text": "Fastly",
+      "id": "fastly"
+    },
+    {
+      "level": "h3",
+      "text": "ImageKit.io Integration",
+      "id": "imagekitio-integration"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export function Video() {\n  return (\n    <video width=\"320\" height=\"240\" controls preload=\"none\">\n      <source src=\"/path/to/video.mp4\" type=\"video/mp4\" />\n      <track\n        src=\"/path/to/captions.vtt\"\n        kind=\"subtitles\"\n        srcLang=\"en\"\n        label=\"English\"\n      />\n      Your browser does not support the video tag.\n    </video>\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export default function Page() {\n  return (\n    <iframe src=\"https://www.youtube.com/embed/19g66ezsKAg\" allowFullScreen />\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export default async function VideoComponent() {\n  const src = await getVideoSrc()\n \n  return <iframe src={src} allowFullScreen />\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { Suspense } from 'react'\nimport VideoComponent from '../ui/VideoComponent.jsx'\n \nexport default function Page() {\n  return (\n    <section>\n      <Suspense fallback={<p>Loading video...</p>}>\n        <VideoComponent />\n      </Suspense>\n      {/* Other content of the page */}\n    </section>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Suspense } from 'react'\nimport VideoComponent from '../ui/VideoComponent.jsx'\nimport VideoSkeleton from '../ui/VideoSkeleton.jsx'\n \nexport default function Page() {\n  return (\n    <section>\n      <Suspense fallback={<VideoSkeleton />}>\n        <VideoComponent />\n      </Suspense>\n      {/* Other content of the page */}\n    </section>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Suspense } from 'react'\nimport { list } from '@vercel/blob'\n \nexport default function Page() {\n  return (\n    <Suspense fallback={<p>Loading video...</p>}>\n      <VideoComponent fileName=\"my-video.mp4\" />\n    </Suspense>\n  )\n}\n \nasync function VideoComponent({ fileName }) {\n  const { blobs } = await list({\n    prefix: fileName,\n    limit: 1,\n  })\n  const { url } = blobs[0]\n \n  return (\n    <video controls preload=\"none\" aria-label=\"Video player\">\n      <source src={url} type=\"video/mp4\" />\n      Your browser does not support the video tag.\n    </video>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "async function VideoComponent({ fileName }) {\n  const { blobs } = await list({\n    prefix: fileName,\n    limit: 2,\n  })\n  const { url } = blobs[0]\n  const { url: captionsUrl } = blobs[1]\n \n  return (\n    <video controls preload=\"none\" aria-label=\"Video player\">\n      <source src={url} type=\"video/mp4\" />\n      <track src={captionsUrl} kind=\"subtitles\" srcLang=\"en\" label=\"English\" />\n      Your browser does not support the video tag.\n    </video>\n  )\n}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/15/app",
+    "https://nextjs.org/docs/15/app/guides",
+    "https://nextjs.org/docs/15/app/guides/videos",
+    "https://nextjs.org/docs/15/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/15/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/15/app/guides/upgrading/version-15",
+    "https://nextjs.org/docs/15/app/api-reference"
+  ]
+}

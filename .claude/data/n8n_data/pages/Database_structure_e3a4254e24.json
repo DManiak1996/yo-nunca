@@ -1,0 +1,144 @@
+{
+  "title": "Database structure",
+  "content": "This page describes the purpose of each table in the n8n database.\n\n## Database and query technology\n\nBy default, n8n uses SQLite as the database. If you are using another database the structure will be similar, but the data-types may be different depending on the database.\n\nn8n uses [TypeORM](https://github.com/typeorm/typeorm) for queries and migrations.\n\nTo inspect the n8n database, you can use [DBeaver](https://dbeaver.io), which is an open-source universal database tool.\n\nThese are the tables n8n creates during setup.\n\nStores details of external authentication providers when using [SAML](../../../user-management/saml/).\n\n### auth_provider_sync_history\n\nStores the history of a SAML connection.\n\n### credentials_entity\n\nStores the [credentials](../../../glossary/#credential-n8n) used to authenticate with integrations.\n\n### event_destinations\n\nContains the destination configurations for [Log streaming](../../../log-streaming/).\n\nContains the workflow at time of running, and the execution data.\n\nStores all saved workflow executions. Workflow settings can affect which executions n8n saves.\n\n### execution_metadata\n\nStores [Custom executions data](../../../workflows/executions/custom-executions-data/).\n\nLists the [community nodes](../../../integrations/community-nodes/installation/) installed in your n8n instance.\n\n### installed_packages\n\nDetails of npm community nodes packages installed in your n8n instance. [installed_nodes](#installed_nodes) lists each individual node. `installed_packages` lists npm packages, which may contain more than one node.\n\nA log of all database migrations. Read more about [Migrations](https://typeorm.io/docs/advanced-topics/migrations/) in TypeORM's documentation.\n\nLists the [projects](../../../user-management/rbac/projects/) in your instance.\n\nDescribes the relationship between a user and a [project](../../../user-management/rbac/projects/), including the user's [role type](../../../user-management/rbac/role-types/).\n\nNot currently used. For use in future work on custom roles.\n\nRecords custom instance settings. These are settings that you can't control using environment variables. They include:\n\n- Whether the instance owner is set up\n- Whether the user chose to skip owner and user management setup\n- Whether certain types of authentication, including SAML and LDAP, are on\n- License key\n\n### shared_credentials\n\nMaps credentials to users.\n\nMaps workflows to users.\n\nAll workflow tags created in the n8n instance. This table lists the tags. [workflows_tags](#workflows_tags) records which workflows have which tags.\n\nStore [variables](../../../code/variables/).\n\nRecords the active webhooks in your n8n instance's workflows. This isn't just webhooks uses in the Webhook node. It includes all active webhooks used by any trigger node.\n\nYour n8n instance's saved workflows.\n\nStore previous versions of workflows.\n\n### workflow_statistics\n\nCounts workflow IDs and their status.\n\nMaps tags to workflows. [tag_entity](#tag_entity) contains tag details.\n\n## Entity Relationship Diagram (ERD)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Database and query technology",
+      "id": "database-and-query-technology"
+    },
+    {
+      "level": "h2",
+      "text": "Tables",
+      "id": "tables"
+    },
+    {
+      "level": "h3",
+      "text": "auth_identity",
+      "id": "auth_identity"
+    },
+    {
+      "level": "h3",
+      "text": "auth_provider_sync_history",
+      "id": "auth_provider_sync_history"
+    },
+    {
+      "level": "h3",
+      "text": "credentials_entity",
+      "id": "credentials_entity"
+    },
+    {
+      "level": "h3",
+      "text": "event_destinations",
+      "id": "event_destinations"
+    },
+    {
+      "level": "h3",
+      "text": "execution_data",
+      "id": "execution_data"
+    },
+    {
+      "level": "h3",
+      "text": "execution_entity",
+      "id": "execution_entity"
+    },
+    {
+      "level": "h3",
+      "text": "execution_metadata",
+      "id": "execution_metadata"
+    },
+    {
+      "level": "h3",
+      "text": "installed_nodes",
+      "id": "installed_nodes"
+    },
+    {
+      "level": "h3",
+      "text": "installed_packages",
+      "id": "installed_packages"
+    },
+    {
+      "level": "h3",
+      "text": "migrations",
+      "id": "migrations"
+    },
+    {
+      "level": "h3",
+      "text": "project",
+      "id": "project"
+    },
+    {
+      "level": "h3",
+      "text": "project_relation",
+      "id": "project_relation"
+    },
+    {
+      "level": "h3",
+      "text": "role",
+      "id": "role"
+    },
+    {
+      "level": "h3",
+      "text": "settings",
+      "id": "settings"
+    },
+    {
+      "level": "h3",
+      "text": "shared_credentials",
+      "id": "shared_credentials"
+    },
+    {
+      "level": "h3",
+      "text": "shared_workflow",
+      "id": "shared_workflow"
+    },
+    {
+      "level": "h3",
+      "text": "tag_entity",
+      "id": "tag_entity"
+    },
+    {
+      "level": "h3",
+      "text": "user",
+      "id": "user"
+    },
+    {
+      "level": "h3",
+      "text": "variables",
+      "id": "variables"
+    },
+    {
+      "level": "h3",
+      "text": "webhook_entity",
+      "id": "webhook_entity"
+    },
+    {
+      "level": "h3",
+      "text": "workflow_entity",
+      "id": "workflow_entity"
+    },
+    {
+      "level": "h3",
+      "text": "workflow_history",
+      "id": "workflow_history"
+    },
+    {
+      "level": "h3",
+      "text": "workflow_statistics",
+      "id": "workflow_statistics"
+    },
+    {
+      "level": "h3",
+      "text": "workflows_tags",
+      "id": "workflows_tags"
+    },
+    {
+      "level": "h2",
+      "text": "Entity Relationship Diagram (ERD)",
+      "id": "entity-relationship-diagram-(erd)"
+    }
+  ],
+  "url": "llms-txt#database-structure",
+  "links": []
+}

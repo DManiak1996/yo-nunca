@@ -1,0 +1,33 @@
+{
+  "title": "Mapping in the UI",
+  "content": "Data mapping means referencing data from previous nodes. It doesn't include changing (transforming) data, just referencing it.\n\nYou can map data in the following ways:\n\n- Using the expressions editor.\n- By dragging and dropping data from the **INPUT** into parameters. This generates the expression for you.\n\nFor information on errors with mapping and linking items, refer to [Item linking errors](../data-item-linking/item-linking-errors/).\n\n## How to drag and drop data\n\n1. Run your workflow to load data.\n1. Open the node where you need to map data.\n1. You can map in table, JSON, and schema view:\n   - In table view: click and hold a table heading to map top level data, or a field in the table to map nested data.\n   - In JSON view: click and hold a key.\n   - In schema view: click and hold a key.\n1. Drag the item into the field where you want to use the data.\n\n### Understand what you're mapping with drag and drop\n\nData mapping maps the key path, and loads the key's value into the field. For example, given the following data:\n\nYou can map `fruit` by dragging and dropping **fruit** from the **INPUT** into the field where you want to use its value. This creates an expression, `{{ $json.fruit }}`. When the node iterates over input items, the value of the field becomes the value of `fruit` for each item.\n\n### Understand nested data\n\nGiven the following data:\n\nn8n displays it in table form like this:",
+  "code_samples": [
+    {
+      "code": "[\n\t{\n\t\t\"fruit\": \"apples\",\n\t\t\"color\": \"green\"\n\t}\n]",
+      "language": "unknown"
+    },
+    {
+      "code": "[\n  {\n    \"name\": \"First item\",\n    \"nested\": {\n      \"example-number-field\": 1,\n      \"example-string-field\": \"apples\"\n    }\n  },\n  {\n    \"name\": \"Second item\",\n    \"nested\": {\n      \"example-number-field\": 2,\n      \"example-string-field\": \"oranges\"\n    }\n  }\n]",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "How to drag and drop data",
+      "id": "how-to-drag-and-drop-data"
+    },
+    {
+      "level": "h3",
+      "text": "Understand what you're mapping with drag and drop",
+      "id": "understand-what-you're-mapping-with-drag-and-drop"
+    },
+    {
+      "level": "h3",
+      "text": "Understand nested data",
+      "id": "understand-nested-data"
+    }
+  ],
+  "url": "llms-txt#mapping-in-the-ui",
+  "links": []
+}

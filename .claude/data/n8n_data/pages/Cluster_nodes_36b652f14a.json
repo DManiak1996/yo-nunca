@@ -1,0 +1,19 @@
+{
+  "title": "Cluster nodes",
+  "content": "[Cluster nodes](../../../glossary/#cluster-node-n8n) are node groups that work together to provide functionality in an n8n workflow. Instead of using a single node, you use a [root node](../../../glossary/#root-node-n8n) and one or more [sub-nodes](../../../glossary/#sub-node-n8n) that extend the functionality of the node.\n\nEach cluster starts with one [root node](../../../glossary/#root-node-n8n).\n\nEach root node can have one or more [sub-nodes](../../../glossary/#sub-node-n8n) attached to it.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Root nodes",
+      "id": "root-nodes"
+    },
+    {
+      "level": "h2",
+      "text": "Sub-nodes",
+      "id": "sub-nodes"
+    }
+  ],
+  "url": "llms-txt#cluster-nodes",
+  "links": []
+}

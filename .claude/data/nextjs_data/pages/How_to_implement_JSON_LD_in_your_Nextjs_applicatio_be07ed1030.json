@@ -1,0 +1,29 @@
+{
+  "url": "https://nextjs.org/docs/app/guides/json-ld",
+  "title": "How to implement JSON-LD in your Next.js application",
+  "content": "JSON-LD is a format for structured data that can be used by search engines and AI to help them understand the structure of the page beyond pure content. For example, you can use it to describe a person, an event, an organization, a movie, a book, a recipe, and many other types of entities.\n\nOur current recommendation for JSON-LD is to render structured data as a <script> tag in your layout.js or page.js components.\n\nThe following snippet uses JSON.stringify, which does not sanitize malicious strings used in XSS injection. To prevent this type of vulnerability, you can scrub HTML tags from the JSON-LD payload, for example, by replacing the character, <, with its unicode equivalent, \\u003c.\n\nReview your organization's recommended approach to sanitize potentially dangerous strings, or use community maintained alternatives for JSON.stringify such as, serialize-javascript.\n\nYou can validate and test your structured data with the Rich Results Test for Google or the generic Schema Markup Validator.\n\nYou can type your JSON-LD with TypeScript using community packages like schema-dts:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to implement JSON-LD in your Next.js application",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export default async function Page({ params }) {\n  const { id } = await params\n  const product = await getProduct(id)\n \n  const jsonLd = {\n    '@context': 'https://schema.org',\n    '@type': 'Product',\n    name: product.name,\n    image: product.image,\n    description: product.description,\n  }\n \n  return (\n    <section>\n      {/* Add JSON-LD to your page */}\n      <script\n        type=\"application/ld+json\"\n        dangerouslySetInnerHTML={{\n          __html: JSON.stringify(jsonLd).replace(/</g, '\\\\u003c'),\n        }}\n      />\n      {/* ... */}\n    </section>\n  )\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { Product, WithContext } from 'schema-dts'\n \nconst jsonLd: WithContext<Product> = {\n  '@context': 'https://schema.org',\n  '@type': 'Product',\n  name: 'Next.js Sticker',\n  image: 'https://nextjs.org/imgs/sticker.png',\n  description: 'Dynamic at the speed of static.',\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/guides",
+    "https://nextjs.org/docs/app/guides/internationalization",
+    "https://nextjs.org/docs/app/guides/lazy-loading"
+  ]
+}

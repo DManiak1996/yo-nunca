@@ -1,0 +1,24 @@
+{
+  "title": "Home Assistant node",
+  "content": "Use the Home Assistant node to automate work in Home Assistant, and integrate Home Assistant with other applications. n8n has built-in support for a wide range of Home Assistant features, including getting, creating, and checking camera proxies, configurations, logs, services, and templates.\n\nOn this page, you'll find a list of operations the Home Assistant node supports and links to more resources.\n\nRefer to [Home Assistant credentials](../../credentials/homeassistant/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- Camera Proxy\n  - Get the camera screenshot\n- Config\n  - Get the configuration\n  - Check the configuration\n- Event\n  - Create an event\n  - Get all events\n- Log\n  - Get a log for a specific entity\n  - Get all logs\n- Service\n  - Call a service within a specific domain\n  - Get all services\n- State\n  - Create a new record, or update the current one if it already exists (upsert)\n  - Get a state for a specific entity\n  - Get all states\n- Template\n  - Create a template\n\n## Templates and examples\n\n**Turn on a light to a specific color on any update in GitHub repository**\n\n[View template details](https://n8n.io/workflows/1856-turn-on-a-light-to-a-specific-color-on-any-update-in-github-repository/)\n\n**Birthday and Ephemeris Notification (Google Contact, Telegram & Home Assistant)**\n\n[View template details](https://n8n.io/workflows/4462-birthday-and-ephemeris-notification-google-contact-telegram-and-home-assistant/)\n\n**📍 Daily Nearby Garage Sales Alerts via Telegram**\n\n[View template details](https://n8n.io/workflows/4649-daily-nearby-garage-sales-alerts-via-telegram/)\n\n[Browse Home Assistant integration templates](https://n8n.io/integrations/home-assistant/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [Home Assistant's documentation](https://developers.home-assistant.io/docs/api/rest/) for more information about the service.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#home-assistant-node",
+  "links": []
+}

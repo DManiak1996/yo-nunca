@@ -1,0 +1,111 @@
+{
+  "title": "Oracle Database node",
+  "content": "Use the Oracle Database node to automate work in Oracle Database, and integrate Oracle Database with other applications. n8n has built-in support for a wide range of Oracle Database features which includes executing an SQL statement, fetching, inserting, updating or deleting data from Oracle Database. This node uses the [node-oracledb driver](https://github.com/oracle/node-oracledb) internally.\n\nOn this page, you'll find a list of operations the Oracle Database node supports and links to more resources.\n\nRefer to [Oracle Database credentials](../../credentials/oracledb/) for guidance on setting up authentication.\n\nRequires Oracle Database **19c or later**. For thick mode, use Oracle Client Libraries **19c or later**.\n\n- [**Delete**](#delete): Delete an entire table or rows in a table\n- [**Execute SQL**](#execute-sql): Execute an SQL statement\n- [**Insert**](#insert): Insert rows in a table\n- [**Insert or Update**](#insert-or-update): Insert or update rows in a table\n- [**Select**](#select): Select rows from a table\n- [**Update**](#update): Update rows in a table\n\nUse this operation to delete an entire table or rows in a table.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [Oracle Database credential](../../credentials/oracledb/).\n- **Operation**: Select **Delete**.\n- **Schema**: Choose the schema that contains the table you want to work on. Select **From list** to choose the schema from the dropdown list or **By Name** to enter the schema name.\n- **Table**: Choose the table that you want to work on. Select **From list** to choose the table from the dropdown list, or select **By Name** to enter the table name.\n- **Command**: The deletion action to take:\n  - **Truncate**: Removes the table's data but preserves the table's structure.\n  - **Delete**: Delete the rows that match the \"Select Rows\" condition. If you don't select anything, Oracle Database deletes all rows.\n    - **Select Rows**: Define a **Column**, **Operator**, and **Value** to match rows on. The value can be passed as JSON using expression or string.\n    - **Combine Conditions**: How to combine the conditions in \"Select Rows\". The **AND** requires all conditions to be true, while **OR** requires at least one condition to be true.\n  - **Drop**: Deletes the table's data and structure permanently.\n\n- **Auto Commit**: When this property is set to true, the transaction in the current connection is automatically committed at the end of statement execution.\n- **Statement Batching**: The way to send statements to the database:\n  - **Single Statement**: A single statement for all incoming items.\n  - **Independently**: Execute one statement per incoming item of the execution.\n  - **Transaction**: Execute all statements in a transaction. If a failure occurs, Oracle Database rolls back all changes.\n\nUse this operation to execute an SQL statement.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [Oracle Database credential](../../credentials/oracledb/).\n\n- **Operation**: Execute SQL **Execute SQL**.\n\n- **Statement**: The SQL statement to execute. You can use n8n [expressions](../../../../code/expressions/) and positional parameters like `:1`, `:2`, or named parameters like `:name`, `:id` to use with [Use bind parameters](#use-bind-parameters). To run a PL/SQL procedure, for example `demo`, you can use:\n\n#### Execute Statement options\n\n- **Auto Commit**: When this property is set to true, the transaction in the current connection is automatically committed at the end of statement execution.\n- **Bind Variable Placeholder Values**: Enter the values for the bind parameters used in the statement [Use bind parameters](#use-bind-parameters).\n- **Output Numbers As String**: Indicates if the numbers should be retrieved as a String.\n- **Fetch Array Size**: This property is a number that sets the size of an internal buffer used for fetching query rows from Oracle Database. Changing it may affect query performance but does not affect how many rows are returned to the application.\n- **Number of Rows to Prefetch**: This property is a query tuning option to set the number of additional rows the underlying Oracle driver fetches during the internal initial statement execution phase of a query.\n\nUse this operation to insert rows in a table.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [Oracle Database credential](../../credentials/oracledb/).\n- **Operation**: Select **Insert**.\n- **Schema**: Choose the schema that contains the table you want to work on. Select **From list** to choose the schema from the dropdown list or **By Name** to enter the schema name.\n- **Table**: Choose the table that you want to work on. Select **From list** to choose the table from the dropdown list, or select **By Name** to enter the table name.\n- **Mapping Column Mode**: How to map column names to incoming data:\n  - **Map Each Column Manually**: Select the values to use for each column [Use n8n expressions for bind values](#use-n8n-expressions-for-bind-values).\n  - **Map Automatically**: Automatically map incoming data to matching column names in Oracle Database. The incoming data field names must match the column names in Oracle Database for this to work. If necessary, consider using the [edit fields (set) node](../../core-nodes/n8n-nodes-base.set/) before this node to adjust the format as needed.\n\n- **Auto Commit**: When this property is set to true, the transaction in the current connection is automatically committed at the end of statement execution.\n- **Output Columns**: Choose which columns to output. You can select from a list of available columns or specify IDs using [expressions](../../../../code/expressions/).\n- **Statement Batching**: The way to send statements to the database:\n  - **Single Statement**: A single statement for all incoming items.\n  - **Independently**: Execute one statement per incoming item of the execution.\n  - **Transaction**: Execute all statements in a transaction. If a failure occurs, Oracle Database rolls back all changes.\n\nUse this operation to insert or update rows in a table.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [Oracle Database credential](../../credentials/oracledb/).\n- **Operation**: Select **Insert or Update**.\n- **Schema**: Choose the schema that contains the table you want to work on. Select **From list** to choose the schema from the dropdown list or **By Name** to enter the schema name.\n- **Table**: Choose the table that you want to work on. Select **From list** to choose the table from the dropdown list, or select **By Name** to enter the table name.\n- **Mapping Column Mode**: How to map column names to incoming data:\n  - **Map Each Column Manually**: Select the values to use for each column [Use n8n expressions for bind values](#use-n8n-expressions-for-bind-values).\n  - **Map Automatically**: Automatically map incoming data to matching column names in Oracle Database. The incoming data field names must match the column names in Oracle Database for this to work. If necessary, consider using the [edit fields (set) node](../../core-nodes/n8n-nodes-base.set/) before this node to adjust the format as needed.\n\n#### Insert or Update options\n\n- **Auto Commit**: When this property is set to true, the transaction in the current connection is automatically committed at the end of statement execution.\n- **Output Columns**: Choose which columns to output. You can select from a list of available columns or specify IDs using [expressions](../../../../code/expressions/).\n- **Statement Batching**: The way to send statements to the database:\n  - **Single Statement**: A single statement for all incoming items.\n  - **Independently**: Execute one statement per incoming item of the execution.\n  - **Transaction**: Execute all statements in a transaction. If a failure occurs, Oracle Database rolls back all changes.\n\nUse this operation to select rows in a table.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [Oracle Database credential](../../credentials/oracledb/).\n- **Operation**: Select **Select**.\n- **Schema**: Choose the schema that contains the table you want to work on. Select **From list** to choose the schema from the dropdown list or **By Name** to enter the schema name.\n- **Table**: Choose the table that you want to work on. Select **From list** to choose the table from the dropdown list, or select **By Name** to enter the table name.\n- **Return All**: Whether to return all results or only up to a given limit.\n- **Limit**: The maximum number of items to return when **Return All** is disabled.\n- **Select Rows**: Set the conditions to select rows. Define a **Column**, **Operator**, and **Value**(as `json`) to match rows on. The **Value** can vary by type — for example with Fixed mode:\n  - String: \"hello\", hellowithoutquotes, \"hello with space\"\n  - Number: 12\n  - JSON: { \"key\": \"val\" }\n\nIf you don't select anything, Oracle Database selects all rows.\n\n- **Combine Conditions**: How to combine the conditions in **Select Rows**. The **AND** requires all conditions to be true, while **OR** requires at least one condition to be true.\n- **Sort**: Choose how to sort the selected rows. Choose a **Column** from a list or by ID and a sort **Direction**.\n\n- **Auto Commit**: When this property is set to true, the transaction in the current connection is automatically committed at the end of statement execution.\n- **Output Numbers As String**: Indicates if the numbers should be retrieved as a String.\n- **Fetch Array Size**: This property is a number that sets the size of an internal buffer used for fetching query rows from Oracle Database. Changing it may affect query performance but does not affect how many rows are returned to the application.\n- **Number of Rows to Prefetch**: This property is a query tuning option to set the number of additional rows the underlying Oracle driver fetches during the internal initial statement execution phase of a query.\n\nUse this operation to update rows in a table.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [Oracle Database credential](../../credentials/oracledb/).\n- **Operation**: Select **Update**.\n- **Schema**: Choose the schema that contains the table you want to work on. Select **From list** to choose the schema from the dropdown list or **By Name** to enter the schema name.\n- **Table**: Choose the table that you want to work on. Select **From list** to choose the table from the dropdown list, or select **By Name** to enter the table name.\n- **Mapping Column Mode**: How to map column names to incoming data:\n  - **Map Each Column Manually**: Select the values to use for each column [Use n8n expressions for bind values](#use-n8n-expressions-for-bind-values).\n  - **Map Automatically**: Automatically map incoming data to matching column names in Oracle Database. The incoming data field names must match the column names in Oracle Database for this to work. If necessary, consider using the [edit fields (set) node](../../core-nodes/n8n-nodes-base.set/) before this node to adjust the format as needed.\n\n- **Auto Commit**: When this property is set to true, the transaction in the current connection is automatically committed at the end of statement execution.\n- **Output Columns**: Choose which columns to output. You can select from a list of available columns or specify IDs using [expressions](../../../../code/expressions/).\n- **Statement Batching**: The way to send statements to the database:\n  - **Single Statement**: A single statement for all incoming items.\n  - **Independently**: Execute one statement per incoming item of the execution.\n  - **Transaction**: Execute all statements in a transaction. If a failure occurs, Oracle Database rolls back all changes.\n\nRefer to [SQL Language Reference](https://www.oracle.com/pls/topic/lookup?ctx=dblatest&id=SQLRF) for more information about the service.\n\nRefer to [node-oracledb documentation](https://node-oracledb.readthedocs.io/en/latest/) for more information about the node-oracledb driver.\n\n## Use bind parameters\n\nWhen creating a statement to run on an Oracle database instance, you can use the **Bind Variable Placeholder Values** field in the **Options** section to load data into the statement. n8n sanitizes data in statement parameters, which prevents SQL injection.\n\nFor example, you would want to find specific fruits by their color. Given the following input data:\n\nYou can write a statement like:\n\nThen in **Bind Variable Placeholder Values**, provide the field values to use. You can provide fixed values or expressions. For this example, use expressions so the node can pull the color from each input item in turn:\n\n## Use n8n Expressions for bind values\n\nFor **Values to Send**, you can provide inputs using n8n Expressions. Below are examples for different data types — you can either enter constant values or reference fields from previous items (`$json`):\n\n- Constant: `{{ { k1: \"v1\", k2: \"v2\" } }}`\n- From a previous item: `{{ $json.COL_JSON }}`\n\n- Constant: `{{ [1, 2, 3, 4.5] }}`\n- From a previous item: `{{ $json.COL_VECTOR }}`\n\n- Constant: `{{ [94, 87, 34] }}` or `{{ ' BLOB data string' }}`\n- From a previous item: `{{ $json.COL_BLOB }}`\n\n- Constant: `{{ [94, 87, 34] }}`\n- From a previous item: `{{ $json.COL_RAW }}`\n\n- Constant: `{{ true }}`\n- From a previous item: `{{ $json.COL_BOOLEAN }}`\n\n- Constant: `1234`\n- From a previous item: `{{ $json.COL_NUMBER }}`\n\n- Constant: `' Hello World '`\n- From a previous item: `{{ $json.COL_CHAR }}`\n\nThese examples assume JSON keys (e.g. `COL_JSON, COL_VECTOR`) map directly to the respective SQL column types.",
+  "code_samples": [
+    {
+      "code": "BEGIN\n    demo;\n  END;",
+      "language": "unknown"
+    },
+    {
+      "code": "[\n    {\n        \"FRUIT_ID\": 1,\n        \"FRUIT_NAME\": \"Apple\",\n        \"COLOR\": \"Red\" \n    },\n    {\n        \"FRUIT_ID\": 2,\n        \"FRUIT_NAME\": \"Banana\",\n        \"COLOR\": \"Yellow\"\n    }\n]",
+      "language": "unknown"
+    },
+    {
+      "code": "SELECT * FROM FRUITS WHERE COLOR = :col",
+      "language": "unknown"
+    },
+    {
+      "code": "// fruits is an example table name\nfruits, {{ $json.color }}",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h3",
+      "text": "Delete",
+      "id": "delete"
+    },
+    {
+      "level": "h3",
+      "text": "Execute SQL",
+      "id": "execute-sql"
+    },
+    {
+      "level": "h3",
+      "text": "Insert",
+      "id": "insert"
+    },
+    {
+      "level": "h3",
+      "text": "Insert or Update",
+      "id": "insert-or-update"
+    },
+    {
+      "level": "h3",
+      "text": "Select",
+      "id": "select"
+    },
+    {
+      "level": "h3",
+      "text": "Update",
+      "id": "update"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Use bind parameters",
+      "id": "use-bind-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Use n8n Expressions for bind values",
+      "id": "use-n8n-expressions-for-bind-values"
+    },
+    {
+      "level": "h3",
+      "text": "JSON",
+      "id": "json"
+    },
+    {
+      "level": "h3",
+      "text": "VECTOR",
+      "id": "vector"
+    },
+    {
+      "level": "h3",
+      "text": "BLOB",
+      "id": "blob"
+    },
+    {
+      "level": "h3",
+      "text": "RAW",
+      "id": "raw"
+    },
+    {
+      "level": "h3",
+      "text": "BOOLEAN",
+      "id": "boolean"
+    },
+    {
+      "level": "h3",
+      "text": "NUMBER",
+      "id": "number"
+    },
+    {
+      "level": "h2",
+      "text": "VARCHAR",
+      "id": "varchar"
+    }
+  ],
+  "url": "llms-txt#oracle-database-node",
+  "links": []
+}

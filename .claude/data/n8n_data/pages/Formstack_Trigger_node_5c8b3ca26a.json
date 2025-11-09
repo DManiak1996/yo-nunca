@@ -1,0 +1,8 @@
+{
+  "title": "Formstack Trigger node",
+  "content": "[Formstack](https://www.formstack.com/) is a workplace productivity platform that helps organizations streamline digital work through no-code online forms, documents, and signatures.\n\nYou can find authentication information for this node [here](../../credentials/formstacktrigger/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Formstack Trigger integrations](https://n8n.io/integrations/formstack-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#formstack-trigger-node",
+  "links": []
+}

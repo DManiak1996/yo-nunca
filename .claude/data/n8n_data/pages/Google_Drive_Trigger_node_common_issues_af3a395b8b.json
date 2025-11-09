@@ -1,0 +1,24 @@
+{
+  "title": "Google Drive Trigger node common issues",
+  "content": "Here are some common errors and issues with the [Google Drive Trigger node](../) and steps to resolve or troubleshoot them.\n\n## 401 unauthorized error\n\nThe full text of the error looks like this:\n\nThis error occurs when there's an issue with the credential you're using and its scopes or permissions.\n\n1. For [OAuth2](../../../credentials/google/oauth-single-service/) credentials, make sure you've enabled the Google Drive API in **APIs & Services > Library**. Refer to [Google OAuth2 Single Service - Enable APIs](../../../credentials/google/oauth-single-service/#enable-apis) for more information.\n1. For [Service Account](../../../credentials/google/service-account/) credentials:\n   1. [Enable domain-wide delegation](../../../credentials/google/service-account/#enable-domain-wide-delegation).\n   1. Make sure you add the Google Drive API as part of the domain-wide delegation configuration.\n\n## Handling more than one file change\n\nThe Google Drive Trigger node polls Google Drive for changes at a set interval (once every minute by default).\n\nIf multiple changes to the **Watch For** criteria occur during the polling interval, a single Google Drive Trigger event occurs containing the changes as items. To handle this, your workflow must account for times when the data might contain more than one item.\n\nYou can use an [if node](../../../core-nodes/n8n-nodes-base.if/) or a [switch node](../../../core-nodes/n8n-nodes-base.switch/) to change your workflow's behavior depending on whether the data from the Google Drive Trigger node contains a single item or multiple items.",
+  "code_samples": [
+    {
+      "code": "401 - {\"error\":\"unauthorized_client\",\"error_description\":\"Client is unauthorized to retrieve access tokens using this method, or client not authorized for any of the scopes requested.\"}",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "401 unauthorized error",
+      "id": "401-unauthorized-error"
+    },
+    {
+      "level": "h2",
+      "text": "Handling more than one file change",
+      "id": "handling-more-than-one-file-change"
+    }
+  ],
+  "url": "llms-txt#google-drive-trigger-node-common-issues",
+  "links": []
+}

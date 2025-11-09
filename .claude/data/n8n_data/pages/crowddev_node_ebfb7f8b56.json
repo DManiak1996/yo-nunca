@@ -1,0 +1,29 @@
+{
+  "title": "crowd.dev node",
+  "content": "Use the crowd.dev node to automate work in crowd.dev and integrate crowd.dev with other applications. n8n has built-in support for a wide range of crowd.dev features, which includes creating, updating, and deleting members, notes, organizations, and tasks.\n\nOn this page, you'll find a list of operations the crowd.dev node supports, and links to more resources.\n\nYou can find authentication information for this node [here](../../credentials/crowddev/).\n\n- Activity\n  - Create or Update with a Member\n  - Create\n- Automation\n  - Create\n  - Destroy\n  - Find\n  - List\n  - Update\n- Member\n  - Create or Update\n  - Delete\n  - Find\n  - Update\n- Note\n  - Create\n  - Delete\n  - Find\n  - Update\n- Organization\n  - Create\n  - Delete\n  - Find\n  - Update\n- Task\n  - Create\n  - Delete\n  - Find\n  - Update\n\n## Templates and examples\n\n[Browse crowd.dev integration templates](https://n8n.io/integrations/crowddev/), or [search all templates](https://n8n.io/workflows/)\n\nn8n provides a trigger node for crowd.dev. You can find the trigger node docs [here](../../trigger-nodes/n8n-nodes-base.crowddevtrigger/).\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#crowd.dev-node",
+  "links": []
+}

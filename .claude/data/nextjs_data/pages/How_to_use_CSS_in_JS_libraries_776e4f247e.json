@@ -1,0 +1,35 @@
+{
+  "url": "https://nextjs.org/docs/pages/guides/css-in-js",
+  "title": "How to use CSS-in-JS libraries",
+  "content": "It's possible to use any existing CSS-in-JS solution. The simplest one is inline styles:\n\nWe bundle styled-jsx to provide support for isolated scoped CSS. The aim is to support \"shadow CSS\" similar to Web Components, which unfortunately do not support server-rendering and are JS-only.\n\nSee the above examples for other popular CSS-in-JS solutions (like Styled Components).\n\nA component using styled-jsx looks like this:\n\nPlease see the styled-jsx documentation for more examples.\n\nYes, if you disable JavaScript the CSS will still be loaded in the production build (next start). During development, we require JavaScript to be enabled to provide the best developer experience with Fast Refresh.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to use CSS-in-JS libraries",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Disabling JavaScript",
+      "id": "disabling-javascript"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "function HiThere() {\n  return <p style={{ color: 'red' }}>hi there</p>\n}\n \nexport default HiThere",
+      "language": "unknown"
+    },
+    {
+      "code": "function HelloWorld() {\n  return (\n    <div>\n      Hello world\n      <p>scoped!</p>\n      <style jsx>{`\n        p {\n          color: blue;\n        }\n        div {\n          background: red;\n        }\n        @media (max-width: 600px) {\n          div {\n            background: blue;\n          }\n        }\n      `}</style>\n      <style global jsx>{`\n        body {\n          background: black;\n        }\n      `}</style>\n    </div>\n  )\n}\n \nexport default HelloWorld",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/guides",
+    "https://nextjs.org/docs/pages/guides/css-in-js",
+    "https://nextjs.org/docs/pages/guides/content-security-policy",
+    "https://nextjs.org/docs/pages/guides/custom-server"
+  ]
+}

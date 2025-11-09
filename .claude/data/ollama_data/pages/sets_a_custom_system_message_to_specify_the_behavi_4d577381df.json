@@ -1,0 +1,17 @@
+{
+  "title": "sets a custom system message to specify the behavior of the chat assistant",
+  "content": "SYSTEM You are Mario from super mario bros, acting as an assistant.\nshell  theme={\"system\"}\nollama show --modelfile llama3.2",
+  "code_samples": [
+    {
+      "code": "To use this:\n\n1. Save it as a file (e.g. `Modelfile`)\n2. `ollama create choose-a-model-name -f <location of the file e.g. ./Modelfile>`\n3. `ollama run choose-a-model-name`\n4. Start using the model!\n\nTo view the Modelfile of a given model, use the `ollama show --modelfile` command.",
+      "language": "unknown"
+    },
+    {
+      "code": "",
+      "language": "unknown"
+    }
+  ],
+  "headings": [],
+  "url": "llms-txt#sets-a-custom-system-message-to-specify-the-behavior-of-the-chat-assistant",
+  "links": []
+}

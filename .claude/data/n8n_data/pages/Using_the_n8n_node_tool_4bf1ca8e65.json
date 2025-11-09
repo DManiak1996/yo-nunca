@@ -1,0 +1,154 @@
+{
+  "title": "Using the n8n-node tool",
+  "content": "The `n8n-node` tool is the official CLI for developing community nodes for n8n. You can use it to scaffold out new nodes, build your projects, and run your node as you develop it.\n\nUsing `n8n-node`, you can create nodes that adhere to the [guidelines for verified community nodes](../reference/verification-guidelines/).\n\n### Run n8n-node without installing\n\nYou can create an `n8n-node` project directly without installing by using the [`@n8n/create-node` initializer](https://www.npmjs.com/package/@n8n/create-node) with your package manager:\n\nThis sets up the initial project files locally (an alternative to installing `n8n-node` locally and explicitly running the [`new` command](#new)). Afterward, you run the rest of the `n8n-node` commands through your package manager's script runner inside the project directory (for example, `npm run dev`).\n\n### Install n8n-node globally\n\nYou can install `n8n-node` globally with `npm`:\n\nVerify access to the command by typing:\n\nThe `n8n-node` tool provides the following commands:\n\nThe `new` command creates the file system structure and metadata for a new node. This command initializes the same structure as outlined in [run n8n-node without installing](#run-n8n-node-without-installing).\n\nWhen called, it interactively prompts for details about your project to customize your starting code. You'll provide the project name, choose a node type, and select the starting template that best matches your needs. The `n8n-node` tool will create your project file structure and optionally install your initial project dependencies.\n\nLearn more about how to use the `new` command in the [creating a new node section](#creating-a-new-node).\n\nThe `build` command compiles your node and copies all the required assets.\n\nLearn more about how to use the `build` command in the [building your node section](#building-your-node).\n\nThe `dev` command runs n8n with your node. It monitors your project directory and automatically rebuilds the live preview when it detects changes.\n\nLearn more about how to use the `dev` command in the [testing your node in n8n section](#testing-your-node-in-n8n).\n\nThe `lint` command checks the code for the node in the current directory. You can optionally use with the `--fix` option to attempt to automatically fix any issues it identifies.\n\nLearn more about how to use the `lint` command in the [lint your node section](#lint-your-node).\n\nThe `release` command publishes your community node package to npm. It uses [`release-it`](https://github.com/release-it/release-it) to clean, check and cleanly build your package before publishing it to npm.\n\nLearn more about how to use the `release` command in the [release your node section](#release-your-node).\n\n## Creating a new node\n\nTo create a new node with `n8n-node`, call `n8n-node new`. You can call this command entirely interactively or provide details on the command line.\n\nCreate new node without installing\n\nYou can optionally create an `n8n-node` project directly without installing `n8n-node` by using the [`@n8n/create-node` initializer](https://www.npmjs.com/package/@n8n/create-node) with your package manager.\n\nIn the commands below, substitute `n8n-node new` with `npm create @n8n/node@latest`. When using this form, you must add a double dash (`--`) before including any options (like `--template`). For example:\n\nThe command will prompt for any missing information about your node and then generate a project structure to get you started. By default, it will follow up by installing the initial project dependencies (you can disable this by passing the `--skip-install` flag).\n\n### Setting node details interactively\n\nWhen called without arguments, `n8n-node new` prompts you for details about your new node interactively:\n\nThis will start an interactive prompt where you can define the details of your project:\n\n- **What is your node called?** The name of your node. This impacts the name of your project directory, package name, and the n8n node itself. The name must use one of the following formats:\n  - `n8n-nodes-<YOUR_NODE_NAME>`\n  - `@<YOUR_ORG>/n8n-nodes-<YOUR_NODE_NAME>`\n- **What kind of node are you building?** The [node type](../../plan/choose-node-method/) you want to build:\n  - **HTTP API**: A low-code, declarative node structure that's designed for faster approval for n8n Cloud.\n  - **Other**: A programmatic style node with full flexibility.\n- **What template do you want to use?** When using the HTTP API, you can choose the template to start from:\n  - **GitHub Issues API**: A demo node that includes multiple operations and credentials. This can help you get familiar with the node structure and conventions.\n  - **Start from scratch**: A blank template that will guide you through your custom setup with some further prompts.\n\nWhen choosing HTTP API > Start from scratch, `n8n-node` will ask you the following:\n\n- **What's the base URL of the API?** The root URL for the API you plan to integrate with.\n- **What type of authentication does your API use?** The authentication your node should provide:\n  - **API Key**: Send a secret key using headers, query parameters, or the request body.\n  - **Bearer Token**: Send a token using the Authorization header (`Authorization: Bearer <token>`).\n  - **OAuth2**: Use an OAuth 2.0 flow to get access tokens on behalf of a user or app.\n  - **Basic Auth**: Send the base64-encoded username and password through Authorization headers.\n  - **Custom**: Create your own credential logic. This will create an empty credential class that you can customize according to your needs.\n  - **None**: No authentication necessary. Don't create a credential class for the node.\n\nOnce you've made your selections, `n8n-node` will create a new project directory for your node in the current directory. By default, it will also install the initial project dependencies (you can disable this by passing the `--skip-install` flag).\n\n### Providing node details on the command line\n\nYou can provide some of your node details on the command line to avoid prompts.\n\nYou can include the name you want to use for your node an argument:\n\nNode names must use one of the following formats:\n\n- `@<YOUR_ORG>/n8n-nodes-<YOUR_NODE_NAME>`\n- `n8n-nodes-<YOUR_NODE_NAME>`\n\nIf you know the template you want to use ahead of time, you can also pass the value using the `--template` flag:\n\nThe template must be one of the following:\n\n- `declarative/github-issues`: A demo node that includes multiple operations and credentials. This can help you get familiar with the node structure and conventions.\n- `declarative/custom`: A blank template that will guide you through your custom setup with some further prompts.\n- `programmatic/example`: A programmatic style node with full flexibility.\n\n## Building your node\n\nYou can build your node by running the `build` command in your project's root directory:\n\n`n8n-node` will compile your TypeScript files and bundle your other project assets. You can also call the `build` script from your package manager. For instance, if you're using `npm`, this works the same:\n\nThe `n8n-node` tool automatically creates a `lint` script for your project as well. You can run with your package manager. For example:\n\nYou can also run through your package manager's script runner:\n\nIf you include the `--fix` option (also callable with `npm run lint:fix`), `n8n-node` will attempt to fix the issues that it identifies:\n\n## Testing your node in n8n\n\nTo test your node in n8n, you run the `dev` command in your project's root directory:\n\nAs with the `build` command, you can also run this through your package manager. For example:\n\n`n8n-node` will compile your project and then start up a local n8n instance through `npm` with your node loaded.\n\nVisit your `localhost:5678` to sign in to your n8n instance. If you open a workflow, your node appears in the nodes panel:\n\nFrom there, you can add it to your workflow and test the node's functionality as you develop.\n\nTo publish your node, run the `release` command in your project directory. This command uses [`release-it`](https://github.com/release-it/release-it) to build and publish your node.\n\nTo use the `release` command, you must log in to npm using `npm login` command. Without this, `n8n-node` won't have authorization to publish your project files.\n\nTo run with `npm`, type:\n\nWhen you run the `release` command, `n8n-node` will perform the following actions:\n\n- build the node\n- run lint checks against your files\n- update the changelog\n- create git tags\n- create a GitHub release\n- publish the package to npm",
+  "code_samples": [
+    {
+      "code": "npm create @n8n/node@latest",
+      "language": "unknown"
+    },
+    {
+      "code": "npm install --global @n8n/node-cli",
+      "language": "unknown"
+    },
+    {
+      "code": "n8n-node --version",
+      "language": "unknown"
+    },
+    {
+      "code": "npm create @n8n/node@latest n8n-nodes-mynode -- --template declarative/custom",
+      "language": "unknown"
+    },
+    {
+      "code": "n8n-node new",
+      "language": "unknown"
+    },
+    {
+      "code": "n8n-node new n8n-nodes-myproject",
+      "language": "unknown"
+    },
+    {
+      "code": "n8n-node new --template declarative/custom",
+      "language": "unknown"
+    },
+    {
+      "code": "n8n-node build",
+      "language": "unknown"
+    },
+    {
+      "code": "npm run build",
+      "language": "unknown"
+    },
+    {
+      "code": "n8n-node lint",
+      "language": "unknown"
+    },
+    {
+      "code": "npm run lint",
+      "language": "unknown"
+    },
+    {
+      "code": "n8n-node lint --fix",
+      "language": "unknown"
+    },
+    {
+      "code": "n8n-node dev",
+      "language": "unknown"
+    },
+    {
+      "code": "npm run dev",
+      "language": "unknown"
+    },
+    {
+      "code": "n8n-node release",
+      "language": "unknown"
+    },
+    {
+      "code": "npm run release",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Get n8n-node",
+      "id": "get-n8n-node"
+    },
+    {
+      "level": "h3",
+      "text": "Run n8n-node without installing",
+      "id": "run-n8n-node-without-installing"
+    },
+    {
+      "level": "h3",
+      "text": "Install n8n-node globally",
+      "id": "install-n8n-node-globally"
+    },
+    {
+      "level": "h2",
+      "text": "Command overview",
+      "id": "command-overview"
+    },
+    {
+      "level": "h3",
+      "text": "new",
+      "id": "new"
+    },
+    {
+      "level": "h3",
+      "text": "build",
+      "id": "build"
+    },
+    {
+      "level": "h3",
+      "text": "dev",
+      "id": "dev"
+    },
+    {
+      "level": "h3",
+      "text": "lint",
+      "id": "lint"
+    },
+    {
+      "level": "h3",
+      "text": "release",
+      "id": "release"
+    },
+    {
+      "level": "h2",
+      "text": "Creating a new node",
+      "id": "creating-a-new-node"
+    },
+    {
+      "level": "h3",
+      "text": "Setting node details interactively",
+      "id": "setting-node-details-interactively"
+    },
+    {
+      "level": "h3",
+      "text": "Providing node details on the command line",
+      "id": "providing-node-details-on-the-command-line"
+    },
+    {
+      "level": "h2",
+      "text": "Building your node",
+      "id": "building-your-node"
+    },
+    {
+      "level": "h2",
+      "text": "Lint your node",
+      "id": "lint-your-node"
+    },
+    {
+      "level": "h2",
+      "text": "Testing your node in n8n",
+      "id": "testing-your-node-in-n8n"
+    },
+    {
+      "level": "h2",
+      "text": "Release your node",
+      "id": "release-your-node"
+    }
+  ],
+  "url": "llms-txt#using-the-n8n-node-tool",
+  "links": []
+}

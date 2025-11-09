@@ -1,0 +1,29 @@
+{
+  "title": "Compression",
+  "content": "Use the Compression node to compress and decompress files. Supports Zip and Gzip formats.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\nThe node parameters depend on which **Operation** you select. Choose to:\n\n- **Compress**: Create a compressed file from your input data.\n- **Decompress**: Decompress an existing compressed file.\n\nRefer to the sections below for parameters specific to each **Operation**.\n\n- **Input Binary Field(s)**: Enter the name of the fields in the input data that contain the binary files you want to compress. To compress more than one file, use a comma-separated list.\n- **Output Format**: Choose whether to format the compressed output as **Zip** or **Gzip**.\n- **File Name**: Enter the name of the zip file the node creates.\n- **Put Output File in Field**: Enter the name of the field in the output data to contain the file.\n\n- **Put Output File in Field**: Enter the name of the fields in the input data that contain the binary files you want to decompress. To decompress more than one file, use a comma-separated list.\n- **Output Prefix**: Enter a prefix to add to the output file name.\n\n## Templates and examples\n\n**Talk to your SQLite database with a LangChain AI Agent 🧠💬**\n\n[View template details](https://n8n.io/workflows/2292-talk-to-your-sqlite-database-with-a-langchain-ai-agent/)\n\n**Transcribing Bank Statements To Markdown Using Gemini Vision AI**\n\n[View template details](https://n8n.io/workflows/2421-transcribing-bank-statements-to-markdown-using-gemini-vision-ai/)\n\n**Build a Tax Code Assistant with Qdrant, Mistral.ai and OpenAI**\n\n[View template details](https://n8n.io/workflows/2341-build-a-tax-code-assistant-with-qdrant-mistralai-and-openai/)\n\n[Browse Compression integration templates](https://n8n.io/integrations/compression/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Compress",
+      "id": "compress"
+    },
+    {
+      "level": "h3",
+      "text": "Decompress",
+      "id": "decompress"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#compression",
+  "links": []
+}

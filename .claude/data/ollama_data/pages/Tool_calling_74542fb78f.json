@@ -1,0 +1,91 @@
+{
+  "title": "Tool calling",
+  "content": "Source: https://docs.ollama.com/capabilities/tool-calling\n\nOllama supports tool calling (also known as function calling) which allows a model to invoke tools and incorporate their results into its replies.\n\n## Calling a single tool\n\nInvoke a single tool and include its response in a follow-up request.\n\nAlso known as \"single-shot\" tool calling.\n\n<Tabs>\n  <Tab title=\"cURL\">\n\n**Generate a response with a single tool result**\n\n<Tab title=\"Python\">\n    Install the Ollama Python SDK:\n\n<Tab title=\"JavaScript\">\n    Install the Ollama JavaScript library:\n\n## Parallel tool calling\n\n<Tabs>\n  <Tab title=\"cURL\">\n    Request multiple tool calls in parallel, then send all tool responses back to the model.\n\n**Generate a response with multiple tool results**\n\n<Tab title=\"Python\">\n    \n  </Tab>\n\n<Tab title=\"JavaScript\">\n    \n  </Tab>\n</Tabs>\n\n## Multi-turn tool calling (Agent loop)\n\nAn agent loop allows the model to decide when to invoke tools and incorporate their results into its replies.\n\nIt also might help to tell the model that it is in a loop and can make multiple tool calls.\n\n<Tabs>\n  <Tab title=\"Python\">\n    \n  </Tab>\n\n<Tab title=\"JavaScript\">\n    \n  </Tab>\n</Tabs>\n\n## Tool calling with streaming\n\nWhen streaming, gather every chunk of `thinking`, `content`, and `tool_calls`, then return those fields together with any tool results in the follow-up request.\n\n<Tabs>\n  <Tab title=\"Python\">\n    \n  </Tab>\n\n<Tab title=\"JavaScript\">\n    \n  </Tab>\n</Tabs>\n\nThis loop streams the assistant response, accumulates partial fields, passes them back together, and appends the tool results so the model can complete its answer.\n\n## Using functions as tools with Ollama Python SDK\n\nThe Python SDK automatically parses functions as a tool schema so we can pass them directly.\nSchemas can still be passed if needed.\n\n```python  theme={\"system\"}\nfrom ollama import chat\n\ndef get_temperature(city: str) -> str:\n  \"\"\"Get the current temperature for a city\n  \n  Args:\n    city: The name of the city\n\nReturns:\n    The current temperature for the city\n  \"\"\"\n  temperatures = {\n    'New York': '22°C',\n    'London': '15°C',\n  }\n  return temperatures.get(city, 'Unknown')\n\navailable_functions = {\n  'get_temperature': get_temperature,\n}",
+  "code_samples": [
+    {
+      "code": "**Generate a response with a single tool result**",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"Python\">\n    Install the Ollama Python SDK:",
+      "language": "unknown"
+    },
+    {
+      "code": "",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"JavaScript\">\n    Install the Ollama JavaScript library:",
+      "language": "unknown"
+    },
+    {
+      "code": "",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n</Tabs>\n\n## Parallel tool calling\n\n<Tabs>\n  <Tab title=\"cURL\">\n    Request multiple tool calls in parallel, then send all tool responses back to the model.",
+      "language": "unknown"
+    },
+    {
+      "code": "**Generate a response with multiple tool results**",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"Python\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"JavaScript\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n</Tabs>\n\n## Multi-turn tool calling (Agent loop)\n\nAn agent loop allows the model to decide when to invoke tools and incorporate their results into its replies.\n\nIt also might help to tell the model that it is in a loop and can make multiple tool calls.\n\n<Tabs>\n  <Tab title=\"Python\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"JavaScript\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n</Tabs>\n\n## Tool calling with streaming\n\nWhen streaming, gather every chunk of `thinking`, `content`, and `tool_calls`, then return those fields together with any tool results in the follow-up request.\n\n<Tabs>\n  <Tab title=\"Python\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"JavaScript\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n</Tabs>\n\nThis loop streams the assistant response, accumulates partial fields, passes them back together, and appends the tool results so the model can complete its answer.\n\n## Using functions as tools with Ollama Python SDK\n\nThe Python SDK automatically parses functions as a tool schema so we can pass them directly.\nSchemas can still be passed if needed.",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Calling a single tool",
+      "id": "calling-a-single-tool"
+    },
+    {
+      "level": "h2",
+      "text": "Parallel tool calling",
+      "id": "parallel-tool-calling"
+    },
+    {
+      "level": "h2",
+      "text": "Multi-turn tool calling (Agent loop)",
+      "id": "multi-turn-tool-calling-(agent-loop)"
+    },
+    {
+      "level": "h2",
+      "text": "Tool calling with streaming",
+      "id": "tool-calling-with-streaming"
+    },
+    {
+      "level": "h2",
+      "text": "Using functions as tools with Ollama Python SDK",
+      "id": "using-functions-as-tools-with-ollama-python-sdk"
+    }
+  ],
+  "url": "llms-txt#tool-calling",
+  "links": []
+}

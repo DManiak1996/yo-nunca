@@ -1,0 +1,69 @@
+{
+  "title": "ReAct AI Agent node",
+  "content": "n8n removed this functionality in February 2025.\n\nThe ReAct Agent node implements [ReAct](https://react-lm.github.io/) logic. ReAct (reasoning and acting) brings together the reasoning powers of chain-of-thought prompting and action plan generation.\n\nThe ReAct Agent reasons about a given task, determines the necessary actions, and then executes them. It follows the cycle of reasoning and acting until it completes the task. The ReAct agent can break down complex tasks into smaller sub-tasks, prioritise them, and execute them one after the other.\n\nRefer to [AI Agent](../) for more information on the AI Agent node itself.\n\nThe ReAct agent doesn't support memory sub-nodes. This means it can't recall previous prompts or simulate an ongoing conversation.\n\nConfigure the ReAct Agent using the following parameters.\n\nSelect how you want the node to construct the prompt (also known as the user's query or input from the chat).\n\n- **Take from previous node automatically**: If you select this option, the node expects an input from a previous node called `chatInput`.\n- **Define below**: If you select this option, provide either static text or an expression for dynamic content to serve as the prompt in the **Prompt (User Message)** field.\n\n### Require Specific Output Format\n\nThis parameter controls whether you want the node to require a specific output format. When turned on, n8n prompts you to connect one of these output parsers to the node:\n\n- [Auto-fixing Output Parser](../../../sub-nodes/n8n-nodes-langchain.outputparserautofixing/)\n- [Item List Output Parser](../../../sub-nodes/n8n-nodes-langchain.outputparseritemlist/)\n- [Structured Output Parser](../../../sub-nodes/n8n-nodes-langchain.outputparserstructured/)\n\nUse the options to create a message to send to the agent at the start of the conversation. The message type depends on the model you're using:\n\n- **Chat models**: These models have the concept of three components interacting (AI, system, and human). They can receive system messages and human messages (prompts).\n- **Instruct models**: These models don't have the concept of separate AI, system, and human components. They receive one body of text, the instruct message.\n\n### Human Message Template\n\nUse this option to extend the user prompt. This is a way for the agent to pass information from one iteration to the next.\n\nAvailable LangChain expressions:\n\n- `{input}`: Contains the user prompt.\n- `{agent_scratchpad}`: Information to remember for the next iteration.\n\nEnter text to prefix the tools list at the start of the conversation. You don't need to add the list of tools. LangChain automatically adds the tools list.\n\n### Suffix Message for Chat Model\n\nAdd text to append after the tools list at the start of the conversation when the agent uses a chat model. You don't need to add the list of tools. LangChain automatically adds the tools list.\n\n### Suffix Message for Regular Model\n\nAdd text to append after the tools list at the start of the conversation when the agent uses a regular/instruct model. You don't need to add the list of tools. LangChain automatically adds the tools list.\n\n### Return Intermediate Steps\n\nSelect whether to include intermediate steps the agent took in the final output (turned on) or not (turned off).\n\nThis could be useful for further refining the agent's behavior based on the steps it took.\n\nRefer to LangChain's [ReAct Agents](https://js.langchain.com/docs/concepts/agents/) documentation for more information.\n\n## Templates and examples\n\nRefer to the main AI Agent node's [Templates and examples](../#templates-and-examples) section.\n\nFor common questions or issues and suggested solutions, refer to [Common issues](../common-issues/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Prompt",
+      "id": "prompt"
+    },
+    {
+      "level": "h3",
+      "text": "Require Specific Output Format",
+      "id": "require-specific-output-format"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h3",
+      "text": "Human Message Template",
+      "id": "human-message-template"
+    },
+    {
+      "level": "h3",
+      "text": "Prefix Message",
+      "id": "prefix-message"
+    },
+    {
+      "level": "h3",
+      "text": "Suffix Message for Chat Model",
+      "id": "suffix-message-for-chat-model"
+    },
+    {
+      "level": "h3",
+      "text": "Suffix Message for Regular Model",
+      "id": "suffix-message-for-regular-model"
+    },
+    {
+      "level": "h3",
+      "text": "Return Intermediate Steps",
+      "id": "return-intermediate-steps"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    }
+  ],
+  "url": "llms-txt#react-ai-agent-node",
+  "links": []
+}

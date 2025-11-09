@@ -1,0 +1,14 @@
+{
+  "title": "Box Trigger node",
+  "content": "[Box](https://www.box.com/) is a cloud computing company which provides file sharing, collaborating, and other tools for working with files uploaded to its servers.\n\nYou can find authentication information for this node [here](../../credentials/box/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Box Trigger integrations](https://n8n.io/integrations/box-trigger/) page.\n\n## Find your Box Target ID\n\nTo get your Target ID in Box:\n\n1. Open the file/folder that you would like to monitor.\n1. Copy the string of characters after `folder/` in your URL. This is the target ID. For example, if the URL is `https://app.box.com/folder/12345`, then `12345` is the target ID.\n1. Paste it in the **Target ID** field in n8n.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Find your Box Target ID",
+      "id": "find-your-box-target-id"
+    }
+  ],
+  "url": "llms-txt#box-trigger-node",
+  "links": []
+}

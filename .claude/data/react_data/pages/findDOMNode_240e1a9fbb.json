@@ -1,0 +1,104 @@
+{
+  "url": "https://react.dev/reference/react-dom/findDOMNode",
+  "title": "findDOMNode",
+  "content": "This API will be removed in a future major version of React. See the alternatives.\n\nfindDOMNode finds the browser DOM node for a React class component instance.\n\nCall findDOMNode to find the browser DOM node for a given React class component instance.\n\nSee more examples below.\n\nfindDOMNode returns the first closest browser DOM node within the given componentInstance. When a component renders to null, or renders false, findDOMNode returns null. When a component renders to a string, findDOMNode returns a text DOM node containing that value.\n\nA component may return an array or a Fragment with multiple children. In that case findDOMNode, will return the DOM node corresponding to the first non-empty child.\n\nfindDOMNode only works on mounted components (that is, components that have been placed in the DOM). If you try to call this on a component that has not been mounted yet (like calling findDOMNode() in render() on a component that has yet to be created), an exception will be thrown.\n\nfindDOMNode only returns the result at the time of your call. If a child component renders a different node later, there is no way for you to be notified of this change.\n\nfindDOMNode accepts a class component instance, so it can’t be used with function components.\n\nCall findDOMNode with a class component instance (usually, this) to find the DOM node it has rendered.\n\nHere, the input variable will be set to the <input> DOM element. This lets you do something with it. For example, when clicking “Show example” below mounts the input, input.select() selects all text in the input:\n\nCode using findDOMNode is fragile because the connection between the JSX node and the code manipulating the corresponding DOM node is not explicit. For example, try wrapping this <input /> into a <div>:\n\nThis will break the code because now, findDOMNode(this) finds the <div> DOM node, but the code expects an <input> DOM node. To avoid these kinds of problems, use createRef to manage a specific DOM node.\n\nIn this example, findDOMNode is no longer used. Instead, inputRef = createRef(null) is defined as an instance field on the class. To read the DOM node from it, you can use this.inputRef.current. To attach it to the JSX, you render <input ref={this.inputRef} />. This connects the code using the DOM node to its JSX:\n\nIn modern React without class components, the equivalent code would call useRef instead:\n\nRead more about manipulating the DOM with refs.\n\nIn this example, findDOMNode(this) finds a DOM node that belongs to another component. The AutoselectingInput renders MyInput, which is your own component that renders a browser <input>.\n\nNotice that calling findDOMNode(this) inside AutoselectingInput still gives you the DOM <input>—even though the JSX for this <input> is hidden inside the MyInput component. This seems convenient for the above example, but it leads to fragile code. Imagine that you wanted to edit MyInput later and add a wrapper <div> around it. This would break the code of AutoselectingInput (which expects to find an <input>).\n\nTo replace findDOMNode in this example, the two components need to coordinate:\n\nThis version does that, so it no longer needs findDOMNode:\n\nHere is how this code would look like with function components instead of classes:\n\nSometimes a component needs to know the position and size of its children. This makes it tempting to find the children with findDOMNode(this), and then use DOM methods like getBoundingClientRect for measurements.\n\nThere is currently no direct equivalent for this use case, which is why findDOMNode is deprecated but is not yet removed completely from React. In the meantime, you can try rendering a wrapper <div> node around the content as a workaround, and getting a ref to that node. However, extra wrappers can break styling.\n\nThis also applies to focusing and scrolling to arbitrary children.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "findDOMNode",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Deprecated",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "findDOMNode(componentInstance)",
+      "id": "finddomnode"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Finding the root DOM node of a class component",
+      "id": "finding-the-root-dom-node-of-a-class-component"
+    },
+    {
+      "level": "h2",
+      "text": "Alternatives",
+      "id": "alternatives"
+    },
+    {
+      "level": "h3",
+      "text": "Reading component’s own DOM node from a ref",
+      "id": "reading-components-own-dom-node-from-a-ref"
+    },
+    {
+      "level": "h3",
+      "text": "Reading a child component’s DOM node from a forwarded ref",
+      "id": "reading-a-child-components-dom-node-from-a-forwarded-ref"
+    },
+    {
+      "level": "h3",
+      "text": "Adding a wrapper <div> element",
+      "id": "adding-a-wrapper-div-element"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "const domNode = findDOMNode(componentInstance)",
+      "language": "javascript"
+    },
+    {
+      "code": "import { findDOMNode } from 'react-dom';const domNode = findDOMNode(componentInstance);",
+      "language": "python"
+    },
+    {
+      "code": "class AutoselectingInput extends Component {  componentDidMount() {    const input = findDOMNode(this);    input.select()  }  render() {    return <input defaultValue=\"Hello\" />  }}",
+      "language": "javascript"
+    },
+    {
+      "code": "<div ref={someRef}>  {children}</div>",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-dom",
+    "https://react.dev/reference/react-dom/findDOMNode",
+    "https://react.dev/reference/react/Component",
+    "https://react.dev/reference/react/Fragment",
+    "https://react.dev/reference/react/createRef",
+    "https://react.dev/reference/react/useRef",
+    "https://react.dev/learn/manipulating-the-dom-with-refs",
+    "https://react.dev/reference/react/forwardRef",
+    "https://react.dev/reference/react-dom/flushSync",
+    "https://react.dev/reference/react-dom/hydrate"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "BambooHR node",
+  "content": "Use the BambooHR node to automate work in BambooHR, and integrate BambooHR with other applications. n8n has built-in support for a wide range of BambooHR features, including creating, deleting, downloading, and getting company reports, employee documents, and files.\n\nOn this page, you'll find a list of operations the BambooHR node supports and links to more resources.\n\nRefer to [BambooHR credentials](../../credentials/bamboohr/) for guidance on setting up authentication.\n\n- Company Report\n  - Get a company report\n- Employee\n  - Create an employee\n  - Get an employee\n  - Get all employees\n  - Update an employee\n- Employee Document\n  - Delete an employee document\n  - Download an employee document\n  - Get all employee document\n  - Update an employee document\n  - Upload an employee document\n- File\n  - Delete a company file\n  - Download a company file\n  - Get all company files\n  - Update a company file\n  - Upload a company file\n\n## Templates and examples\n\n**BambooHR AI-Powered Company Policies and Benefits Chatbot**\n\n[View template details](https://n8n.io/workflows/2850-bamboohr-ai-powered-company-policies-and-benefits-chatbot/)\n\n**Test Webhooks in n8n Without Changing WEBHOOK_URL (PostBin & BambooHR Example)**\n\n[View template details](https://n8n.io/workflows/2869-test-webhooks-in-n8n-without-changing-webhookurl-postbin-and-bamboohr-example/)\n\n**🛠️ BambooHR Tool MCP Server 💪 all 15 operations**\n\n[View template details](https://n8n.io/workflows/5329-bamboohr-tool-mcp-server-all-15-operations/)\n\n[Browse BambooHR integration templates](https://n8n.io/integrations/bamboohr/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#bamboohr-node",
+  "links": []
+}

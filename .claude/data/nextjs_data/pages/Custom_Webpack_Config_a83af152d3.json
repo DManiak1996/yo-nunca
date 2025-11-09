@@ -1,0 +1,37 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/webpack",
+  "title": "Custom Webpack Config",
+  "content": "Good to know: changes to webpack config are not covered by semver so proceed at your own risk\n\nBefore continuing to add custom webpack configuration to your application make sure Next.js doesn't already support your use-case:\n\nSome commonly asked for features are available as plugins:\n\nIn order to extend our usage of webpack, you can define a function that extends its config inside next.config.js, like so:\n\nThe webpack function is executed three times, twice for the server (nodejs / edge runtime) and once for the client. This allows you to distinguish between client and server configuration using the isServer property.\n\nThe second argument to the webpack function is an object with the following properties:\n\nExample usage of defaultLoaders.babel:\n\nNotice that isServer is true when nextRuntime is \"edge\" or \"nodejs\", nextRuntime \"edge\" is currently for proxy and Server Components in edge runtime only.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Custom Webpack Config",
+      "id": ""
+    },
+    {
+      "level": "h4",
+      "text": "nextRuntime",
+      "id": "nextruntime"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  webpack: (\n    config,\n    { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }\n  ) => {\n    // Important: return the modified config\n    return config\n  },\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "// Example config for adding a loader that depends on babel-loader\n// This source was taken from the @next/mdx plugin source:\n// https://github.com/vercel/next.js/tree/canary/packages/next-mdx\nmodule.exports = {\n  webpack: (config, options) => {\n    config.module.rules.push({\n      test: /\\.mdx/,\n      use: [\n        options.defaultLoaders.babel,\n        {\n          loader: '@mdx-js/loader',\n          options: pluginOptions.options,\n        },\n      ],\n    })\n \n    return config\n  },\n}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/getting-started/css",
+    "https://nextjs.org/docs/app/guides/sass",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/webpack",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/viewTransition",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/webVitalsAttribution"
+  ]
+}

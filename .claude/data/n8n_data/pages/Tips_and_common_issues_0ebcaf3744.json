@@ -1,0 +1,34 @@
+{
+  "title": "Tips and common issues",
+  "content": "## Combining multiple triggers\n\nIf you have another trigger in the workflow already, you have two potential starting points: that trigger and the [evaluation trigger](../../../integrations/builtin/core-nodes/n8n-nodes-base.evaluationtrigger/). To make sure your workflow works as expected no matter which trigger executes, you will need to merge these branches together.\n\nLogic to merge two trigger branches together so that they have the same data format and can be referenced from a single node.\n\n1. **Get the data format of the other trigger**:\n   - Execute the other trigger.\n   - Open it and navigate to the JSON view of its output pane.\n   - Click the **copy** button on the right.\n1. **Re-shape the evaluation trigger data to match**:\n   - Insert an [Edit Fields (Set) node](../../../integrations/builtin/core-nodes/n8n-nodes-base.set/) after the evaluation trigger and connect them together.\n   - Change its mode to **JSON**.\n   - Paste your data into the 'JSON' field, removing the `[` and `]` on the first and last lines.\n   - Switch the field type to **Expression**.\n   - Map in the data from the trigger by dragging it from the input pane.\n   - For strings, make sure to replace the entire value (including the quotes) and add `.toJsonString()` to the end of the expression.\n1. **Merge the branches using a 'No-op' node**: Insert a [No-op node](../../../integrations/builtin/core-nodes/n8n-nodes-base.noop/) and wire both the other trigger and the Set node up to it. The 'No-op' node just outputs whatever input it receives.\n1. **Reference the 'No-op' node outputs in the rest of the workflow**: Since both paths will flow through this node with the same format, you can be sure that your input data will always be there.\n\n## Avoiding evaluation breaking the chat\n\nn8n's internal chat reads the output data of the last executed node in the workflow. After adding an evaluation node with the ['set outputs' operation](../../../integrations/builtin/core-nodes/n8n-nodes-base.evaluation/#set-outputs), this data may not be in the expected format, or even contain the chat response.\n\nThe solution is to add an extra branch coming out of your agent. [Lower branches execute later](../../../flow-logic/execution-order/) in n8n, which means any node you attach to this branch will execute last. You can use a no-op node here since it only needs to pass the agent output through.\n\n## Accessing tool data when calculating metrics\n\nSometimes you need to know what happened in executed sub-nodes of an agent, for example to check whether it executed a tool. You can't reference these nodes directly with expressions, but you can enable the **Return intermediate steps** option in the agent. This will add an extra output field called `intermediateSteps` which you can use in later nodes:\n\n## Multiple evaluations in the same workflow\n\nYou can only have one evaluation set up per workflow. In other words, you can only have one evaluation trigger per workflow.\n\nEven so, you can still test different parts of your workflow with different evaluations by putting those parts in [sub-workflows](../../../flow-logic/subworkflows/) and evaluating each sub-workflow.\n\n## Dealing with inconsistent results\n\nMetrics can often have noise: they may be different across evaluation runs of the exact same workflow. This is because the workflow itself may return different results, or any LLM-based metrics might have natural variation in them.\n\nYou can compensate for this by duplicating the rows of your dataset, so that each row appears more than once in the dataset. Since this means that each input will effectively be running multiple times, it will smooth out any variations.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Combining multiple triggers",
+      "id": "combining-multiple-triggers"
+    },
+    {
+      "level": "h2",
+      "text": "Avoiding evaluation breaking the chat",
+      "id": "avoiding-evaluation-breaking-the-chat"
+    },
+    {
+      "level": "h2",
+      "text": "Accessing tool data when calculating metrics",
+      "id": "accessing-tool-data-when-calculating-metrics"
+    },
+    {
+      "level": "h2",
+      "text": "Multiple evaluations in the same workflow",
+      "id": "multiple-evaluations-in-the-same-workflow"
+    },
+    {
+      "level": "h2",
+      "text": "Dealing with inconsistent results",
+      "id": "dealing-with-inconsistent-results"
+    }
+  ],
+  "url": "llms-txt#tips-and-common-issues",
+  "links": []
+}

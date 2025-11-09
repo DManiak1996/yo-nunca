@@ -1,0 +1,56 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/mdx-components",
+  "title": "mdx-components.js",
+  "content": "The mdx-components.js|tsx file is required to use @next/mdx with App Router and will not work without it. Additionally, you can use it to customize styles.\n\nUse the file mdx-components.tsx (or .js) in the root of your project to define MDX Components. For example, at the same level as pages or app, or inside src if applicable.\n\nThe file must export a single function named useMDXComponents. This function does not accept any arguments.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "mdx-components.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Exports",
+      "id": "exports"
+    },
+    {
+      "level": "h3",
+      "text": "useMDXComponents function",
+      "id": "usemdxcomponents-function"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    },
+    {
+      "level": "h2",
+      "text": "Learn more about MDX Components",
+      "id": "learn-more-about-mdx-components"
+    },
+    {
+      "level": "h3",
+      "text": "MDX",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { MDXComponents } from 'mdx/types'\n \nconst components: MDXComponents = {}\n \nexport function useMDXComponents(): MDXComponents {\n  return components\n}",
+      "language": "python"
+    },
+    {
+      "code": "import type { MDXComponents } from 'mdx/types'\n \nconst components: MDXComponents = {}\n \nexport function useMDXComponents(): MDXComponents {\n  return components\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/guides/mdx",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/mdx-components",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/not-found"
+  ]
+}

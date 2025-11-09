@@ -1,0 +1,37 @@
+{
+  "title": "pandas==2.2.2",
+  "content": "{\n  \"task-runners\": [\n    {\n      \"runner-type\": \"javascript\",\n      \"env-overrides\": {\n        \"NODE_FUNCTION_ALLOW_BUILTIN\": \"crypto\",\n        \"NODE_FUNCTION_ALLOW_EXTERNAL\": \"moment,uuid\",   // <-- add JS packages here\n      }\n    },\n    {\n      \"runner-type\": \"python\",\n      \"env-overrides\": {\n        \"PYTHONPATH\": \"/opt/runners/task-runner-python\",\n        \"N8N_RUNNERS_STDLIB_ALLOW\": \"json\",\n        \"N8N_RUNNERS_EXTERNAL_ALLOW\": \"numpy,pandas\"     // <-- add Python packages here\n      }\n    }\n  ]\n}\n\ndocker buildx build \\\n  -f docker/images/runners/Dockerfile \\\n  -t n8nio/runners:custom \\\n  .\n\ndocker run --rm -it \\\n  -e N8N_RUNNERS_AUTH_TOKEN=test \\\n  -e N8N_RUNNERS_LAUNCHER_LOG_LEVEL=debug \\\n  -e N8N_RUNNERS_TASK_BROKER_URI=http://host.docker.internal:5679 \\\n  -p 5680:5680 \\\n  n8nio/runners:custom\n```",
+  "code_samples": [
+    {
+      "code": "Pin versions (for example, `==2.3.2`) for deterministic builds.\n\n### 3) Allowlist packages for the Code node\n\nOpen `docker/images/runners/n8n-task-runners.json` and add your packages to the env overrides:",
+      "language": "unknown"
+    },
+    {
+      "code": "- `NODE_FUNCTION_ALLOW_BUILTIN`: comma-separated list of allowed node builtin modules.\n- `NODE_FUNCTION_ALLOW_EXTERNAL`: comma-separated list of allowed JS packages.\n- `N8N_RUNNERS_STDLIB_ALLOW`: comma-separated list of allowed Python standard library packages.\n- `N8N_RUNNERS_EXTERNAL_ALLOW`: comma-separated list of allowed Python packages.\n\n### 4) Build your custom image\n\nFor example, from the n8n repository root:",
+      "language": "unknown"
+    },
+    {
+      "code": "### 5) Run it\n\nFor example:",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h3",
+      "text": "3) Allowlist packages for the Code node",
+      "id": "3)-allowlist-packages-for-the-code-node"
+    },
+    {
+      "level": "h3",
+      "text": "4) Build your custom image",
+      "id": "4)-build-your-custom-image"
+    },
+    {
+      "level": "h3",
+      "text": "5) Run it",
+      "id": "5)-run-it"
+    }
+  ],
+  "url": "llms-txt#pandas==2.2.2",
+  "links": []
+}

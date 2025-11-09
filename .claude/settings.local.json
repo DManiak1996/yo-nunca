@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl:*)",
+      "Bash(cat:*)",
+      "Bash(python:*)",
+      "Bash(node:*)",
+      "Bash(dir:*)",
+      "Bash(nul)",
+      "Bash(git config:*)",
+      "Bash(git credential-manager:*)",
+      "Skill(n8n)",
+      "Skill(nextjs)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

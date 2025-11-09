@@ -1,0 +1,34 @@
+{
+  "title": "SSH",
+  "content": "The SSH node is useful for executing commands using the Secure Shell Protocol.\n\nYou can find authentication information for this node [here](../../credentials/ssh/).\n\n- [**Execute** a command](#execute-command)\n- [**Download** a file](#download-file)\n- [**Upload** a file](#upload-file)\n\nTo attach a file for upload, you will need to use an extra node such as the [Read/Write Files from Disk](../n8n-nodes-base.readwritefile/) node or the [HTTP Request](../n8n-nodes-base.httprequest/) node to pass the file as a data property.\n\nConfigure this operation with these parameters:\n\n- **Credential to connect with**: Select an existing or create a new [SSH credential](../../credentials/ssh/) to connect with.\n- **Command**: Enter the command to execute on the remote device.\n- **Working Directory**: Enter the directory where n8n should execute the command.\n\n- **Credential to connect with**: Select an existing or create a new [SSH credential](../../credentials/ssh/) to connect with.\n- **Path**: Enter the path for the file you want to download. This path must include the file name. The downloaded file will use this file name. To use a different name, use the **File Name** option. Refer to [Download File options](#download-file-options) for more information.\n- **File Property**: Enter the name of the object property that holds the binary data you want to download.\n\n#### Download File options\n\nYou can further configure this operation with the **File Name** option. Use this option to override the binary data file name to a name of your choice.\n\n- **Credential to connect with**: Select an existing or create a new [SSH credential](../../credentials/ssh/) to connect with.\n- **Input Binary Field**: Enter the name of the input binary field that contains the file you want to upload.\n- **Target Directory**: The directory to upload the file to. The name of the file is taken from the binary data file name. To enter a different name, use the **File Name** option. Refer to [Upload File options](#upload-file-options) for more information.\n\n#### Upload File options\n\nYou can further configure this operation with the **File Name** option. Use this option to override the binary data file name to a name of your choice.\n\n## Templates and examples\n\n**Send Email if server has upgradable packages**\n\n[View template details](https://n8n.io/workflows/2925-send-email-if-server-has-upgradable-packages/)\n\n**Check VPS resource usage every 15 minutes**\n\n[View template details](https://n8n.io/workflows/2951-check-vps-resource-usage-every-15-minutes/)\n\n**Docker Registry Cleanup Workflow**\n\n[View template details](https://n8n.io/workflows/2835-docker-registry-cleanup-workflow/)\n\n[Browse SSH integration templates](https://n8n.io/integrations/ssh/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h3",
+      "text": "Execute Command",
+      "id": "execute-command"
+    },
+    {
+      "level": "h3",
+      "text": "Download File",
+      "id": "download-file"
+    },
+    {
+      "level": "h3",
+      "text": "Upload File",
+      "id": "upload-file"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#ssh",
+  "links": []
+}

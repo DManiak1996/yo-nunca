@@ -1,0 +1,29 @@
+{
+  "title": "PostBin node",
+  "content": "PostBin is a service that helps you test API clients and webhooks. Use the PostBin node to automate work in PostBin, and integrate PostBin with other applications. n8n has built-in support for a wide range of PostBin features, including creating and deleting bins, and getting and sending requests.\n\nOn this page, you'll find a list of operations the PostBin node supports, and links to more resources.\n\n- Bin\n  - Create\n  - Get\n  - Delete\n- Request\n  - Get\n  - Remove First\n  - Send\n\n## Templates and examples\n\n[Browse PostBin integration templates](https://n8n.io/integrations/postbin/), or [search all templates](https://n8n.io/workflows/)\n\nTo send requests to a PostBin bin:\n\n1. Go to [PostBin](https://www.toptal.com/developers/postbin/) and follow the steps to generate a new bin. PostBin gives you a unique URL, including a bin ID.\n1. In the PostBin node, select the **Request** resource.\n1. Choose the type of **Operation** you want to perform.\n1. Enter your bin ID in **Bin ID**.\n\n## Create and manage bins\n\nYou can create and manage PostBin bins using the PostBin node.\n\n1. In **Resource**, select **Bin**.\n1. Choose an **Operation**. You can create, delete, or get a bin.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Send requests",
+      "id": "send-requests"
+    },
+    {
+      "level": "h2",
+      "text": "Create and manage bins",
+      "id": "create-and-manage-bins"
+    }
+  ],
+  "url": "llms-txt#postbin-node",
+  "links": []
+}

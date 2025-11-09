@@ -1,0 +1,39 @@
+{
+  "url": "https://nextjs.org/docs/messages/no-duplicate-head",
+  "title": "No Duplicate Head",
+  "content": "Prevent duplicate usage of <Head> in pages/_document.js.\n\nMore than a single instance of the <Head /> component was used in a single custom document. This can cause unexpected behavior in your application.\n\nOnly use a single <Head /> component in your custom document in pages/_document.js.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "No Duplicate Head",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Document, { Html, Head, Main, NextScript } from 'next/document'\n \nclass MyDocument extends Document {\n  static async getInitialProps(ctx) {\n    //...\n  }\n \n  render() {\n    return (\n      <Html>\n        <Head />\n        <body>\n          <Main />\n          <NextScript />\n        </body>\n      </Html>\n    )\n  }\n}\n \nexport default MyDocument",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/no-duplicate-head",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-document"
+  ]
+}

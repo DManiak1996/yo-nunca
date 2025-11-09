@@ -1,0 +1,42 @@
+{
+  "title": "OpenAI node common issues",
+  "content": "Here are some common errors and issues with the [OpenAI node](../) and steps to resolve or troubleshoot them.\n\n## The service is receiving too many requests from you\n\nThis error displays when you've exceeded [OpenAI's rate limits](https://platform.openai.com/docs/guides/rate-limits).\n\nThere are two ways to work around this issue:\n\n1. Split your data up into smaller chunks using the [Loop Over Items](../../../core-nodes/n8n-nodes-base.splitinbatches/) node and add a [Wait](../../../core-nodes/n8n-nodes-base.wait/) node at the end for a time amount that will help. Copy the code below and paste it into a workflow to use as a template.\n\n1. Use the [HTTP Request](../../../core-nodes/n8n-nodes-base.httprequest/) node with the built-in batch-limit option against the [OpenAI API](https://platform.openai.com/docs/quickstart) instead of using the OpenAI node.\n\n## Insufficient quota\n\nThere are a number of OpenAI issues surrounding quotas, including failures when quotas have been recently topped up. To avoid these issues, ensure that there is credit in the account and issue a new API key from the [API keys screen](https://platform.openai.com/settings/organization/api-keys).\n\nThis error displays when your OpenAI account doesn't have enough credits or capacity to fulfill your request. This may mean that your OpenAI trial period has ended, that your account needs more credit, or that you've gone over a usage limit.\n\nTo troubleshoot this error, on your [OpenAI settings](https://platform.openai.com/settings/organization/billing/overview) page:\n\n- Select the correct organization for your API key in the first selector in the upper-left corner.\n- Select the correct project for your API key in the second selector in the upper-left corner.\n- Check the organization-level [billing overview](https://platform.openai.com/settings/organization/billing/overview) page to ensure that the organization has enough credit. Double-check that you select the correct organization for this page.\n- Check the organization-level [usage limits](https://platform.openai.com/settings/organization/limits) page. Double-check that you select the correct organization for this page and scroll to the **Usage limits** section to verify that you haven't exceeded your organization's usage limits.\n- Check your OpenAI project's usage limits. Double-check that you select the correct project in the second selector in the upper-left corner. Select **Project** > **Limits** to view or change the project limits.\n- Check that the [OpenAI API](https://status.openai.com/) is operating as expected.\n\nBalance waiting period\n\nAfter topping up your balance, there may be a delay before your OpenAI account reflects the new balance.\n\n- check that the [OpenAI credentials](../../../credentials/openai/) use a valid [OpenAI API key](https://platform.openai.com/api-keys) for the account you've added money to\n- ensure that you connect the [OpenAI node](../) to the correct [OpenAI credentials](../../../credentials/openai/)\n\nIf you find yourself frequently running out of account credits, consider turning on auto recharge in your [OpenAI billing settings](https://platform.openai.com/settings/organization/billing/overview) to automatically reload your account with credits when your balance reaches $0.\n\n## Bad request - please check your parameters\n\nThis error displays when the request results in an error but n8n wasn't able to interpret the error message from OpenAI.\n\nTo begin troubleshooting, try running the same operation using the [HTTP Request](../../../core-nodes/n8n-nodes-base.httprequest/) node, which should provide a more detailed error message.\n\n## Referenced node is unexecuted\n\nThis error displays when a previous node in the workflow hasn't executed and isn't providing output that this node needs as input.\n\nThe full text of this error will tell you the exact node that isn't executing in this format:\n\nTo begin troubleshooting, test the workflow up to the named node.\n\nFor nodes that call JavaScript or other custom code, determine if a node has executed before trying to use the value by calling:",
+  "code_samples": [
+    {
+      "code": "{\n       \"nodes\": [\n       {\n           \"parameters\": {},\n           \"id\": \"35d05920-ad75-402a-be3c-3277bff7cc67\",\n           \"name\": \"When clicking ‘Execute workflow’\",\n           \"type\": \"n8n-nodes-base.manualTrigger\",\n           \"typeVersion\": 1,\n           \"position\": [\n           880,\n           400\n           ]\n       },\n       {\n           \"parameters\": {\n           \"batchSize\": 500,\n           \"options\": {}\n           },\n           \"id\": \"ae9baa80-4cf9-4848-8953-22e1b7187bf6\",\n           \"name\": \"Loop Over Items\",\n           \"type\": \"n8n-nodes-base.splitInBatches\",\n           \"typeVersion\": 3,\n           \"position\": [\n           1120,\n           420\n           ]\n       },\n       {\n           \"parameters\": {\n           \"resource\": \"chat\",\n           \"options\": {},\n           \"requestOptions\": {}\n           },\n           \"id\": \"a519f271-82dc-4f60-8cfd-533dec580acc\",\n           \"name\": \"OpenAI\",\n           \"type\": \"n8n-nodes-base.openAi\",\n           \"typeVersion\": 1,\n           \"position\": [\n           1380,\n           440\n           ]\n       },\n       {\n           \"parameters\": {\n           \"unit\": \"minutes\"\n           },\n           \"id\": \"562d9da3-2142-49bc-9b8f-71b0af42b449\",\n           \"name\": \"Wait\",\n           \"type\": \"n8n-nodes-base.wait\",\n           \"typeVersion\": 1,\n           \"position\": [\n           1620,\n           440\n           ],\n           \"webhookId\": \"714ab157-96d1-448f-b7f5-677882b92b13\"\n       }\n       ],\n       \"connections\": {\n       \"When clicking ‘Execute workflow’\": {\n           \"main\": [\n           [\n               {\n               \"node\": \"Loop Over Items\",\n               \"type\": \"main\",\n               \"index\": 0\n               }\n           ]\n           ]\n       },\n       \"Loop Over Items\": {\n           \"main\": [\n           null,\n           [\n               {\n               \"node\": \"OpenAI\",\n               \"type\": \"main\",\n               \"index\": 0\n               }\n           ]\n           ]\n       },\n       \"OpenAI\": {\n           \"main\": [\n           [\n               {\n               \"node\": \"Wait\",\n               \"type\": \"main\",\n               \"index\": 0\n               }\n           ]\n           ]\n       },\n       \"Wait\": {\n           \"main\": [\n           [\n               {\n               \"node\": \"Loop Over Items\",\n               \"type\": \"main\",\n               \"index\": 0\n               }\n           ]\n           ]\n       }\n       },\n       \"pinData\": {}\n   }",
+      "language": "unknown"
+    },
+    {
+      "code": "An expression references the node '<node-name>', but it hasn’t been executed yet. Either change the expression, or re-wire your workflow to make sure that node executes first.",
+      "language": "unknown"
+    },
+    {
+      "code": "$(\"<node-name>\").isExecuted",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "The service is receiving too many requests from you",
+      "id": "the-service-is-receiving-too-many-requests-from-you"
+    },
+    {
+      "level": "h2",
+      "text": "Insufficient quota",
+      "id": "insufficient-quota"
+    },
+    {
+      "level": "h2",
+      "text": "Bad request - please check your parameters",
+      "id": "bad-request---please-check-your-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Referenced node is unexecuted",
+      "id": "referenced-node-is-unexecuted"
+    }
+  ],
+  "url": "llms-txt#openai-node-common-issues",
+  "links": []
+}

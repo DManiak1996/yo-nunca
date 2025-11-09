@@ -1,0 +1,26 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/appDir",
+  "title": "appDir",
+  "content": "Good to know: This option is no longer needed as of Next.js 13.4. The App Router is now stable.\n\nThe App Router (app directory) enables support for layouts, Server Components, streaming, and colocated data fetching.\n\nUsing the app directory will automatically enable React Strict Mode. Learn how to incrementally adopt app.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "appDir",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/app/getting-started/fetching-data",
+    "https://nextjs.org/docs/app/guides/migrating/app-router-migration",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/assetPrefix"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Wolfram|Alpha tool node",
+  "content": "Use the Wolfram|Alpha tool node to connect your [agents](../../../../../glossary/#ai-agent) and [chains](../../../../../glossary/#ai-chain) to Wolfram|Alpha's computational intelligence engine.\n\nYou can find authentication information for this node [here](../../../credentials/wolframalpha/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n## Templates and examples\n\n[Browse Wolfram|Alpha integration templates](https://n8n.io/integrations/wolframoralpha/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [Wolfram|Alpha's documentation](https://products.wolframalpha.com/api) for more information about the service. You can also view [LangChain's documentation on their WolframAlpha Tool](https://js.langchain.com/docs/integrations/tools/wolframalpha/).\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#wolfram|alpha-tool-node",
+  "links": []
+}

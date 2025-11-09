@@ -1,0 +1,72 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/directives/use-server",
+  "title": "use server",
+  "content": "The use server directive designates a function or file to be executed on the server side. It can be used at the top of a file to indicate that all functions in the file are server-side, or inline at the top of a function to mark the function as a Server Function. This is a React feature.\n\nThe following example shows a file with a use server directive at the top. All functions in the file are executed on the server.\n\nTo use Server Functions in Client Components you need to create your Server Functions in a dedicated file using the use server directive at the top of the file. These Server Functions can then be imported into Client and Server Components and executed.\n\nAssuming you have a fetchUsers Server Function in actions.ts:\n\nThen you can import the fetchUsers Server Function into a Client Component and execute it on the client-side.\n\nIn the following example, use server is used inline at the top of a function to mark it as a Server Function:\n\nWhen using the use server directive, it's important to ensure that all server-side logic is secure and that sensitive data remains protected.\n\nAlways authenticate and authorize users before performing sensitive server-side operations.\n\nSee the React documentation for more information on use server.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "use server",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Using use server at the top of a file",
+      "id": "using-use-server-at-the-top-of-a-file"
+    },
+    {
+      "level": "h3",
+      "text": "Using Server Functions in a Client Component",
+      "id": "using-server-functions-in-a-client-component"
+    },
+    {
+      "level": "h2",
+      "text": "Using use server inline",
+      "id": "using-use-server-inline"
+    },
+    {
+      "level": "h2",
+      "text": "Security considerations",
+      "id": "security-considerations"
+    },
+    {
+      "level": "h3",
+      "text": "Authentication and authorization",
+      "id": "authentication-and-authorization"
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "'use server'\nimport { db } from '@/lib/db' // Your database client\n \nexport async function createUser(data: { name: string; email: string }) {\n  const user = await db.user.create({ data })\n  return user\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\nimport { db } from '@/lib/db' // Your database client\n \nexport async function fetchUsers() {\n  const users = await db.user.findMany()\n  return users\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\nimport { fetchUsers } from '../actions'\n \nexport default function MyButton() {\n  return <button onClick={() => fetchUsers()}>Fetch Users</button>\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { EditPost } from './edit-post'\nimport { revalidatePath } from 'next/cache'\n \nexport default async function PostPage({ params }: { params: { id: string } }) {\n  const post = await getPost(params.id)\n \n  async function updatePost(formData: FormData) {\n    'use server'\n    await savePost(params.id, formData)\n    revalidatePath(`/posts/${params.id}`)\n  }\n \n  return <EditPost updatePostAction={updatePost} post={post} />\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nimport { db } from '@/lib/db' // Your database client\nimport { authenticate } from '@/lib/auth' // Your authentication library\n \nexport async function createUser(\n  data: { name: string; email: string },\n  token: string\n) {\n  const user = authenticate(token)\n  if (!user) {\n    throw new Error('Unauthorized')\n  }\n  const newUser = await db.user.create({ data })\n  return newUser\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/directives",
+    "https://nextjs.org/docs/app/api-reference/directives/use-server",
+    "https://nextjs.org/docs/app/api-reference/directives/use-client",
+    "https://nextjs.org/docs/app/api-reference/components"
+  ]
+}

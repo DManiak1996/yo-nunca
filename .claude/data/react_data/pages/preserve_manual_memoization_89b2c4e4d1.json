@@ -1,0 +1,64 @@
+{
+  "url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/preserve-manual-memoization",
+  "title": "preserve-manual-memoization",
+  "content": "Validates that existing manual memoization is preserved by the compiler. React Compiler will only compile components and hooks if its inference matches or exceeds the existing manual memoization.\n\nReact Compiler preserves your existing useMemo, useCallback, and React.memo calls. If you’ve manually memoized something, the compiler assumes you had a good reason and won’t remove it. However, incomplete dependencies prevent the compiler from understanding your code’s data flow and applying further optimizations.\n\nExamples of incorrect code for this rule:\n\nExamples of correct code for this rule:\n\nYou might wonder if React Compiler makes manual memoization unnecessary:\n\nYou can safely remove it if using React Compiler:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "preserve-manual-memoization",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Rule Details",
+      "id": "rule-details"
+    },
+    {
+      "level": "h3",
+      "text": "Invalid",
+      "id": "invalid"
+    },
+    {
+      "level": "h3",
+      "text": "Valid",
+      "id": "valid"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "Should I remove my manual memoization?",
+      "id": "remove-manual-memoization"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// ❌ Missing dependencies in useMemofunction Component({ data, filter }) {  const filtered = useMemo(    () => data.filter(filter),    [data] // Missing 'filter' dependency  );  return <List items={filtered} />;}// ❌ Missing dependencies in useCallbackfunction Component({ onUpdate, value }) {  const handleClick = useCallback(() => {    onUpdate(value);  }, [onUpdate]); // Missing 'value'  return <button onClick={handleClick}>Update</button>;}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Complete dependenciesfunction Component({ data, filter }) {  const filtered = useMemo(    () => data.filter(filter),    [data, filter] // All dependencies included  );  return <List items={filtered} />;}// ✅ Or let the compiler handle itfunction Component({ data, filter }) {  // No manual memoization needed  const filtered = data.filter(filter);  return <List items={filtered} />;}",
+      "language": "javascript"
+    },
+    {
+      "code": "// Do I still need this?function Component({items, sortBy}) {  const sorted = useMemo(() => {    return [...items].sort((a, b) => {      return a[sortBy] - b[sortBy];    });  }, [items, sortBy]);  return <List items={sorted} />;}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Better: Let the compiler optimizefunction Component({items, sortBy}) {  const sorted = [...items].sort((a, b) => {    return a[sortBy] - b[sortBy];  });  return <List items={sorted} />;}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/eslint-plugin-react-hooks",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/preserve-manual-memoization",
+    "https://react.dev/learn/react-compiler/introduction",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/incompatible-library",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/purity"
+  ]
+}

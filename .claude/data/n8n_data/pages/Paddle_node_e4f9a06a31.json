@@ -1,0 +1,19 @@
+{
+  "title": "Paddle node",
+  "content": "Use the Paddle node to automate work in Paddle, and integrate Paddle with other applications. n8n has built-in support for a wide range of Paddle features, including creating, updating, and getting coupons, as well as getting plans, products, and users.\n\nOn this page, you'll find a list of operations the Paddle node supports and links to more resources.\n\nRefer to [Paddle credentials](../../credentials/paddle/) for guidance on setting up authentication.\n\n- Coupon\n  - Create a coupon.\n  - Get all coupons.\n  - Update a coupon.\n- Payment\n  - Get all payment.\n  - Reschedule payment.\n- Plan\n  - Get a plan.\n  - Get all plans.\n- Product\n  - Get all products.\n- User\n  - Get all users\n\n## Templates and examples\n\n[Browse Paddle integration templates](https://n8n.io/integrations/paddle/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#paddle-node",
+  "links": []
+}

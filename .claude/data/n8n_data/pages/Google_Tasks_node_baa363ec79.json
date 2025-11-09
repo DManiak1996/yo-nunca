@@ -1,0 +1,24 @@
+{
+  "title": "Google Tasks node",
+  "content": "Use the Google Tasks node to automate work in Google Tasks, and integrate Google Tasks with other applications. n8n has built-in support for a wide range of Google Tasks features, including adding, updating, and retrieving contacts.\n\nOn this page, you'll find a list of operations the Google Tasks node supports and links to more resources.\n\nRefer to [Google Tasks credentials](../../credentials/google/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- Task\n  - Add a task to task list\n  - Delete a task\n  - Retrieve a task\n  - Retrieve all tasks from a task list\n  - Update a task\n\n## Templates and examples\n\n**Automate Image Validation Tasks using AI Vision**\n\n[View template details](https://n8n.io/workflows/2420-automate-image-validation-tasks-using-ai-vision/)\n\n**Sync Google Calendar tasks to Trello every day**\n\n[View template details](https://n8n.io/workflows/1118-sync-google-calendar-tasks-to-trello-every-day/)\n\n**Add a task to Google Tasks**\n\n[View template details](https://n8n.io/workflows/428-add-a-task-to-google-tasks/)\n\n[Browse Google Tasks integration templates](https://n8n.io/integrations/google-tasks/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#google-tasks-node",
+  "links": []
+}

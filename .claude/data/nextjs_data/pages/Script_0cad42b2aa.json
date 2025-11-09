@@ -1,0 +1,124 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/components/script",
+  "title": "Script",
+  "content": "This API reference will help you understand how to use props available for the Script Component. For features and usage, please see the Optimizing Scripts page.\n\nHere's a summary of the props available for the Script Component:\n\nThe <Script /> component requires the following properties.\n\nA path string specifying the URL of an external script. This can be either an absolute external URL or an internal path. The src property is required unless an inline script is used.\n\nThe <Script /> component accepts a number of additional properties beyond those which are required.\n\nThe loading strategy of the script. There are four different strategies that can be used:\n\nScripts that load with the beforeInteractive strategy are injected into the initial HTML from the server, downloaded before any Next.js module, and executed in the order they are placed.\n\nScripts denoted with this strategy are preloaded and fetched before any first-party code, but their execution does not block page hydration from occurring.\n\nbeforeInteractive scripts must be placed inside the Document Component (pages/_document.js) and are designed to load scripts that are needed by the entire site (i.e. the script will load when any page in the application has been loaded server-side).\n\nThis strategy should only be used for critical scripts that need to be fetched as soon as possible.\n\nGood to know: Scripts with beforeInteractive will always be injected inside the head of the HTML document regardless of where it's placed in the component.\n\nSome examples of scripts that should be fetched as soon as possible with beforeInteractive include:\n\nScripts that use the afterInteractive strategy are injected into the HTML client-side and will load after some (or all) hydration occurs on the page. This is the default strategy of the Script component and should be used for any script that needs to load as soon as possible but not before any first-party Next.js code.\n\nafterInteractive scripts can be placed inside of any page or layout and will only load and execute when that page (or group of pages) is opened in the browser.\n\nSome examples of scripts that are good candidates for afterInteractive include:\n\nScripts that use the lazyOnload strategy are injected into the HTML client-side during browser idle time and will load after all resources on the page have been fetched. This strategy should be used for any background or low priority scripts that do not need to load early.\n\nlazyOnload scripts can be placed inside of any page or layout and will only load and execute when that page (or group of pages) is opened in the browser.\n\nExamples of scripts that do not need to load immediately and can be fetched with lazyOnload include:\n\nWarning: The worker strategy is not yet stable and does not yet work with the App Router. Use with caution.\n\nScripts that use the worker strategy are off-loaded to a web worker in order to free up the main thread and ensure that only critical, first-party resources are processed on it. While this strategy can be used for any script, it is an advanced use case that is not guaranteed to support all third-party scripts.\n\nTo use worker as a strategy, the nextScriptWorkers flag must be enabled in next.config.js:\n\nworker scripts can only currently be used in the pages/ directory:\n\nWarning: onLoad does not yet work with Server Components and can only be used in Client Components. Further, onLoad can't be used with beforeInteractive – consider using onReady instead.\n\nSome third-party scripts require users to run JavaScript code once after the script has finished loading in order to instantiate content or call a function. If you are loading a script with either afterInteractive or lazyOnload as a loading strategy, you can execute code after it has loaded using the onLoad property.\n\nHere's an example of executing a lodash method only after the library has been loaded.\n\nWarning: onReady does not yet work with Server Components and can only be used in Client Components.\n\nSome third-party scripts require users to run JavaScript code after the script has finished loading and every time the component is mounted (after a route navigation for example). You can execute code after the script's load event when it first loads and then after every subsequent component re-mount using the onReady property.\n\nHere's an example of how to re-instantiate a Google Maps JS embed every time the component is mounted:\n\nWarning: onError does not yet work with Server Components and can only be used in Client Components. onError cannot be used with the beforeInteractive loading strategy.\n\nSometimes it is helpful to catch when a script fails to load. These errors can be handled with the onError property:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Script",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Props",
+      "id": "props"
+    },
+    {
+      "level": "h2",
+      "text": "Required Props",
+      "id": "required-props"
+    },
+    {
+      "level": "h3",
+      "text": "src",
+      "id": "src"
+    },
+    {
+      "level": "h2",
+      "text": "Optional Props",
+      "id": "optional-props"
+    },
+    {
+      "level": "h3",
+      "text": "strategy",
+      "id": "strategy"
+    },
+    {
+      "level": "h3",
+      "text": "beforeInteractive",
+      "id": "beforeinteractive"
+    },
+    {
+      "level": "h3",
+      "text": "afterInteractive",
+      "id": "afterinteractive"
+    },
+    {
+      "level": "h3",
+      "text": "lazyOnload",
+      "id": "lazyonload"
+    },
+    {
+      "level": "h3",
+      "text": "worker",
+      "id": "worker"
+    },
+    {
+      "level": "h3",
+      "text": "onLoad",
+      "id": "onload"
+    },
+    {
+      "level": "h3",
+      "text": "onReady",
+      "id": "onready"
+    },
+    {
+      "level": "h3",
+      "text": "onError",
+      "id": "onerror"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Script from 'next/script'\n \nexport default function Dashboard() {\n  return (\n    <>\n      <Script src=\"https://example.com/script.js\" />\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Html, Head, Main, NextScript } from 'next/document'\nimport Script from 'next/script'\n \nexport default function Document() {\n  return (\n    <Html>\n      <Head />\n      <body>\n        <Main />\n        <NextScript />\n        <Script\n          src=\"https://example.com/script.js\"\n          strategy=\"beforeInteractive\"\n        />\n      </body>\n    </Html>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Script from 'next/script'\n \nexport default function Page() {\n  return (\n    <>\n      <Script src=\"https://example.com/script.js\" strategy=\"afterInteractive\" />\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Script from 'next/script'\n \nexport default function Page() {\n  return (\n    <>\n      <Script src=\"https://example.com/script.js\" strategy=\"lazyOnload\" />\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "module.exports = {\n  experimental: {\n    nextScriptWorkers: true,\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import Script from 'next/script'\n \nexport default function Home() {\n  return (\n    <>\n      <Script src=\"https://example.com/script.js\" strategy=\"worker\" />\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport Script from 'next/script'\n \nexport default function Page() {\n  return (\n    <>\n      <Script\n        src=\"https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js\"\n        onLoad={() => {\n          console.log(_.sample([1, 2, 3, 4]))\n        }}\n      />\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { useRef } from 'react'\nimport Script from 'next/script'\n \nexport default function Page() {\n  const mapRef = useRef()\n \n  return (\n    <>\n      <div ref={mapRef}></div>\n      <Script\n        id=\"google-maps\"\n        src=\"https://maps.googleapis.com/maps/api/js\"\n        onReady={() => {\n          new google.maps.Map(mapRef.current, {\n            center: { lat: -34.397, lng: 150.644 },\n            zoom: 8,\n          })\n        }}\n      />\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Script from 'next/script'\n \nexport default function Page() {\n  return (\n    <>\n      <Script\n        src=\"https://example.com/script.js\"\n        onError={(e: Error) => {\n          console.error('Script failed to load', e)\n        }}\n      />\n    </>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/api-reference",
+    "https://nextjs.org/docs/pages/api-reference/components",
+    "https://nextjs.org/docs/pages/api-reference/components/script",
+    "https://nextjs.org/docs/app/guides/scripts",
+    "https://nextjs.org/docs/pages/api-reference/components/link",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions"
+  ]
+}

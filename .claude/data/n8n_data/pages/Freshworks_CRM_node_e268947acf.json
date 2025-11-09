@@ -1,0 +1,24 @@
+{
+  "title": "Freshworks CRM node",
+  "content": "Use the Freshworks CRM node to automate work in Freshworks CRM, and integrate Freshworks CRM with other applications. n8n has built-in support for a wide range of Freshworks CRM features, including creating, updating, deleting, and retrieve, accounts, appointments, contacts, deals, notes, sales activity and more.\n\nOn this page, you'll find a list of operations the Freshworks CRM node supports and links to more resources.\n\nRefer to [Freshworks CRM credentials](../../credentials/freshworkscrm/) for guidance on setting up authentication.\n\n- Account\n  - Create an account\n  - Delete an account\n  - Retrieve an account\n  - Retrieve all accounts\n  - Update an account\n- Appointment\n  - Create an appointment\n  - Delete an appointment\n  - Retrieve an appointment\n  - Retrieve all appointments\n  - Update an appointment\n- Contact\n  - Create a contact\n  - Delete a contact\n  - Retrieve a contact\n  - Retrieve all contacts\n  - Update a contact\n- Deal\n  - Create a deal\n  - Delete a deal\n  - Retrieve a deal\n  - Retrieve all deals\n  - Update a deal\n- Note\n  - Create a note\n  - Delete a note\n  - Update a note\n- Sales Activity\n  - Retrieve a sales activity\n  - Retrieve all sales activities\n- Task\n  - Create a task\n  - Delete a task\n  - Retrieve a task\n  - Retrieve all tasks\n  - Update a task\n\n## Templates and examples\n\n**Search LinkedIn companies, Score with AI and add them to Google Sheet CRM**\n\n[View template details](https://n8n.io/workflows/3904-search-linkedin-companies-score-with-ai-and-add-them-to-google-sheet-crm/)\n\n**Real Estate Lead Generation with BatchData Skip Tracing & CRM Integration**\n\n[View template details](https://n8n.io/workflows/3666-real-estate-lead-generation-with-batchdata-skip-tracing-and-crm-integration/)\n\n**📄🌐PDF2Blog - Create Blog Post on Ghost CRM from PDF Document**\n\n[View template details](https://n8n.io/workflows/2522-pdf2blog-create-blog-post-on-ghost-crm-from-pdf-document/)\n\n[Browse Freshworks CRM integration templates](https://n8n.io/integrations/freshworks-crm/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#freshworks-crm-node",
+  "links": []
+}

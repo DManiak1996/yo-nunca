@@ -1,0 +1,82 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/urlImports",
+  "title": "urlImports",
+  "content": "URL imports are an experimental feature that allows you to import modules directly from external servers (instead of from the local disk).\n\nWarning: Only use domains that you trust to download and execute on your machine. Please exercise discretion, and caution until the feature is flagged as stable.\n\nTo opt-in, add the allowed URL prefixes inside next.config.js:\n\nThen, you can import modules directly from URLs:\n\nURL Imports can be used everywhere normal package imports can be used.\n\nThis feature is being designed with security as the top priority. To start, we added an experimental flag forcing you to explicitly allow the domains you accept URL imports from. We're working to take this further by limiting URL imports to execute in the browser sandbox using the Edge Runtime.\n\nWhen using URL imports, Next.js will create a next.lock directory containing a lockfile and fetched assets. This directory must be committed to Git, not ignored by .gitignore.\n\nTypically, no network requests are needed and any outdated lockfile will cause the build to fail. One exception is resources that respond with Cache-Control: no-cache. These resources will have a no-cache entry in the lockfile and will always be fetched from the network on each build.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "urlImports",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Security Model",
+      "id": "security-model"
+    },
+    {
+      "level": "h2",
+      "text": "Lockfile",
+      "id": "lockfile"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Skypack",
+      "id": "skypack"
+    },
+    {
+      "level": "h3",
+      "text": "Static Image Imports",
+      "id": "static-image-imports"
+    },
+    {
+      "level": "h3",
+      "text": "URLs in CSS",
+      "id": "urls-in-css"
+    },
+    {
+      "level": "h3",
+      "text": "Asset Imports",
+      "id": "asset-imports"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  experimental: {\n    urlImports: ['https://example.com/assets/', 'https://cdn.skypack.dev'],\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import { a, b, c } from 'https://example.com/assets/some/module.js'",
+      "language": "python"
+    },
+    {
+      "code": "import confetti from 'https://cdn.skypack.dev/canvas-confetti'\nimport { useEffect } from 'react'\n \nexport default () => {\n  useEffect(() => {\n    confetti()\n  })\n  return <p>Hello</p>\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Image from 'next/image'\nimport logo from 'https://example.com/assets/logo.png'\n \nexport default () => (\n  <div>\n    <Image src={logo} placeholder=\"blur\" />\n  </div>\n)",
+      "language": "python"
+    },
+    {
+      "code": ".className {\n  background: url('https://example.com/assets/hero.jpg');\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "const logo = new URL('https://example.com/assets/file.txt', import.meta.url)\n \nconsole.log(logo.pathname)\n \n// prints \"/_next/static/media/file.a9727b5d.txt\"",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/urlImports",
+    "https://nextjs.org/docs/app/api-reference/edge",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/typescript",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/useLightningcss"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "title": "S3 node",
+  "content": "Use the S3 node to automate work in non-AWS S3 storage and integrate S3 with other applications. n8n has built-in support for a wide range of S3 features, including creating, deleting, and getting buckets, files, and folders. For AWS S3, use [AWS S3](../n8n-nodes-base.awss3/).\n\nUse the S3 node for non-AWS S3 solutions like:\n\n- [MinIO](https://min.io/)\n- [Wasabi](https://wasabi.com/)\n- [Digital Ocean spaces](https://www.digitalocean.com/products/spaces)\n\nOn this page, you'll find a list of operations the S3 node supports and links to more resources.\n\nRefer to [S3 credentials](../../credentials/s3/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- Create a bucket\n  - Delete a bucket\n  - Get all buckets\n  - Search within a bucket\n\n- Copy a file\n  - Delete a file\n  - Download a file\n  - Get all files\n  - Upload a file\n\nAttach file for upload\n\nTo attach a file for upload, use another node to pass the file as a data property. Nodes like the [Read/Write Files from Disk](../../core-nodes/n8n-nodes-base.readwritefile/) node or the [HTTP Request](../../core-nodes/n8n-nodes-base.httprequest/) work well.\n\n- Create a folder\n  - Delete a folder\n  - Get all folders\n\n## Templates and examples\n\n**Flux AI Image Generator**\n\n[View template details](https://n8n.io/workflows/2417-flux-ai-image-generator/)\n\n**Hacker News to Video Content**\n\n[View template details](https://n8n.io/workflows/2557-hacker-news-to-video-content/)\n\n**Transcribe audio files from Cloud Storage**\n\n[View template details](https://n8n.io/workflows/1394-transcribe-audio-files-from-cloud-storage/)\n\n[Browse S3 integration templates](https://n8n.io/integrations/s3/), or [search all templates](https://n8n.io/workflows/)\n\n### Setting file permissions in Wasabi\n\nWhen uploading files to [Wasabi](https://wasabi.com/), you must set permissions for the files using the **ACL** dropdown and not the toggles.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Node reference",
+      "id": "node-reference"
+    },
+    {
+      "level": "h3",
+      "text": "Setting file permissions in Wasabi",
+      "id": "setting-file-permissions-in-wasabi"
+    }
+  ],
+  "url": "llms-txt#s3-node",
+  "links": []
+}

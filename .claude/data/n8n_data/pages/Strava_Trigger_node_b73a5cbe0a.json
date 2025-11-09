@@ -1,0 +1,14 @@
+{
+  "title": "Strava Trigger node",
+  "content": "[Strava](https://www.strava.com/) is an internet service for tracking human exercise which incorporates social network features.\n\nYou can find authentication information for this node [here](../../credentials/strava/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Strava Trigger integrations](https://n8n.io/integrations/strava-trigger/) page.\n\n- **[All]**\n  - [All]\n  - Created\n  - Deleted\n  - Updated\n- **Activity**\n  - [All]\n  - Created\n  - Deleted\n  - Updated\n- **Athlete**\n  - [All]\n  - Created\n  - Deleted\n  - Updated",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    }
+  ],
+  "url": "llms-txt#strava-trigger-node",
+  "links": []
+}

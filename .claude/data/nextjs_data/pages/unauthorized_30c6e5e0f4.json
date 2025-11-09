@@ -1,0 +1,92 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/unauthorized",
+  "title": "unauthorized",
+  "content": "The unauthorized function throws an error that renders a Next.js 401 error page. It's useful for handling authorization errors in your application. You can customize the UI using the unauthorized.js file.\n\nTo start using unauthorized, enable the experimental authInterrupts configuration option in your next.config.js file:\n\nunauthorized can be invoked in Server Components, Server Actions, and Route Handlers.\n\nYou can use unauthorized function to display the unauthorized.js file with a login UI.\n\nYou can invoke unauthorized in Server Actions to ensure only authenticated users can perform specific mutations.\n\nYou can use unauthorized in Route Handlers to ensure only authenticated users can access the endpoint.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "unauthorized",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Good to know",
+      "id": "good-to-know"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Displaying login UI to unauthenticated users",
+      "id": "displaying-login-ui-to-unauthenticated-users"
+    },
+    {
+      "level": "h3",
+      "text": "Mutations with Server Actions",
+      "id": "mutations-with-server-actions"
+    },
+    {
+      "level": "h3",
+      "text": "Fetching data with Route Handlers",
+      "id": "fetching-data-with-route-handlers"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "unauthorized.js",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    authInterrupts: true,\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "import { verifySession } from '@/app/lib/dal'\nimport { unauthorized } from 'next/navigation'\n \nexport default async function DashboardPage() {\n  const session = await verifySession()\n \n  if (!session) {\n    unauthorized()\n  }\n \n  // Render the dashboard for authenticated users\n  return (\n    <main>\n      <h1>Welcome to the Dashboard</h1>\n      <p>Hi, {session.user.name}.</p>\n    </main>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { verifySession } from '@/app/lib/dal'\nimport { unauthorized } from 'next/navigation'\n \nexport default async function DashboardPage() {\n  const session = await verifySession()\n \n  if (!session) {\n    unauthorized()\n  }\n \n  return <div>Dashboard</div>\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Login from '@/app/components/Login'\n \nexport default function UnauthorizedPage() {\n  return (\n    <main>\n      <h1>401 - Unauthorized</h1>\n      <p>Please log in to access this page.</p>\n      <Login />\n    </main>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nimport { verifySession } from '@/app/lib/dal'\nimport { unauthorized } from 'next/navigation'\nimport db from '@/app/lib/db'\n \nexport async function updateProfile(data: FormData) {\n  const session = await verifySession()\n \n  // If the user is not authenticated, return a 401\n  if (!session) {\n    unauthorized()\n  }\n \n  // Proceed with mutation\n  // ...\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextRequest, NextResponse } from 'next/server'\nimport { verifySession } from '@/app/lib/dal'\nimport { unauthorized } from 'next/navigation'\n \nexport async function GET(req: NextRequest): Promise<NextResponse> {\n  // Verify the user's session\n  const session = await verifySession()\n \n  // If no session exists, return a 401 and render unauthorized.tsx\n  if (!session) {\n    unauthorized()\n  }\n \n  // Fetch data\n  // ...\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/unauthorized",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/authInterrupts",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/getting-started/updating-data",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/functions/unauthorized",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidateTag",
+    "https://nextjs.org/docs/app/api-reference/functions/unstable_cache"
+  ]
+}

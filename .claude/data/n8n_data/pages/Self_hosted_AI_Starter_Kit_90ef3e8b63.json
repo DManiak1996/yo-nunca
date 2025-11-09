@@ -1,0 +1,24 @@
+{
+  "title": "Self-hosted AI Starter Kit",
+  "content": "The Self-hosted AI Starter Kit is an open, docker compose template that bootstraps a fully featured Local AI and Low Code development environment.\n\nCurated by [n8n](https://github.com/n8n-io), it combines the self-hosted n8n platform with a list of compatible AI products and components to get you started building self-hosted AI workflows.\n\n✅ [**Self-hosted n8n**](../../): Low-code platform with over 400 integrations and advanced AI components.\n\n✅ [**Ollama**](https://ollama.com/): Cross-platform LLM platform to install and run the latest local LLMs.\n\n✅ [**Qdrant**](https://qdrant.tech/): Open-source, high performance vector store with a comprehensive API.\n\n✅ [**PostgreSQL**](https://www.postgresql.org/): The workhorse of the Data Engineering world, handles large amounts of data safely.\n\n## What you can build\n\n⭐️ [AI Agents](../../../glossary/#ai-agent) that can schedule appointments\n\n⭐️ Summaries of company PDFs without leaking data\n\n⭐️ Smarter Slackbots for company communications and IT-ops\n\n⭐️ Private, low-cost analyses of financial documents\n\nHead to [the GitHub repository](https://github.com/n8n-io/self-hosted-ai-starter-kit) to clone the repo and get started!\n\nn8n designed this kit to help you get started with self-hosted AI workflows. While it’s not fully optimized for production environments, it combines robust components that work well together for proof-of-concept projects. Customize it to meet your needs. Secure and harden it before using in production.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "What’s included",
+      "id": "what’s-included"
+    },
+    {
+      "level": "h2",
+      "text": "What you can build",
+      "id": "what-you-can-build"
+    },
+    {
+      "level": "h2",
+      "text": "Get the kit",
+      "id": "get-the-kit"
+    }
+  ],
+  "url": "llms-txt#self-hosted-ai-starter-kit",
+  "links": []
+}

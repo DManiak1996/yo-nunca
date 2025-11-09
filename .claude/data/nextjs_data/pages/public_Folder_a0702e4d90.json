@@ -1,0 +1,41 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/file-conventions/public-folder",
+  "title": "public Folder",
+  "content": "Next.js can serve static files, like images, under a folder called public in the root directory. Files inside public can then be referenced by your code starting from the base URL (/).\n\nFor example, the file public/avatars/me.png can be viewed by visiting the /avatars/me.png path. The code to display that image might look like:\n\nNext.js cannot safely cache assets in the public folder because they may change. The default caching headers applied are:\n\nThe folder is also useful for robots.txt, favicon.ico, Google Site Verification, and any other static files (including .html). But make sure to not have a static file with the same name as a file in the pages/ directory, as this will result in an error. Read more.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "public Folder",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Caching",
+      "id": "caching"
+    },
+    {
+      "level": "h2",
+      "text": "Robots, Favicons, and others",
+      "id": "robots-favicons-and-others"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Image from 'next/image'\n \nexport function Avatar({ id, alt }) {\n  return <Image src={`/avatars/${id}.png`} alt={alt} width=\"64\" height=\"64\" />\n}\n \nexport function AvatarOfMe() {\n  return <Avatar id=\"me\" alt=\"A portrait of me\" />\n}",
+      "language": "python"
+    },
+    {
+      "code": "Cache-Control: public, max-age=0",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/api-reference",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions/public-folder",
+    "https://nextjs.org/docs/messages/conflicting-public-file-page",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions/src-folder"
+  ]
+}

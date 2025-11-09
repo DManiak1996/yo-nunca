@@ -1,0 +1,76 @@
+{
+  "url": "https://react.dev/reference/react-dom/server/renderToStaticMarkup",
+  "title": "renderToStaticMarkup",
+  "content": "renderToStaticMarkup renders a non-interactive React tree to an HTML string.\n\nOn the server, call renderToStaticMarkup to render your app to HTML.\n\nIt will produce non-interactive HTML output of your React components.\n\nSee more examples below.\n\nrenderToStaticMarkup output cannot be hydrated.\n\nrenderToStaticMarkup has limited Suspense support. If a component suspends, renderToStaticMarkup immediately sends its fallback as HTML.\n\nrenderToStaticMarkup works in the browser, but using it in the client code is not recommended. If you need to render a component to HTML in the browser, get the HTML by rendering it into a DOM node.\n\nCall renderToStaticMarkup to render your app to an HTML string which you can send with your server response:\n\nThis will produce the initial non-interactive HTML output of your React components.\n\nThis method renders non-interactive HTML that cannot be hydrated. This is useful if you want to use React as a simple static page generator, or if you’re rendering completely static content like emails.\n\nInteractive apps should use renderToString on the server and hydrateRoot on the client.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "renderToStaticMarkup",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "renderToStaticMarkup(reactNode, options?)",
+      "id": "rendertostaticmarkup"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Rendering a non-interactive React tree as HTML to a string",
+      "id": "rendering-a-non-interactive-react-tree-as-html-to-a-string"
+    },
+    {
+      "level": "h3",
+      "text": "Pitfall",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "const html = renderToStaticMarkup(reactNode, options?)",
+      "language": "javascript"
+    },
+    {
+      "code": "import { renderToStaticMarkup } from 'react-dom/server';const html = renderToStaticMarkup(<Page />);",
+      "language": "python"
+    },
+    {
+      "code": "import { renderToStaticMarkup } from 'react-dom/server';// The route handler syntax depends on your backend frameworkapp.use('/', (request, response) => {  const html = renderToStaticMarkup(<Page />);  response.send(html);});",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-dom/server",
+    "https://react.dev/reference/react-dom/server/renderToStaticMarkup",
+    "https://react.dev/reference/react/useId",
+    "https://react.dev/reference/react-dom/server/renderToString",
+    "https://react.dev/reference/react-dom/client/hydrateRoot",
+    "https://react.dev/reference/react-dom/server/renderToReadableStream"
+  ]
+}

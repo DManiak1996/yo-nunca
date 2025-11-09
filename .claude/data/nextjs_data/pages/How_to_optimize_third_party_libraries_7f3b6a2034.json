@@ -1,0 +1,129 @@
+{
+  "url": "https://nextjs.org/docs/pages/guides/third-party-libraries",
+  "title": "How to optimize third-party libraries",
+  "content": "@next/third-parties is a library that provides a collection of components and utilities that improve the performance and developer experience of loading popular third-party libraries in your Next.js application.\n\nAll third-party integrations provided by @next/third-parties have been optimized for performance and ease of use.\n\nTo get started, install the @next/third-parties library:\n\n@next/third-parties is currently an experimental library under active development. We recommend installing it with the latest or canary flags while we work on adding more third-party integrations.\n\nAll supported third-party libraries from Google can be imported from @next/third-parties/google.\n\nThe GoogleTagManager component can be used to instantiate a Google Tag Manager container to your page. By default, it fetches the original inline script after hydration occurs on the page.\n\nTo load Google Tag Manager for all routes, include the component directly in your custom _app and pass in your GTM container ID:\n\nTo load Google Tag Manager for a single route, include the component in your page file:\n\nThe sendGTMEvent function can be used to track user interactions on your page by sending events using the dataLayer object. For this function to work, the <GoogleTagManager /> component must be included in either a parent layout, page, or component, or directly in the same file.\n\nRefer to the Tag Manager developer documentation to learn about the different variables and events that can be passed into the function.\n\nIf you're using a server-side tag manager and serving gtm.js scripts from your tagging server you can use gtmScriptUrl option to specify the URL of the script.\n\nOptions to pass to the Google Tag Manager. For a full list of options, read the Google Tag Manager docs.\n\n*gtmId can be omitted when gtmScriptUrl is provided to support Google tag gateway for advertisers.\n\nThe GoogleAnalytics component can be used to include Google Analytics 4 to your page via the Google tag (gtag.js). By default, it fetches the original scripts after hydration occurs on the page.\n\nRecommendation: If Google Tag Manager is already included in your application, you can configure Google Analytics directly using it, rather than including Google Analytics as a separate component. Refer to the documentation to learn more about the differences between Tag Manager and gtag.js.\n\nTo load Google Analytics for all routes, include the component directly in your custom _app and pass in your measurement ID:\n\nTo load Google Analytics for a single route, include the component in your page file:\n\nThe sendGAEvent function can be used to measure user interactions on your page by sending events using the dataLayer object. For this function to work, the <GoogleAnalytics /> component must be included in either a parent layout, page, or component, or directly in the same file.\n\nRefer to the Google Analytics developer documentation to learn more about event parameters.\n\nGoogle Analytics automatically tracks pageviews when the browser history state changes. This means that client-side navigations between Next.js routes will send pageview data without any configuration.\n\nTo ensure that client-side navigations are being measured correctly, verify that the “Enhanced Measurement” property is enabled in your Admin panel and the “Page changes based on browser history events” checkbox is selected.\n\nNote: If you decide to manually send pageview events, make sure to disable the default pageview measurement to avoid having duplicate data. Refer to the Google Analytics developer documentation to learn more.\n\nOptions to pass to the <GoogleAnalytics> component.\n\nThe GoogleMapsEmbed component can be used to add a Google Maps Embed to your page. By default, it uses the loading attribute to lazy-load the embed below the fold.\n\nOptions to pass to the Google Maps Embed. For a full list of options, read the Google Map Embed docs.\n\nThe YouTubeEmbed component can be used to load and display a YouTube embed. This component loads faster by using lite-youtube-embed under the hood.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to optimize third-party libraries",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Getting Started",
+      "id": "getting-started"
+    },
+    {
+      "level": "h2",
+      "text": "Google Third-Parties",
+      "id": "google-third-parties"
+    },
+    {
+      "level": "h3",
+      "text": "Google Tag Manager",
+      "id": "google-tag-manager"
+    },
+    {
+      "level": "h4",
+      "text": "Sending Events",
+      "id": "sending-events"
+    },
+    {
+      "level": "h4",
+      "text": "Server-side Tagging",
+      "id": "server-side-tagging"
+    },
+    {
+      "level": "h4",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h3",
+      "text": "Google Analytics",
+      "id": "google-analytics"
+    },
+    {
+      "level": "h4",
+      "text": "Sending Events",
+      "id": "sending-events-1"
+    },
+    {
+      "level": "h4",
+      "text": "Tracking Pageviews",
+      "id": "tracking-pageviews"
+    },
+    {
+      "level": "h4",
+      "text": "Options",
+      "id": "options-1"
+    },
+    {
+      "level": "h3",
+      "text": "Google Maps Embed",
+      "id": "google-maps-embed"
+    },
+    {
+      "level": "h4",
+      "text": "Options",
+      "id": "options-2"
+    },
+    {
+      "level": "h3",
+      "text": "YouTube Embed",
+      "id": "youtube-embed"
+    },
+    {
+      "level": "h4",
+      "text": "Options",
+      "id": "options-3"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "npm install @next/third-parties@latest next@latest",
+      "language": "unknown"
+    },
+    {
+      "code": "import { GoogleTagManager } from '@next/third-parties/google'\n \nexport default function MyApp({ Component, pageProps }) {\n  return (\n    <>\n      <Component {...pageProps} />\n      <GoogleTagManager gtmId=\"GTM-XYZ\" />\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { GoogleTagManager } from '@next/third-parties/google'\n \nexport default function Page() {\n  return <GoogleTagManager gtmId=\"GTM-XYZ\" />\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { sendGTMEvent } from '@next/third-parties/google'\n \nexport function EventButton() {\n  return (\n    <div>\n      <button\n        onClick={() => sendGTMEvent({ event: 'buttonClicked', value: 'xyz' })}\n      >\n        Send Event\n      </button>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { GoogleAnalytics } from '@next/third-parties/google'\n \nexport default function MyApp({ Component, pageProps }) {\n  return (\n    <>\n      <Component {...pageProps} />\n      <GoogleAnalytics gaId=\"G-XYZ\" />\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { GoogleAnalytics } from '@next/third-parties/google'\n \nexport default function Page() {\n  return <GoogleAnalytics gaId=\"G-XYZ\" />\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { sendGAEvent } from '@next/third-parties/google'\n \nexport function EventButton() {\n  return (\n    <div>\n      <button\n        onClick={() => sendGAEvent('event', 'buttonClicked', { value: 'xyz' })}\n      >\n        Send Event\n      </button>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { GoogleMapsEmbed } from '@next/third-parties/google'\n \nexport default function Page() {\n  return (\n    <GoogleMapsEmbed\n      apiKey=\"XYZ\"\n      height={200}\n      width=\"100%\"\n      mode=\"place\"\n      q=\"Brooklyn+Bridge,New+York,NY\"\n    />\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { YouTubeEmbed } from '@next/third-parties/google'\n \nexport default function Page() {\n  return <YouTubeEmbed videoid=\"ogfYd705cRs\" height={400} params=\"controls=0\" />\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/guides",
+    "https://nextjs.org/docs/pages/guides/third-party-libraries",
+    "https://nextjs.org/docs/app/guides/content-security-policy",
+    "https://nextjs.org/docs/pages/guides/testing/vitest",
+    "https://nextjs.org/docs/pages/guides/upgrading"
+  ]
+}

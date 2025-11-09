@@ -1,0 +1,8 @@
+{
+  "title": "Access a variable",
+  "content": "_vars.<variable-name>\n```\n\n`vars` gives access to user-created variables. It's part of the [Environments](../../../../source-control-environments/) feature. `env` gives access to the [configuration environment variables](../../../../hosting/configuration/environment-variables/) for your n8n instance.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#access-a-variable",
+  "links": []
+}

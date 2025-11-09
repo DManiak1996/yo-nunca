@@ -1,0 +1,73 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/functions",
+  "title": "Functions",
+  "content": "",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Functions",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "getInitialProps",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "getServerSideProps",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "getStaticPaths",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "getStaticProps",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "NextRequest",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "NextResponse",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "useReportWebVitals",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "useRouter",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "userAgent",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/api-reference",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-initial-props",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-server-side-props",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-static-paths",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-static-props",
+    "https://nextjs.org/docs/pages/api-reference/functions/next-request",
+    "https://nextjs.org/docs/pages/api-reference/functions/next-response",
+    "https://nextjs.org/docs/pages/api-reference/functions/use-report-web-vitals",
+    "https://nextjs.org/docs/pages/api-reference/functions/use-router",
+    "https://nextjs.org/docs/pages/api-reference/functions/userAgent",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions/src-folder"
+  ]
+}

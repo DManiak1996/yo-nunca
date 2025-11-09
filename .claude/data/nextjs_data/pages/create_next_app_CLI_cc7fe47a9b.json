@@ -1,0 +1,96 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/cli/create-next-app",
+  "title": "create-next-app CLI",
+  "content": "The create-next-app CLI allow you to create a new Next.js application using the default template or an example from a public GitHub repository. It is the easiest way to get started with Next.js.\n\nThe following options are available:\n\nTo create a new app using the default template, run the following command in your terminal:\n\nOn installation, you'll see the following prompts:\n\nIf you choose to customize settings, you'll see the following prompts:\n\nAfter the prompts, create-next-app will create a folder with your project name and install the required dependencies.\n\nESLint: The traditional and most popular JavaScript linter. Includes Next.js-specific rules from @next/eslint-plugin-next.\n\nBiome: A fast, modern linter and formatter that combines the functionality of ESLint and Prettier. Includes built-in Next.js and React domain support for optimal performance.\n\nNone: Skip linter configuration entirely. You can always add a linter later.\n\nOnce you've answered the prompts, a new project will be created with your chosen configuration.\n\nTo create a new app using an official Next.js example, use the --example flag. For example:\n\nYou can view a list of all available examples along with setup instructions in the Next.js repository.\n\nTo create a new app using any public GitHub example, use the --example option with the GitHub repo's URL. For example:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "create-next-app CLI",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "With the default template",
+      "id": "with-the-default-template"
+    },
+    {
+      "level": "h3",
+      "text": "Linter Options",
+      "id": "linter-options"
+    },
+    {
+      "level": "h3",
+      "text": "With an official Next.js example",
+      "id": "with-an-official-nextjs-example"
+    },
+    {
+      "level": "h3",
+      "text": "With any public GitHub example",
+      "id": "with-any-public-github-example"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "npx create-next-app@latest [project-name] [options]",
+      "language": "unknown"
+    },
+    {
+      "code": "npx create-next-app@latest",
+      "language": "unknown"
+    },
+    {
+      "code": "What is your project named? my-app\nWould you like to use the recommended Next.js defaults?\n    Yes, use recommended defaults - TypeScript, ESLint, Tailwind CSS, App Router, Turbopack\n    No, reuse previous settings\n    No, customize settings - Choose your own preferences",
+      "language": "unknown"
+    },
+    {
+      "code": "Would you like to use TypeScript? No / Yes\nWhich linter would you like to use? ESLint / Biome / None\nWould you like to use React Compiler? No / Yes\nWould you like to use Tailwind CSS? No / Yes\nWould you like your code inside a `src/` directory? No / Yes\nWould you like to use App Router? (recommended) No / Yes\nWould you like to customize the import alias (`@/*` by default)? No / Yes\nWhat import alias would you like configured? @/*",
+      "language": "unknown"
+    },
+    {
+      "code": "npx create-next-app@latest --example [example-name] [your-project-name]",
+      "language": "unknown"
+    },
+    {
+      "code": "npx create-next-app@latest --example \"https://github.com/.../\" [your-project-name]",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "API ReferenceCLIcreate-next-app CLICopy pagecreate-next-app CLI The create-next-app CLI allow you to create a new Next.js application using the default template or an example from a public GitHub repository. It is the easiest way to get started with Next.js. Basic usage: Terminalnpx create-next-app@latest [project-name] [options] Reference The following options are available: OptionsDescription-h or --helpShow all available options-v or --versionOutput the version number--no-*Negate default options. E.g. --no-ts--ts or --typescriptInitialize as a TypeScript project (default)--js or --javascriptInitialize as a JavaScript project--tailwindInitialize with Tailwind CSS config (default)--react-compilerInitialize with React Compiler enabled--eslintInitialize with ESLint config--biomeInitialize with Biome config--no-linterSkip linter configuration--appInitialize as an App Router project--apiInitialize a project with only route handlers--src-dirInitialize inside a src/ directory--turbopackForce enable Turbopack in generated package.json (enabled by default)--webpackForce enable Webpack in generated package.json--import-alias <alias-to-configure>Specify import alias to use (default \"@/*\")--emptyInitialize an empty project--use-npmExplicitly tell the CLI to bootstrap the application using npm--use-pnpmExplicitly tell the CLI to bootstrap the application using pnpm--use-yarnExplicitly tell the CLI to bootstrap the application using Yarn--use-bunExplicitly tell the CLI to bootstrap the application using Bun-e or --example [name] [github-url]An example to bootstrap the app with--example-path <path-to-example>Specify the path to the example separately--reset-preferencesExplicitly tell the CLI to reset any stored preferences--skip-installExplicitly tell the CLI to skip installing packages--disable-gitExplicitly tell the CLI to disable git initialization--yesUse previous preferences or defaults for all options Examples With the default template To create a new app using the default template, run the following command in your terminal: Terminalnpx create-next-app@latest On installation, you'll see the following prompts: TerminalWhat is your project named? my-app Would you like to use the recommended Next.js defaults? Yes, use recommended defaults - TypeScript, ESLint, Tailwind CSS, App Router, Turbopack No, reuse previous settings No, customize settings - Choose your own preferences If you choose to customize settings, you'll see the following prompts: TerminalWould you like to use TypeScript? No / Yes Which linter would you like to use? ESLint / Biome / None Would you like to use React Compiler? No / Yes Would you like to use Tailwind CSS? No / Yes Would you like your code inside a `src/` directory? No / Yes Would you like to use App Router? (recommended) No / Yes Would you like to customize the import alias (`@/*` by default)? No / Yes What import alias would you like configured? @/* After the prompts, create-next-app will create a folder with your project name and install the required dependencies. Linter Options ESLint: The traditional and most popular JavaScript linter. Includes Next.js-specific rules from @next/eslint-plugin-next. Biome: A fast, modern linter and formatter that combines the functionality of ESLint and Prettier. Includes built-in Next.js and React domain support for optimal performance. None: Skip linter configuration entirely. You can always add a linter later. Once you've answered the prompts, a new project will be created with your chosen configuration. With an official Next.js example To create a new app using an official Next.js example, use the --example flag. For example: Terminalnpx create-next-app@latest --example [example-name] [your-project-name] You can view a list of all available examples along with setup instructions in the Next.js repository. With any public GitHub example To create a new app using any public GitHub example, use the --example option with the GitHub repo's URL. For example: Terminalnpx create-next-app@latest --example \"https://github.com/.../\" [your-project-name]",
+      "code": "create-next-app"
+    },
+    {
+      "description": "create-next-app CLI The create-next-app CLI allow you to create a new Next.js application using the default template or an example from a public GitHub repository. It is the easiest way to get started with Next.js. Basic usage: Terminalnpx create-next-app@latest [project-name] [options] Reference The following options are available: OptionsDescription-h or --helpShow all available options-v or --versionOutput the version number--no-*Negate default options. E.g. --no-ts--ts or --typescriptInitialize as a TypeScript project (default)--js or --javascriptInitialize as a JavaScript project--tailwindInitialize with Tailwind CSS config (default)--react-compilerInitialize with React Compiler enabled--eslintInitialize with ESLint config--biomeInitialize with Biome config--no-linterSkip linter configuration--appInitialize as an App Router project--apiInitialize a project with only route handlers--src-dirInitialize inside a src/ directory--turbopackForce enable Turbopack in generated package.json (enabled by default)--webpackForce enable Webpack in generated package.json--import-alias <alias-to-configure>Specify import alias to use (default \"@/*\")--emptyInitialize an empty project--use-npmExplicitly tell the CLI to bootstrap the application using npm--use-pnpmExplicitly tell the CLI to bootstrap the application using pnpm--use-yarnExplicitly tell the CLI to bootstrap the application using Yarn--use-bunExplicitly tell the CLI to bootstrap the application using Bun-e or --example [name] [github-url]An example to bootstrap the app with--example-path <path-to-example>Specify the path to the example separately--reset-preferencesExplicitly tell the CLI to reset any stored preferences--skip-installExplicitly tell the CLI to skip installing packages--disable-gitExplicitly tell the CLI to disable git initialization--yesUse previous preferences or defaults for all options Examples With the default template To create a new app using the default template, run the following command in your terminal: Terminalnpx create-next-app@latest On installation, you'll see the following prompts: TerminalWhat is your project named? my-app Would you like to use the recommended Next.js defaults? Yes, use recommended defaults - TypeScript, ESLint, Tailwind CSS, App Router, Turbopack No, reuse previous settings No, customize settings - Choose your own preferences If you choose to customize settings, you'll see the following prompts: TerminalWould you like to use TypeScript? No / Yes Which linter would you like to use? ESLint / Biome / None Would you like to use React Compiler? No / Yes Would you like to use Tailwind CSS? No / Yes Would you like your code inside a `src/` directory? No / Yes Would you like to use App Router? (recommended) No / Yes Would you like to customize the import alias (`@/*` by default)? No / Yes What import alias would you like configured? @/* After the prompts, create-next-app will create a folder with your project name and install the required dependencies. Linter Options ESLint: The traditional and most popular JavaScript linter. Includes Next.js-specific rules from @next/eslint-plugin-next. Biome: A fast, modern linter and formatter that combines the functionality of ESLint and Prettier. Includes built-in Next.js and React domain support for optimal performance. None: Skip linter configuration entirely. You can always add a linter later. Once you've answered the prompts, a new project will be created with your chosen configuration. With an official Next.js example To create a new app using an official Next.js example, use the --example flag. For example: Terminalnpx create-next-app@latest --example [example-name] [your-project-name] You can view a list of all available examples along with setup instructions in the Next.js repository. With any public GitHub example To create a new app using any public GitHub example, use the --example option with the GitHub repo's URL. For example: Terminalnpx create-next-app@latest --example \"https://github.com/.../\" [your-project-name]",
+      "code": "create-next-app"
+    },
+    {
+      "description": "Basic usage:",
+      "code": "npx create-next-app@latest [project-name] [options]"
+    },
+    {
+      "description": "To create a new app using an official Next.js example, use the --example flag. For example:",
+      "code": "--example"
+    },
+    {
+      "description": "To create a new app using any public GitHub example, use the --example option with the GitHub repo's URL. For example:",
+      "code": "--example"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/pages/api-reference",
+    "https://nextjs.org/docs/pages/api-reference/cli",
+    "https://nextjs.org/docs/pages/api-reference/cli/create-next-app",
+    "https://nextjs.org/docs/pages/api-reference/cli/next"
+  ]
+}

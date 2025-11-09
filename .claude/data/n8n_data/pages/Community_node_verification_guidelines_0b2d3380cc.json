@@ -1,0 +1,44 @@
+{
+  "title": "Community node verification guidelines",
+  "content": "Do you want n8n to verify your node?\n\nConsider following these guidelines while building your node if you want to submit it for verification by n8n. Any user with verified community nodes enabled can discover and install verified nodes from n8n's nodes panel across all deployment types (self-hosted and n8n Cloud).\n\n## Use the n8n-node tool\n\nAll verified community node authors should strongly consider using the [`n8n-node` tool](../../n8n-node/) to create and check their package. This helps n8n ensure quality and consistency by:\n\n- Generating the expected package file structure\n- Adding the required metadata and configuration to the `package.json` file\n- Making it easy to lint your code against n8n's standards\n- Allowing you to load your node in a local n8n instance for testing\n\n## Package source verification\n\n- Verify that your npm package repository URL matches the expected GitHub (or other platform) repository.\n- Confirm that the package author / maintainer matches between npm and the repository.\n- Confirm that the git link in npm works and that the repository is public.\n- Make sure your package has proper documentation (README, usage examples, etc.).\n- Make sure your package license is MIT.\n\n## No external dependencies\n\n- Ensure that your package does **not** include any external dependencies to keep it lightweight and easy to maintain.\n\n## Proper documentation\n\n- Provide clear documentation, whether it’s a **README** on GitHub or links to relevant **API documentation**.\n- Include usage instructions, example workflows, and any necessary authentication details.\n\n## No access to environment variables or file system\n\n- The code **must not** interact with environment variables or attempt to read/write files.\n- Pass all necessary data through node parameters.\n\n## Follow n8n best practices\n\n- Maintain a clear and consistent coding style.\n- Use **TypeScript** and follow n8n's [**node development guidelines**](../../../overview/).\n- Ensure proper error handling and validation.\n- Make sure the linter passes (in other words, make sure running `npx @n8n/scan-community-package n8n-nodes-PACKAGE` passes).\n\n## Use English language only\n\n- Both the node interface and all documentation must be in **English** only.\n- This includes parameter names, descriptions, help text, error messages and **README** content.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Use the n8n-node tool",
+      "id": "use-the-n8n-node-tool"
+    },
+    {
+      "level": "h2",
+      "text": "Package source verification",
+      "id": "package-source-verification"
+    },
+    {
+      "level": "h2",
+      "text": "No external dependencies",
+      "id": "no-external-dependencies"
+    },
+    {
+      "level": "h2",
+      "text": "Proper documentation",
+      "id": "proper-documentation"
+    },
+    {
+      "level": "h2",
+      "text": "No access to environment variables or file system",
+      "id": "no-access-to-environment-variables-or-file-system"
+    },
+    {
+      "level": "h2",
+      "text": "Follow n8n best practices",
+      "id": "follow-n8n-best-practices"
+    },
+    {
+      "level": "h2",
+      "text": "Use English language only",
+      "id": "use-english-language-only"
+    }
+  ],
+  "url": "llms-txt#community-node-verification-guidelines",
+  "links": []
+}

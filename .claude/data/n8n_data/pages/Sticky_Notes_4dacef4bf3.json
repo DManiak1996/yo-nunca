@@ -1,0 +1,34 @@
+{
+  "title": "Sticky Notes",
+  "content": "Sticky Notes allow you to annotate and comment on your workflows.\n\nn8n recommends using Sticky Notes heavily, especially on [template workflows](../../../glossary/#template-n8n), to help other users understand your workflow.\n\n## Create a Sticky Note\n\nSticky Notes are a core node. To add a new Sticky Note:\n\n1. Open the nodes panel.\n1. Search for `note`.\n1. Click the **Sticky Note** node. n8n adds a new Sticky Note to the canvas.\n\n## Edit a Sticky Note\n\n1. Double click the Sticky Note you want to edit.\n1. Write your note. [This guide](https://commonmark.org/help/) explains how to format your text with Markdown. n8n uses [markdown-it](https://github.com/markdown-it/markdown-it), which implements the CommonMark specification.\n1. Click away from the note, or press `Esc`, to stop editing.\n\nTo change the Sticky Note color:\n\n1. Hover over the Sticky Note\n1. Select **Change color**\n\n## Sticky Note positioning\n\n- Drag a Sticky Note anywhere on the canvas.\n- Drag Sticky Notes behind nodes. You can use this to visually group nodes.\n- Resize Sticky Notes by hovering over the edge of the note and dragging to resize.\n- Change the color: select **Options** to open the color selector.\n\n## Writing in Markdown\n\nSticky Notes support Markdown formatting. This section describes some common options.\n\n```\nThe text in double asterisks will be **bold**\n\nThe text in single asterisks will be *italic*\n\nUse # to indicate headings:",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Create a Sticky Note",
+      "id": "create-a-sticky-note"
+    },
+    {
+      "level": "h2",
+      "text": "Edit a Sticky Note",
+      "id": "edit-a-sticky-note"
+    },
+    {
+      "level": "h2",
+      "text": "Change the color",
+      "id": "change-the-color"
+    },
+    {
+      "level": "h2",
+      "text": "Sticky Note positioning",
+      "id": "sticky-note-positioning"
+    },
+    {
+      "level": "h2",
+      "text": "Writing in Markdown",
+      "id": "writing-in-markdown"
+    }
+  ],
+  "url": "llms-txt#sticky-notes",
+  "links": []
+}

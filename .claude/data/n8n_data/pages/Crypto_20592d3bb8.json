@@ -1,0 +1,44 @@
+{
+  "title": "Crypto",
+  "content": "Use the Crypto node to encrypt data in workflows.\n\n- [**Generate** a random string](#generate-parameters)\n- [**Hash** a text or file](#hash-parameters) in a specified format\n- [**Hmac** a text or file](#hmac-parameters) in a specified format\n- [**Sign** a string](#sign-parameters) using a private key\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\nNode parameters depend on the action you select.\n\n### Generate parameters\n\n- **Property Name**: Enter the name of the property to write the random string to.\n- **Type**: Select the encoding type to use to generate the string. Choose from:\n  - **ASCII**\n  - **BASE64**\n  - **HEX**\n  - **UUID**\n\n- **Type**: Select the hash type to use. Choose from:\n  - **MD5**\n  - **SHA256**\n  - **SHA3-256**\n  - **SHA3-384**\n  - **SHA3-512**\n  - **SHA385**\n  - **SHA512**\n- **Binary File**: Turn this parameter on if the data you want to hash is from a binary file.\n  - **Value**: If you turn off **Binary File**, enter the value you want to hash.\n  - **Binary Property Name**: If you turn on **Binary File**, enter the name of the binary property that contains the data you want to hash.\n- **Property Name**: Enter the name of the property you want to write the hash to.\n- **Encoding**: Select the encoding type to use. Choose from:\n  - **BASE64**\n  - **HEX**\n\n- **Binary File**: Turn this parameter on if the data you want to encrypt is from a binary file.\n  - **Value**: If you turn off **Binary File**, enter the value you want to encrypt.\n  - **Binary Property Name**: If you turn on **Binary File**, enter the name of the binary property that contains the data you want to encrypt.\n- **Type**: Select the encryption type to use. Choose from:\n  - **MD5**\n  - **SHA256**\n  - **SHA3-256**\n  - **SHA3-384**\n  - **SHA3-512**\n  - **SHA385**\n  - **SHA512**\n- **Property Name**: Enter the name of the property you want to write the hash to.\n- **Secret**: Enter the secret or secret key used for decoding.\n- **Encoding**: Select the encoding type to use. Choose from:\n  - **BASE64**\n  - **HEX**\n\n- **Value**: Enter the value you want to sign.\n- **Property Name**: Enter the name of the property you want to write the signed value to.\n- **Algorithm Name or ID**: Choose an algorithm name from the list or specify an ID using an [expression](../../../../code/expressions/).\n- **Encoding**: Select the encoding type to use. Choose from:\n  - **BASE64**\n  - **HEX**\n- **Private Key**: Enter a private key to use when signing the string.\n\n## Templates and examples\n\n**Conversational Interviews with AI Agents and n8n Forms**\n\n[View template details](https://n8n.io/workflows/2566-conversational-interviews-with-ai-agents-and-n8n-forms/)\n\n**Analyze Crypto Markets with the AI-Powered CoinMarketCap Data Analyst**\n\n[View template details](https://n8n.io/workflows/3425-analyze-crypto-markets-with-the-ai-powered-coinmarketcap-data-analyst/)\n\n**Send a ChatGPT email reply and save responses to Google Sheets**\n\n[View template details](https://n8n.io/workflows/1898-send-a-chatgpt-email-reply-and-save-responses-to-google-sheets/)\n\n[Browse Crypto integration templates](https://n8n.io/integrations/crypto/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Actions",
+      "id": "actions"
+    },
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Generate parameters",
+      "id": "generate-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Hash parameters",
+      "id": "hash-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Hmac parameters",
+      "id": "hmac-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Sign parameters",
+      "id": "sign-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#crypto",
+  "links": []
+}

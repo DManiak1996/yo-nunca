@@ -1,0 +1,14 @@
+{
+  "title": "Netlify Trigger node",
+  "content": "[Netlify](https://netlify.com/) offers hosting and serverless backend services for web applications and static websites.\n\nYou can find authentication information for this node [here](../../credentials/netlify/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Netlify Trigger integrations](https://n8n.io/integrations/netlify-trigger/) page.\n\nn8n provides an app node for Netlify. You can find the node docs [here](../../app-nodes/n8n-nodes-base.netlify/).\n\nView [example workflows and related content](https://n8n.io/integrations/netlify/) on n8n's website.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#netlify-trigger-node",
+  "links": []
+}

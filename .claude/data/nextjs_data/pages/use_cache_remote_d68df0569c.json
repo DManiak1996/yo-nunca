@@ -1,0 +1,185 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/directives/use-cache-remote",
+  "title": "use cache: remote",
+  "content": "The 'use cache: remote' directive enables caching of shared data in dynamic contexts where regular use cache would not work, for example after calling await connection(), await cookies() or await headers().\n\nTo use 'use cache: remote', enable the cacheComponents flag in your next.config.ts file:\n\nThen add 'use cache: remote' to your function that needs to cache data in a dynamic context.\n\nCache product pricing that needs to be fetched at request time but can be shared across all users. Use cacheLife to set the cache lifetime of the price.\n\nNote: Regular use cache will not cache anything when used in a dynamic context (after await connection(), await cookies(), await headers(), etc.). Use 'use cache: remote' to enable runtime caching in these scenarios.\n\nNext.js provides three caching directives, each designed for different use cases:\n\nNote: While you can't call await cookies() or await headers() inside 'use cache: remote', you can read the values before calling a function that is wrapped by 'use cache: remote' and the arguments will be included in the cache key. Note that this is not recommended as it will dramatically increase the cache size and reduce the cache hit rate.\n\nChoose the right caching directive based on your use case:\n\nUse 'use cache: remote' when:\n\nUse 'use cache: private' when:\n\nThe 'use cache: remote' directive enables runtime caching of shared data in dynamic contexts by storing results in server-side cache handlers rather than prerendering at build time.\n\nWhen Next.js encounters certain APIs like connection(), cookies(), or headers(), the context becomes \"dynamic\". In a dynamic context:\n\nGood to know: Without 'use cache: remote', functions in dynamic contexts would execute on every request, potentially creating performance bottlenecks. Remote caching eliminates this issue by storing results in server-side cache handlers.\n\nRemote caches are persisted using server-side cache handlers, which may include:\n\nWhile 'use cache: remote' technically allows access to request-specific data by calling API's like cookies() and headers() before calling a function that is wrapped by 'use cache: remote', it's generally not recommended to use them together:\n\nImportant: If you need to cache based on cookies, headers, or search params, use 'use cache: private' instead. Remote caches are shared across all users, so caching user-specific data in them can lead to incorrect results being served to different users.\n\nRemote caches have specific nesting rules:\n\nThe following examples demonstrate common patterns for using 'use cache: remote'. For details about cacheLife parameters (stale, revalidate, expire), see the cacheLife API reference.\n\nCache expensive database queries that are accessed in dynamic contexts, reducing load on your database:\n\nCache API responses that are fetched during streaming or after dynamic operations:\n\nCache expensive computations that occur after dynamic security or feature checks:\n\nCombine static, remote, and private caching for optimal performance:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "use cache: remote",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Basic example",
+      "id": "basic-example"
+    },
+    {
+      "level": "h2",
+      "text": "How use cache: remote differs from use cache and use cache: private",
+      "id": "how-use-cache-remote-differs-from-use-cache-and-use-cache-private"
+    },
+    {
+      "level": "h3",
+      "text": "When to use each directive",
+      "id": "when-to-use-each-directive"
+    },
+    {
+      "level": "h2",
+      "text": "How it works",
+      "id": "how-it-works"
+    },
+    {
+      "level": "h3",
+      "text": "Dynamic context detection",
+      "id": "dynamic-context-detection"
+    },
+    {
+      "level": "h3",
+      "text": "Storage behavior",
+      "id": "storage-behavior"
+    },
+    {
+      "level": "h3",
+      "text": "Dynamic context example",
+      "id": "dynamic-context-example"
+    },
+    {
+      "level": "h2",
+      "text": "Request APIs and remote caches",
+      "id": "request-apis-and-remote-caches"
+    },
+    {
+      "level": "h2",
+      "text": "Nesting rules",
+      "id": "nesting-rules"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Per-request database queries",
+      "id": "per-request-database-queries"
+    },
+    {
+      "level": "h3",
+      "text": "API responses in streaming contexts",
+      "id": "api-responses-in-streaming-contexts"
+    },
+    {
+      "level": "h3",
+      "text": "Computed data after dynamic checks",
+      "id": "computed-data-after-dynamic-checks"
+    },
+    {
+      "level": "h3",
+      "text": "Mixed caching strategies",
+      "id": "mixed-caching-strategies"
+    },
+    {
+      "level": "h2",
+      "text": "Platform Support",
+      "id": "platform-support"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    },
+    {
+      "level": "h2",
+      "text": "Related",
+      "id": "related"
+    },
+    {
+      "level": "h3",
+      "text": "use cache",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "use cache: private",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheComponents",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheLife",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheTag",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "connection",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  cacheComponents: true,\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "import { Suspense } from 'react'\nimport { connection } from 'next/server'\nimport { cacheTag, cacheLife } from 'next/cache'\n \nexport default async function ProductPage({\n  params,\n}: {\n  params: Promise<{ id: string }>\n}) {\n  const { id } = await params\n \n  return (\n    <div>\n      <ProductDetails id={id} />\n      <Suspense fallback={<div>Loading price...</div>}>\n        <ProductPrice productId={id} />\n      </Suspense>\n    </div>\n  )\n}\n \nfunction ProductDetails({ id }: { id: string }) {\n  return <div>Product: {id}</div>\n}\n \nasync function ProductPrice({ productId }: { productId: string }) {\n  // Calling connection() makes this component dynamic, preventing\n  // it from being included in the static shell. This ensures the price\n  // is always fetched at request time.\n  await connection()\n \n  // Now we can cache the price in a remote cache handler.\n  // Regular 'use cache' would NOT work here because we're in a dynamic context.\n  const price = await getProductPrice(productId)\n \n  return <div>Price: ${price}</div>\n}\n \nasync function getProductPrice(productId: string) {\n  'use cache: remote'\n  cacheTag(`product-price-${productId}`)\n  cacheLife({ expire: 3600 }) // 1 hour\n \n  // This database query is cached and shared across all users\n  return db.products.getPrice(productId)\n}",
+      "language": "python"
+    },
+    {
+      "code": "async function UserDashboard() {\n  // Calling connection() makes the context dynamic\n  await connection()\n \n  // Without any caching directive, this runs on every request\n  const stats = await getStats()\n \n  // With 'use cache: remote', this is cached in the remote handler\n  const analytics = await getAnalytics()\n \n  return (\n    <div>\n      <Stats data={stats} />\n      <Analytics data={analytics} />\n    </div>\n  )\n}\n \nasync function getAnalytics() {\n  'use cache: remote'\n  cacheLife({ expire: 300 }) // 5 minutes\n \n  // This expensive operation is cached and shared across all requests\n  return fetchAnalyticsData()\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "// VALID: Remote inside remote\nasync function outerRemote() {\n  'use cache: remote'\n  const result = await innerRemote()\n  return result\n}\n \nasync function innerRemote() {\n  'use cache: remote'\n  return getData()\n}\n \n// VALID: Remote inside regular cache\nasync function outerCache() {\n  'use cache'\n  // If this is in a dynamic context, the inner remote cache will work\n  const result = await innerRemote()\n  return result\n}\n \nasync function innerRemote() {\n  'use cache: remote'\n  return getData()\n}\n \n// INVALID: Remote inside private\nasync function outerPrivate() {\n  'use cache: private'\n  const result = await innerRemote() // Error!\n  return result\n}\n \nasync function innerRemote() {\n  'use cache: remote'\n  return getData()\n}\n \n// INVALID: Private inside remote\nasync function outerRemote() {\n  'use cache: remote'\n  const result = await innerPrivate() // Error!\n  return result\n}\n \nasync function innerPrivate() {\n  'use cache: private'\n  return getData()\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { connection } from 'next/server'\nimport { cacheLife, cacheTag } from 'next/cache'\n \nexport default async function DashboardPage() {\n  // Make context dynamic\n  await connection()\n \n  const stats = await getGlobalStats()\n \n  return <StatsDisplay stats={stats} />\n}\n \nasync function getGlobalStats() {\n  'use cache: remote'\n  cacheTag('global-stats')\n  cacheLife({ expire: 60 }) // 1 minute\n \n  // This expensive database query is cached and shared across all users,\n  // reducing load on your database\n  const stats = await db.analytics.aggregate({\n    total_users: 'count',\n    active_sessions: 'count',\n    revenue: 'sum',\n  })\n \n  return stats\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Suspense } from 'react'\nimport { connection } from 'next/server'\nimport { cacheLife, cacheTag } from 'next/cache'\n \nexport default async function FeedPage() {\n  return (\n    <div>\n      <Suspense fallback={<Skeleton />}>\n        <FeedItems />\n      </Suspense>\n    </div>\n  )\n}\n \nasync function FeedItems() {\n  // Dynamic context\n  await connection()\n \n  const items = await getFeedItems()\n \n  return items.map((item) => <FeedItem key={item.id} item={item} />)\n}\n \nasync function getFeedItems() {\n  'use cache: remote'\n  cacheTag('feed-items')\n  cacheLife({ expire: 120 }) // 2 minutes\n \n  // This API call is cached, reducing requests to your external service\n  const response = await fetch('https://api.example.com/feed')\n  return response.json()\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { connection } from 'next/server'\nimport { cacheLife } from 'next/cache'\n \nexport default async function ReportsPage() {\n  // Dynamic security check\n  await connection()\n \n  const report = await generateReport()\n \n  return <ReportViewer report={report} />\n}\n \nasync function generateReport() {\n  'use cache: remote'\n  cacheLife({ expire: 3600 }) // 1 hour\n \n  // This expensive computation is cached and shared across all authorized users,\n  // avoiding repeated calculations\n  const data = await db.transactions.findMany()\n \n  return {\n    totalRevenue: calculateRevenue(data),\n    topProducts: analyzeProducts(data),\n    trends: calculateTrends(data),\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Suspense } from 'react'\nimport { connection } from 'next/server'\nimport { cookies } from 'next/headers'\nimport { cacheLife, cacheTag } from 'next/cache'\n \n// Static product data - prerendered at build time\nasync function getProduct(id: string) {\n  'use cache'\n  cacheTag(`product-${id}`)\n \n  // This is cached at build time and shared across all users\n  return db.products.find({ where: { id } })\n}\n \n// Shared pricing data - cached at runtime in remote handler\nasync function getProductPrice(id: string) {\n  'use cache: remote'\n  cacheTag(`product-price-${id}`)\n  cacheLife({ expire: 300 }) // 5 minutes\n \n  // This is cached at runtime and shared across all users\n  return db.products.getPrice({ where: { id } })\n}\n \n// User-specific recommendations - private cache per user\nasync function getRecommendations(productId: string) {\n  'use cache: private'\n  cacheLife({ expire: 60 }) // 1 minute\n \n  const sessionId = (await cookies()).get('session-id')?.value\n \n  // This is cached per-user and never shared\n  return db.recommendations.findMany({\n    where: { productId, sessionId },\n  })\n}\n \nexport default async function ProductPage({ params }) {\n  const { id } = await params\n \n  // Static product data\n  const product = await getProduct(id)\n \n  return (\n    <div>\n      <ProductDetails product={product} />\n \n      {/* Dynamic shared price */}\n      <Suspense fallback={<PriceSkeleton />}>\n        <ProductPriceComponent productId={id} />\n      </Suspense>\n \n      {/* Dynamic personalized recommendations */}\n      <Suspense fallback={<RecommendationsSkeleton />}>\n        <ProductRecommendations productId={id} />\n      </Suspense>\n    </div>\n  )\n}\n \nfunction ProductDetails({ product }) {\n  return (\n    <div>\n      <h1>{product.name}</h1>\n      <p>{product.description}</p>\n    </div>\n  )\n}\n \nasync function ProductPriceComponent({ productId }) {\n  // Make this component dynamic\n  await connection()\n \n  const price = await getProductPrice(productId)\n  return <div>Price: ${price}</div>\n}\n \nasync function ProductRecommendations({ productId }) {\n  const recommendations = await getRecommendations(productId)\n  return <RecommendationsList items={recommendations} />\n}\n \nfunction PriceSkeleton() {\n  return <div>Loading price...</div>\n}\n \nfunction RecommendationsSkeleton() {\n  return <div>Loading recommendations...</div>\n}\n \nfunction RecommendationsList({ items }) {\n  return (\n    <ul>\n      {items.map((item) => (\n        <li key={item.id}>{item.name}</li>\n      ))}\n    </ul>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/directives",
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache",
+    "https://nextjs.org/docs/app/api-reference/functions/connection",
+    "https://nextjs.org/docs/app/api-reference/functions/cookies",
+    "https://nextjs.org/docs/app/api-reference/functions/headers",
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache-private",
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache-remote",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheLife",
+    "https://nextjs.org/docs/app/guides/prefetching",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheTag",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidateTag",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/getting-started/deploying",
+    "https://nextjs.org/docs/app/api-reference/directives/use-client"
+  ]
+}

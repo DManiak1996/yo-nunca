@@ -1,0 +1,19 @@
+{
+  "title": "Install verified community nodes in the n8n app",
+  "content": "Limited to n8n instance owners\n\nOnly the n8n instance owner can install and manage verified community nodes. The instance owner is the person who sets up and manages user management. All members of an n8n instance can use already installed community nodes in their workflows.\n\nAdmin accounts can also uninstall any community node, verified or unverified. This helps them remove problematic nodes that may affect the instance's health and functionality.\n\n## Install a community node\n\nTo install a [verified community node](../../../creating-nodes/deploy/submit-community-nodes/#submit-your-node-for-verification-by-n8n):\n\n1. Go to the **Canvas** and open the **nodes panel** (either by selecting '+' or pressing `Tab`).\n1. **Search** for the node that you're looking for. If there is a matching verified community node, you will see a **More from the community** section at the bottom of the nodes panel.\n1. Select the node you want to install. This takes you to a detailed view of the node, showing all the supported actions.\n1. Select **install**. This will install the node for your instance and enable all members to use it in their workflows.\n1. You can now add the node to your workflows.\n\nEnable installation of verified community nodes\n\nSome users may not want to show verified community nodes in the nodes panel of their instances. On n8n cloud, instance owners can toggle this in the [Cloud Admin Panel](../../../../manage-cloud/cloud-admin-dashboard/). Self-hosted users can use [environment variables](../../../../hosting/configuration/environment-variables/nodes/) to control the availability of this feature.\n\n## Uninstall a community node\n\nTo uninstall a community node:\n\n1. Go to **Settings** > **Community nodes**.\n1. On the node you want to install, select **Options** .\n1. Select **Uninstall package**.\n1. Select **Uninstall Package** in the confirmation modal.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Install a community node",
+      "id": "install-a-community-node"
+    },
+    {
+      "level": "h2",
+      "text": "Uninstall a community node",
+      "id": "uninstall-a-community-node"
+    }
+  ],
+  "url": "llms-txt#install-verified-community-nodes-in-the-n8n-app",
+  "links": []
+}

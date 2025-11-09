@@ -1,0 +1,47 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/intercepting-routes",
+  "title": "Intercepting Routes",
+  "content": "Intercepting routes allows you to load a route from another part of your application within the current layout. This routing paradigm can be useful when you want to display the content of a route without the user switching to a different context.\n\nFor example, when clicking on a photo in a feed, you can display the photo in a modal, overlaying the feed. In this case, Next.js intercepts the /photo/123 route, masks the URL, and overlays it over /feed.\n\nHowever, when navigating to the photo by clicking a shareable URL or by refreshing the page, the entire photo page should render instead of the modal. No route interception should occur.\n\nIntercepting routes can be defined with the (..) convention, which is similar to relative path convention ../ but for route segments.\n\nFor example, you can intercept the photo segment from within the feed segment by creating a (..)photo directory.\n\nGood to know: The (..) convention is based on route segments, not the file-system. For example, it does not consider @slot folders in Parallel Routes.\n\nIntercepting Routes can be used together with Parallel Routes to create modals. This allows you to solve common challenges when building modals, such as:\n\nConsider the following UI pattern, where a user can open a photo modal from a gallery using client-side navigation, or navigate to the photo page directly from a shareable URL:\n\nIn the above example, the path to the photo segment can use the (..) matcher since @modal is a slot and not a segment. This means that the photo route is only one segment level higher, despite being two file-system levels higher.\n\nSee the Parallel Routes documentation for a step-by-step example, or see our image gallery example.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Intercepting Routes",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Convention",
+      "id": "convention"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Modals",
+      "id": "modals"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "Parallel Routes",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/intercepting-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/parallel-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/instrumentation-client",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout"
+  ]
+}

@@ -1,0 +1,211 @@
+{
+  "url": "https://nextjs.org/docs/pages/guides",
+  "title": "Guides",
+  "content": "",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Guides",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Analytics",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Authentication",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Babel",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "CI Build Caching",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Content Security Policy",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "CSS-in-JS",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Custom Server",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Debugging",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Draft Mode",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Environment Variables",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Forms",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "ISR",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Instrumentation",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Internationalization",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Lazy Loading",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "MDX",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Migrating",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Multi-Zones",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "OpenTelemetry",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Package Bundling",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "PostCSS",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Preview Mode",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Production",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Redirecting",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Sass",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Scripts",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Self-Hosting",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Static Exports",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Tailwind CSS",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Testing",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Third Party Libraries",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Upgrading",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/guides/analytics",
+    "https://nextjs.org/docs/pages/guides/authentication",
+    "https://nextjs.org/docs/pages/guides/babel",
+    "https://nextjs.org/docs/pages/guides/ci-build-caching",
+    "https://nextjs.org/docs/pages/guides/content-security-policy",
+    "https://nextjs.org/docs/pages/guides/css-in-js",
+    "https://nextjs.org/docs/pages/guides/custom-server",
+    "https://nextjs.org/docs/pages/guides/debugging",
+    "https://nextjs.org/docs/pages/guides/draft-mode",
+    "https://nextjs.org/docs/pages/guides/environment-variables",
+    "https://nextjs.org/docs/pages/guides/forms",
+    "https://nextjs.org/docs/pages/guides/incremental-static-regeneration",
+    "https://nextjs.org/docs/pages/guides/instrumentation",
+    "https://nextjs.org/docs/pages/guides/internationalization",
+    "https://nextjs.org/docs/pages/guides/lazy-loading",
+    "https://nextjs.org/docs/pages/guides/mdx",
+    "https://nextjs.org/docs/pages/guides/migrating",
+    "https://nextjs.org/docs/pages/guides/multi-zones",
+    "https://nextjs.org/docs/pages/guides/open-telemetry",
+    "https://nextjs.org/docs/pages/guides/package-bundling",
+    "https://nextjs.org/docs/pages/guides/post-css",
+    "https://nextjs.org/docs/pages/guides/preview-mode",
+    "https://nextjs.org/docs/pages/guides/production-checklist",
+    "https://nextjs.org/docs/pages/guides/redirecting",
+    "https://nextjs.org/docs/pages/guides/sass",
+    "https://nextjs.org/docs/pages/guides/scripts",
+    "https://nextjs.org/docs/pages/guides/self-hosting",
+    "https://nextjs.org/docs/pages/guides/static-exports",
+    "https://nextjs.org/docs/pages/guides/tailwind-v3-css",
+    "https://nextjs.org/docs/pages/guides/testing",
+    "https://nextjs.org/docs/pages/guides/third-party-libraries",
+    "https://nextjs.org/docs/pages/guides/upgrading",
+    "https://nextjs.org/docs/pages/getting-started/deploying"
+  ]
+}

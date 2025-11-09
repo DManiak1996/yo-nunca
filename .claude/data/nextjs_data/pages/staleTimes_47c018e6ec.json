@@ -1,0 +1,35 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/staleTimes",
+  "title": "staleTimes",
+  "content": "staleTimes is an experimental feature that enables caching of page segments in the client-side router cache.\n\nYou can enable this experimental feature and provide custom revalidation times by setting the experimental staleTimes flag:\n\nThe static and dynamic properties correspond with the time period (in seconds) based on different types of link prefetching.\n\nYou can learn more about the Client Router Cache here.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "staleTimes",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  experimental: {\n    staleTimes: {\n      dynamic: 30,\n      static: 180,\n    },\n  },\n}\n \nmodule.exports = nextConfig",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/components/link",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/app/getting-started/linking-and-navigating",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/staleTimes",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/serverExternalPackages",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/staticGeneration"
+  ]
+}

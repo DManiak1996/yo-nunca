@@ -1,0 +1,19 @@
+{
+  "title": "Jenkins node",
+  "content": "Use the Jenkins node to automate work in Jenkins, and integrate Jenkins with other applications. n8n has built-in support for a wide range of Jenkins features, including listing builds, managing instances, and creating and copying jobs.\n\nOn this page, you'll find a list of operations the Jenkins node supports and links to more resources.\n\nRefer to [Jenkins credentials](../../credentials/jenkins/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- Build\n  - List Builds\n- Instance\n  - Cancel quiet down state\n  - Put Jenkins in quiet mode, no builds can be started, Jenkins is ready for shutdown\n  - Restart Jenkins immediately on environments where it's possible\n  - Restart Jenkins once no jobs are running on environments where it's possible\n  - Shutdown once no jobs are running\n  - Shutdown Jenkins immediately\n- Job\n  - Copy a specific job\n  - Create a new job\n  - Trigger a specific job\n  - Trigger a specific job\n\n## Templates and examples\n\n[Browse Jenkins integration templates](https://n8n.io/integrations/jenkins/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#jenkins-node",
+  "links": []
+}

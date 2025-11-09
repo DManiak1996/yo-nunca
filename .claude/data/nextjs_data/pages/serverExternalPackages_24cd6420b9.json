@@ -1,0 +1,27 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/serverExternalPackages",
+  "title": "serverExternalPackages",
+  "content": "Dependencies used inside Server Components and Route Handlers will automatically be bundled by Next.js.\n\nIf a dependency is using Node.js specific features, you can choose to opt-out specific dependencies from the Server Components bundling and use native Node.js require.\n\nNext.js includes a short list of popular packages that currently are working on compatibility and automatically opt-ed out:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "serverExternalPackages",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  serverExternalPackages: ['@acme/ui'],\n}\n \nmodule.exports = nextConfig",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/serverComponentsHmrCache",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/staleTimes"
+  ]
+}

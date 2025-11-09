@@ -1,0 +1,60 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/components",
+  "title": "Components",
+  "content": "",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Components",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Font",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Form",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Head",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Image",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Image (Legacy)",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Link",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Script",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/api-reference",
+    "https://nextjs.org/docs/pages/api-reference/components/font",
+    "https://nextjs.org/docs/pages/api-reference/components/form",
+    "https://nextjs.org/docs/pages/api-reference/components/head",
+    "https://nextjs.org/docs/pages/api-reference/components/image",
+    "https://nextjs.org/docs/pages/api-reference/components/image-legacy",
+    "https://nextjs.org/docs/pages/api-reference/components/link",
+    "https://nextjs.org/docs/pages/api-reference/components/script"
+  ]
+}

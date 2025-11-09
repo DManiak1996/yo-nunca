@@ -1,0 +1,102 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/error",
+  "title": "error.js",
+  "content": "An error file allows you to handle unexpected runtime errors and display fallback UI.\n\nerror.js wraps a route segment and its nested children in a React Error Boundary. When an error throws within the boundary, the error component shows as the fallback UI.\n\nAn instance of an Error object forwarded to the error.js Client Component.\n\nGood to know: During development, the Error object forwarded to the client will be serialized and include the message of the original error for easier debugging. However, this behavior is different in production to avoid leaking potentially sensitive details included in the error to the client.\n\nAn automatically generated hash of the error thrown. It can be used to match the corresponding error in server-side logs.\n\nThe cause of an error can sometimes be temporary. In these cases, trying again might resolve the issue.\n\nAn error component can use the reset() function to prompt the user to attempt to recover from the error. When executed, the function will try to re-render the error boundary's contents. If successful, the fallback error component is replaced with the result of the re-render.\n\nWhile less common, you can handle errors in the root layout or template using global-error.jsx, located in the root app directory, even when leveraging internationalization. Global error UI must define its own <html> and <body> tags, global styles, fonts, or other dependencies that your error page requires. This file replaces the root layout or template when active.\n\nGood to know: Error boundaries must be Client Components, which means that metadata and generateMetadata exports are not supported in global-error.jsx. As an alternative, you can use the React <title> component.\n\nWhen rendering fails on the client, it can be useful to show the last known server rendered UI for a better user experience.\n\nThe GracefullyDegradingErrorBoundary is an example of a custom error boundary that captures and preserves the current HTML before an error occurs. If a rendering error happens, it re-renders the captured HTML and displays a persistent notification bar to inform the user.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "error.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Props",
+      "id": "props"
+    },
+    {
+      "level": "h4",
+      "text": "error",
+      "id": "error"
+    },
+    {
+      "level": "h4",
+      "text": "error.message",
+      "id": "errormessage"
+    },
+    {
+      "level": "h4",
+      "text": "error.digest",
+      "id": "errordigest"
+    },
+    {
+      "level": "h4",
+      "text": "reset",
+      "id": "reset"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Global Error",
+      "id": "global-error"
+    },
+    {
+      "level": "h3",
+      "text": "Graceful error recovery with a custom error boundary",
+      "id": "graceful-error-recovery-with-a-custom-error-boundary"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    },
+    {
+      "level": "h2",
+      "text": "Learn more about error handling",
+      "id": "learn-more-about-error-handling"
+    },
+    {
+      "level": "h3",
+      "text": "Error Handling",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "'use client' // Error boundaries must be Client Components\n \nimport { useEffect } from 'react'\n \nexport default function Error({\n  error,\n  reset,\n}: {\n  error: Error & { digest?: string }\n  reset: () => void\n}) {\n  useEffect(() => {\n    // Log the error to an error reporting service\n    console.error(error)\n  }, [error])\n \n  return (\n    <div>\n      <h2>Something went wrong!</h2>\n      <button\n        onClick={\n          // Attempt to recover by trying to re-render the segment\n          () => reset()\n        }\n      >\n        Try again\n      </button>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client' // Error boundaries must be Client Components\n \nexport default function Error({\n  error,\n  reset,\n}: {\n  error: Error & { digest?: string }\n  reset: () => void\n}) {\n  return (\n    <div>\n      <h2>Something went wrong!</h2>\n      <button onClick={() => reset()}>Try again</button>\n    </div>\n  )\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "'use client' // Error boundaries must be Client Components\n \nexport default function GlobalError({\n  error,\n  reset,\n}: {\n  error: Error & { digest?: string }\n  reset: () => void\n}) {\n  return (\n    // global-error must include html and body tags\n    <html>\n      <body>\n        <h2>Something went wrong!</h2>\n        <button onClick={() => reset()}>Try again</button>\n      </body>\n    </html>\n  )\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "'use client'\n \nimport React, { Component, ErrorInfo, ReactNode } from 'react'\n \ninterface ErrorBoundaryProps {\n  children: ReactNode\n  onError?: (error: Error, errorInfo: ErrorInfo) => void\n}\n \ninterface ErrorBoundaryState {\n  hasError: boolean\n}\n \nexport class GracefullyDegradingErrorBoundary extends Component<\n  ErrorBoundaryProps,\n  ErrorBoundaryState\n> {\n  private contentRef: React.RefObject<HTMLDivElement | null>\n \n  constructor(props: ErrorBoundaryProps) {\n    super(props)\n    this.state = { hasError: false }\n    this.contentRef = React.createRef()\n  }\n \n  static getDerivedStateFromError(_: Error): ErrorBoundaryState {\n    return { hasError: true }\n  }\n \n  componentDidCatch(error: Error, errorInfo: ErrorInfo) {\n    if (this.props.onError) {\n      this.props.onError(error, errorInfo)\n    }\n  }\n \n  render() {\n    if (this.state.hasError) {\n      // Render the current HTML content without hydration\n      return (\n        <>\n          <div\n            ref={this.contentRef}\n            suppressHydrationWarning\n            dangerouslySetInnerHTML={{\n              __html: this.contentRef.current?.innerHTML || '',\n            }}\n          />\n          <div className=\"fixed bottom-0 left-0 right-0 bg-red-600 text-white py-4 px-6 text-center\">\n            <p className=\"font-semibold\">\n              An error occurred during page rendering\n            </p>\n          </div>\n        </>\n      )\n    }\n \n    return <div ref={this.contentRef}>{this.props.children}</div>\n  }\n}\n \nexport default GracefullyDegradingErrorBoundary",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/error",
+    "https://nextjs.org/docs/app/guides/internationalization",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/getting-started/metadata-and-og-images",
+    "https://nextjs.org/docs/app/getting-started/error-handling",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/forbidden"
+  ]
+}

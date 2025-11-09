@@ -1,0 +1,74 @@
+{
+  "title": "OpenRouter Chat Model node",
+  "content": "Use the OpenRouter Chat Model node to use OpenRouter's chat models with conversational agents.\n\nOn this page, you'll find the node parameters for the OpenRouter Chat Model node and links to more resources.\n\nYou can find authentication information for this node [here](../../../credentials/openrouter/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\nSelect the model to use to generate the completion.\n\nn8n dynamically loads models from OpenRouter and you'll only see the models available to your account.\n\nUse these options to further refine the node's behavior.\n\n### Frequency Penalty\n\nUse this option to control the chances of the model repeating itself. Higher values reduce the chance of the model repeating itself.\n\n### Maximum Number of Tokens\n\nEnter the maximum number of tokens used, which sets the completion length.\n\nChoose **Text** or **JSON**. **JSON** ensures the model returns valid JSON.\n\nUse this option to control the chances of the model talking about new topics. Higher values increase the chance of the model talking about new topics.\n\n### Sampling Temperature\n\nUse this option to control the randomness of the sampling process. A higher temperature creates more diverse sampling, but increases the risk of hallucinations.\n\nEnter the maximum request time in milliseconds.\n\nEnter the maximum number of times to retry a request.\n\nUse this option to set the probability the completion should use. Use a lower value to ignore less probable options.\n\n## Templates and examples\n\n**Automate SEO-Optimized WordPress Posts with AI & Google Sheets**\n\n[View template details](https://n8n.io/workflows/3085-automate-seo-optimized-wordpress-posts-with-ai-and-google-sheets/)\n\n**Personal Life Manager with Telegram, Google Services & Voice-Enabled AI**\n\n[View template details](https://n8n.io/workflows/8237-personal-life-manager-with-telegram-google-services-and-voice-enabled-ai/)\n\n**Publish WordPress Posts to Social Media X, Facebook, LinkedIn, Instagram with AI**\n\n[View template details](https://n8n.io/workflows/3086-publish-wordpress-posts-to-social-media-x-facebook-linkedin-instagram-with-ai/)\n\n[Browse OpenRouter Chat Model integration templates](https://n8n.io/integrations/openrouter-chat-model/), or [search all templates](https://n8n.io/workflows/)\n\nAs OpenRouter is API-compatible with OpenAI, you can refer to [LangChains's OpenAI documentation](https://js.langchain.com/docs/integrations/chat/openai/) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Model",
+      "id": "model"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h3",
+      "text": "Frequency Penalty",
+      "id": "frequency-penalty"
+    },
+    {
+      "level": "h3",
+      "text": "Maximum Number of Tokens",
+      "id": "maximum-number-of-tokens"
+    },
+    {
+      "level": "h3",
+      "text": "Response Format",
+      "id": "response-format"
+    },
+    {
+      "level": "h3",
+      "text": "Presence Penalty",
+      "id": "presence-penalty"
+    },
+    {
+      "level": "h3",
+      "text": "Sampling Temperature",
+      "id": "sampling-temperature"
+    },
+    {
+      "level": "h3",
+      "text": "Timeout",
+      "id": "timeout"
+    },
+    {
+      "level": "h3",
+      "text": "Max Retries",
+      "id": "max-retries"
+    },
+    {
+      "level": "h3",
+      "text": "Top P",
+      "id": "top-p"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#openrouter-chat-model-node",
+  "links": []
+}

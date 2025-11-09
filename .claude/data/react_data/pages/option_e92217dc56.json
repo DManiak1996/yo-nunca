@@ -1,0 +1,62 @@
+{
+  "url": "https://react.dev/reference/react-dom/components/option",
+  "title": "<option>",
+  "content": "The built-in browser <option> component lets you render an option inside a <select> box.\n\nThe built-in browser <option> component lets you render an option inside a <select> box.\n\nSee more examples below.\n\n<option> supports all common element props.\n\nAdditionally, <option> supports these props:\n\nRender a <select> with a list of <option> components inside to display a select box. Give each <option> a value representing the data to be submitted with the form.\n\nRead more about displaying a <select> with a list of <option> components.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "<option>",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "<option>",
+      "id": "option"
+    },
+    {
+      "level": "h4",
+      "text": "Props",
+      "id": "props"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Displaying a select box with options",
+      "id": "displaying-a-select-box-with-options"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "<select>  <option value=\"someOption\">Some option</option>  <option value=\"otherOption\">Other option</option></select>",
+      "language": "unknown"
+    },
+    {
+      "code": "<select>  <option value=\"someOption\">Some option</option>  <option value=\"otherOption\">Other option</option></select>",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-dom/components",
+    "https://react.dev/reference/react-dom/components/option",
+    "https://react.dev/reference/react-dom/components/select",
+    "https://react.dev/reference/react-dom/components/common",
+    "https://react.dev/reference/react-dom/components/input",
+    "https://react.dev/reference/react-dom/components/progress"
+  ]
+}

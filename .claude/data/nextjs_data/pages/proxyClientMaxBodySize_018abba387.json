@@ -1,0 +1,77 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/proxyClientMaxBodySize",
+  "title": "proxyClientMaxBodySize",
+  "content": "When proxy is used, Next.js automatically clones the request body and buffers it in memory to enable multiple reads - both in proxy and the underlying route handler. To prevent excessive memory usage, this configuration option sets a size limit on the buffered body.\n\nBy default, the maximum body size is 10MB. If a request body exceeds this limit, the body will only be buffered up to the limit, and a warning will be logged indicating which route exceeded the limit.\n\nSpecify the size using a human-readable string format:\n\nSupported units: b, kb, mb, gb\n\nAlternatively, specify the size in bytes as a number:\n\nWhen a request body exceeds the configured limit:\n\nIf your application needs to process the full request body, you should either:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "proxyClientMaxBodySize",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h3",
+      "text": "String format (recommended)",
+      "id": "string-format-recommended"
+    },
+    {
+      "level": "h3",
+      "text": "Number format",
+      "id": "number-format"
+    },
+    {
+      "level": "h2",
+      "text": "Behavior",
+      "id": "behavior"
+    },
+    {
+      "level": "h2",
+      "text": "Example",
+      "id": "example"
+    },
+    {
+      "level": "h2",
+      "text": "Good to know",
+      "id": "good-to-know"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    proxyClientMaxBodySize: '1mb',\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    proxyClientMaxBodySize: 1048576, // 1MB in bytes\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "import { NextRequest, NextResponse } from 'next/server'\n \nexport async function proxy(request: NextRequest) {\n  // Next.js automatically buffers the body with the configured size limit\n  // You can read the body in proxy...\n  const body = await request.text()\n \n  // If the body exceeded the limit, only partial data will be available\n  console.log('Body size:', body.length)\n \n  return NextResponse.next()\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextRequest, NextResponse } from 'next/server'\n \nexport async function POST(request: NextRequest) {\n  // ...and the body is still available in your route handler\n  const body = await request.text()\n \n  console.log('Body in route handler:', body.length)\n \n  return NextResponse.json({ received: body.length })\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "Configurationnext.config.jsproxyClientMaxBodySizeCopy pageproxyClientMaxBodySizeThis feature is currently experimental and subject to change, it's not recommended for production. Try it out and share your feedback on GitHub.When proxy is used, Next.js automatically clones the request body and buffers it in memory to enable multiple reads - both in proxy and the underlying route handler. To prevent excessive memory usage, this configuration option sets a size limit on the buffered body. By default, the maximum body size is 10MB. If a request body exceeds this limit, the body will only be buffered up to the limit, and a warning will be logged indicating which route exceeded the limit. Options String format (recommended) Specify the size using a human-readable string format: next.config.tsTypeScriptJavaScriptTypeScriptimport type { NextConfig } from 'next' const nextConfig: NextConfig = { experimental: { proxyClientMaxBodySize: '1mb', }, } export default nextConfig Supported units: b, kb, mb, gb Number format Alternatively, specify the size in bytes as a number: next.config.tsTypeScriptJavaScriptTypeScriptimport type { NextConfig } from 'next' const nextConfig: NextConfig = { experimental: { proxyClientMaxBodySize: 1048576, // 1MB in bytes }, } export default nextConfig Behavior When a request body exceeds the configured limit: Next.js will buffer only the first N bytes (up to the limit) A warning will be logged to the console indicating the route that exceeded the limit The request will continue processing normally, but only the partial body will be available The request will not fail or return an error to the client If your application needs to process the full request body, you should either: Increase the proxyClientMaxBodySize limit Handle the partial body gracefully in your application logic Example proxy.tsimport { NextRequest, NextResponse } from 'next/server' export async function proxy(request: NextRequest) { // Next.js automatically buffers the body with the configured size limit // You can read the body in proxy... const body = await request.text() // If the body exceeded the limit, only partial data will be available console.log('Body size:', body.length) return NextResponse.next() } app/api/upload/route.tsimport { NextRequest, NextResponse } from 'next/server' export async function POST(request: NextRequest) { // ...and the body is still available in your route handler const body = await request.text() console.log('Body in route handler:', body.length) return NextResponse.json({ received: body.length }) } Good to know This setting only applies when proxy is used in your application The default limit of 10MB is designed to balance memory usage and typical use cases The limit applies per-request, not globally across all concurrent requests For applications handling large file uploads, consider increasing the limit accordingly",
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    proxyClientMaxBodySize: '1mb',\n  },\n}\n \nexport default nextConfig"
+    },
+    {
+      "description": "proxyClientMaxBodySizeThis feature is currently experimental and subject to change, it's not recommended for production. Try it out and share your feedback on GitHub.When proxy is used, Next.js automatically clones the request body and buffers it in memory to enable multiple reads - both in proxy and the underlying route handler. To prevent excessive memory usage, this configuration option sets a size limit on the buffered body. By default, the maximum body size is 10MB. If a request body exceeds this limit, the body will only be buffered up to the limit, and a warning will be logged indicating which route exceeded the limit. Options String format (recommended) Specify the size using a human-readable string format: next.config.tsTypeScriptJavaScriptTypeScriptimport type { NextConfig } from 'next' const nextConfig: NextConfig = { experimental: { proxyClientMaxBodySize: '1mb', }, } export default nextConfig Supported units: b, kb, mb, gb Number format Alternatively, specify the size in bytes as a number: next.config.tsTypeScriptJavaScriptTypeScriptimport type { NextConfig } from 'next' const nextConfig: NextConfig = { experimental: { proxyClientMaxBodySize: 1048576, // 1MB in bytes }, } export default nextConfig Behavior When a request body exceeds the configured limit: Next.js will buffer only the first N bytes (up to the limit) A warning will be logged to the console indicating the route that exceeded the limit The request will continue processing normally, but only the partial body will be available The request will not fail or return an error to the client If your application needs to process the full request body, you should either: Increase the proxyClientMaxBodySize limit Handle the partial body gracefully in your application logic Example proxy.tsimport { NextRequest, NextResponse } from 'next/server' export async function proxy(request: NextRequest) { // Next.js automatically buffers the body with the configured size limit // You can read the body in proxy... const body = await request.text() // If the body exceeded the limit, only partial data will be available console.log('Body size:', body.length) return NextResponse.next() } app/api/upload/route.tsimport { NextRequest, NextResponse } from 'next/server' export async function POST(request: NextRequest) { // ...and the body is still available in your route handler const body = await request.text() console.log('Body in route handler:', body.length) return NextResponse.json({ received: body.length }) } Good to know This setting only applies when proxy is used in your application The default limit of 10MB is designed to balance memory usage and typical use cases The limit applies per-request, not globally across all concurrent requests For applications handling large file uploads, consider increasing the limit accordingly",
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    proxyClientMaxBodySize: '1mb',\n  },\n}\n \nexport default nextConfig"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/proxyClientMaxBodySize",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/productionBrowserSourceMaps",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/reactCompiler"
+  ]
+}

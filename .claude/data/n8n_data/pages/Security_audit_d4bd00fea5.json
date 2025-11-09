@@ -1,0 +1,59 @@
+{
+  "title": "Security audit",
+  "content": "You can run a security audit on your n8n instance, to detect common security issues.\n\nYou can run an audit using the CLI, the public API, or the n8n node.\n\nMake a `POST` call to the `/audit` endpoint. You must authenticate as the instance owner.\n\nAdd the [n8n node](../../../integrations/builtin/core-nodes/n8n-nodes-base.n8n/) to your workflow. Select **Resource** > **Audit** and **Operation** > **Generate**.\n\nThe audit generates five risk reports:\n\n- Credentials not used in a workflow.\n- Credentials not used in an active workflow.\n- Credentials not use in a recently active workflow.\n\n- Expressions used in **Execute Query** fields in SQL nodes.\n- Expressions used in **Query Parameters** fields in SQL nodes.\n- Unused **Query Parameters** fields in SQL nodes.\n\nThis report lists nodes that interact with the file system.\n\n- Official risky nodes. These are n8n built in nodes. You can use them to fetch and run any code on the host system, which exposes the instance to exploits. You can view the list in [n8n code | Audit constants](https://github.com/n8n-io/n8n/blob/master/packages/cli/src/security-audit/constants.ts#L51), under `OFFICIAL_RISKY_NODE_TYPES`.\n- Community nodes.\n- Custom nodes.\n\n- Unprotected webhooks in the instance.\n- Missing security settings\n- If your instance is outdated.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Run an audit",
+      "id": "run-an-audit"
+    },
+    {
+      "level": "h3",
+      "text": "CLI",
+      "id": "cli"
+    },
+    {
+      "level": "h3",
+      "text": "API",
+      "id": "api"
+    },
+    {
+      "level": "h3",
+      "text": "n8n node",
+      "id": "n8n-node"
+    },
+    {
+      "level": "h2",
+      "text": "Report contents",
+      "id": "report-contents"
+    },
+    {
+      "level": "h3",
+      "text": "Credentials",
+      "id": "credentials"
+    },
+    {
+      "level": "h3",
+      "text": "Database",
+      "id": "database"
+    },
+    {
+      "level": "h3",
+      "text": "File system",
+      "id": "file-system"
+    },
+    {
+      "level": "h3",
+      "text": "Nodes",
+      "id": "nodes"
+    },
+    {
+      "level": "h3",
+      "text": "Instance",
+      "id": "instance"
+    }
+  ],
+  "url": "llms-txt#security-audit",
+  "links": []
+}

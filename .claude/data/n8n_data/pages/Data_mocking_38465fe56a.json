@@ -1,0 +1,24 @@
+{
+  "title": "Data mocking",
+  "content": "Data mocking is simulating or faking data. It's useful when developing a workflow. By mocking data, you can:\n\n- Avoid making repeated calls to your data source. This saves time and costs.\n- Work with a small, predictable dataset during initial development.\n- Avoid the risk of overwriting live data: in the early stages of building your workflow, you don't need to connect your real data source.\n\n## Mocking with real data using data pinning\n\nUsing [data pinning](../data-pinning/), you load real data into your workflow, then pin it in the output panel of a node. Using this approach you have realistic data, with only one call to your data source. You can [edit pinned data](../data-editing/).\n\nUse this approach when you need to configure your workflow to handle the exact data structure and parameters provided by your data source.\n\nTo pin data in a node:\n\n1. Run the node to load data.\n1. In the **OUTPUT** view, select **Pin data** . When data pinning is active, the button is disabled and a \"This data is pinned\" banner is displayed in the **OUTPUT** view.\n\nNodes that output binary data\n\nYou can't pin data if the output data includes binary data.\n\n## Generate custom data using the Code or Edit Fields nodes\n\nYou can create a custom dataset in your workflow using either the [Code node](../../integrations/builtin/core-nodes/n8n-nodes-base.code/) or the [Edit Fields (Set) node](../../integrations/builtin/core-nodes/n8n-nodes-base.set/).\n\nIn the Code node, you can create any data set you want, and return it as the node output. In the Edit Fields node, select **Add fields** to add your custom data.\n\nThe Edit Fields node is a good choice for small tests. To create more complex datasets, use the Code node.\n\n## Output a sample data set from the Customer Datastore node\n\nThe Customer Datastore node provides a fake dataset to work with. Add and execute the node to explore the data.\n\nUse this approach if you need some test data when exploring n8n, and you don't have a real use-case to work with.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Mocking with real data using data pinning",
+      "id": "mocking-with-real-data-using-data-pinning"
+    },
+    {
+      "level": "h2",
+      "text": "Generate custom data using the Code or Edit Fields nodes",
+      "id": "generate-custom-data-using-the-code-or-edit-fields-nodes"
+    },
+    {
+      "level": "h2",
+      "text": "Output a sample data set from the Customer Datastore node",
+      "id": "output-a-sample-data-set-from-the-customer-datastore-node"
+    }
+  ],
+  "url": "llms-txt#data-mocking",
+  "links": []
+}

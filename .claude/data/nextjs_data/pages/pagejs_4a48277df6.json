@@ -1,0 +1,125 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+  "title": "page.js",
+  "content": "The page file allows you to define UI that is unique to a route. You can create a page by default exporting a component from the file:\n\nA promise that resolves to an object containing the dynamic route parameters from the root segment down to that page.\n\nA promise that resolves to an object containing the search parameters of the current URL. For example:\n\nClient Component pages can also access searchParams using React’s use hook:\n\nYou can type pages with PageProps to get strongly typed params and searchParams from the route literal. PageProps is a globally available helper.\n\nUsing dynamic route segments, you can display or fetch specific content for the page based on the params prop.\n\nYou can use the searchParams prop to handle filtering, pagination, or sorting based on the query string of the URL.\n\nTo use searchParams and params in a Client Component (which cannot be async), you can use React's use function to read the promise:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "page.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Good to know",
+      "id": "good-to-know"
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Props",
+      "id": "props"
+    },
+    {
+      "level": "h4",
+      "text": "params (optional)",
+      "id": "params-optional"
+    },
+    {
+      "level": "h4",
+      "text": "searchParams (optional)",
+      "id": "searchparams-optional"
+    },
+    {
+      "level": "h3",
+      "text": "Page Props Helper",
+      "id": "page-props-helper"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Displaying content based on params",
+      "id": "displaying-content-based-on-params"
+    },
+    {
+      "level": "h3",
+      "text": "Handling filtering with searchParams",
+      "id": "handling-filtering-with-searchparams"
+    },
+    {
+      "level": "h3",
+      "text": "Reading searchParams and params in Client Components",
+      "id": "reading-searchparams-and-params-in-client-components"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export default function Page({\n  params,\n  searchParams,\n}: {\n  params: Promise<{ slug: string }>\n  searchParams: Promise<{ [key: string]: string | string[] | undefined }>\n}) {\n  return <h1>My Page</h1>\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export default async function Page({\n  params,\n}: {\n  params: Promise<{ slug: string }>\n}) {\n  const { slug } = await params\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export default async function Page({\n  searchParams,\n}: {\n  searchParams: Promise<{ [key: string]: string | string[] | undefined }>\n}) {\n  const filters = (await searchParams).filters\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "'use client'\nimport { use } from 'react'\n \nexport default function Page({\n  searchParams,\n}: {\n  searchParams: Promise<{ [key: string]: string | string[] | undefined }>\n}) {\n  const filters = use(searchParams).filters\n}",
+      "language": "python"
+    },
+    {
+      "code": "export default async function Page(props: PageProps<'/blog/[slug]'>) {\n  const { slug } = await props.params\n  const query = await props.searchParams\n  return <h1>Blog Post: {slug}</h1>\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export default async function Page({\n  params,\n}: {\n  params: Promise<{ slug: string }>\n}) {\n  const { slug } = await params\n  return <h1>Blog Post: {slug}</h1>\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export default async function Page({\n  searchParams,\n}: {\n  searchParams: Promise<{ [key: string]: string | string[] | undefined }>\n}) {\n  const { page = '1', sort = 'asc', query = '' } = await searchParams\n \n  return (\n    <div>\n      <h1>Product Listing</h1>\n      <p>Search query: {query}</p>\n      <p>Current page: {page}</p>\n      <p>Sort order: {sort}</p>\n    </div>\n  )\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "'use client'\n \nimport { use } from 'react'\n \nexport default function Page({\n  params,\n  searchParams,\n}: {\n  params: Promise<{ slug: string }>\n  searchParams: Promise<{ [key: string]: string | string[] | undefined }>\n}) {\n  const { slug } = use(params)\n  const { query } = use(searchParams)\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "API ReferenceFile-system conventionspage.jsCopy pagepage.jsThe page file allows you to define UI that is unique to a route. You can create a page by default exporting a component from the file: app/blog/[slug]/page.tsxTypeScriptJavaScriptTypeScriptexport default function Page({ params, searchParams, }: { params: Promise<{ slug: string }> searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) { return <h1>My Page</h1> } Good to know The .js, .jsx, or .tsx file extensions can be used for page. A page is always the leaf of the route subtree. A page file is required to make a route segment publicly accessible. Pages are Server Components by default, but can be set to a Client Component. Reference Props params (optional) A promise that resolves to an object containing the dynamic route parameters from the root segment down to that page. app/shop/[slug]/page.tsxTypeScriptJavaScriptTypeScriptexport default async function Page({ params, }: { params: Promise<{ slug: string }> }) { const { slug } = await params } Example RouteURLparamsapp/shop/[slug]/page.js/shop/1Promise<{ slug: '1' }>app/shop/[category]/[item]/page.js/shop/1/2Promise<{ category: '1', item: '2' }>app/shop/[...slug]/page.js/shop/1/2Promise<{ slug: ['1', '2'] }> Since the params prop is a promise, you must use async/await or React's use function to access the values. In version 14 and earlier, params was a synchronous prop. To help with backwards compatibility, you can still access it synchronously in Next.js 15, but this behavior will be deprecated in the future. searchParams (optional) A promise that resolves to an object containing the search parameters of the current URL. For example: app/shop/page.tsxTypeScriptJavaScriptTypeScriptexport default async function Page({ searchParams, }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) { const filters = (await searchParams).filters } Client Component pages can also access searchParams using React’s use hook: app/shop/page.tsxTypeScriptJavaScriptTypeScript'use client' import { use } from 'react' export default function Page({ searchParams, }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) { const filters = use(searchParams).filters } Example URLsearchParams/shop?a=1Promise<{ a: '1' }>/shop?a=1&b=2Promise<{ a: '1', b: '2' }>/shop?a=1&a=2Promise<{ a: ['1', '2'] }> Since the searchParams prop is a promise. You must use async/await or React's use function to access the values. In version 14 and earlier, searchParams was a synchronous prop. To help with backwards compatibility, you can still access it synchronously in Next.js 15, but this behavior will be deprecated in the future. searchParams is a Dynamic API whose values cannot be known ahead of time. Using it will opt the page into dynamic rendering at request time. searchParams is a plain JavaScript object, not a URLSearchParams instance. Page Props Helper You can type pages with PageProps to get strongly typed params and searchParams from the route literal. PageProps is a globally available helper. app/blog/[slug]/page.tsxexport default async function Page(props: PageProps<'/blog/[slug]'>) { const { slug } = await props.params const query = await props.searchParams return <h1>Blog Post: {slug}</h1> } Good to know Using a literal route (e.g. '/blog/[slug]') enables autocomplete and strict keys for params. Static routes resolve params to {}. Types are generated during next dev, next build, or with next typegen. After type generation, the PageProps helper is globally available. It doesn't need to be imported. Examples Displaying content based on params Using dynamic route segments, you can display or fetch specific content for the page based on the params prop. app/blog/[slug]/page.tsxTypeScriptJavaScriptTypeScriptexport default async function Page({ params, }: { params: Promise<{ slug: string }> }) { const { slug } = await params return <h1>Blog Post: {slug}</h1> } Handling filtering with searchParams You can use the searchParams prop to handle filtering, pagination, or sorting based on the query string of the URL. app/shop/page.tsxTypeScriptJavaScriptTypeScriptexport default async function Page({ searchParams, }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) { const { page = '1', sort = 'asc', query = '' } = await searchParams return ( <div> <h1>Product Listing</h1> <p>Search query: {query}</p> <p>Current page: {page}</p> <p>Sort order: {sort}</p> </div> ) } Reading searchParams and params in Client Components To use searchParams and params in a Client Component (which cannot be async), you can use React's use function to read the promise: app/page.tsxTypeScriptJavaScriptTypeScript'use client' import { use } from 'react' export default function Page({ params, searchParams, }: { params: Promise<{ slug: string }> searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) { const { slug } = use(params) const { query } = use(searchParams) } Version History VersionChangesv15.0.0-RCparams and searchParams are now promises. A codemod is available.v13.0.0page introduced.",
+      "code": "page"
+    },
+    {
+      "description": "page.jsThe page file allows you to define UI that is unique to a route. You can create a page by default exporting a component from the file: app/blog/[slug]/page.tsxTypeScriptJavaScriptTypeScriptexport default function Page({ params, searchParams, }: { params: Promise<{ slug: string }> searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) { return <h1>My Page</h1> } Good to know The .js, .jsx, or .tsx file extensions can be used for page. A page is always the leaf of the route subtree. A page file is required to make a route segment publicly accessible. Pages are Server Components by default, but can be set to a Client Component. Reference Props params (optional) A promise that resolves to an object containing the dynamic route parameters from the root segment down to that page. app/shop/[slug]/page.tsxTypeScriptJavaScriptTypeScriptexport default async function Page({ params, }: { params: Promise<{ slug: string }> }) { const { slug } = await params } Example RouteURLparamsapp/shop/[slug]/page.js/shop/1Promise<{ slug: '1' }>app/shop/[category]/[item]/page.js/shop/1/2Promise<{ category: '1', item: '2' }>app/shop/[...slug]/page.js/shop/1/2Promise<{ slug: ['1', '2'] }> Since the params prop is a promise, you must use async/await or React's use function to access the values. In version 14 and earlier, params was a synchronous prop. To help with backwards compatibility, you can still access it synchronously in Next.js 15, but this behavior will be deprecated in the future. searchParams (optional) A promise that resolves to an object containing the search parameters of the current URL. For example: app/shop/page.tsxTypeScriptJavaScriptTypeScriptexport default async function Page({ searchParams, }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) { const filters = (await searchParams).filters } Client Component pages can also access searchParams using React’s use hook: app/shop/page.tsxTypeScriptJavaScriptTypeScript'use client' import { use } from 'react' export default function Page({ searchParams, }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) { const filters = use(searchParams).filters } Example URLsearchParams/shop?a=1Promise<{ a: '1' }>/shop?a=1&b=2Promise<{ a: '1', b: '2' }>/shop?a=1&a=2Promise<{ a: ['1', '2'] }> Since the searchParams prop is a promise. You must use async/await or React's use function to access the values. In version 14 and earlier, searchParams was a synchronous prop. To help with backwards compatibility, you can still access it synchronously in Next.js 15, but this behavior will be deprecated in the future. searchParams is a Dynamic API whose values cannot be known ahead of time. Using it will opt the page into dynamic rendering at request time. searchParams is a plain JavaScript object, not a URLSearchParams instance. Page Props Helper You can type pages with PageProps to get strongly typed params and searchParams from the route literal. PageProps is a globally available helper. app/blog/[slug]/page.tsxexport default async function Page(props: PageProps<'/blog/[slug]'>) { const { slug } = await props.params const query = await props.searchParams return <h1>Blog Post: {slug}</h1> } Good to know Using a literal route (e.g. '/blog/[slug]') enables autocomplete and strict keys for params. Static routes resolve params to {}. Types are generated during next dev, next build, or with next typegen. After type generation, the PageProps helper is globally available. It doesn't need to be imported. Examples Displaying content based on params Using dynamic route segments, you can display or fetch specific content for the page based on the params prop. app/blog/[slug]/page.tsxTypeScriptJavaScriptTypeScriptexport default async function Page({ params, }: { params: Promise<{ slug: string }> }) { const { slug } = await params return <h1>Blog Post: {slug}</h1> } Handling filtering with searchParams You can use the searchParams prop to handle filtering, pagination, or sorting based on the query string of the URL. app/shop/page.tsxTypeScriptJavaScriptTypeScriptexport default async function Page({ searchParams, }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) { const { page = '1', sort = 'asc', query = '' } = await searchParams return ( <div> <h1>Product Listing</h1> <p>Search query: {query}</p> <p>Current page: {page}</p> <p>Sort order: {sort}</p> </div> ) } Reading searchParams and params in Client Components To use searchParams and params in a Client Component (which cannot be async), you can use React's use function to read the promise: app/page.tsxTypeScriptJavaScriptTypeScript'use client' import { use } from 'react' export default function Page({ params, searchParams, }: { params: Promise<{ slug: string }> searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) { const { slug } = use(params) const { query } = use(searchParams) } Version History VersionChangesv15.0.0-RCparams and searchParams are now promises. A codemod is available.v13.0.0page introduced.",
+      "code": "page"
+    },
+    {
+      "description": "A promise that resolves to an object containing the search parameters of the current URL. For example:",
+      "code": "export default async function Page({\n  searchParams,\n}: {\n  searchParams: Promise<{ [key: string]: string | string[] | undefined }>\n}) {\n  const filters = (await searchParams).filters\n}"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/guides/upgrading/codemods",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/not-found",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/parallel-routes"
+  ]
+}

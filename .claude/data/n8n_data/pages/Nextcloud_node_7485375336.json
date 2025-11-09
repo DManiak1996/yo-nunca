@@ -1,0 +1,24 @@
+{
+  "title": "Nextcloud node",
+  "content": "Use the Nextcloud node to automate work in Nextcloud, and integrate Nextcloud with other applications. n8n has built-in support for a wide range of Nextcloud features, including creating, updating, deleting, and getting files, and folders as well as retrieving, and inviting users.\n\nOn this page, you'll find a list of operations the Nextcloud node supports and links to more resources.\n\nRefer to [Nextcloud credentials](../../credentials/nextcloud/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- File\n  - Copy a file\n  - Delete a file\n  - Download a file\n  - Move a file\n  - Share a file\n  - Upload a file\n- Folder\n  - Copy a folder\n  - Create a folder\n  - Delete a folder\n  - Return the contents of a given folder\n  - Move a folder\n  - Share a folder\n- User\n  - Invite a user to a Nextcloud organization\n  - Delete a user.\n  - Retrieve information about a single user.\n  - Retrieve a list of users.\n  - Edit attributes related to a user.\n\n## Templates and examples\n\n**Save email attachments to Nextcloud**\n\n[View template details](https://n8n.io/workflows/1344-save-email-attachments-to-nextcloud/)\n\n**Backs up n8n Workflows to NextCloud**\n\n[View template details](https://n8n.io/workflows/175-backs-up-n8n-workflows-to-nextcloud/)\n\n**Move a nextcloud folder file by file**\n\n[View template details](https://n8n.io/workflows/1994-move-a-nextcloud-folder-file-by-file/)\n\n[Browse Nextcloud integration templates](https://n8n.io/integrations/nextcloud/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#nextcloud-node",
+  "links": []
+}

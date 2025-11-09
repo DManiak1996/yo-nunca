@@ -1,0 +1,155 @@
+{
+  "title": "Linux",
+  "content": "Source: https://docs.ollama.com/linux\n\nTo install Ollama, run the following command:\n\n<Note>\n  If you are upgrading from a prior version, you should remove the old libraries\n  with `sudo rm -rf /usr/lib/ollama` first.\n</Note>\n\nDownload and extract the package:\n\nIn another terminal, verify that Ollama is running:\n\nIf you have an AMD GPU, also download and extract the additional ROCm package:\n\nDownload and extract the ARM64-specific package:\n\n### Adding Ollama as a startup service (recommended)\n\nCreate a user and group for Ollama:\n\nCreate a service file in `/etc/systemd/system/ollama.service`:\n\nThen start the service:\n\n### Install CUDA drivers (optional)\n\n[Download and install](https://developer.nvidia.com/cuda-downloads) CUDA.\n\nVerify that the drivers are installed by running the following command, which should print details about your GPU:\n\n### Install AMD ROCm drivers (optional)\n\n[Download and Install](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/tutorial/quick-start.html) ROCm v6.\n\nStart Ollama and verify it is running:\n\n<Note>\n  While AMD has contributed the `amdgpu` driver upstream to the official linux\n  kernel source, the version is older and may not support all ROCm features. We\n  recommend you install the latest driver from\n  [https://www.amd.com/en/support/linux-drivers](https://www.amd.com/en/support/linux-drivers) for best support of your Radeon\n  GPU.\n</Note>\n\nTo customize the installation of Ollama, you can edit the systemd service file or the environment variables by running:\n\nAlternatively, create an override file manually in `/etc/systemd/system/ollama.service.d/override.conf`:\n\nUpdate Ollama by running the install script again:\n\nOr by re-downloading Ollama:\n\n## Installing specific versions\n\nUse `OLLAMA_VERSION` environment variable with the install script to install a specific version of Ollama, including pre-releases. You can find the version numbers in the [releases page](https://github.com/ollama/ollama/releases).\n\nTo view logs of Ollama running as a startup service, run:\n\nRemove the ollama service:\n\nRemove ollama libraries from your lib directory (either `/usr/local/lib`, `/usr/lib`, or `/lib`):\n\nRemove the ollama binary from your bin directory (either `/usr/local/bin`, `/usr/bin`, or `/bin`):\n\nRemove the downloaded models and Ollama service user and group:",
+  "code_samples": [
+    {
+      "code": "## Manual install\n\n<Note>\n  If you are upgrading from a prior version, you should remove the old libraries\n  with `sudo rm -rf /usr/lib/ollama` first.\n</Note>\n\nDownload and extract the package:",
+      "language": "unknown"
+    },
+    {
+      "code": "Start Ollama:",
+      "language": "unknown"
+    },
+    {
+      "code": "In another terminal, verify that Ollama is running:",
+      "language": "unknown"
+    },
+    {
+      "code": "### AMD GPU install\n\nIf you have an AMD GPU, also download and extract the additional ROCm package:",
+      "language": "unknown"
+    },
+    {
+      "code": "### ARM64 install\n\nDownload and extract the ARM64-specific package:",
+      "language": "unknown"
+    },
+    {
+      "code": "### Adding Ollama as a startup service (recommended)\n\nCreate a user and group for Ollama:",
+      "language": "unknown"
+    },
+    {
+      "code": "Create a service file in `/etc/systemd/system/ollama.service`:",
+      "language": "unknown"
+    },
+    {
+      "code": "Then start the service:",
+      "language": "unknown"
+    },
+    {
+      "code": "### Install CUDA drivers (optional)\n\n[Download and install](https://developer.nvidia.com/cuda-downloads) CUDA.\n\nVerify that the drivers are installed by running the following command, which should print details about your GPU:",
+      "language": "unknown"
+    },
+    {
+      "code": "### Install AMD ROCm drivers (optional)\n\n[Download and Install](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/tutorial/quick-start.html) ROCm v6.\n\n### Start Ollama\n\nStart Ollama and verify it is running:",
+      "language": "unknown"
+    },
+    {
+      "code": "<Note>\n  While AMD has contributed the `amdgpu` driver upstream to the official linux\n  kernel source, the version is older and may not support all ROCm features. We\n  recommend you install the latest driver from\n  [https://www.amd.com/en/support/linux-drivers](https://www.amd.com/en/support/linux-drivers) for best support of your Radeon\n  GPU.\n</Note>\n\n## Customizing\n\nTo customize the installation of Ollama, you can edit the systemd service file or the environment variables by running:",
+      "language": "unknown"
+    },
+    {
+      "code": "Alternatively, create an override file manually in `/etc/systemd/system/ollama.service.d/override.conf`:",
+      "language": "unknown"
+    },
+    {
+      "code": "## Updating\n\nUpdate Ollama by running the install script again:",
+      "language": "unknown"
+    },
+    {
+      "code": "Or by re-downloading Ollama:",
+      "language": "unknown"
+    },
+    {
+      "code": "## Installing specific versions\n\nUse `OLLAMA_VERSION` environment variable with the install script to install a specific version of Ollama, including pre-releases. You can find the version numbers in the [releases page](https://github.com/ollama/ollama/releases).\n\nFor example:",
+      "language": "unknown"
+    },
+    {
+      "code": "## Viewing logs\n\nTo view logs of Ollama running as a startup service, run:",
+      "language": "unknown"
+    },
+    {
+      "code": "## Uninstall\n\nRemove the ollama service:",
+      "language": "unknown"
+    },
+    {
+      "code": "Remove ollama libraries from your lib directory (either `/usr/local/lib`, `/usr/lib`, or `/lib`):",
+      "language": "unknown"
+    },
+    {
+      "code": "Remove the ollama binary from your bin directory (either `/usr/local/bin`, `/usr/bin`, or `/bin`):",
+      "language": "unknown"
+    },
+    {
+      "code": "Remove the downloaded models and Ollama service user and group:",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Install",
+      "id": "install"
+    },
+    {
+      "level": "h2",
+      "text": "Manual install",
+      "id": "manual-install"
+    },
+    {
+      "level": "h3",
+      "text": "AMD GPU install",
+      "id": "amd-gpu-install"
+    },
+    {
+      "level": "h3",
+      "text": "ARM64 install",
+      "id": "arm64-install"
+    },
+    {
+      "level": "h3",
+      "text": "Adding Ollama as a startup service (recommended)",
+      "id": "adding-ollama-as-a-startup-service-(recommended)"
+    },
+    {
+      "level": "h3",
+      "text": "Install CUDA drivers (optional)",
+      "id": "install-cuda-drivers-(optional)"
+    },
+    {
+      "level": "h3",
+      "text": "Install AMD ROCm drivers (optional)",
+      "id": "install-amd-rocm-drivers-(optional)"
+    },
+    {
+      "level": "h3",
+      "text": "Start Ollama",
+      "id": "start-ollama"
+    },
+    {
+      "level": "h2",
+      "text": "Customizing",
+      "id": "customizing"
+    },
+    {
+      "level": "h2",
+      "text": "Updating",
+      "id": "updating"
+    },
+    {
+      "level": "h2",
+      "text": "Installing specific versions",
+      "id": "installing-specific-versions"
+    },
+    {
+      "level": "h2",
+      "text": "Viewing logs",
+      "id": "viewing-logs"
+    },
+    {
+      "level": "h2",
+      "text": "Uninstall",
+      "id": "uninstall"
+    }
+  ],
+  "url": "llms-txt#linux",
+  "links": []
+}

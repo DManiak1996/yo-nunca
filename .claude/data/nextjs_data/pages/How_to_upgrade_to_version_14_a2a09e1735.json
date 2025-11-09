@@ -1,0 +1,49 @@
+{
+  "url": "https://nextjs.org/docs/app/guides/upgrading/version-14",
+  "title": "How to upgrade to version 14",
+  "content": "To update to Next.js version 14, run the following command using your preferred package manager:\n\nGood to know: If you are using TypeScript, ensure you also upgrade @types/react and @types/react-dom to their latest versions.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to upgrade to version 14",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Upgrading from 13 to 14",
+      "id": "upgrading-from-13-to-14"
+    },
+    {
+      "level": "h3",
+      "text": "v14 Summary",
+      "id": "v14-summary"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "npm i next@next-14 react@18 react-dom@18 && npm i eslint-config-next@next-14 -D",
+      "language": "unknown"
+    },
+    {
+      "code": "yarn add next@next-14 react@18 react-dom@18 && yarn add eslint-config-next@next-14 -D",
+      "language": "unknown"
+    },
+    {
+      "code": "pnpm i next@next-14 react@18 react-dom@18 && pnpm i eslint-config-next@next-14 -D",
+      "language": "unknown"
+    },
+    {
+      "code": "bun add next@next-14 react@18 react-dom@18 && bun add eslint-config-next@next-14 -D",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/guides",
+    "https://nextjs.org/docs/app/guides/upgrading",
+    "https://nextjs.org/docs/app/guides/upgrading/version-14",
+    "https://nextjs.org/docs/app/guides/static-exports",
+    "https://nextjs.org/docs/app/guides/upgrading/codemods",
+    "https://nextjs.org/docs/app/guides/upgrading/version-15"
+  ]
+}

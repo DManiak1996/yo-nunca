@@ -1,0 +1,19 @@
+{
+  "title": "Flow Trigger node",
+  "content": "[Flow](https://www.getflow.com/) is modern task and project management software for teams. It brings together tasks, projects, timelines, and conversations, and integrates with a lot of tools.\n\nYou can find authentication information for this node [here](../../credentials/flow/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Flow Trigger integrations](https://n8n.io/integrations/flow-trigger/) page.\n\nn8n provides an app node for Flow. You can find the node docs [here](../../app-nodes/n8n-nodes-base.flow/).\n\nView [example workflows and related content](https://n8n.io/integrations/flow-trigger/) on n8n's website.\n\nRefer to [Flow's documentation](https://developer.getflow.com/api/) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#flow-trigger-node",
+  "links": []
+}

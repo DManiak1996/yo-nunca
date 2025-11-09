@@ -1,0 +1,19 @@
+{
+  "title": "Supported authentication methods",
+  "content": "Refer to [Onfleet's API documentation](https://docs.onfleet.com/reference/introduction) for more information about the service.\n\nTo configure this credential, you'll need:\n\n- An **API key**: To create an API key, log into your organization's administrator account. Select **Settings > API & Webhooks**, then select **+** to create a new key. Refer to Onfleet's [Creating an API key documentation](https://support.onfleet.com/hc/en-us/articles/360045763292-API) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Using API key",
+      "id": "using-api-key"
+    }
+  ],
+  "url": "llms-txt#supported-authentication-methods",
+  "links": []
+}

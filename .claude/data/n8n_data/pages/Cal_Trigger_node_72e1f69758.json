@@ -1,0 +1,14 @@
+{
+  "title": "Cal Trigger node",
+  "content": "[Cal](https://cal.com/) is the event-juggling scheduler for everyone. Focus on meeting, not making meetings.\n\nYou can find authentication information for this node [here](../../credentials/cal/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Cal Trigger integrations](https://n8n.io/integrations/cal-trigger/) page.\n\n- Booking cancelled\n- Booking created\n- Booking rescheduled\n- Meeting ended",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    }
+  ],
+  "url": "llms-txt#cal-trigger-node",
+  "links": []
+}

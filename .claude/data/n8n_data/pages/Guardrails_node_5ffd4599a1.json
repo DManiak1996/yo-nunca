@@ -1,0 +1,34 @@
+{
+  "title": "Guardrails node",
+  "content": "Use the Guardrails node to enforce safety, security, and content policies on text. You can use it to validate user input *before* sending it to an AI model, or to check the *output* from an AI model before using it in your workflow.\n\nChat Model Connection Required for LLM-based Guardrails\n\nThis node requires a Chat Model node to be connected to its Model input when using the **Check Text for Violations** operation with LLM-based guardrails. Many guardrail checks (like Jailbreak, NSFW, and Topical Alignment) are LLM-based and use this connection to evaluate the input text.\n\nUse these parameters to configure the Guardrails node.\n\nThe operation mode for this node to define its behavior.\n\n- **Check Text for Violations**: Provides a full set of guardrails. Any violation will send items to **Fail** branch.\n- **Sanitize Text**: Provides a subset of guardrails that can detect URLs, regular expressions, secret keys, or personally identifiable information (PII), such as phone numbers and credit card numbers. The node replaces detected violations with placeholders.\n\nThe text the guardrails evaluate. Typically, you map this text using an expression from a previous node, such as text from a user query or a response from an AI model.\n\nSelect one or more guardrails to apply to the **Text To Check**. When you add a guardrail from the list, its specific configuration options appear below.\n\n- **Keywords:** Checks if specified keywords appear in the input text.\n  - **Keywords**: A comma-separated list of words to block.\n- **Jailbreak:** Detects attempts to bypass AI safety measures or exploit the model.\n  - **Customize Prompt**: (Boolean) If you turn this on, a text input appears with the default prompt for the jailbreak detection model. You can change this prompt to fine-tune the guardrail.\n  - **Threshold**: A value between 0.0 and 1.0. This represents the confidence level required from the AI model to flag the input as a jailbreak attempt. A higher threshold is stricter.\n- **NSFW:** Detects attempts to generate Not Safe For Work (NSFW) content.\n  - **Customize Prompt**: (Boolean) If you turn this on, a text input appears with the default prompt for the NSFW detection model. You can change this prompt to fine-tune the guardrail.\n  - **Threshold**: A value between 0.0 and 1.0 representing the confidence level required to flag the content as NSFW.\n- **PII:** Detects personally identifiable information (PII) in the text.\n  - **Type**: Choose which PII entities to scan for:\n    - **All**: Scans for all available entity types.\n    - **Selected**: Allows you to choose specific entities from a list.\n  - **Entities**: (Appears if **Type** is **Selected**) A multi-select list of PII types to detect (for example, `CREDIT_CARD`, `EMAIL_ADDRESS`, `PHONE_NUMBER`, and `US_SSN`).\n- **Secret Keys:** Detects the presence of secret keys or API credentials in the text.\n  - **Permissiveness**: How strict or permissive the detection should be when flagging secret keys:\n    - **Strict**\n    - **Permissive**\n    - **Balanced**\n- **Topical Alignment:** Ensures the conversation stays within a predefined scope or topic (also known as \"business scope\").\n  - **Prompt**: A preset prompt that defines the *allowed* topic. The guardrail checks if the **Text To Check** aligns with this prompt.\n  - **Threshold**: A value between 0.0 and 1.0 representing the confidence level required to flag the input as *off-topic*.\n- **URLs:** Manages URLs the node finds in the input text. It detects all URLs as violations, unless you specify them in **Block All URLs Except**.\n  - **Block All URLs Except**: (Optional) A comma-separated list of URLs that you permit.\n  - **Allowed Schemes**: Select the URL schemes to permit (for example, `https`, `http`, `ftp`, and `mailto`).\n  - **Block userinfo**: (Boolean) If you turn this on, the node blocks URLs containing user credentials (for example, `user:pass@example.com`) to prevent credential injection.\n  - **Allow subdomain**: (Boolean) If you turn this on, the node automatically allows subdomains of any URL in the **Block All URLs Except** list (for example, `sub.example.com` would be allowed if `example.com` is in the list).\n- **Custom:** Define your own custom, LLM-based guardrail.\n  - **Name**: A descriptive name for your custom guardrail (for example, \"Check for rude language\").\n  - **Prompt**: A prompt that instructs the AI model what to check for.\n  - **Threshold**: A value between 0.0 and 1.0 representing the confidence level required to flag the input as a violation.\n- **Custom Regex**: Define your own custom regular expression patterns.\n  - **Name**: A name for your custom pattern. The node uses this name as a placeholder in the **Sanitize Text** mode.\n  - **Regex**: Your regular expression pattern.\n\n### Customize System Message\n\nIf you turn this on, a text input appears with a message that the guardrail uses to enforce thresholds and JSON output according to schema. Change it to modify the global guardrails behavior.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Operation",
+      "id": "operation"
+    },
+    {
+      "level": "h3",
+      "text": "Text To Check",
+      "id": "text-to-check"
+    },
+    {
+      "level": "h3",
+      "text": "Guardrails",
+      "id": "guardrails"
+    },
+    {
+      "level": "h3",
+      "text": "Customize System Message",
+      "id": "customize-system-message"
+    }
+  ],
+  "url": "llms-txt#guardrails-node",
+  "links": []
+}

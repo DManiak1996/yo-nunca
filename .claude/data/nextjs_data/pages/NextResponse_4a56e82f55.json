@@ -1,0 +1,115 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/next-response",
+  "title": "NextResponse",
+  "content": "NextResponse extends the Web Response API with additional convenience methods.\n\nRead or mutate the Set-Cookie header of the response.\n\nGiven a name, set a cookie with the given value on the response.\n\nGiven a cookie name, return the value of the cookie. If the cookie is not found, undefined is returned. If multiple cookies are found, the first one is returned.\n\nGiven a cookie name, return the values of the cookie. If no name is given, return all cookies on the response.\n\nGiven a cookie name, delete the cookie from the response.\n\nProduce a response with the given JSON body.\n\nProduce a response that redirects to a URL.\n\nThe URL can be created and modified before being used in the NextResponse.redirect() method. For example, you can use the request.nextUrl property to get the current URL, and then modify it to redirect to a different URL.\n\nProduce a response that rewrites (proxies) the given URL while preserving the original URL.\n\nThe next() method is useful for Proxy, as it allows you to return early and continue routing.\n\nYou can also forward headers upstream when producing the response, using NextResponse.next({ request: { headers } }):\n\nThis forwards newHeaders upstream to the target page, route, or server action, and does not expose them to the client. While this pattern is useful for passing data upstream, it should be used with caution because the headers containing this data may be forwarded to external services.\n\nIn contrast, NextResponse.next({ headers }) is a shorthand for sending headers from proxy to the client. This is NOT good practice and should be avoided. Among other reasons because setting response headers like Content-Type, can override framework expectations (for example, the Content-Type used by Server Actions), leading to failed submissions or broken streaming responses.\n\nIn general, avoid copying all incoming request headers because doing so can leak sensitive data to clients or upstream services.\n\nPrefer a defensive approach by creating a subset of incoming request headers using an allow-list. For example, you might discard custom x-* headers and only forward known-safe headers:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "NextResponse",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "cookies",
+      "id": "cookies"
+    },
+    {
+      "level": "h3",
+      "text": "set(name, value)",
+      "id": "setname-value"
+    },
+    {
+      "level": "h3",
+      "text": "get(name)",
+      "id": "getname"
+    },
+    {
+      "level": "h3",
+      "text": "getAll()",
+      "id": "getall"
+    },
+    {
+      "level": "h3",
+      "text": "delete(name)",
+      "id": "deletename"
+    },
+    {
+      "level": "h2",
+      "text": "json()",
+      "id": "json"
+    },
+    {
+      "level": "h2",
+      "text": "redirect()",
+      "id": "redirect"
+    },
+    {
+      "level": "h2",
+      "text": "rewrite()",
+      "id": "rewrite"
+    },
+    {
+      "level": "h2",
+      "text": "next()",
+      "id": "next"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// Given incoming request /home\nlet response = NextResponse.next()\n// Set a cookie to hide the banner\nresponse.cookies.set('show-banner', 'false')\n// Response will have a `Set-Cookie:show-banner=false;path=/home` header\nreturn response",
+      "language": "javascript"
+    },
+    {
+      "code": "// Given incoming request /home\nlet response = NextResponse.next()\n// { name: 'show-banner', value: 'false', Path: '/home' }\nresponse.cookies.get('show-banner')",
+      "language": "javascript"
+    },
+    {
+      "code": "// Given incoming request /home\nlet response = NextResponse.next()\n// [\n//   { name: 'experiments', value: 'new-pricing-page', Path: '/home' },\n//   { name: 'experiments', value: 'winter-launch', Path: '/home' },\n// ]\nresponse.cookies.getAll('experiments')\n// Alternatively, get all cookies for the response\nresponse.cookies.getAll()",
+      "language": "javascript"
+    },
+    {
+      "code": "// Given incoming request /home\nlet response = NextResponse.next()\n// Returns true for deleted, false if nothing is deleted\nresponse.cookies.delete('experiments')",
+      "language": "javascript"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\n \nexport async function GET(request: Request) {\n  return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\n \nreturn NextResponse.redirect(new URL('/new', request.url))",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\n \n// Given an incoming request...\nconst loginUrl = new URL('/login', request.url)\n// Add ?from=/incoming-url to the /login URL\nloginUrl.searchParams.set('from', request.nextUrl.pathname)\n// And redirect to the new URL\nreturn NextResponse.redirect(loginUrl)",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\n \n// Incoming request: /about, browser shows /about\n// Rewritten request: /proxy, browser shows /about\nreturn NextResponse.rewrite(new URL('/proxy', request.url))",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\n \nreturn NextResponse.next()",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\n \n// Given an incoming request...\nconst newHeaders = new Headers(request.headers)\n// Add a new header\nnewHeaders.set('x-version', '123')\n// Forward the modified request headers upstream\nreturn NextResponse.next({\n  request: {\n    // New request headers\n    headers: newHeaders,\n  },\n})",
+      "language": "python"
+    },
+    {
+      "code": "import { type NextRequest, NextResponse } from 'next/server'\n \nasync function proxy(request: NextRequest) {\n  const headers = await injectAuth(request.headers)\n  // DO NOT forward headers like this\n  return NextResponse.next({ headers })\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { type NextRequest, NextResponse } from 'next/server'\n \nfunction proxy(request: NextRequest) {\n  const incoming = new Headers(request.headers)\n  const forwarded = new Headers()\n \n  for (const [name, value] of incoming) {\n    const headerName = name.toLowerCase()\n    // Keep only known-safe headers, discard custom x-* and other sensitive ones\n    if (\n      !headerName.startsWith('x-') &&\n      headerName !== 'authorization' &&\n      headerName !== 'cookie'\n    ) {\n      // Preserve original header name casing\n      forwarded.set(name, value)\n    }\n  }\n \n  return NextResponse.next({\n    request: {\n      headers: forwarded,\n    },\n  })\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/functions/next-response",
+    "https://nextjs.org/docs/app/api-reference/functions/next-request",
+    "https://nextjs.org/docs/app/api-reference/functions/not-found"
+  ]
+}

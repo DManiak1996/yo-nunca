@@ -1,0 +1,67 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference",
+  "title": "API Reference",
+  "content": "",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "API Reference",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Directives",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Components",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "File-system conventions",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Functions",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Configuration",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "CLI",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Edge Runtime",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Turbopack",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/api-reference/directives",
+    "https://nextjs.org/docs/app/api-reference/components",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/cli",
+    "https://nextjs.org/docs/app/api-reference/edge",
+    "https://nextjs.org/docs/app/api-reference/turbopack",
+    "https://nextjs.org/docs/app/guides/videos"
+  ]
+}

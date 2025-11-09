@@ -1,0 +1,19 @@
+{
+  "title": "Peekalink node",
+  "content": "Use the Peekalink node to automate work in Peekalink, and integrate Peekalink with other applications. n8n supports checking, and reviewing links with Peekalink.\n\nOn this page, you'll find a list of operations the Peekalink node supports and links to more resources.\n\nRefer to [Peekalink credentials](../../credentials/peekalink/) for guidance on setting up authentication.\n\n- Check whether preview for a given link is available\n- Return the preview for a link\n\n## Templates and examples\n\n[Browse Peekalink integration templates](https://n8n.io/integrations/peekalink/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#peekalink-node",
+  "links": []
+}

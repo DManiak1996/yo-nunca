@@ -1,0 +1,8 @@
+{
+  "title": "Get the static data of the node",
+  "content": "nodeStaticData = _getWorkflowStaticData('node')",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#get-the-static-data-of-the-node",
+  "links": []
+}

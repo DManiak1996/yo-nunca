@@ -1,0 +1,8 @@
+{
+  "title": "healthz",
+  "content": "QUEUE_HEALTH_CHECK_ACTIVE=true\n```\n\nRefer to [Configuration methods](../../configuration/configuration-methods/) for more information on how to configure your instance using environment variables.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#healthz",
+  "links": []
+}

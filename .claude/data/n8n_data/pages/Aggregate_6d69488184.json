@@ -1,0 +1,39 @@
+{
+  "title": "Aggregate",
+  "content": "Use the Aggregate node to take separate items, or portions of them, and group them together into individual items.\n\nTo begin using the node, select the **Aggregate** you'd like to use:\n\n- [**Individual Fields**](#individual-fields): Aggregate individual fields separately.\n- [**All Item Data**](#all-item-data): Aggregate all item data into a single list.\n\n### Individual Fields\n\n- **Input Field Name**: Enter the name of the field in the input data to aggregate together.\n- **Rename Field**: This toggle controls whether to give the field a different name in the aggregated output data. Turn this on to add a different field name. If you're aggregating multiple fields, you must provide new output field names. You can't leave multiple fields undefined.\n  - **Output Field Name**: This field is displayed when you turn on **Rename Field**. Enter the field name for the aggregated output data.\n\nRefer to [Node options](#node-options) for more configuration options.\n\n- **Put Output in Field**: Enter the name of the field to output the data in.\n- **Include**: Select which fields to include in the output. Choose from:\n  - **All fields**: The output includes data from all fields with no further parameters.\n  - **Specified Fields**: If you select this option, enter a comma-separated list of fields the output should include data from in the **Fields To Include** parameter. The output will include only the fields in this list.\n  - **All Fields Except**: If you select this option, enter a comma-separated list of fields the output should exclude data from in the **Fields To Exclude** parameter. The output will include all fields not in this list.\n\nRefer to [Node options](#node-options) for more configuration options.\n\nYou can further configure this node using these **Options**:\n\n- **Disable Dot Notation**: The node displays this toggle when you select the **Individual Fields** Aggregate. It controls whether to disallow referencing child fields using `parent.child` in the field name (turned on), or allow it (turned off, default).\n- **Merge Lists**: The node displays this toggle when you select the **Individual Fields** Aggregate. Turn it on if the field to aggregate is a list and you want to output a single flat list rather than a list of lists.\n- **Include Binaries**: The node displays this toggle for both Aggregate types. Turn it on if you want to include binary data from the input in the new output.\n- **Keep Missing And Null Values**: The node displays this toggle when you select the **Individual Fields** Aggregate. Turn it on to add a null (empty) entry in the output list when there is a null or missing value in the input. If turned off, the output ignores null or empty values.\n\n## Templates and examples\n\n**✨🤖Automate Multi-Platform Social Media Content Creation with AI**\n\n[View template details](https://n8n.io/workflows/3066-automate-multi-platform-social-media-content-creation-with-ai/)\n\n**Scrape business emails from Google Maps without the use of any third party APIs**\n\n[View template details](https://n8n.io/workflows/2567-scrape-business-emails-from-google-maps-without-the-use-of-any-third-party-apis/)\n\n**Build Your First AI Data Analyst Chatbot**\n\n[View template details](https://n8n.io/workflows/3050-build-your-first-ai-data-analyst-chatbot/)\n\n[Browse Aggregate integration templates](https://n8n.io/integrations/aggregate/), or [search all templates](https://n8n.io/workflows/)\n\nLearn more about [data structure and data flow](../../../../data/) in n8n workflows.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Individual Fields",
+      "id": "individual-fields"
+    },
+    {
+      "level": "h3",
+      "text": "All Item Data",
+      "id": "all-item-data"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#aggregate",
+  "links": []
+}

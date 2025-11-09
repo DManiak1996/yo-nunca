@@ -1,0 +1,24 @@
+{
+  "title": "Embeddings Ollama node",
+  "content": "Use the Embeddings Ollama node to generate [embeddings](../../../../../glossary/#ai-embedding) for a given text.\n\nOn this page, you'll find the node parameters for the Embeddings Ollama node, and links to more resources.\n\nYou can find authentication information for this node [here](../../../credentials/ollama/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Model**: Select the model to use to generate the embedding. Choose from:\n  - [all-minilm](https://ollama.com/library/all-minilm) (384 Dimensions)\n  - [nomic-embed-text](https://ollama.com/library/nomic-embed-text) (768 Dimensions)\n\nLearn more about available models in [Ollama's models documentation](https://ollama.ai/library).\n\n## Templates and examples\n\n**Local Chatbot with Retrieval Augmented Generation (RAG)**\n\n[View template details](https://n8n.io/workflows/5148-local-chatbot-with-retrieval-augmented-generation-rag/)\n\n**Bitrix24 AI-Powered RAG Chatbot for Open Line Channels**\n\n[View template details](https://n8n.io/workflows/3094-bitrix24-ai-powered-rag-chatbot-for-open-line-channels/)\n\n**Chat with Your Email History using Telegram, Mistral and Pgvector for RAG**\n\n[View template details](https://n8n.io/workflows/3763-chat-with-your-email-history-using-telegram-mistral-and-pgvector-for-rag/)\n\n[Browse Embeddings Ollama integration templates](https://n8n.io/integrations/embeddings-ollama/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [Langchain's Ollama embeddings documentation](https://js.langchain.com/docs/integrations/text_embedding/ollama/) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#embeddings-ollama-node",
+  "links": []
+}

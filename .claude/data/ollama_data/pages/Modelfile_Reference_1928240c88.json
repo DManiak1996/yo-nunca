@@ -1,0 +1,19 @@
+{
+  "title": "Modelfile Reference",
+  "content": "Source: https://docs.ollama.com/modelfile\n\nA Modelfile is the blueprint to create and share customized models using Ollama.\n\n* [Format](#format)\n* [Examples](#examples)\n* [Instructions](#instructions)\n  * [FROM (Required)](#from-required)\n    * [Build from existing model](#build-from-existing-model)\n    * [Build from a Safetensors model](#build-from-a-safetensors-model)\n    * [Build from a GGUF file](#build-from-a-gguf-file)\n  * [PARAMETER](#parameter)\n    * [Valid Parameters and Values](#valid-parameters-and-values)\n  * [TEMPLATE](#template)\n    * [Template Variables](#template-variables)\n  * [SYSTEM](#system)\n  * [ADAPTER](#adapter)\n  * [LICENSE](#license)\n  * [MESSAGE](#message)\n* [Notes](#notes)\n\nThe format of the `Modelfile`:",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Table of Contents",
+      "id": "table-of-contents"
+    },
+    {
+      "level": "h2",
+      "text": "Format",
+      "id": "format"
+    }
+  ],
+  "url": "llms-txt#modelfile-reference",
+  "links": []
+}

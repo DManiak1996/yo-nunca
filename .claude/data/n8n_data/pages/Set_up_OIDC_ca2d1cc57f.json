@@ -1,0 +1,54 @@
+{
+  "title": "Set up OIDC",
+  "content": "- Available on Enterprise plans.\n- You need to be an instance owner or admin to enable and configure OIDC.\n\n## Setting up and enabling OIDC\n\n1. In n8n, go to **Settings** > **SSO**.\n\n1. Under **Select Authentication Protocol**, choose **OIDC** from the dropdown.\n\n1. Copy the **redirect URL** shown (for example, `https://yourworkspace.app.n8n.cloud/rest/sso/oidc/callback`).\n\nExtra configuration for load balancers or proxies\n\nIf you are running n8n behind a load balancer, make sure you set the [`N8N_EDITOR_BASE_URL` environment variable](../../../hosting/configuration/environment-variables/deployment/).\n\n1. Set up OIDC with your identity provider (IdP). You'll need to:\n\n- Create a new OIDC client/application in your IdP.\n   - Configure the redirect URL from the previous step.\n   - Note down the **Client ID** and **Client Secret** provided by your IdP.\n\n1. In your IdP, locate the **Discovery Endpoint** (also called the well-known configuration endpoint). It typically has the following format:\n\n1. In n8n, complete the OIDC configuration:\n\n- **Discovery Endpoint**: Enter the discovery endpoint URL from your IdP.\n   - **Client ID**: Enter the client ID you received when registering your application with your IdP.\n   - **Client Secret**: Enter the client secret you received when registering your application with your IdP.\n\n1. Select **Save settings**.\n\n1. Set OIDC to **Activated**.\n\n## Provider-specific OIDC setup\n\n1. **Create an application in Auth0**:\n   - Log in to your Auth0 Dashboard.\n   - Go to **Applications** > **Applications**.\n   - Click **Create Application**.\n   - Enter a name (for example, \"n8n SSO\") and select **Regular Web Applications**.\n   - Click **Create**.\n1. **Configure the application**:\n   - Go to the **Settings** tab of your new application.\n   - **Allowed Callback URLs**: Add your n8n redirect URL from **Settings** > **SSO** > **OIDC**.\n   - **Allowed Web Origins**: Add your n8n base URL (for example, `https://yourworkspace.app.n8n.cloud`).\n   - Click **Save Changes**.\n1. **Get your credentials**:\n   - **Client ID**: Found in the **Settings** tab.\n   - **Client Secret**: Found in the **Settings** tab.\n   - **Discovery Endpoint**: `https://{your-auth0-domain}.auth0.com/.well-known/openid-configuration`.\n1. **In n8n, complete the OIDC configuration:**\n   - **Discovery Endpoint**: Enter the discovery endpoint URL from Auth0.\n   - **Client ID**: Enter the client ID you found in your Auth0 settings.\n   - **Client Secret**: Enter the client secret you found in your Auth0 settings.\n1. Select **Save settings**.\n1. Set OIDC to **Activated**.\n\n## Discovery endpoints reference\n\n- **Google discovery endpoint example**:\n\n- **Microsoft Azure AD discovery endpoint example**:\n\n- **Auth0 discovery endpoint example**:\n\n- **Okta discovery endpoint example**:\n\n- **Amazon Cognito discovery endpoint example**:",
+  "code_samples": [
+    {
+      "code": "https://your-idp-domain/.well-known/openid-configuration",
+      "language": "unknown"
+    },
+    {
+      "code": "https://accounts.google.com/.well-known/openid-configuration",
+      "language": "unknown"
+    },
+    {
+      "code": "https://login.microsoftonline.com/{tenant-id}/v2.0/.well-known/openid-configuration",
+      "language": "unknown"
+    },
+    {
+      "code": "https://{your-domain}.auth0.com/.well-known/openid-configuration",
+      "language": "unknown"
+    },
+    {
+      "code": "https://{your-domain}.okta.com/.well-known/openid-configuration",
+      "language": "unknown"
+    },
+    {
+      "code": "https://cognito-idp.{region}.amazonaws.com/{user-pool-id}/.well-known/openid-configuration",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Setting up and enabling OIDC",
+      "id": "setting-up-and-enabling-oidc"
+    },
+    {
+      "level": "h2",
+      "text": "Provider-specific OIDC setup",
+      "id": "provider-specific-oidc-setup"
+    },
+    {
+      "level": "h3",
+      "text": "Auth0",
+      "id": "auth0"
+    },
+    {
+      "level": "h2",
+      "text": "Discovery endpoints reference",
+      "id": "discovery-endpoints-reference"
+    }
+  ],
+  "url": "llms-txt#set-up-oidc",
+  "links": []
+}

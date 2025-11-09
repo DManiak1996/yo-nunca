@@ -1,0 +1,8 @@
+{
+  "title": "Set the custom execution data object",
+  "content": "_execution.customData.setAll({\"key1\": \"value1\", \"key2\": \"value2\"})",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#set-the-custom-execution-data-object",
+  "links": []
+}

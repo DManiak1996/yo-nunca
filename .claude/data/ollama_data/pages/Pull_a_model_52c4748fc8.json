@@ -1,0 +1,8 @@
+{
+  "title": "Pull a model",
+  "content": "Source: https://docs.ollama.com/api/pull\n\nopenapi.yaml post /api/pull",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#pull-a-model",
+  "links": []
+}

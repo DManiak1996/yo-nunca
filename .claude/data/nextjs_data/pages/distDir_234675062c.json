@@ -1,0 +1,25 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/distDir",
+  "title": "distDir",
+  "content": "You can specify a name to use for a custom build directory to use instead of .next.\n\nOpen next.config.js and add the distDir config:\n\nNow if you run next build Next.js will use build instead of the default .next folder.\n\ndistDir should not leave your project directory. For example, ../build is an invalid directory.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "distDir",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  distDir: 'build',\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/devIndicators",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/env"
+  ]
+}

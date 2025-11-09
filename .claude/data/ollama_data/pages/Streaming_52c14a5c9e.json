@@ -1,0 +1,24 @@
+{
+  "title": "Streaming",
+  "content": "Source: https://docs.ollama.com/capabilities/streaming\n\nStreaming allows you to render text as it is produced by the model.\n\nStreaming is enabled by default through the REST API, but disabled by default in the SDKs.\n\nTo enable streaming in the SDKs, set the `stream` parameter to `True`.\n\n## Key streaming concepts\n\n1. Chatting: Stream partial assistant messages. Each chunk includes the `content` so you can render messages as they arrive.\n2. Thinking: Thinking-capable models emit a `thinking` field alongside regular content in each chunk. Detect this field in streaming chunks to show or hide reasoning traces before the final answer arrives.\n3. Tool calling: Watch for streamed `tool_calls` in each chunk, execute the requested tool, and append tool outputs back into the conversation.\n\n## Handling streamed chunks\n\n<Note> It is necessary to accumulate the partial fields in order to maintain the history of the conversation. This is particularly important for tool calling where the thinking, tool call from the model, and the executed tool result must be passed back to the model in the next request. </Note>\n\n<Tabs>\n  <Tab title=\"Python\">\n    \n  </Tab>\n\n<Tab title=\"JavaScript\">\n    \n  </Tab>\n</Tabs>",
+  "code_samples": [
+    {
+      "code": "</Tab>\n\n  <Tab title=\"JavaScript\">",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Key streaming concepts",
+      "id": "key-streaming-concepts"
+    },
+    {
+      "level": "h2",
+      "text": "Handling streamed chunks",
+      "id": "handling-streamed-chunks"
+    }
+  ],
+  "url": "llms-txt#streaming",
+  "links": []
+}

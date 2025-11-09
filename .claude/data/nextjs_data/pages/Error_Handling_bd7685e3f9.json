@@ -1,0 +1,125 @@
+{
+  "url": "https://nextjs.org/docs/pages/building-your-application/configuring/error-handling",
+  "title": "Error Handling",
+  "content": "Errors can be divided into two categories: expected errors and uncaught exceptions. This page will walk you through how you can handle these errors in your Next.js application.\n\nExpected errors are those that can occur during the normal operation of the application, such as those from server-side form validation or failed requests. These errors should be handled explicitly and returned to the client.\n\nYou can use the useActionState hook to handle expected errors in Server Functions.\n\nFor these errors, avoid using try/catch blocks and throw errors. Instead, model expected errors as return values.\n\nYou can pass your action to the useActionState hook and use the returned state to display an error message.\n\nWhen fetching data inside of a Server Component, you can use the response to conditionally render an error message or redirect.\n\nYou can call the notFound function within a route segment and use the not-found.js file to show a 404 UI.\n\nUncaught exceptions are unexpected errors that indicate bugs or issues that should not occur during the normal flow of your application. These should be handled by throwing errors, which will then be caught by error boundaries.\n\nNext.js uses error boundaries to handle uncaught exceptions. Error boundaries catch errors in their child components and display a fallback UI instead of the component tree that crashed.\n\nCreate an error boundary by adding an error.js file inside a route segment and exporting a React component:\n\nErrors will bubble up to the nearest parent error boundary. This allows for granular error handling by placing error.tsx files at different levels in the route hierarchy.\n\nError boundaries don’t catch errors inside event handlers. They’re designed to catch errors during rendering to show a fallback UI instead of crashing the whole app.\n\nIn general, errors in event handlers or async code aren’t handled by error boundaries because they run after rendering.\n\nTo handle these cases, catch the error manually and store it using useState or useReducer, then update the UI to inform the user.\n\nNote that unhandled errors inside startTransition from useTransition, will bubble up to the nearest error boundary.\n\nWhile less common, you can handle errors in the root layout using the global-error.js file, located in the root app directory, even when leveraging internationalization. Global error UI must define its own <html> and <body> tags, since it is replacing the root layout or template when active.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Error Handling",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Handling expected errors",
+      "id": "handling-expected-errors"
+    },
+    {
+      "level": "h3",
+      "text": "Server Functions",
+      "id": "server-functions"
+    },
+    {
+      "level": "h3",
+      "text": "Server Components",
+      "id": "server-components"
+    },
+    {
+      "level": "h3",
+      "text": "Not found",
+      "id": "not-found"
+    },
+    {
+      "level": "h2",
+      "text": "Handling uncaught exceptions",
+      "id": "handling-uncaught-exceptions"
+    },
+    {
+      "level": "h3",
+      "text": "Nested error boundaries",
+      "id": "nested-error-boundaries"
+    },
+    {
+      "level": "h3",
+      "text": "Global errors",
+      "id": "global-errors"
+    },
+    {
+      "level": "h2",
+      "text": "API Reference",
+      "id": "api-reference"
+    },
+    {
+      "level": "h3",
+      "text": "redirect",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "error.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "notFound",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "not-found.js",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "'use server'\n \nexport async function createPost(prevState: any, formData: FormData) {\n  const title = formData.get('title')\n  const content = formData.get('content')\n \n  const res = await fetch('https://api.vercel.app/posts', {\n    method: 'POST',\n    body: { title, content },\n  })\n  const json = await res.json()\n \n  if (!res.ok) {\n    return { message: 'Failed to create post' }\n  }\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "'use client'\n \nimport { useActionState } from 'react'\nimport { createPost } from '@/app/actions'\n \nconst initialState = {\n  message: '',\n}\n \nexport function Form() {\n  const [state, formAction, pending] = useActionState(createPost, initialState)\n \n  return (\n    <form action={formAction}>\n      <label htmlFor=\"title\">Title</label>\n      <input type=\"text\" id=\"title\" name=\"title\" required />\n      <label htmlFor=\"content\">Content</label>\n      <textarea id=\"content\" name=\"content\" required />\n      {state?.message && <p aria-live=\"polite\">{state.message}</p>}\n      <button disabled={pending}>Create Post</button>\n    </form>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "export default async function Page() {\n  const res = await fetch(`https://...`)\n  const data = await res.json()\n \n  if (!res.ok) {\n    return 'There was an error.'\n  }\n \n  return '...'\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { getPostBySlug } from '@/lib/posts'\n \nexport default async function Page({ params }: { params: { slug: string } }) {\n  const { slug } = await params\n  const post = getPostBySlug(slug)\n \n  if (!post) {\n    notFound()\n  }\n \n  return <div>{post.title}</div>\n}",
+      "language": "python"
+    },
+    {
+      "code": "export default function NotFound() {\n  return <div>404 - Page Not Found</div>\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "'use client' // Error boundaries must be Client Components\n \nimport { useEffect } from 'react'\n \nexport default function Error({\n  error,\n  reset,\n}: {\n  error: Error & { digest?: string }\n  reset: () => void\n}) {\n  useEffect(() => {\n    // Log the error to an error reporting service\n    console.error(error)\n  }, [error])\n \n  return (\n    <div>\n      <h2>Something went wrong!</h2>\n      <button\n        onClick={\n          // Attempt to recover by trying to re-render the segment\n          () => reset()\n        }\n      >\n        Try again\n      </button>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { useState } from 'react'\n \nexport function Button() {\n  const [error, setError] = useState(null)\n \n  const handleClick = () => {\n    try {\n      // do some work that might fail\n      throw new Error('Exception')\n    } catch (reason) {\n      setError(reason)\n    }\n  }\n \n  if (error) {\n    /* render fallback UI */\n  }\n \n  return (\n    <button type=\"button\" onClick={handleClick}>\n      Click me\n    </button>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { useTransition } from 'react'\n \nexport function Button() {\n  const [pending, startTransition] = useTransition()\n \n  const handleClick = () =>\n    startTransition(() => {\n      throw new Error('Exception')\n    })\n \n  return (\n    <button type=\"button\" onClick={handleClick}>\n      Click me\n    </button>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client' // Error boundaries must be Client Components\n \nexport default function GlobalError({\n  error,\n  reset,\n}: {\n  error: Error & { digest?: string }\n  reset: () => void\n}) {\n  return (\n    // global-error must include html and body tags\n    <html>\n      <body>\n        <h2>Something went wrong!</h2>\n        <button onClick={() => reset()}>Try again</button>\n      </body>\n    </html>\n  )\n}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/getting-started",
+    "https://nextjs.org/docs/pages/building-your-application/configuring/error-handling",
+    "https://nextjs.org/docs/app/guides/forms",
+    "https://nextjs.org/docs/app/api-reference/functions/redirect",
+    "https://nextjs.org/docs/app/api-reference/functions/not-found",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/not-found",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/error",
+    "https://nextjs.org/docs/app/getting-started/project-structure",
+    "https://nextjs.org/docs/app/guides/internationalization",
+    "https://nextjs.org/docs/app/getting-started/caching-and-revalidating",
+    "https://nextjs.org/docs/app/getting-started/css"
+  ]
+}

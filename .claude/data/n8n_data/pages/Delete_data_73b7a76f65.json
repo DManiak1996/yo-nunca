@@ -1,0 +1,14 @@
+{
+  "title": "Delete data",
+  "content": "delete nodeStaticData.lastExecution\n```\n\n## Templates and examples\n\n[View template details](https://n8n.io/workflows/2538-demo-workflow-how-to-use-workflowstaticdata/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#delete-data",
+  "links": []
+}

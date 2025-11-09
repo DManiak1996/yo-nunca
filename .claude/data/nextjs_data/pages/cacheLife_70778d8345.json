@@ -1,0 +1,239 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/cacheLife",
+  "title": "cacheLife",
+  "content": "The cacheLife function is used to set the cache lifetime of a function or component. It should be used alongside the use cache directive, and within the scope of the function or component.\n\nTo use cacheLife, first enable the cacheComponents flag in your next.config.js file:\n\nNext.js provides preset cache profiles that cover common caching needs. Each profile balances three factors:\n\nChoose a profile based on how frequently your content changes:\n\nImport cacheLife and pass a profile name:\n\nThe profile name tells Next.js how to cache the entire function's output. If you need more control over timing values, see the Reference section below.\n\nGood to know: The use cache directive can be placed at the file level or at the top of a function or component, and cacheLife must be called within its scope.\n\nCache profiles control caching behavior through three timing properties:\n\nClient-side: How long the client can use cached data without checking the server.\n\nDuring this time, the client-side router displays cached content immediately without any network request. After this period expires, the router must check with the server on the next navigation or request. This provides instant page loads from the client cache, but data may be outdated.\n\nHow often the server regenerates cached content in the background.\n\nMaximum time before the server must regenerate cached content.\n\nIf you don't specify a profile, Next.js uses the default profile. We recommend explicitly setting a profile to make caching behavior clear.\n\nDefine reusable cache profiles in your next.config.ts file:\n\nThe example above caches for 14 days, checks for updates daily, and expires the cache after 14 days. You can then reference this profile throughout your application by its name:\n\nWhile the default cache profiles provide a useful way to think about how fresh or stale any given part of cacheable output can be, you may prefer different named profiles to better align with your applications caching strategies.\n\nYou can override the default named cache profiles by creating a new configuration with the same name as the defaults.\n\nThe example below shows how to override the default \"days\" cache profile:\n\nYou can also override the preset profiles by using the same name:\n\nFor one-off cases, pass a profile object directly to cacheLife:\n\nInline profiles apply only to the specific function or component. For reusable configurations, define custom profiles in next.config.ts.\n\nUsing cacheLife({}) with an empty object applies the default profile values.\n\nThe stale property controls the client-side router cache, not the Cache-Control header:\n\nThis 30-second minimum prevents prefetched data from expiring before users can click on links. It only applies to time-based expiration.\n\nWhen you call revalidation functions from a Server Action (revalidateTag, revalidatePath, updateTag, or refresh), the entire client cache is immediately cleared, bypassing the stale time.\n\nGood to know: The stale property in cacheLife differs from staleTimes. While staleTimes is a global setting affecting all routes, cacheLife allows per-function or per-route configuration. Updating staleTimes.static also updates the stale value of the default cache profile.\n\nThe simplest way to configure caching is using preset profiles. Choose one that matches your content's update pattern:\n\nDefine custom profiles when preset options don't match your requirements:\n\nThen use these profiles throughout your application:\n\nUse inline profiles when a specific function needs one-off caching behavior:\n\nApply caching to utility functions for granular control:\n\nWhen components with different cache profiles are nested, Next.js respects the shortest duration among them:\n\nIn this example, the outer Dashboard component specifies the hours profile, but it contains RealtimeWidget which uses the seconds profile. The shortest duration from the nested profiles takes precedence, ensuring the widget gets fresh data while the rest of the dashboard can be cached longer.\n\nGood to know: This shortest-duration behavior ensures that no part of your page serves stale data longer than its most frequently updated component requires.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "cacheLife",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Basic setup",
+      "id": "basic-setup"
+    },
+    {
+      "level": "h3",
+      "text": "Using preset profiles",
+      "id": "using-preset-profiles"
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Cache profile properties",
+      "id": "cache-profile-properties"
+    },
+    {
+      "level": "h4",
+      "text": "stale",
+      "id": "stale"
+    },
+    {
+      "level": "h4",
+      "text": "revalidate",
+      "id": "revalidate"
+    },
+    {
+      "level": "h4",
+      "text": "expire",
+      "id": "expire"
+    },
+    {
+      "level": "h3",
+      "text": "Preset cache profiles",
+      "id": "preset-cache-profiles"
+    },
+    {
+      "level": "h3",
+      "text": "Custom cache profiles",
+      "id": "custom-cache-profiles"
+    },
+    {
+      "level": "h3",
+      "text": "Overriding the default cache profiles",
+      "id": "overriding-the-default-cache-profiles"
+    },
+    {
+      "level": "h3",
+      "text": "Inline cache profiles",
+      "id": "inline-cache-profiles"
+    },
+    {
+      "level": "h3",
+      "text": "Client router cache behavior",
+      "id": "client-router-cache-behavior"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Using preset profiles",
+      "id": "using-preset-profiles-1"
+    },
+    {
+      "level": "h3",
+      "text": "Custom profiles for specific needs",
+      "id": "custom-profiles-for-specific-needs"
+    },
+    {
+      "level": "h3",
+      "text": "Inline profiles for unique cases",
+      "id": "inline-profiles-for-unique-cases"
+    },
+    {
+      "level": "h3",
+      "text": "Caching individual functions",
+      "id": "caching-individual-functions"
+    },
+    {
+      "level": "h3",
+      "text": "Nested caching behavior",
+      "id": "nested-caching-behavior"
+    },
+    {
+      "level": "h2",
+      "text": "Related",
+      "id": "related"
+    },
+    {
+      "level": "h3",
+      "text": "cacheComponents",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "use cache",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "revalidateTag",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheTag",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  cacheComponents: true,\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "'use cache'\nimport { cacheLife } from 'next/cache'\n \nexport default async function BlogPage() {\n  cacheLife('days') // Blog content updated daily\n \n  const posts = await getBlogPosts()\n  return <div>{/* render posts */}</div>\n}",
+      "language": "python"
+    },
+    {
+      "code": "cacheLife({ stale: 300 }) // 5 minutes",
+      "language": "unknown"
+    },
+    {
+      "code": "cacheLife({ revalidate: 900 }) // 15 minutes",
+      "language": "unknown"
+    },
+    {
+      "code": "cacheLife({ expire: 3600 }) // 1 hour",
+      "language": "unknown"
+    },
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  cacheComponents: true,\n  cacheLife: {\n    biweekly: {\n      stale: 60 * 60 * 24 * 14, // 14 days\n      revalidate: 60 * 60 * 24, // 1 day\n      expire: 60 * 60 * 24 * 14, // 14 days\n    },\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "'use cache'\nimport { cacheLife } from 'next/cache'\n \nexport default async function Page() {\n  cacheLife('biweekly')\n  return <div>Page</div>\n}",
+      "language": "python"
+    },
+    {
+      "code": "const nextConfig = {\n  cacheComponents: true,\n  cacheLife: {\n    days: {\n      stale: 3600, // 1 hour\n      revalidate: 900, // 15 minutes\n      expire: 86400, // 1 day\n    },\n  },\n}\n \nexport default nextConfig",
+      "language": "javascript"
+    },
+    {
+      "code": "const nextConfig = {\n  cacheComponents: true,\n  cacheLife: {\n    // Override the 'days' profile\n    days: {\n      stale: 3600, // 1 hour\n      revalidate: 900, // 15 minutes\n      expire: 86400, // 1 day\n    },\n  },\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "'use cache'\nimport { cacheLife } from 'next/cache'\n \nexport default async function Page() {\n  cacheLife({\n    stale: 3600,\n    revalidate: 900,\n    expire: 86400,\n  })\n \n  return <div>Page</div>\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cacheLife } from 'next/cache'\n \nexport default async function BlogPost() {\n  'use cache'\n  cacheLife('days') // Blog posts updated daily\n \n  const post = await fetchBlogPost()\n  return <article>{post.content}</article>\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cacheLife } from 'next/cache'\n \nexport default async function ProductPage() {\n  'use cache'\n  cacheLife('hours') // Product data updated multiple times per day\n \n  const product = await fetchProduct()\n  return <div>{product.name}</div>\n}",
+      "language": "python"
+    },
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  cacheComponents: true,\n  cacheLife: {\n    editorial: {\n      stale: 600, // 10 minutes\n      revalidate: 3600, // 1 hour\n      expire: 86400, // 1 day\n    },\n    marketing: {\n      stale: 300, // 5 minutes\n      revalidate: 1800, // 30 minutes\n      expire: 43200, // 12 hours\n    },\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "import { cacheLife } from 'next/cache'\n \nexport default async function EditorialPage() {\n  'use cache'\n  cacheLife('editorial')\n  // ...\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cacheLife } from 'next/cache'\nimport { getDb } from '@lib/db'\n \nasync function getLimitedOffer() {\n  'use cache'\n \n  cacheLife({\n    stale: 60, // 1 minute\n    revalidate: 300, // 5 minutes\n    expire: 3600, // 1 hour\n  })\n \n  const offer = await getDb().offer.findFirst({\n    where: { type: 'limited' },\n    orderBy: { created_at: 'desc' },\n  })\n \n  return offer\n}\n \nexport async function GET() {\n  const offer = await getLimitedOffer()\n \n  return Response.json(offer)\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cacheLife } from 'next/cache'\n \nexport async function getSettings() {\n  'use cache'\n  cacheLife('max') // Settings rarely change\n \n  return await fetchSettings()\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cacheLife } from 'next/cache'\n \nexport async function getRealtimeStats() {\n  'use cache'\n  cacheLife('seconds') // Stats update constantly\n \n  return await fetchStats()\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cacheLife } from 'next/cache'\nimport { RealtimeWidget } from './realtime-widget'\n \nexport default async function Dashboard() {\n  'use cache'\n  cacheLife('hours') // Dashboard cached for hours\n \n  return (\n    <div>\n      <h1>Dashboard</h1>\n      <RealtimeWidget />\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cacheLife } from 'next/cache'\n \nexport async function RealtimeWidget() {\n  'use cache'\n  cacheLife('seconds') // Widget needs fresh data\n \n  const data = await fetchRealtimeData()\n  return <div>{data.value}</div>\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "API ReferenceFunctionscacheLifeCopy pagecacheLifeThe cacheLife function is used to set the cache lifetime of a function or component. It should be used alongside the use cache directive, and within the scope of the function or component. Usage Basic setup To use cacheLife, first enable the cacheComponents flag in your next.config.js file: next.config.tsTypeScriptJavaScriptTypeScriptimport type { NextConfig } from 'next' const nextConfig: NextConfig = { cacheComponents: true, } export default nextConfig Using preset profiles Next.js provides preset cache profiles that cover common caching needs. Each profile balances three factors: How long users see cached content without checking for updates (client-side) How often fresh content is generated on the server When old content expires completely Choose a profile based on how frequently your content changes: seconds - Real-time data (stock prices, live scores) minutes - Frequently updated (social feeds, news) hours - Multiple daily updates (product inventory, weather) days - Daily updates (blog posts, articles) weeks - Weekly updates (podcasts, newsletters) max - Rarely changes (legal pages, archived content) Import cacheLife and pass a profile name: app/blog/page.tsx'use cache' import { cacheLife } from 'next/cache' export default async function BlogPage() { cacheLife('days') // Blog content updated daily const posts = await getBlogPosts() return <div>{/* render posts */}</div> } The profile name tells Next.js how to cache the entire function's output. If you need more control over timing values, see the Reference section below. Good to know: The use cache directive can be placed at the file level or at the top of a function or component, and cacheLife must be called within its scope. Reference Cache profile properties Cache profiles control caching behavior through three timing properties: stale: How long the client can use cached data without checking the server revalidate: After this time, the next request will trigger a background refresh expire: After this time with no requests, the next one waits for fresh content stale Client-side: How long the client can use cached data without checking the server. During this time, the client-side router displays cached content immediately without any network request. After this period expires, the router must check with the server on the next navigation or request. This provides instant page loads from the client cache, but data may be outdated. cacheLife({ stale: 300 }) // 5 minutes revalidate How often the server regenerates cached content in the background. When a request arrives after this period, the server: Serves the cached version immediately (if available) Regenerates content in the background Updates the cache with fresh content Similar to Incremental Static Regeneration (ISR) cacheLife({ revalidate: 900 }) // 15 minutes expire Maximum time before the server must regenerate cached content. After this period with no traffic, the server regenerates content synchronously on the next request When you set both revalidate and expire, expire must be longer than revalidate. Next.js validates this and raises an error for invalid configurations. cacheLife({ expire: 3600 }) // 1 hour Preset cache profiles If you don't specify a profile, Next.js uses the default profile. We recommend explicitly setting a profile to make caching behavior clear. ProfileUse CasestalerevalidateexpiredefaultStandard content5 minutes15 minutes1 yearsecondsReal-time data30 seconds1 second1 minuteminutesFrequently updated content5 minutes1 minute1 hourhoursContent updated multiple times per day5 minutes1 hour1 daydaysContent updated daily5 minutes1 day1 weekweeksContent updated weekly5 minutes1 week30 daysmaxStable content that rarely changes5 minutes30 days1 year Custom cache profiles Define reusable cache profiles in your next.config.ts file: next.config.tsimport type { NextConfig } from 'next' const nextConfig: NextConfig = { cacheComponents: true, cacheLife: { biweekly: { stale: 60 * 60 * 24 * 14, // 14 days revalidate: 60 * 60 * 24, // 1 day expire: 60 * 60 * 24 * 14, // 14 days }, }, } export default nextConfig The example above caches for 14 days, checks for updates daily, and expires the cache after 14 days. You can then reference this profile throughout your application by its name: app/page.tsx'use cache' import { cacheLife } from 'next/cache' export default async function Page() { cacheLife('biweekly') return <div>Page</div> } Overriding the default cache profiles While the default cache profiles provide a useful way to think about how fresh or stale any given part of cacheable output can be, you may prefer different named profiles to better align with your applications caching strategies. You can override the default named cache profiles by creating a new configuration with the same name as the defaults. The example below shows how to override the default \"days\" cache profile: next.config.tsconst nextConfig = { cacheComponents: true, cacheLife: { days: { stale: 3600, // 1 hour revalidate: 900, // 15 minutes expire: 86400, // 1 day }, }, } export default nextConfig You can also override the preset profiles by using the same name: next.config.tsconst nextConfig = { cacheComponents: true, cacheLife: { // Override the 'days' profile days: { stale: 3600, // 1 hour revalidate: 900, // 15 minutes expire: 86400, // 1 day }, }, } Inline cache profiles For one-off cases, pass a profile object directly to cacheLife: app/page.tsx'use cache' import { cacheLife } from 'next/cache' export default async function Page() { cacheLife({ stale: 3600, revalidate: 900, expire: 86400, }) return <div>Page</div> } Inline profiles apply only to the specific function or component. For reusable configurations, define custom profiles in next.config.ts. Using cacheLife({}) with an empty object applies the default profile values. Client router cache behavior The stale property controls the client-side router cache, not the Cache-Control header: The server sends the stale time via the x-nextjs-stale-time response header The client router uses this value to determine when to revalidate Minimum of 30 seconds is enforced to ensure prefetched links remain usable This 30-second minimum prevents prefetched data from expiring before users can click on links. It only applies to time-based expiration. When you call revalidation functions from a Server Action (revalidateTag, revalidatePath, updateTag, or refresh), the entire client cache is immediately cleared, bypassing the stale time. Good to know: The stale property in cacheLife differs from staleTimes. While staleTimes is a global setting affecting all routes, cacheLife allows per-function or per-route configuration. Updating staleTimes.static also updates the stale value of the default cache profile. Examples Using preset profiles The simplest way to configure caching is using preset profiles. Choose one that matches your content's update pattern: app/blog/[slug]/page.tsximport { cacheLife } from 'next/cache' export default async function BlogPost() { 'use cache' cacheLife('days') // Blog posts updated daily const post = await fetchBlogPost() return <article>{post.content}</article> } app/products/[id]/page.tsximport { cacheLife } from 'next/cache' export default async function ProductPage() { 'use cache' cacheLife('hours') // Product data updated multiple times per day const product = await fetchProduct() return <div>{product.name}</div> } Custom profiles for specific needs Define custom profiles when preset options don't match your requirements: next.config.tsimport type { NextConfig } from 'next' const nextConfig: NextConfig = { cacheComponents: true, cacheLife: { editorial: { stale: 600, // 10 minutes revalidate: 3600, // 1 hour expire: 86400, // 1 day }, marketing: { stale: 300, // 5 minutes revalidate: 1800, // 30 minutes expire: 43200, // 12 hours }, }, } export default nextConfig Then use these profiles throughout your application: app/editorial/page.tsximport { cacheLife } from 'next/cache' export default async function EditorialPage() { 'use cache' cacheLife('editorial') // ... } Inline profiles for unique cases Use inline profiles when a specific function needs one-off caching behavior: app/api/limited-offer/route.tsimport { cacheLife } from 'next/cache' import { getDb } from '@lib/db' async function getLimitedOffer() { 'use cache' cacheLife({ stale: 60, // 1 minute revalidate: 300, // 5 minutes expire: 3600, // 1 hour }) const offer = await getDb().offer.findFirst({ where: { type: 'limited' }, orderBy: { created_at: 'desc' }, }) return offer } export async function GET() { const offer = await getLimitedOffer() return Response.json(offer) } Caching individual functions Apply caching to utility functions for granular control: lib/api.tsimport { cacheLife } from 'next/cache' export async function getSettings() { 'use cache' cacheLife('max') // Settings rarely change return await fetchSettings() } lib/stats.tsimport { cacheLife } from 'next/cache' export async function getRealtimeStats() { 'use cache' cacheLife('seconds') // Stats update constantly return await fetchStats() } Nested caching behavior When components with different cache profiles are nested, Next.js respects the shortest duration among them: app/dashboard/page.tsximport { cacheLife } from 'next/cache' import { RealtimeWidget } from './realtime-widget' export default async function Dashboard() { 'use cache' cacheLife('hours') // Dashboard cached for hours return ( <div> <h1>Dashboard</h1> <RealtimeWidget /> </div> ) } app/dashboard/realtime-widget.tsximport { cacheLife } from 'next/cache' export async function RealtimeWidget() { 'use cache' cacheLife('seconds') // Widget needs fresh data const data = await fetchRealtimeData() return <div>{data.value}</div> } In this example, the outer Dashboard component specifies the hours profile, but it contains RealtimeWidget which uses the seconds profile. The shortest duration from the nested profiles takes precedence, ensuring the widget gets fresh data while the rest of the dashboard can be cached longer. Good to know: This shortest-duration behavior ensures that no part of your page serves stale data longer than its most frequently updated component requires. RelatedView related API references.cacheComponentsLearn how to enable the cacheComponents flag in Next.js.use cacheLearn how to use the use cache directive to cache data in your Next.js application.revalidateTagAPI Reference for the revalidateTag function.cacheTagLearn how to use the cacheTag function to manage cache invalidation in your Next.js application.",
+      "code": "cacheLife"
+    },
+    {
+      "description": "cacheLifeThe cacheLife function is used to set the cache lifetime of a function or component. It should be used alongside the use cache directive, and within the scope of the function or component. Usage Basic setup To use cacheLife, first enable the cacheComponents flag in your next.config.js file: next.config.tsTypeScriptJavaScriptTypeScriptimport type { NextConfig } from 'next' const nextConfig: NextConfig = { cacheComponents: true, } export default nextConfig Using preset profiles Next.js provides preset cache profiles that cover common caching needs. Each profile balances three factors: How long users see cached content without checking for updates (client-side) How often fresh content is generated on the server When old content expires completely Choose a profile based on how frequently your content changes: seconds - Real-time data (stock prices, live scores) minutes - Frequently updated (social feeds, news) hours - Multiple daily updates (product inventory, weather) days - Daily updates (blog posts, articles) weeks - Weekly updates (podcasts, newsletters) max - Rarely changes (legal pages, archived content) Import cacheLife and pass a profile name: app/blog/page.tsx'use cache' import { cacheLife } from 'next/cache' export default async function BlogPage() { cacheLife('days') // Blog content updated daily const posts = await getBlogPosts() return <div>{/* render posts */}</div> } The profile name tells Next.js how to cache the entire function's output. If you need more control over timing values, see the Reference section below. Good to know: The use cache directive can be placed at the file level or at the top of a function or component, and cacheLife must be called within its scope. Reference Cache profile properties Cache profiles control caching behavior through three timing properties: stale: How long the client can use cached data without checking the server revalidate: After this time, the next request will trigger a background refresh expire: After this time with no requests, the next one waits for fresh content stale Client-side: How long the client can use cached data without checking the server. During this time, the client-side router displays cached content immediately without any network request. After this period expires, the router must check with the server on the next navigation or request. This provides instant page loads from the client cache, but data may be outdated. cacheLife({ stale: 300 }) // 5 minutes revalidate How often the server regenerates cached content in the background. When a request arrives after this period, the server: Serves the cached version immediately (if available) Regenerates content in the background Updates the cache with fresh content Similar to Incremental Static Regeneration (ISR) cacheLife({ revalidate: 900 }) // 15 minutes expire Maximum time before the server must regenerate cached content. After this period with no traffic, the server regenerates content synchronously on the next request When you set both revalidate and expire, expire must be longer than revalidate. Next.js validates this and raises an error for invalid configurations. cacheLife({ expire: 3600 }) // 1 hour Preset cache profiles If you don't specify a profile, Next.js uses the default profile. We recommend explicitly setting a profile to make caching behavior clear. ProfileUse CasestalerevalidateexpiredefaultStandard content5 minutes15 minutes1 yearsecondsReal-time data30 seconds1 second1 minuteminutesFrequently updated content5 minutes1 minute1 hourhoursContent updated multiple times per day5 minutes1 hour1 daydaysContent updated daily5 minutes1 day1 weekweeksContent updated weekly5 minutes1 week30 daysmaxStable content that rarely changes5 minutes30 days1 year Custom cache profiles Define reusable cache profiles in your next.config.ts file: next.config.tsimport type { NextConfig } from 'next' const nextConfig: NextConfig = { cacheComponents: true, cacheLife: { biweekly: { stale: 60 * 60 * 24 * 14, // 14 days revalidate: 60 * 60 * 24, // 1 day expire: 60 * 60 * 24 * 14, // 14 days }, }, } export default nextConfig The example above caches for 14 days, checks for updates daily, and expires the cache after 14 days. You can then reference this profile throughout your application by its name: app/page.tsx'use cache' import { cacheLife } from 'next/cache' export default async function Page() { cacheLife('biweekly') return <div>Page</div> } Overriding the default cache profiles While the default cache profiles provide a useful way to think about how fresh or stale any given part of cacheable output can be, you may prefer different named profiles to better align with your applications caching strategies. You can override the default named cache profiles by creating a new configuration with the same name as the defaults. The example below shows how to override the default \"days\" cache profile: next.config.tsconst nextConfig = { cacheComponents: true, cacheLife: { days: { stale: 3600, // 1 hour revalidate: 900, // 15 minutes expire: 86400, // 1 day }, }, } export default nextConfig You can also override the preset profiles by using the same name: next.config.tsconst nextConfig = { cacheComponents: true, cacheLife: { // Override the 'days' profile days: { stale: 3600, // 1 hour revalidate: 900, // 15 minutes expire: 86400, // 1 day }, }, } Inline cache profiles For one-off cases, pass a profile object directly to cacheLife: app/page.tsx'use cache' import { cacheLife } from 'next/cache' export default async function Page() { cacheLife({ stale: 3600, revalidate: 900, expire: 86400, }) return <div>Page</div> } Inline profiles apply only to the specific function or component. For reusable configurations, define custom profiles in next.config.ts. Using cacheLife({}) with an empty object applies the default profile values. Client router cache behavior The stale property controls the client-side router cache, not the Cache-Control header: The server sends the stale time via the x-nextjs-stale-time response header The client router uses this value to determine when to revalidate Minimum of 30 seconds is enforced to ensure prefetched links remain usable This 30-second minimum prevents prefetched data from expiring before users can click on links. It only applies to time-based expiration. When you call revalidation functions from a Server Action (revalidateTag, revalidatePath, updateTag, or refresh), the entire client cache is immediately cleared, bypassing the stale time. Good to know: The stale property in cacheLife differs from staleTimes. While staleTimes is a global setting affecting all routes, cacheLife allows per-function or per-route configuration. Updating staleTimes.static also updates the stale value of the default cache profile. Examples Using preset profiles The simplest way to configure caching is using preset profiles. Choose one that matches your content's update pattern: app/blog/[slug]/page.tsximport { cacheLife } from 'next/cache' export default async function BlogPost() { 'use cache' cacheLife('days') // Blog posts updated daily const post = await fetchBlogPost() return <article>{post.content}</article> } app/products/[id]/page.tsximport { cacheLife } from 'next/cache' export default async function ProductPage() { 'use cache' cacheLife('hours') // Product data updated multiple times per day const product = await fetchProduct() return <div>{product.name}</div> } Custom profiles for specific needs Define custom profiles when preset options don't match your requirements: next.config.tsimport type { NextConfig } from 'next' const nextConfig: NextConfig = { cacheComponents: true, cacheLife: { editorial: { stale: 600, // 10 minutes revalidate: 3600, // 1 hour expire: 86400, // 1 day }, marketing: { stale: 300, // 5 minutes revalidate: 1800, // 30 minutes expire: 43200, // 12 hours }, }, } export default nextConfig Then use these profiles throughout your application: app/editorial/page.tsximport { cacheLife } from 'next/cache' export default async function EditorialPage() { 'use cache' cacheLife('editorial') // ... } Inline profiles for unique cases Use inline profiles when a specific function needs one-off caching behavior: app/api/limited-offer/route.tsimport { cacheLife } from 'next/cache' import { getDb } from '@lib/db' async function getLimitedOffer() { 'use cache' cacheLife({ stale: 60, // 1 minute revalidate: 300, // 5 minutes expire: 3600, // 1 hour }) const offer = await getDb().offer.findFirst({ where: { type: 'limited' }, orderBy: { created_at: 'desc' }, }) return offer } export async function GET() { const offer = await getLimitedOffer() return Response.json(offer) } Caching individual functions Apply caching to utility functions for granular control: lib/api.tsimport { cacheLife } from 'next/cache' export async function getSettings() { 'use cache' cacheLife('max') // Settings rarely change return await fetchSettings() } lib/stats.tsimport { cacheLife } from 'next/cache' export async function getRealtimeStats() { 'use cache' cacheLife('seconds') // Stats update constantly return await fetchStats() } Nested caching behavior When components with different cache profiles are nested, Next.js respects the shortest duration among them: app/dashboard/page.tsximport { cacheLife } from 'next/cache' import { RealtimeWidget } from './realtime-widget' export default async function Dashboard() { 'use cache' cacheLife('hours') // Dashboard cached for hours return ( <div> <h1>Dashboard</h1> <RealtimeWidget /> </div> ) } app/dashboard/realtime-widget.tsximport { cacheLife } from 'next/cache' export async function RealtimeWidget() { 'use cache' cacheLife('seconds') // Widget needs fresh data const data = await fetchRealtimeData() return <div>{data.value}</div> } In this example, the outer Dashboard component specifies the hours profile, but it contains RealtimeWidget which uses the seconds profile. The shortest duration from the nested profiles takes precedence, ensuring the widget gets fresh data while the rest of the dashboard can be cached longer. Good to know: This shortest-duration behavior ensures that no part of your page serves stale data longer than its most frequently updated component requires.",
+      "code": "cacheLife"
+    },
+    {
+      "description": "The simplest way to configure caching is using preset profiles. Choose one that matches your content's update pattern:",
+      "code": "import { cacheLife } from 'next/cache'\n \nexport default async function BlogPost() {\n  'use cache'\n  cacheLife('days') // Blog posts updated daily\n \n  const post = await fetchBlogPost()\n  return <article>{post.content}</article>\n}"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheLife",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents",
+    "https://nextjs.org/docs/app/guides/incremental-static-regeneration",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidateTag",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidatePath",
+    "https://nextjs.org/docs/app/api-reference/functions/updateTag",
+    "https://nextjs.org/docs/app/api-reference/functions/refresh",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/staleTimes",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheTag",
+    "https://nextjs.org/docs/app/api-reference/functions/after"
+  ]
+}

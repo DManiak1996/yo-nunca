@@ -1,0 +1,87 @@
+{
+  "title": "null",
+  "content": "Source: https://docs.ollama.com/docker\n\nInstall the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#installation).\n\n1. Configure the repository\n\n2. Install the NVIDIA Container Toolkit packages\n\n### Install with Yum or Dnf\n\n1. Configure the repository\n\n2. Install the NVIDIA Container Toolkit packages\n\n### Configure Docker to use Nvidia driver\n\n### Start the container\n\n<Note>\n  If you're running on an NVIDIA JetPack system, Ollama can't automatically discover the correct JetPack version.\n  Pass the environment variable `JETSON_JETPACK=5` or `JETSON_JETPACK=6` to the container to select version 5 or 6.\n</Note>\n\nTo run Ollama using Docker with AMD GPUs, use the `rocm` tag and the following command:\n\nNow you can run a model:\n\n## Try different models\n\nMore models can be found on the [Ollama library](https://ollama.com/library).",
+  "code_samples": [
+    {
+      "code": "## Nvidia GPU\n\nInstall the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#installation).\n\n### Install with Apt\n\n1. Configure the repository",
+      "language": "unknown"
+    },
+    {
+      "code": "2. Install the NVIDIA Container Toolkit packages",
+      "language": "unknown"
+    },
+    {
+      "code": "### Install with Yum or Dnf\n\n1. Configure the repository",
+      "language": "unknown"
+    },
+    {
+      "code": "2. Install the NVIDIA Container Toolkit packages",
+      "language": "unknown"
+    },
+    {
+      "code": "### Configure Docker to use Nvidia driver",
+      "language": "unknown"
+    },
+    {
+      "code": "### Start the container",
+      "language": "unknown"
+    },
+    {
+      "code": "<Note>\n  If you're running on an NVIDIA JetPack system, Ollama can't automatically discover the correct JetPack version.\n  Pass the environment variable `JETSON_JETPACK=5` or `JETSON_JETPACK=6` to the container to select version 5 or 6.\n</Note>\n\n## AMD GPU\n\nTo run Ollama using Docker with AMD GPUs, use the `rocm` tag and the following command:",
+      "language": "unknown"
+    },
+    {
+      "code": "## Run model locally\n\nNow you can run a model:",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "CPU only",
+      "id": "cpu-only"
+    },
+    {
+      "level": "h2",
+      "text": "Nvidia GPU",
+      "id": "nvidia-gpu"
+    },
+    {
+      "level": "h3",
+      "text": "Install with Apt",
+      "id": "install-with-apt"
+    },
+    {
+      "level": "h3",
+      "text": "Install with Yum or Dnf",
+      "id": "install-with-yum-or-dnf"
+    },
+    {
+      "level": "h3",
+      "text": "Configure Docker to use Nvidia driver",
+      "id": "configure-docker-to-use-nvidia-driver"
+    },
+    {
+      "level": "h3",
+      "text": "Start the container",
+      "id": "start-the-container"
+    },
+    {
+      "level": "h2",
+      "text": "AMD GPU",
+      "id": "amd-gpu"
+    },
+    {
+      "level": "h2",
+      "text": "Run model locally",
+      "id": "run-model-locally"
+    },
+    {
+      "level": "h2",
+      "text": "Try different models",
+      "id": "try-different-models"
+    }
+  ],
+  "url": "llms-txt#null",
+  "links": []
+}

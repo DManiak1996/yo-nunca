@@ -1,0 +1,49 @@
+{
+  "title": "Numbers",
+  "content": "A reference document listing built-in convenience functions to support data transformation in [expressions](../../../../glossary/#expression-n8n) for numbers.\n\nJavaScript in expressions\n\nYou can use any JavaScript in expressions. Refer to [Expressions](../../../expressions/) for more information.\n\nRounds up a number to a whole number.\n\n______________________________________________________________________\n\nRounds down a number to a whole number.\n\n______________________________________________________________________\n\n### format(locales?: LanguageCode, options?: FormatOptions): String\n\nThis is a wrapper around [Intl.NumberFormat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat). Returns a formatted string of a number based on the given LanguageCode and FormatOptions. When no arguments are given, transforms the number in a like format 1.234.\n\n#### Function parameters\n\nlocalesOptionalString\n\nAn IETF BCP 47 language tag.\n\noptionsOptionalObject\n\nConfigure options for number formatting. Refer to [MDN | Intl.NumberFormat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) for more information.\n\n______________________________________________________________________\n\n### isEven(): Boolean\n\nReturns true if the number is even. Only works on whole numbers.\n\n______________________________________________________________________\n\nReturns true if the number is odd. Only works on whole numbers.\n\n______________________________________________________________________\n\n### round(decimalPlaces?: Number): Number\n\nReturns the value of a number rounded to the nearest whole number, unless a decimal place is specified.\n\n#### Function parameters\n\ndecimalPlacesOptionalNumber\n\nHow many decimal places to round to.\n\n______________________________________________________________________\n\n### toBoolean(): Boolean\n\nConverts a number to a boolean. `0` converts to `false`. All other values convert to `true`.\n\n______________________________________________________________________\n\n### toDateTime(format?: String): Date\n\nConverts a number to a [Luxon date object](https://docs.n8n.io/code/cookbook/luxon/).\n\n#### Function parameters\n\nformatOptionalString enum\n\nCan be `ms` (milliseconds), `s` (seconds), or `excel` (Excel 1900). Defaults to milliseconds.\n\n______________________________________________________________________",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h3",
+      "text": "ceil(): Number",
+      "id": "ceil():-number"
+    },
+    {
+      "level": "h3",
+      "text": "floor(): Number",
+      "id": "floor():-number"
+    },
+    {
+      "level": "h3",
+      "text": "format(locales?: LanguageCode, options?: FormatOptions): String",
+      "id": "format(locales?:-languagecode,-options?:-formatoptions):-string"
+    },
+    {
+      "level": "h3",
+      "text": "isEven(): Boolean",
+      "id": "iseven():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "isOdd(): Boolean",
+      "id": "isodd():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "round(decimalPlaces?: Number): Number",
+      "id": "round(decimalplaces?:-number):-number"
+    },
+    {
+      "level": "h3",
+      "text": "toBoolean(): Boolean",
+      "id": "toboolean():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "toDateTime(format?: String): Date",
+      "id": "todatetime(format?:-string):-date"
+    }
+  ],
+  "url": "llms-txt#numbers",
+  "links": []
+}

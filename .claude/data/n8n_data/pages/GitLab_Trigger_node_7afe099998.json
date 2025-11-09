@@ -1,0 +1,19 @@
+{
+  "title": "GitLab Trigger node",
+  "content": "[GitLab](https://gitlab.com/) is a web-based DevOps lifecycle tool that provides a Git-repository manager providing wiki, issue-tracking, and continuous integration/continuous installation pipeline features.\n\nYou can find authentication information for this node [here](../../credentials/gitlab/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [GitLab Trigger integrations](https://n8n.io/integrations/gitlab-trigger/) page.\n\n- Comment\n- Confidential issues\n- Confidential comments\n- Deployments\n- Issue\n- Job\n- Merge request\n- Pipeline\n- Push\n- Release\n- Tag\n- Wiki page\n\nn8n provides an app node for GitLab. You can find the node docs [here](../../app-nodes/n8n-nodes-base.gitlab/).\n\nView [example workflows and related content](https://n8n.io/integrations/gitlab-trigger/) on n8n's website.\n\nRefer to [GitLab's documentation](https://docs.gitlab.com/api/rest/) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#gitlab-trigger-node",
+  "links": []
+}

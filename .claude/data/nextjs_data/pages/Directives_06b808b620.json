@@ -1,0 +1,36 @@
+{
+  "url": "https://nextjs.org/docs/15/app/api-reference/directives",
+  "title": "Directives",
+  "content": "The following directives are available:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Directives",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "use cache",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "use client",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "use server",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/15/app",
+    "https://nextjs.org/docs/15/app/api-reference",
+    "https://nextjs.org/docs/15/app/api-reference/directives/use-cache",
+    "https://nextjs.org/docs/15/app/api-reference/directives/use-client",
+    "https://nextjs.org/docs/15/app/api-reference/directives/use-server"
+  ]
+}

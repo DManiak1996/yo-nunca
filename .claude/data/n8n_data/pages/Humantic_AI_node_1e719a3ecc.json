@@ -1,0 +1,19 @@
+{
+  "title": "Humantic AI node",
+  "content": "Use the Humantic AI node to automate work in Humantic AI, and integrate Humantic AI with other applications. n8n has built-in support for a wide range of Humantic AI features, including creating, retrieving, and updating profiles.\n\nOn this page, you'll find a list of operations the Humantic AI node supports and links to more resources.\n\nRefer to [Humantic AI credentials](../../credentials/humanticai/) for guidance on setting up authentication.\n\n- Profile\n  - Create a profile\n  - Retrieve a profile\n  - Update a profile\n\n## Templates and examples\n\n**Enrich and manage candidates data in Notion**\n\n[View template details](https://n8n.io/workflows/1107-enrich-and-manage-candidates-data-in-notion/)\n\n**Create, update, and get a profile in Humantic AI**\n\n[View template details](https://n8n.io/workflows/784-create-update-and-get-a-profile-in-humantic-ai/)\n\n**Get, Create, Upadte Profiles 🛠️ Humantic AI Tool MCP Server**\n\n[View template details](https://n8n.io/workflows/5240-get-create-upadte-profiles-humantic-ai-tool-mcp-server/)\n\n[Browse Humantic AI integration templates](https://n8n.io/integrations/humantic-ai/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#humantic-ai-node",
+  "links": []
+}

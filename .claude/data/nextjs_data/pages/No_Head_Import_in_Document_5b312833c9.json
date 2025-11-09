@@ -1,0 +1,39 @@
+{
+  "url": "https://nextjs.org/docs/messages/no-head-import-in-document",
+  "title": "No Head Import in Document",
+  "content": "Prevent usage of next/head in pages/_document.js.\n\nnext/head was imported in pages/_document.js. This can cause unexpected issues in your application.\n\nOnly import and use next/document within pages/_document.js to override the default Document component. If you are importing next/head to use the Head component, import it from next/document instead in order to modify <head> code across all pages:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "No Head Import in Document",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Document, { Html, Head, Main, NextScript } from 'next/document'\n \nclass MyDocument extends Document {\n  static async getInitialProps(ctx) {\n    //...\n  }\n \n  render() {\n    return (\n      <Html>\n        <Head></Head>\n      </Html>\n    )\n  }\n}\n \nexport default MyDocument",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/no-head-import-in-document",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-document"
+  ]
+}

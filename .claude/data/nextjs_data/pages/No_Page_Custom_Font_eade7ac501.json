@@ -1,0 +1,49 @@
+{
+  "url": "https://nextjs.org/docs/messages/no-page-custom-font",
+  "title": "No Page Custom Font",
+  "content": "Prevent page-only custom fonts.\n\nCreate the file ./pages/_document.js and add the font to a custom Document:\n\nOr as a function component:\n\nIf you have a reason to only load a font for a particular page or don't care about font optimization, then you can disable this rule.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "No Page Custom Font",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h3",
+      "text": "When Not To Use It",
+      "id": "when-not-to-use-it"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Document, { Html, Head, Main, NextScript } from 'next/document'\n \nclass MyDocument extends Document {\n  render() {\n    return (\n      <Html>\n        <Head>\n          <link\n            href=\"https://fonts.googleapis.com/css2?family=Inter&display=optional\"\n            rel=\"stylesheet\"\n          />\n        </Head>\n        <body>\n          <Main />\n          <NextScript />\n        </body>\n      </Html>\n    )\n  }\n}\n \nexport default MyDocument",
+      "language": "python"
+    },
+    {
+      "code": "import { Html, Head, Main, NextScript } from 'next/document'\n \nexport default function Document() {\n  return (\n    <Html>\n      <Head>\n        <link\n          href=\"https://fonts.googleapis.com/css2?family=Inter&display=optional\"\n          rel=\"stylesheet\"\n        />\n      </Head>\n      <body>\n        <Main />\n        <NextScript />\n      </body>\n    </Html>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/no-page-custom-font",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-document",
+    "https://nextjs.org/docs/pages/api-reference/components/font"
+  ]
+}

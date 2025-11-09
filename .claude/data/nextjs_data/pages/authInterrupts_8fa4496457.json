@@ -1,0 +1,55 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/authInterrupts",
+  "title": "authInterrupts",
+  "content": "The authInterrupts configuration option allows you to use forbidden and unauthorized APIs in your application. While these functions are experimental, you must enable the authInterrupts option in your next.config.js file to use them:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "authInterrupts",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "forbidden",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "unauthorized",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "forbidden.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "unauthorized.js",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    authInterrupts: true,\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/getting-started/upgrading",
+    "https://nextjs.org/docs/app/api-reference/functions/forbidden",
+    "https://nextjs.org/docs/app/api-reference/functions/unauthorized",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/forbidden",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/unauthorized",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/assetPrefix",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath"
+  ]
+}

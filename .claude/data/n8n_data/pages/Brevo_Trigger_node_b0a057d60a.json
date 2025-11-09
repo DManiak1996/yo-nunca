@@ -1,0 +1,19 @@
+{
+  "title": "Brevo Trigger node",
+  "content": "[Brevo](https://www.brevo.com/) is a digital marketing platform to help users grow their business.\n\nYou can find authentication information for this node [here](../../credentials/brevo/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Brevo Trigger integrations](https://n8n.io/integrations/brevo-trigger/) page.\n\n- Email blocked\n- Email clicked\n- Email deferred\n- Email delivered\n- Email hard bounce\n- Email invalid\n- Email marked spam\n- Email opened\n- Email sent\n- Email soft bounce\n- Email unique open\n- Email unsubscribed\n\nn8n provides an app node for Brevo. You can find the node docs [here](../../app-nodes/n8n-nodes-base.brevo/).\n\nView [example workflows and related content](https://n8n.io/integrations/brevo-trigger/) on n8n's website.\n\nRefer to [Brevo's documentation](https://developers.brevo.com/) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#brevo-trigger-node",
+  "links": []
+}

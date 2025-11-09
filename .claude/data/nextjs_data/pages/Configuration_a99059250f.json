@@ -1,0 +1,37 @@
+{
+  "url": "https://nextjs.org/docs/15/app/api-reference/config",
+  "title": "Configuration",
+  "content": "",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Configuration",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "next.config.js",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "TypeScript",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "ESLint",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/15/app",
+    "https://nextjs.org/docs/15/app/api-reference",
+    "https://nextjs.org/docs/15/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/15/app/api-reference/config/typescript",
+    "https://nextjs.org/docs/15/app/api-reference/config/eslint",
+    "https://nextjs.org/docs/15/app/api-reference/functions/userAgent"
+  ]
+}

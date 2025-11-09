@@ -1,0 +1,112 @@
+{
+  "url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/rules-of-hooks",
+  "title": "rules-of-hooks",
+  "content": "Validates that components and hooks follow the Rules of Hooks.\n\nReact relies on the order in which hooks are called to correctly preserve state between renders. Each time your component renders, React expects the exact same hooks to be called in the exact same order. When hooks are called conditionally or in loops, React loses track of which state corresponds to which hook call, leading to bugs like state mismatches and “Rendered fewer/more hooks than expected” errors.\n\nThese patterns violate the Rules of Hooks:\n\nThe use hook is different from other React hooks. You can call it conditionally and in loops:\n\nHowever, use still has restrictions:\n\nLearn more: use API Reference\n\nExamples of incorrect code for this rule:\n\nExamples of correct code for this rule:\n\nYou’re trying to conditionally call useEffect:\n\nCall the hook unconditionally, check condition inside:\n\nThere are better ways to fetch data rather than in a useEffect. Consider using TanStack Query, useSWR, or React Router 6.4+ for data fetching. These solutions handle deduplicating requests, caching responses, and avoiding network waterfalls.\n\nLearn more: Fetching Data\n\nYou’re trying to conditionally initialize state:\n\nAlways call useState, conditionally set the initial value:\n\nYou can configure custom effect hooks using shared ESLint settings (available in eslint-plugin-react-hooks 6.1.1 and later):\n\nThis shared configuration is used by both rules-of-hooks and exhaustive-deps rules, ensuring consistent behavior across all hook-related linting.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "rules-of-hooks",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Rule Details",
+      "id": "rule-details"
+    },
+    {
+      "level": "h2",
+      "text": "Common Violations",
+      "id": "common-violations"
+    },
+    {
+      "level": "h3",
+      "text": "Note",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "use hook",
+      "id": "use-hook"
+    },
+    {
+      "level": "h3",
+      "text": "Invalid",
+      "id": "invalid"
+    },
+    {
+      "level": "h3",
+      "text": "Valid",
+      "id": "valid"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "I want to fetch data based on some condition",
+      "id": "conditional-data-fetching"
+    },
+    {
+      "level": "h3",
+      "text": "Note",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "I need different state for different scenarios",
+      "id": "conditional-state-initialization"
+    },
+    {
+      "level": "h2",
+      "text": "Options",
+      "id": "options"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// ✅ `use` can be conditionalif (shouldFetch) {  const data = use(fetchPromise);}// ✅ `use` can be in loopsfor (const promise of promises) {  results.push(use(promise));}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ❌ Hook in conditionif (isLoggedIn) {  const [user, setUser] = useState(null);}// ❌ Hook after early returnif (!data) return <Loading />;const [processed, setProcessed] = useState(data);// ❌ Hook in callback<button onClick={() => {  const [clicked, setClicked] = useState(false);}}/>// ❌ `use` in try/catchtry {  const data = use(promise);} catch (e) {  // error handling}// ❌ Hook at module levelconst globalState = useState(0); // Outside component",
+      "language": "javascript"
+    },
+    {
+      "code": "function Component({ isSpecial, shouldFetch, fetchPromise }) {  // ✅ Hooks at top level  const [count, setCount] = useState(0);  const [name, setName] = useState('');  if (!isSpecial) {    return null;  }  if (shouldFetch) {    // ✅ `use` can be conditional    const data = use(fetchPromise);    return <div>{data}</div>;  }  return <div>{name}: {count}</div>;}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ❌ Conditional hookif (isLoggedIn) {  useEffect(() => {    fetchUserData();  }, []);}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Condition inside hookuseEffect(() => {  if (isLoggedIn) {    fetchUserData();  }}, [isLoggedIn]);",
+      "language": "javascript"
+    },
+    {
+      "code": "// ❌ Conditional stateif (userType === 'admin') {  const [permissions, setPermissions] = useState(adminPerms);} else {  const [permissions, setPermissions] = useState(userPerms);}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Conditional initial valueconst [permissions, setPermissions] = useState(  userType === 'admin' ? adminPerms : userPerms);",
+      "language": "javascript"
+    },
+    {
+      "code": "{  \"settings\": {    \"react-hooks\": {      \"additionalEffectHooks\": \"(useMyEffect|useCustomEffect)\"    }  }}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/eslint-plugin-react-hooks",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/rules-of-hooks",
+    "https://react.dev/reference/rules/rules-of-hooks",
+    "https://react.dev/reference/react/use",
+    "https://react.dev/learn/synchronizing-with-effects",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/exhaustive-deps",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/component-hook-factories"
+  ]
+}

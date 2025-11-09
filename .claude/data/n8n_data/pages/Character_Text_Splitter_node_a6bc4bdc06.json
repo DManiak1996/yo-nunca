@@ -1,0 +1,24 @@
+{
+  "title": "Character Text Splitter node",
+  "content": "Use the Character Text Splitter node to split document data based on characters.\n\nOn this page, you'll find the node parameters for the Character Text Splitter node, and links to more resources.\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Separator**: Select the separator used to split the document into separate items.\n- **Chunk Size**: Enter the number of characters in each chunk.\n- **Chunk Overlap**: Enter how much overlap to have between chunks.\n\n## Templates and examples\n\n**Building Your First WhatsApp Chatbot**\n\n[View template details](https://n8n.io/workflows/2465-building-your-first-whatsapp-chatbot/)\n\n**Scrape and summarize webpages with AI**\n\n[View template details](https://n8n.io/workflows/1951-scrape-and-summarize-webpages-with-ai/)\n\n**Ask questions about a PDF using AI**\n\n[View template details](https://n8n.io/workflows/1960-ask-questions-about-a-pdf-using-ai/)\n\n[Browse Character Text Splitter integration templates](https://n8n.io/integrations/character-text-splitter/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChain's text splitter documentation](https://js.langchain.com/docs/concepts/text_splitters) and [LangChain's API documentation for character text splitting](https://v03.api.js.langchain.com/classes/langchain.text_splitter.CharacterTextSplitter.html) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#character-text-splitter-node",
+  "links": []
+}

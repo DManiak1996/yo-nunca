@@ -1,0 +1,94 @@
+{
+  "title": "Edit Image",
+  "content": "Use the Edit Image node to manipulate and edit images.\n\n1. If you aren't running n8n on Docker, you need to install [GraphicsMagick](http://www.graphicsmagick.org/README.html).\n1. You need to use a node such as the [Read/Write Files from Disk](../n8n-nodes-base.readwritefile/) node or the [HTTP Request](../n8n-nodes-base.httprequest/) node to pass the image file as a data property to the Edit Image node.\n\n- Add a **Blur** to the image to reduce sharpness\n- Add a **Border** to the image\n- **Composite** an image on top of another image\n- **Create** a new image\n- **Crop** the image\n- **Draw** on an image\n- **Get Information** about the image\n- **Multi Step** perform multiple operations on the image\n- **Resize**: Change the size of the image\n- **Rotate** the image\n- **Shear** image along the X or Y axis\n- Add **Text** to the image\n- Make a color in image **Transparent**\n\nThe parameters for this node depend on the operation you select.\n\n- **Property Name**: Enter the name of the binary property that stores the image data.\n- **Blur**: Enter a number to set how strong the blur should be, between 0 and 1000. Higher numbers create blurrier images.\n- **Sigma**: Enter a number to set the stigma for the blur, between 0 and 1000. Higher numbers create blurrier images.\n\nRefer to [Node options](#node-options) for optional configuration options.\n\n### Border parameters\n\n- **Property Name**: Enter the name of the binary property that stores the image data.\n- **Border Width**: Enter the width of the border.\n- **Border Height**: Enter the height of the border.\n- **Border Color**: Set the color for the border. You can either enter a hex or select the color swatch to open a color picker.\n\nRefer to [Node options](#node-options) for optional configuration options.\n\n### Composite parameters\n\n- **Property Name**: Enter the name of the binary property that stores the image data. This image is your base image.\n- **Composite Image Property**: Enter the name of the binary property that stores image to composite on top of the **Property Name** image.\n- **Operator**: Select composite operator, which determines how the composite works. Options include:\n  - **Add**\n  - **Atop**\n  - **Bumpmap**\n  - **Copy**\n  - **Copy Black**\n  - **Copy Blue**\n  - **Copy Cyan**\n  - **Copy Green**\n  - **Copy Magenta**\n  - **Copy Opacity**\n  - **Copy Red**\n  - **Copy Yellow**\n  - **Difference**\n  - **Divide**\n  - **In**\n  - **Minus**\n  - **Multiply**\n  - **Out**\n  - **Over**\n  - **Plus**\n  - **Subtract**\n  - **Xor**\n- **Position X**: Enter the x axis position (horizontal) of the composite image.\n- **Position Y**: Enter the y axis position (vertical) of the composite image.\n\nRefer to [Node options](#node-options) for optional configuration options.\n\n### Create parameters\n\n- **Property Name**: Enter the name of the binary property that stores the image data.\n- **Background Color**: Set the background color for the image. You can either enter a hex or select the color swatch to open a color picker.\n- **Image Width**: Enter the width of the image.\n- **Image Height**: Enter the height of the image.\n\nRefer to [Node options](#node-options) for optional configuration options.\n\n- **Property Name**: Enter the name of the binary property that stores the image data.\n- **Width**: Enter the width you'd like to crop to.\n- **Height**: Enter the height you'd like to crop to.\n- **Position X**: Enter the x axis position (horizontal) to start the crop from.\n- **Position Y**: Enter the y axis position (vertical) to start the crop from.\n\nRefer to [Node options](#node-options) for optional configuration options.\n\n- **Property Name**: Enter the name of the binary property that stores the image data.\n- **Primitive**: Select the primitive shape to draw. Choose from:\n  - **Circle**\n  - **Line**\n  - **Rectangle**\n- **Color**: Set the color for the primitive. You can either enter a hex or select the color swatch to open a color picker.\n- **Start Position X**: Enter the x axis position (horizontal) to start drawing from.\n- **Start Position Y**: Enter the y axis position (vertical) to start drawing from.\n- **End Position X**: Enter the x axis position (horizontal) to stop drawing at.\n- **End Position Y**: Enter the y axis position (vertical) to start drawing at.\n- **Corner Radius**: Enter a number to set the corner radius. Adding a corner radius will round the corners of the drawn primitive.\n\nRefer to [Node options](#node-options) for optional configuration options.\n\n### Get Information parameters\n\nFor this operation, you only need to add the **Property Name** of the binary property that stores the image data.\n\nRefer to [Node options](#node-options) for optional configuration options.\n\n### Multi Step parameters\n\n- **Property Name**: Enter the name of the binary property that stores the image data.\n- **Operations**: Add the operations you want the multi step operation to perform. You can use any of the other operations.\n\nRefer to [Node options](#node-options) for optional configuration options.\n\n### Resize parameters\n\n- **Property Name**: Enter the name of the binary property that stores the image data.\n- **Width**: Enter the new width you'd like for the image.\n- **Height**: Enter the new height you'd like for the image.\n- **Option**: Select how you'd like to resize the image. Choose from:\n  - **Ignore Aspect Ratio**: Ignore the aspect ratio and resize to the exact height and width you've entered.\n  - **Maximum Area**: The height and width you've entered is the maximum area/size for the image. The image maintains its aspect ratio and won't be larger than the height and/or width you've entered.\n  - **Minimum Area**: The height and width you've entered is the minimum area/size for the image. The image maintains its aspect ratio and won't be smaller than the height and/or width you've entered.\n  - **Only if Larger**: Resize the image only if it's larger than the width and height you entered. The image maintains its aspect ratio.\n  - **Only if Smaller**: Resize the image only if it's smaller than the width and height you entered. The image maintains its aspect ratio.\n  - **Percent**: Resize the image using the width and height as percentages of the original image.\n\nRefer to [Node options](#node-options) for optional configuration options.\n\n### Rotate parameters\n\n- **Property Name**: Enter the name of the binary property that stores the image data.\n- **Rotate**: Enter the number of degrees to rotate the image, from --360 to 360.\n- **Background Color**: Set the background color for the image. You can either enter a hex or select the color swatch to open a color picker. This color is used to fill in the empty background whenever the image is rotated by multiples of 90 degrees. If multipled of 90 degrees are used for the **Rotate** field, the background color isn't used.\n\nRefer to [Node options](#node-options) for optional configuration options.\n\n- **Property Name**: Enter the name of the binary property that stores the image data.\n- **Degrees X**: Enter the number of degrees to shear from the x axis.\n- **Degrees Y**: Enter the number of degrees to shear from the y axis.\n\nRefer to [Node options](#node-options) for optional configuration options.\n\n- **Property Name**: Enter the name of the binary property that stores the image data.\n- **Text**: Enter the text you'd like to write on the image.\n- **Font Size**: Select the font size for the text.\n- **Font Color**: Set the font color. You can either enter a hex or select the color swatch to open a color picker.\n- **Position X**: Enter the x axis position (horizontal) to begin the text at.\n- **Position Y**: Enter the y axis position (vertical) to begin the text at.\n- **Max Line Length**: Enter the maximum amount of characters in a line before adding a line break.\n\nRefer to [Node options](#node-options) for optional configuration options.\n\n### Transparent parameters\n\n- **Property Name**: Enter the name of the binary property that stores the image data.\n- **Color**: Set the color to make transparent. You can either enter a hex or select the color swatch to open a color picker.\n\nRefer to [Node options](#node-options) for optional configuration options.\n\n- **File Name**: Enter the filename of the output file.\n- **Format**: Enter the image format of the output file. Choose from:\n  - **bmp**\n  - **gif**\n  - **jpeg**\n  - **png**\n  - **tiff**\n  - **WebP**\n\nThe **Text** operation also includes the option for **Font Name or ID**. Select the text font from the dropdown or specify an ID using an [expression](../../../../code/expressions/).\n\n## Templates and examples\n\n**Flux AI Image Generator**\n\n[View template details](https://n8n.io/workflows/2417-flux-ai-image-generator/)\n\n**Generate Instagram Content from Top Trends with AI Image Generation**\n\nby mustafa kendigüzel\n\n[View template details](https://n8n.io/workflows/2803-generate-instagram-content-from-top-trends-with-ai-image-generation/)\n\n**AI-Powered WhatsApp Chatbot 🤖📲 for Text, Voice, Images & PDFs with memory 🧠**\n\n[View template details](https://n8n.io/workflows/3586-ai-powered-whatsapp-chatbot-for-text-voice-images-and-pdfs-with-memory/)\n\n[Browse Edit Image integration templates](https://n8n.io/integrations/edit-image/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Blur parameters",
+      "id": "blur-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Border parameters",
+      "id": "border-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Composite parameters",
+      "id": "composite-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Create parameters",
+      "id": "create-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Crop parameters",
+      "id": "crop-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Draw parameters",
+      "id": "draw-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Get Information parameters",
+      "id": "get-information-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Multi Step parameters",
+      "id": "multi-step-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Resize parameters",
+      "id": "resize-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Rotate parameters",
+      "id": "rotate-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Shear parameters",
+      "id": "shear-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Text parameters",
+      "id": "text-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Transparent parameters",
+      "id": "transparent-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#edit-image",
+  "links": []
+}

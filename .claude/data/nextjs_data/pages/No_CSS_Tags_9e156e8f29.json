@@ -1,0 +1,38 @@
+{
+  "url": "https://nextjs.org/docs/messages/no-css-tags",
+  "title": "No CSS Tags",
+  "content": "Prevent manual stylesheet tags.\n\nA link element was used to link to an external stylesheet. This can negatively affect CSS resource loading on your webpage.\n\nThere are multiple ways to include styles using Next.js' built-in CSS support, including the option to use @import within the root stylesheet that is imported in pages/_app.js:\n\nAnother option is to use CSS Modules to import the CSS file scoped specifically to the component.\n\nRefer to the Built-In CSS Support documentation to learn about all the ways to include CSS to your application.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "No CSS Tags",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "/* Root stylesheet */\n@import 'extra.css';\n \nbody {\n  /* ... */\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import styles from './extra.module.css'\n \nexport class Home {\n  render() {\n    return (\n      <div>\n        <button type=\"button\" className={styles.active}>\n          Open\n        </button>\n      </div>\n    )\n  }\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/no-css-tags",
+    "https://nextjs.org/docs/app/getting-started/css"
+  ]
+}

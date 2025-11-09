@@ -1,0 +1,8 @@
+{
+  "title": "Kafka Trigger node",
+  "content": "[Kafka](https://kafka.apache.org/) is an open-source distributed event streaming platform that one can use for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.\n\nYou can find authentication information for this node [here](../../credentials/kafka/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Kafka Trigger integrations](https://n8n.io/integrations/kafka-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#kafka-trigger-node",
+  "links": []
+}

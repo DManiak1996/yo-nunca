@@ -1,0 +1,19 @@
+{
+  "title": "ClickUp Trigger node",
+  "content": "[ClickUp](https://clickup.com/) is a cloud-based collaboration and project management tool suitable for businesses of all sizes and industries. Features include communication and collaboration tools, task assignments and statuses, alerts and a task toolbar.\n\nYou can find authentication information for this node [here](../../credentials/clickup/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [ClickUp Trigger integrations](https://n8n.io/integrations/clickup-trigger/) page.\n\n- Key result\n- Created\n- Deleted\n- Updated\n- List\n- Created\n- Deleted\n- Updated\n- Space\n- Created\n- Deleted\n- Updated\n- Task\n- Assignee updated\n- Comment\n  - Posted\n  - Updated\n- Created\n- Deleted\n- Due date updated\n- Moved\n- Status updated\n- Tag updated\n- Time estimate updated\n- Time tracked updated\n- Updated\n\nn8n provides an app node for ClickUp. You can find the node docs [here](../../app-nodes/n8n-nodes-base.clickup/).\n\nView [example workflows and related content](https://n8n.io/integrations/clickup-trigger/) on n8n's website.\n\nRefer to [ClickUp's documentation](https://developer.clickup.com/docs/authentication) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#clickup-trigger-node",
+  "links": []
+}

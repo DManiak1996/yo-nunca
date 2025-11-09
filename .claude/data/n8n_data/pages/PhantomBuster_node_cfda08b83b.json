@@ -1,0 +1,24 @@
+{
+  "title": "PhantomBuster node",
+  "content": "Use the PhantomBuster node to automate work in PhantomBuster, and integrate PhantomBuster with other applications. n8n has built-in support for a wide range of PhantomBuster features, including adding, deleting, and getting agents.\n\nOn this page, you'll find a list of operations the PhantomBuster node supports and links to more resources.\n\nRefer to [PhantomBuster credentials](../../credentials/phantombuster/) for guidance on setting up authentication.\n\n- Agent\n  - Delete an agent by ID.\n  - Get an agent by ID.\n  - Get all agents of the current user's organization.\n  - Get the output of the most recent container of an agent.\n  - Add an agent to the launch queue.\n\n## Templates and examples\n\n**Create HubSpot contacts from LinkedIn post interactions**\n\n[View template details](https://n8n.io/workflows/1323-create-hubspot-contacts-from-linkedin-post-interactions/)\n\n**Store the output of a phantom in Airtable**\n\n[View template details](https://n8n.io/workflows/882-store-the-output-of-a-phantom-in-airtable/)\n\n**Personalized LinkedIn Connection Requests with Apollo, GPT-4, Apify & PhantomBuster**\n\n[View template details](https://n8n.io/workflows/4803-personalized-linkedin-connection-requests-with-apollo-gpt-4-apify-and-phantombuster/)\n\n[Browse PhantomBuster integration templates](https://n8n.io/integrations/phantombuster/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#phantombuster-node",
+  "links": []
+}

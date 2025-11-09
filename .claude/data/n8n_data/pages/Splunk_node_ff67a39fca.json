@@ -1,0 +1,19 @@
+{
+  "title": "Splunk node",
+  "content": "Use the Splunk node to automate work in Splunk, and integrate Splunk with other applications. n8n has built-in support for a wide range of Splunk features, including getting fired alerts reports, as well as deleting and getting search configuration.\n\nOn this page, you'll find a list of operations the Splunk node supports and links to more resources.\n\nRefer to [Splunk credentials](../../credentials/splunk/) for guidance on setting up authentication.\n\n- Fired Alert\n  - Get a fired alerts report\n- Search Configuration\n  - Delete a search configuration\n  - Get a search configuration\n  - Get many search configurations\n- Search Job\n  - Create a search job\n  - Delete a search job\n  - Get a search job\n  - Get many search jobs\n- Search Result\n  - Get many search results\n- User\n  - Create a user\n  - Delete a user\n  - Get a user\n  - Get many users\n  - Update a user\n\n## Templates and examples\n\n**Create Unique Jira tickets from Splunk alerts**\n\n[View template details](https://n8n.io/workflows/1970-create-unique-jira-tickets-from-splunk-alerts/)\n\n**🛠️ Splunk Tool MCP Server 💪 all 16 operations**\n\n[View template details](https://n8n.io/workflows/5359-splunk-tool-mcp-server-all-16-operations/)\n\n**IP Reputation Check & SOC Alerts with Splunk, VirusTotal and AlienVault**\n\n[View template details](https://n8n.io/workflows/6037-ip-reputation-check-and-soc-alerts-with-splunk-virustotal-and-alienvault/)\n\n[Browse Splunk integration templates](https://n8n.io/integrations/splunk/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#splunk-node",
+  "links": []
+}

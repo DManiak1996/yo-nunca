@@ -1,0 +1,155 @@
+{
+  "url": "https://nextjs.org/docs/15/app/guides/incremental-static-regeneration",
+  "title": "How to implement Incremental Static Regeneration (ISR)",
+  "content": "Incremental Static Regeneration (ISR) enables you to:\n\nHere's a minimal example:\n\nHere's how this example works:\n\nThis fetches and displays a list of blog posts on /blog. After an hour has passed, the next visitor will still receive the cached (stale) version of the page immediately for a fast response. Simultaneously, Next.js triggers regeneration of a fresh version in the background. Once the new version is successfully generated, it replaces the cached version, and subsequent visitors will receive the updated content.\n\nWe recommend setting a high revalidation time. For instance, 1 hour instead of 1 second. If you need more precision, consider using on-demand revalidation. If you need real-time data, consider switching to dynamic rendering.\n\nFor a more precise method of revalidation, invalidate cached pages on-demand with the revalidatePath function.\n\nFor example, this Server Action would get called after adding a new post. Regardless of how you retrieve your data in your Server Component, either using fetch or connecting to a database, this will invalidate the cache for the entire route. The next request to that route will trigger regeneration and serve fresh data, which will then be cached for subsequent requests.\n\nNote: revalidatePath invalidates the cache entries but regeneration happens on the next request. If you want to eagerly regenerate the cache entry immediately instead of waiting for the next request, you can use the Pages router res.revalidate method. We're working on adding new methods to provide eager regeneration capabilities for the App Router.\n\nView a demo and explore the source code.\n\nFor most use cases, prefer revalidating entire paths. If you need more granular control, you can use the revalidateTag function. For example, you can tag individual fetch calls:\n\nIf you are using an ORM or connecting to a database, you can use unstable_cache:\n\nYou can then use revalidateTag in a Server Actions or Route Handler:\n\nIf an error is thrown while attempting to revalidate data, the last successfully generated data will continue to be served from the cache. On the next subsequent request, Next.js will retry revalidating the data. Learn more about error handling.\n\nYou can configure the Next.js cache location if you want to persist cached pages and data to durable storage, or share the cache across multiple containers or instances of your Next.js application. Learn more.\n\nIf you are using the fetch API, you can add additional logging to understand which requests are cached or uncached. Learn more about the logging option.\n\nTo verify your pages are cached and revalidated correctly in production, you can test locally by running next build and then next start to run the production Next.js server.\n\nThis will allow you to test ISR behavior as it would work in a production environment. For further debugging, add the following environment variable to your .env file:\n\nThis will make the Next.js server console log ISR cache hits and misses. You can inspect the output to see which pages are generated during next build, as well as how pages are updated as paths are accessed on-demand.\n\nLearn how to configure ISR when self-hosting Next.js.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to implement Incremental Static Regeneration (ISR)",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Route segment config",
+      "id": "route-segment-config"
+    },
+    {
+      "level": "h3",
+      "text": "Functions",
+      "id": "functions"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Time-based revalidation",
+      "id": "time-based-revalidation"
+    },
+    {
+      "level": "h3",
+      "text": "On-demand revalidation with revalidatePath",
+      "id": "on-demand-revalidation-with-revalidatepath"
+    },
+    {
+      "level": "h3",
+      "text": "On-demand revalidation with revalidateTag",
+      "id": "on-demand-revalidation-with-revalidatetag"
+    },
+    {
+      "level": "h3",
+      "text": "Handling uncaught exceptions",
+      "id": "handling-uncaught-exceptions"
+    },
+    {
+      "level": "h3",
+      "text": "Customizing the cache location",
+      "id": "customizing-the-cache-location"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "Debugging cached data in local development",
+      "id": "debugging-cached-data-in-local-development"
+    },
+    {
+      "level": "h3",
+      "text": "Verifying correct production behavior",
+      "id": "verifying-correct-production-behavior"
+    },
+    {
+      "level": "h2",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Platform Support",
+      "id": "platform-support"
+    },
+    {
+      "level": "h2",
+      "text": "Version history",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "interface Post {\n  id: string\n  title: string\n  content: string\n}\n \n// Next.js will invalidate the cache when a\n// request comes in, at most once every 60 seconds.\nexport const revalidate = 60\n \nexport async function generateStaticParams() {\n  const posts: Post[] = await fetch('https://api.vercel.app/blog').then((res) =>\n    res.json()\n  )\n  return posts.map((post) => ({\n    id: String(post.id),\n  }))\n}\n \nexport default async function Page({\n  params,\n}: {\n  params: Promise<{ id: string }>\n}) {\n  const { id } = await params\n  const post: Post = await fetch(`https://api.vercel.app/blog/${id}`).then(\n    (res) => res.json()\n  )\n  return (\n    <main>\n      <h1>{post.title}</h1>\n      <p>{post.content}</p>\n    </main>\n  )\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "interface Post {\n  id: string\n  title: string\n  content: string\n}\n \nexport const revalidate = 3600 // invalidate every hour\n \nexport default async function Page() {\n  const data = await fetch('https://api.vercel.app/blog')\n  const posts: Post[] = await data.json()\n  return (\n    <main>\n      <h1>Blog Posts</h1>\n      <ul>\n        {posts.map((post) => (\n          <li key={post.id}>{post.title}</li>\n        ))}\n      </ul>\n    </main>\n  )\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "'use server'\n \nimport { revalidatePath } from 'next/cache'\n \nexport async function createPost() {\n  // Invalidate the cache for the /posts route\n  revalidatePath('/posts')\n}",
+      "language": "python"
+    },
+    {
+      "code": "export default async function Page() {\n  const data = await fetch('https://api.vercel.app/blog', {\n    next: { tags: ['posts'] },\n  })\n  const posts = await data.json()\n  // ...\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { unstable_cache } from 'next/cache'\nimport { db, posts } from '@/lib/db'\n \nconst getCachedPosts = unstable_cache(\n  async () => {\n    return await db.select().from(posts)\n  },\n  ['posts'],\n  { revalidate: 3600, tags: ['posts'] }\n)\n \nexport default async function Page() {\n  const posts = getCachedPosts()\n  // ...\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nimport { revalidateTag } from 'next/cache'\n \nexport async function createPost() {\n  // Invalidate all data tagged with 'posts'\n  revalidateTag('posts')\n}",
+      "language": "python"
+    },
+    {
+      "code": "module.exports = {\n  logging: {\n    fetches: {\n      fullUrl: true,\n    },\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "NEXT_PRIVATE_DEBUG_CACHE=1",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "App RouterGuidesISRYou are currently viewing documentation for version 15 of Next.js.How to implement Incremental Static Regeneration (ISR)Examples Next.js Commerce On-Demand ISR Next.js Forms Incremental Static Regeneration (ISR) enables you to: Update static content without rebuilding the entire site Reduce server load by serving prerendered, static pages for most requests Ensure proper cache-control headers are automatically added to pages Handle large amounts of content pages without long next build times Here's a minimal example: app/blog/[id]/page.tsxTypeScriptJavaScriptTypeScriptinterface Post { id: string title: string content: string } // Next.js will invalidate the cache when a // request comes in, at most once every 60 seconds. export const revalidate = 60 export async function generateStaticParams() { const posts: Post[] = await fetch('https://api.vercel.app/blog').then((res) => res.json() ) return posts.map((post) => ({ id: String(post.id), })) } export default async function Page({ params, }: { params: Promise<{ id: string }> }) { const { id } = await params const post: Post = await fetch(`https://api.vercel.app/blog/${id}`).then( (res) => res.json() ) return ( <main> <h1>{post.title}</h1> <p>{post.content}</p> </main> ) }Here's how this example works: During next build, all known blog posts are generated All requests made to these pages (e.g. /blog/1) are cached and instantaneous After 60 seconds has passed, the next request will still return the cached (now stale) page The cache is invalidated and a new version of the page begins generating in the background Once generated successfully, the next request will return the updated page and cache it for subsequent requests If /blog/26 is requested, and it exists, the page will be generated on-demand. This behavior can be changed by using a different dynamicParams value. However, if the post does not exist, then 404 is returned. Reference Route segment config revalidate dynamicParams Functions revalidatePath revalidateTag Examples Time-based revalidation This fetches and displays a list of blog posts on /blog. After an hour has passed, the next visitor will still receive the cached (stale) version of the page immediately for a fast response. Simultaneously, Next.js triggers regeneration of a fresh version in the background. Once the new version is successfully generated, it replaces the cached version, and subsequent visitors will receive the updated content.app/blog/page.tsxTypeScriptJavaScriptTypeScriptinterface Post { id: string title: string content: string } export const revalidate = 3600 // invalidate every hour export default async function Page() { const data = await fetch('https://api.vercel.app/blog') const posts: Post[] = await data.json() return ( <main> <h1>Blog Posts</h1> <ul> {posts.map((post) => ( <li key={post.id}>{post.title}</li> ))} </ul> </main> ) }We recommend setting a high revalidation time. For instance, 1 hour instead of 1 second. If you need more precision, consider using on-demand revalidation. If you need real-time data, consider switching to dynamic rendering.On-demand revalidation with revalidatePath For a more precise method of revalidation, invalidate cached pages on-demand with the revalidatePath function.For example, this Server Action would get called after adding a new post. Regardless of how you retrieve your data in your Server Component, either using fetch or connecting to a database, this will invalidate the cache for the entire route. The next request to that route will trigger regeneration and serve fresh data, which will then be cached for subsequent requests. Note: revalidatePath invalidates the cache entries but regeneration happens on the next request. If you want to eagerly regenerate the cache entry immediately instead of waiting for the next request, you can use the Pages router res.revalidate method. We're working on adding new methods to provide eager regeneration capabilities for the App Router. app/actions.tsTypeScriptJavaScriptTypeScript'use server' import { revalidatePath } from 'next/cache' export async function createPost() { // Invalidate the cache for the /posts route revalidatePath('/posts') }View a demo and explore the source code.On-demand revalidation with revalidateTag For most use cases, prefer revalidating entire paths. If you need more granular control, you can use the revalidateTag function. For example, you can tag individual fetch calls:app/blog/page.tsxTypeScriptJavaScriptTypeScriptexport default async function Page() { const data = await fetch('https://api.vercel.app/blog', { next: { tags: ['posts'] }, }) const posts = await data.json() // ... }If you are using an ORM or connecting to a database, you can use unstable_cache:app/blog/page.tsxTypeScriptJavaScriptTypeScriptimport { unstable_cache } from 'next/cache' import { db, posts } from '@/lib/db' const getCachedPosts = unstable_cache( async () => { return await db.select().from(posts) }, ['posts'], { revalidate: 3600, tags: ['posts'] } ) export default async function Page() { const posts = getCachedPosts() // ... }You can then use revalidateTag in a Server Actions or Route Handler:app/actions.tsTypeScriptJavaScriptTypeScript'use server' import { revalidateTag } from 'next/cache' export async function createPost() { // Invalidate all data tagged with 'posts' revalidateTag('posts') } Handling uncaught exceptions If an error is thrown while attempting to revalidate data, the last successfully generated data will continue to be served from the cache. On the next subsequent request, Next.js will retry revalidating the data. Learn more about error handling. Customizing the cache location You can configure the Next.js cache location if you want to persist cached pages and data to durable storage, or share the cache across multiple containers or instances of your Next.js application. Learn more. Troubleshooting Debugging cached data in local development If you are using the fetch API, you can add additional logging to understand which requests are cached or uncached. Learn more about the logging option. next.config.jsmodule.exports = { logging: { fetches: { fullUrl: true, }, }, } Verifying correct production behavior To verify your pages are cached and revalidated correctly in production, you can test locally by running next build and then next start to run the production Next.js server. This will allow you to test ISR behavior as it would work in a production environment. For further debugging, add the following environment variable to your .env file: .envNEXT_PRIVATE_DEBUG_CACHE=1 This will make the Next.js server console log ISR cache hits and misses. You can inspect the output to see which pages are generated during next build, as well as how pages are updated as paths are accessed on-demand. Caveats ISR is only supported when using the Node.js runtime (default). ISR is not supported when creating a Static Export. If you have multiple fetch requests in a statically rendered route, and each has a different revalidate frequency, the lowest time will be used for ISR. However, those revalidate frequencies will still be respected by the Data Cache. If any of the fetch requests used on a route have a revalidate time of 0, or an explicit no-store, the route will be dynamically rendered. Middleware won't be executed for on-demand ISR requests, meaning any path rewrites or logic in Middleware will not be applied. Ensure you are revalidating the exact path. For example, /post/1 instead of a rewritten /post-1. Platform Support Deployment OptionSupportedNode.js serverYesDocker containerYesStatic exportNoAdaptersPlatform-specific Learn how to configure ISR when self-hosting Next.js. Version history VersionChangesv14.1.0Custom cacheHandler is stable.v13.0.0App Router is introduced.v12.2.0Pages Router: On-Demand ISR is stablev12.0.0Pages Router: Bot-aware ISR fallback added.v9.5.0Pages Router: Stable ISR introduced.",
+      "code": "cache-control"
+    },
+    {
+      "description": "You are currently viewing documentation for version 15 of Next.js.How to implement Incremental Static Regeneration (ISR)Examples Next.js Commerce On-Demand ISR Next.js Forms Incremental Static Regeneration (ISR) enables you to: Update static content without rebuilding the entire site Reduce server load by serving prerendered, static pages for most requests Ensure proper cache-control headers are automatically added to pages Handle large amounts of content pages without long next build times Here's a minimal example: app/blog/[id]/page.tsxTypeScriptJavaScriptTypeScriptinterface Post { id: string title: string content: string } // Next.js will invalidate the cache when a // request comes in, at most once every 60 seconds. export const revalidate = 60 export async function generateStaticParams() { const posts: Post[] = await fetch('https://api.vercel.app/blog').then((res) => res.json() ) return posts.map((post) => ({ id: String(post.id), })) } export default async function Page({ params, }: { params: Promise<{ id: string }> }) { const { id } = await params const post: Post = await fetch(`https://api.vercel.app/blog/${id}`).then( (res) => res.json() ) return ( <main> <h1>{post.title}</h1> <p>{post.content}</p> </main> ) }Here's how this example works: During next build, all known blog posts are generated All requests made to these pages (e.g. /blog/1) are cached and instantaneous After 60 seconds has passed, the next request will still return the cached (now stale) page The cache is invalidated and a new version of the page begins generating in the background Once generated successfully, the next request will return the updated page and cache it for subsequent requests If /blog/26 is requested, and it exists, the page will be generated on-demand. This behavior can be changed by using a different dynamicParams value. However, if the post does not exist, then 404 is returned. Reference Route segment config revalidate dynamicParams Functions revalidatePath revalidateTag Examples Time-based revalidation This fetches and displays a list of blog posts on /blog. After an hour has passed, the next visitor will still receive the cached (stale) version of the page immediately for a fast response. Simultaneously, Next.js triggers regeneration of a fresh version in the background. Once the new version is successfully generated, it replaces the cached version, and subsequent visitors will receive the updated content.app/blog/page.tsxTypeScriptJavaScriptTypeScriptinterface Post { id: string title: string content: string } export const revalidate = 3600 // invalidate every hour export default async function Page() { const data = await fetch('https://api.vercel.app/blog') const posts: Post[] = await data.json() return ( <main> <h1>Blog Posts</h1> <ul> {posts.map((post) => ( <li key={post.id}>{post.title}</li> ))} </ul> </main> ) }We recommend setting a high revalidation time. For instance, 1 hour instead of 1 second. If you need more precision, consider using on-demand revalidation. If you need real-time data, consider switching to dynamic rendering.On-demand revalidation with revalidatePath For a more precise method of revalidation, invalidate cached pages on-demand with the revalidatePath function.For example, this Server Action would get called after adding a new post. Regardless of how you retrieve your data in your Server Component, either using fetch or connecting to a database, this will invalidate the cache for the entire route. The next request to that route will trigger regeneration and serve fresh data, which will then be cached for subsequent requests. Note: revalidatePath invalidates the cache entries but regeneration happens on the next request. If you want to eagerly regenerate the cache entry immediately instead of waiting for the next request, you can use the Pages router res.revalidate method. We're working on adding new methods to provide eager regeneration capabilities for the App Router. app/actions.tsTypeScriptJavaScriptTypeScript'use server' import { revalidatePath } from 'next/cache' export async function createPost() { // Invalidate the cache for the /posts route revalidatePath('/posts') }View a demo and explore the source code.On-demand revalidation with revalidateTag For most use cases, prefer revalidating entire paths. If you need more granular control, you can use the revalidateTag function. For example, you can tag individual fetch calls:app/blog/page.tsxTypeScriptJavaScriptTypeScriptexport default async function Page() { const data = await fetch('https://api.vercel.app/blog', { next: { tags: ['posts'] }, }) const posts = await data.json() // ... }If you are using an ORM or connecting to a database, you can use unstable_cache:app/blog/page.tsxTypeScriptJavaScriptTypeScriptimport { unstable_cache } from 'next/cache' import { db, posts } from '@/lib/db' const getCachedPosts = unstable_cache( async () => { return await db.select().from(posts) }, ['posts'], { revalidate: 3600, tags: ['posts'] } ) export default async function Page() { const posts = getCachedPosts() // ... }You can then use revalidateTag in a Server Actions or Route Handler:app/actions.tsTypeScriptJavaScriptTypeScript'use server' import { revalidateTag } from 'next/cache' export async function createPost() { // Invalidate all data tagged with 'posts' revalidateTag('posts') } Handling uncaught exceptions If an error is thrown while attempting to revalidate data, the last successfully generated data will continue to be served from the cache. On the next subsequent request, Next.js will retry revalidating the data. Learn more about error handling. Customizing the cache location You can configure the Next.js cache location if you want to persist cached pages and data to durable storage, or share the cache across multiple containers or instances of your Next.js application. Learn more. Troubleshooting Debugging cached data in local development If you are using the fetch API, you can add additional logging to understand which requests are cached or uncached. Learn more about the logging option. next.config.jsmodule.exports = { logging: { fetches: { fullUrl: true, }, }, } Verifying correct production behavior To verify your pages are cached and revalidated correctly in production, you can test locally by running next build and then next start to run the production Next.js server. This will allow you to test ISR behavior as it would work in a production environment. For further debugging, add the following environment variable to your .env file: .envNEXT_PRIVATE_DEBUG_CACHE=1 This will make the Next.js server console log ISR cache hits and misses. You can inspect the output to see which pages are generated during next build, as well as how pages are updated as paths are accessed on-demand. Caveats ISR is only supported when using the Node.js runtime (default). ISR is not supported when creating a Static Export. If you have multiple fetch requests in a statically rendered route, and each has a different revalidate frequency, the lowest time will be used for ISR. However, those revalidate frequencies will still be respected by the Data Cache. If any of the fetch requests used on a route have a revalidate time of 0, or an explicit no-store, the route will be dynamically rendered. Middleware won't be executed for on-demand ISR requests, meaning any path rewrites or logic in Middleware will not be applied. Ensure you are revalidating the exact path. For example, /post/1 instead of a rewritten /post-1. Platform Support Deployment OptionSupportedNode.js serverYesDocker containerYesStatic exportNoAdaptersPlatform-specific Learn how to configure ISR when self-hosting Next.js. Version history VersionChangesv14.1.0Custom cacheHandler is stable.v13.0.0App Router is introduced.v12.2.0Pages Router: On-Demand ISR is stablev12.0.0Pages Router: Bot-aware ISR fallback added.v9.5.0Pages Router: Stable ISR introduced.",
+      "code": "cache-control"
+    },
+    {
+      "description": "Here's a minimal example:",
+      "code": "interface Post {\n  id: string\n  title: string\n  content: string\n}\n \n// Next.js will invalidate the cache when a\n// request comes in, at most once every 60 seconds.\nexport const revalidate = 60\n \nexport async function generateStaticParams() {\n  const posts: Post[] = await fetch('https://api.vercel.app/blog').then((res) =>\n    res.json()\n  )\n  return posts.map((post) => ({\n    id: String(post.id),\n  }))\n}\n \nexport default async function Page({\n  params,\n}: {\n  params: Promise<{ id: string }>\n}) {\n  const { id } = await params\n  const post: Post = await fetch(`https://api.vercel.app/blog/${id}`).then(\n    (res) => res.json()\n  )\n  return (\n    <main>\n      <h1>{post.title}</h1>\n      <p>{post.content}</p>\n    </main>\n  )\n}"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/15/app",
+    "https://nextjs.org/docs/15/app/guides",
+    "https://nextjs.org/docs/15/app/api-reference/file-conventions/route-segment-config",
+    "https://nextjs.org/docs/15/app/guides/incremental-static-regeneration",
+    "https://nextjs.org/docs/15/app/api-reference/functions/revalidatePath",
+    "https://nextjs.org/docs/15/app/api-reference/functions/revalidateTag",
+    "https://nextjs.org/docs/15/app/getting-started/partial-prerendering",
+    "https://nextjs.org/docs/15/app/guides/docs/15/pages/guides/incremental-static-regeneration",
+    "https://nextjs.org/docs/15/app/getting-started/updating-data",
+    "https://nextjs.org/docs/15/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/15/app/getting-started/error-handling",
+    "https://nextjs.org/docs/15/app/guides/self-hosting",
+    "https://nextjs.org/docs/15/app/api-reference/config/next-config-js/logging",
+    "https://nextjs.org/docs/15/app/guides/static-exports",
+    "https://nextjs.org/docs/15/app/guides/caching",
+    "https://nextjs.org/docs/15/app/getting-started/deploying",
+    "https://nextjs.org/docs/15/app/guides/forms",
+    "https://nextjs.org/docs/15/app/guides/instrumentation"
+  ]
+}

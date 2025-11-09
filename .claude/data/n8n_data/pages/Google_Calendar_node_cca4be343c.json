@@ -1,0 +1,24 @@
+{
+  "title": "Google Calendar node",
+  "content": "Use the Google Calendar node to automate work in Google Calendar, and integrate Google Calendar with other applications. n8n has built-in support for a wide range of Google Calendar features, including adding, retrieving, deleting and updating calendar events.\n\nOn this page, you'll find a list of operations the Google Calendar node supports and links to more resources.\n\nRefer to [Google Calendar credentials](../../credentials/google/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- **Calendar**\n  - [**Availability**](calendar-operations/#availability): If a time-slot is available in a calendar\n- **Event**\n  - [**Create**](event-operations/#create): Add an event to calendar\n  - [**Delete**](event-operations/#delete): Delete an event\n  - [**Get**](event-operations/#get): Retrieve an event\n  - [**Get Many**](event-operations/#get-many): Retrieve all events from a calendar\n  - [**Update**](event-operations/#update): Update an event\n\n## Templates and examples\n\n**AI Agent : Google calendar assistant using OpenAI**\n\n[View template details](https://n8n.io/workflows/2703-ai-agent-google-calendar-assistant-using-openai/)\n\n**Build an MCP Server with Google Calendar and Custom Functions**\n\n[View template details](https://n8n.io/workflows/3514-build-an-mcp-server-with-google-calendar-and-custom-functions/)\n\n**Actioning Your Meeting Next Steps using Transcripts and AI**\n\n[View template details](https://n8n.io/workflows/2328-actioning-your-meeting-next-steps-using-transcripts-and-ai/)\n\n[Browse Google Calendar integration templates](https://n8n.io/integrations/google-calendar/), or [search all templates](https://n8n.io/workflows/)\n\nn8n provides a trigger node for Google Calendar. You can find the trigger node docs [here](../../trigger-nodes/n8n-nodes-base.googlecalendartrigger/).\n\nRefer to [Google Calendar's documentation](https://developers.google.com/calendar/api/v3/reference) for more information about the service.\n\nView [example workflows and related content](https://n8n.io/integrations/google-calendar/) on n8n's website.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#google-calendar-node",
+  "links": []
+}

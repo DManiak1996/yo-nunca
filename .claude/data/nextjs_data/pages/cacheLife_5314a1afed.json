@@ -1,0 +1,42 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheLife",
+  "title": "cacheLife",
+  "content": "The cacheLife option allows you to define custom cache profiles when using the cacheLife function inside components or functions, and within the scope of the use cache directive.\n\nTo define a profile, enable the cacheComponents flag and add the cache profile in the cacheLife object in the next.config.js file. For example, a blog profile:\n\nYou can now use this custom blog configuration in your component or function as follows:\n\nThe configuration object has key values with the following format:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "cacheLife",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  cacheComponents: true,\n  cacheLife: {\n    blog: {\n      stale: 3600, // 1 hour\n      revalidate: 900, // 15 minutes\n      expire: 86400, // 1 day\n    },\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "import { cacheLife } from 'next/cache'\n \nexport async function getCachedData() {\n  'use cache'\n  cacheLife('blog')\n  const data = await fetch('/api/data')\n  return data\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheLife",
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheLife",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/compress"
+  ]
+}

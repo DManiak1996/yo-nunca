@@ -1,0 +1,34 @@
+{
+  "url": "https://nextjs.org/docs/messages/no-unwanted-polyfillio",
+  "title": "No Unwanted Polyfill.io",
+  "content": "Prevent duplicate polyfills from Polyfill.io.\n\nYou are using polyfills from Polyfill.io and including polyfills already shipped with Next.js. This unnecessarily increases page weight which can affect loading performance.\n\nRemove all duplicate polyfills. If you need to add polyfills but are not sure if Next.js already includes it, take a look at the list of supported browsers and features.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "No Unwanted Polyfill.io",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/no-unwanted-polyfillio",
+    "https://nextjs.org/docs/architecture/supported-browsers"
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "title": "Strings",
+  "content": "A reference document listing built-in convenience functions to support data transformation in [expressions](../../../../glossary/#expression-n8n) for strings.\n\nJavaScript in expressions\n\nYou can use any JavaScript in expressions. Refer to [Expressions](../../../expressions/) for more information.\n\n### base64Encode(): A base64 encoded string.\n\nEncode a string as base64.\n\n______________________________________________________________________\n\n### base64Decode(): A plain string.\n\nConvert a base64 encoded string to a normal string.\n\n______________________________________________________________________\n\n### extractDomain(): String\n\nExtracts a domain from a string containing a valid URL. Returns undefined if none is found.\n\n______________________________________________________________________\n\n### extractEmail(): String\n\nExtracts an email from a string. Returns undefined if none is found.\n\n______________________________________________________________________\n\n### extractUrl(): String\n\nExtracts a URL from a string. Returns undefined if none is found.\n\n______________________________________________________________________\n\n### extractUrlPath(): String\n\nExtract the path but not the root domain from a URL. For example, `\"https://example.com/orders/1/details\".extractUrlPath()` returns `\"/orders/1/details/\"`.\n\n______________________________________________________________________\n\n### hash(algo?: Algorithm): String\n\nReturns a string hashed with the given algorithm.\n\n#### Function parameters\n\nalgoOptionalString enum\n\nWhich hashing algorithm to use.\n\nOne of: `md5`, `base64`, `sha1`, `sha224`, `sha256`, `sha384`, `sha512`, `sha3`, `ripemd160`\n\n______________________________________________________________________\n\n### isDomain(): Boolean\n\nChecks if a string is a domain.\n\n______________________________________________________________________\n\n### isEmail(): Boolean\n\nChecks if a string is an email.\n\n______________________________________________________________________\n\n### isEmpty(): Boolean\n\nChecks if a string is empty.\n\n______________________________________________________________________\n\n### isNotEmpty(): Boolean\n\nChecks if a string has content.\n\n______________________________________________________________________\n\n### isNumeric(): Boolean\n\nChecks if a string only contains digits.\n\n______________________________________________________________________\n\nChecks if a string is a valid URL.\n\n______________________________________________________________________\n\n### parseJson(): Object\n\nEquivalent of `JSON.parse()`. Parses a string as a JSON object.\n\n______________________________________________________________________\n\n### quote(mark?: String): String\n\nReturns a string wrapped in the quotation marks. Default quotation is `\"`.\n\n#### Function parameters\n\nWhich quote mark style to use.\n\n______________________________________________________________________\n\n### removeMarkdown(): String\n\nRemoves Markdown formatting from a string.\n\n______________________________________________________________________\n\n### replaceSpecialChars(): String\n\nReplaces non-ASCII characters in a string with an ASCII representation.\n\n______________________________________________________________________\n\n### removeTags(): String\n\nRemove tags, such as HTML or XML, from a string.\n\n______________________________________________________________________\n\n### toBoolean(): Boolean\n\nConvert a string to a boolean. `\"false\"`, `\"0\"`, `\"\"`, and `\"no\"` convert to `false`.\n\n______________________________________________________________________\n\n### toDateTime(): Date\n\nConverts a string to a [Luxon date object](https://docs.n8n.io/code/cookbook/luxon/).\n\n______________________________________________________________________\n\n### toDecimalNumber(): Number\n\nSee [toFloat](#string-toFloat)\n\n______________________________________________________________________\n\n### toFloat(): Number\n\nConverts a string to a decimal number.\n\n______________________________________________________________________\n\nConverts a string to an integer.\n\n______________________________________________________________________\n\n### toSentenceCase(): String\n\nFormats a string to sentence case.\n\n______________________________________________________________________\n\n### toSnakeCase(): String\n\nFormats a string to snake case.\n\n______________________________________________________________________\n\n### toTitleCase(): String\n\nFormats a string to title case. Will not change already uppercase letters to prevent losing information from acronyms and trademarks such as iPhone or FAANG.\n\n______________________________________________________________________\n\n### toWholeNumber(): Number\n\nConverts a string to a whole number.\n\n______________________________________________________________________\n\n### urlDecode(entireString?: Boolean): String\n\nDecodes a URL-encoded string. It decodes any percent-encoded characters in the input string, and replaces them with their original characters.\n\n#### Function parameters\n\nentireStringOptionalBoolean\n\nWhether to decode characters that are part of the URI syntax (true) or not (false).\n\n______________________________________________________________________\n\n### urlEncode(entireString?: Boolean): String\n\nEncodes a string to be used/included in a URL.\n\n#### Function parameters\n\nentireStringOptionalBoolean\n\nWhether to encode characters that are part of the URI syntax (true) or not (false).\n\n______________________________________________________________________",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h3",
+      "text": "base64Encode(): A base64 encoded string.",
+      "id": "base64encode():-a-base64-encoded-string."
+    },
+    {
+      "level": "h3",
+      "text": "base64Decode(): A plain string.",
+      "id": "base64decode():-a-plain-string."
+    },
+    {
+      "level": "h3",
+      "text": "extractDomain(): String",
+      "id": "extractdomain():-string"
+    },
+    {
+      "level": "h3",
+      "text": "extractEmail(): String",
+      "id": "extractemail():-string"
+    },
+    {
+      "level": "h3",
+      "text": "extractUrl(): String",
+      "id": "extracturl():-string"
+    },
+    {
+      "level": "h3",
+      "text": "extractUrlPath(): String",
+      "id": "extracturlpath():-string"
+    },
+    {
+      "level": "h3",
+      "text": "hash(algo?: Algorithm): String",
+      "id": "hash(algo?:-algorithm):-string"
+    },
+    {
+      "level": "h3",
+      "text": "isDomain(): Boolean",
+      "id": "isdomain():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "isEmail(): Boolean",
+      "id": "isemail():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "isEmpty(): Boolean",
+      "id": "isempty():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "isNotEmpty(): Boolean",
+      "id": "isnotempty():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "isNumeric(): Boolean",
+      "id": "isnumeric():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "isUrl(): Boolean",
+      "id": "isurl():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "parseJson(): Object",
+      "id": "parsejson():-object"
+    },
+    {
+      "level": "h3",
+      "text": "quote(mark?: String): String",
+      "id": "quote(mark?:-string):-string"
+    },
+    {
+      "level": "h3",
+      "text": "removeMarkdown(): String",
+      "id": "removemarkdown():-string"
+    },
+    {
+      "level": "h3",
+      "text": "replaceSpecialChars(): String",
+      "id": "replacespecialchars():-string"
+    },
+    {
+      "level": "h3",
+      "text": "removeTags(): String",
+      "id": "removetags():-string"
+    },
+    {
+      "level": "h3",
+      "text": "toBoolean(): Boolean",
+      "id": "toboolean():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "toDateTime(): Date",
+      "id": "todatetime():-date"
+    },
+    {
+      "level": "h3",
+      "text": "toDecimalNumber(): Number",
+      "id": "todecimalnumber():-number"
+    },
+    {
+      "level": "h3",
+      "text": "toFloat(): Number",
+      "id": "tofloat():-number"
+    },
+    {
+      "level": "h3",
+      "text": "toInt(): Number",
+      "id": "toint():-number"
+    },
+    {
+      "level": "h3",
+      "text": "toSentenceCase(): String",
+      "id": "tosentencecase():-string"
+    },
+    {
+      "level": "h3",
+      "text": "toSnakeCase(): String",
+      "id": "tosnakecase():-string"
+    },
+    {
+      "level": "h3",
+      "text": "toTitleCase(): String",
+      "id": "totitlecase():-string"
+    },
+    {
+      "level": "h3",
+      "text": "toWholeNumber(): Number",
+      "id": "towholenumber():-number"
+    },
+    {
+      "level": "h3",
+      "text": "urlDecode(entireString?: Boolean): String",
+      "id": "urldecode(entirestring?:-boolean):-string"
+    },
+    {
+      "level": "h3",
+      "text": "urlEncode(entireString?: Boolean): String",
+      "id": "urlencode(entirestring?:-boolean):-string"
+    }
+  ],
+  "url": "llms-txt#strings",
+  "links": []
+}

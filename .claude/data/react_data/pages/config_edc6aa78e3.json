@@ -1,0 +1,64 @@
+{
+  "url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/config",
+  "title": "config",
+  "content": "Validates the compiler configuration options.\n\nReact Compiler accepts various configuration options to control its behavior. This rule validates that your configuration uses correct option names and value types, preventing silent failures from typos or incorrect settings.\n\nExamples of incorrect code for this rule:\n\nExamples of correct code for this rule:\n\nYour compiler configuration might have typos or incorrect values:\n\nCheck the configuration documentation for valid options:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "config",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Rule Details",
+      "id": "rule-details"
+    },
+    {
+      "level": "h3",
+      "text": "Invalid",
+      "id": "invalid"
+    },
+    {
+      "level": "h3",
+      "text": "Valid",
+      "id": "valid"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "Configuration not working as expected",
+      "id": "config-not-working"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// ❌ Unknown option namemodule.exports = {  plugins: [    ['babel-plugin-react-compiler', {      compileMode: 'all' // Typo: should be compilationMode    }]  ]};// ❌ Invalid option valuemodule.exports = {  plugins: [    ['babel-plugin-react-compiler', {      compilationMode: 'everything' // Invalid: use 'all' or 'infer'    }]  ]};",
+      "language": "unknown"
+    },
+    {
+      "code": "// ✅ Valid compiler configurationmodule.exports = {  plugins: [    ['babel-plugin-react-compiler', {      compilationMode: 'infer',      panicThreshold: 'critical_errors'    }]  ]};",
+      "language": "unknown"
+    },
+    {
+      "code": "// ❌ Wrong: Common configuration mistakesmodule.exports = {  plugins: [    ['babel-plugin-react-compiler', {      // Typo in option name      compilationMod: 'all',      // Wrong value type      panicThreshold: true,      // Unknown option      optimizationLevel: 'max'    }]  ]};",
+      "language": "unknown"
+    },
+    {
+      "code": "// ✅ Better: Valid configurationmodule.exports = {  plugins: [    ['babel-plugin-react-compiler', {      compilationMode: 'all', // or 'infer'      panicThreshold: 'none', // or 'critical_errors', 'all_errors'      // Only use documented options    }]  ]};",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/eslint-plugin-react-hooks",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/config",
+    "https://react.dev/reference/react-compiler/configuration",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/component-hook-factories",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/error-boundaries"
+  ]
+}

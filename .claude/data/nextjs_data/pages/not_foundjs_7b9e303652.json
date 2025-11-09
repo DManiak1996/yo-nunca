@@ -1,0 +1,84 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/not-found",
+  "title": "not-found.js",
+  "content": "Next.js provides two conventions to handle not found cases:\n\nThe not-found file is used to render UI when the notFound function is thrown within a route segment. Along with serving a custom UI, Next.js will return a 200 HTTP status code for streamed responses, and 404 for non-streamed responses.\n\nThe global-not-found.js file lets you define a 404 page for your entire application. Unlike not-found.js, which works at the route level, this is used when a requested URL doesn't match any route at all. Next.js skips rendering and directly returns this global page.\n\nThe global-not-found.js file bypasses your app's normal rendering, which means you'll need to import any global styles, fonts, or other dependencies that your 404 page requires.\n\nGood to know: A smaller version of your global styles, and a simpler font family could improve performance of this page.\n\nglobal-not-found.js is useful when you can't build a 404 page using a combination of layout.js and not-found.js. This can happen in two cases:\n\nTo enable it, add the globalNotFound flag in next.config.ts:\n\nThen, create a file in the root of the app directory: app/global-not-found.js:\n\nUnlike not-found.js, this file must return a full HTML document, including <html> and <body> tags.\n\nnot-found.js or global-not-found.js components do not accept any props.\n\nGood to know: In addition to catching expected notFound() errors, the root app/not-found.js and app/global-not-found.js files handle any unmatched URLs for your whole application. This means users that visit a URL that is not handled by your app will be shown the exported UI.\n\nBy default, not-found is a Server Component. You can mark it as async to fetch and display data:\n\nIf you need to use Client Component hooks like usePathname to display content based on the path, you must fetch data on the client-side instead.\n\nFor global-not-found.js, you can export a metadata object or a generateMetadata function to customize the <title>, <meta>, and other head tags for your 404 page:\n\nGood to know: Next.js automatically injects <meta name=\"robots\" content=\"noindex\" /> for pages that return a 404 status code, including global-not-found.js pages.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "not-found.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "not-found.js",
+      "id": "not-foundjs"
+    },
+    {
+      "level": "h2",
+      "text": "global-not-found.js (experimental)",
+      "id": "global-not-foundjs-experimental"
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Props",
+      "id": "props"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Data Fetching",
+      "id": "data-fetching"
+    },
+    {
+      "level": "h3",
+      "text": "Metadata",
+      "id": "metadata"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Link from 'next/link'\n \nexport default function NotFound() {\n  return (\n    <div>\n      <h2>Not Found</h2>\n      <p>Could not find requested resource</p>\n      <Link href=\"/\">Return Home</Link>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    globalNotFound: true,\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "// Import global styles and fonts\nimport './globals.css'\nimport { Inter } from 'next/font/google'\nimport type { Metadata } from 'next'\n \nconst inter = Inter({ subsets: ['latin'] })\n \nexport const metadata: Metadata = {\n  title: '404 - Page Not Found',\n  description: 'The page you are looking for does not exist.',\n}\n \nexport default function GlobalNotFound() {\n  return (\n    <html lang=\"en\" className={inter.className}>\n      <body>\n        <h1>404 - Page Not Found</h1>\n        <p>This page does not exist.</p>\n      </body>\n    </html>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\nimport { headers } from 'next/headers'\n \nexport default async function NotFound() {\n  const headersList = await headers()\n  const domain = headersList.get('host')\n  const data = await getSiteData(domain)\n  return (\n    <div>\n      <h2>Not Found: {data.name}</h2>\n      <p>Could not find requested resource</p>\n      <p>\n        View <Link href=\"/blog\">all posts</Link>\n      </p>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import type { Metadata } from 'next'\n \nexport const metadata: Metadata = {\n  title: 'Not Found',\n  description: 'The page you are looking for does not exist.',\n}\n \nexport default function GlobalNotFound() {\n  return (\n    <html lang=\"en\">\n      <body>\n        <div>\n          <h1>Not Found</h1>\n          <p>The page you are looking for does not exist.</p>\n        </div>\n      </body>\n    </html>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/functions/not-found",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/not-found",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-metadata",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/mdx-components",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page"
+  ]
+}

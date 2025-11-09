@@ -1,0 +1,8 @@
+{
+  "title": "Typeform Trigger node",
+  "content": "[Typeform](https://www.typeform.com/) is an online software as a service company that specializes in online form building and online surveys. Its main software creates dynamic forms based on user needs.\n\nYou can find authentication information for this node [here](../../credentials/typeform/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Typeform Trigger integrations](https://n8n.io/integrations/typeform-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#typeform-trigger-node",
+  "links": []
+}

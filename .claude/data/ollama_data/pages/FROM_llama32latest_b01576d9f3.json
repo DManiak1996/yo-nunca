@@ -1,0 +1,103 @@
+{
+  "title": "FROM llama3.2:latest",
+  "content": "FROM /Users/pdevine/.ollama/models/blobs/sha256-00e1317cbf74d901080d7100f57580ba8dd8de57203072dc6f668324ba545f29\nTEMPLATE \"\"\"{{ if .System }}<|start_header_id|>system<|end_header_id|>\n\n{{ .System }}<|eot_id|>{{ end }}{{ if .Prompt }}<|start_header_id|>user<|end_header_id|>\n\n{{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>\n\n{{ .Response }}<|eot_id|>\"\"\"\nPARAMETER stop \"<|start_header_id|>\"\nPARAMETER stop \"<|end_header_id|>\"\nPARAMETER stop \"<|eot_id|>\"\nPARAMETER stop \"<|reserved_special_token\"\n\nFROM <model name>:<tag>\n\nFROM <model directory>\n\nFROM ./ollama-model.gguf\n\nPARAMETER <parameter> <parametervalue>\n\nTEMPLATE \"\"\"{{ if .System }}<|im_start|>system\n{{ .System }}<|im_end|>\n{{ end }}{{ if .Prompt }}<|im_start|>user\n{{ .Prompt }}<|im_end|>\n{{ end }}<|im_start|>assistant\n\"\"\"\n\nSYSTEM \"\"\"<system message>\"\"\"\n\nADAPTER <path to safetensor adapter>\n\nADAPTER ./ollama-lora.gguf\n\nLICENSE \"\"\"\n<license text>\n\"\"\"\n\nMESSAGE <role> <message>\n\nMESSAGE user Is Toronto in Canada?\nMESSAGE assistant yes\nMESSAGE user Is Sacramento in Canada?\nMESSAGE assistant no\nMESSAGE user Is Ontario in Canada?\nMESSAGE assistant yes\n```\n\n* the **`Modelfile` is not case sensitive**. In the examples, uppercase instructions are used to make it easier to distinguish it from arguments.\n* Instructions can be in any order. In the examples, the `FROM` instruction is first to keep it easily readable.\n\n[1]: https://ollama.com/library",
+  "code_samples": [
+    {
+      "code": "## Instructions\n\n### FROM (Required)\n\nThe `FROM` instruction defines the base model to use when creating a model.",
+      "language": "unknown"
+    },
+    {
+      "code": "#### Build from existing model",
+      "language": "unknown"
+    },
+    {
+      "code": "<Card title=\"Base Models\" href=\"https://github.com/ollama/ollama#model-library\">\n  A list of available base models\n</Card>\n\n<Card title=\"Base Models\" href=\"https://ollama.com/library\">\n  Additional models can be found at\n</Card>\n\n#### Build from a Safetensors model",
+      "language": "unknown"
+    },
+    {
+      "code": "The model directory should contain the Safetensors weights for a supported architecture.\n\nCurrently supported model architectures:\n\n* Llama (including Llama 2, Llama 3, Llama 3.1, and Llama 3.2)\n* Mistral (including Mistral 1, Mistral 2, and Mixtral)\n* Gemma (including Gemma 1 and Gemma 2)\n* Phi3\n\n#### Build from a GGUF file",
+      "language": "unknown"
+    },
+    {
+      "code": "The GGUF file location should be specified as an absolute path or relative to the `Modelfile` location.\n\n### PARAMETER\n\nThe `PARAMETER` instruction defines a parameter that can be set when the model is run.",
+      "language": "unknown"
+    },
+    {
+      "code": "#### Valid Parameters and Values\n\n| Parameter       | Description                                                                                                                                                                                                                                                                                                                                                                     | Value Type | Example Usage        |\n| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | -------------------- |\n| mirostat        | Enable Mirostat sampling for controlling perplexity. (default: 0, 0 = disabled, 1 = Mirostat, 2 = Mirostat 2.0)                                                                                                                                                                                                                                                                 | int        | mirostat 0           |\n| mirostat\\_eta   | Influences how quickly the algorithm responds to feedback from the generated text. A lower learning rate will result in slower adjustments, while a higher learning rate will make the algorithm more responsive. (Default: 0.1)                                                                                                                                                | float      | mirostat\\_eta 0.1    |\n| mirostat\\_tau   | Controls the balance between coherence and diversity of the output. A lower value will result in more focused and coherent text. (Default: 5.0)                                                                                                                                                                                                                                 | float      | mirostat\\_tau 5.0    |\n| num\\_ctx        | Sets the size of the context window used to generate the next token. (Default: 2048)                                                                                                                                                                                                                                                                                            | int        | num\\_ctx 4096        |\n| repeat\\_last\\_n | Sets how far back for the model to look back to prevent repetition. (Default: 64, 0 = disabled, -1 = num\\_ctx)                                                                                                                                                                                                                                                                  | int        | repeat\\_last\\_n 64   |\n| repeat\\_penalty | Sets how strongly to penalize repetitions. A higher value (e.g., 1.5) will penalize repetitions more strongly, while a lower value (e.g., 0.9) will be more lenient. (Default: 1.1)                                                                                                                                                                                             | float      | repeat\\_penalty 1.1  |\n| temperature     | The temperature of the model. Increasing the temperature will make the model answer more creatively. (Default: 0.8)                                                                                                                                                                                                                                                             | float      | temperature 0.7      |\n| seed            | Sets the random number seed to use for generation. Setting this to a specific number will make the model generate the same text for the same prompt. (Default: 0)                                                                                                                                                                                                               | int        | seed 42              |\n| stop            | Sets the stop sequences to use. When this pattern is encountered the LLM will stop generating text and return. Multiple stop patterns may be set by specifying multiple separate `stop` parameters in a modelfile.                                                                                                                                                              | string     | stop \"AI assistant:\" |\n| num\\_predict    | Maximum number of tokens to predict when generating text. (Default: -1, infinite generation)                                                                                                                                                                                                                                                                                    | int        | num\\_predict 42      |\n| top\\_k          | Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative. (Default: 40)                                                                                                                                                                                                | int        | top\\_k 40            |\n| top\\_p          | Works together with top-k. A higher value (e.g., 0.95) will lead to more diverse text, while a lower value (e.g., 0.5) will generate more focused and conservative text. (Default: 0.9)                                                                                                                                                                                         | float      | top\\_p 0.9           |\n| min\\_p          | Alternative to the top*p, and aims to ensure a balance of quality and variety. The parameter \\_p* represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with *p*=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out. (Default: 0.0) | float      | min\\_p 0.05          |\n\n### TEMPLATE\n\n`TEMPLATE` of the full prompt template to be passed into the model. It may include (optionally) a system message, a user's message and the response from the model. Note: syntax may be model specific. Templates use Go [template syntax](https://pkg.go.dev/text/template).\n\n#### Template Variables\n\n| Variable          | Description                                                                                   |\n| ----------------- | --------------------------------------------------------------------------------------------- |\n| `{{ .System }}`   | The system message used to specify custom behavior.                                           |\n| `{{ .Prompt }}`   | The user prompt message.                                                                      |\n| `{{ .Response }}` | The response from the model. When generating a response, text after this variable is omitted. |",
+      "language": "unknown"
+    },
+    {
+      "code": "### SYSTEM\n\nThe `SYSTEM` instruction specifies the system message to be used in the template, if applicable.",
+      "language": "unknown"
+    },
+    {
+      "code": "### ADAPTER\n\nThe `ADAPTER` instruction specifies a fine tuned LoRA adapter that should apply to the base model. The value of the adapter should be an absolute path or a path relative to the Modelfile. The base model should be specified with a `FROM` instruction. If the base model is not the same as the base model that the adapter was tuned from the behaviour will be erratic.\n\n#### Safetensor adapter",
+      "language": "unknown"
+    },
+    {
+      "code": "Currently supported Safetensor adapters:\n\n* Llama (including Llama 2, Llama 3, and Llama 3.1)\n* Mistral (including Mistral 1, Mistral 2, and Mixtral)\n* Gemma (including Gemma 1 and Gemma 2)\n\n#### GGUF adapter",
+      "language": "unknown"
+    },
+    {
+      "code": "### LICENSE\n\nThe `LICENSE` instruction allows you to specify the legal license under which the model used with this Modelfile is shared or distributed.",
+      "language": "unknown"
+    },
+    {
+      "code": "### MESSAGE\n\nThe `MESSAGE` instruction allows you to specify a message history for the model to use when responding. Use multiple iterations of the MESSAGE command to build up a conversation which will guide the model to answer in a similar way.",
+      "language": "unknown"
+    },
+    {
+      "code": "#### Valid roles\n\n| Role      | Description                                                  |\n| --------- | ------------------------------------------------------------ |\n| system    | Alternate way of providing the SYSTEM message for the model. |\n| user      | An example message of what the user could have asked.        |\n| assistant | An example message of how the model should respond.          |\n\n#### Example conversation",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Instructions",
+      "id": "instructions"
+    },
+    {
+      "level": "h3",
+      "text": "FROM (Required)",
+      "id": "from-(required)"
+    },
+    {
+      "level": "h3",
+      "text": "PARAMETER",
+      "id": "parameter"
+    },
+    {
+      "level": "h3",
+      "text": "TEMPLATE",
+      "id": "template"
+    },
+    {
+      "level": "h3",
+      "text": "SYSTEM",
+      "id": "system"
+    },
+    {
+      "level": "h3",
+      "text": "ADAPTER",
+      "id": "adapter"
+    },
+    {
+      "level": "h3",
+      "text": "LICENSE",
+      "id": "license"
+    },
+    {
+      "level": "h3",
+      "text": "MESSAGE",
+      "id": "message"
+    },
+    {
+      "level": "h2",
+      "text": "Notes",
+      "id": "notes"
+    }
+  ],
+  "url": "llms-txt#from-llama3.2:latest",
+  "links": []
+}

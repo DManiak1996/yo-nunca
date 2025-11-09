@@ -1,0 +1,31 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/compress",
+  "title": "compress",
+  "content": "By default, Next.js uses gzip to compress rendered content and static files when using next start or a custom server. This is an optimization for applications that do not have compression configured. If compression is already configured in your application via a custom server, Next.js will not add compression.\n\nYou can check if compression is enabled and which algorithm is used by looking at the Accept-Encoding (browser accepted options) and Content-Encoding (currently used) headers in the response.\n\nTo disable compression, set the compress config option to false:\n\nWe do not recommend disabling compression unless you have compression configured on your server, as compression reduces bandwidth usage and improves the performance of your application. For example, you're using nginx and want to switch to brotli, set the compress option to false to allow nginx to handle compression.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "compress",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Disabling compression",
+      "id": "disabling-compression"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  compress: false,\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/compress",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheLife",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/crossOrigin"
+  ]
+}

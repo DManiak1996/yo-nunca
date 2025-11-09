@@ -1,0 +1,25 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/pageExtensions",
+  "title": "pageExtensions",
+  "content": "By default, Next.js accepts files with the following extensions: .tsx, .ts, .jsx, .js. This can be modified to allow other extensions like markdown (.md, .mdx).",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "pageExtensions",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "const withMDX = require('@next/mdx')()\n \n/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],\n}\n \nmodule.exports = withMDX(nextConfig)",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/output",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/poweredByHeader"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "url": "https://nextjs.org/docs/app/guides/migrating",
+  "title": "Migrating",
+  "content": "",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Migrating",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "App Router",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Create React App",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Vite",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/guides",
+    "https://nextjs.org/docs/app/guides/migrating/app-router-migration",
+    "https://nextjs.org/docs/app/guides/migrating/from-create-react-app",
+    "https://nextjs.org/docs/app/guides/migrating/from-vite",
+    "https://nextjs.org/docs/app/guides/memory-usage"
+  ]
+}

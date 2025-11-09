@@ -1,0 +1,85 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/directives/use-cache-private",
+  "title": "use cache: private",
+  "content": "The 'use cache: private' directive works just like use cache, but allows you to use runtime APIs like cookies, headers, or search params.\n\nGood to know: Unlike use cache, private caches are not prerendered statically as they contain personalized data that is not shared between users.\n\nTo use 'use cache: private', enable the cacheComponents flag in your next.config.ts file:\n\nThen add 'use cache: private' to your function along with a cacheLife configuration.\n\nThe following request-specific APIs can be used inside 'use cache: private' functions:\n\nNote: The connection() API is prohibited in both use cache and 'use cache: private' as it provides connection-specific information that cannot be safely cached.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "use cache: private",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Basic example",
+      "id": "basic-example"
+    },
+    {
+      "level": "h2",
+      "text": "Request APIs allowed in private caches",
+      "id": "request-apis-allowed-in-private-caches"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    },
+    {
+      "level": "h2",
+      "text": "Related",
+      "id": "related"
+    },
+    {
+      "level": "h3",
+      "text": "use cache",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheComponents",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheLife",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheTag",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Prefetching",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  cacheComponents: true,\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "import { Suspense } from 'react'\nimport { cookies } from 'next/headers'\nimport { cacheLife, cacheTag } from 'next/cache'\n \nexport default async function ProductPage({\n  params,\n}: {\n  params: Promise<{ id: string }>\n}) {\n  const { id } = await params\n \n  return (\n    <div>\n      <ProductDetails id={id} />\n      <Suspense fallback={<div>Loading recommendations...</div>}>\n        <Recommendations productId={id} />\n      </Suspense>\n    </div>\n  )\n}\n \nasync function Recommendations({ productId }: { productId: string }) {\n  const recommendations = await getRecommendations(productId)\n \n  return (\n    <div>\n      {recommendations.map((rec) => (\n        <ProductCard key={rec.id} product={rec} />\n      ))}\n    </div>\n  )\n}\n \nasync function getRecommendations(productId: string) {\n  'use cache: private'\n  cacheTag(`recommendations-${productId}`)\n  cacheLife({ stale: 60 }) // Minimum 30 seconds required for runtime prefetch\n \n  // Access cookies within private cache functions\n  const sessionId = (await cookies()).get('session-id')?.value || 'guest'\n \n  return getPersonalizedRecommendations(productId, sessionId)\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/directives",
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache",
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache-private",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents",
+    "https://nextjs.org/docs/app/api-reference/functions/connection",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheLife",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheTag",
+    "https://nextjs.org/docs/app/guides/prefetching",
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache-remote"
+  ]
+}

@@ -1,0 +1,261 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/components/font",
+  "title": "Font Module",
+  "content": "next/font automatically optimizes your fonts (including custom fonts) and removes external network requests for improved privacy and performance.\n\nIt includes built-in automatic self-hosting for any font file. This means you can optimally load web fonts with no layout shift.\n\nYou can also conveniently use all Google Fonts. CSS and font files are downloaded at build time and self-hosted with the rest of your static assets. No requests are sent to Google by the browser.\n\nTo use the font in all your pages, add it to _app.js file under /pages as shown below:\n\n🎥 Watch: Learn more about using next/font → YouTube (6 minutes).\n\nThe path of the font file as a string or an array of objects (with type Array<{path: string, weight?: string, style?: string}>) relative to the directory where the font loader function is called.\n\nUsed in next/font/local\n\nThe font weight with the following possibilities:\n\nUsed in next/font/google and next/font/local\n\nThe font style with the following possibilities:\n\nUsed in next/font/google and next/font/local\n\nThe font subsets defined by an array of string values with the names of each subset you would like to be preloaded. Fonts specified via subsets will have a link preload tag injected into the head when the preload option is true, which is the default.\n\nUsed in next/font/google\n\nYou can find a list of all subsets on the Google Fonts page for your font.\n\nSome variable fonts have extra axes that can be included. By default, only the font weight is included to keep the file size down. The possible values of axes depend on the specific font.\n\nUsed in next/font/google\n\nThe font display with possible string values of 'auto', 'block', 'swap', 'fallback' or 'optional' with default value of 'swap'.\n\nUsed in next/font/google and next/font/local\n\nA boolean value that specifies whether the font should be preloaded or not. The default is true.\n\nUsed in next/font/google and next/font/local\n\nThe fallback font to use if the font cannot be loaded. An array of strings of fallback fonts with no default.\n\nUsed in next/font/google and next/font/local\n\nUsed in next/font/google and next/font/local\n\nA string value to define the CSS variable name to be used if the style is applied with the CSS variable method.\n\nUsed in next/font/google and next/font/local\n\nAn array of font face descriptor key-value pairs that define the generated @font-face further.\n\nUsed in next/font/local\n\nTo use a Google font, import it from next/font/google as a function. We recommend using variable fonts for the best performance and flexibility.\n\nTo use the font in all your pages, add it to _app.js file under /pages as shown below:\n\nIf you can't use a variable font, you will need to specify a weight:\n\nYou can specify multiple weights and/or styles by using an array:\n\nGood to know: Use an underscore (_) for font names with multiple words. E.g. Roboto Mono should be imported as Roboto_Mono.\n\nYou can also use the font without a wrapper and className by injecting it inside the <head> as follows:\n\nTo use the font on a single page, add it to the specific page as shown below:\n\nGoogle Fonts are automatically subset. This reduces the size of the font file and improves performance. You'll need to define which of these subsets you want to preload. Failing to specify any subsets while preload is true will result in a warning.\n\nThis can be done by adding it to the function call:\n\nView the Font API Reference for more information.\n\nYou can import and use multiple fonts in your application. There are two approaches you can take.\n\nThe first approach is to create a utility function that exports a font, imports it, and applies its className where needed. This ensures the font is preloaded only when it's rendered:\n\nIn the example above, Inter will be applied globally, and Roboto Mono can be imported and applied as needed.\n\nAlternatively, you can create a CSS variable and use it with your preferred CSS solution:\n\nIn the example above, Inter will be applied globally, and any <h1> tags will be styled with Roboto Mono.\n\nRecommendation: Use multiple fonts conservatively since each new font is an additional resource the client has to download.\n\nImport next/font/local and specify the src of your local font file. We recommend using variable fonts for the best performance and flexibility.\n\nIf you want to use multiple files for a single font family, src can be an array:\n\nView the Font API Reference for more information.\n\nnext/font integrates seamlessly with Tailwind CSS using CSS variables.\n\nIn the example below, we use the Inter and Roboto_Mono fonts from next/font/google (you can use any Google Font or Local Font). Use the variable option to define a CSS variable name, such as inter and roboto_mono for these fonts, respectively. Then, apply inter.variable and roboto_mono.variable to include the CSS variables in your HTML document.\n\nGood to know: You can add these variables to the <html> or <body> tag, depending on your preference, styling needs or project requirements.\n\nFinally, add the CSS variable to your Tailwind CSS config:\n\nYou can now use the font-sans and font-mono utility classes to apply the font to your elements.\n\nYou can apply the font styles in three ways:\n\nReturns a read-only CSS className for the loaded font to be passed to an HTML element.\n\nReturns a read-only CSS style object for the loaded font to be passed to an HTML element, including style.fontFamily to access the font family name and fallback fonts.\n\nIf you would like to set your styles in an external style sheet and specify additional options there, use the CSS variable method.\n\nIn addition to importing the font, also import the CSS file where the CSS variable is defined and set the variable option of the font loader object as follows:\n\nTo use the font, set the className of the parent container of the text you would like to style to the font loader's variable value and the className of the text to the styles property from the external CSS file.\n\nDefine the text selector class in the component.module.css CSS file as follows:\n\nIn the example above, the text Hello World is styled using the Inter font and the generated font fallback with font-weight: 200 and font-style: italic.\n\nEvery time you call the localFont or Google font function, that font will be hosted as one instance in your application. Therefore, if you need to use the same font in multiple places, you should load it in one place and import the related font object where you need it. This is done using a font definitions file.\n\nFor example, create a fonts.ts file in a styles folder at the root of your app directory.\n\nThen, specify your font definitions as follows:\n\nYou can now use these definitions in your code as follows:\n\nTo make it easier to access the font definitions in your code, you can define a path alias in your tsconfig.json or jsconfig.json files as follows:\n\nYou can now import any font definition as follows:\n\nWhen a font function is called on a page of your site, it is not globally available and preloaded on all routes. Rather, the font is only preloaded on the related route/s based on the type of file where it is used:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Font Module",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "src",
+      "id": "src"
+    },
+    {
+      "level": "h3",
+      "text": "weight",
+      "id": "weight"
+    },
+    {
+      "level": "h3",
+      "text": "style",
+      "id": "style"
+    },
+    {
+      "level": "h3",
+      "text": "subsets",
+      "id": "subsets"
+    },
+    {
+      "level": "h3",
+      "text": "axes",
+      "id": "axes"
+    },
+    {
+      "level": "h3",
+      "text": "display",
+      "id": "display"
+    },
+    {
+      "level": "h3",
+      "text": "preload",
+      "id": "preload"
+    },
+    {
+      "level": "h3",
+      "text": "fallback",
+      "id": "fallback"
+    },
+    {
+      "level": "h3",
+      "text": "adjustFontFallback",
+      "id": "adjustfontfallback"
+    },
+    {
+      "level": "h3",
+      "text": "variable",
+      "id": "variable"
+    },
+    {
+      "level": "h3",
+      "text": "declarations",
+      "id": "declarations"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h2",
+      "text": "Google Fonts",
+      "id": "google-fonts"
+    },
+    {
+      "level": "h3",
+      "text": "Apply the font in <head>",
+      "id": "apply-the-font-in-head"
+    },
+    {
+      "level": "h3",
+      "text": "Single page usage",
+      "id": "single-page-usage"
+    },
+    {
+      "level": "h3",
+      "text": "Specifying a subset",
+      "id": "specifying-a-subset"
+    },
+    {
+      "level": "h2",
+      "text": "Using Multiple Fonts",
+      "id": "using-multiple-fonts"
+    },
+    {
+      "level": "h3",
+      "text": "Local Fonts",
+      "id": "local-fonts"
+    },
+    {
+      "level": "h3",
+      "text": "With Tailwind CSS",
+      "id": "with-tailwind-css"
+    },
+    {
+      "level": "h3",
+      "text": "Tailwind CSS v3",
+      "id": "tailwind-css-v3"
+    },
+    {
+      "level": "h3",
+      "text": "Applying Styles",
+      "id": "applying-styles"
+    },
+    {
+      "level": "h4",
+      "text": "className",
+      "id": "classname"
+    },
+    {
+      "level": "h4",
+      "text": "style",
+      "id": "style-1"
+    },
+    {
+      "level": "h4",
+      "text": "CSS Variables",
+      "id": "css-variables"
+    },
+    {
+      "level": "h3",
+      "text": "Using a font definitions file",
+      "id": "using-a-font-definitions-file"
+    },
+    {
+      "level": "h3",
+      "text": "Preloading",
+      "id": "preloading"
+    },
+    {
+      "level": "h2",
+      "text": "Version Changes",
+      "id": "version-changes"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { Inter } from 'next/font/google'\n \n// If loading a variable font, you don't need to specify the font weight\nconst inter = Inter({ subsets: ['latin'] })\n \nexport default function MyApp({ Component, pageProps }) {\n  return (\n    <main className={inter.className}>\n      <Component {...pageProps} />\n    </main>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Inter } from 'next/font/google'\n \n// If loading a variable font, you don't need to specify the font weight\nconst inter = Inter({ subsets: ['latin'] })\n \nexport default function MyApp({ Component, pageProps }) {\n  return (\n    <main className={inter.className}>\n      <Component {...pageProps} />\n    </main>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Roboto } from 'next/font/google'\n \nconst roboto = Roboto({\n  weight: '400',\n  subsets: ['latin'],\n})\n \nexport default function MyApp({ Component, pageProps }) {\n  return (\n    <main className={roboto.className}>\n      <Component {...pageProps} />\n    </main>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "const roboto = Roboto({\n  weight: ['400', '700'],\n  style: ['normal', 'italic'],\n  subsets: ['latin'],\n  display: 'swap',\n})",
+      "language": "javascript"
+    },
+    {
+      "code": "import { Inter } from 'next/font/google'\n \nconst inter = Inter({ subsets: ['latin'] })\n \nexport default function MyApp({ Component, pageProps }) {\n  return (\n    <>\n      <style jsx global>{`\n        html {\n          font-family: ${inter.style.fontFamily};\n        }\n      `}</style>\n      <Component {...pageProps} />\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Inter } from 'next/font/google'\n \nconst inter = Inter({ subsets: ['latin'] })\n \nexport default function Home() {\n  return (\n    <div className={inter.className}>\n      <p>Hello World</p>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "const inter = Inter({ subsets: ['latin'] })",
+      "language": "javascript"
+    },
+    {
+      "code": "import { Inter, Roboto_Mono } from 'next/font/google'\n \nexport const inter = Inter({\n  subsets: ['latin'],\n  display: 'swap',\n})\n \nexport const roboto_mono = Roboto_Mono({\n  subsets: ['latin'],\n  display: 'swap',\n})",
+      "language": "python"
+    },
+    {
+      "code": "html {\n  font-family: var(--font-inter);\n}\n \nh1 {\n  font-family: var(--font-roboto-mono);\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import localFont from 'next/font/local'\n \n// Font files can be colocated inside of `pages`\nconst myFont = localFont({ src: './my-font.woff2' })\n \nexport default function MyApp({ Component, pageProps }) {\n  return (\n    <main className={myFont.className}>\n      <Component {...pageProps} />\n    </main>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "const roboto = localFont({\n  src: [\n    {\n      path: './Roboto-Regular.woff2',\n      weight: '400',\n      style: 'normal',\n    },\n    {\n      path: './Roboto-Italic.woff2',\n      weight: '400',\n      style: 'italic',\n    },\n    {\n      path: './Roboto-Bold.woff2',\n      weight: '700',\n      style: 'normal',\n    },\n    {\n      path: './Roboto-BoldItalic.woff2',\n      weight: '700',\n      style: 'italic',\n    },\n  ],\n})",
+      "language": "javascript"
+    },
+    {
+      "code": "import { Inter } from 'next/font/google'\n \nconst inter = Inter({\n  subsets: ['latin'],\n  variable: '--font-inter',\n})\n \nconst roboto_mono = Roboto_Mono({\n  subsets: ['latin'],\n  display: 'swap',\n  variable: '--font-roboto-mono',\n})\n \nexport default function MyApp({ Component, pageProps }) {\n  return (\n    <main className={`${inter.variable} ${roboto_mono.variable} font-sans`}>\n      <Component {...pageProps} />\n    </main>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "@import 'tailwindcss';\n \n@theme inline {\n  --font-sans: var(--font-inter);\n  --font-mono: var(--font-roboto-mono);\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "/** @type {import('tailwindcss').Config} */\nmodule.exports = {\n  content: [\n    './pages/**/*.{js,ts,jsx,tsx}',\n    './components/**/*.{js,ts,jsx,tsx}',\n    './app/**/*.{js,ts,jsx,tsx}',\n  ],\n  theme: {\n    extend: {\n      fontFamily: {\n        sans: ['var(--font-inter)'],\n        mono: ['var(--font-roboto-mono)'],\n      },\n    },\n  },\n  plugins: [],\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "<p class=\"font-sans ...\">The quick brown fox ...</p>\n<p class=\"font-mono ...\">The quick brown fox ...</p>",
+      "language": "unknown"
+    },
+    {
+      "code": "<p className={inter.className}>Hello, Next.js!</p>",
+      "language": "unknown"
+    },
+    {
+      "code": "<p style={inter.style}>Hello World</p>",
+      "language": "unknown"
+    },
+    {
+      "code": "import { Inter } from 'next/font/google'\nimport styles from '../styles/component.module.css'\n \nconst inter = Inter({\n  variable: '--font-inter',\n})",
+      "language": "python"
+    },
+    {
+      "code": "<main className={inter.variable}>\n  <p className={styles.text}>Hello World</p>\n</main>",
+      "language": "unknown"
+    },
+    {
+      "code": ".text {\n  font-family: var(--font-inter);\n  font-weight: 200;\n  font-style: italic;\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import { Inter, Lora, Source_Sans_3 } from 'next/font/google'\nimport localFont from 'next/font/local'\n \n// define your variable fonts\nconst inter = Inter()\nconst lora = Lora()\n// define 2 weights of a non-variable font\nconst sourceCodePro400 = Source_Sans_3({ weight: '400' })\nconst sourceCodePro700 = Source_Sans_3({ weight: '700' })\n// define a custom local font where GreatVibes-Regular.ttf is stored in the styles folder\nconst greatVibes = localFont({ src: './GreatVibes-Regular.ttf' })\n \nexport { inter, lora, sourceCodePro400, sourceCodePro700, greatVibes }",
+      "language": "python"
+    },
+    {
+      "code": "import { inter, lora, sourceCodePro700, greatVibes } from '../styles/fonts'\n \nexport default function Page() {\n  return (\n    <div>\n      <p className={inter.className}>Hello world using Inter font</p>\n      <p style={lora.style}>Hello world using Lora font</p>\n      <p className={sourceCodePro700.className}>\n        Hello world using Source_Sans_3 font with weight 700\n      </p>\n      <p className={greatVibes.className}>My title in Great Vibes font</p>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "{\n  \"compilerOptions\": {\n    \"paths\": {\n      \"@/fonts\": [\"./styles/fonts\"]\n    }\n  }\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import { greatVibes, sourceCodePro400 } from '@/fonts'",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/api-reference",
+    "https://nextjs.org/docs/pages/api-reference/components",
+    "https://nextjs.org/docs/app/api-reference/components/font",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-app",
+    "https://nextjs.org/docs/pages/api-reference/components/font",
+    "https://nextjs.org/docs/app/getting-started/css",
+    "https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts",
+    "https://nextjs.org/docs/pages/api-reference/components/form"
+  ]
+}

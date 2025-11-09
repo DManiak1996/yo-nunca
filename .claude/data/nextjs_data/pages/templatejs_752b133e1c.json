@@ -1,0 +1,89 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/template",
+  "title": "template.js",
+  "content": "A template file is similar to a layout in that it wraps a layout or page. Unlike layouts that persist across routes and maintain state, templates are given a unique key, meaning children Client Components reset their state on navigation.\n\nThey are useful when you need to:\n\nA template can be defined by exporting a default React component from a template.js file. The component should accept a children prop.\n\nIn terms of nesting, template.js is rendered between a layout and its children. Here's a simplified output:\n\nTemplate accepts a children prop.\n\nThis section illustrates how templates behave during navigation. It shows, step by step, which templates remount on each route change and why.\n\nUsing this project tree:\n\nStarting at /, the React tree looks roughly like this.\n\nNote: The key values shown in the examples are illustrative, the values in your application may differ.\n\nNavigating to /about (first segment changes), the root template key changes, it remounts:\n\nNavigating to /blog (first segment changes), the root template key changes, it remounts and the blog-level template mounts:\n\nNavigating within the same first segment to /blog/first-post (child segment changes), the root template key doesn't change, but the blog-level template key changes, it remounts:\n\nNavigating to /blog/second-post (same first segment, different child segment), the root template key doesn't change, but the blog-level template key changes, it remounts again:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "template.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Convention",
+      "id": "convention"
+    },
+    {
+      "level": "h2",
+      "text": "Props",
+      "id": "props"
+    },
+    {
+      "level": "h3",
+      "text": "children (required)",
+      "id": "children-required"
+    },
+    {
+      "level": "h2",
+      "text": "Behavior",
+      "id": "behavior"
+    },
+    {
+      "level": "h3",
+      "text": "Templates during navigation and remounting",
+      "id": "templates-during-navigation-and-remounting"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export default function Template({ children }: { children: React.ReactNode }) {\n  return <div>{children}</div>\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "<Layout>\n  {/* Note that the template is given a unique key. */}\n  <Template key={routeParam}>{children}</Template>\n</Layout>",
+      "language": "unknown"
+    },
+    {
+      "code": "<Layout>\n  {/* Note that the template is automatically given a unique key. */}\n  <Template key={routeParam}>{children}</Template>\n</Layout>",
+      "language": "unknown"
+    },
+    {
+      "code": "app\n├── about\n│   ├── page.tsx\n├── blog\n│   ├── [slug]\n│   │   └── page.tsx\n│   ├── page.tsx\n│   └── template.tsx\n├── layout.tsx\n├── page.tsx\n└── template.tsx",
+      "language": "unknown"
+    },
+    {
+      "code": "<RootLayout>\n  {/* app/template.tsx */}\n  <Template key=\"/\">\n    <Page />\n  </Template>\n</RootLayout>",
+      "language": "unknown"
+    },
+    {
+      "code": "<RootLayout>\n  {/* app/template.tsx */}\n  <Template key=\"/about\">\n    <AboutPage />\n  </Template>\n</RootLayout>",
+      "language": "unknown"
+    },
+    {
+      "code": "<RootLayout>\n  {/* app/template.tsx (root) */}\n  <Template key=\"/blog\">\n    {/* app/blog/template.tsx */}\n    <Template key=\"/blog\">\n      <BlogIndexPage />\n    </Template>\n  </Template>\n</RootLayout>",
+      "language": "unknown"
+    },
+    {
+      "code": "<RootLayout>\n  {/* app/template.tsx (root) */}\n  <Template key=\"/blog\">\n    {/* app/blog/template.tsx */}\n    {/* remounts because the child segment at this level changed */}\n    <Template key=\"/blog/first-post\">\n      <BlogPostPage slug=\"first-post\" />\n    </Template>\n  </Template>\n</RootLayout>",
+      "language": "unknown"
+    },
+    {
+      "code": "<RootLayout>\n  {/* app/template.tsx (root) */}\n  <Template key=\"/blog\">\n    {/* app/blog/template.tsx */}\n    {/* remounts again due to changed child segment */}\n    <Template key=\"/blog/second-post\">\n      <BlogPostPage slug=\"second-post\" />\n    </Template>\n  </Template>\n</RootLayout>",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/getting-started/layouts-and-pages",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/template",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/src-folder",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/unauthorized"
+  ]
+}

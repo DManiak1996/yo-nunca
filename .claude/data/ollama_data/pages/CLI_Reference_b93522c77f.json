@@ -1,0 +1,125 @@
+{
+  "title": "CLI Reference",
+  "content": "Source: https://docs.ollama.com/cli\n\nFor multiline input, you can wrap text with `\"\"\"`:\n\n#### Multimodal models\n\n### Generate embeddings\n\nOutput is a JSON array:\n\n### Sign in to Ollama\n\n### Sign out of Ollama\n\n### Create a customized model\n\nFirst, create a `Modelfile`\n\nThen run `ollama create`:\n\n### List running models\n\n### Stop a running model\n\nTo view a list of environment variables that can be set run `ollama serve --help`",
+  "code_samples": [
+    {
+      "code": "ollama run gemma3",
+      "language": "unknown"
+    },
+    {
+      "code": ">>> \"\"\"Hello,\n... world!\n... \"\"\"\nI'm a basic program that prints the famous \"Hello, world!\" message to the console.",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama run gemma3 \"What's in this image? /Users/jmorgan/Desktop/smile.png\"",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama run embeddinggemma \"Hello world\"",
+      "language": "unknown"
+    },
+    {
+      "code": "echo \"Hello world\" | ollama run nomic-embed-text",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama pull gemma3",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama rm gemma3",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama ls",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama signin",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama signout",
+      "language": "unknown"
+    },
+    {
+      "code": "FROM gemma3\nSYSTEM \"\"\"You are a happy cat.\"\"\"",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama create -f Modelfile",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama ps",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama stop gemma3",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama serve",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h3",
+      "text": "Run a model",
+      "id": "run-a-model"
+    },
+    {
+      "level": "h3",
+      "text": "Generate embeddings",
+      "id": "generate-embeddings"
+    },
+    {
+      "level": "h3",
+      "text": "Download a model",
+      "id": "download-a-model"
+    },
+    {
+      "level": "h3",
+      "text": "Remove a model",
+      "id": "remove-a-model"
+    },
+    {
+      "level": "h3",
+      "text": "List models",
+      "id": "list-models"
+    },
+    {
+      "level": "h3",
+      "text": "Sign in to Ollama",
+      "id": "sign-in-to-ollama"
+    },
+    {
+      "level": "h3",
+      "text": "Sign out of Ollama",
+      "id": "sign-out-of-ollama"
+    },
+    {
+      "level": "h3",
+      "text": "Create a customized model",
+      "id": "create-a-customized-model"
+    },
+    {
+      "level": "h3",
+      "text": "List running models",
+      "id": "list-running-models"
+    },
+    {
+      "level": "h3",
+      "text": "Stop a running model",
+      "id": "stop-a-running-model"
+    },
+    {
+      "level": "h3",
+      "text": "Start Ollama",
+      "id": "start-ollama"
+    }
+  ],
+  "url": "llms-txt#cli-reference",
+  "links": []
+}

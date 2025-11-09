@@ -1,0 +1,29 @@
+{
+  "title": "Programmatic-style parameters",
+  "content": "These are the parameters available for [node base file](../) of programmatic-style nodes.\n\nThis document gives short code snippets to help understand the code structure and concepts. For a full walk-through of building a node, including real-world code examples, refer to [Build a programmatic-style node](../../../programmatic-style-node/).\n\nProgrammatic-style nodes also use the `execute()` method. Refer to [Programmatic-style execute method](../programmatic-style-execute-method/) for more information.\n\nRefer to [Standard parameters](../standard-parameters/) for parameters available to all nodes.\n\n*Number* | *Optional*\n\nUse `defaultVersion` when using the full versioning approach.\n\nn8n support two methods of node versioning. Refer to [Node versioning](../../node-versioning/) for more information.\n\n## `methods` and `loadOptions`\n\n*Object* | *Optional*\n\nContains the `loadOptions` method for programmatic-style nodes. You can use this method to query the service to get user-specific settings (such as getting a user's email labels from Gmail), then return them and render them in the GUI so the user can include them in subsequent queries.\n\nFor example, n8n's [Gmail node](https://github.com/n8n-io/n8n/blob/master/packages/nodes-base/nodes/Google/Gmail/Gmail.node.ts) uses `loadOptions` to get all email labels:\n\n*Number* or *Array* | *Optional*\n\nUse `version` when using the light versioning approach.\n\nIf you have one version of your node, this can be a number. If you want to support multiple versions, turn this into an array, containing numbers for each node version.\n\nn8n support two methods of node versioning. Programmatic-style nodes can use either. Refer to [Node versioning](../../node-versioning/) for more information.",
+  "code_samples": [
+    {
+      "code": "methods = {\n\t\tloadOptions: {\n\t\t\t// Get all the labels and display them\n\t\t\tasync getLabels(\n\t\t\t\tthis: ILoadOptionsFunctions,\n\t\t\t): Promise<INodePropertyOptions[]> {\n\t\t\t\tconst returnData: INodePropertyOptions[] = [];\n\t\t\t\tconst labels = await googleApiRequestAllItems.call(\n\t\t\t\t\tthis,\n\t\t\t\t\t'labels',\n\t\t\t\t\t'GET',\n\t\t\t\t\t'/gmail/v1/users/me/labels',\n\t\t\t\t);\n\t\t\t\tfor (const label of labels) {\n\t\t\t\t\tconst labelName = label.name;\n\t\t\t\t\tconst labelId = label.id;\n\t\t\t\t\treturnData.push({\n\t\t\t\t\t\tname: labelName,\n\t\t\t\t\t\tvalue: labelId,\n\t\t\t\t\t});\n\t\t\t\t}\n\t\t\t\treturn returnData;\n\t\t\t},\n\t\t},\n\t};",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "`defaultVersion`",
+      "id": "`defaultversion`"
+    },
+    {
+      "level": "h2",
+      "text": "`methods` and `loadOptions`",
+      "id": "`methods`-and-`loadoptions`"
+    },
+    {
+      "level": "h2",
+      "text": "`version`",
+      "id": "`version`"
+    }
+  ],
+  "url": "llms-txt#programmatic-style-parameters",
+  "links": []
+}

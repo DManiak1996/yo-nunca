@@ -1,0 +1,8 @@
+{
+  "title": "Postmark Trigger node",
+  "content": "[Postmark](https://postmarkapp.com) helps deliver and track application email. You can track statistics such as the number of emails sent or processed, opens, bounces and, spam complaints.\n\nYou can find authentication information for this node [here](../../credentials/postmark/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Postmark Trigger integrations](https://n8n.io/integrations/postmark-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#postmark-trigger-node",
+  "links": []
+}

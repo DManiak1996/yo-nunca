@@ -1,0 +1,14 @@
+{
+  "title": "Calendly Trigger node",
+  "content": "[Calendly](https://calendly.com/) is an automated scheduling software that's designed to help find meeting times.\n\nYou can find authentication information for this node [here](../../credentials/calendly/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Calendly Trigger integrations](https://n8n.io/integrations/calendly-trigger/) page.\n\n- Event created\n- Event canceled",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    }
+  ],
+  "url": "llms-txt#calendly-trigger-node",
+  "links": []
+}

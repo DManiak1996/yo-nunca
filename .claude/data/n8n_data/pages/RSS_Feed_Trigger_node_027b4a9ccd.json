@@ -1,0 +1,63 @@
+{
+  "title": "RSS Feed Trigger node",
+  "content": "The RSS Feed Trigger node allows you to start an n8n workflow when a new RSS feed item has been published.\n\nOn this page, you'll find a list of operations the RSS Feed Trigger node supports, and links to more resources.\n\n- **Poll Times**: Select a poll **Mode** to set how often to trigger the poll. Your **Mode** selection will add or remove relevant fields. Refer to the sections below to configure the parameters for each mode type.\n- **Feed URL**: Enter the URL of the RSS feed to poll.\n\nEnter the **Minute** of the hour to trigger the poll, from `0` to `59`.\n\n- Enter the **Hour** of the day to trigger the poll in 24-hour format, from `0` to `23`.\n- Enter the **Minute** of the hour to trigger the poll, from `0` to `59`.\n\n- Enter the **Hour** of the day to trigger the poll in 24-hour format, from `0` to `23`.\n- Enter the **Minute** of the hour to trigger the poll, from `0` to `59`.\n- Select the **Weekday** to trigger the poll.\n\n- Enter the **Hour** of the day to trigger the poll in 24-hour format, from `0` to `23`.\n- Enter the **Minute** of the hour to trigger the poll, from `0` to `59`.\n- Enter the **Day of the Month** to trigger the poll, from `0` to `31`.\n\n- Enter the **Value** of measurement for how often to trigger the poll in either minutes or hours.\n- Select the **Unit** for the value. Supported units are **Minutes** and **Hours**.\n\nEnter a custom **Cron Expression** to trigger the poll. Use these values and ranges:\n\n- Seconds: `0` - `59`\n- Minutes: `0` - `59`\n- Hours: `0` - `23`\n- Day of Month: `1` - `31`\n- Months: `0` - `11` (Jan - Dec)\n- Day of Week: `0` - `6` (Sun - Sat)\n\nTo generate a Cron expression, you can use [crontab guru](https://crontab.guru). Paste the Cron expression that you generated using crontab guru in the **Cron Expression** field in n8n.\n\nIf you want to trigger your workflow every day at 04:08:30, enter the following in the **Cron Expression** field.\n\nIf you want to trigger your workflow every day at 04:08, enter the following in the **Cron Expression** field.\n\n#### Why there are six asterisks in the Cron expression\n\nThe sixth asterisk in the Cron expression represents seconds. Setting this is optional. The node will execute even if you don't set the value for seconds.\n\n| \\*     | \\*     | \\*   | \\*           | \\*    | \\*          |\n| ------ | ------ | ---- | ------------ | ----- | ----------- |\n| second | minute | hour | day of month | month | day of week |\n\n## Templates and examples\n\n**Create an RSS feed based on a website's content**\n\n[View template details](https://n8n.io/workflows/1418-create-an-rss-feed-based-on-a-websites-content/)\n\n**Scrape and summarize posts of a news site without RSS feed using AI and save them to a NocoDB**\n\n[View template details](https://n8n.io/workflows/2180-scrape-and-summarize-posts-of-a-news-site-without-rss-feed-using-ai-and-save-them-to-a-nocodb/)\n\n**Generate Youtube Video Metadata (Timestamps, Tags, Description, ...)**\n\n[View template details](https://n8n.io/workflows/4506-generate-youtube-video-metadata-timestamps-tags-description/)\n\n[Browse RSS Feed Trigger integration templates](https://n8n.io/integrations/rss-feed-trigger/), or [search all templates](https://n8n.io/workflows/)\n\nn8n provides an app node for RSS Feeds. You can find the node docs [here](../n8n-nodes-base.rssfeedread/).",
+  "code_samples": [
+    {
+      "code": "30 8 4 * * *",
+      "language": "unknown"
+    },
+    {
+      "code": "8 4 * * *",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Every Hour mode",
+      "id": "every-hour-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Every Day mode",
+      "id": "every-day-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Every Week mode",
+      "id": "every-week-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Every Month mode",
+      "id": "every-month-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Every X mode",
+      "id": "every-x-mode"
+    },
+    {
+      "level": "h3",
+      "text": "Custom mode",
+      "id": "custom-mode"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#rss-feed-trigger-node",
+  "links": []
+}

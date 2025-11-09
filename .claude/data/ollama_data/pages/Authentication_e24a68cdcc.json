@@ -1,0 +1,36 @@
+{
+  "title": "Authentication",
+  "content": "Source: https://docs.ollama.com/api/authentication\n\nNo authentication is required when accessing Ollama's API locally via `http://localhost:11434`.\n\nAuthentication is required for the following:\n\n* Running cloud models via ollama.com\n* Publishing models\n* Downloading private models\n\nOllama supports two authentication methods:\n\n* **Signing in**: sign in from your local installation, and Ollama will automatically take care of authenticating requests to ollama.com when running commands\n* **API keys**: API keys for programmatic access to ollama.com's API\n\nTo sign in to ollama.com from your local installation of Ollama, run:\n\nOnce signed in, Ollama will automatically authenticate commands as required:\n\nSimilarly, when accessing a local API endpoint that requires cloud access, Ollama will automatically authenticate the request:\n\nFor direct access to ollama.com's API served at `https://ollama.com/api`, authentication via API keys is required.\n\nFirst, create an [API key](https://ollama.com/settings/keys), then set the `OLLAMA_API_KEY` environment variable:\n\nThen use the API key in the Authorization header:\n\nAPI keys don't currently expire, however you can revoke them at any time in your [API keys settings](https://ollama.com/settings/keys).",
+  "code_samples": [
+    {
+      "code": "ollama signin",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama run gpt-oss:120b-cloud",
+      "language": "unknown"
+    },
+    {
+      "code": "## API keys\n\nFor direct access to ollama.com's API served at `https://ollama.com/api`, authentication via API keys is required.\n\nFirst, create an [API key](https://ollama.com/settings/keys), then set the `OLLAMA_API_KEY` environment variable:",
+      "language": "unknown"
+    },
+    {
+      "code": "Then use the API key in the Authorization header:",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Signing in",
+      "id": "signing-in"
+    },
+    {
+      "level": "h2",
+      "text": "API keys",
+      "id": "api-keys"
+    }
+  ],
+  "url": "llms-txt#authentication",
+  "links": []
+}

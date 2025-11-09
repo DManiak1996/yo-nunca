@@ -1,0 +1,338 @@
+{
+  "url": "https://nextjs.org/docs/pages/building-your-application/rendering",
+  "title": "Cache Components",
+  "content": "Cache Components is a new approach to rendering and caching in Next.js that provides fine-grained control over what gets cached and when, while ensuring a great user experience through Partial Prerendering (PPR).\n\nWhen developing dynamic applications, you have to balance two primary approaches:\n\nWith Cache Components enabled, Next.js treats all routes as dynamic by default. Every request renders with the latest available data. However, most pages are made up of both static and dynamic parts, and not all dynamic data needs to be resolved from source on every request.\n\nCache Components allows you to mark data, and even parts of your UI as cacheable, which includes them in the pre-render pass alongside static parts of the page.\n\nBefore Cache Components, Next.js tried to statically optimize entire pages automatically, which could lead to unexpected behavior when adding dynamic code.\n\nCache Components implements Partial Prerendering (PPR), and use cache to give you the best of both worlds:\n\nWhen a user visits a route:\n\n🎥 Watch: Why PPR and how it works → YouTube (10 minutes).\n\nGood to know: Cache Components is an opt-in feature. Enable it by setting the cacheComponents flag to true in your Next config file. See Enabling Cache Components for more details.\n\nCache Components gives you three key tools to control rendering:\n\nSome data is only available at runtime when an actual user makes a request. APIs like cookies, headers, and searchParams access request-specific information. Wrap components using these APIs in Suspense boundaries so the rest of the page can be pre-rendered as a static shell.\n\nRuntime APIs include:\n\nDynamic data like fetch calls or database queries (db.query(...)) can change between requests but isn't user-specific. The connection API is meta-dynamic—it represents waiting for a user navigation even though there's no actual data to return. Wrap components that use these in Suspense boundaries to enable streaming.\n\nDynamic data patterns include:\n\nAdd use cache to any Server Component to make it cached and include it in the pre-rendered shell. You cannot use runtime APIs from inside a cached component. You can also mark utility functions as use cache and call them from Server Components.\n\nReact Suspense boundaries let you define what fallback UI to use when it wraps dynamic or runtime data.\n\nContent outside the boundary, including the fallback UI, is pre-rendered as a static shell, while content inside the boundary streams in when ready.\n\nHere's how to use Suspense with Cache Components:\n\nAt build time, Next.js pre-renders the static content and the fallback UI, while the dynamic content is postponed until a user requests the route.\n\nGood to know: Wrapping a component in Suspense doesn't make it dynamic; your API usage does. Suspense acts as a boundary that encapsulates dynamic content and enables streaming.\n\nCache Components enforces that dynamic code must be wrapped in a Suspense boundary. If you forget, you'll see the Uncached data was accessed outside of <Suspense> error:\n\nUncached data was accessed outside of <Suspense>\n\nThis delays the entire page from rendering, resulting in a slow user experience. Next.js uses this error to ensure your app loads instantly on every navigation.\n\nTo fix this, you can either:\n\nWrap the component in a <Suspense> boundary. This allows Next.js to stream its contents to the user as soon as it's ready, without blocking the rest of the app.\n\nMove the asynchronous await into a Cache Component(\"use cache\"). This allows Next.js to statically prerender the component as part of the HTML document, so it's instantly visible to the user.\n\nNote that request-specific information, such as params, cookies, and headers, is not available during static prerendering, so it must be wrapped in <Suspense>.\n\nThis error helps prevent a situation where, instead of getting a static shell instantly, users would hit a blocking runtime render with nothing to show. To fix it, add a Suspense boundary or use use cache to cache the work instead.\n\nStreaming splits the route into chunks and progressively streams them to the client as they become ready. This allows the user to see parts of the page immediately, before the entire content has finished rendering.\n\nWith partial pre-rendering, the initial UI can be sent immediately to the browser while the dynamic parts render. This decreases time to UI and may decrease total request time depending on how much of your UI is pre-rendered.\n\nTo reduce network overhead, the full response, including static HTML and streamed dynamic parts, is sent in a single HTTP request. This avoids extra round-trips and improves both initial load and overall performance.\n\nWhile Suspense boundaries manage dynamic content, the use cache directive is available for caching data or computations that don't change often.\n\nAdd use cache to cache a page, component, or async function, and define a lifetime with cacheLife:\n\nWhen using use cache, keep these constraints in mind:\n\nLike Server Actions, arguments to cached functions must be serializable. This means you can pass primitives, plain objects, and arrays, but not class instances, functions, or other complex types.\n\nYou can accept unserializable values as arguments as long as you don't introspect them. However, you can return them. This allows patterns like cached components that accept Server or Client Components as children:\n\nTag cached data with cacheTag and revalidate it after mutations using updateTag in Server Actions for immediate updates, or revalidateTag delay in updates are acceptable.\n\nUse updateTag when you need to expire and immediately refresh cached data within the same request:\n\nUse revalidateTag when you want to invalidate only properly tagged cached entries with stale-while-revalidate behavior. This is ideal for static content that can tolerate eventual consistency.\n\nFor more detailed explanation and usage examples, see the use cache API reference.\n\nYou can enable Cache Components (which includes PPR) by adding the cacheComponents option to your Next config file:\n\nWhen the cacheComponents flag is enabled, Next.js uses React's <Activity> component to preserve component state during client-side navigation.\n\nRather than unmounting the previous route when you navigate away, Next.js sets the Activity mode to \"hidden\". This means:\n\nThis behavior improves the navigation experience by maintaining UI state (form inputs, or expanded sections) when users navigate back and forth between routes.\n\nGood to know: Next.js uses heuristics to keep a few recently visited routes \"hidden\", while older routes are removed from the DOM to prevent excessive growth.\n\nWhen Cache Components is enabled, several route segment config options are no longer needed or supported. Here's what changes and how to migrate:\n\nNot needed. All pages are dynamic by default with Cache Components enabled, so this configuration is unnecessary.\n\nReplace with use cache. You must add use cache to each Layout and Page for the associated route instead.\n\nNote: force-static previously allowed the use of runtime APIs like cookies(), but this is no longer supported. If you add use cache and see an error related to runtime data, you must remove the use of runtime APIs.\n\nReplace with cacheLife. Use the cacheLife function to define cache duration instead of the route segment config.\n\nNot needed. With use cache, all data fetching within a cached scope is automatically cached, making fetchCache unnecessary.\n\nNot supported. Cache Components requires Node.js runtime and will throw errors with Edge Runtime.\n\nUnderstanding how Cache Components changes your mental model:\n\nWhen accessing runtime APIs like cookies(), Next.js will only pre-render the fallback UI above this component.\n\nIn this example, we have no fallback defined, so Next.js shows an error instructing us to provide one. The <User /> component needs to be wrapped in Suspense because it uses the cookies API:\n\nNow we have a Suspense boundary around our User component we can pre-render the Page with a Skeleton UI and stream in the <User /> UI when a specific user makes a request\n\nComponents that access runtime values like cookies or searchParams cannot be prerendered. To prerender more of a page's content, you can pass these props down and access their values lower in the tree. For example, if you are reading searchParams from a <Page /> component, you can forward this value to another component as a prop:\n\nInside of the table component, accessing the value from searchParams will make the component dynamic while the rest of the page will be pre-rendered.\n\nGET Route Handlers follow the same model as normal UI routes in your application. They are dynamic by default, can be pre-rendered when deterministic, and you can use cache to include more dynamic data in the cached response.\n\nDynamic example, returns a different number for every request:\n\nA handler that returns only static data will be pre-rendered at build time:\n\nIf you had a route that returned fresh dynamic data on every request, say products from a database:\n\nTo cache this and avoid hitting the database on every request, extract the dynamic work into a use cache function and set cacheLife('hours') so the database is queried at most once per hour:\n\nNo. Cache Components implements PPR as a feature. The old experimental PPR flag has been removed but PPR is here to stay.\n\nPPR provides the static shell and streaming infrastructure; use cache lets you include optimized dynamic output in that shell when beneficial.\n\nWhat you cache should be a function of what you want your UI loading states to be. If data doesn't depend on runtime data and you're okay with a cached value being served for multiple requests over a period of time, use use cache with cacheLife to describe that behavior.\n\nFor content management systems with update mechanisms, consider using tags with longer cache durations and rely on revalidateTag to mark static initial UI as ready for revalidation. This pattern allows you to serve fast, cached responses while still updating content when it actually changes, rather than expiring the cache preemptively.\n\nUse cacheTag to tag your cached data, then trigger updateTag or revalidateTag.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Cache Components",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Cache Components",
+      "id": "cache-components"
+    },
+    {
+      "level": "h2",
+      "text": "How it works",
+      "id": "how-it-works"
+    },
+    {
+      "level": "h3",
+      "text": "1. Suspense for runtime data",
+      "id": "1-suspense-for-runtime-data"
+    },
+    {
+      "level": "h3",
+      "text": "2. Suspense for dynamic data",
+      "id": "2-suspense-for-dynamic-data"
+    },
+    {
+      "level": "h3",
+      "text": "3. Cached data with use cache",
+      "id": "3-cached-data-with-use-cache"
+    },
+    {
+      "level": "h2",
+      "text": "Using Suspense boundaries",
+      "id": "using-suspense-boundaries"
+    },
+    {
+      "level": "h3",
+      "text": "Missing Suspense boundaries",
+      "id": "missing-suspense-boundaries"
+    },
+    {
+      "level": "h3",
+      "text": "How streaming works",
+      "id": "how-streaming-works"
+    },
+    {
+      "level": "h2",
+      "text": "Using use cache",
+      "id": "using-use-cache"
+    },
+    {
+      "level": "h3",
+      "text": "Basic usage",
+      "id": "basic-usage"
+    },
+    {
+      "level": "h3",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h4",
+      "text": "Arguments must be serializable",
+      "id": "arguments-must-be-serializable"
+    },
+    {
+      "level": "h4",
+      "text": "Accepting unserializable values without introspection",
+      "id": "accepting-unserializable-values-without-introspection"
+    },
+    {
+      "level": "h3",
+      "text": "Tagging and revalidating",
+      "id": "tagging-and-revalidating"
+    },
+    {
+      "level": "h4",
+      "text": "With updateTag",
+      "id": "with-updatetag"
+    },
+    {
+      "level": "h4",
+      "text": "With revalidateTag",
+      "id": "with-revalidatetag"
+    },
+    {
+      "level": "h2",
+      "text": "Enabling Cache Components",
+      "id": "enabling-cache-components"
+    },
+    {
+      "level": "h3",
+      "text": "Navigation with Cache Components",
+      "id": "navigation-with-cache-components"
+    },
+    {
+      "level": "h3",
+      "text": "Effect on route segment config",
+      "id": "effect-on-route-segment-config"
+    },
+    {
+      "level": "h4",
+      "text": "dynamic = \"force-dynamic\"",
+      "id": "dynamic--force-dynamic"
+    },
+    {
+      "level": "h4",
+      "text": "dynamic = \"force-static\"",
+      "id": "dynamic--force-static"
+    },
+    {
+      "level": "h4",
+      "text": "revalidate",
+      "id": "revalidate"
+    },
+    {
+      "level": "h4",
+      "text": "fetchCache",
+      "id": "fetchcache"
+    },
+    {
+      "level": "h4",
+      "text": "runtime = 'edge'",
+      "id": "runtime--edge"
+    },
+    {
+      "level": "h2",
+      "text": "Before vs. after Cache Components",
+      "id": "before-vs-after-cache-components"
+    },
+    {
+      "level": "h3",
+      "text": "Before Cache Components",
+      "id": "before-cache-components"
+    },
+    {
+      "level": "h3",
+      "text": "With Cache Components",
+      "id": "with-cache-components"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Dynamic APIs",
+      "id": "dynamic-apis"
+    },
+    {
+      "level": "h3",
+      "text": "Passing dynamic props",
+      "id": "passing-dynamic-props"
+    },
+    {
+      "level": "h2",
+      "text": "Route Handlers with Cache Components",
+      "id": "route-handlers-with-cache-components"
+    },
+    {
+      "level": "h2",
+      "text": "Frequently Asked Questions",
+      "id": "frequently-asked-questions"
+    },
+    {
+      "level": "h3",
+      "text": "Does this replace Partial Prerendering (PPR)?",
+      "id": "does-this-replace-partial-prerendering-ppr"
+    },
+    {
+      "level": "h3",
+      "text": "What should I cache first?",
+      "id": "what-should-i-cache-first"
+    },
+    {
+      "level": "h3",
+      "text": "How do I update cached content quickly?",
+      "id": "how-do-i-update-cached-content-quickly"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "cacheComponents",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "use cache",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheLife",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheTag",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "revalidateTag",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "updateTag",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export async function getProducts() {\n  'use cache'\n  const data = await db.query('SELECT * FROM products')\n  return data\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { Suspense } from 'react'\n \nexport default function Page() {\n  return (\n    <>\n      <h1>This will be pre-rendered</h1>\n      <Suspense fallback={<Skeleton />}>\n        <DynamicContent />\n      </Suspense>\n    </>\n  )\n}\n \nasync function DynamicContent() {\n  const res = await fetch('http://api.cms.com/posts')\n  const { posts } = await res.json()\n  return <div>{/* ... */}</div>\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cacheLife } from 'next/cache'\n \nexport default async function Page() {\n  'use cache'\n  cacheLife('hours')\n  // fetch or compute\n  return <div>...</div>\n}",
+      "language": "python"
+    },
+    {
+      "code": "import type { ReactNode } from 'react'\nimport { setTimeout } from 'node:timers/promises'\n \nasync function getSiteTitle() {\n  // Simulate a slow database or API call\n  await setTimeout(1000) // from 'node:timers/promises'\n  return 'My Website'\n}\n \nexport async function CachedWrapper({ children }: { children: ReactNode }) {\n  'use cache'\n  const title = await getSiteTitle()\n \n  // Don't introspect children, just pass it through\n  return (\n    <div className=\"wrapper\">\n      <h1>{title}</h1>\n      {children}\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cacheTag, updateTag } from 'next/cache'\n \nexport async function getCart() {\n  'use cache'\n  cacheTag('cart')\n  // fetch data\n}\n \nexport async function updateCart(itemId: string) {\n  'use server'\n  // write data using the itemId\n  // update the user cart\n  updateTag('cart')\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cacheTag, revalidateTag } from 'next/cache'\n \nexport async function getPosts() {\n  'use cache'\n  cacheTag('posts')\n  // fetch data\n}\n \nexport async function createPost(post: FormData) {\n  'use server'\n  // write data using the FormData\n  revalidateTag('posts', 'max')\n}",
+      "language": "python"
+    },
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  cacheComponents: true,\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "// Before - No longer needed\nexport const dynamic = 'force-dynamic'\n \nexport default function Page() {\n  return <div>...</div>\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "// After - Just remove it, pages are dynamic by default\nexport default function Page() {\n  return <div>...</div>\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "// Before\nexport const dynamic = 'force-static'\n \nexport default async function Page() {\n  const data = await fetch('https://api.example.com/data')\n  return <div>...</div>\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "// After - Use 'use cache' instead\nexport default async function Page() {\n  'use cache'\n  const data = await fetch('https://api.example.com/data')\n  return <div>...</div>\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "// Before\nexport const revalidate = 3600 // 1 hour\n \nexport default async function Page() {\n  return <div>...</div>\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "// After - Use cacheLife\nimport { cacheLife } from 'next/cache'\n \nexport default async function Page() {\n  'use cache'\n  cacheLife('hours')\n  return <div>...</div>\n}",
+      "language": "python"
+    },
+    {
+      "code": "// Before\nexport const fetchCache = 'force-cache'",
+      "language": "javascript"
+    },
+    {
+      "code": "// After - Use 'use cache' to control caching behavior\nexport default async function Page() {\n  'use cache'\n  // All fetches here are cached\n  return <div>...</div>\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import { cookies } from 'next/headers'\n \nexport async function User() {\n  const session = (await cookies()).get('session')?.value\n  return '...'\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Suspense } from 'react'\nimport { User, AvatarSkeleton } from './user'\n \nexport default function Page() {\n  return (\n    <section>\n      <h1>This will be pre-rendered</h1>\n      <Suspense fallback={<AvatarSkeleton />}>\n        <User />\n      </Suspense>\n    </section>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Table, TableSkeleton } from './table'\nimport { Suspense } from 'react'\n \nexport default function Page({\n  searchParams,\n}: {\n  searchParams: Promise<{ sort: string }>\n}) {\n  return (\n    <section>\n      <h1>This will be pre-rendered</h1>\n      <Suspense fallback={<TableSkeleton />}>\n        <Table searchParams={searchParams.then((search) => search.sort)} />\n      </Suspense>\n    </section>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "export async function Table({ sortPromise }: { sortPromise: Promise<string> }) {\n  const sort = (await sortPromise) === 'true'\n  return '...'\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function GET() {\n  return Response.json({\n    randomNumber: Math.random(),\n  })\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export async function GET() {\n  return Response.json({\n    projectName: 'Next.js',\n  })\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export async function GET() {\n  const products = await db.query('SELECT * FROM products')\n \n  return Response.json(products)\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { cacheLife } from 'next/cache'\n \nexport async function GET() {\n  const products = await getProducts()\n \n  return Response.json(products)\n}\n \nasync function getProducts() {\n  'use cache'\n  cacheLife('hours')\n \n  return await db.query('SELECT * FROM products')\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/getting-started",
+    "https://nextjs.org/docs/pages/building-your-application/rendering",
+    "https://nextjs.org/docs/app/api-reference/functions/cookies",
+    "https://nextjs.org/docs/app/api-reference/functions/headers",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-static-params",
+    "https://nextjs.org/docs/app/api-reference/functions/fetch",
+    "https://nextjs.org/docs/app/api-reference/functions/connection",
+    "https://nextjs.org/docs/messages/blocking-route",
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheLife",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheTag",
+    "https://nextjs.org/docs/app/api-reference/functions/updateTag",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidateTag",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents",
+    "https://nextjs.org/docs/app/api-reference/edge",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/getting-started/fetching-data"
+  ]
+}

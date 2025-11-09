@@ -1,0 +1,49 @@
+{
+  "title": "TOTP",
+  "content": "The TOTP node provides a way to generate a TOTP (time-based one-time password).\n\nRefer to [TOTP credentials](../../credentials/totp/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\nConfigure this node with these parameters.\n\n### Credential to connect with\n\nSelect or create a [TOTP credential](../../credentials/totp/) for the node to use.\n\n**Generate Secret** is the only operation currently supported.\n\nUse these **Options** to further configure the node.\n\nSelect the HMAC hashing algorithm to use. Default is SHA1.\n\nEnter the number of digits in the generated code. Default is `6`.\n\nEnter how many seconds the TOTP is valid for. Default is `30`.\n\n## Templates and examples\n\n[Browse TOTP integration templates](https://n8n.io/integrations/totp/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Credential to connect with",
+      "id": "credential-to-connect-with"
+    },
+    {
+      "level": "h3",
+      "text": "Operation",
+      "id": "operation"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h3",
+      "text": "Algorithm",
+      "id": "algorithm"
+    },
+    {
+      "level": "h3",
+      "text": "Digits",
+      "id": "digits"
+    },
+    {
+      "level": "h3",
+      "text": "Period",
+      "id": "period"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#totp",
+  "links": []
+}

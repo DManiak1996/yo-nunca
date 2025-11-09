@@ -1,0 +1,120 @@
+{
+  "title": "Build a declarative-style node",
+  "content": "This tutorial walks through building a declarative-style node. Before you begin, make sure this is the node style you need. Refer to [Choose your node building approach](../../plan/choose-node-method/) for more information.\n\nYou need the following installed on your development machine:\n\n- [git](https://git-scm.com/downloads)\n- Node.js and npm. Minimum version Node 18.17.0. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).\n\nYou need some understanding of:\n\n- JavaScript/TypeScript\n- REST APIs\n- git\n\nIn this section, you'll clone n8n's node starter repository, and build a node that integrates the [NASA API](https://api.nasa.gov/). You'll create a node that uses two of NASA's services: APOD (Astronomy Picture of the Day) and Mars Rover Photos. To keep the code examples short, the node won't implement every available option for the Mars Rover Photos endpoint.\n\nn8n has a built-in NASA node. To avoid clashing with the existing node, you'll give your version a different name.\n\n### Step 1: Set up the project\n\nn8n provides a starter repository for node development. Using the starter ensures you have all necessary dependencies. It also provides a linter.\n\nClone the repository and navigate into the directory:\n\n1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from the template repository.\n\n1. Clone your new repository:\n\nThe starter contains example nodes and credentials. Delete the following directories and files:\n\n- `nodes/ExampleNode`\n- `nodes/HTTPBin`\n- `credentials/ExampleCredentials.credentials.ts`\n- `credentials/HttpBinApi.credentials.ts`\n\nNow create the following directories and files:\n\n`nodes/NasaPics`\\\n`nodes/NasaPics/NasaPics.node.json`\\\n`nodes/NasaPics/NasaPics.node.ts`\\\n`credentials/NasaPicsApi.credentials.ts`\n\nThese are the key files required for any node. Refer to [Node file structure](../reference/node-file-structure/) for more information on required files and recommended organization.\n\nNow install the project dependencies:\n\n### Step 2: Add an icon\n\nSave the NASA SVG logo from [here](https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg) as `nasapics.svg` in `nodes/NasaPics/`.\n\nn8n recommends using an SVG for your node icon, but you can also use PNG. If using PNG, the icon resolution should be 60x60px. Node icons should have a square or near-square aspect ratio.\n\nDon't reference Font Awesome\n\nIf you want to use a Font Awesome icon in your node, download and embed the image.\n\n### Step 3: Create the node\n\nEvery node must have a base file. Refer to [Node base file](../reference/node-base-files/) for detailed information about base file parameters.\n\nIn this example, the file is `NasaPics.node.ts`. To keep this tutorial short, you'll place all the node functionality in this one file. When building more complex nodes, you should consider splitting out your functionality into modules. Refer to [Node file structure](../reference/node-file-structure/) for more information.\n\n#### Step 3.1: Imports\n\nStart by adding the import statements:\n\n#### Step 3.2: Create the main class\n\nThe node must export an interface that implements INodeType. This interface must include a `description` interface, which in turn contains the `properties` array.\n\nClass names and file names\n\nMake sure the class name and the file name match. For example, given a class `NasaPics`, the filename must be `NasaPics.node.ts`.\n\n#### Step 3.3: Add node details\n\nAll nodes need some basic parameters, such as their display name, icon, and the basic information for making a request using the node. Add the following to the `description`:\n\nn8n uses some of the properties set in `description` to render the node in the Editor UI. These properties are `displayName`, `icon`, `description`, and `subtitle`.\n\n#### Step 3.4: Add resources\n\nThe resource object defines the API resource that the node uses. In this tutorial, you're creating a node to access two of NASA's API endpoints: `planetary/apod` and `mars-photos`. This means you need to define two resource options in `NasaPics.node.ts`. Update the `properties` array with the resource object:\n\n`type` controls which UI element n8n displays for the resource, and tells n8n what type of data to expect from the user. `options` results in n8n adding a dropdown that allows users to choose one option. Refer to [Node UI elements](../reference/ui-elements/) for more information.\n\n#### Step 3.5: Add operations\n\nThe operations object defines the available operations on a resource.\n\nIn a declarative-style node, the operations object includes `routing` (within the `options` array). This sets up the details of the API call.\n\nAdd the following to the `properties` array, after the `resource` object:\n\nThis code creates two operations: one to get today's APOD image, and another to send a get request for photos from one of the Mars Rovers. The object named `roverName` requires the user to choose which Rover they want photos from. The `routing` object in the Mars Rover operation references this to create the URL for the API call.\n\n#### Step 3.6: Optional fields\n\nMost APIs, including the NASA API that you're using in this example, have optional fields you can use to refine your query.\n\nTo avoid overwhelming users, n8n displays these under **Additional Fields** in the UI.\n\nFor this tutorial, you'll add one additional field, to allow users to pick a date to use with the APOD endpoint. Add the following to the properties array:\n\n### Step 4: Set up authentication\n\nThe NASA API requires users to authenticate with an API key.\n\nAdd the following to `nasaPicsApi.credentials.ts`:\n\nFor more information about credentials files and options, refer to [Credentials file](../reference/credentials-files/).\n\n### Step 5: Add node metadata\n\nMetadata about your node goes in the JSON file at the root of your node. n8n refers to this as the codex file. In this example, the file is `NasaPics.node.json`.\n\nAdd the following code to the JSON file:\n\nFor more information on these parameters, refer to [Node codex files](../reference/node-codex-files/).\n\n### Step 6: Update the npm package details\n\nYour npm package details are in the `package.json` at the root of the project. It's essential to include the `n8n` object with links to the credentials and base node file. Update this file to include the following information:\n\nYou need to update the `package.json` to include your own information, such as your name and repository URL. For more information on npm `package.json` files, refer to [npm's package.json documentation](https://docs.npmjs.com/cli/v8/configuring-npm/package-json).\n\nYou can test your node as you build it by running it in a local n8n instance.\n\n1. Install n8n using npm:\n\n1. When you are ready to test your node, publish it locally:\n\n1. Install the node into your local n8n instance:\n\nMake sure you run `npm link <node-name>` in the nodes directory within your n8n installation. This can be:\n\n- `~/.n8n/custom/`\n   - `~/.n8n/<your-custom-name>`: if your n8n installation set a different name using `N8N_CUSTOM_EXTENSIONS`.\n\n1. Open n8n in your browser. You should see your nodes when you search for them in the nodes panel.\n\nMake sure you search using the node name, not the package name. For example, if your npm package name is `n8n-nodes-weather-nodes`, and the package contains nodes named `rain`, `sun`, `snow`, you should search for `rain`, not `weather-nodes`.\n\nIf there's no `custom` directory in `~/.n8n` local installation, you have to create `custom` directory manually and run `npm init`:",
+  "code_samples": [
+    {
+      "code": "git clone https://github.com/<your-organization>/<your-repo-name>.git n8n-nodes-nasa-pics\n   cd n8n-nodes-nasa-pics",
+      "language": "unknown"
+    },
+    {
+      "code": "npm i",
+      "language": "unknown"
+    },
+    {
+      "code": "import { INodeType, INodeTypeDescription } from 'n8n-workflow';",
+      "language": "unknown"
+    },
+    {
+      "code": "export class NasaPics implements INodeType {\n\tdescription: INodeTypeDescription = {\n\t\t// Basic node details will go here\n\t\tproperties: [\n\t\t// Resources and operations will go here\n\t\t]\n\t};\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "displayName: 'NASA Pics',\nname: 'nasaPics',\nicon: 'file:nasapics.svg',\ngroup: ['transform'],\nversion: 1,\nsubtitle: '={{$parameter[\"operation\"] + \": \" + $parameter[\"resource\"]}}',\ndescription: 'Get data from NASAs API',\ndefaults: {\n\tname: 'NASA Pics',\n},\ninputs: ['main'],\noutputs: ['main'],\ncredentials: [\n\t{\n\t\tname: 'NasaPicsApi',\n\t\trequired: true,\n\t},\n],\nrequestDefaults: {\n\tbaseURL: 'https://api.nasa.gov',\n\theaders: {\n\t\tAccept: 'application/json',\n\t\t'Content-Type': 'application/json',\n\t},\n},",
+      "language": "unknown"
+    },
+    {
+      "code": "properties: [\n\t{\n\t\tdisplayName: 'Resource',\n\t\tname: 'resource',\n\t\ttype: 'options',\n\t\tnoDataExpression: true,\n\t\toptions: [\n\t\t\t{\n\t\t\t\tname: 'Astronomy Picture of the Day',\n\t\t\t\tvalue: 'astronomyPictureOfTheDay',\n\t\t\t},\n\t\t\t{\n\t\t\t\tname: 'Mars Rover Photos',\n\t\t\t\tvalue: 'marsRoverPhotos',\n\t\t\t},\n\t\t],\n\t\tdefault: 'astronomyPictureOfTheDay',\n\t},\n\t// Operations will go here\n\n]",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n\tdisplayName: 'Operation',\n\tname: 'operation',\n\ttype: 'options',\n\tnoDataExpression: true,\n\tdisplayOptions: {\n\t\tshow: {\n\t\t\tresource: [\n\t\t\t\t'astronomyPictureOfTheDay',\n\t\t\t],\n\t\t},\n\t},\n\toptions: [\n\t\t{\n\t\t\tname: 'Get',\n\t\t\tvalue: 'get',\n\t\t\taction: 'Get the APOD',\n\t\t\tdescription: 'Get the Astronomy Picture of the day',\n\t\t\trouting: {\n\t\t\t\trequest: {\n\t\t\t\t\tmethod: 'GET',\n\t\t\t\t\turl: '/planetary/apod',\n\t\t\t\t},\n\t\t\t},\n\t\t},\n\t],\n\tdefault: 'get',\n},\n{\n\tdisplayName: 'Operation',\n\tname: 'operation',\n\ttype: 'options',\n\tnoDataExpression: true,\n\tdisplayOptions: {\n\t\tshow: {\n\t\t\tresource: [\n\t\t\t\t'marsRoverPhotos',\n\t\t\t],\n\t\t},\n\t},\n\toptions: [\n\t\t{\n\t\t\tname: 'Get',\n\t\t\tvalue: 'get',\n\t\t\taction: 'Get Mars Rover photos',\n\t\t\tdescription: 'Get photos from the Mars Rover',\n\t\t\trouting: {\n\t\t\t\trequest: {\n\t\t\t\t\tmethod: 'GET',\n\t\t\t\t},\n\t\t\t},\n\t\t},\n\t],\n\tdefault: 'get',\n},\n{\n\tdisplayName: 'Rover name',\n\tdescription: 'Choose which Mars Rover to get a photo from',\n\trequired: true,\n\tname: 'roverName',\n\ttype: 'options',\n\toptions: [\n\t\t{name: 'Curiosity', value: 'curiosity'},\n\t\t{name: 'Opportunity', value: 'opportunity'},\n\t\t{name: 'Perseverance', value: 'perseverance'},\n\t\t{name: 'Spirit', value: 'spirit'},\n\t],\n\trouting: {\n\t\trequest: {\n\t\t\turl: '=/mars-photos/api/v1/rovers/{{$value}}/photos',\n\t\t},\n\t},\n\tdefault: 'curiosity',\n\tdisplayOptions: {\n\t\tshow: {\n\t\t\tresource: [\n\t\t\t\t'marsRoverPhotos',\n\t\t\t],\n\t\t},\n\t},\n},\n{\n\tdisplayName: 'Date',\n\tdescription: 'Earth date',\n\trequired: true,\n\tname: 'marsRoverDate',\n\ttype: 'dateTime',\n\tdefault:'',\n\tdisplayOptions: {\n\t\tshow: {\n\t\t\tresource: [\n\t\t\t\t'marsRoverPhotos',\n\t\t\t],\n\t\t},\n\t},\n\trouting: {\n\t\trequest: {\n\t\t\t// You've already set up the URL. qs appends the value of the field as a query string\n\t\t\tqs: {\n\t\t\t\tearth_date: '={{ new Date($value).toISOString().substr(0,10) }}',\n\t\t\t},\n\t\t},\n\t},\n},\n// Optional/additional fields will go here",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n\tdisplayName: 'Additional Fields',\n\tname: 'additionalFields',\n\ttype: 'collection',\n\tdefault: {},\n\tplaceholder: 'Add Field',\n\tdisplayOptions: {\n\t\tshow: {\n\t\t\tresource: [\n\t\t\t\t'astronomyPictureOfTheDay',\n\t\t\t],\n\t\t\toperation: [\n\t\t\t\t'get',\n\t\t\t],\n\t\t},\n\t},\n\toptions: [\n\t\t{\n\t\t\tdisplayName: 'Date',\n\t\t\tname: 'apodDate',\n\t\t\ttype: 'dateTime',\n\t\t\tdefault: '',\n\t\t\trouting: {\n\t\t\t\trequest: {\n\t\t\t\t\t// You've already set up the URL. qs appends the value of the field as a query string\n\t\t\t\t\tqs: {\n\t\t\t\t\t\tdate: '={{ new Date($value).toISOString().substr(0,10) }}',\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t},\n\t],\t\t\t\t\t\t\t\t\t\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import {\n\tIAuthenticateGeneric,\n\tICredentialType,\n\tINodeProperties,\n} from 'n8n-workflow';\n\nexport class NasaPicsApi implements ICredentialType {\n\tname = 'NasaPicsApi';\n\tdisplayName = 'NASA Pics API';\n\t// Uses the link to this tutorial as an example\n\t// Replace with your own docs links when building your own nodes\n\tdocumentationUrl = 'https://docs.n8n.io/integrations/creating-nodes/build/declarative-style-node/';\n\tproperties: INodeProperties[] = [\n\t\t{\n\t\t\tdisplayName: 'API Key',\n\t\t\tname: 'apiKey',\n\t\t\ttype: 'string',\n\t\t\tdefault: '',\n\t\t},\n\t];\n\tauthenticate = {\n\t\ttype: 'generic',\n\t\tproperties: {\n\t\t\tqs: {\n\t\t\t\t'api_key': '={{$credentials.apiKey}}'\n\t\t\t}\n\t\t},\n\t} as IAuthenticateGeneric;\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n\t\"node\": \"n8n-nodes-base.NasaPics\",\n\t\"nodeVersion\": \"1.0\",\n\t\"codexVersion\": \"1.0\",\n\t\"categories\": [\n\t\t\"Miscellaneous\"\n\t],\n\t\"resources\": {\n\t\t\"credentialDocumentation\": [\n\t\t\t{\n\t\t\t\t\"url\": \"\"\n\t\t\t}\n\t\t],\n\t\t\"primaryDocumentation\": [\n\t\t\t{\n\t\t\t\t\"url\": \"\"\n\t\t\t}\n\t\t]\n\t}\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n\t// All node names must start with \"n8n-nodes-\"\n\t\"name\": \"n8n-nodes-nasapics\",\n\t\"version\": \"0.1.0\",\n\t\"description\": \"n8n node to call NASA's APOD and Mars Rover Photo services.\",\n\t\"keywords\": [\n\t\t// This keyword is required for community nodes\n\t\t\"n8n-community-node-package\"\n\t],\n\t\"license\": \"MIT\",\n\t\"homepage\": \"https://n8n.io\",\n\t\"author\": {\n\t\t\"name\": \"Test\",\n\t\t\"email\": \"test@example.com\"\n\t},\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t// Change the git remote to your own repository\n\t\t// Add the new URL here\n\t\t\"url\": \"git+<your-repo-url>\"\n\t},\n\t\"main\": \"index.js\",\n\t\"scripts\": {\n\t\t// don't change\n\t},\n\t\"files\": [\n\t\t\"dist\"\n\t],\n\t// Link the credentials and node\n\t\"n8n\": {\n\t\t\"n8nNodesApiVersion\": 1,\n\t\t\"credentials\": [\n\t\t\t\"dist/credentials/NasaPicsApi.credentials.js\"\n\t\t],\n\t\t\"nodes\": [\n\t\t\t\"dist/nodes/NasaPics/NasaPics.node.js\"\n\t\t]\n\t},\n\t\"devDependencies\": {\n\t\t// don't change\n\t},\n\t\"peerDependencies\": {\n\t\t// don't change\n\t}\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "npm install n8n -g",
+      "language": "unknown"
+    },
+    {
+      "code": "# In your node directory\n   npm run build\n   npm link",
+      "language": "unknown"
+    },
+    {
+      "code": "# In the nodes directory within your n8n installation\n   # node-package-name is the name from the package.json\n   npm link <node-package-name>",
+      "language": "unknown"
+    },
+    {
+      "code": "n8n start",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Prerequisites",
+      "id": "prerequisites"
+    },
+    {
+      "level": "h2",
+      "text": "Build your node",
+      "id": "build-your-node"
+    },
+    {
+      "level": "h3",
+      "text": "Step 1: Set up the project",
+      "id": "step-1:-set-up-the-project"
+    },
+    {
+      "level": "h3",
+      "text": "Step 2: Add an icon",
+      "id": "step-2:-add-an-icon"
+    },
+    {
+      "level": "h3",
+      "text": "Step 3: Create the node",
+      "id": "step-3:-create-the-node"
+    },
+    {
+      "level": "h3",
+      "text": "Step 4: Set up authentication",
+      "id": "step-4:-set-up-authentication"
+    },
+    {
+      "level": "h3",
+      "text": "Step 5: Add node metadata",
+      "id": "step-5:-add-node-metadata"
+    },
+    {
+      "level": "h3",
+      "text": "Step 6: Update the npm package details",
+      "id": "step-6:-update-the-npm-package-details"
+    },
+    {
+      "level": "h2",
+      "text": "Test your node",
+      "id": "test-your-node"
+    },
+    {
+      "level": "h3",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    }
+  ],
+  "url": "llms-txt#build-a-declarative-style-node",
+  "links": []
+}

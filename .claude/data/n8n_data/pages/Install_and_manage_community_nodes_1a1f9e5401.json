@@ -1,0 +1,8 @@
+{
+  "title": "Install and manage community nodes",
+  "content": "There are three ways to install community nodes:\n\n- Within n8n using the [nodes panel](verified-install/) (for verified community nodes only).\n- Within n8n [using the GUI](gui-install/): Use this method to install community nodes from the npm registry.\n- [Manually from the command line](manual-install/): use this method to install community nodes from npm if your n8n instance doesn't support installation through the in-app GUI.\n\nInstalling from npm only available on self-hosted instances\n\nUnverified community nodes aren't available on n8n cloud and require [self-hosting](../../../hosting/) n8n.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#install-and-manage-community-nodes",
+  "links": []
+}

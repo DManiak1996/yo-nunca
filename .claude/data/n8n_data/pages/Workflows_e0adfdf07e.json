@@ -1,0 +1,8 @@
+{
+  "title": "Workflows",
+  "content": "A [workflow](../glossary/#workflow-n8n) is a collection of nodes connected together to automate a process.\n\n- [Create](create/) a workflow.\n- Use [Workflow templates](templates/) to help you get started.\n- Learn about the key [components](components/) of an automation in n8n.\n- Debug using the [Executions](executions/) list.\n- [Share](sharing/) workflows between users.\n\nIf it's your first time building a workflow, you may want to use the [quickstart guides](../try-it-out/) to quickly try out n8n features.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#workflows",
+  "links": []
+}

@@ -1,0 +1,25 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/optimizePackageImports",
+  "title": "optimizePackageImports",
+  "content": "Some packages can export hundreds or thousands of modules, which can cause performance issues in development and production.\n\nAdding a package to experimental.optimizePackageImports will only load the modules you are actually using, while still giving you the convenience of writing import statements with many named exports.\n\nThe following libraries are optimized by default:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "optimizePackageImports",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  experimental: {\n    optimizePackageImports: ['package-name'],\n  },\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/onDemandEntries",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/output"
+  ]
+}

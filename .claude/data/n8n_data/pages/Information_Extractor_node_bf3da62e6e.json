@@ -1,0 +1,24 @@
+{
+  "title": "Information Extractor node",
+  "content": "Use the Information Extractor node to extract structured information from incoming data.\n\nOn this page, you'll find the node parameters for the Information Extractor node, and links to more resources.\n\n- **Text** defines the input text to extract information from. This is usually an expression that references a field from the input items. For example, this could be `{{ $json.chatInput }}` if the input is a chat trigger, or `{{ $json.text }}` if a previous node is Extract from PDF.\n- Use **Schema Type** to choose how you want to describe the desired output data format. You can choose between:\n  - **From Attribute Descriptions**: This option allows you to define the schema by specifying the list of attributes and their descriptions.\n  - **Generate From JSON Example**: Input an example JSON object to automatically generate the schema. The node uses the object property types and names. It ignores the actual values. n8n treats every field as mandatory when generating schemas from JSON examples.\n  - **Define using JSON Schema**: Manually input the JSON schema. Read the JSON Schema [guides and examples](https://json-schema.org/learn/miscellaneous-examples) for help creating a valid JSON schema.\n\n- **System Prompt Template**: Use this option to change the system prompt that's used for the information extraction. n8n automatically appends format specification instructions to the prompt.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#information-extractor-node",
+  "links": []
+}

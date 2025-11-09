@@ -1,0 +1,52 @@
+{
+  "url": "https://nextjs.org/docs/messages/no-sync-scripts",
+  "title": "No Sync Scripts",
+  "content": "Prevent synchronous scripts.\n\nA synchronous script was used which can impact your webpage performance.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "No Sync Scripts",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h3",
+      "text": "Script component (recommended)",
+      "id": "script-component-recommended"
+    },
+    {
+      "level": "h3",
+      "text": "Use async or defer",
+      "id": "use-async-or-defer"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Script from 'next/script'\n \nfunction Home() {\n  return (\n    <div class=\"container\">\n      <Script src=\"https://third-party-script.js\"></Script>\n      <div>Home Page</div>\n    </div>\n  )\n}\n \nexport default Home",
+      "language": "python"
+    },
+    {
+      "code": "<script src=\"https://third-party-script.js\" async />\n<script src=\"https://third-party-script.js\" defer />",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/no-sync-scripts"
+  ]
+}

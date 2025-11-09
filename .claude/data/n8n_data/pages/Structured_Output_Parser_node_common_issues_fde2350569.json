@@ -1,0 +1,29 @@
+{
+  "title": "Structured Output Parser node common issues",
+  "content": "Here are some common errors and issues with the [Structured Output Parser node](../) and steps to resolve or troubleshoot them.\n\n## Processing parameters\n\nThe Structured Output Parser node is a [sub-node](../../../../../../glossary/#sub-node-n8n). Sub-nodes behave differently than other nodes when processing multiple items using expressions.\n\nMost nodes, including [root nodes](../../../../../../glossary/#root-node-n8n), take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five name values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five name values, the expression `{{ $json.name }}` always resolves to the first name.\n\n## Adding the structured output parser node to AI nodes\n\nYou can attach output parser nodes to select [AI root nodes](../../../root-nodes/).\n\nTo add the Structured Output Parser to a node, enable the **Require Specific Output Format** option in the AI root node you wish to format. Once the option is enabled, a new **output parser** attachment point is displayed. Click the **output parser** attachment point to add the Structured Output Parser node to the node.\n\n## Using the structured output parser to format intermediary steps\n\nThe Structured Output Parser node structures the final output from AI agents. It's not intended to structure intermediary output to pass to other AI tools or stages.\n\nTo request a specific format for intermediary output, include the response structure in the **System Message** for the **AI Agent**. The message can include either a schema or example response for the agent to use as a template for its results.\n\n## Structuring output from agents\n\nStructured output parsing is often not reliable when working with [agents](../../../root-nodes/n8n-nodes-langchain.agent/).\n\nIf your workflow uses agents, n8n recommends using a separate [LLM-chain](../../../root-nodes/n8n-nodes-langchain.chainllm/) to receive the data from the agent and parse it. This leads to better, more consistent results than parsing directly in the agent workflow.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Processing parameters",
+      "id": "processing-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Adding the structured output parser node to AI nodes",
+      "id": "adding-the-structured-output-parser-node-to-ai-nodes"
+    },
+    {
+      "level": "h2",
+      "text": "Using the structured output parser to format intermediary steps",
+      "id": "using-the-structured-output-parser-to-format-intermediary-steps"
+    },
+    {
+      "level": "h2",
+      "text": "Structuring output from agents",
+      "id": "structuring-output-from-agents"
+    }
+  ],
+  "url": "llms-txt#structured-output-parser-node-common-issues",
+  "links": []
+}

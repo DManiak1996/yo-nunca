@@ -1,0 +1,29 @@
+{
+  "name": "chromadb",
+  "total_pages": 5,
+  "base_url": "https://docs.trychroma.com/",
+  "llms_txt_detected": true,
+  "llms_txt_variant": null,
+  "pages": [
+    {
+      "title": "Cloud",
+      "url": "llms-txt#cloud"
+    },
+    {
+      "title": "Docs",
+      "url": "llms-txt#docs"
+    },
+    {
+      "title": "Guides",
+      "url": "llms-txt#guides"
+    },
+    {
+      "title": "Integrations",
+      "url": "llms-txt#integrations"
+    },
+    {
+      "title": "Reference",
+      "url": "llms-txt#reference"
+    }
+  ]
+}

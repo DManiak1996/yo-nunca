@@ -1,0 +1,13 @@
+{
+  "title": "Don't save manually launched executions",
+  "content": "export EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS=false",
+  "code_samples": [
+    {
+      "code": "",
+      "language": "unknown"
+    }
+  ],
+  "headings": [],
+  "url": "llms-txt#don't-save-manually-launched-executions",
+  "links": []
+}

@@ -1,0 +1,24 @@
+{
+  "title": "Invoice Ninja node",
+  "content": "Use the Invoice Ninja node to automate work in Invoice Ninja, and integrate Invoice Ninja with other applications. n8n has built-in support for a wide range of Invoice Ninja features, including creating, updating, deleting, and getting clients, expense, invoice, payments and quotes.\n\nOn this page, you'll find a list of operations the Invoice Ninja node supports and links to more resources.\n\nRefer to [Invoice Ninja credentials](../../credentials/invoiceninja/) for guidance on setting up authentication.\n\n- Client\n  - Create a new client\n  - Delete a client\n  - Get data of a client\n  - Get data of all clients\n- Expense\n  - Create a new expense\n  - Delete an expense\n  - Get data of an expense\n  - Get data of all expenses\n- Invoice\n  - Create a new invoice\n  - Delete a invoice\n  - Email an invoice\n  - Get data of a invoice\n  - Get data of all invoices\n- Payment\n  - Create a new payment\n  - Delete a payment\n  - Get data of a payment\n  - Get data of all payments\n- Quote\n  - Create a new quote\n  - Delete a quote\n  - Email an quote\n  - Get data of a quote\n  - Get data of all quotes\n- Task\n  - Create a new task\n  - Delete a task\n  - Get data of a task\n  - Get data of all tasks\n\n## Templates and examples\n\n**Receive updates on a new invoice via Invoice Ninja**\n\n[View template details](https://n8n.io/workflows/535-receive-updates-on-a-new-invoice-via-invoice-ninja/)\n\n**Get multiple clients' data from Invoice Ninja**\n\n[View template details](https://n8n.io/workflows/534-get-multiple-clients-data-from-invoice-ninja/)\n\n**Automate Invoice Creation and Delivery with Google Sheets, Invoice Ninja and Gmail**\n\n[View template details](https://n8n.io/workflows/6447-automate-invoice-creation-and-delivery-with-google-sheets-invoice-ninja-and-gmail/)\n\n[Browse Invoice Ninja integration templates](https://n8n.io/integrations/invoice-ninja/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#invoice-ninja-node",
+  "links": []
+}

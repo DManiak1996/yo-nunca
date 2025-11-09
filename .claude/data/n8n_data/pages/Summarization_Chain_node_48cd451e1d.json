@@ -1,0 +1,29 @@
+{
+  "title": "Summarization Chain node",
+  "content": "Use the Summarization Chain node to summarize multiple documents.\n\nOn this page, you'll find the node parameters for the Summarization Chain node, and links to more resources.\n\nChoose the type of data you need to summarize in **Data to Summarize**. The data type you choose determines the other node parameters.\n\n- **Use Node Input (JSON)** and **Use Node Input (Binary)**: summarize the data coming into the node from the workflow.\n  - You can configure the **Chunking Strategy**: choose what strategy to use to define the data chunk sizes.\n    - If you choose **Simple (Define Below)** you can then set **Characters Per Chunk** and **Chunk Overlap (Characters)**.\n    - Choose **Advanced** if you want to connect a splitter sub-node that provides more configuration options.\n- **Use Document Loader**: summarize data provided by a document loader sub-node.\n\nYou can configure the summarization method and prompts. Select **Add Option** > **Summarization Method and Prompts**.\n\nOptions in **Summarization Method**:\n\n- **Map Reduce**: this is the recommended option. Learn more about [Map Reduce](https://js.langchain.com/v0.1/docs/modules/chains/document/map_reduce/) in the LangChain documentation.\n- **Refine**: learn more about [Refine](https://js.langchain.com/v0.1/docs/modules/chains/document/refine/) in the LangChain documentation.\n- **Stuff**: learn more about [Stuff](https://js.langchain.com/v0.1/docs/modules/chains/document/stuff/) in the LangChain documentation.\n\nYou can customize the **Individual Summary Prompts** and the **Final Prompt to Combine**. There are examples in the node. You must include the `\"{text}\"` placeholder.\n\n## Templates and examples\n\n**Scrape and summarize webpages with AI**\n\n[View template details](https://n8n.io/workflows/1951-scrape-and-summarize-webpages-with-ai/)\n\n**⚡AI-Powered YouTube Video Summarization & Analysis**\n\n[View template details](https://n8n.io/workflows/2679-ai-powered-youtube-video-summarization-and-analysis/)\n\n**AI Automated HR Workflow for CV Analysis and Candidate Evaluation**\n\n[View template details](https://n8n.io/workflows/2860-ai-automated-hr-workflow-for-cv-analysis-and-candidate-evaluation/)\n\n[Browse Summarization Chain integration templates](https://n8n.io/integrations/summarization-chain/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChain's documentation on summarization](https://js.langchain.com/docs/tutorials/summarization/) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Node Options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#summarization-chain-node",
+  "links": []
+}

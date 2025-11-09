@@ -1,0 +1,60 @@
+{
+  "url": "https://nextjs.org/docs/pages/building-your-application/routing/custom-app",
+  "title": "Custom App",
+  "content": "Next.js uses the App component to initialize pages. You can override it and control the page initialization and:\n\nTo override the default App, create the file pages/_app as shown below:\n\nThe Component prop is the active page, so whenever you navigate between routes, Component will change to the new page. Therefore, any props you send to Component will be received by the page.\n\npageProps is an object with the initial props that were preloaded for your page by one of our data fetching methods, otherwise it's an empty object.\n\nUsing getInitialProps in App will disable Automatic Static Optimization for pages without getStaticProps.\n\nWe do not recommend using this pattern. Instead, consider incrementally adopting the App Router, which allows you to more easily fetch data for pages and layouts.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Custom App",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h2",
+      "text": "getInitialProps with App",
+      "id": "getinitialprops-with-app"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { AppProps } from 'next/app'\n \nexport default function MyApp({ Component, pageProps }: AppProps) {\n  return <Component {...pageProps} />\n}",
+      "language": "python"
+    },
+    {
+      "code": "import App, { AppContext, AppInitialProps, AppProps } from 'next/app'\n \ntype AppOwnProps = { example: string }\n \nexport default function MyApp({\n  Component,\n  pageProps,\n  example,\n}: AppProps & AppOwnProps) {\n  return (\n    <>\n      <p>Data: {example}</p>\n      <Component {...pageProps} />\n    </>\n  )\n}\n \nMyApp.getInitialProps = async (\n  context: AppContext\n): Promise<AppOwnProps & AppInitialProps> => {\n  const ctx = await App.getInitialProps(context)\n \n  return { ...ctx, example: 'data' }\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "Building Your ApplicationRoutingCustom AppCopy pageCustom AppNext.js uses the App component to initialize pages. You can override it and control the page initialization and: Create a shared layout between page changes Inject additional data into pages Add global CSS Usage To override the default App, create the file pages/_app as shown below: pages/_app.tsxTypeScriptJavaScriptTypeScriptimport type { AppProps } from 'next/app' export default function MyApp({ Component, pageProps }: AppProps) { return <Component {...pageProps} /> } The Component prop is the active page, so whenever you navigate between routes, Component will change to the new page. Therefore, any props you send to Component will be received by the page. pageProps is an object with the initial props that were preloaded for your page by one of our data fetching methods, otherwise it's an empty object. Good to know: If your app is running and you added a custom App, you'll need to restart the development server. Only required if pages/_app.js didn't exist before. App does not support Next.js Data Fetching methods like getStaticProps or getServerSideProps. getInitialProps with App Using getInitialProps in App will disable Automatic Static Optimization for pages without getStaticProps. We do not recommend using this pattern. Instead, consider incrementally adopting the App Router, which allows you to more easily fetch data for pages and layouts. pages/_app.tsxTypeScriptJavaScriptTypeScriptimport App, { AppContext, AppInitialProps, AppProps } from 'next/app' type AppOwnProps = { example: string } export default function MyApp({ Component, pageProps, example, }: AppProps & AppOwnProps) { return ( <> <p>Data: {example}</p> <Component {...pageProps} /> </> ) } MyApp.getInitialProps = async ( context: AppContext ): Promise<AppOwnProps & AppInitialProps> => { const ctx = await App.getInitialProps(context) return { ...ctx, example: 'data' } }",
+      "code": "App"
+    },
+    {
+      "description": "Custom AppNext.js uses the App component to initialize pages. You can override it and control the page initialization and: Create a shared layout between page changes Inject additional data into pages Add global CSS Usage To override the default App, create the file pages/_app as shown below: pages/_app.tsxTypeScriptJavaScriptTypeScriptimport type { AppProps } from 'next/app' export default function MyApp({ Component, pageProps }: AppProps) { return <Component {...pageProps} /> } The Component prop is the active page, so whenever you navigate between routes, Component will change to the new page. Therefore, any props you send to Component will be received by the page. pageProps is an object with the initial props that were preloaded for your page by one of our data fetching methods, otherwise it's an empty object. Good to know: If your app is running and you added a custom App, you'll need to restart the development server. Only required if pages/_app.js didn't exist before. App does not support Next.js Data Fetching methods like getStaticProps or getServerSideProps. getInitialProps with App Using getInitialProps in App will disable Automatic Static Optimization for pages without getStaticProps. We do not recommend using this pattern. Instead, consider incrementally adopting the App Router, which allows you to more easily fetch data for pages and layouts. pages/_app.tsxTypeScriptJavaScriptTypeScriptimport App, { AppContext, AppInitialProps, AppProps } from 'next/app' type AppOwnProps = { example: string } export default function MyApp({ Component, pageProps, example, }: AppProps & AppOwnProps) { return ( <> <p>Data: {example}</p> <Component {...pageProps} /> </> ) } MyApp.getInitialProps = async ( context: AppContext ): Promise<AppOwnProps & AppInitialProps> => { const ctx = await App.getInitialProps(context) return { ...ctx, example: 'data' } }",
+      "code": "App"
+    },
+    {
+      "description": "pages/_app.tsxTypeScriptJavaScriptTypeScriptimport App, { AppContext, AppInitialProps, AppProps } from 'next/app' type AppOwnProps = { example: string } export default function MyApp({ Component, pageProps, example, }: AppProps & AppOwnProps) { return ( <> <p>Data: {example}</p> <Component {...pageProps} /> </> ) } MyApp.getInitialProps = async ( context: AppContext ): Promise<AppOwnProps & AppInitialProps> => { const ctx = await App.getInitialProps(context) return { ...ctx, example: 'data' } }",
+      "code": "import App, { AppContext, AppInitialProps, AppProps } from 'next/app'\n \ntype AppOwnProps = { example: string }\n \nexport default function MyApp({\n  Component,\n  pageProps,\n  example,\n}: AppProps & AppOwnProps) {\n  return (\n    <>\n      <p>Data: {example}</p>\n      <Component {...pageProps} />\n    </>\n  )\n}\n \nMyApp.getInitialProps = async (\n  context: AppContext\n): Promise<AppOwnProps & AppInitialProps> => {\n  const ctx = await App.getInitialProps(context)\n \n  return { ...ctx, example: 'data' }\n}"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/pages/building-your-application",
+    "https://nextjs.org/docs/pages/building-your-application/routing",
+    "https://nextjs.org/docs/app/getting-started/css",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-app",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-initial-props",
+    "https://nextjs.org/docs/pages/building-your-application/rendering/automatic-static-optimization",
+    "https://nextjs.org/docs/app/guides/migrating/app-router-migration",
+    "https://nextjs.org/docs/pages/building-your-application/routing/linking-and-navigating",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-document"
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "url": "https://nextjs.org/docs/app/getting-started/css",
+  "title": "CSS",
+  "content": "Next.js provides several ways to style your application using CSS, including:\n\nTailwind CSS is a utility-first CSS framework that provides low-level utility classes to build custom designs.\n\nInstall Tailwind CSS:\n\nAdd the PostCSS plugin to your postcss.config.mjs file:\n\nImport Tailwind in your global CSS file:\n\nImport the CSS file in your root layout:\n\nNow you can start using Tailwind's utility classes in your application:\n\nGood to know: If you need broader browser support for very old browsers, see the Tailwind CSS v3 setup instructions.\n\nCSS Modules locally scope CSS by generating unique class names. This allows you to use the same class in different files without worrying about naming collisions.\n\nTo start using CSS Modules, create a new file with the extension .module.css and import it into any component inside the app directory:\n\nYou can use global CSS to apply styles across your application.\n\nCreate a app/global.css file and import it in the root layout to apply the styles to every route in your application:\n\nGood to know: Global styles can be imported into any layout, page, or component inside the app directory. However, since Next.js uses React's built-in support for stylesheets to integrate with Suspense, this currently does not remove stylesheets as you navigate between routes which can lead to conflicts. We recommend using global styles for truly global CSS (like Tailwind's base styles), Tailwind CSS for component styling, and CSS Modules for custom scoped CSS when needed.\n\nStylesheets published by external packages can be imported anywhere in the app directory, including colocated components:\n\nGood to know: In React 19, <link rel=\"stylesheet\" href=\"...\" /> can also be used. See the React link documentation for more information.\n\nNext.js optimizes CSS during production builds by automatically chunking (merging) stylesheets. The order of your CSS depends on the order you import styles in your code.\n\nFor example, base-button.module.css will be ordered before page.module.css since <BaseButton> is imported before page.module.css:\n\nTo keep CSS ordering predictable:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "CSS",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Tailwind CSS",
+      "id": "tailwind-css"
+    },
+    {
+      "level": "h2",
+      "text": "CSS Modules",
+      "id": "css-modules"
+    },
+    {
+      "level": "h2",
+      "text": "Global CSS",
+      "id": "global-css"
+    },
+    {
+      "level": "h2",
+      "text": "External stylesheets",
+      "id": "external-stylesheets"
+    },
+    {
+      "level": "h2",
+      "text": "Ordering and Merging",
+      "id": "ordering-and-merging"
+    },
+    {
+      "level": "h3",
+      "text": "Recommendations",
+      "id": "recommendations"
+    },
+    {
+      "level": "h2",
+      "text": "Development vs Production",
+      "id": "development-vs-production"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "Tailwind CSS v3",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Sass",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "CSS-in-JS",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "pnpm add -D tailwindcss @tailwindcss/postcss",
+      "language": "unknown"
+    },
+    {
+      "code": "export default {\n  plugins: {\n    '@tailwindcss/postcss': {},\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "@import 'tailwindcss';",
+      "language": "unknown"
+    },
+    {
+      "code": "import './globals.css'\n \nexport default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  return (\n    <html lang=\"en\">\n      <body>{children}</body>\n    </html>\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export default function Page() {\n  return (\n    <main className=\"flex min-h-screen flex-col items-center justify-between p-24\">\n      <h1 className=\"text-4xl font-bold\">Welcome to Next.js!</h1>\n    </main>\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": ".blog {\n  padding: 24px;\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import styles from './blog.module.css'\n \nexport default function Page() {\n  return <main className={styles.blog}></main>\n}",
+      "language": "python"
+    },
+    {
+      "code": "body {\n  padding: 20px 20px 60px;\n  max-width: 680px;\n  margin: 0 auto;\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "// These styles apply to every route in the application\nimport './global.css'\n \nexport default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  return (\n    <html lang=\"en\">\n      <body>{children}</body>\n    </html>\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import 'bootstrap/dist/css/bootstrap.css'\n \nexport default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  return (\n    <html lang=\"en\">\n      <body className=\"container\">{children}</body>\n    </html>\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import { BaseButton } from './base-button'\nimport styles from './page.module.css'\n \nexport default function Page() {\n  return <BaseButton className={styles.primary} />\n}",
+      "language": "python"
+    },
+    {
+      "code": "import styles from './base-button.module.css'\n \nexport function BaseButton() {\n  return <button className={styles.primary} />\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/getting-started",
+    "https://nextjs.org/docs/app/getting-started/css",
+    "https://nextjs.org/docs/app/guides/sass",
+    "https://nextjs.org/docs/app/guides/css-in-js",
+    "https://nextjs.org/docs/app/guides/tailwind-v3-css",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cssChunking",
+    "https://nextjs.org/docs/architecture/fast-refresh",
+    "https://nextjs.org/docs/app/getting-started/error-handling",
+    "https://nextjs.org/docs/app/getting-started/images"
+  ]
+}

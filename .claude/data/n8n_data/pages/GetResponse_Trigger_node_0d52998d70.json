@@ -1,0 +1,14 @@
+{
+  "title": "GetResponse Trigger node",
+  "content": "[GetResponse](https://www.getresponse.com/) is an online platform that offers email marketing software, landing page creator, webinar hosting, and much more.\n\nYou can find authentication information for this node [here](../../credentials/getresponse/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [GetResponse Trigger integrations](https://n8n.io/integrations/getresponse-trigger/) page.\n\n- Receive notifications when a customer is subscribed to a list\n- Receive notifications when a customer is unsubscribed from a list\n- Receive notifications when an email is opened\n- Receive notifications when an email is clicked\n- Receive notifications when a survey is submitted",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    }
+  ],
+  "url": "llms-txt#getresponse-trigger-node",
+  "links": []
+}

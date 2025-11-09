@@ -1,0 +1,34 @@
+{
+  "title": "Advanced AI",
+  "content": "Build AI functionality using n8n: from creating your own chat bot, to using AI to process documents and data from other sources.\n\nThis feature is available on Cloud and self-hosted n8n, in version 1.19.4 and above.\n\nWork through the short tutorial to learn the basics of building AI workflows in n8n.\n\n[Tutorial](intro-tutorial/)\n\n- **Use a Starter Kit**\n\nTry n8n's Self-hosted AI Starter Kit to quickly start building AI workflows.\n\n[Self-hosted AI Starter Kit](../hosting/starter-kits/ai-starter-kit/)\n\n- **Explore examples and concepts**\n\nBrowse examples and workflow templates to help you build. Includes explanations of important AI concepts.\n\n[Examples](examples/introduction/)\n\n- **How n8n uses LangChain**\n\nLearn more about how n8n builds on LangChain.\n\n[LangChain in n8n](langchain/overview/)\n\n- **Browse AI templates**\n\nExplore a wide range of AI workflow templates on the n8n website.\n\n[AI workflows on n8n.io](https://n8n.io/workflows/?categories=25)\n\nRelated documentation and tools.\n\nThis feature uses [Cluster nodes](../integrations/builtin/cluster-nodes/): groups of [root](../integrations/builtin/cluster-nodes/root-nodes/) and [sub](../integrations/builtin/cluster-nodes/sub-nodes/) nodes that work together.\n\n[Cluster nodes](../glossary/#cluster-node-n8n) are node groups that work together to provide functionality in an n8n workflow. Instead of using a single node, you use a [root node](../glossary/#root-node-n8n) and one or more [sub-nodes](../glossary/#sub-node-n8n) that extend the functionality of the node.\n\n### Workflow templates\n\nYou can browse [workflow templates](../glossary/#template-n8n) in-app or on the n8n website [Workflows](https://n8n.io/workflows/?categories=25,26) page.\n\nRefer to [Templates](../workflows/templates/) for information on accessing templates in-app.\n\nUse the [n8n Chat Trigger](../integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/) to trigger a workflow based on chat interactions.\n\nn8n provides a chatbot widget that you can use as a frontend for AI-powered chat workflows. Refer to the [@n8n/chat npm page](https://www.npmjs.com/package/@n8n/chat) for usage information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h3",
+      "text": "Node types",
+      "id": "node-types"
+    },
+    {
+      "level": "h3",
+      "text": "Workflow templates",
+      "id": "workflow-templates"
+    },
+    {
+      "level": "h3",
+      "text": "Chat trigger",
+      "id": "chat-trigger"
+    },
+    {
+      "level": "h3",
+      "text": "Chatbot widget",
+      "id": "chatbot-widget"
+    }
+  ],
+  "url": "llms-txt#advanced-ai",
+  "links": []
+}

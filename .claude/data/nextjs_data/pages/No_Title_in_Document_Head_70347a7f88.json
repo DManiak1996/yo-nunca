@@ -1,0 +1,40 @@
+{
+  "url": "https://nextjs.org/docs/messages/no-title-in-document-head",
+  "title": "No Title in Document Head",
+  "content": "Prevent usage of <title> with Head component from next/document.\n\nA <title> element was defined within the Head component imported from next/document, which should only be used for any <head> code that is common for all pages. Title tags should be defined at the page-level using next/head instead.\n\nWithin a page or component, import and use next/head to define a page title:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "No Title in Document Head",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Head from 'next/head'\n \nexport function Home() {\n  return (\n    <div>\n      <Head>\n        <title>My page title</title>\n      </Head>\n    </div>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/no-title-in-document-head",
+    "https://nextjs.org/docs/pages/api-reference/components/head",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-document"
+  ]
+}

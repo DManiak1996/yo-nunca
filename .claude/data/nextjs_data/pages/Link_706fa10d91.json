@@ -1,0 +1,193 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/components/link",
+  "title": "Link",
+  "content": "<Link> is a React component that extends the HTML <a> element to provide prefetching and client-side navigation between routes. It is the primary way to navigate between routes in Next.js.\n\nThe following props can be passed to the <Link> component:\n\nGood to know: <a> tag attributes such as className or target=\"_blank\" can be added to <Link> as props and will be passed to the underlying <a> element.\n\nThe path or URL to navigate to.\n\nDefaults to false. When true, next/link will replace the current history state instead of adding a new URL into the browser's history stack.\n\nDefaults to true. The default scrolling behavior of <Link> in Next.js is to maintain scroll position, similar to how browsers handle back and forwards navigation. When you navigate to a new Page, scroll position will stay the same as long as the Page is visible in the viewport. However, if the Page is not visible in the viewport, Next.js will scroll to the top of the first Page element.\n\nWhen scroll = {false}, Next.js will not attempt to scroll to the first Page element.\n\nGood to know: Next.js checks if scroll: false before managing scroll behavior. If scrolling is enabled, it identifies the relevant DOM node for navigation and inspects each top-level element. All non-scrollable elements and those without rendered HTML are bypassed, this includes sticky or fixed positioned elements, and non-visible elements such as those calculated with getBoundingClientRect. Next.js then continues through siblings until it identifies a scrollable element that is visible in the viewport.\n\nPrefetching happens when a <Link /> component enters the user's viewport (initially or through scroll). Next.js prefetches and loads the linked route (denoted by the href) and data in the background to improve the performance of client-side navigation's. Prefetching is only enabled in production.\n\nThe following values can be passed to the prefetch prop:\n\nUpdate the path of the current page without rerunning getStaticProps, getServerSideProps or getInitialProps. Defaults to false.\n\nThe active locale is automatically prepended. locale allows for providing a different locale. When false href has to include the locale as the default behavior is disabled.\n\nOptional decorator for the path that will be shown in the browser URL bar. Before Next.js 9.5.3 this was used for dynamic routes, check our previous docs to see how it worked.\n\nWhen this path differs from the one provided in href the previous href/as behavior is used as shown in the previous docs.\n\nAn event handler called during client-side navigation. The handler receives an event object that includes a preventDefault() method, allowing you to cancel the navigation if needed.\n\nGood to know: While onClick and onNavigate may seem similar, they serve different purposes. onClick executes for all click events, while onNavigate only runs during client-side navigation. Some key differences:\n\nThe following examples demonstrate how to use the <Link> component in different scenarios.\n\nFor dynamic route segments, it can be handy to use template literals to create the link's path.\n\nFor example, you can generate a list of links to the dynamic route pages/blog/[slug].js\n\nIf you'd like to scroll to a specific id on navigation, you can append your URL with a # hash link or just pass a hash link to the href prop. This is possible since <Link> renders to an <a> element.\n\nLink can also receive a URL object and it will automatically format it to create the URL string:\n\nThe above example has a link to:\n\nYou can use every property as defined in the Node.js URL module documentation.\n\nThe default behavior of the Link component is to push a new URL into the history stack. You can use the replace prop to prevent adding a new entry, as in the following example:\n\nThe default behavior of Link is to scroll to the top of the page. When there is a hash defined it will scroll to the specific id, like a normal <a> tag. To prevent scrolling to the top / hash scroll={false} can be added to Link:\n\nIt's common to use Proxy for authentication or other purposes that involve rewriting the user to a different page. In order for the <Link /> component to properly prefetch links with rewrites via Proxy, you need to tell Next.js both the URL to display and the URL to prefetch. This is required to avoid un-necessary fetches to proxy to know the correct route to prefetch.\n\nFor example, if you want to serve a /dashboard route that has authenticated and visitor views, you can add the following in your Proxy to redirect the user to the correct page:\n\nIn this case, you would want to use the following code in your <Link /> component:\n\nGood to know: If you're using Dynamic Routes, you'll need to adapt your as and href props. For example, if you have a Dynamic Route like /dashboard/authed/[user] that you want to present differently via proxy, you would write: <Link href={{ pathname: '/dashboard/authed/[user]', query: { user: username } }} as=\"/dashboard/[user]\">Profile</Link>.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Link",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "href (required)",
+      "id": "href-required"
+    },
+    {
+      "level": "h3",
+      "text": "replace",
+      "id": "replace"
+    },
+    {
+      "level": "h3",
+      "text": "scroll",
+      "id": "scroll"
+    },
+    {
+      "level": "h3",
+      "text": "prefetch",
+      "id": "prefetch"
+    },
+    {
+      "level": "h3",
+      "text": "shallow",
+      "id": "shallow"
+    },
+    {
+      "level": "h3",
+      "text": "locale",
+      "id": "locale"
+    },
+    {
+      "level": "h3",
+      "text": "as",
+      "id": "as"
+    },
+    {
+      "level": "h3",
+      "text": "onNavigate",
+      "id": "onnavigate"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Linking to dynamic route segments",
+      "id": "linking-to-dynamic-route-segments-1"
+    },
+    {
+      "level": "h3",
+      "text": "Scrolling to an id",
+      "id": "scrolling-to-an-id"
+    },
+    {
+      "level": "h3",
+      "text": "Passing a URL Object",
+      "id": "passing-a-url-object"
+    },
+    {
+      "level": "h3",
+      "text": "Replace the URL instead of push",
+      "id": "replace-the-url-instead-of-push"
+    },
+    {
+      "level": "h3",
+      "text": "Disable scrolling to the top of the page",
+      "id": "disable-scrolling-to-the-top-of-the-page"
+    },
+    {
+      "level": "h3",
+      "text": "Prefetching links in Proxy",
+      "id": "prefetching-links-in-proxy"
+    },
+    {
+      "level": "h2",
+      "text": "Version history",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Home() {\n  return <Link href=\"/dashboard\">Dashboard</Link>\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \n// Navigate to /about?name=test\nexport default function Home() {\n  return (\n    <Link\n      href={{\n        pathname: '/about',\n        query: { name: 'test' },\n      }}\n    >\n      About\n    </Link>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Home() {\n  return (\n    <Link href=\"/dashboard\" replace>\n      Dashboard\n    </Link>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Home() {\n  return (\n    <Link href=\"/dashboard\" scroll={false}>\n      Dashboard\n    </Link>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Home() {\n  return (\n    <Link href=\"/dashboard\" prefetch={false}>\n      Dashboard\n    </Link>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Home() {\n  return (\n    <Link href=\"/dashboard\" shallow={false}>\n      Dashboard\n    </Link>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Home() {\n  return (\n    <>\n      {/* Default behavior: locale is prepended */}\n      <Link href=\"/dashboard\">Dashboard (with locale)</Link>\n \n      {/* Disable locale prepending */}\n      <Link href=\"/dashboard\" locale={false}>\n        Dashboard (without locale)\n      </Link>\n \n      {/* Specify a different locale */}\n      <Link href=\"/dashboard\" locale=\"fr\">\n        Dashboard (French)\n      </Link>\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Page() {\n  return (\n    <Link\n      href=\"/dashboard\"\n      onNavigate={(e) => {\n        // Only executes during SPA navigation\n        console.log('Navigating...')\n \n        // Optionally prevent navigation\n        // e.preventDefault()\n      }}\n    >\n      Dashboard\n    </Link>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nfunction Posts({ posts }) {\n  return (\n    <ul>\n      {posts.map((post) => (\n        <li key={post.id}>\n          <Link href={`/blog/${post.slug}`}>{post.title}</Link>\n        </li>\n      ))}\n    </ul>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "<Link href=\"/dashboard#settings\">Settings</Link>\n \n// Output\n<a href=\"/dashboard#settings\">Settings</a>",
+      "language": "unknown"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nfunction Home() {\n  return (\n    <ul>\n      <li>\n        <Link\n          href={{\n            pathname: '/about',\n            query: { name: 'test' },\n          }}\n        >\n          About us\n        </Link>\n      </li>\n      <li>\n        <Link\n          href={{\n            pathname: '/blog/[slug]',\n            query: { slug: 'my-post' },\n          }}\n        >\n          Blog Post\n        </Link>\n      </li>\n    </ul>\n  )\n}\n \nexport default Home",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Home() {\n  return (\n    <Link href=\"/about\" replace>\n      About us\n    </Link>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Home() {\n  return (\n    <Link href=\"/#hashid\" scroll={false}>\n      Disables scrolling to the top\n    </Link>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NextResponse } from 'next/server'\n \nexport function proxy(request: Request) {\n  const nextUrl = request.nextUrl\n  if (nextUrl.pathname === '/dashboard') {\n    if (request.cookies.authToken) {\n      return NextResponse.rewrite(new URL('/auth/dashboard', request.url))\n    } else {\n      return NextResponse.rewrite(new URL('/public/dashboard', request.url))\n    }\n  }\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport Link from 'next/link'\nimport useIsAuthed from './hooks/useIsAuthed' // Your auth hook\n \nexport default function Home() {\n  const isAuthed = useIsAuthed()\n  const path = isAuthed ? '/auth/dashboard' : '/public/dashboard'\n  return (\n    <Link as=\"/dashboard\" href={path}>\n      Dashboard\n    </Link>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "API ReferenceComponentsLinkCopy pageLink <Link> is a React component that extends the HTML <a> element to provide prefetching and client-side navigation between routes. It is the primary way to navigate between routes in Next.js. Basic usage: pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return <Link href=\"/dashboard\">Dashboard</Link> } Reference The following props can be passed to the <Link> component: PropExampleTypeRequiredhrefhref=\"/dashboard\"String or ObjectYesasas=\"/post/abc\"String or Object-replacereplace={false}Boolean-scrollscroll={false}Boolean-prefetchprefetch={false}Boolean-shallowshallow={false}Boolean-localelocale=\"fr\"String or Boolean-onNavigateonNavigate={(e) => {}}Function- Good to know: <a> tag attributes such as className or target=\"_blank\" can be added to <Link> as props and will be passed to the underlying <a> element. href (required) The path or URL to navigate to. pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' // Navigate to /about?name=test export default function Home() { return ( <Link href={{ pathname: '/about', query: { name: 'test' }, }} > About </Link> ) } replace Defaults to false. When true, next/link will replace the current history state instead of adding a new URL into the browser's history stack. pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return ( <Link href=\"/dashboard\" replace> Dashboard </Link> ) } scroll Defaults to true. The default scrolling behavior of <Link> in Next.js is to maintain scroll position, similar to how browsers handle back and forwards navigation. When you navigate to a new Page, scroll position will stay the same as long as the Page is visible in the viewport. However, if the Page is not visible in the viewport, Next.js will scroll to the top of the first Page element. When scroll = {false}, Next.js will not attempt to scroll to the first Page element. Good to know: Next.js checks if scroll: false before managing scroll behavior. If scrolling is enabled, it identifies the relevant DOM node for navigation and inspects each top-level element. All non-scrollable elements and those without rendered HTML are bypassed, this includes sticky or fixed positioned elements, and non-visible elements such as those calculated with getBoundingClientRect. Next.js then continues through siblings until it identifies a scrollable element that is visible in the viewport. pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return ( <Link href=\"/dashboard\" scroll={false}> Dashboard </Link> ) } prefetch Prefetching happens when a <Link /> component enters the user's viewport (initially or through scroll). Next.js prefetches and loads the linked route (denoted by the href) and data in the background to improve the performance of client-side navigation's. Prefetching is only enabled in production.The following values can be passed to the prefetch prop: true (default): The full route and its data will be prefetched. false: Prefetching will not happen when entering the viewport, but will happen on hover. If you want to completely remove fetching on hover as well, consider using an <a> tag or incrementally adopting the App Router, which enables disabling prefetching on hover too. pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return ( <Link href=\"/dashboard\" prefetch={false}> Dashboard </Link> ) }shallow Update the path of the current page without rerunning getStaticProps, getServerSideProps or getInitialProps. Defaults to false.pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return ( <Link href=\"/dashboard\" shallow={false}> Dashboard </Link> ) }locale The active locale is automatically prepended. locale allows for providing a different locale. When false href has to include the locale as the default behavior is disabled.pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return ( <> {/* Default behavior: locale is prepended */} <Link href=\"/dashboard\">Dashboard (with locale)</Link> {/* Disable locale prepending */} <Link href=\"/dashboard\" locale={false}> Dashboard (without locale) </Link> {/* Specify a different locale */} <Link href=\"/dashboard\" locale=\"fr\"> Dashboard (French) </Link> </> ) }as Optional decorator for the path that will be shown in the browser URL bar. Before Next.js 9.5.3 this was used for dynamic routes, check our previous docs to see how it worked.When this path differs from the one provided in href the previous href/as behavior is used as shown in the previous docs. onNavigate An event handler called during client-side navigation. The handler receives an event object that includes a preventDefault() method, allowing you to cancel the navigation if needed. app/page.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Page() { return ( <Link href=\"/dashboard\" onNavigate={(e) => { // Only executes during SPA navigation console.log('Navigating...') // Optionally prevent navigation // e.preventDefault() }} > Dashboard </Link> ) } Good to know: While onClick and onNavigate may seem similar, they serve different purposes. onClick executes for all click events, while onNavigate only runs during client-side navigation. Some key differences: When using modifier keys (Ctrl/Cmd + Click), onClick executes but onNavigate doesn't since Next.js prevents default navigation for new tabs. External URLs won't trigger onNavigate since it's only for client-side and same-origin navigations. Links with the download attribute will work with onClick but not onNavigate since the browser will treat the linked URL as a download. Examples The following examples demonstrate how to use the <Link> component in different scenarios. Linking to dynamic route segments For dynamic route segments, it can be handy to use template literals to create the link's path.For example, you can generate a list of links to the dynamic route pages/blog/[slug].jspages/blog/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' function Posts({ posts }) { return ( <ul> {posts.map((post) => ( <li key={post.id}> <Link href={`/blog/${post.slug}`}>{post.title}</Link> </li> ))} </ul> ) } Scrolling to an id If you'd like to scroll to a specific id on navigation, you can append your URL with a # hash link or just pass a hash link to the href prop. This is possible since <Link> renders to an <a> element. <Link href=\"/dashboard#settings\">Settings</Link> // Output <a href=\"/dashboard#settings\">Settings</a> Passing a URL Object Link can also receive a URL object and it will automatically format it to create the URL string:pages/index.tsTypeScriptJavaScriptTypeScriptimport Link from 'next/link' function Home() { return ( <ul> <li> <Link href={{ pathname: '/about', query: { name: 'test' }, }} > About us </Link> </li> <li> <Link href={{ pathname: '/blog/[slug]', query: { slug: 'my-post' }, }} > Blog Post </Link> </li> </ul> ) } export default HomeThe above example has a link to: A predefined route: /about?name=test A dynamic route: /blog/my-post You can use every property as defined in the Node.js URL module documentation. Replace the URL instead of push The default behavior of the Link component is to push a new URL into the history stack. You can use the replace prop to prevent adding a new entry, as in the following example: pages/index.jsTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return ( <Link href=\"/about\" replace> About us </Link> ) } Disable scrolling to the top of the page The default behavior of Link is to scroll to the top of the page. When there is a hash defined it will scroll to the specific id, like a normal <a> tag. To prevent scrolling to the top / hash scroll={false} can be added to Link:pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return ( <Link href=\"/#hashid\" scroll={false}> Disables scrolling to the top </Link> ) } Prefetching links in Proxy It's common to use Proxy for authentication or other purposes that involve rewriting the user to a different page. In order for the <Link /> component to properly prefetch links with rewrites via Proxy, you need to tell Next.js both the URL to display and the URL to prefetch. This is required to avoid un-necessary fetches to proxy to know the correct route to prefetch. For example, if you want to serve a /dashboard route that has authenticated and visitor views, you can add the following in your Proxy to redirect the user to the correct page: proxy.tsTypeScriptJavaScriptTypeScriptimport { NextResponse } from 'next/server' export function proxy(request: Request) { const nextUrl = request.nextUrl if (nextUrl.pathname === '/dashboard') { if (request.cookies.authToken) { return NextResponse.rewrite(new URL('/auth/dashboard', request.url)) } else { return NextResponse.rewrite(new URL('/public/dashboard', request.url)) } } } In this case, you would want to use the following code in your <Link /> component: pages/index.tsxTypeScriptJavaScriptTypeScript'use client' import Link from 'next/link' import useIsAuthed from './hooks/useIsAuthed' // Your auth hook export default function Home() { const isAuthed = useIsAuthed() const path = isAuthed ? '/auth/dashboard' : '/public/dashboard' return ( <Link as=\"/dashboard\" href={path}> Dashboard </Link> ) } Good to know: If you're using Dynamic Routes, you'll need to adapt your as and href props. For example, if you have a Dynamic Route like /dashboard/authed/[user] that you want to present differently via proxy, you would write: <Link href={{ pathname: '/dashboard/authed/[user]', query: { user: username } }} as=\"/dashboard/[user]\">Profile</Link>. Version history VersionChangesv15.4.0Add auto as an alias to the default prefetch behavior.v15.3.0Add onNavigate APIv13.0.0No longer requires a child <a> tag. A codemod is provided to automatically update your codebase.v10.0.0href props pointing to a dynamic route are automatically resolved and no longer require an as prop.v8.0.0Improved prefetching performance.v1.0.0next/link introduced.",
+      "code": "<Link>"
+    },
+    {
+      "description": "Link <Link> is a React component that extends the HTML <a> element to provide prefetching and client-side navigation between routes. It is the primary way to navigate between routes in Next.js. Basic usage: pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return <Link href=\"/dashboard\">Dashboard</Link> } Reference The following props can be passed to the <Link> component: PropExampleTypeRequiredhrefhref=\"/dashboard\"String or ObjectYesasas=\"/post/abc\"String or Object-replacereplace={false}Boolean-scrollscroll={false}Boolean-prefetchprefetch={false}Boolean-shallowshallow={false}Boolean-localelocale=\"fr\"String or Boolean-onNavigateonNavigate={(e) => {}}Function- Good to know: <a> tag attributes such as className or target=\"_blank\" can be added to <Link> as props and will be passed to the underlying <a> element. href (required) The path or URL to navigate to. pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' // Navigate to /about?name=test export default function Home() { return ( <Link href={{ pathname: '/about', query: { name: 'test' }, }} > About </Link> ) } replace Defaults to false. When true, next/link will replace the current history state instead of adding a new URL into the browser's history stack. pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return ( <Link href=\"/dashboard\" replace> Dashboard </Link> ) } scroll Defaults to true. The default scrolling behavior of <Link> in Next.js is to maintain scroll position, similar to how browsers handle back and forwards navigation. When you navigate to a new Page, scroll position will stay the same as long as the Page is visible in the viewport. However, if the Page is not visible in the viewport, Next.js will scroll to the top of the first Page element. When scroll = {false}, Next.js will not attempt to scroll to the first Page element. Good to know: Next.js checks if scroll: false before managing scroll behavior. If scrolling is enabled, it identifies the relevant DOM node for navigation and inspects each top-level element. All non-scrollable elements and those without rendered HTML are bypassed, this includes sticky or fixed positioned elements, and non-visible elements such as those calculated with getBoundingClientRect. Next.js then continues through siblings until it identifies a scrollable element that is visible in the viewport. pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return ( <Link href=\"/dashboard\" scroll={false}> Dashboard </Link> ) } prefetch Prefetching happens when a <Link /> component enters the user's viewport (initially or through scroll). Next.js prefetches and loads the linked route (denoted by the href) and data in the background to improve the performance of client-side navigation's. Prefetching is only enabled in production.The following values can be passed to the prefetch prop: true (default): The full route and its data will be prefetched. false: Prefetching will not happen when entering the viewport, but will happen on hover. If you want to completely remove fetching on hover as well, consider using an <a> tag or incrementally adopting the App Router, which enables disabling prefetching on hover too. pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return ( <Link href=\"/dashboard\" prefetch={false}> Dashboard </Link> ) }shallow Update the path of the current page without rerunning getStaticProps, getServerSideProps or getInitialProps. Defaults to false.pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return ( <Link href=\"/dashboard\" shallow={false}> Dashboard </Link> ) }locale The active locale is automatically prepended. locale allows for providing a different locale. When false href has to include the locale as the default behavior is disabled.pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return ( <> {/* Default behavior: locale is prepended */} <Link href=\"/dashboard\">Dashboard (with locale)</Link> {/* Disable locale prepending */} <Link href=\"/dashboard\" locale={false}> Dashboard (without locale) </Link> {/* Specify a different locale */} <Link href=\"/dashboard\" locale=\"fr\"> Dashboard (French) </Link> </> ) }as Optional decorator for the path that will be shown in the browser URL bar. Before Next.js 9.5.3 this was used for dynamic routes, check our previous docs to see how it worked.When this path differs from the one provided in href the previous href/as behavior is used as shown in the previous docs. onNavigate An event handler called during client-side navigation. The handler receives an event object that includes a preventDefault() method, allowing you to cancel the navigation if needed. app/page.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Page() { return ( <Link href=\"/dashboard\" onNavigate={(e) => { // Only executes during SPA navigation console.log('Navigating...') // Optionally prevent navigation // e.preventDefault() }} > Dashboard </Link> ) } Good to know: While onClick and onNavigate may seem similar, they serve different purposes. onClick executes for all click events, while onNavigate only runs during client-side navigation. Some key differences: When using modifier keys (Ctrl/Cmd + Click), onClick executes but onNavigate doesn't since Next.js prevents default navigation for new tabs. External URLs won't trigger onNavigate since it's only for client-side and same-origin navigations. Links with the download attribute will work with onClick but not onNavigate since the browser will treat the linked URL as a download. Examples The following examples demonstrate how to use the <Link> component in different scenarios. Linking to dynamic route segments For dynamic route segments, it can be handy to use template literals to create the link's path.For example, you can generate a list of links to the dynamic route pages/blog/[slug].jspages/blog/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' function Posts({ posts }) { return ( <ul> {posts.map((post) => ( <li key={post.id}> <Link href={`/blog/${post.slug}`}>{post.title}</Link> </li> ))} </ul> ) } Scrolling to an id If you'd like to scroll to a specific id on navigation, you can append your URL with a # hash link or just pass a hash link to the href prop. This is possible since <Link> renders to an <a> element. <Link href=\"/dashboard#settings\">Settings</Link> // Output <a href=\"/dashboard#settings\">Settings</a> Passing a URL Object Link can also receive a URL object and it will automatically format it to create the URL string:pages/index.tsTypeScriptJavaScriptTypeScriptimport Link from 'next/link' function Home() { return ( <ul> <li> <Link href={{ pathname: '/about', query: { name: 'test' }, }} > About us </Link> </li> <li> <Link href={{ pathname: '/blog/[slug]', query: { slug: 'my-post' }, }} > Blog Post </Link> </li> </ul> ) } export default HomeThe above example has a link to: A predefined route: /about?name=test A dynamic route: /blog/my-post You can use every property as defined in the Node.js URL module documentation. Replace the URL instead of push The default behavior of the Link component is to push a new URL into the history stack. You can use the replace prop to prevent adding a new entry, as in the following example: pages/index.jsTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return ( <Link href=\"/about\" replace> About us </Link> ) } Disable scrolling to the top of the page The default behavior of Link is to scroll to the top of the page. When there is a hash defined it will scroll to the specific id, like a normal <a> tag. To prevent scrolling to the top / hash scroll={false} can be added to Link:pages/index.tsxTypeScriptJavaScriptTypeScriptimport Link from 'next/link' export default function Home() { return ( <Link href=\"/#hashid\" scroll={false}> Disables scrolling to the top </Link> ) } Prefetching links in Proxy It's common to use Proxy for authentication or other purposes that involve rewriting the user to a different page. In order for the <Link /> component to properly prefetch links with rewrites via Proxy, you need to tell Next.js both the URL to display and the URL to prefetch. This is required to avoid un-necessary fetches to proxy to know the correct route to prefetch. For example, if you want to serve a /dashboard route that has authenticated and visitor views, you can add the following in your Proxy to redirect the user to the correct page: proxy.tsTypeScriptJavaScriptTypeScriptimport { NextResponse } from 'next/server' export function proxy(request: Request) { const nextUrl = request.nextUrl if (nextUrl.pathname === '/dashboard') { if (request.cookies.authToken) { return NextResponse.rewrite(new URL('/auth/dashboard', request.url)) } else { return NextResponse.rewrite(new URL('/public/dashboard', request.url)) } } } In this case, you would want to use the following code in your <Link /> component: pages/index.tsxTypeScriptJavaScriptTypeScript'use client' import Link from 'next/link' import useIsAuthed from './hooks/useIsAuthed' // Your auth hook export default function Home() { const isAuthed = useIsAuthed() const path = isAuthed ? '/auth/dashboard' : '/public/dashboard' return ( <Link as=\"/dashboard\" href={path}> Dashboard </Link> ) } Good to know: If you're using Dynamic Routes, you'll need to adapt your as and href props. For example, if you have a Dynamic Route like /dashboard/authed/[user] that you want to present differently via proxy, you would write: <Link href={{ pathname: '/dashboard/authed/[user]', query: { user: username } }} as=\"/dashboard/[user]\">Profile</Link>. Version history VersionChangesv15.4.0Add auto as an alias to the default prefetch behavior.v15.3.0Add onNavigate APIv13.0.0No longer requires a child <a> tag. A codemod is provided to automatically update your codebase.v10.0.0href props pointing to a dynamic route are automatically resolved and no longer require an as prop.v8.0.0Improved prefetching performance.v1.0.0next/link introduced.",
+      "code": "<Link>"
+    },
+    {
+      "description": "Basic usage:",
+      "code": "import Link from 'next/link'\n \nexport default function Home() {\n  return <Link href=\"/dashboard\">Dashboard</Link>\n}"
+    },
+    {
+      "description": "The default behavior of the Link component is to push a new URL into the history stack. You can use the replace prop to prevent adding a new entry, as in the following example:",
+      "code": "Link"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/pages/api-reference",
+    "https://nextjs.org/docs/pages/api-reference/components",
+    "https://nextjs.org/docs/app/getting-started/linking-and-navigating",
+    "https://nextjs.org/docs/pages/api-reference/components/link",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/guides/migrating/app-router-migration",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-initial-props",
+    "https://nextjs.org/docs/pages/building-your-application/routing/dynamic-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/app/guides/upgrading/codemods",
+    "https://nextjs.org/docs/pages/api-reference/components/image-legacy",
+    "https://nextjs.org/docs/pages/api-reference/components/script"
+  ]
+}

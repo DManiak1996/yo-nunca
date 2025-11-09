@@ -1,0 +1,68 @@
+{
+  "url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/unsupported-syntax",
+  "title": "unsupported-syntax",
+  "content": "Validates against syntax that React Compiler does not support. If you need to, you can still use this syntax outside of React, such as in a standalone utility function.\n\nReact Compiler needs to statically analyze your code to apply optimizations. Features like eval and with make it impossible to statically understand what the code does at compile time, so the compiler can’t optimize components that use them.\n\nExamples of incorrect code for this rule:\n\nExamples of correct code for this rule:\n\nYou might need to evaluate user-provided code:\n\nUse a safe expression parser instead:\n\nNever use eval with user input - it’s a security risk. Use dedicated parsing libraries for specific use cases like mathematical expressions, JSON parsing, or template evaluation.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "unsupported-syntax",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Rule Details",
+      "id": "rule-details"
+    },
+    {
+      "level": "h3",
+      "text": "Invalid",
+      "id": "invalid"
+    },
+    {
+      "level": "h3",
+      "text": "Valid",
+      "id": "valid"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "I need to evaluate dynamic code",
+      "id": "evaluate-dynamic-code"
+    },
+    {
+      "level": "h3",
+      "text": "Note",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// ❌ Using eval in componentfunction Component({ code }) {  const result = eval(code); // Can't be analyzed  return <div>{result}</div>;}// ❌ Using with statementfunction Component() {  with (Math) { // Changes scope dynamically    return <div>{sin(PI / 2)}</div>;  }}// ❌ Dynamic property access with evalfunction Component({propName}) {  const value = eval(`props.${propName}`);  return <div>{value}</div>;}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Use normal property accessfunction Component({propName, props}) {  const value = props[propName]; // Analyzable  return <div>{value}</div>;}// ✅ Use standard Math methodsfunction Component() {  return <div>{Math.sin(Math.PI / 2)}</div>;}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ❌ Wrong: eval in componentfunction Calculator({expression}) {  const result = eval(expression); // Unsafe and unoptimizable  return <div>Result: {result}</div>;}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Better: Use a safe parserimport {evaluate} from 'mathjs'; // or similar libraryfunction Calculator({expression}) {  const [result, setResult] = useState(null);  const calculate = () => {    try {      // Safe mathematical expression evaluation      setResult(evaluate(expression));    } catch (error) {      setResult('Invalid expression');    }  };  return (    <div>      <button onClick={calculate}>Calculate</button>      {result && <div>Result: {result}</div>}    </div>  );}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/eslint-plugin-react-hooks",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/unsupported-syntax",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/static-components",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/use-memo"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "url": "https://react.dev/reference/react-dom/preload",
+  "title": "preload",
+  "content": "React-based frameworks frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework’s documentation for details.\n\npreload lets you eagerly fetch a resource such as a stylesheet, font, or external script that you expect to use.\n\nTo preload a resource, call the preload function from react-dom.\n\nSee more examples below.\n\nThe preload function provides the browser with a hint that it should start downloading the given resource, which can save time.\n\npreload returns nothing.\n\nCall preload when rendering a component if you know that it or its children will use a specific resource.\n\nIf you want the browser to start executing the script immediately (rather than just downloading it), use preinit instead. If you want to load an ESM module, use preloadModule.\n\nCall preload in an event handler before transitioning to a page or state where external resources will be needed. This gets the process started earlier than if you call it during the rendering of the new page or state.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "preload",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Note",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "preload(href, options)",
+      "id": "preload"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Preloading when rendering",
+      "id": "preloading-when-rendering"
+    },
+    {
+      "level": "h4",
+      "text": "Examples of preloading",
+      "id": "examples"
+    },
+    {
+      "level": "h4",
+      "text": "Example 1 of 4: Preloading an external script",
+      "id": "preloading-an-external-script"
+    },
+    {
+      "level": "h3",
+      "text": "Preloading in an event handler",
+      "id": "preloading-in-an-event-handler"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "preload(\"https://example.com/font.woff2\", {as: \"font\"});",
+      "language": "unknown"
+    },
+    {
+      "code": "import { preload } from 'react-dom';function AppRoot() {  preload(\"https://example.com/font.woff2\", {as: \"font\"});  // ...}",
+      "language": "python"
+    },
+    {
+      "code": "import { preload } from 'react-dom';function AppRoot() {  preload(\"https://example.com/script.js\", {as: \"script\"});  return ...;}",
+      "language": "python"
+    },
+    {
+      "code": "import { preload } from 'react-dom';function CallToAction() {  const onClick = () => {    preload(\"https://example.com/wizardStyles.css\", {as: \"style\"});    startWizard();  }  return (    <button onClick={onClick}>Start Wizard</button>  );}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-dom",
+    "https://react.dev/reference/react-dom/preload",
+    "https://react.dev/learn/start-a-new-react-project",
+    "https://react.dev/reference/react-dom/preinit",
+    "https://react.dev/reference/react-dom/preloadModule",
+    "https://react.dev/reference/react-dom/preinitModule"
+  ]
+}

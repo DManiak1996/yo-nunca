@@ -1,0 +1,105 @@
+{
+  "url": "https://react.dev/reference/react-compiler/gating",
+  "title": "gating",
+  "content": "The gating option enables conditional compilation, allowing you to control when optimized code is used at runtime.\n\nConfigures runtime feature flag gating for compiled functions.\n\nNote that the gating function is evaluated once at module time, so once the JS bundle has been parsed and evaluated the choice of component stays static for the rest of the browser session.\n\nVerify your flag module exports the correct function:\n\nEnsure the source path is correct:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "gating",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "gating",
+      "id": "gating"
+    },
+    {
+      "level": "h4",
+      "text": "Type",
+      "id": "type"
+    },
+    {
+      "level": "h4",
+      "text": "Default value",
+      "id": "default-value"
+    },
+    {
+      "level": "h4",
+      "text": "Properties",
+      "id": "properties"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Basic feature flag setup",
+      "id": "basic-setup"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "Feature flag not working",
+      "id": "flag-not-working"
+    },
+    {
+      "level": "h3",
+      "text": "Import errors",
+      "id": "import-errors"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "{  gating: {    source: 'my-feature-flags',    importSpecifierName: 'shouldUseCompiler'  }}",
+      "language": "unknown"
+    },
+    {
+      "code": "{  source: string;  importSpecifierName: string;} | null",
+      "language": "unknown"
+    },
+    {
+      "code": "// src/utils/feature-flags.jsexport function shouldUseCompiler() {  // your logic here  return getFeatureFlag('react-compiler-enabled');}",
+      "language": "unknown"
+    },
+    {
+      "code": "{  gating: {    source: './src/utils/feature-flags',    importSpecifierName: 'shouldUseCompiler'  }}",
+      "language": "unknown"
+    },
+    {
+      "code": "// Inputfunction Button(props) {  return <button>{props.label}</button>;}// Output (simplified)import { shouldUseCompiler } from './src/utils/feature-flags';const Button = shouldUseCompiler()  ? function Button_optimized(props) { /* compiled version */ }  : function Button_original(props) { /* original version */ };",
+      "language": "python"
+    },
+    {
+      "code": "// ❌ Wrong: Default exportexport default function shouldUseCompiler() {  return true;}// ✅ Correct: Named export matching importSpecifierNameexport function shouldUseCompiler() {  return true;}",
+      "language": "unknown"
+    },
+    {
+      "code": "// ❌ Wrong: Relative to babel.config.js{  source: './src/flags',  importSpecifierName: 'flag'}// ✅ Correct: Module resolution path{  source: '@myapp/feature-flags',  importSpecifierName: 'flag'}// ✅ Also correct: Absolute path from project root{  source: './src/utils/flags',  importSpecifierName: 'flag'}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-compiler/configuration",
+    "https://react.dev/reference/react-compiler/gating",
+    "https://react.dev/reference/react-compiler/compilationMode",
+    "https://react.dev/reference/react-compiler/logger"
+  ]
+}

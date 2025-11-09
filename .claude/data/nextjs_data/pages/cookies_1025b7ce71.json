@@ -1,0 +1,126 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/cookies",
+  "title": "cookies",
+  "content": "cookies is an async function that allows you to read the HTTP incoming request cookies in Server Components, and read/write outgoing request cookies in Server Actions or Route Handlers.\n\nThe following methods are available:\n\nWhen setting a cookie, the following properties from the options object are supported:\n\nThe only option with a default value is path.\n\nTo learn more about these options, see the MDN docs.\n\nWhen working with cookies in Server Components, it's important to understand that cookies are fundamentally a client-side storage mechanism:\n\nThe server can only send instructions (via Set-Cookie headers) to tell the browser to store cookies - the actual storage happens on the client side. This is why cookie operations that modify state (.set, .delete, .clear) must be performed in a Route Handler or Server Action where the response headers can be properly set.\n\nAfter you set or delete a cookie in a Server Action, Next.js re-renders the current page and its layouts on the server so the UI reflects the new cookie value. See the Caching guide.\n\nThe UI is not unmounted, but effects that depend on data coming from the server will re-run.\n\nTo refresh cached data too, call revalidatePath or revalidateTag inside the action.\n\nYou can use the (await cookies()).get('name') method to get a single cookie:\n\nYou can use the (await cookies()).getAll() method to get all cookies with a matching name. If name is unspecified, it returns all the available cookies.\n\nYou can use the (await cookies()).set(name, value, options) method in a Server Action or Route Handler to set a cookie. The options object is optional.\n\nYou can use the (await cookies()).has(name) method to check if a cookie exists:\n\nThere are three ways you can delete a cookie.\n\nUsing the delete() method:\n\nSetting a new cookie with the same name and an empty value:\n\nSetting the maxAge to 0 will immediately expire a cookie. maxAge accepts a value in seconds.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "cookies",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Methods",
+      "id": "methods"
+    },
+    {
+      "level": "h3",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h2",
+      "text": "Good to know",
+      "id": "good-to-know"
+    },
+    {
+      "level": "h2",
+      "text": "Understanding Cookie Behavior in Server Components",
+      "id": "understanding-cookie-behavior-in-server-components"
+    },
+    {
+      "level": "h2",
+      "text": "Understanding Cookie Behavior in Server Actions",
+      "id": "understanding-cookie-behavior-in-server-actions"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Getting a cookie",
+      "id": "getting-a-cookie"
+    },
+    {
+      "level": "h3",
+      "text": "Getting all cookies",
+      "id": "getting-all-cookies"
+    },
+    {
+      "level": "h3",
+      "text": "Setting a cookie",
+      "id": "setting-a-cookie"
+    },
+    {
+      "level": "h3",
+      "text": "Checking if a cookie exists",
+      "id": "checking-if-a-cookie-exists"
+    },
+    {
+      "level": "h3",
+      "text": "Deleting cookies",
+      "id": "deleting-cookies"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { cookies } from 'next/headers'\n \nexport default async function Page() {\n  const cookieStore = await cookies()\n  const theme = cookieStore.get('theme')\n  return '...'\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cookies } from 'next/headers'\n \nexport default async function Page() {\n  const cookieStore = await cookies()\n  const theme = cookieStore.get('theme')\n  return '...'\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cookies } from 'next/headers'\n \nexport default async function Page() {\n  const cookieStore = await cookies()\n  return cookieStore.getAll().map((cookie) => (\n    <div key={cookie.name}>\n      <p>Name: {cookie.name}</p>\n      <p>Value: {cookie.value}</p>\n    </div>\n  ))\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nimport { cookies } from 'next/headers'\n \nexport async function create(data) {\n  const cookieStore = await cookies()\n \n  cookieStore.set('name', 'lee')\n  // or\n  cookieStore.set('name', 'lee', { secure: true })\n  // or\n  cookieStore.set({\n    name: 'name',\n    value: 'lee',\n    httpOnly: true,\n    path: '/',\n  })\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cookies } from 'next/headers'\n \nexport default async function Page() {\n  const cookieStore = await cookies()\n  const hasCookie = cookieStore.has('theme')\n  return '...'\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nimport { cookies } from 'next/headers'\n \nexport async function delete(data) {\n  (await cookies()).delete('name')\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nimport { cookies } from 'next/headers'\n \nexport async function delete(data) {\n  (await cookies()).set('name', '')\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nimport { cookies } from 'next/headers'\n \nexport async function delete(data) {\n  (await cookies()).set('name', 'value', { maxAge: 0 })\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/getting-started/updating-data",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/functions/cookies",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidatePath",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidateTag",
+    "https://nextjs.org/docs/app/guides/upgrading/codemods",
+    "https://nextjs.org/docs/app/api-reference/functions/connection",
+    "https://nextjs.org/docs/app/api-reference/functions/draft-mode"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/route-groups",
+  "title": "Route Groups",
+  "content": "Route Groups are a folder convention that let you organize routes by category or team.\n\nA route group can be created by wrapping a folder's name in parenthesis: (folderName).\n\nThis convention indicates the folder is for organizational purposes and should not be included in the route's URL path.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Route Groups",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Convention",
+      "id": "convention"
+    },
+    {
+      "level": "h2",
+      "text": "Use cases",
+      "id": "use-cases"
+    },
+    {
+      "level": "h2",
+      "text": "Caveats",
+      "id": "caveats"
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-groups",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config"
+  ]
+}

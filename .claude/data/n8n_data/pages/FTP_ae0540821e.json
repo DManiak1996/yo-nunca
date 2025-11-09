@@ -1,0 +1,54 @@
+{
+  "title": "FTP",
+  "content": "The FTP node is useful to access and upload files to an FTP or SFTP server.\n\nYou can find authentication information for this node [here](../../credentials/ftp/).\n\nTo connect to an SFTP server, use an SFTP credential. Refer to [FTP credentials](../../credentials/ftp/) for more information.\n\n- [**Delete**](#delete) a file or folder\n- [**Download**](#download) a file\n- [**List**](#list) folder content\n- [**Rename**](#rename) or move a file or folder\n- [**Upload**](#upload) a file\n\nTo attach a file for upload, you'll need to use an extra node such as the [Read/Write Files from Disk](../n8n-nodes-base.readwritefile/) node or the [HTTP Request](../n8n-nodes-base.httprequest/) node to pass the file as a data property.\n\nThis operation includes one parameter: **Path**. Enter the remote path that you would like to connect to.\n\nThe delete operation adds one new option: **Folder**. If you turn this option on, the node can delete both folders and files. This configuration also displays one more option:\n\n- **Recursive**: If you turn this option on and you delete a folder or directory, the node will delete all files and directories within the target directory.\n\nConfigure this operation with these parameters:\n\n- **Path**: Enter the remote path that you would like to connect to.\n- **Put Output File in Field**: Enter the name of the output binary field to put the file in.\n\nConcurrent Reads with SFTP\n\nWhen using SFTP, you can enable concurrent reads. This improves download speeds but may not be supported by all SFTP servers.\n\nConfigure this operation with these parameters:\n\n- **Path**: Enter the remote path that you would like to connect to.\n- **Recursive**: Select whether to return an object representing all directories / objects recursively found within the FTP/SFTP server (turned on) or not (turned off).\n\nConfigure this operation with these parameters:\n\n- **Old Path**: Enter the existing path of the file you'd like to rename in this field.\n- **New Path**: Enter the new path for the renamed file in this field.\n\nThis operation adds one new option: **Create Directories**. If you turn this option on, the node will recursively create the destination directory when renaming an existing file or folder.\n\nConfigure this operation with these parameters:\n\n- **Path**: Enter the remote path that you would like to connect to.\n- **Binary File**: Select whether you'll upload a binary file (turned on) or enter text content to be uploaded (turned off). Other parameters depend on your selection in this field.\n  - **Input Binary Field**: Displayed if you turn on **Binary File**. Enter the name of the input binary field that contains the file you'll upload in this field.\n  - **File Content**: Displayed if you turn off **Binary File** Enter the text content of the file you'll upload in this field.\n\nTo attach a file for upload, you'll need to use an extra node such as the [Read/Write Files from Disk](../n8n-nodes-base.readwritefile/) node or the [HTTP Request](../n8n-nodes-base.httprequest/) node to pass the file as a data property.\n\n## Templates and examples\n\n**Working with Excel spreadsheet files (xls & xlsx)**\n\n[View template details](https://n8n.io/workflows/1826-working-with-excel-spreadsheet-files-xls-and-xlsx/)\n\n**Download a file and upload it to an FTP Server**\n\n[View template details](https://n8n.io/workflows/663-download-a-file-and-upload-it-to-an-ftp-server/)\n\n**Explore n8n Nodes in a Visual Reference Library**\n\n[View template details](https://n8n.io/workflows/3891-explore-n8n-nodes-in-a-visual-reference-library/)\n\n[Browse FTP integration templates](https://n8n.io/integrations/ftp/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Delete",
+      "id": "delete"
+    },
+    {
+      "level": "h3",
+      "text": "Delete options",
+      "id": "delete-options"
+    },
+    {
+      "level": "h2",
+      "text": "Download",
+      "id": "download"
+    },
+    {
+      "level": "h2",
+      "text": "List",
+      "id": "list"
+    },
+    {
+      "level": "h2",
+      "text": "Rename",
+      "id": "rename"
+    },
+    {
+      "level": "h3",
+      "text": "Rename options",
+      "id": "rename-options"
+    },
+    {
+      "level": "h2",
+      "text": "Upload",
+      "id": "upload"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#ftp",
+  "links": []
+}

@@ -1,0 +1,83 @@
+{
+  "url": "https://react.dev/reference/react-compiler/panicThreshold",
+  "title": "panicThreshold",
+  "content": "The panicThreshold option controls how the React Compiler handles errors during compilation.\n\nDetermines whether compilation errors should fail the build or skip optimization.\n\nFor production builds, always use 'none'. This is the default value:\n\nTemporarily use stricter thresholds to find issues:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "panicThreshold",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "panicThreshold",
+      "id": "panicthreshold"
+    },
+    {
+      "level": "h4",
+      "text": "Type",
+      "id": "type"
+    },
+    {
+      "level": "h4",
+      "text": "Default value",
+      "id": "default-value"
+    },
+    {
+      "level": "h4",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Production configuration (recommended)",
+      "id": "production-configuration"
+    },
+    {
+      "level": "h3",
+      "text": "Development debugging",
+      "id": "development-debugging"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "{  panicThreshold: 'none' // Recommended}",
+      "language": "unknown"
+    },
+    {
+      "code": "'none' | 'critical_errors' | 'all_errors'",
+      "language": "unknown"
+    },
+    {
+      "code": "{  panicThreshold: 'none'}",
+      "language": "unknown"
+    },
+    {
+      "code": "const isDevelopment = process.env.NODE_ENV === 'development';{  panicThreshold: isDevelopment ? 'critical_errors' : 'none',  logger: {    logEvent(filename, event) {      if (isDevelopment && event.kind === 'CompileError') {        // ...      }    }  }}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-compiler/configuration",
+    "https://react.dev/reference/react-compiler/panicThreshold",
+    "https://react.dev/reference/react-compiler/logger",
+    "https://react.dev/reference/react-compiler/target"
+  ]
+}

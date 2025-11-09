@@ -1,0 +1,13 @@
+{
+  "title": "For example, **/myfile.txt",
+  "content": "**/<directoryName>/**",
+  "code_samples": [
+    {
+      "code": "Ignore a sub-directory of a directory you're watching:",
+      "language": "unknown"
+    }
+  ],
+  "headings": [],
+  "url": "llms-txt#for-example,-**/myfile.txt",
+  "links": []
+}

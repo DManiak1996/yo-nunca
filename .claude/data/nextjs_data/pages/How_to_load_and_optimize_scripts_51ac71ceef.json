@@ -1,0 +1,98 @@
+{
+  "url": "https://nextjs.org/docs/pages/guides/scripts",
+  "title": "How to load and optimize scripts",
+  "content": "To load a third-party script for all routes, import next/script and include the script directly in your custom _app:\n\nThis script will load and execute when any route in your application is accessed. Next.js will ensure the script will only load once, even if a user navigates between multiple pages.\n\nRecommendation: We recommend only including third-party scripts in specific pages or layouts in order to minimize any unnecessary impact to performance.\n\nAlthough the default behavior of next/script allows you to load third-party scripts in any page or layout, you can fine-tune its loading behavior by using the strategy property:\n\nRefer to the next/script API reference documentation to learn more about each strategy and their use cases.\n\nWarning: The worker strategy is not yet stable and does not yet work with the App Router. Use with caution.\n\nScripts that use the worker strategy are offloaded and executed in a web worker with Partytown. This can improve the performance of your site by dedicating the main thread to the rest of your application code.\n\nThis strategy is still experimental and can only be used if the nextScriptWorkers flag is enabled in next.config.js:\n\nThen, run next (normally npm run dev or yarn dev) and Next.js will guide you through the installation of the required packages to finish the setup:\n\nYou'll see instructions like these: Please install Partytown by running npm install @builder.io/partytown\n\nOnce setup is complete, defining strategy=\"worker\" will automatically instantiate Partytown in your application and offload the script to a web worker.\n\nThere are a number of trade-offs that need to be considered when loading a third-party script in a web worker. Please see Partytown's tradeoffs documentation for more information.\n\nAlthough the worker strategy does not require any additional configuration to work, Partytown supports the use of a config object to modify some of its settings, including enabling debug mode and forwarding events and triggers.\n\nIf you would like to add additional configuration options, you can include it within the <Head /> component used in a custom _document.js:\n\nIn order to modify Partytown's configuration, the following conditions must be met:\n\nNote: If you are using an asset prefix and would like to modify Partytown's default configuration, you must include it as part of the lib path.\n\nTake a look at Partytown's configuration options to see the full list of other properties that can be added.\n\nInline scripts, or scripts not loaded from an external file, are also supported by the Script component. They can be written by placing the JavaScript within curly braces:\n\nOr by using the dangerouslySetInnerHTML property:\n\nWarning: An id property must be assigned for inline scripts in order for Next.js to track and optimize the script.\n\nEvent handlers can be used with the Script component to execute additional code after a certain event occurs:\n\nThese handlers will only work when next/script is imported and used inside of a Client Component where \"use client\" is defined as the first line of code:\n\nRefer to the next/script API reference to learn more about each event handler and view examples.\n\nThere are many DOM attributes that can be assigned to a <script> element that are not used by the Script component, like nonce or custom data attributes. Including any additional attributes will automatically forward it to the final, optimized <script> element that is included in the HTML.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to load and optimize scripts",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Application Scripts",
+      "id": "application-scripts"
+    },
+    {
+      "level": "h3",
+      "text": "Strategy",
+      "id": "strategy"
+    },
+    {
+      "level": "h3",
+      "text": "Offloading Scripts To A Web Worker (experimental)",
+      "id": "offloading-scripts-to-a-web-worker-experimental"
+    },
+    {
+      "level": "h4",
+      "text": "Using custom Partytown configuration",
+      "id": "using-custom-partytown-configuration"
+    },
+    {
+      "level": "h3",
+      "text": "Inline Scripts",
+      "id": "inline-scripts"
+    },
+    {
+      "level": "h3",
+      "text": "Executing Additional Code",
+      "id": "executing-additional-code"
+    },
+    {
+      "level": "h3",
+      "text": "Additional Attributes",
+      "id": "additional-attributes"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Script from 'next/script'\n \nexport default function MyApp({ Component, pageProps }) {\n  return (\n    <>\n      <Component {...pageProps} />\n      <Script src=\"https://example.com/script.js\" />\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "module.exports = {\n  experimental: {\n    nextScriptWorkers: true,\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "npm run dev",
+      "language": "unknown"
+    },
+    {
+      "code": "import Script from 'next/script'\n \nexport default function Home() {\n  return (\n    <>\n      <Script src=\"https://example.com/script.js\" strategy=\"worker\" />\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Html, Head, Main, NextScript } from 'next/document'\n \nexport default function Document() {\n  return (\n    <Html>\n      <Head>\n        <script\n          data-partytown-config\n          dangerouslySetInnerHTML={{\n            __html: `\n              partytown = {\n                lib: \"/_next/static/~partytown/\",\n                debug: true\n              };\n            `,\n          }}\n        />\n      </Head>\n      <body>\n        <Main />\n        <NextScript />\n      </body>\n    </Html>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "<Script id=\"show-banner\">\n  {`document.getElementById('banner').classList.remove('hidden')`}\n</Script>",
+      "language": "unknown"
+    },
+    {
+      "code": "<Script\n  id=\"show-banner\"\n  dangerouslySetInnerHTML={{\n    __html: `document.getElementById('banner').classList.remove('hidden')`,\n  }}\n/>",
+      "language": "unknown"
+    },
+    {
+      "code": "import Script from 'next/script'\n \nexport default function Page() {\n  return (\n    <>\n      <Script\n        src=\"https://example.com/script.js\"\n        onLoad={() => {\n          console.log('Script has loaded')\n        }}\n      />\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Script from 'next/script'\n \nexport default function Page() {\n  return (\n    <>\n      <Script\n        src=\"https://example.com/script.js\"\n        id=\"example-script\"\n        nonce=\"XUENAJFW\"\n        data-test=\"script\"\n      />\n    </>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/guides",
+    "https://nextjs.org/docs/pages/guides/scripts",
+    "https://nextjs.org/docs/app/api-reference/components/script",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-document",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/assetPrefix",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/pages/api-reference/components/script",
+    "https://nextjs.org/docs/pages/guides/sass",
+    "https://nextjs.org/docs/pages/guides/self-hosting"
+  ]
+}

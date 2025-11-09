@@ -1,0 +1,19 @@
+{
+  "title": "SyncroMSP node",
+  "content": "Use the SyncroMSP node to automate work in SyncroMSP, and integrate SyncroMSP with other applications. n8n has built-in support for a wide range of SyncroMSP features, including creating and deleting new customers, tickets, and contacts.\n\nOn this page, you'll find a list of operations the SyncroMSP node supports and links to more resources.\n\nRefer to [SyncroMSP credentials](../../credentials/syncromsp/) for guidance on setting up authentication.\n\n- Contact\n  - Create new contact\n  - Delete contact\n  - Retrieve contact\n  - Retrieve all contacts\n  - Update contact\n- Customer\n  - Create new customer\n  - Delete customer\n  - Retrieve customer\n  - Retrieve all customers\n  - Update customer\n- RMM\n  - Create new RMM Alert\n  - Delete RMM Alert\n  - Retrieve RMM Alert\n  - Retrieve all RMM Alerts\n  - Mute RMM Alert\n- Ticket\n  - Create new ticket\n  - Delete ticket\n  - Retrieve ticket\n  - Retrieve all tickets\n  - Update ticket\n\n## Templates and examples\n\n[Browse SyncroMSP integration templates](https://n8n.io/integrations/syncromsp/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#syncromsp-node",
+  "links": []
+}

@@ -1,0 +1,41 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/unstable_noStore",
+  "title": "unstable_noStore",
+  "content": "In version 15, we recommend using connection instead of unstable_noStore.\n\nunstable_noStore can be used to declaratively opt out of static rendering and indicate a particular component should not be cached.\n\nIf you prefer not to pass additional options to fetch, like cache: 'no-store', next: { revalidate: 0 } or in cases where fetch is not available, you can use noStore() as a replacement for all of these use cases.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "unstable_noStore",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { unstable_noStore as noStore } from 'next/cache';\n \nexport default async function ServerComponent() {\n  noStore();\n  const result = await db.query(...);\n  ...\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { unstable_noStore as noStore } from 'next/cache';\n \nexport default async function ServerComponent() {\n  noStore();\n  const result = await db.query(...);\n  ...\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/functions/connection",
+    "https://nextjs.org/docs/app/api-reference/functions/unstable_cache",
+    "https://nextjs.org/docs/app/api-reference/functions/unstable_noStore",
+    "https://nextjs.org/docs/app/api-reference/functions/unstable_rethrow"
+  ]
+}

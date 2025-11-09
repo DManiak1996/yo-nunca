@@ -1,0 +1,8 @@
+{
+  "title": "Set log output to both console and a log file",
+  "content": "export N8N_LOG_OUTPUT=console,file",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#set-log-output-to-both-console-and-a-log-file",
+  "links": []
+}

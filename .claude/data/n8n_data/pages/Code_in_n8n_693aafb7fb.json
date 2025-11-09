@@ -1,0 +1,29 @@
+{
+  "title": "Code in n8n",
+  "content": "n8n is a low-code tool. This means you can do a lot without code, then add code when needed.\n\n## Code in your workflows\n\nThere are two places in your workflows where you can use code:\n\nUse [expressions](../glossary/#expression-n8n) to transform [data](../data/) in your nodes. You can use JavaScript in expressions, as well as n8n's [Built-in methods and variables](builtin/overview/) and [Data transformation functions](builtin/data-transformation-functions/).\n\n[Expressions](expressions/)\n\nUse the Code node to add JavaScript or Python to your workflow.\n\n[Code node](code-node/)\n\n## Other technical resources\n\nThese are features that are relevant to technical users.\n\nn8n provides core nodes, which simplify adding key functionality such as API requests, webhooks, scheduling, and file handling.\n\n- **Write a backend**\n\nThe [HTTP Request](../integrations/builtin/core-nodes/n8n-nodes-base.httprequest/), [Webhook](../integrations/builtin/core-nodes/n8n-nodes-base.webhook/), and [Code](code-node/) nodes help you make API calls, respond to webhooks, and write any JavaScript in your workflow.\n\nUse this do things like [Create an API endpoint](https://n8n.io/workflows/1750-creating-an-api-endpoint/).\n\n[Core nodes](../integrations/builtin/core-nodes/)\n\n- **Represent complex logic**\n\nYou can build complex flows, using nodes like [If](../integrations/builtin/core-nodes/n8n-nodes-base.if/), [Switch](../integrations/builtin/core-nodes/n8n-nodes-base.switch/), and [Merge](../integrations/builtin/core-nodes/n8n-nodes-base.merge/) nodes.\n\n[Flow logic](../flow-logic/)\n\n### Other developer resources\n\nn8n provides an API, where you can programmatically perform many of the same tasks as you can in the GUI. There's an [n8n API node](../integrations/builtin/core-nodes/n8n-nodes-base.n8n/) to access the API in your workflows.\n\nYou can self-host n8n. This keeps your data on your own infrastructure.\n\n[Hosting](../hosting/)\n\n- **Build your own nodes**\n\nYou can build custom nodes, install them on your n8n instance, and publish them to [npm](https://www.npmjs.com/).\n\n[Creating nodes](../integrations/creating-nodes/overview/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Code in your workflows",
+      "id": "code-in-your-workflows"
+    },
+    {
+      "level": "h2",
+      "text": "Other technical resources",
+      "id": "other-technical-resources"
+    },
+    {
+      "level": "h3",
+      "text": "Technical nodes",
+      "id": "technical-nodes"
+    },
+    {
+      "level": "h3",
+      "text": "Other developer resources",
+      "id": "other-developer-resources"
+    }
+  ],
+  "url": "llms-txt#code-in-n8n",
+  "links": []
+}

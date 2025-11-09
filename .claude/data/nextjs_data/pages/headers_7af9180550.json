@@ -1,0 +1,68 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/headers",
+  "title": "headers",
+  "content": "headers is an async function that allows you to read the HTTP incoming request headers from a Server Component.\n\nheaders does not take any parameters.\n\nheaders returns a read-only Web Headers object.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "headers",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Good to know",
+      "id": "good-to-know"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Using the Authorization header",
+      "id": "using-the-authorization-header"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { headers } from 'next/headers'\n \nexport default async function Page() {\n  const headersList = await headers()\n  const userAgent = headersList.get('user-agent')\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { headers } from 'next/headers'\n \nexport default async function Page() {\n  const authorization = (await headers()).get('authorization')\n  const res = await fetch('...', {\n    headers: { authorization }, // Forward the authorization header\n  })\n  const user = await res.json()\n \n  return <h1>{user.name}</h1>\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/api-reference/functions/headers",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/guides/upgrading/codemods",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-viewport",
+    "https://nextjs.org/docs/app/api-reference/functions/image-response"
+  ]
+}

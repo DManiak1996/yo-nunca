@@ -1,0 +1,44 @@
+{
+  "title": "Set up source control for environments",
+  "content": "Link a Git repository to an n8n instance and configure your source control.\n\nn8n uses source control to provide environments. Refer to [Environments in n8n](../understand/environments/) for more information.\n\nTo use source control with n8n, you need a Git repository with either:\n\n- SSH access (using deploy keys), or\n- HTTPS access (using Personal Access Tokens)\n\nThis document assumes you are familiar with Git and your Git provider.\n\n## Step 1: Set up your repository and branches\n\n1. Create a new repository for use with n8n.\n1. Create the branches you need. For example, if you plan to have different environments for test and production, set up a branch for each.\n\nTo help decide what branches you need for your use case, refer to [Branch patterns](../understand/patterns/).\n\n## Step 2: Configure Git in n8n\n\n1. Go to **Settings** > **Environments**.\n1. Choose your connection method:\n   - **SSH**: In **Git repository URL**, enter the SSH URL for your repository (for example, `git@github.com:username/repo.git`).\n   - **HTTPS**: In **Git repository URL** enter the HTTPS URL for your repository (for example, `https://github.com/username/repo.git`).\n1. Configure authentication based on your connection method:\n   - **For SSH**: n8n supports ED25519 and RSA public key algorithms. ED25519 is the default. Select **RSA** under **SSH Key** if your git host requires RSA. Copy the SSH key.\n   - **For HTTPS**: Enter your credentials:\n     - **Username**: Your Git provider username.\n     - **Token**: Your Personal Access Token (PAT) from your Git provider.\n\n## Step 3: Set up authentication\n\nConfigure authentication based on your chosen connection method.\n\n### SSH authentication (using deploy keys)\n\nSet up SSH access by creating a deploy key for the repository using the SSH key from n8n. The key must have write access.\n\nThe steps depend on your Git provider. Help links for common providers:\n\n- [GitHub | Managing deploy keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys)\n- [GitLab | Deploy keys](https://docs.gitlab.com/ee/user/project/deploy_keys/)\n\n### HTTPS authentication (using Personal Access Tokens)\n\nCreate a Personal Access Token (PAT) with repository access permissions.\n\nHelp links for creating PATs with common providers:\n\n- [GitHub | Managing personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)\n- [GitLab | Personal access tokens](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html)\n- [Bitbucket | App passwords](https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/)\n\nRequired permissions for your token:\n\n- Repository read/write access\n- Contents read/write (for GitHub)\n- Source code pull/push (for GitLab)\n\n## Step 4: Connect n8n and configure your instance\n\n1. In **Settings** > **Environments** in n8n, select **Connect**. n8n connects to your Git repository.\n1. Under **Instance settings**, choose which branch you want to use for the current n8n instance.\n1. **Optional**: select **Protected instance** to prevent users editing workflows in this instance. This is useful for protecting production instances.\n1. **Optional**: choose a custom color for the instance. This will appear in the menu next to the source control push and pull buttons. It helps users know which instance they're in.\n1. Select **Save settings**.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Prerequisites",
+      "id": "prerequisites"
+    },
+    {
+      "level": "h2",
+      "text": "Step 1: Set up your repository and branches",
+      "id": "step-1:-set-up-your-repository-and-branches"
+    },
+    {
+      "level": "h2",
+      "text": "Step 2: Configure Git in n8n",
+      "id": "step-2:-configure-git-in-n8n"
+    },
+    {
+      "level": "h2",
+      "text": "Step 3: Set up authentication",
+      "id": "step-3:-set-up-authentication"
+    },
+    {
+      "level": "h3",
+      "text": "SSH authentication (using deploy keys)",
+      "id": "ssh-authentication-(using-deploy-keys)"
+    },
+    {
+      "level": "h3",
+      "text": "HTTPS authentication (using Personal Access Tokens)",
+      "id": "https-authentication-(using-personal-access-tokens)"
+    },
+    {
+      "level": "h2",
+      "text": "Step 4: Connect n8n and configure your instance",
+      "id": "step-4:-connect-n8n-and-configure-your-instance"
+    }
+  ],
+  "url": "llms-txt#set-up-source-control-for-environments",
+  "links": []
+}

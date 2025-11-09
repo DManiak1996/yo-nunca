@@ -1,0 +1,19 @@
+{
+  "title": "`(\"<node-name>\").all(branchIndex?: number, runIndex?: number)`",
+  "content": "This gives access to all the items of the current or parent nodes. If you don't supply any parameters, it returns all the items of the current node.",
+  "code_samples": [
+    {
+      "code": "// Returns all the items of the given node and current run\nlet allItems = $(\"<node-name>\").all();\n\n// Returns all items the node \"IF\" outputs (index: 0 which is Output \"true\" of its most recent run)\nlet allItems = $(\"IF\").all();\n\n// Returns all items the node \"IF\" outputs (index: 0 which is Output \"true\" of the same run as current node)\nlet allItems = $(\"IF\").all(0, $runIndex);\n\n// Returns all items the node \"IF\" outputs (index: 1 which is Output \"false\" of run 0 which is the first run)\nlet allItems = $(\"IF\").all(1, 0);",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Getting items",
+      "id": "getting-items"
+    }
+  ],
+  "url": "llms-txt#`(\"<node-name>\").all(branchindex?:-number,-runindex?:-number)`",
+  "links": []
+}

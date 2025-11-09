@@ -1,0 +1,51 @@
+{
+  "title": "Codex",
+  "content": "Source: https://docs.ollama.com/integrations/codex\n\nInstall the [Codex CLI](https://developers.openai.com/codex/cli/):\n\n<Note>Codex requires a larger context window. It is recommended to use a context window of at least 32K tokens.</Note>\n\nTo use `codex` with Ollama, use the `--oss` flag:\n\nBy default, codex will use the local `gpt-oss:20b` model. However, you can specify a different model with the `-m` flag:\n\n## Connecting to ollama.com\n\nCreate an [API key](https://ollama.com/settings/keys) from ollama.com and export it as `OLLAMA_API_KEY`.\n\nTo use ollama.com directly, edit your `~/.codex/config.toml` file to point to ollama.com.\n\nRun `codex` in a new terminal to load the new settings.",
+  "code_samples": [
+    {
+      "code": "npm install -g @openai/codex",
+      "language": "unknown"
+    },
+    {
+      "code": "codex --oss",
+      "language": "unknown"
+    },
+    {
+      "code": "codex --oss -m gpt-oss:120b",
+      "language": "unknown"
+    },
+    {
+      "code": "codex --oss -m gpt-oss:120b-cloud",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Install",
+      "id": "install"
+    },
+    {
+      "level": "h2",
+      "text": "Usage with Ollama",
+      "id": "usage-with-ollama"
+    },
+    {
+      "level": "h3",
+      "text": "Changing Models",
+      "id": "changing-models"
+    },
+    {
+      "level": "h3",
+      "text": "Cloud Models",
+      "id": "cloud-models"
+    },
+    {
+      "level": "h2",
+      "text": "Connecting to ollama.com",
+      "id": "connecting-to-ollama.com"
+    }
+  ],
+  "url": "llms-txt#codex",
+  "links": []
+}

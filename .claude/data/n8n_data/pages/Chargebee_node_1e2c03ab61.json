@@ -1,0 +1,19 @@
+{
+  "title": "Chargebee node",
+  "content": "Use the Chargebee node to automate work in Chargebee, and integrate Chargebee with other applications. n8n has built-in support for a wide range of Chargebee features, including creating customers, returning invoices, and canceling subscriptions.\n\nOn this page, you'll find a list of operations the Chargebee node supports and links to more resources.\n\nRefer to [Chargebee credentials](../../credentials/chargebee/) for guidance on setting up authentication.\n\n- Customer\n  - Create a customer\n- Invoice\n  - Return the invoices\n  - Get URL for the invoice PDF\n- Subscription\n  - Cancel a subscription\n  - Delete a subscription\n\n## Templates and examples\n\n[Browse Chargebee integration templates](https://n8n.io/integrations/chargebee/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#chargebee-node",
+  "links": []
+}

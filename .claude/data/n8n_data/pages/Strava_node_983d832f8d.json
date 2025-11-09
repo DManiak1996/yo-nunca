@@ -1,0 +1,24 @@
+{
+  "title": "Strava node",
+  "content": "Use the Strava node to automate work in Strava, and integrate Strava with other applications. n8n has built-in support for a wide range of Strava features, including creating new activities, and getting activity information.\n\nOn this page, you'll find a list of operations the Strava node supports and links to more resources.\n\nRefer to [Strava credentials](../../credentials/strava/) for guidance on setting up authentication.\n\n- Activity\n  - Create a new activity\n  - Get an activity\n  - Get all activities\n  - Get all activity comments\n  - Get all activity kudos\n  - Get all activity laps\n  - Get all activity zones\n  - Update an activity\n\n## Templates and examples\n\n**AI Fitness Coach Strava Data Analysis and Personalized Training Insights**\n\n[View template details](https://n8n.io/workflows/2790-ai-fitness-coach-strava-data-analysis-and-personalized-training-insights/)\n\n**Export all Strava Activity Data to Google Sheets**\n\n[View template details](https://n8n.io/workflows/2678-export-all-strava-activity-data-to-google-sheets/)\n\n**Receive updates when a new activity gets created and tweet about it**\n\n[View template details](https://n8n.io/workflows/745-receive-updates-when-a-new-activity-gets-created-and-tweet-about-it/)\n\n[Browse Strava integration templates](https://n8n.io/integrations/strava/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#strava-node",
+  "links": []
+}

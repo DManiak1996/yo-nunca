@@ -1,0 +1,24 @@
+{
+  "title": "MCP Client Tool node",
+  "content": "The MCP Client Tool node is a [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) client, allowing you to use the tools exposed by an external MCP server. You can connect the MCP Client Tool node to your models to call external tools with n8n agents.\n\nThe MCP Client Tool node supports both [Bearer](../../../credentials/httprequest/#using-bearer-auth) and generic [header](../../../credentials/httprequest/#using-header-auth) authentication methods.\n\nConfigure the node with the following parameters.\n\n- **SSE Endpoint**: The SSE endpoint for the MCP server you want to connect to.\n- **Authentication**: The authentication method for authentication to your MCP server. The MCP tool supports [bearer](../../../credentials/httprequest/#using-bearer-auth) and generic [header](../../../credentials/httprequest/#using-header-auth) authentication. Select **None** to attempt to connect without authentication.\n- **Tools to Include**: Choose which tools you want to expose to the AI Agent:\n  - **All**: Expose all the tools given by the MCP server.\n  - **Selected**: Activates a **Tools to Include** parameter where you can select the tools you want to expose to the AI Agent.\n  - **All Except**: Activates a **Tools to Exclude** parameter where you can select the tools you want to avoid sharing with the AI Agent. The AI Agent will have access to all MCP server's tools that aren't selected.\n\n## Templates and examples\n\n**Build an MCP Server with Google Calendar and Custom Functions**\n\n[View template details](https://n8n.io/workflows/3514-build-an-mcp-server-with-google-calendar-and-custom-functions/)\n\n**Build your own N8N Workflows MCP Server**\n\n[View template details](https://n8n.io/workflows/3770-build-your-own-n8n-workflows-mcp-server/)\n\n**Build a Personal Assistant with Google Gemini, Gmail and Calendar using MCP**\n\n[View template details](https://n8n.io/workflows/3905-build-a-personal-assistant-with-google-gemini-gmail-and-calendar-using-mcp/)\n\n[Browse MCP Client Tool integration templates](https://n8n.io/integrations/mcp-client-tool/), or [search all templates](https://n8n.io/workflows/)\n\nn8n also has an [MCP Server Trigger](../../../core-nodes/n8n-nodes-langchain.mcptrigger/) node that allows you to expose n8n tools to external AI Agents.\n\nRefer to the [MCP documentation](https://modelcontextprotocol.io/introduction) and [MCP specification](https://modelcontextprotocol.io/specification/) for more details about the protocol, servers, and clients.\n\nRefer to [LangChain's documentation on tools](https://langchain-ai.github.io/langgraphjs/how-tos/tool-calling/) for more information about tools in LangChain.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#mcp-client-tool-node",
+  "links": []
+}

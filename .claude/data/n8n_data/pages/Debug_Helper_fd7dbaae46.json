@@ -1,0 +1,39 @@
+{
+  "title": "Debug Helper",
+  "content": "Use the Debug Helper node to trigger different error types or generate random datasets to help test n8n workflows.\n\nDefine the operation by selecting the **Category**:\n\n- **Do Nothing**: Don't do anything.\n- [**Throw Error**](#throw-error): Throw an error with the specified type and message.\n- [**Out Of Memory**](#out-of-memory): Generate a specific memory size to simulate being out of memory.\n- [**Generate Random Data**](#generate-random-data): Generate some random data in a selected format.\n\nThe node parameters depend on the **Category** selected. The **Do Nothing** Category has no other parameters.\n\n- **Error Type**: Select the type of error to throw. Choose from:\n  - **NodeApiError**\n  - **NodeOperationError**\n  - **Error**\n- **Error Message**: Enter the error message to throw.\n\nThe Out of Memory Category adds one parameter, the **Memory Size to Generate**. Enter the approximate amount of memory to generate.\n\n### Generate Random Data\n\n- **Data Type**: Choose the type of random data you'd like to generate. Options include:\n  - **Address**\n  - **Coordinates**\n  - **Credit Card**\n  - **Email**\n  - **IPv4**\n  - **IPv6**\n  - **MAC**\n  - **Nanoids**: If you select this data type, you'll also need to enter:\n    - **Nanoid Alphabet**: The alphabet the generator will use to generate the nanoids.\n    - **Nanoid Length**: The length of each nanoid.\n  - **URL**\n  - **User Data**\n  - **UUID**\n  - **Version**\n- **Seed**: If you'd like to generate the data using a specific seed, enter it here. This ensures the data gets generated consistently. If you'd rather use random data generation, leave this field empty.\n- **Number of Items to Generate**: Enter the number of random items you'd like to generate.\n- **Output as Single Array**: Whether to generate the data as a single array (turned on) or multiple items (turned off).\n\n## Templates and examples\n\n**Build an MCP Server with Google Calendar and Custom Functions**\n\n[View template details](https://n8n.io/workflows/3514-build-an-mcp-server-with-google-calendar-and-custom-functions/)\n\n**Test Webhooks in n8n Without Changing WEBHOOK_URL (PostBin & BambooHR Example)**\n\n[View template details](https://n8n.io/workflows/2869-test-webhooks-in-n8n-without-changing-webhookurl-postbin-and-bamboohr-example/)\n\n**Extract Domain and verify email syntax on the go**\n\n[View template details](https://n8n.io/workflows/2239-extract-domain-and-verify-email-syntax-on-the-go/)\n\n[Browse Debug Helper integration templates](https://n8n.io/integrations/debughelper/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h3",
+      "text": "Throw Error",
+      "id": "throw-error"
+    },
+    {
+      "level": "h3",
+      "text": "Out Of Memory",
+      "id": "out-of-memory"
+    },
+    {
+      "level": "h3",
+      "text": "Generate Random Data",
+      "id": "generate-random-data"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#debug-helper",
+  "links": []
+}

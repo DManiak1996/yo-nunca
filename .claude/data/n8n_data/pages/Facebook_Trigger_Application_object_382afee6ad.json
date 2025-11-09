@@ -1,0 +1,19 @@
+{
+  "title": "Facebook Trigger Application object",
+  "content": "Use this object to receive updates sent to a specific app. Refer to [Facebook Trigger](../) for more information on the trigger itself.\n\nYou can find authentication information for this node [here](../../../credentials/facebookapp/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Facebook Trigger integrations](https://n8n.io/integrations/facebook-trigger/) page.\n\n## Trigger configuration\n\nTo configure the trigger with this Object:\n\n1. Select the **Credential to connect with**. Select an existing or create a new [Facebook App credential](../../../credentials/facebookapp/).\n1. Enter the **APP ID** of the app connected to your credential. Refer to the [Facebook App credential](../../../credentials/facebookapp/) documentation for more information.\n1. Select **Application** as the **Object**.\n1. **Field Names or IDs**: By default, the node will trigger on all the available events using the `*` wildcard filter. If you'd like to limit the events, use the `X` to remove the star and use the dropdown or an expression to select the updates you're interested in. Options include:\n   - **Add Account**\n   - **Ads Rules Engine**\n   - **Async Requests**\n   - **Async Sessions**\n   - **Group Install**\n   - **Oe Reseller Onboarding Request Created**\n   - **Plugin Comment**\n   - **Plugin Comment Reply**\n1. In **Options**, turn on the toggle to **Include Values**. This Object type fails without the option enabled.\n\nRefer to Meta's [Application](https://developers.facebook.com/docs/graph-api/webhooks/reference/application/) Graph API reference for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Trigger configuration",
+      "id": "trigger-configuration"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#facebook-trigger-application-object",
+  "links": []
+}

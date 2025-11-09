@@ -1,0 +1,19 @@
+{
+  "title": "Microsoft Teams Trigger node",
+  "content": "Use the Microsoft Teams Trigger node to respond to events in [Microsoft Teams](https://www.microsoft.com/en-us/microsoft-teams/group-chat-software) and integrate Microsoft Teams with other applications.\n\nOn this page, you'll find a list of events the Microsoft Teams Trigger node can respond to and links to more resources.\n\nYou can find authentication information for this node [here](../../credentials/microsoft/).\n\n- **New Channel**\n- **New Channel Message**\n- **New Chat**\n- **New Chat Message**\n- **New Team Member**\n\nn8n provides an app node for Microsoft Teams. You can find the node docs [here](../../app-nodes/n8n-nodes-base.microsoftteams/).\n\nView [example workflows and related content](https://n8n.io/integrations/microsoft-teams-trigger/) on n8n's website.\n\nRefer to the [Microsoft Teams documentation](https://learn.microsoft.com/en-us/graph/api/resources/teams-api-overview?view=graph-rest-1.0) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#microsoft-teams-trigger-node",
+  "links": []
+}

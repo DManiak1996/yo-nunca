@@ -1,0 +1,19 @@
+{
+  "title": "Clearbit node",
+  "content": "Use the Clearbit node to automate work in Clearbit, and integrate Clearbit with other applications. n8n has built-in support for a wide range of Clearbit features, including autocompleting and looking up companies and persons.\n\nOn this page, you'll find a list of operations the Clearbit node supports and links to more resources.\n\nRefer to [Clearbit credentials](../../credentials/clearbit/) for guidance on setting up authentication.\n\n- Company\n  - Auto-complete company names and retrieve logo and domain\n  - Look up person and company data based on an email or domain\n- Person\n  - Look up a person and company data based on an email or domain\n\n## Templates and examples\n\n**Summarize social media activity of a company before a call**\n\n[View template details](https://n8n.io/workflows/2125-summarize-social-media-activity-of-a-company-before-a-call/)\n\n**Verify emails & enrich new form leads and save them to HubSpot**\n\n[View template details](https://n8n.io/workflows/2116-verify-emails-and-enrich-new-form-leads-and-save-them-to-hubspot/)\n\n**List social media activity of a company before a call**\n\n[View template details](https://n8n.io/workflows/2124-list-social-media-activity-of-a-company-before-a-call/)\n\n[Browse Clearbit integration templates](https://n8n.io/integrations/clearbit/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#clearbit-node",
+  "links": []
+}

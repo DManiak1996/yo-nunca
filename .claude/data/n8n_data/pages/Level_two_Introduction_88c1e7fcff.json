@@ -1,0 +1,34 @@
+{
+  "title": "Level two: Introduction",
+  "content": "Welcome to the **n8n Course Level 2**!\n\n## Is this course right for me?\n\nThis course is for you if you:\n\n- Want to automate somewhat complex business processes.\n- Want to dive deeper into n8n after taking the [Level 1 course](../level-one/).\n\n## What will I learn in this course?\n\nThe focus in this course is on working with data. You will learn how to:\n\n- Use the data structure of n8n correctly.\n- Process different data types (for example, XML, HTML, date, time, and binary data).\n- Merge data from different sources (for example, a database, spreadsheet, or CRM).\n- Use functions and JavaScript code in the [Code node](../../integrations/builtin/core-nodes/n8n-nodes-base.code/).\n- Deal with error workflows and workflow errors.\n\nYou will learn all this by completing short practical exercises after the theoretical explanations and building a business workflow following instructions.\n\n## What do I need to get started?\n\nTo follow along this course (at a comfortable pace) you will need the following:\n\n- **n8n set up**: You can use the [self-hosted version](../../hosting/installation/npm/) or [n8n Cloud](../../manage-cloud/overview/).\n- **A user ID**: [Sign up here](https://n8n-community.typeform.com/to/HQoQ7nXg) to get your unique ID and other credentials you will need in this course (Level 2). If you're a Level 1 finisher, please sign up again as you'll get different credentials for the Level 2 workflows.\n- **Basic n8n skills**: We strongly recommend taking the [Level 1 course](../level-one/) before this one.\n- **Basic JavaScript understanding**\n\n## How long does the course take?\n\nCompleting the course should take around **two hours**. You don't have to complete it in one go; feel free to take breaks and resume whenever you are ready.\n\n## How do I complete the course?\n\nThere are two milestones in this course that test your knowledge of what you have learned in the lessons:\n\n- Building the [main workflow](chapter-5/chapter-5.0/)\n- Passing the [quiz](https://n8n-community.typeform.com/to/r9hDbytg) at the end of the course\n\nYou can always **check your progress** throughout the course by entering your unique ID [here](https://internal.users.n8n.cloud/webhook/course-level-2/verify).\n\nIf you successfully complete the milestones above, you will get [**a badge and an avatar**](https://community.n8n.io/badges/105/completed-n8n-course-level-2) in your forum profile. You can then share your profile and course verification ID to showcase your n8n skills to others.\n\n[Let's get started!](chapter-1/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Is this course right for me?",
+      "id": "is-this-course-right-for-me?"
+    },
+    {
+      "level": "h2",
+      "text": "What will I learn in this course?",
+      "id": "what-will-i-learn-in-this-course?"
+    },
+    {
+      "level": "h2",
+      "text": "What do I need to get started?",
+      "id": "what-do-i-need-to-get-started?"
+    },
+    {
+      "level": "h2",
+      "text": "How long does the course take?",
+      "id": "how-long-does-the-course-take?"
+    },
+    {
+      "level": "h2",
+      "text": "How do I complete the course?",
+      "id": "how-do-i-complete-the-course?"
+    }
+  ],
+  "url": "llms-txt#level-two:-introduction",
+  "links": []
+}

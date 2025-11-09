@@ -1,0 +1,60 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/refresh",
+  "title": "refresh",
+  "content": "refresh allows you to refresh the client router from within a Server Action.\n\nrefresh can only be called from within Server Actions. It cannot be used in Route Handlers, Client Components, or any other context.\n\nrefresh does not return a value.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "refresh",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h2",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Error when used outside Server Actions",
+      "id": "error-when-used-outside-server-actions"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "refresh(): void;",
+      "language": "unknown"
+    },
+    {
+      "code": "'use server'\n \nimport { refresh } from 'next/cache'\n \nexport async function createPost(formData: FormData) {\n  const title = formData.get('title')\n  const content = formData.get('content')\n \n  // Create the post in your database\n  const post = await db.post.create({\n    data: { title, content },\n  })\n \n  refresh()\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { refresh } from 'next/cache'\n \nexport async function POST() {\n  // This will throw an error\n  refresh()\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/getting-started/updating-data",
+    "https://nextjs.org/docs/app/api-reference/functions/refresh",
+    "https://nextjs.org/docs/app/api-reference/functions/redirect",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidatePath"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Returns all the items of the given node and current run",
+  "content": "allItems = _(\"<node-name>\").all();",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#returns-all-the-items-of-the-given-node-and-current-run",
+  "links": []
+}

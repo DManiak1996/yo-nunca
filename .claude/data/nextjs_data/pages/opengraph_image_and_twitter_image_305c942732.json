@@ -1,0 +1,183 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image",
+  "title": "opengraph-image and twitter-image",
+  "content": "The opengraph-image and twitter-image file conventions allow you to set Open Graph and Twitter images for a route segment.\n\nThey are useful for setting the images that appear on social networks and messaging apps when a user shares a link to your site.\n\nThere are two ways to set Open Graph and Twitter images:\n\nUse an image file to set a route segment's shared image by placing an opengraph-image or twitter-image image file in the segment.\n\nNext.js will evaluate the file and automatically add the appropriate tags to your app's <head> element.\n\nThe twitter-image file size must not exceed 5MB, and the opengraph-image file size must not exceed 8MB. If the image file size exceeds these limits, the build will fail.\n\nAdd an opengraph-image.(jpg|jpeg|png|gif) image file to any route segment.\n\nAdd a twitter-image.(jpg|jpeg|png|gif) image file to any route segment.\n\nAdd an accompanying opengraph-image.alt.txt file in the same route segment as the opengraph-image.(jpg|jpeg|png|gif) image it's alt text.\n\nAdd an accompanying twitter-image.alt.txt file in the same route segment as the twitter-image.(jpg|jpeg|png|gif) image it's alt text.\n\nIn addition to using literal image files, you can programmatically generate images using code.\n\nGenerate a route segment's shared image by creating an opengraph-image or twitter-image route that default exports a function.\n\nThe easiest way to generate an image is to use the ImageResponse API from next/og.\n\nThe default export function receives the following props:\n\nA promise that resolves to an object containing the dynamic route parameters object from the root segment down to the segment opengraph-image or twitter-image is colocated in.\n\nGood to know: If you use generateImageMetadata, the function will also receive an id prop that is a promise resolving to the id value from one of the items returned by generateImageMetadata.\n\nThe default export function should return a Blob | ArrayBuffer | TypedArray | DataView | ReadableStream | Response.\n\nGood to know: ImageResponse satisfies this return type.\n\nYou can optionally configure the image's metadata by exporting alt, size, and contentType variables from opengraph-image or twitter-image route.\n\nopengraph-image and twitter-image are specialized Route Handlers that can use the same route segment configuration options as Pages and Layouts.\n\nThis example uses the params object and external data to generate the image.\n\nGood to know: By default, this generated image will be statically optimized. You can configure the individual fetch options or route segments options to change this behavior.\n\nThese examples use the Node.js runtime to fetch a local image from the file system and pass it to the <img> src attribute, either as a base64 string or an ArrayBuffer. Place the local asset relative to the project root, not the example source file.\n\nPassing an ArrayBuffer to the src attribute of an <img> element is not part of the HTML spec. The rendering engine used by next/og supports it, but because TypeScript definitions follow the spec, you need a @ts-expect-error directive or similar to use this feature.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "opengraph-image and twitter-image",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Image files (.jpg, .png, .gif)",
+      "id": "image-files-jpg-png-gif"
+    },
+    {
+      "level": "h3",
+      "text": "opengraph-image",
+      "id": "opengraph-image"
+    },
+    {
+      "level": "h3",
+      "text": "twitter-image",
+      "id": "twitter-image"
+    },
+    {
+      "level": "h3",
+      "text": "opengraph-image.alt.txt",
+      "id": "opengraph-imagealttxt"
+    },
+    {
+      "level": "h3",
+      "text": "twitter-image.alt.txt",
+      "id": "twitter-imagealttxt"
+    },
+    {
+      "level": "h2",
+      "text": "Generate images using code (.js, .ts, .tsx)",
+      "id": "generate-images-using-code-js-ts-tsx"
+    },
+    {
+      "level": "h3",
+      "text": "Props",
+      "id": "props"
+    },
+    {
+      "level": "h4",
+      "text": "params (optional)",
+      "id": "params-optional"
+    },
+    {
+      "level": "h3",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h3",
+      "text": "Config exports",
+      "id": "config-exports"
+    },
+    {
+      "level": "h4",
+      "text": "alt",
+      "id": "alt"
+    },
+    {
+      "level": "h4",
+      "text": "size",
+      "id": "size"
+    },
+    {
+      "level": "h4",
+      "text": "contentType",
+      "id": "contenttype"
+    },
+    {
+      "level": "h4",
+      "text": "Route Segment Config",
+      "id": "route-segment-config"
+    },
+    {
+      "level": "h3",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h4",
+      "text": "Using external data",
+      "id": "using-external-data"
+    },
+    {
+      "level": "h4",
+      "text": "Using Node.js runtime with local assets",
+      "id": "using-nodejs-runtime-with-local-assets"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "<meta property=\"og:image\" content=\"<generated>\" />\n<meta property=\"og:image:type\" content=\"<generated>\" />\n<meta property=\"og:image:width\" content=\"<generated>\" />\n<meta property=\"og:image:height\" content=\"<generated>\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "<meta name=\"twitter:image\" content=\"<generated>\" />\n<meta name=\"twitter:image:type\" content=\"<generated>\" />\n<meta name=\"twitter:image:width\" content=\"<generated>\" />\n<meta name=\"twitter:image:height\" content=\"<generated>\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "<meta property=\"og:image:alt\" content=\"About Acme\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "<meta property=\"twitter:image:alt\" content=\"About Acme\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "import { ImageResponse } from 'next/og'\nimport { readFile } from 'node:fs/promises'\nimport { join } from 'node:path'\n \n// Image metadata\nexport const alt = 'About Acme'\nexport const size = {\n  width: 1200,\n  height: 630,\n}\n \nexport const contentType = 'image/png'\n \n// Image generation\nexport default async function Image() {\n  // Font loading, process.cwd() is Next.js project directory\n  const interSemiBold = await readFile(\n    join(process.cwd(), 'assets/Inter-SemiBold.ttf')\n  )\n \n  return new ImageResponse(\n    (\n      // ImageResponse JSX element\n      <div\n        style={{\n          fontSize: 128,\n          background: 'white',\n          width: '100%',\n          height: '100%',\n          display: 'flex',\n          alignItems: 'center',\n          justifyContent: 'center',\n        }}\n      >\n        About Acme\n      </div>\n    ),\n    // ImageResponse options\n    {\n      // For convenience, we can re-use the exported opengraph-image\n      // size config to also set the ImageResponse's width and height.\n      ...size,\n      fonts: [\n        {\n          name: 'Inter',\n          data: interSemiBold,\n          style: 'normal',\n          weight: 400,\n        },\n      ],\n    }\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "<meta property=\"og:image\" content=\"<generated>\" />\n<meta property=\"og:image:alt\" content=\"About Acme\" />\n<meta property=\"og:image:type\" content=\"image/png\" />\n<meta property=\"og:image:width\" content=\"1200\" />\n<meta property=\"og:image:height\" content=\"630\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "export default async function Image({\n  params,\n}: {\n  params: Promise<{ slug: string }>\n}) {\n  const { slug } = await params\n  // ...\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export const alt = 'My images alt text'\n \nexport default function Image() {}",
+      "language": "javascript"
+    },
+    {
+      "code": "<meta property=\"og:image:alt\" content=\"My images alt text\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "export const size = { width: 1200, height: 630 }\n \nexport default function Image() {}",
+      "language": "javascript"
+    },
+    {
+      "code": "<meta property=\"og:image:width\" content=\"1200\" />\n<meta property=\"og:image:height\" content=\"630\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "export const contentType = 'image/png'\n \nexport default function Image() {}",
+      "language": "javascript"
+    },
+    {
+      "code": "<meta property=\"og:image:type\" content=\"image/png\" />",
+      "language": "unknown"
+    },
+    {
+      "code": "import { ImageResponse } from 'next/og'\n \nexport const alt = 'About Acme'\nexport const size = {\n  width: 1200,\n  height: 630,\n}\nexport const contentType = 'image/png'\n \nexport default async function Image({\n  params,\n}: {\n  params: Promise<{ slug: string }>\n}) {\n  const { slug } = await params\n  const post = await fetch(`https://.../posts/${slug}`).then((res) =>\n    res.json()\n  )\n \n  return new ImageResponse(\n    (\n      <div\n        style={{\n          fontSize: 48,\n          background: 'white',\n          width: '100%',\n          height: '100%',\n          display: 'flex',\n          alignItems: 'center',\n          justifyContent: 'center',\n        }}\n      >\n        {post.title}\n      </div>\n    ),\n    {\n      ...size,\n    }\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { ImageResponse } from 'next/og'\nimport { join } from 'node:path'\nimport { readFile } from 'node:fs/promises'\n \nexport default async function Image() {\n  const logoData = await readFile(join(process.cwd(), 'logo.png'), 'base64')\n  const logoSrc = `data:image/png;base64,${logoData}`\n \n  return new ImageResponse(\n    (\n      <div\n        style={{\n          display: 'flex',\n          alignItems: 'center',\n          justifyContent: 'center',\n        }}\n      >\n        <img src={logoSrc} height=\"100\" />\n      </div>\n    )\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { ImageResponse } from 'next/og'\nimport { join } from 'node:path'\nimport { readFile } from 'node:fs/promises'\n \nexport default async function Image() {\n  const logoData = await readFile(join(process.cwd(), 'logo.png'))\n  const logoSrc = Uint8Array.from(logoData).buffer\n \n  return new ImageResponse(\n    (\n      <div\n        style={{\n          display: 'flex',\n          alignItems: 'center',\n          justifyContent: 'center',\n        }}\n      >\n        {/* @ts-expect-error Satori accepts ArrayBuffer/typed arrays for <img src> at runtime */}\n        <img src={logoSrc} height=\"100\" />\n      </div>\n    )\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-image-metadata",
+    "https://nextjs.org/docs/app/api-reference/functions/image-response",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config",
+    "https://nextjs.org/docs/app/api-reference/functions/fetch",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/manifest",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots"
+  ]
+}

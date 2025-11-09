@@ -1,0 +1,43 @@
+{
+  "url": "https://nextjs.org/docs/15/pages",
+  "title": "Pages Router",
+  "content": "You're viewing the documentation for the Pages Router. See the App Router documentation for the latest features.\n\nThe Pages Router uses an intuitive file-system router to map each file to a route.\n\nBefore Next.js 13, the Pages Router was the main way to create routes in Next.js. It's still supported in newer versions of Next.js, but we recommend migrating to the new App Router to leverage React's latest features.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Pages Router",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Getting Started",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Guides",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Building Your Application",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "API Reference",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/15",
+    "https://nextjs.org/docs/15/app",
+    "https://nextjs.org/docs/15/pages/getting-started",
+    "https://nextjs.org/docs/15/pages/guides",
+    "https://nextjs.org/docs/15/pages/building-your-application",
+    "https://nextjs.org/docs/15/pages/api-reference",
+    "https://nextjs.org/docs/15/app/api-reference/turbopack"
+  ]
+}

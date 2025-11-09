@@ -1,0 +1,13 @@
+{
+  "title": "Configure n8n webhooks with reverse proxy",
+  "content": "n8n creates the webhook URL by combining `N8N_PROTOCOL`, `N8N_HOST` and `N8N_PORT`. If n8n runs behind a reverse proxy, that won't work. That's because n8n runs internally on port 5678 but the reverse proxy exposes it to the web on port 443.\n\nWhen running n8n behind a reverse proxy, it's important to do the following:\n\n- set the webhook URL manually with the `WEBHOOK_URL` environment variable so that n8n can display it in the editor UI and register the correct webhook URLs with external services.\n- Set the `N8N_PROXY_HOPS` environment variable to `1`.\n- On the last proxy on the request path, set the following headers to pass on information about the initial request:\n  - [`X-Forwarded-For`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)\n  - [`X-Forwarded-Host`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)\n  - [`X-Forwarded-Proto`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)\n\nRefer to [Environment variables reference](../../environment-variables/endpoints/) for more information on this variable.",
+  "code_samples": [
+    {
+      "code": "export WEBHOOK_URL=https://n8n.example.com/\nexport N8N_PROXY_HOPS=1",
+      "language": "unknown"
+    }
+  ],
+  "headings": [],
+  "url": "llms-txt#configure-n8n-webhooks-with-reverse-proxy",
+  "links": []
+}

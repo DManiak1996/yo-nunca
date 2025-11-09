@@ -1,0 +1,37 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/config/next-config-js/pageExtensions",
+  "title": "pageExtensions",
+  "content": "You can extend the default Page extensions (.tsx, .ts, .jsx, .js) used by Next.js. Inside next.config.js, add the pageExtensions config:\n\nChanging these values affects all Next.js pages, including the following:\n\nFor example, if you reconfigure .ts page extensions to .page.ts, you would need to rename pages like proxy.page.ts, instrumentation.page.ts, _app.page.ts.\n\nYou can colocate test files or other files used by components in the pages directory. Inside next.config.js, add the pageExtensions config:\n\nThen, rename your pages to have a file extension that includes .page (e.g. rename MyPage.tsx to MyPage.page.tsx). Ensure you rename all Next.js pages, including the files mentioned above.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "pageExtensions",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Including non-page files in the pages directory",
+      "id": "including-non-page-files-in-the-pages-directory"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/api-reference/config",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/pages/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/pages/guides/instrumentation",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/pageExtensions",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/output",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/poweredByHeader"
+  ]
+}

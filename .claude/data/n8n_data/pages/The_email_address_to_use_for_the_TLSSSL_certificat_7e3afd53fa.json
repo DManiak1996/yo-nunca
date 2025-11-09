@@ -1,0 +1,51 @@
+{
+  "title": "The email address to use for the TLS/SSL certificate creation",
+  "content": "SSL_EMAIL=user@example.com\n\nservices:\n  traefik:\n    image: \"traefik\"\n    restart: always\n    command:\n      - \"--api.insecure=true\"\n      - \"--providers.docker=true\"\n      - \"--providers.docker.exposedbydefault=false\"\n      - \"--entrypoints.web.address=:80\"\n      - \"--entrypoints.web.http.redirections.entryPoint.to=websecure\"\n      - \"--entrypoints.web.http.redirections.entrypoint.scheme=https\"\n      - \"--entrypoints.websecure.address=:443\"\n      - \"--certificatesresolvers.mytlschallenge.acme.tlschallenge=true\"\n      - \"--certificatesresolvers.mytlschallenge.acme.email=${SSL_EMAIL}\"\n      - \"--certificatesresolvers.mytlschallenge.acme.storage=/letsencrypt/acme.json\"\n    ports:\n      - \"80:80\"\n      - \"443:443\"\n    volumes:\n      - traefik_data:/letsencrypt\n      - /var/run/docker.sock:/var/run/docker.sock:ro\n\nn8n:\n    image: docker.n8n.io/n8nio/n8n\n    restart: always\n    ports:\n      - \"127.0.0.1:5678:5678\"\n    labels:\n      - traefik.enable=true\n      - traefik.http.routers.n8n.rule=Host(`${SUBDOMAIN}.${DOMAIN_NAME}`)\n      - traefik.http.routers.n8n.tls=true\n      - traefik.http.routers.n8n.entrypoints=web,websecure\n      - traefik.http.routers.n8n.tls.certresolver=mytlschallenge\n      - traefik.http.middlewares.n8n.headers.SSLRedirect=true\n      - traefik.http.middlewares.n8n.headers.STSSeconds=315360000\n      - traefik.http.middlewares.n8n.headers.browserXSSFilter=true\n      - traefik.http.middlewares.n8n.headers.contentTypeNosniff=true\n      - traefik.http.middlewares.n8n.headers.forceSTSHeader=true\n      - traefik.http.middlewares.n8n.headers.SSLHost=${DOMAIN_NAME}\n      - traefik.http.middlewares.n8n.headers.STSIncludeSubdomains=true\n      - traefik.http.middlewares.n8n.headers.STSPreload=true\n      - traefik.http.routers.n8n.middlewares=n8n@docker\n    environment:\n      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true\n      - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}\n      - N8N_PORT=5678\n      - N8N_PROTOCOL=https\n      - N8N_RUNNERS_ENABLED=true\n      - NODE_ENV=production\n      - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/\n      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}\n      - TZ=${GENERIC_TIMEZONE}\n    volumes:\n      - n8n_data:/home/node/.n8n\n      - ./local-files:/files\n\nvolumes:\n  n8n_data:\n  traefik_data:\n\nsudo docker compose up -d\n\nsudo docker compose stop\n```\n\nYou can now reach n8n using the subdomain + domain combination you defined in your `.env` file configuration. The above example would result in `https://n8n.example.com`.\n\nn8n is only accessible using secure HTTPS, not over plain HTTP.\n\nIf you have trouble reaching your instance, check your server's firewall settings and your DNS configuration.\n\n- Learn more about [configuring](../../../configuration/environment-variables/) and [scaling](../../../scaling/overview/) n8n.\n- Or explore using n8n: try the [Quickstarts](../../../../try-it-out/).",
+  "code_samples": [
+    {
+      "code": "## 5. Create local files directory\n\nInside your project directory, create a directory called `local-files` for sharing files between the n8n instance and the host system (for example, using the [Read/Write Files from Disk node](../../../../integrations/builtin/core-nodes/n8n-nodes-base.readwritefile/)):",
+      "language": "unknown"
+    },
+    {
+      "code": "The Docker Compose file below can automatically create this directory, but doing it manually ensures that it's created with the right ownership and permissions.\n\n## 6. Create Docker Compose file\n\nCreate a `compose.yaml` file. Paste the following in the file:",
+      "language": "unknown"
+    },
+    {
+      "code": "The Docker Compose file above configures two containers: one for n8n, and one to run [traefik](https://github.com/traefik/traefik), an application proxy to manage TLS/SSL certificates and handle routing.\n\nIt also creates and mounts two [Docker Volumes](https://docs.docker.com/engine/storage/volumes/) and mounts the `local-files` directory you created earlier:\n\n| Name            | Type                                                        | Container mount   | Description                                                                                                                         |\n| --------------- | ----------------------------------------------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- |\n| `n8n_data`      | [Volume](https://docs.docker.com/engine/storage/volumes/)   | `/home/node/.n8n` | Where n8n saves its SQLite database file and encryption key.                                                                        |\n| `traefik_data`  | [Volume](https://docs.docker.com/engine/storage/volumes/)   | `/letsencrypt`    | Where traefik saves TLS/SSL certificate data.                                                                                       |\n| `./local-files` | [Bind](https://docs.docker.com/engine/storage/bind-mounts/) | `/files`          | A local directory shared between the n8n instance and host. In n8n, use the `/files` path to read from and write to this directory. |\n\n## 7. Start Docker Compose\n\nStart n8n by typing:",
+      "language": "unknown"
+    },
+    {
+      "code": "To stop the containers, type:",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "5. Create local files directory",
+      "id": "5.-create-local-files-directory"
+    },
+    {
+      "level": "h2",
+      "text": "6. Create Docker Compose file",
+      "id": "6.-create-docker-compose-file"
+    },
+    {
+      "level": "h2",
+      "text": "7. Start Docker Compose",
+      "id": "7.-start-docker-compose"
+    },
+    {
+      "level": "h2",
+      "text": "8. Done",
+      "id": "8.-done"
+    },
+    {
+      "level": "h2",
+      "text": "Next steps",
+      "id": "next-steps"
+    }
+  ],
+  "url": "llms-txt#the-email-address-to-use-for-the-tls/ssl-certificate-creation",
+  "links": []
+}

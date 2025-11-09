@@ -1,0 +1,32 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/trailingSlash",
+  "title": "trailingSlash",
+  "content": "By default Next.js will redirect URLs with trailing slashes to their counterpart without a trailing slash. For example /about/ will redirect to /about. You can configure this behavior to act the opposite way, where URLs without trailing slashes are redirected to their counterparts with trailing slashes.\n\nOpen next.config.js and add the trailingSlash config:\n\nWith this option set, URLs like /about will redirect to /about/.\n\nWhen using trailingSlash: true, certain URLs are exceptions and will not have a trailing slash appended:\n\nFor example, the following URLs will remain unchanged: /file.txt, images/photos/picture.png, and .well-known/subfolder/config.json.\n\nWhen used with output: \"export\" configuration, the /about page will output /about/index.html (instead of the default /about.html).",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "trailingSlash",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  trailingSlash: true,\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/guides/static-exports",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/trailingSlash",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/taint",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/transpilePackages"
+  ]
+}

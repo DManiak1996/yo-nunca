@@ -1,0 +1,8 @@
+{
+  "title": "List models",
+  "content": "Source: https://docs.ollama.com/api/tags\n\nopenapi.yaml get /api/tags\nFetch a list of models and their details",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#list-models",
+  "links": []
+}

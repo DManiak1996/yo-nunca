@@ -1,0 +1,8 @@
+{
+  "title": "Build a node",
+  "content": "This section provides tutorials on building nodes. It covers:\n\n- [Tutorial: Build a declarative-style node](declarative-style-node/)\n- [Reference](reference/) material on [file structure](reference/node-file-structure/), parameter definitions for [base](reference/node-base-files/), [codex](reference/node-codex-files/), and [credentials](reference/credentials-files/) files, [node UI elements](reference/ui-elements/), and more.\n\n- More tutorials\n- Revised guidance on standards",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#build-a-node",
+  "links": []
+}

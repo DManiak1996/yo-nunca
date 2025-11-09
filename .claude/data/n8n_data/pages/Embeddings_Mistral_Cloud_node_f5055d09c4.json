@@ -1,0 +1,29 @@
+{
+  "title": "Embeddings Mistral Cloud node",
+  "content": "Use the Embeddings Mistral Cloud node to generate [embeddings](../../../../../glossary/#ai-embedding) for a given text.\n\nOn this page, you'll find the node parameters for the Embeddings Mistral Cloud node, and links to more resources.\n\nYou can find authentication information for this node [here](../../../credentials/mistral/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Model**: Select the model to use to generate the embedding.\n\nLearn more about available models in [Mistral's models documentation](https://docs.mistral.ai/platform/pricing/).\n\n- **Batch Size**: Enter the maximum number of documents to send in each request.\n- **Strip New Lines**: Select whether to remove new line characters from input text (turned on) or not (turned off). n8n enables this by default.\n\n## Templates and examples\n\n**Breakdown Documents into Study Notes using Templating MistralAI and Qdrant**\n\n[View template details](https://n8n.io/workflows/2339-breakdown-documents-into-study-notes-using-templating-mistralai-and-qdrant/)\n\n**Build a Financial Documents Assistant using Qdrant and Mistral.ai**\n\n[View template details](https://n8n.io/workflows/2335-build-a-financial-documents-assistant-using-qdrant-and-mistralai/)\n\n**Build a Tax Code Assistant with Qdrant, Mistral.ai and OpenAI**\n\n[View template details](https://n8n.io/workflows/2341-build-a-tax-code-assistant-with-qdrant-mistralai-and-openai/)\n\n[Browse Embeddings Mistral Cloud integration templates](https://n8n.io/integrations/embeddings-mistral-cloud/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [Langchain's Mistral embeddings documentation](https://js.langchain.com/docs/integrations/text_embedding/mistralai) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#embeddings-mistral-cloud-node",
+  "links": []
+}

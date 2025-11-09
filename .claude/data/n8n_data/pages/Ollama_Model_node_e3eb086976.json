@@ -1,0 +1,39 @@
+{
+  "title": "Ollama Model node",
+  "content": "The Ollama Model node allows you use local Llama 2 models.\n\nOn this page, you'll find the node parameters for the Ollama Model node, and links to more resources.\n\nThis node lacks tools support, so it won't work with the [AI Agent](../../root-nodes/n8n-nodes-langchain.agent/) node. Instead, connect it with the [Basic LLM Chain](../../root-nodes/n8n-nodes-langchain.chainllm/) node.\n\nYou can find authentication information for this node [here](../../../credentials/ollama/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Model**: Select the model that generates the completion. Choose from:\n  - **Llama2**\n  - **Llama2 13B**\n  - **Llama2 70B**\n  - **Llama2 Uncensored**\n\nRefer to the Ollama [Models Library documentation](https://ollama.com/library) for more information about available models.\n\n- **Sampling Temperature**: Use this option to control the randomness of the sampling process. A higher temperature creates more diverse sampling, but increases the risk of hallucinations.\n- **Top K**: Enter the number of token choices the model uses to generate the next token.\n- **Top P**: Use this option to set the probability the completion should use. Use a lower value to ignore less probable options.\n\n## Templates and examples\n\n**Chat with local LLMs using n8n and Ollama**\n\n[View template details](https://n8n.io/workflows/2384-chat-with-local-llms-using-n8n-and-ollama/)\n\n**🔐🦙🤖 Private & Local Ollama Self-Hosted AI Assistant**\n\n[View template details](https://n8n.io/workflows/2729-private-and-local-ollama-self-hosted-ai-assistant/)\n\n**Auto Categorise Outlook Emails with AI**\n\n[View template details](https://n8n.io/workflows/2454-auto-categorise-outlook-emails-with-ai/)\n\n[Browse Ollama Model integration templates](https://n8n.io/integrations/ollama-model/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChains's Ollama documentation](https://js.langchain.com/docs/integrations/llms/ollama/) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.\n\nFor common questions or issues and suggested solutions, refer to [Common issues](common-issues/).\n\n## Self-hosted AI Starter Kit\n\nNew to working with AI and using self-hosted n8n? Try n8n's [self-hosted AI Starter Kit](../../../../../hosting/starter-kits/ai-starter-kit/) to get started with a proof-of-concept or demo playground using Ollama, Qdrant, and PostgreSQL.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    },
+    {
+      "level": "h2",
+      "text": "Self-hosted AI Starter Kit",
+      "id": "self-hosted-ai-starter-kit"
+    }
+  ],
+  "url": "llms-txt#ollama-model-node",
+  "links": []
+}

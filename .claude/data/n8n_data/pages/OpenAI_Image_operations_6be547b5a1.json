@@ -1,0 +1,44 @@
+{
+  "title": "OpenAI Image operations",
+  "content": "Use this operation to analyze or generate an image in OpenAI. Refer to [OpenAI](../) for more information on the OpenAI node itself.\n\nUse this operation to take in images and answer questions about them.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [OpenAI credential](../../../credentials/openai/).\n- **Resource**: Select **Image**.\n- **Operation**: Select **Analayze Image**.\n- **Model**: Select the model you want to use to analyze an image.\n- **Text Input**: Ask a question about the image.\n- **Input Type**: Select how you'd like to input the image. Options include:\n  - **Image URL(s)**: Enter the **URL(s)** of the image(s) to analyze. Add multiple URLs in a comma-separated list.\n  - **Binary File(s)**: Enter the name of the binary property which contains the image(s) in the **Input Data Field Name**.\n\n- **Detail**: Specify the balance between response time versus token usage.\n- **Length of Description (Max Tokens)**: Defaults to 300. Fewer tokens will result in shorter, less detailed image description.\n\nRefer to [Images | OpenAI](https://platform.openai.com/docs/api-reference/images) documentation for more information.\n\nUse this operation to create an image from a text prompt.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [OpenAI credential](../../../credentials/openai/).\n- **Resource**: Select **Image**.\n- **Operation**: Select **Generate an Image**.\n- **Model**: Select the model you want to use to generate an image.\n- **Prompt**: Enter the text description of the desired image(s). The maximum length is 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`.\n\n- **Quality**: The quality of the image you generate. **HD** creates images with finer details and greater consistency across the image. This option is only supported for `dall-e-3`. Otherwise, choose **Standard**.\n- **Resolution**: Select the resolution of the generated images. Select **1024x1024** for `dall-e-2`. Select one of **1024x1024**, **1792x1024**, or **1024x1792** for `dall-e-3` models.\n- **Style**: Select the style of the generated images. This option is only supported for `dall-e-3`.\n  - **Natural**: Use this to produce more natural looking images.\n  - **Vivid**: Use this to produce hyper-real and dramatic images.\n- **Respond with image URL(s)**: Whether to return image URL(s) instead of binary file(s).\n- **Put Output in Field**: Defaults to `data`. Enter the name of the output field to put the binary file data in. Only available if **Respond with image URL(s)** is turned off.\n\nRefer to [Create image | OpenAI](https://platform.openai.com/docs/api-reference/images/create) documentation for more information.\n\nUse this operation to edit an image from a text prompt.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [OpenAI credential](../../../credentials/openai/).\n- **Resource**: Select **Image**.\n- **Operation**: Select **Edit Image**.\n- **Model**: Select the model you want to use to generate an image. Supports `dall-e-2` and `gpt-image-1`.\n- **Prompt**: Enter the text description of the desired edits to the input image(s).\n- **Image(s)**: Add one or more binary fields to include images with your prompt. Each image should be a png, webp, or jpg file less than 50MB. You can provide up to 16 images.\n- **Number of Images**: The number of images to generate. Must be between 1 and 10.\n- **Size**: The size and dimensions of the generated images (in px).\n- **Quality**: The quality of the image that will be generated (auto, low, medium, high, standard). Only supported for `gpt-image-1`.\n- **Output Format**: The format in which the generated images are returned (png, webp, or jpg). Only supported for gpt-image-1.\n- **Output Compression**: The compression level (0-100%) for the generated images. Only supported for `gpt-image-1` with webp or jpeg output formats.\n\n- **Background**: Allows to set transparency for the background of the generated image(s). Only supported for `gpt-image-1`.\n- **Input Fidelity**: Control how much effort the model will exert to match the style and features of input images. Only supported for `gpt-image-1`.\n- **Image Mask**: Name of the binary property that contains the image. A second image whose fully transparent areas (for example, where alpha is zero) shows where the image should be edited. If there are multiple images provided, the mask will be applied on the first image. Must be a valid PNG file, less than 4MB, and have the same dimensions as image.\n- **User**: A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.\n\nFor common errors or issues and suggested resolution steps, refer to [Common Issues](../common-issues/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Analyze Image",
+      "id": "analyze-image"
+    },
+    {
+      "level": "h3",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h2",
+      "text": "Generate an Image",
+      "id": "generate-an-image"
+    },
+    {
+      "level": "h3",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h2",
+      "text": "Edit an Image",
+      "id": "edit-an-image"
+    },
+    {
+      "level": "h3",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    }
+  ],
+  "url": "llms-txt#openai-image-operations",
+  "links": []
+}

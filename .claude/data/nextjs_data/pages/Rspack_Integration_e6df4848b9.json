@@ -1,0 +1,20 @@
+{
+  "url": "https://nextjs.org/docs/15/community/rspack",
+  "title": "Rspack Integration",
+  "content": "The Rspack team has created a community plugin for Next.js, which is part of a partnering effort with the Rspack team.\n\nThis plugin is currently experimental. Please use this discussion thread to give feedback on any issues you encounter.\n\nLearn more on the Rspack docs and try out this example.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Rspack Integration",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/15",
+    "https://nextjs.org/docs/15/community",
+    "https://nextjs.org/docs/15/community/contribution-guide",
+    "https://nextjs.org/docs/stable"
+  ]
+}

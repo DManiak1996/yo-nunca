@@ -1,0 +1,87 @@
+{
+  "url": "https://nextjs.org/docs/architecture/supported-browsers",
+  "title": "Supported Browsers",
+  "content": "Next.js supports modern browsers with zero configuration.\n\nIf you would like to target specific browsers or features, Next.js supports Browserslist configuration in your package.json file. Next.js uses the following Browserslist configuration by default:\n\nWe inject widely used polyfills, including:\n\nIf any of your dependencies include these polyfills, they’ll be eliminated automatically from the production build to avoid duplication.\n\nIn addition, to reduce bundle size, Next.js will only load these polyfills for browsers that require them. The majority of the web traffic globally will not download these polyfills.\n\nIf your own code or any external npm dependencies require features not supported by your target browsers (such as IE 11), you need to add polyfills yourself.\n\nTo include polyfills, you can import them into the instrumentation-client.js file.\n\nIn this case, you should add a top-level import for the specific polyfill you need in your Custom <App> or the individual component.\n\nThe best approach is to isolate unsupported features to specific UI sections and conditionally load the polyfill if needed.\n\nNext.js allows you to use the latest JavaScript features out of the box. In addition to ES6 features, Next.js also supports:\n\nNext.js has built-in TypeScript support. Learn more here.\n\nYou can customize babel configuration. Learn more here.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Supported Browsers",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Browserslist",
+      "id": "browserslist"
+    },
+    {
+      "level": "h2",
+      "text": "Polyfills",
+      "id": "polyfills"
+    },
+    {
+      "level": "h3",
+      "text": "Custom Polyfills",
+      "id": "custom-polyfills"
+    },
+    {
+      "level": "h4",
+      "text": "In App Router",
+      "id": "in-app-router"
+    },
+    {
+      "level": "h4",
+      "text": "In Pages Router",
+      "id": "in-pages-router"
+    },
+    {
+      "level": "h4",
+      "text": "Conditionally loading polyfills",
+      "id": "conditionally-loading-polyfills"
+    },
+    {
+      "level": "h2",
+      "text": "JavaScript Language Features",
+      "id": "javascript-language-features"
+    },
+    {
+      "level": "h3",
+      "text": "TypeScript Features",
+      "id": "typescript-features"
+    },
+    {
+      "level": "h3",
+      "text": "Customizing Babel Config (Advanced)",
+      "id": "customizing-babel-config-advanced"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "{\n  \"browserslist\": [\"chrome 111\", \"edge 111\", \"firefox 111\", \"safari 16.4\"]\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import './polyfills'",
+      "language": "unknown"
+    },
+    {
+      "code": "import './polyfills'\n \nimport type { AppProps } from 'next/app'\n \nexport default function MyApp({ Component, pageProps }: AppProps) {\n  return <Component {...pageProps} />\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { useCallback } from 'react'\n \nexport const useAnalytics = () => {\n  const tracker = useCallback(async (data: unknown) => {\n    if (!('structuredClone' in globalThis)) {\n      import('polyfills/structured-clone').then((mod) => {\n        globalThis.structuredClone = mod.default\n      })\n    }\n \n    /* Do some work that uses structured clone */\n  }, [])\n \n  return tracker\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/architecture",
+    "https://nextjs.org/docs/architecture/supported-browsers",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/instrumentation-client",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-app",
+    "https://nextjs.org/docs/pages/api-reference/config/typescript",
+    "https://nextjs.org/docs/pages/guides/babel",
+    "https://nextjs.org/docs/architecture/nextjs-compiler",
+    "https://nextjs.org/docs/community"
+  ]
+}

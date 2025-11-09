@@ -1,0 +1,25 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/generateBuildId",
+  "title": "generateBuildId",
+  "content": "Next.js generates an ID during next build to identify which version of your application is being served. The same build should be used and boot up multiple containers.\n\nIf you are rebuilding for each stage of your environment, you will need to generate a consistent build ID to use between containers. Use the generateBuildId command in next.config.js:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "generateBuildId",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  generateBuildId: async () => {\n    // This could be anything, using the latest git hash\n    return process.env.GIT_HASH\n  },\n}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/exportPathMap",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/generateEtags"
+  ]
+}

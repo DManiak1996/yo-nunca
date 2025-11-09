@@ -1,0 +1,14 @@
+{
+  "title": "Usage",
+  "content": "Source: https://docs.ollama.com/api/usage\n\nOllama's API responses include metrics that can be used for measuring performance and model usage:\n\n* `total_duration`: How long the response took to generate\n* `load_duration`: How long the model took to load\n* `prompt_eval_count`: How many input tokens were processed\n* `prompt_eval_duration`: How long it took to evaluate the prompt\n* `eval_count`: How many output tokens were processes\n* `eval_duration`: How long it took to generate the output tokens\n\nAll timing values are measured in nanoseconds.\n\nFor endpoints that return usage metrics, the response body will include the usage fields. For example, a non-streaming call to `/api/generate` may return the following response:\n\nFor endpoints that return **streaming responses**, usage fields are included as part of the final chunk, where `done` is `true`.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Example response",
+      "id": "example-response"
+    }
+  ],
+  "url": "llms-txt#usage",
+  "links": []
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Google Drive Trigger node",
+  "content": "[Google Drive](https://drive.google.com) is a file storage and synchronization service developed by Google. It allows users to store files on their servers, synchronize files across devices, and share files.\n\nYou can find authentication information for this node [here](../../credentials/google/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Google Drive Trigger integrations](https://n8n.io/integrations/google-drive-trigger/) page.\n\nManual Executions vs. Activation\n\nOn manual executions this node will return the last event matching its search criteria. If no event matches the criteria (for example because you are watching for files to be created but no files have been created so far), an error is thrown. Once saved and activated, the node will regularly check for any matching events and will trigger your workflow for each event found.\n\nFor common questions or issues and suggested solutions, refer to [Common issues](common-issues/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    }
+  ],
+  "url": "llms-txt#google-drive-trigger-node",
+  "links": []
+}

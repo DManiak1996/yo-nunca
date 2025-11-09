@@ -1,0 +1,29 @@
+{
+  "title": "Facebook Lead Ads Trigger node",
+  "content": "Use the Facebook Lead Ads Trigger node to respond to events in [Facebook Lead Ads](https://www.facebook.com/business/ads/lead-ads/) and integrate Facebook Lead Ads with other applications. n8n has built-in support for responding to new leads.\n\nOn this page, you'll find a list of events the Facebook Lead Ads Trigger node can respond to, and links to more resources.\n\nYou can find authentication information for this node [here](../../credentials/facebookleadads/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Facebook Lead Ads Trigger integrations](https://n8n.io/integrations/facebook-lead-ads-trigger/) page.\n\nView [example workflows and related content](https://n8n.io/integrations/facebook-lead-ads-trigger/) on n8n's website.\n\nRefer to [Facebook Lead Ads' documentation](https://developers.facebook.com/docs/marketing-api/guides/lead-ads/) for details about their API.\n\nHere are some common errors and issues with the Facebook Lead Ads Trigger node and steps to resolve or troubleshoot them.\n\n### Workflow only works in testing or production\n\nFacebook Lead Ads only allows you to register a single webhook per app. This means that every time you switch from using the testing URL to the production URL (and vice versa), Facebook Lead Ads overwrites the registered webhook URL.\n\nYou may have trouble with this if you try to test a workflow that's also active in production. Facebook Lead Ads will only send events to one of the two webhook URLs, so the other will never receive event notifications.\n\nTo work around this, you can disable your workflow when testing:\n\nHalts production traffic\n\nThis workaround temporarily disables your production workflow for testing. Your workflow will no longer receive production traffic while it's deactivated.\n\n1. Go to your workflow page.\n1. Toggle the **Active** switch in the top panel to disable the workflow temporarily.\n1. Test your workflow using the test webhook URL.\n1. When you finish testing, toggle the **Inactive** toggle to enable the workflow again. The production webhook URL should resume working.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    },
+    {
+      "level": "h3",
+      "text": "Workflow only works in testing or production",
+      "id": "workflow-only-works-in-testing-or-production"
+    }
+  ],
+  "url": "llms-txt#facebook-lead-ads-trigger-node",
+  "links": []
+}

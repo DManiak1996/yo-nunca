@@ -1,0 +1,29 @@
+{
+  "title": "Grist node",
+  "content": "Use the Grist node to automate work in Grist, and integrate Grist with other applications. n8n has built-in support for a wide range of Grist features, including creating, updating, deleting, and reading rows in a table.\n\nOn this page, you'll find a list of operations the Grist node supports and links to more resources.\n\nRefer to [Grist credentials](../../credentials/grist/) for guidance on setting up authentication.\n\n- Create rows in a table\n- Delete rows from a table\n- Read rows from a table\n- Update rows in a table\n\n## Templates and examples\n\n[Browse Grist integration templates](https://n8n.io/integrations/grist/), or [search all templates](https://n8n.io/workflows/)\n\nTo update or delete a particular record, you need the Row ID. There are two ways to get the Row ID:\n\n**Create a Row ID column in Grist**\n\nCreate a new column in your Grist table with the formula `$id`.\n\n**Use the Get All operation**\n\nThe **Get All** operation returns the Row ID of each record along with the fields.\n\nYou can get it with the expression `{{$node[\"GristNodeName\"].json[\"id\"]}}`.\n\n## Filter records when using the Get All operation\n\n- Select **Add Option** and select **Filter** from the dropdown list.\n- You can add filters for any number of columns. The result will only include records which match all the columns.\n- For each column, you can enter any number of values separated by commas. The result will include records which match any of the values for that column.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Get the Row ID",
+      "id": "get-the-row-id"
+    },
+    {
+      "level": "h2",
+      "text": "Filter records when using the Get All operation",
+      "id": "filter-records-when-using-the-get-all-operation"
+    }
+  ],
+  "url": "llms-txt#grist-node",
+  "links": []
+}

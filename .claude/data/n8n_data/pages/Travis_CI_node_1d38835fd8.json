@@ -1,0 +1,19 @@
+{
+  "title": "Travis CI node",
+  "content": "Use the Travis CI node to automate work in Travis CI, and integrate Travis CI with other applications. n8n has built-in support for a wide range of Travis CI features, including cancelling and getting builds.\n\nOn this page, you'll find a list of operations the Travis CI node supports and links to more resources.\n\nRefer to [Travis CI credentials](../../credentials/travisci/) for guidance on setting up authentication.\n\n- Build\n  - Cancel a build\n  - Get a build\n  - Get all builds\n  - Restart a build\n  - Trigger a build\n\n## Templates and examples\n\n[Browse Travis CI integration templates](https://n8n.io/integrations/travisci/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#travis-ci-node",
+  "links": []
+}

@@ -1,0 +1,26 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/config/next-config-js/serverExternalPackages",
+  "title": "serverExternalPackages",
+  "content": "Opt-out specific dependencies from being included in the automatic bundling of the bundlePagesRouterDependencies option.\n\nThese pages will then use native Node.js require to resolve the dependency.\n\nNext.js includes a short list of popular packages that currently are working on compatibility and automatically opt-ed out:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "serverExternalPackages",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  serverExternalPackages: ['@acme/ui'],\n}\n \nmodule.exports = nextConfig",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/api-reference/config",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/bundlePagesRouterDependencies",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/rewrites",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/trailingSlash"
+  ]
+}

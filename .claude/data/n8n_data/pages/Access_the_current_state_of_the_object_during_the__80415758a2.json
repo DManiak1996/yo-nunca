@@ -1,0 +1,8 @@
+{
+  "title": "Access the current state of the object during the execution",
+  "content": "customData = _execution.customData.getAll();",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#access-the-current-state-of-the-object-during-the-execution",
+  "links": []
+}

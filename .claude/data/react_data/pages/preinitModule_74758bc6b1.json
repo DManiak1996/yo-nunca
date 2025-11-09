@@ -1,0 +1,85 @@
+{
+  "url": "https://react.dev/reference/react-dom/preinitModule",
+  "title": "preinitModule",
+  "content": "React-based frameworks frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework’s documentation for details.\n\npreinitModule lets you eagerly fetch and evaluate an ESM module.\n\nTo preinit an ESM module, call the preinitModule function from react-dom.\n\nSee more examples below.\n\nThe preinitModule function provides the browser with a hint that it should start downloading and executing the given module, which can save time. Modules that you preinit are executed when they finish downloading.\n\npreinitModule returns nothing.\n\nCall preinitModule when rendering a component if you know that it or its children will use a specific module and you’re OK with the module being evaluated and thereby taking effect immediately upon being downloaded.\n\nIf you want the browser to download the module but not to execute it right away, use preloadModule instead. If you want to preinit a script that isn’t an ESM module, use preinit.\n\nCall preinitModule in an event handler before transitioning to a page or state where the module will be needed. This gets the process started earlier than if you call it during the rendering of the new page or state.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "preinitModule",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Note",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "preinitModule(href, options)",
+      "id": "preinitmodule"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Preloading when rendering",
+      "id": "preloading-when-rendering"
+    },
+    {
+      "level": "h3",
+      "text": "Preloading in an event handler",
+      "id": "preloading-in-an-event-handler"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "preinitModule(\"https://example.com/module.js\", {as: \"script\"});",
+      "language": "unknown"
+    },
+    {
+      "code": "import { preinitModule } from 'react-dom';function AppRoot() {  preinitModule(\"https://example.com/module.js\", {as: \"script\"});  // ...}",
+      "language": "python"
+    },
+    {
+      "code": "import { preinitModule } from 'react-dom';function AppRoot() {  preinitModule(\"https://example.com/module.js\", {as: \"script\"});  return ...;}",
+      "language": "python"
+    },
+    {
+      "code": "import { preinitModule } from 'react-dom';function CallToAction() {  const onClick = () => {    preinitModule(\"https://example.com/module.js\", {as: \"script\"});    startWizard();  }  return (    <button onClick={onClick}>Start Wizard</button>  );}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-dom",
+    "https://react.dev/reference/react-dom/preinitModule",
+    "https://react.dev/learn/start-a-new-react-project",
+    "https://react.dev/reference/react-dom/preloadModule",
+    "https://react.dev/reference/react-dom/preinit",
+    "https://react.dev/reference/react-dom/preload"
+  ]
+}

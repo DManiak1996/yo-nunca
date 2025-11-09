@@ -1,0 +1,53 @@
+{
+  "title": "Data collection",
+  "content": "n8n collects some anonymous data from self-hosted n8n installations. Use the instructions below to opt out of data telemetry collection.\n\nRefer to [Privacy | Data collection in self-hosted n8n](../../../privacy-security/privacy/#data-collection-in-self-hosted-n8n) for details on the data n8n collects.\n\n## How collection works\n\nYour n8n instance sends most data to n8n as the events that generate it occur. Workflow execution counts and an instance pulse are sent periodically (every 6 hours). These data types mostly fall into n8n telemetry collection.\n\n## Opting out of data collection\n\nn8n enables telemetry collection by default. To disable it, configure the following environment variables.\n\n### Opt out of telemetry events\n\nTo opt out of telemetry events, set the `N8N_DIAGNOSTICS_ENABLED` environment variable to false, for example:\n\n### Opt out of checking for new versions of n8n\n\nTo opt out of checking for new versions of n8n, set the `N8N_VERSION_NOTIFICATIONS_ENABLED` environment variable to false, for example:\n\n## Disable all connection to n8n servers\n\nIf you want to fully prevent all communication with n8n's servers, refer to [Isolate n8n](../../configuration/configuration-examples/isolation/).\n\nRefer to [Deployment environment variables](../../configuration/environment-variables/deployment/) for more information on these environment variables.\n\nRefer to [Configuration](../../configuration/configuration-methods/) for more information on setting environment variables.",
+  "code_samples": [
+    {
+      "code": "export N8N_DIAGNOSTICS_ENABLED=false",
+      "language": "unknown"
+    },
+    {
+      "code": "export N8N_VERSION_NOTIFICATIONS_ENABLED=false",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Collected data",
+      "id": "collected-data"
+    },
+    {
+      "level": "h2",
+      "text": "How collection works",
+      "id": "how-collection-works"
+    },
+    {
+      "level": "h2",
+      "text": "Opting out of data collection",
+      "id": "opting-out-of-data-collection"
+    },
+    {
+      "level": "h3",
+      "text": "Opt out of telemetry events",
+      "id": "opt-out-of-telemetry-events"
+    },
+    {
+      "level": "h3",
+      "text": "Opt out of checking for new versions of n8n",
+      "id": "opt-out-of-checking-for-new-versions-of-n8n"
+    },
+    {
+      "level": "h2",
+      "text": "Disable all connection to n8n servers",
+      "id": "disable-all-connection-to-n8n-servers"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#data-collection",
+  "links": []
+}

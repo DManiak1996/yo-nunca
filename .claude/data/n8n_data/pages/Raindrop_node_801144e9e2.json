@@ -1,0 +1,24 @@
+{
+  "title": "Raindrop node",
+  "content": "Use the Raindrop node to automate work in Raindrop, and integrate Raindrop with other applications. n8n has built-in support for a wide range of Raindrop features, including getting users, deleting tags, and creating, updating, deleting and getting collections and bookmarks.\n\nOn this page, you'll find a list of operations the Raindrop node supports and links to more resources.\n\nRefer to [Raindrop credentials](../../credentials/raindrop/) for guidance on setting up authentication.\n\n- Bookmark\n  - Create\n  - Delete\n  - Get\n  - Get All\n  - Update\n- Collection\n  - Create\n  - Delete\n  - Get\n  - Get All\n  - Update\n- Tag\n  - Delete\n  - Get All\n- User\n  - Get\n\n## Templates and examples\n\n**Fetch a YouTube playlist and send new items Raindrop**\n\n[View template details](https://n8n.io/workflows/1217-fetch-a-youtube-playlist-and-send-new-items-raindrop/)\n\n**Create a collection and create, update, and get a bookmark in Raindrop**\n\n[View template details](https://n8n.io/workflows/959-create-a-collection-and-create-update-and-get-a-bookmark-in-raindrop/)\n\n**Save Mastodon Bookmarks to Raindrop Automatically**\n\n[View template details](https://n8n.io/workflows/4800-save-mastodon-bookmarks-to-raindrop-automatically/)\n\n[Browse Raindrop integration templates](https://n8n.io/integrations/raindrop/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#raindrop-node",
+  "links": []
+}

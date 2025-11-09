@@ -1,0 +1,69 @@
+{
+  "title": "Convert to File",
+  "content": "Use the Convert to File node to take input data and output it as a file. This converts the input JSON data into a binary format.\n\nTo extract data from a file and convert it to JSON, use the [Extract from File](../n8n-nodes-base.extractfromfile/) node.\n\n- [**Convert to CSV**](#convert-to-csv)\n- [**Convert to HTML**](#convert-to-html)\n- [**Convert to ICS**](#convert-to-ics)\n- [**Convert to JSON**](#convert-to-json)\n- [**Convert to ODS**](#convert-to-ods)\n- [**Convert to RTF**](#convert-to-rtf)\n- [**Convert to Text File**](#convert-to-text-file)\n- [**Convert to XLS**](#convert-to-xls)\n- [**Convert to XLSX**](#convert-to-xlsx)\n- [**Move Base64 String to File**](#move-base64-string-to-file)\n\nNode parameters and options depend on the operation you select.\n\nConfigure the node for this operation with the **Put Output File in Field** parameter. Enter the name of the field in the output data to contain the file.\n\n#### Convert to CSV options\n\nYou can also configure this operation with these **Options**:\n\n- **File Name**: Enter the file name for the generated output file.\n- If the first row of the file contains header names, turn on the **Header Row** option.\n\nConfigure the node for this operation with the **Put Output File in Field** parameter. Enter the name of the field in the output data to contain the file.\n\n#### Convert to HTML options\n\nYou can also configure this operation with these **Options**:\n\n- **File Name**: Enter the file name for the generated output file.\n- If the first row of the file contains header names, turn on the **Header Row** option.\n\n- **Put Output File in Field**. Enter the name of the field in the output data to contain the file.\n- **Event Title**: Enter the title for the event.\n- **Start**: Enter the date and time the event will start. All-day events ignore the time.\n- **End**: Enter the date and time the event will end. All-day events ignore the time. If unset, the node uses the start date.\n- **All Day**: Select whether the event is an all day event (turned on) or not (turned off).\n\n#### Convert to ICS options\n\nYou can also configure this operation with these **Options**:\n\n- **File Name**: Enter the file name for the generated output file.\n- **Attendees**: Use this option to add attendees to the event. For each attendee, add:\n  - **Name**\n  - **Email**\n  - **RSVP**: Select whether the attendee needs to confirm attendance (turned on) or doesn't (turned off).\n- **Busy Status**: Use this option to set the busy status for Microsoft applications like Outlook. Choose from:\n  - **Busy**\n  - **Tentative**\n- **Calendar Name**: For Apple and Microsoft calendars, enter the [calendar name](https://learn.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-oxcical/1da58449-b97e-46bd-b018-a1ce576f3e6d) for the event.\n- **Description**: Enter an event description.\n- **Geolocation**: Enter the **Latitude** and **Longitude** for the event's location.\n- **Location**: Enter the event's intended venue/location.\n- **Recurrence Rule**: Enter a rule to define the repeat pattern of the event (RRULE). Generate rules using the [iCalendar.org RRULE Tool](https://icalendar.org/rrule-tool.html).\n- **Organizer**: Enter the organizer's **Name** and **Email**.\n- **Sequence**: If you're sending an update for an event with the same universally unique ID (UID), enter the revision sequence number.\n- **Status**: Set the status of the event. Choose from:\n  - **Confirmed**\n  - **Cancelled**\n  - **Tentative**\n- **UID**: Enter a universally unique ID (UID) for the event. The UID should be globally unique. The node automatically generates a UID if you don't enter one.\n- **URL**: Enter a URL associated with the event.\n- **Use Workflow Timezone**: Whether to use UTC time zone (turned off) or the workflow's timezone (turned on). Set the workflow's timezone in the [Workflow Settings](../../../../workflows/settings/).\n\nChoose the best output **Mode** for your needs from these options:\n\n- **All Items to One File**: Send all input items to a single file.\n- **Each Item to Separate File**: Create a file for every input item.\n\n#### Convert to JSON options\n\nYou can also configure this operation with these **Options**:\n\n- **File Name**: Enter the file name for the generated output file.\n- **Format**: Choose whether to format the JSON for easier reading (turned on) or not (turned off).\n- **Encoding**: Choose the character set to use to encode the data. The default is **utf8**.\n\nConfigure the node for this operation with the **Put Output File in Field** parameter. Enter the name of the field in the output data to contain the file.\n\n#### Convert to ODS options\n\nYou can also configure this operation with these **Options**:\n\n- **File Name**: Enter the file name for the generated output file.\n- **Compression**: Choose whether to compress and reduce the file's output size.\n- **Header Row**: Turn on if the first row of the file contains header names.\n- **Sheet Name**: Enter the Sheet Name to create in the spreadsheet.\n\nConfigure the node for this operation with the **Put Output File in Field** parameter. Enter the name of the field in the output data to contain the file.\n\n#### Convert to RFT options\n\nYou can also configure this operation with these **Options**:\n\n- **File Name**: Enter the file name for the generated output file.\n- If the first row of the file contains header names, turn on the **Header Row** option.\n\n### Convert to Text File\n\nEnter the name of the **Text Input Field** that contains a string to convert to a file. Use dot-notation for deep fields, for example `level1.level2.currentKey`.\n\n#### Convert to Text File options\n\nYou can also configure this operation with these **Options**:\n\n- **File Name**: Enter the file name for the generated output file.\n- **Encoding**: Choose the character set to use to encode the data. The default is **utf8**.\n\nConfigure the node for this operation with the **Put Output File in Field** parameter. Enter the name of the field in the output data to contain the file.\n\n#### Convert to XLS options\n\nYou can also configure this operation with these **Options**:\n\n- **File Name**: Enter the file name for the generated output file.\n- **Header Row**: Turn on if the first row of the file contains header names.\n- **Sheet Name**: Enter the Sheet Name to create in the spreadsheet.\n\nConfigure the node for this operation with the **Put Output File in Field** parameter. Enter the name of the field in the output data to contain the file.\n\n#### Convert to XLSX options\n\nYou can also configure this operation with these **Options**:\n\n- **File Name**: Enter the file name for the generated output file.\n- **Compression**: Choose whether to compress and reduce the file's output size.\n- **Header Row**: Turn on if the first row of the file contains header names.\n- **Sheet Name**: Enter the Sheet Name to create in the spreadsheet.\n\n### Move Base64 String to File\n\nEnter the name of the **Base64 Input Field** that contains the Base64 string to convert to a file. Use dot-notation for deep fields, for example `level1.level2.currentKey`.\n\n#### Move Base64 String to File options\n\nYou can also configure this operation with these **Options**:\n\n- **File Name**: Enter the file name for the generated output file.\n- **MIME Type**: Enter the MIME type of the output file. Refer to [Common MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types) for a list of common MIME types and the file extensions they relate to.\n\n## Templates and examples\n\n**Automated Web Scraping: email a CSV, save to Google Sheets & Microsoft Excel**\n\n[View template details](https://n8n.io/workflows/2275-automated-web-scraping-email-a-csv-save-to-google-sheets-and-microsoft-excel/)\n\n**🤖 Telegram Messaging Agent for Text/Audio/Images**\n\n[View template details](https://n8n.io/workflows/2751-telegram-messaging-agent-for-textaudioimages/)\n\n**Ultimate Scraper Workflow for n8n**\n\n[View template details](https://n8n.io/workflows/2431-ultimate-scraper-workflow-for-n8n/)\n\n[Browse Convert to File integration templates](https://n8n.io/integrations/convert-to-file/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h3",
+      "text": "Convert to CSV",
+      "id": "convert-to-csv"
+    },
+    {
+      "level": "h3",
+      "text": "Convert to HTML",
+      "id": "convert-to-html"
+    },
+    {
+      "level": "h3",
+      "text": "Convert to ICS",
+      "id": "convert-to-ics"
+    },
+    {
+      "level": "h3",
+      "text": "Convert to JSON",
+      "id": "convert-to-json"
+    },
+    {
+      "level": "h3",
+      "text": "Convert to ODS",
+      "id": "convert-to-ods"
+    },
+    {
+      "level": "h3",
+      "text": "Convert to RTF",
+      "id": "convert-to-rtf"
+    },
+    {
+      "level": "h3",
+      "text": "Convert to Text File",
+      "id": "convert-to-text-file"
+    },
+    {
+      "level": "h3",
+      "text": "Convert to XLS",
+      "id": "convert-to-xls"
+    },
+    {
+      "level": "h3",
+      "text": "Convert to XLSX",
+      "id": "convert-to-xlsx"
+    },
+    {
+      "level": "h3",
+      "text": "Move Base64 String to File",
+      "id": "move-base64-string-to-file"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#convert-to-file",
+  "links": []
+}

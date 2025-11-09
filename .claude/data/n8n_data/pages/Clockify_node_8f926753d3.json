@@ -1,0 +1,24 @@
+{
+  "title": "Clockify node",
+  "content": "Use the Clockify node to automate work in Clockify, and integrate Clockify with other applications. n8n has built-in support for a wide range of Clockify features, including creating, updating, getting, and deleting tasks, time entries, projects, and tags.\n\nOn this page, you'll find a list of operations the Clockify node supports and links to more resources.\n\nRefer to [Clockify credentials](../../credentials/clockify/) for guidance on setting up authentication.\n\n- Project\n  - Create a project\n  - Delete a project\n  - Get a project\n  - Get all projects\n  - Update a project\n- Tag\n  - Create a tag\n  - Delete a tag\n  - Get all tags\n  - Update a tag\n- Task\n  - Create a task\n  - Delete a task\n  - Get a task\n  - Get all tasks\n  - Update a task\n- Time Entry\n  - Create a time entry\n  - Delete a time entry\n  - Get time entry\n  - Update a time entry\n\n## Templates and examples\n\n**Time logging on Clockify using Slack**\n\n[View template details](https://n8n.io/workflows/2604-time-logging-on-clockify-using-slack/)\n\n**Manage projects in Clockify**\n\n[View template details](https://n8n.io/workflows/701-manage-projects-in-clockify/)\n\n**Update time-tracking projects based on Syncro status changes**\n\n[View template details](https://n8n.io/workflows/1492-update-time-tracking-projects-based-on-syncro-status-changes/)\n\n[Browse Clockify integration templates](https://n8n.io/integrations/clockify/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#clockify-node",
+  "links": []
+}

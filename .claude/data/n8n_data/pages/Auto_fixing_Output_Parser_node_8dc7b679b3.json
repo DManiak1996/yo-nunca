@@ -1,0 +1,19 @@
+{
+  "title": "Auto-fixing Output Parser node",
+  "content": "The Auto-fixing Output Parser node wraps another output parser. If the first one fails, it calls out to another LLM to fix any errors.\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n## Templates and examples\n\n**Notion AI Assistant Generator**\n\n[View template details](https://n8n.io/workflows/2415-notion-ai-assistant-generator/)\n\n**Proxmox AI Agent with n8n and Generative AI Integration**\n\n[View template details](https://n8n.io/workflows/2749-proxmox-ai-agent-with-n8n-and-generative-ai-integration/)\n\n**Handling Appointment Leads and Follow-up With Twilio, Cal.com and AI**\n\n[View template details](https://n8n.io/workflows/2342-handling-appointment-leads-and-follow-up-with-twilio-calcom-and-ai/)\n\n[Browse Auto-fixing Output Parser integration templates](https://n8n.io/integrations/auto-fixing-output-parser/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChain's output parser documentation](https://js.langchain.com/docs/concepts/output_parsers/) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#auto-fixing-output-parser-node",
+  "links": []
+}

@@ -1,0 +1,25 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/reactStrictMode",
+  "title": "reactStrictMode",
+  "content": "Good to know: Since Next.js 13.5.1, Strict Mode is true by default with app router, so the above configuration is only necessary for pages. You can still disable Strict Mode by setting reactStrictMode: false.\n\nSuggested: We strongly suggest you enable Strict Mode in your Next.js application to better prepare your application for the future of React.\n\nReact's Strict Mode is a development mode only feature for highlighting potential problems in an application. It helps to identify unsafe lifecycles, legacy API usage, and a number of other features.\n\nThe Next.js runtime is Strict Mode-compliant. To opt-in to Strict Mode, configure the following option in your next.config.js:\n\nIf you or your team are not ready to use Strict Mode in your entire application, that's OK! You can incrementally migrate on a page-by-page basis using <React.StrictMode>.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "reactStrictMode",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  reactStrictMode: true,\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/reactMaxHeadersLength",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/redirects"
+  ]
+}

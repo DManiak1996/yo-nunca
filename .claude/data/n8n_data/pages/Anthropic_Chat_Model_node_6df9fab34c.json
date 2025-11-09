@@ -1,0 +1,29 @@
+{
+  "title": "Anthropic Chat Model node",
+  "content": "Use the Anthropic Chat Model node to use Anthropic's Claude family of chat models with conversational [agents](../../../../../glossary/#ai-agent).\n\nOn this page, you'll find the node parameters for the Anthropic Chat Model node, and links to more resources.\n\nYou can find authentication information for this node [here](../../../credentials/anthropic/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Model**: Select the model that generates the completion. Choose from:\n  - **Claude**\n  - **Claude Instant**\n\nLearn more in the [Anthropic model documentation](https://docs.anthropic.com/claude/reference/selecting-a-model).\n\n- **Maximum Number of Tokens**: Enter the maximum number of tokens used, which sets the completion length.\n- **Sampling Temperature**: Use this option to control the randomness of the sampling process. A higher temperature creates more diverse sampling, but increases the risk of hallucinations.\n- **Top K**: Enter the number of token choices the model uses to generate the next token.\n- **Top P**: Use this option to set the probability the completion should use. Use a lower value to ignore less probable options.\n\n## Templates and examples\n\n**Notion AI Assistant Generator**\n\n[View template details](https://n8n.io/workflows/2415-notion-ai-assistant-generator/)\n\n**Gmail AI Email Manager**\n\n[View template details](https://n8n.io/workflows/4722-gmail-ai-email-manager/)\n\n**🤖 AI content generation for Auto Service 🚘 Automate your social media📲!**\n\n[View template details](https://n8n.io/workflows/4600-ai-content-generation-for-auto-service-automate-your-social-media/)\n\n[Browse Anthropic Chat Model integration templates](https://n8n.io/integrations/anthropic-chat-model/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChains's Anthropic documentation](https://js.langchain.com/docs/integrations/chat/anthropic/) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#anthropic-chat-model-node",
+  "links": []
+}

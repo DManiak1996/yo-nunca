@@ -1,0 +1,34 @@
+{
+  "title": "Local File Trigger node",
+  "content": "The Local File Trigger node starts a workflow when it detects changes on the file system. These changes involve a file or folder getting added, changed, or deleted.\n\nThis node isn't available on n8n Cloud.\n\nYou can choose what event to watch for using the **Trigger On** parameter.\n\n## Changes to a Specific File\n\nThe node triggers when the specified file changes.\n\nEnter the path for the file to watch in **File to Watch**.\n\n## Changes Involving a Specific Folder\n\nThe node triggers when a change occurs in the selected folder.\n\nConfigure these parameters:\n\n- **Folder to Watch**: Enter the path of the folder to watch.\n- **Watch for**: Select the type of change to watch for.\n\nUse the node **Options** to include or exclude files and folders.\n\n- **Include Linked Files/Folders**: also watch for changes to linked files or folders.\n- **Ignore**: files or paths to ignore. n8n tests the whole path, not just the filename. Supports the [Anymatch](https://github.com/micromatch/anymatch) syntax.\n- **Max Folder Depth**: how deep into the folder structure to watch for changes.\n\n### Examples for Ignore\n\nIgnore a single file:\n\n```\n**/<fileName>.<suffix>",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Changes to a Specific File",
+      "id": "changes-to-a-specific-file"
+    },
+    {
+      "level": "h2",
+      "text": "Changes Involving a Specific Folder",
+      "id": "changes-involving-a-specific-folder"
+    },
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h3",
+      "text": "Examples for Ignore",
+      "id": "examples-for-ignore"
+    }
+  ],
+  "url": "llms-txt#local-file-trigger-node",
+  "links": []
+}

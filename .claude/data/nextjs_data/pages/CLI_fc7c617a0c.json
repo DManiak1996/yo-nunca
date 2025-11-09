@@ -1,0 +1,31 @@
+{
+  "url": "https://nextjs.org/docs/15/app/api-reference/cli",
+  "title": "CLI",
+  "content": "Next.js comes with two Command Line Interface (CLI) tools:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "CLI",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "create-next-app",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "next CLI",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/15/app",
+    "https://nextjs.org/docs/15/app/api-reference",
+    "https://nextjs.org/docs/15/app/api-reference/cli/create-next-app",
+    "https://nextjs.org/docs/15/app/api-reference/cli/next",
+    "https://nextjs.org/docs/15/app/api-reference/config/eslint"
+  ]
+}

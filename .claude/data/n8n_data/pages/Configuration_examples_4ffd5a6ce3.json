@@ -1,0 +1,8 @@
+{
+  "title": "Configuration examples",
+  "content": "This section contains examples for how to configure n8n to solve particular use cases.\n\n- [Isolate n8n](/hosting/configuration/configuration-examples/isolation/)\n- [Configure the Base URL](/hosting/configuration/configuration-examples/base-url/)\n- [Configure custom SSL certificate authorities](/hosting/configuration/configuration-examples/custom-certificate-authority/)\n- [Set a custom encryption key](/hosting/configuration/configuration-examples/encryption-key/)\n- [Configure workflow timeouts](/hosting/configuration/configuration-examples/execution-timeout/)\n- [Specify custom nodes location](/hosting/configuration/configuration-examples/custom-nodes-location/)\n- [Enable modules in Code node](/hosting/configuration/configuration-examples/modules-in-code-node/)\n- [Set the timezone](/hosting/configuration/configuration-examples/time-zone/)\n- [Specify user folder path](/hosting/configuration/configuration-examples/user-folder/)\n- [Configure webhook URLs with reverse proxy](/hosting/configuration/configuration-examples/webhook-url/)\n- [Enable Prometheus metrics](/hosting/configuration/configuration-examples/prometheus/)",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#configuration-examples",
+  "links": []
+}

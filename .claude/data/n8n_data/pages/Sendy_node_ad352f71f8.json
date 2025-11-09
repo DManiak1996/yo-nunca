@@ -1,0 +1,19 @@
+{
+  "title": "Sendy node",
+  "content": "Use the Sendy node to automate work in Sendy, and integrate Sendy with other applications. n8n has built-in support for a wide range of Sendy features, including creating campaigns, and adding, counting, deleting, and getting subscribers.\n\nOn this page, you'll find a list of operations the Sendy node supports and links to more resources.\n\nRefer to [Sendy credentials](../../credentials/sendy/) for guidance on setting up authentication.\n\n- Campaign\n  - Create a campaign\n- Subscriber\n  - Add a subscriber to a list\n  - Count subscribers\n  - Delete a subscriber from a list\n  - Unsubscribe user from a list\n  - Get the status of subscriber\n\n## Templates and examples\n\n**Send automated campaigns in Sendy**\n\n[View template details](https://n8n.io/workflows/727-send-automated-campaigns-in-sendy/)\n\n**Enviar Miembros del CMS Ghost hacia Newsletter Sendy**\n\n[View template details](https://n8n.io/workflows/629-enviar-miembros-del-cms-ghost-hacia-newsletter-sendy/)\n\n**🛠️ Sendy Tool MCP Server 💪 6 operations**\n\n[View template details](https://n8n.io/workflows/5347-sendy-tool-mcp-server-6-operations/)\n\n[Browse Sendy integration templates](https://n8n.io/integrations/sendy/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#sendy-node",
+  "links": []
+}

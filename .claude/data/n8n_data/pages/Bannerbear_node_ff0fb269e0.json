@@ -1,0 +1,19 @@
+{
+  "title": "Bannerbear node",
+  "content": "Use the Bannerbear node to automate work in Bannerbear, and integrate Bannerbear with other applications. n8n has built-in support for a wide range of Bannerbear features, including creating and getting images and templates.\n\nOn this page, you'll find a list of operations the Bannerbear node supports and links to more resources.\n\nRefer to [Bannerbear credentials](../../credentials/bannerbear/) for guidance on setting up authentication.\n\n- Image\n  - Create an image\n  - Get an image\n- Template\n  - Get a template\n  - Get all templates\n\n## Templates and examples\n\n**Speed Up Social Media Banners With BannerBear.com**\n\n[View template details](https://n8n.io/workflows/2322-speed-up-social-media-banners-with-bannerbearcom/)\n\n**Render custom text over images**\n\n[View template details](https://n8n.io/workflows/365-render-custom-text-over-images/)\n\n**Send Airtable data as tasks to Trello**\n\n[View template details](https://n8n.io/workflows/385-send-airtable-data-as-tasks-to-trello/)\n\n[Browse Bannerbear integration templates](https://n8n.io/integrations/bannerbear/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#bannerbear-node",
+  "links": []
+}

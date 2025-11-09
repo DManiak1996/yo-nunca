@@ -1,0 +1,13 @@
+{
+  "title": "`getWorkflowStaticData(type)`",
+  "content": "This gives access to the static workflow data.\n\n- Static data isn't available when testing workflows. The workflow must be active and called by a [trigger](../../../../glossary/#trigger-node-n8n) or webhook to save static data.\n- This feature may behave unreliably under high-frequency workflow executions.\n\nYou can save data directly in the workflow. This data should be small.\n\nAs an example: you can save a timestamp of the last item processed from an RSS feed or database. It will always return an object. Properties can then read, delete or set on that object. When the workflow execution succeeds, n8n checks automatically if the data has changed and saves it, if necessary.\n\nThere are two types of static data, global and node. Global static data is the same in the whole workflow. Every node in the workflow can access it. The node static data is unique to the node. Only the node that set it can retrieve it again.\n\nExample with global data:",
+  "code_samples": [
+    {
+      "code": "// Get the global workflow static data\nconst workflowStaticData = $getWorkflowStaticData('global');\n\n// Access its data\nconst lastExecution = workflowStaticData.lastExecution;\n\n// Update its data\nworkflowStaticData.lastExecution = new Date().getTime();\n\n// Delete data\ndelete workflowStaticData.lastExecution;",
+      "language": "unknown"
+    }
+  ],
+  "headings": [],
+  "url": "llms-txt#`getworkflowstaticdata(type)`",
+  "links": []
+}

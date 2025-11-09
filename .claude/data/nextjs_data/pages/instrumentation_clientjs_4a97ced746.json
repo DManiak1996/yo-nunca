@@ -1,0 +1,97 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/instrumentation-client",
+  "title": "instrumentation-client.js",
+  "content": "The instrumentation-client.js|ts file allows you to add monitoring, analytics code, and other side-effects that run before your application becomes interactive. This is useful for setting up performance tracking, error monitoring, polyfills, or any other client-side observability tools.\n\nTo use it, place the file in the root of your application or inside a src folder.\n\nUnlike server-side instrumentation, you do not need to export any specific functions. You can write your monitoring code directly in the file:\n\nError handling: Implement try-catch blocks around your instrumentation code to ensure robust monitoring. This prevents individual tracking failures from affecting other instrumentation features.\n\nYou can export an onRouterTransitionStart function to receive notifications when navigation begins:\n\nThe onRouterTransitionStart function receives two parameters:\n\nKeep instrumentation code lightweight.\n\nNext.js monitors initialization time in development and will log warnings if it takes longer than 16ms, which could impact smooth page loading.\n\nThe instrumentation-client.js file executes at a specific point in the application lifecycle:\n\nThis timing makes it ideal for setting up error tracking, analytics, and performance monitoring that needs to capture early application lifecycle events.\n\nInitialize error tracking before React starts and add navigation breadcrumbs for better debugging context.\n\nInitialize analytics and track navigation events with detailed metadata for user behavior analysis.\n\nTrack Time to Interactive and navigation performance using the Performance Observer API and performance marks.\n\nLoad polyfills before application code runs. Use static imports for immediate loading and dynamic imports for conditional loading based on feature detection.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "instrumentation-client.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h2",
+      "text": "Router navigation tracking",
+      "id": "router-navigation-tracking"
+    },
+    {
+      "level": "h2",
+      "text": "Performance considerations",
+      "id": "performance-considerations"
+    },
+    {
+      "level": "h2",
+      "text": "Execution timing",
+      "id": "execution-timing"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Error tracking",
+      "id": "error-tracking"
+    },
+    {
+      "level": "h3",
+      "text": "Analytics tracking",
+      "id": "analytics-tracking"
+    },
+    {
+      "level": "h3",
+      "text": "Performance monitoring",
+      "id": "performance-monitoring"
+    },
+    {
+      "level": "h3",
+      "text": "Polyfills",
+      "id": "polyfills"
+    },
+    {
+      "level": "h2",
+      "text": "Version history",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// Set up performance monitoring\nperformance.mark('app-init')\n \n// Initialize analytics\nconsole.log('Analytics initialized')\n \n// Set up error tracking\nwindow.addEventListener('error', (event) => {\n  // Send to your error tracking service\n  reportError(event.error)\n})",
+      "language": "javascript"
+    },
+    {
+      "code": "performance.mark('app-init')\n \nexport function onRouterTransitionStart(\n  url: string,\n  navigationType: 'push' | 'replace' | 'traverse'\n) {\n  console.log(`Navigation started: ${navigationType} to ${url}`)\n  performance.mark(`nav-start-${Date.now()}`)\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import Monitor from './lib/monitoring'\n \nMonitor.initialize()\n \nexport function onRouterTransitionStart(url: string) {\n  Monitor.pushEvent({\n    message: `Navigation to ${url}`,\n    category: 'navigation',\n  })\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { analytics } from './lib/analytics'\n \nanalytics.init()\n \nexport function onRouterTransitionStart(url: string, navigationType: string) {\n  analytics.track('page_navigation', {\n    url,\n    type: navigationType,\n    timestamp: Date.now(),\n  })\n}",
+      "language": "python"
+    },
+    {
+      "code": "const startTime = performance.now()\n \nconst observer = new PerformanceObserver(\n  (list: PerformanceObserverEntryList) => {\n    for (const entry of list.getEntries()) {\n      if (entry instanceof PerformanceNavigationTiming) {\n        console.log('Time to Interactive:', entry.loadEventEnd - startTime)\n      }\n    }\n  }\n)\n \nobserver.observe({ entryTypes: ['navigation'] })\n \nexport function onRouterTransitionStart(url: string) {\n  performance.mark(`nav-start-${url}`)\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import './lib/polyfills'\n \nif (!window.ResizeObserver) {\n  import('./lib/polyfills/resize-observer').then((mod) => {\n    window.ResizeObserver = mod.default\n  })\n}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/instrumentation-client",
+    "https://nextjs.org/docs/app/guides/instrumentation",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/instrumentation",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/intercepting-routes"
+  ]
+}

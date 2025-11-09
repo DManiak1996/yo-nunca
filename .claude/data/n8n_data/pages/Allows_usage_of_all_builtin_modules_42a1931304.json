@@ -1,0 +1,8 @@
+{
+  "title": "Allows usage of all builtin modules",
+  "content": "export NODE_FUNCTION_ALLOW_BUILTIN=*",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#allows-usage-of-all-builtin-modules",
+  "links": []
+}

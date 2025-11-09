@@ -1,0 +1,8 @@
+{
+  "title": "Bitbucket Trigger node",
+  "content": "[Bitbucket](https://bitbucket.org/) is a web-based version control repository hosting service owned by Atlassian, for source code and development projects that use either Mercurial or Git revision control systems.\n\nYou can find authentication information for this node [here](../../credentials/bitbucket/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Bitbucket Trigger integrations](https://n8n.io/integrations/bitbucket-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#bitbucket-trigger-node",
+  "links": []
+}

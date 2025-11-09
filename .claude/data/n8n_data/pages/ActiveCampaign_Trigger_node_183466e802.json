@@ -1,0 +1,19 @@
+{
+  "title": "ActiveCampaign Trigger node",
+  "content": "[ActiveCampaign](https://www.activecampaign.com/) is a cloud software platform for small-to-mid-sized business. The company offers software for customer experience automation, which combines the email marketing, marketing automation, sales automation, and CRM categories.\n\nYou can find authentication information for this node [here](../../credentials/activecampaign/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [ActiveCampaign Trigger integrations](https://n8n.io/integrations/activecampaign-trigger/) page.\n\n- New ActiveCampaign event\n\nn8n provides an app node for ActiveCampaign. You can find the node docs [here](../../app-nodes/n8n-nodes-base.activecampaign/).\n\nView [example workflows and related content](https://n8n.io/integrations/activecampaign-trigger/) on n8n's website.\n\nRefer to [ActiveCampaign's documentation](https://developers.activecampaign.com/reference/overview) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#activecampaign-trigger-node",
+  "links": []
+}

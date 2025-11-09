@@ -1,0 +1,19 @@
+{
+  "title": "Facebook Trigger node",
+  "content": "[Facebook](https://www.facebook.com/) is a social networking site to connect and share with family and friends online.\n\nUse the Facebook Trigger node to trigger a workflow when events occur in Facebook.\n\nYou can find authentication information for this node [here](../../credentials/facebookapp/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Facebook Trigger integrations](https://n8n.io/integrations/facebook-trigger/) page.\n\n- [**Ad Account**](ad-account/): Get updates for certain ads changes.\n\n- [**Application**](application/): Get updates sent to the application.\n\n- [**Certificate Transparency**](certificate-transparency/): Get updates when new security certificates are generated for your subscribed domains, including new certificates and potential phishing attempts.\n\n- Activity and events in a [**Group**](group/)\n\n- [**Instagram**](instagram/): Get updates when someone comments on the Media objects of your app users; @mentions your app users; or when Stories of your app users expire.\n\n- [**Link**](link/): Get updates about the links for rich previews by an external provider\n\n- [**Page**](page/) updates\n\n- [**Permissions**](permissions/): Updates when granting or revoking permissions\n\n- [**User**](user/) profile updates\n\n- [**WhatsApp Business Account**](whatsapp/)\n\nn8n recommends using the [WhatsApp Trigger node](../n8n-nodes-base.whatsapptrigger/) with the [WhatsApp credentials](../../credentials/whatsapp/) instead of the Facebook Trigger node for these events. The WhatsApp Trigger node has more events to listen to.\n\n- [**Workplace Security**](workplace-security/)\n\nFor each **Object**, use the **Field Names or IDs** dropdown to select more details on what data to receive. Refer to the linked pages for more details.\n\nView [example workflows and related content](https://n8n.io/integrations/facebook-trigger/) on n8n's website.\n\nRefer to Meta's [Graph API documentation](https://developers.facebook.com/docs/graph-api/webhooks/reference) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Objects",
+      "id": "objects"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#facebook-trigger-node",
+  "links": []
+}

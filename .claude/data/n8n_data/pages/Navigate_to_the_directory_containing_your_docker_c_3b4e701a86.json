@@ -1,0 +1,8 @@
+{
+  "title": "Navigate to the directory containing your docker compose file",
+  "content": "cd </path/to/your/compose/file/directory>",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#navigate-to-the-directory-containing-your-docker-compose-file",
+  "links": []
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Vero node",
+  "content": "Use the Vero node to automate work in Vero and integrate Vero with other applications. n8n has built-in support for a wide range of Vero features, including creating and deleting users.\n\nOn this page, you'll find a list of operations the Vero node supports and links to more resources.\n\nRefer to [Vero credentials](../../credentials/vero/) for guidance on setting up authentication.\n\n- User\n  - Create or update a user profile\n  - Change a users identifier\n  - Unsubscribe a user.\n  - Resubscribe a user.\n  - Delete a user.\n  - Adds a tag to a users profile.\n  - Removes a tag from a users profile.\n- Event\n  - Track an event for a specific customer\n\n## Templates and examples\n\n[Browse Vero integration templates](https://n8n.io/integrations/vero/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#vero-node",
+  "links": []
+}

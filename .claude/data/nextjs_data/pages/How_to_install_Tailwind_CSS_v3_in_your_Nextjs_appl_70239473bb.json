@@ -1,0 +1,63 @@
+{
+  "url": "https://nextjs.org/docs/app/guides/tailwind-v3-css",
+  "title": "How to install Tailwind CSS v3 in your Next.js application",
+  "content": "This guide will walk you through how to install Tailwind CSS v3 in your Next.js application.\n\nGood to know: For the latest Tailwind 4 setup, see the Tailwind CSS setup instructions.\n\nInstall Tailwind CSS and its peer dependencies, then run the init command to generate both tailwind.config.js and postcss.config.js files:\n\nConfigure your template paths in your tailwind.config.js file:\n\nAdd the Tailwind directives to your global CSS file:\n\nImport the CSS file in your root layout:\n\nAfter installing Tailwind CSS and adding the global styles, you can use Tailwind's utility classes in your application.\n\nAs of Next.js 13.1, Tailwind CSS and PostCSS are supported with Turbopack.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to install Tailwind CSS v3 in your Next.js application",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Installing Tailwind v3",
+      "id": "installing-tailwind-v3"
+    },
+    {
+      "level": "h2",
+      "text": "Configuring Tailwind v3",
+      "id": "configuring-tailwind-v3"
+    },
+    {
+      "level": "h2",
+      "text": "Using classes",
+      "id": "using-classes"
+    },
+    {
+      "level": "h2",
+      "text": "Usage with Turbopack",
+      "id": "usage-with-turbopack"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "pnpm add -D tailwindcss@^3 postcss autoprefixer\nnpx tailwindcss init -p",
+      "language": "unknown"
+    },
+    {
+      "code": "/** @type {import('tailwindcss').Config} */\nmodule.exports = {\n  content: [\n    './app/**/*.{js,ts,jsx,tsx,mdx}',\n    './pages/**/*.{js,ts,jsx,tsx,mdx}',\n    './components/**/*.{js,ts,jsx,tsx,mdx}',\n  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "@tailwind base;\n@tailwind components;\n@tailwind utilities;",
+      "language": "unknown"
+    },
+    {
+      "code": "import './globals.css'\n \nexport default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  return (\n    <html lang=\"en\">\n      <body>{children}</body>\n    </html>\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export default function Page() {\n  return <h1 className=\"text-3xl font-bold underline\">Hello, Next.js!</h1>\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/guides",
+    "https://nextjs.org/docs/app/getting-started/css",
+    "https://nextjs.org/docs/app/guides/tailwind-v3-css",
+    "https://nextjs.org/docs/app/guides/static-exports",
+    "https://nextjs.org/docs/app/guides/testing"
+  ]
+}

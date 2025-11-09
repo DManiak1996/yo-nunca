@@ -1,0 +1,47 @@
+{
+  "title": "or",
+  "content": "npm install -g n8n@next\n\nn8n start --tunnel\n```\n\n## Reverting an upgrade\n\nInstall the older version that you want to go back to.\n\nIf the upgrade involved a database migration:\n\n1. Check the feature documentation and release notes to see if there are any manual changes you need to make.\n1. Run `n8n db:revert` on your current version to roll back the database. If you want to revert more than one database migration, you need to repeat this process.\n\n## Windows troubleshooting\n\nIf you are experiencing issues running n8n on Windows, make sure your Node.js environment is correctly set up. Follow Microsoft's guide to [Install NodeJS on Windows](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).",
+  "code_samples": [
+    {
+      "code": "### Next steps\n\nTry out n8n using the [Quickstarts](../../../try-it-out/).\n\n## Updating\n\nTo update your n8n instance to the `latest` version, run:",
+      "language": "unknown"
+    },
+    {
+      "code": "To install the `next` version:",
+      "language": "unknown"
+    },
+    {
+      "code": "## n8n with tunnel\n\nDanger\n\nUse this for local development and testing. It isn't safe to use it in production.\n\nTo use webhooks for trigger nodes of external services like GitHub, n8n has to be reachable from the web. n8n runs a [tunnel service](https://github.com/localtunnel/localtunnel) that can redirect requests from n8n's servers to your local n8n instance.\n\nStart n8n with `--tunnel` by running:",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h3",
+      "text": "Next steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h2",
+      "text": "Updating",
+      "id": "updating"
+    },
+    {
+      "level": "h2",
+      "text": "n8n with tunnel",
+      "id": "n8n-with-tunnel"
+    },
+    {
+      "level": "h2",
+      "text": "Reverting an upgrade",
+      "id": "reverting-an-upgrade"
+    },
+    {
+      "level": "h2",
+      "text": "Windows troubleshooting",
+      "id": "windows-troubleshooting"
+    }
+  ],
+  "url": "llms-txt#or",
+  "links": []
+}

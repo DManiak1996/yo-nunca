@@ -1,0 +1,29 @@
+{
+  "title": "optional:",
+  "content": "export DB_POSTGRESDB_SSL_CA=$(pwd)/ca.crt\nexport DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED=false\n\nCREATE DATABASE n8n-db;\nCREATE USER n8n-user WITH PASSWORD 'random-password';\nGRANT ALL PRIVILEGES ON DATABASE n8n-db TO n8n-user;\n```\n\nYou can choose between these configurations:\n\n- Not declaring (default): Connect with `SSL=off`\n- Declaring only the CA and unauthorized flag: Connect with `SSL=on` and verify the server's signature\n- Declaring `_{CERT,KEY}` and the above: Use the certificate and key for client TLS authentication\n\nThis is the default database that gets used if nothing is defined.\n\nThe database file is located at: `~/.n8n/database.sqlite`",
+  "code_samples": [
+    {
+      "code": "### Required permissions\n\nn8n needs to create and modify the schemas of the tables it uses.\n\nRecommended permissions:",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h3",
+      "text": "Required permissions",
+      "id": "required-permissions"
+    },
+    {
+      "level": "h3",
+      "text": "TLS",
+      "id": "tls"
+    },
+    {
+      "level": "h2",
+      "text": "SQLite",
+      "id": "sqlite"
+    }
+  ],
+  "url": "llms-txt#optional:",
+  "links": []
+}

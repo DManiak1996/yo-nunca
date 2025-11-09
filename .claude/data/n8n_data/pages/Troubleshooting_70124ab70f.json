@@ -1,0 +1,54 @@
+{
+  "title": "Troubleshooting",
+  "content": "### Error message: 'Credentials of type \"\\*\" aren't known'\n\nCheck that the name in the credentials array matches the name used in the property name of the credentials' class.\n\n### Error message: 'There was a problem loading init data: API-Server can not be reached. It's probably down'\n\n- Check that the names of the node file, node folder, and class match the path added to `packages/nodes-base/package.json`.\n- Check that the names used in the `displayOptions` property are names used by UI elements in the node.\n\n### Node icon doesn't show up in the Add Node menu and the Editor UI\n\n- Check that the icon is in the same folder as the node.\n- Check that it's either in PNG or SVG format.\n- When the `icon` property references the icon file, check that it includes the logo extension (`.png` or `.svg`) and that it prefixes it with `file:`. For example, `file:friendGrid.png` or `file:friendGrid.svg`.\n\n### Node icon doesn't fit\n\n- If you use an SVG file, make sure the canvas size is square. You can find instructions to change the canvas size of an SVG file using GIMP [here](https://docs.gimp.org/2.10/en/gimp-image-resize.html).\n- If you use a PNG file, make sure that it's 60x60 pixels.\n\n### Node doesn't show up in the Add Node menu\n\nCheck that you registered the node in the `package.json` file in your project.\n\n### Changes to the description properties don't show in the UI on refreshing\n\nEvery time you change the description properties, you have to stop the current n8n process (`ctrl` + `c`) and run it again. You may also need to re-run `npm link`.\n\n### Linter incorrectly warning about file name case\n\nThe node linter has rules for file names, including what case they should be. Windows users may encounter an issue when renaming files that causes the linter to continue giving warnings, even after you rename the files. This is due to a [known Windows issue](https://answers.microsoft.com/en-us/windows/forum/all/file-renaming-when-changing-case-doesnt-work/aa15ff7c-dd2d-4ed3-bcce-799ca90d4e58) with changing case when renaming files.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Credentials",
+      "id": "credentials"
+    },
+    {
+      "level": "h3",
+      "text": "Error message: 'Credentials of type \"\\*\" aren't known'",
+      "id": "error-message:-'credentials-of-type-\"\\*\"-aren't-known'"
+    },
+    {
+      "level": "h2",
+      "text": "Editor UI",
+      "id": "editor-ui"
+    },
+    {
+      "level": "h3",
+      "text": "Error message: 'There was a problem loading init data: API-Server can not be reached. It's probably down'",
+      "id": "error-message:-'there-was-a-problem-loading-init-data:-api-server-can-not-be-reached.-it's-probably-down'"
+    },
+    {
+      "level": "h3",
+      "text": "Node icon doesn't show up in the Add Node menu and the Editor UI",
+      "id": "node-icon-doesn't-show-up-in-the-add-node-menu-and-the-editor-ui"
+    },
+    {
+      "level": "h3",
+      "text": "Node icon doesn't fit",
+      "id": "node-icon-doesn't-fit"
+    },
+    {
+      "level": "h3",
+      "text": "Node doesn't show up in the Add Node menu",
+      "id": "node-doesn't-show-up-in-the-add-node-menu"
+    },
+    {
+      "level": "h3",
+      "text": "Changes to the description properties don't show in the UI on refreshing",
+      "id": "changes-to-the-description-properties-don't-show-in-the-ui-on-refreshing"
+    },
+    {
+      "level": "h3",
+      "text": "Linter incorrectly warning about file name case",
+      "id": "linter-incorrectly-warning-about-file-name-case"
+    }
+  ],
+  "url": "llms-txt#troubleshooting",
+  "links": []
+}

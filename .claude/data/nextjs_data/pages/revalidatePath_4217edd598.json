@@ -1,0 +1,129 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/revalidatePath",
+  "title": "revalidatePath",
+  "content": "revalidatePath allows you to invalidate cached data on-demand for a specific path.\n\nrevalidatePath can be called in Server Functions and Route Handlers.\n\nrevalidatePath cannot be called in Client Components or Proxy, as it only works in server environments.\n\nUse a specific URL when you want to refresh a single page. Use a route pattern plus type to refresh multiple URLs.\n\nrevalidatePath does not return a value.\n\nThe path parameter can point to pages, layouts, or route handlers:\n\nrevalidatePath, revalidateTag and updateTag serve different purposes:\n\nWhen you call revalidatePath, only the specified path gets fresh data on the next visit. Other pages that use the same data tags will continue to serve cached data until those specific tags are also revalidated:\n\nAfter calling revalidatePath('/blog'):\n\nLearn about the difference between revalidateTag and updateTag.\n\nrevalidatePath and updateTag are complementary primitives that are often used together in utility functions to ensure comprehensive data consistency across your application:\n\nThis pattern ensures that both the specific page and any other pages using the same data remain consistent.\n\nThis will invalidate one specific URL for revalidation on the next page visit.\n\nThis will invalidate any URL that matches the provided page file for revalidation on the next page visit. This will not invalidate pages beneath the specific page. For example, /blog/[slug] won't invalidate /blog/[slug]/[author].\n\nThis will invalidate any URL that matches the provided layout file for revalidation on the next page visit. This will cause pages beneath with the same layout to be invalidated and revalidated on the next visit. For example, in the above case, /blog/[slug]/[another] would also be invalidated and revalidated on the next visit.\n\nThis will purge the Client-side Router Cache, and invalidate the Data Cache for revalidation on the next page visit.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "revalidatePath",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h2",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "What can be invalidated",
+      "id": "what-can-be-invalidated"
+    },
+    {
+      "level": "h2",
+      "text": "Relationship with revalidateTag and updateTag",
+      "id": "relationship-with-revalidatetag-and-updatetag"
+    },
+    {
+      "level": "h3",
+      "text": "Building revalidation utilities",
+      "id": "building-revalidation-utilities"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Revalidating a specific URL",
+      "id": "revalidating-a-specific-url"
+    },
+    {
+      "level": "h3",
+      "text": "Revalidating a Page path",
+      "id": "revalidating-a-page-path"
+    },
+    {
+      "level": "h3",
+      "text": "Revalidating a Layout path",
+      "id": "revalidating-a-layout-path"
+    },
+    {
+      "level": "h3",
+      "text": "Revalidating all data",
+      "id": "revalidating-all-data"
+    },
+    {
+      "level": "h3",
+      "text": "Server Function",
+      "id": "server-function"
+    },
+    {
+      "level": "h3",
+      "text": "Route Handler",
+      "id": "route-handler"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "revalidatePath(path: string, type?: 'page' | 'layout'): void;",
+      "language": "unknown"
+    },
+    {
+      "code": "export async function GET() {\n  const data = await fetch('https://api.vercel.app/blog', {\n    cache: 'force-cache',\n  })\n \n  return Response.json(await data.json())\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "// Page A: /blog\nconst posts = await fetch('https://api.vercel.app/blog', {\n  next: { tags: ['posts'] },\n})\n \n// Page B: /dashboard\nconst recentPosts = await fetch('https://api.vercel.app/blog?limit=5', {\n  next: { tags: ['posts'] },\n})",
+      "language": "javascript"
+    },
+    {
+      "code": "'use server'\n \nimport { revalidatePath, updateTag } from 'next/cache'\n \nexport async function updatePost() {\n  await updatePostInDatabase()\n \n  revalidatePath('/blog') // Refresh the blog page\n  updateTag('posts') // Refresh all pages using 'posts' tag\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { revalidatePath } from 'next/cache'\nrevalidatePath('/blog/post-1')",
+      "language": "python"
+    },
+    {
+      "code": "import { revalidatePath } from 'next/cache'\nrevalidatePath('/blog/[slug]', 'page')\n// or with route groups\nrevalidatePath('/(main)/blog/[slug]', 'page')",
+      "language": "python"
+    },
+    {
+      "code": "import { revalidatePath } from 'next/cache'\nrevalidatePath('/blog/[slug]', 'layout')\n// or with route groups\nrevalidatePath('/(main)/post/[slug]', 'layout')",
+      "language": "python"
+    },
+    {
+      "code": "import { revalidatePath } from 'next/cache'\n \nrevalidatePath('/', 'layout')",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nimport { revalidatePath } from 'next/cache'\n \nexport default async function submit() {\n  await submitForm()\n  revalidatePath('/')\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { revalidatePath } from 'next/cache'\nimport type { NextRequest } from 'next/server'\n \nexport async function GET(request: NextRequest) {\n  const path = request.nextUrl.searchParams.get('path')\n \n  if (path) {\n    revalidatePath(path)\n    return Response.json({ revalidated: true, now: Date.now() })\n  }\n \n  return Response.json({\n    revalidated: false,\n    now: Date.now(),\n    message: 'Missing path to revalidate',\n  })\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidatePath",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidateTag",
+    "https://nextjs.org/docs/app/api-reference/functions/updateTag",
+    "https://nextjs.org/docs/app/api-reference/functions/refresh"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "url": "https://nextjs.org/docs/pages/building-your-application/data-fetching/client-side",
+  "title": "Client-side Fetching",
+  "content": "Client-side data fetching is useful when your page doesn't require SEO indexing, when you don't need to pre-render your data, or when the content of your pages needs to update frequently. Unlike the server-side rendering APIs, you can use client-side data fetching at the component level.\n\nIf done at the page level, the data is fetched at runtime, and the content of the page is updated as the data changes. When used at the component level, the data is fetched at the time of the component mount, and the content of the component is updated as the data changes.\n\nIt's important to note that using client-side data fetching can affect the performance of your application and the load speed of your pages. This is because the data fetching is done at the time of the component or pages mount, and the data is not cached.\n\nThe following example shows how you can fetch data on the client side using the useEffect hook.\n\nThe team behind Next.js has created a React Hook library for data fetching called SWR. It is highly recommended if you are fetching data on the client-side. It handles caching, revalidation, focus tracking, refetching on intervals, and more.\n\nUsing the same example as above, we can now use SWR to fetch the profile data. SWR will automatically cache the data for us and will revalidate the data if it becomes stale.\n\nFor more information on using SWR, check out the SWR docs.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Client-side Fetching",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Client-side data fetching with useEffect",
+      "id": "client-side-data-fetching-with-useeffect"
+    },
+    {
+      "level": "h2",
+      "text": "Client-side data fetching with SWR",
+      "id": "client-side-data-fetching-with-swr"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { useState, useEffect } from 'react'\n \nfunction Profile() {\n  const [data, setData] = useState(null)\n  const [isLoading, setLoading] = useState(true)\n \n  useEffect(() => {\n    fetch('/api/profile-data')\n      .then((res) => res.json())\n      .then((data) => {\n        setData(data)\n        setLoading(false)\n      })\n  }, [])\n \n  if (isLoading) return <p>Loading...</p>\n  if (!data) return <p>No profile data</p>\n \n  return (\n    <div>\n      <h1>{data.name}</h1>\n      <p>{data.bio}</p>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import useSWR from 'swr'\n \nconst fetcher = (...args) => fetch(...args).then((res) => res.json())\n \nfunction Profile() {\n  const { data, error } = useSWR('/api/profile-data', fetcher)\n \n  if (error) return <div>Failed to load</div>\n  if (!data) return <div>Loading...</div>\n \n  return (\n    <div>\n      <h1>{data.name}</h1>\n      <p>{data.bio}</p>\n    </div>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/building-your-application",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/client-side",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props",
+    "https://nextjs.org/docs/pages/building-your-application/configuring"
+  ]
+}

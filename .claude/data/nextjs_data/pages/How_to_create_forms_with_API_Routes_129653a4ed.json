@@ -1,0 +1,72 @@
+{
+  "url": "https://nextjs.org/docs/pages/guides/forms",
+  "title": "How to create forms with API Routes",
+  "content": "Forms enable you to create and update data in web applications. Next.js provides a powerful way to handle data mutations using API Routes. This guide will walk you through how to handle form submission on the server.\n\nTo handle form submissions on the server, create an API endpoint that securely mutates data.\n\nThen, call the API Route from the client with an event handler:\n\nWe recommend using HTML validation like required and type=\"email\" for basic client-side form validation.\n\nFor more advanced server-side validation, you can use a schema validation library like zod to validate the form fields before mutating the data:\n\nYou can use React state to show an error message when a form submission fails:\n\nYou can use React state to show a loading state when a form is submitting on the server:\n\nIf you would like to redirect the user to a different route after a mutation, you can redirect to any absolute or relative URL:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to create forms with API Routes",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Server Forms",
+      "id": "server-forms"
+    },
+    {
+      "level": "h2",
+      "text": "Form validation",
+      "id": "form-validation"
+    },
+    {
+      "level": "h3",
+      "text": "Error handling",
+      "id": "error-handling"
+    },
+    {
+      "level": "h2",
+      "text": "Displaying loading state",
+      "id": "displaying-loading-state"
+    },
+    {
+      "level": "h3",
+      "text": "Redirecting",
+      "id": "redirecting"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextApiRequest, NextApiResponse } from 'next'\n \nexport default async function handler(\n  req: NextApiRequest,\n  res: NextApiResponse\n) {\n  const data = req.body\n  const id = await createItem(data)\n  res.status(200).json({ id })\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { FormEvent } from 'react'\n \nexport default function Page() {\n  async function onSubmit(event: FormEvent<HTMLFormElement>) {\n    event.preventDefault()\n \n    const formData = new FormData(event.currentTarget)\n    const response = await fetch('/api/submit', {\n      method: 'POST',\n      body: formData,\n    })\n \n    // Handle response if necessary\n    const data = await response.json()\n    // ...\n  }\n \n  return (\n    <form onSubmit={onSubmit}>\n      <input type=\"text\" name=\"name\" />\n      <button type=\"submit\">Submit</button>\n    </form>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import type { NextApiRequest, NextApiResponse } from 'next'\nimport { z } from 'zod'\n \nconst schema = z.object({\n  // ...\n})\n \nexport default async function handler(\n  req: NextApiRequest,\n  res: NextApiResponse\n) {\n  const parsed = schema.parse(req.body)\n  // ...\n}",
+      "language": "python"
+    },
+    {
+      "code": "import React, { useState, FormEvent } from 'react'\n \nexport default function Page() {\n  const [isLoading, setIsLoading] = useState<boolean>(false)\n  const [error, setError] = useState<string | null>(null)\n \n  async function onSubmit(event: FormEvent<HTMLFormElement>) {\n    event.preventDefault()\n    setIsLoading(true)\n    setError(null) // Clear previous errors when a new request starts\n \n    try {\n      const formData = new FormData(event.currentTarget)\n      const response = await fetch('/api/submit', {\n        method: 'POST',\n        body: formData,\n      })\n \n      if (!response.ok) {\n        throw new Error('Failed to submit the data. Please try again.')\n      }\n \n      // Handle response if necessary\n      const data = await response.json()\n      // ...\n    } catch (error) {\n      // Capture the error message to display to the user\n      setError(error.message)\n      console.error(error)\n    } finally {\n      setIsLoading(false)\n    }\n  }\n \n  return (\n    <div>\n      {error && <div style={{ color: 'red' }}>{error}</div>}\n      <form onSubmit={onSubmit}>\n        <input type=\"text\" name=\"name\" />\n        <button type=\"submit\" disabled={isLoading}>\n          {isLoading ? 'Loading...' : 'Submit'}\n        </button>\n      </form>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import React, { useState, FormEvent } from 'react'\n \nexport default function Page() {\n  const [isLoading, setIsLoading] = useState<boolean>(false)\n \n  async function onSubmit(event: FormEvent<HTMLFormElement>) {\n    event.preventDefault()\n    setIsLoading(true) // Set loading to true when the request starts\n \n    try {\n      const formData = new FormData(event.currentTarget)\n      const response = await fetch('/api/submit', {\n        method: 'POST',\n        body: formData,\n      })\n \n      // Handle response if necessary\n      const data = await response.json()\n      // ...\n    } catch (error) {\n      // Handle error if necessary\n      console.error(error)\n    } finally {\n      setIsLoading(false) // Set loading to false when the request completes\n    }\n  }\n \n  return (\n    <form onSubmit={onSubmit}>\n      <input type=\"text\" name=\"name\" />\n      <button type=\"submit\" disabled={isLoading}>\n        {isLoading ? 'Loading...' : 'Submit'}\n      </button>\n    </form>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import type { NextApiRequest, NextApiResponse } from 'next'\n \nexport default async function handler(\n  req: NextApiRequest,\n  res: NextApiResponse\n) {\n  const id = await addPost()\n  res.redirect(307, `/post/${id}`)\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/guides",
+    "https://nextjs.org/docs/pages/guides/forms",
+    "https://nextjs.org/docs/pages/guides/environment-variables",
+    "https://nextjs.org/docs/pages/building-your-application/routing/api-routes",
+    "https://nextjs.org/docs/pages/guides/incremental-static-regeneration"
+  ]
+}

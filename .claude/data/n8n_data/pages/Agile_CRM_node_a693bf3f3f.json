@@ -1,0 +1,19 @@
+{
+  "title": "Agile CRM node",
+  "content": "Use the Agile CRM node to automate work in Agile CRM, and integrate Agile CRM with other applications. n8n has built-in support for a wide range of Agile CRM features, including creating, getting, updating and deleting companies, contracts, and deals.\n\nOn this page, you'll find a list of operations the Agile CRM node supports and links to more resources.\n\nRefer to [Agile CRM credentials](../../credentials/agilecrm/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- Company\n  - Create a new company\n  - Delete a company\n  - Get a company\n  - Get all companies\n  - Update company properties\n- Contact\n  - Create a new contact\n  - Delete a contact\n  - Get a contact\n  - Get all contacts\n  - Update contact properties\n- Deal\n  - Create a new deal\n  - Delete a deal\n  - Get a deal\n  - Get all deals\n  - Update deal properties\n\n## Templates and examples\n\n[Browse Agile CRM integration templates](https://n8n.io/integrations/agile-crm/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#agile-crm-node",
+  "links": []
+}

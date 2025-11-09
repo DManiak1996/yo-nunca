@@ -1,0 +1,8 @@
+{
+  "title": "Clockify Trigger node",
+  "content": "[Clockify](https://clockify.me/) is a free time tracker and timesheet app for tracking work hours across projects.\n\nYou can find authentication information for this node [here](../../credentials/clockify/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Clockify Trigger integrations](https://n8n.io/integrations/clockify-trigger/) page.\n\nThis node uses the workflow timezone setting to specify the range of time entries starting time. Configure the timezone in your [Workflow Settings](../../../../workflows/settings/) if you want this trigger node to retrieve the right time entries.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#clockify-trigger-node",
+  "links": []
+}

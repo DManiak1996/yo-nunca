@@ -1,0 +1,34 @@
+{
+  "title": "Google Sheets",
+  "content": "Use the Google Sheets node to automate work in Google Sheets, and integrate Google Sheets with other applications. n8n has built-in support for a wide range of Google Sheets features, including creating, updating, deleting, appending, removing and getting documents.\n\nOn this page, you'll find a list of operations the Google Sheets node supports and links to more resources.\n\nRefer to [Google Sheets credentials](../../credentials/google/) for guidance on setting up authentication.\n\n- **Document**\n  - [**Create**](document-operations/#create-a-spreadsheet) a spreadsheet.\n  - [**Delete**](document-operations/#delete-a-spreadsheet) a spreadsheet.\n- **Sheet Within Document**\n  - [**Append or Update Row**](sheet-operations/#append-or-update-row): Append a new row, or update the current one if it already exists.\n  - [**Append Row**](sheet-operations/#append-row): Create a new row.\n  - [**Clear**](sheet-operations/#clear-a-sheet) all data from a sheet.\n  - [**Create**](sheet-operations/#create-a-new-sheet) a new sheet.\n  - [**Delete**](sheet-operations/#delete-a-sheet) a sheet.\n  - [**Delete Rows or Columns**](sheet-operations/#delete-rows-or-columns): Delete columns and rows from a sheet.\n  - [**Get Row(s)**](sheet-operations/#get-rows): Read all rows in a sheet.\n  - [**Update Row**](sheet-operations/#update-row): Update a row in a sheet.\n\n## Templates and examples\n\n**Generate AI Viral Videos with Seedance and Upload to TikTok, YouTube & Instagram**\n\n[View template details](https://n8n.io/workflows/5338-generate-ai-viral-videos-with-seedance-and-upload-to-tiktok-youtube-and-instagram/)\n\n**Generate AI Videos with Google Veo3, Save to Google Drive and Upload to YouTube**\n\n[View template details](https://n8n.io/workflows/4846-generate-ai-videos-with-google-veo3-save-to-google-drive-and-upload-to-youtube/)\n\n**Scrape business emails from Google Maps without the use of any third party APIs**\n\n[View template details](https://n8n.io/workflows/2567-scrape-business-emails-from-google-maps-without-the-use-of-any-third-party-apis/)\n\n[Browse Google Sheets integration templates](https://n8n.io/integrations/google-sheets/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [Google Sheet's API documentation](https://developers.google.com/sheets/api) for more information about the service.\n\nFor common questions or issues and suggested solutions, refer to [Common issues](common-issues/).\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#google-sheets",
+  "links": []
+}

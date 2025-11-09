@@ -1,0 +1,14 @@
+{
+  "title": "Emelia Trigger node",
+  "content": "[Emelia](https://emelia.io) is a cold-mailing tool.\n\nYou can find authentication information for this node [here](../../credentials/emelia/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Emelia Trigger integrations](https://n8n.io/integrations/emelia-trigger/) page.\n\n- Email Bounced\n- Email Opened\n- Email Replied\n- Email Sent\n- Link Clicked\n- Unsubscribed Contact",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    }
+  ],
+  "url": "llms-txt#emelia-trigger-node",
+  "links": []
+}

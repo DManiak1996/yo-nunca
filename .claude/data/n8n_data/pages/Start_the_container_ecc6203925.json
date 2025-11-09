@@ -1,0 +1,14 @@
+{
+  "title": "Start the container",
+  "content": "docker compose up -d\n```\n\n- Learn more about [configuring](../../../configuration/environment-variables/) and [scaling](../../../scaling/overview/) n8n.\n- Or explore using n8n: try the [Quickstarts](../../../../try-it-out/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Next steps",
+      "id": "next-steps"
+    }
+  ],
+  "url": "llms-txt#start-the-container",
+  "links": []
+}

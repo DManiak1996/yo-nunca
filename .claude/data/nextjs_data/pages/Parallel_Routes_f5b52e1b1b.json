@@ -1,0 +1,151 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/parallel-routes",
+  "title": "Parallel Routes",
+  "content": "Parallel Routes allows you to simultaneously or conditionally render one or more pages within the same layout. They are useful for highly dynamic sections of an app, such as dashboards and feeds on social sites.\n\nFor example, considering a dashboard, you can use parallel routes to simultaneously render the team and analytics pages:\n\nParallel routes are created using named slots. Slots are defined with the @folder convention. For example, the following file structure defines two slots: @analytics and @team:\n\nSlots are passed as props to the shared parent layout. For the example above, the component in app/layout.js now accepts the @analytics and @team slots props, and can render them in parallel alongside the children prop:\n\nHowever, slots are not route segments and do not affect the URL structure. For example, for /@analytics/views, the URL will be /views since @analytics is a slot. Slots are combined with the regular Page component to form the final page associated with the route segment. Because of this, you cannot have separate static and dynamic slots at the same route segment level. If one slot is dynamic, all slots at that level must be dynamic.\n\nYou can define a default.js file to render as a fallback for unmatched slots during the initial load or full-page reload.\n\nConsider the following folder structure. The @team slot has a /settings page, but @analytics does not.\n\nWhen navigating to /settings, the @team slot will render the /settings page while maintaining the currently active page for the @analytics slot.\n\nOn refresh, Next.js will render a default.js for @analytics. If default.js doesn't exist, a 404 is rendered instead.\n\nAdditionally, since children is an implicit slot, you also need to create a default.js file to render a fallback for children when Next.js cannot recover the active state of the parent page.\n\nBy default, Next.js keeps track of the active state (or subpage) for each slot. However, the content rendered within a slot will depend on the type of navigation:\n\nBoth useSelectedLayoutSegment and useSelectedLayoutSegments accept a parallelRoutesKey parameter, which allows you to read the active route segment within a slot.\n\nWhen a user navigates to app/@auth/login (or /login in the URL bar), loginSegment will be equal to the string \"login\".\n\nYou can use Parallel Routes to conditionally render routes based on certain conditions, such as user role. For example, to render a different dashboard page for the /admin or /user roles:\n\nYou can add a layout inside a slot to allow users to navigate the slot independently. This is useful for creating tabs.\n\nFor example, the @analytics slot has two subpages: /page-views and /visitors.\n\nWithin @analytics, create a layout file to share the tabs between the two pages:\n\nParallel Routes can be used together with Intercepting Routes to create modals that support deep linking. This allows you to solve common challenges when building modals, such as:\n\nConsider the following UI pattern, where a user can open a login modal from a layout using client-side navigation, or access a separate /login page:\n\nTo implement this pattern, start by creating a /login route that renders your main login page.\n\nThen, inside the @auth slot, add default.js file that returns null. This ensures that the modal is not rendered when it's not active.\n\nInside your @auth slot, intercept the /login route by importing the <Modal> component and its children into the @auth/(.)login/page.tsx file, and updating the folder name to /@auth/(.)login/page.tsx.\n\nNow, you can leverage the Next.js router to open and close the modal. This ensures the URL is correctly updated when the modal is open, and when navigating backwards and forwards.\n\nTo open the modal, pass the @auth slot as a prop to the parent layout and render it alongside the children prop.\n\nWhen the user clicks the <Link>, the modal will open instead of navigating to the /login page. However, on refresh or initial load, navigating to /login will take the user to the main login page.\n\nYou can close the modal by calling router.back() or by using the Link component.\n\nWhen using the Link component to navigate away from a page that shouldn't render the @auth slot anymore, we need to make sure the parallel route matches to a component that returns null. For example, when navigating back to the root page, we create a @auth/page.tsx component:\n\nOr if navigating to any other page (such as /foo, /foo/bar, etc), you can use a catch-all slot:\n\nParallel Routes can be streamed independently, allowing you to define independent error and loading states for each route:\n\nSee the Loading UI and Error Handling documentation for more information.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Parallel Routes",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Convention",
+      "id": "convention"
+    },
+    {
+      "level": "h3",
+      "text": "Slots",
+      "id": "slots"
+    },
+    {
+      "level": "h3",
+      "text": "default.js",
+      "id": "defaultjs"
+    },
+    {
+      "level": "h2",
+      "text": "Behavior",
+      "id": "behavior"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "With useSelectedLayoutSegment(s)",
+      "id": "with-useselectedlayoutsegments"
+    },
+    {
+      "level": "h3",
+      "text": "Conditional Routes",
+      "id": "conditional-routes"
+    },
+    {
+      "level": "h3",
+      "text": "Tab Groups",
+      "id": "tab-groups"
+    },
+    {
+      "level": "h3",
+      "text": "Modals",
+      "id": "modals"
+    },
+    {
+      "level": "h4",
+      "text": "Opening the modal",
+      "id": "opening-the-modal"
+    },
+    {
+      "level": "h4",
+      "text": "Closing the modal",
+      "id": "closing-the-modal"
+    },
+    {
+      "level": "h3",
+      "text": "Loading and Error UI",
+      "id": "loading-and-error-ui"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "default.js",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export default function Layout({\n  children,\n  team,\n  analytics,\n}: {\n  children: React.ReactNode\n  analytics: React.ReactNode\n  team: React.ReactNode\n}) {\n  return (\n    <>\n      {children}\n      {team}\n      {analytics}\n    </>\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "'use client'\n \nimport { useSelectedLayoutSegment } from 'next/navigation'\n \nexport default function Layout({ auth }: { auth: React.ReactNode }) {\n  const loginSegment = useSelectedLayoutSegment('auth')\n  // ...\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { checkUserRole } from '@/lib/auth'\n \nexport default function Layout({\n  user,\n  admin,\n}: {\n  user: React.ReactNode\n  admin: React.ReactNode\n}) {\n  const role = checkUserRole()\n  return role === 'admin' ? admin : user\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Layout({ children }: { children: React.ReactNode }) {\n  return (\n    <>\n      <nav>\n        <Link href=\"/page-views\">Page Views</Link>\n        <Link href=\"/visitors\">Visitors</Link>\n      </nav>\n      <div>{children}</div>\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Login } from '@/app/ui/login'\n \nexport default function Page() {\n  return <Login />\n}",
+      "language": "python"
+    },
+    {
+      "code": "export default function Default() {\n  return null\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import { Modal } from '@/app/ui/modal'\nimport { Login } from '@/app/ui/login'\n \nexport default function Page() {\n  return (\n    <Modal>\n      <Login />\n    </Modal>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport default function Layout({\n  auth,\n  children,\n}: {\n  auth: React.ReactNode\n  children: React.ReactNode\n}) {\n  return (\n    <>\n      <nav>\n        <Link href=\"/login\">Open modal</Link>\n      </nav>\n      <div>{auth}</div>\n      <div>{children}</div>\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { useRouter } from 'next/navigation'\n \nexport function Modal({ children }: { children: React.ReactNode }) {\n  const router = useRouter()\n \n  return (\n    <>\n      <button\n        onClick={() => {\n          router.back()\n        }}\n      >\n        Close modal\n      </button>\n      <div>{children}</div>\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\n \nexport function Modal({ children }: { children: React.ReactNode }) {\n  return (\n    <>\n      <Link href=\"/\">Close modal</Link>\n      <div>{children}</div>\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "export default function Page() {\n  return null\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export default function CatchAll() {\n  return null\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/parallel-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/getting-started/linking-and-navigating",
+    "https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segment",
+    "https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segments",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/intercepting-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/default",
+    "https://nextjs.org/docs/app/guides/forms",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/app/getting-started/error-handling",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/proxy"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Workable Trigger node",
+  "content": "Use the Workable Trigger node to respond to events in the [Workable](https://www.workable.com/) recruiting platform and integrate Workable with other applications. n8n has built-in support for a wide range of Workable events, including candidate created and moved.\n\nOn this page, you'll find a list of events the Workable Trigger node can respond to and links to more resources.\n\nYou can find authentication information for this node [here](../../credentials/workable/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Workable Trigger integrations](https://n8n.io/integrations/workable-trigger/) page.\n\n- **Candidate Created**\n- **Candidate Moved**\n\nView [example workflows and related content](https://n8n.io/integrations/workable-trigger/) on n8n's website.\n\nRefer to [Workable's API documentation](https://developers.workable.com/) for details about using the service.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#workable-trigger-node",
+  "links": []
+}

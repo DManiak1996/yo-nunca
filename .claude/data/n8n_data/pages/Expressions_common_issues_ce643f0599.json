@@ -1,0 +1,37 @@
+{
+  "title": "Expressions common issues",
+  "content": "Here are some common errors and issues related to [expressions](../../../expressions/) and steps to resolve or troubleshoot them.\n\n## The 'JSON Output' in item 0 contains invalid JSON\n\nThis error occurs when you use JSON mode but don't provide a valid JSON object. Depending on the problem with the JSON object, the error sometimes display as `The 'JSON Output' in item 0 does not contain a valid JSON object`.\n\nTo resolve this, make sure that the code you provide is valid JSON:\n\n- Check the JSON with a [JSON validator](https://jsonlint.com/).\n- Check that your JSON object doesn't reference undefined input data. This may occur if the incoming data doesn't always include the same fields.\n\n## Can't get data for expression\n\nThis error occurs when n8n can't retrieve the data referenced by an expression. Often, this happens when the preceding node hasn't been run yet.\n\nAnother variation of this may appear as `Referenced node is unexecuted`. In that case, the full text of this error will tell you the exact node that isn't executing in this format:\n\n> An expression references the node '<node-name>', but it hasn’t been executed yet. Either change the expression, or re-wire your workflow to make sure that node executes first.\n\nTo begin troubleshooting, test the workflow up to the named node.\n\nFor nodes that use JavaScript or other custom code, you can check if a previous node has executed before trying to use its value by checking the following:\n\nAs an example, this JSON references the parameters of the input data. This error will display if you test this step without connecting it to another node:\n\nThis error occurs when you use an expression that has a syntax error.\n\nFor example, the expression in this JSON includes a trailing period, which results in an invalid syntax error:\n\nTo resolve this error, check your [expression syntax](../../../expressions/) to make sure they follow the expected format.",
+  "code_samples": [
+    {
+      "code": "$(\"<node-name>\").isExecuted",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  \"my_field_1\": {{ $input.params }}\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  \"my_field_1\": \"value\",\n  \"my_field_2\": {{ $('If').item.json. }}\n}",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "The 'JSON Output' in item 0 contains invalid JSON",
+      "id": "the-'json-output'-in-item-0-contains-invalid-json"
+    },
+    {
+      "level": "h2",
+      "text": "Can't get data for expression",
+      "id": "can't-get-data-for-expression"
+    },
+    {
+      "level": "h2",
+      "text": "Invalid syntax",
+      "id": "invalid-syntax"
+    }
+  ],
+  "url": "llms-txt#expressions-common-issues",
+  "links": []
+}

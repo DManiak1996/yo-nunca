@@ -1,0 +1,105 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/config/next-config-js/redirects",
+  "title": "redirects",
+  "content": "Redirects allow you to redirect an incoming request path to a different destination path.\n\nTo use redirects you can use the redirects key in next.config.js:\n\nredirects is an async function that expects an array to be returned holding objects with source, destination, and permanent properties:\n\nWhy does Next.js use 307 and 308? Traditionally a 302 was used for a temporary redirect, and a 301 for a permanent redirect, but many browsers changed the request method of the redirect to GET, regardless of the original method. For example, if the browser made a request to POST /v1/users which returned status code 302 with location /v2/users, the subsequent request might be GET /v2/users instead of the expected POST /v2/users. Next.js uses the 307 temporary redirect, and 308 permanent redirect status codes to explicitly preserve the request method used.\n\nRedirects are checked before the filesystem which includes pages and /public files.\n\nWhen using the Pages Router, redirects are not applied to client-side routing (Link, router.push) unless Proxy is present and matches the path.\n\nWhen a redirect is applied, any query values provided in the request will be passed through to the redirect destination. For example, see the following redirect configuration:\n\nGood to know: Remember to include the forward slash / before the colon : in path parameters of the source and destination paths, otherwise the path will be treated as a literal string and you run the risk of causing infinite redirects.\n\nWhen /old-blog/post-1?hello=world is requested, the client will be redirected to /blog/post-1?hello=world.\n\nPath matches are allowed, for example /old-blog/:slug will match /old-blog/first-post (no nested paths):\n\nThe pattern /old-blog/:slug matches /old-blog/first-post and /old-blog/post-1 but not /old-blog/a/b (no nested paths). Patterns are anchored to the start: /old-blog/:slug will not match /archive/old-blog/first-post.\n\nYou can use modifiers on parameters: * (zero or more), + (one or more), ? (zero or one). For example, /blog/:slug* matches /blog, /blog/a, and /blog/a/b/c.\n\nRead more details on path-to-regexp documentation.\n\nTo match a wildcard path you can use * after a parameter, for example /blog/:slug* will match /blog/a/b/c/d/hello-world:\n\nTo match a regex path you can wrap the regex in parentheses after a parameter, for example /post/:slug(\\\\d{1,}) will match /post/123 but not /post/abc:\n\nThe following characters (, ), {, }, :, *, +, ? are used for regex path matching, so when used in the source as non-special values they must be escaped by adding \\\\ before them:\n\nTo only match a redirect when header, cookie, or query values also match the has field or don't match the missing field can be used. Both the source and all has items must match and all missing items must not match for the redirect to be applied.\n\nhas and missing items can have the following fields:\n\nWhen leveraging basePath support with redirects each source and destination is automatically prefixed with the basePath unless you add basePath: false to the redirect:\n\nWhen leveraging i18n support with redirects each source and destination is automatically prefixed to handle the configured locales unless you add locale: false to the redirect. If locale: false is used you must prefix the source and destination with a locale for it to be matched correctly.\n\nIn some rare cases, you might need to assign a custom status code for older HTTP Clients to properly redirect. In these cases, you can use the statusCode property instead of the permanent property, but not both. To ensure IE11 compatibility, a Refresh header is automatically added for the 308 status code.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "redirects",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Path Matching",
+      "id": "path-matching"
+    },
+    {
+      "level": "h3",
+      "text": "Wildcard Path Matching",
+      "id": "wildcard-path-matching"
+    },
+    {
+      "level": "h3",
+      "text": "Regex Path Matching",
+      "id": "regex-path-matching"
+    },
+    {
+      "level": "h2",
+      "text": "Header, Cookie, and Query Matching",
+      "id": "header-cookie-and-query-matching"
+    },
+    {
+      "level": "h3",
+      "text": "Redirects with basePath support",
+      "id": "redirects-with-basepath-support"
+    },
+    {
+      "level": "h3",
+      "text": "Redirects with i18n support",
+      "id": "redirects-with-i18n-support"
+    },
+    {
+      "level": "h2",
+      "text": "Other Redirects",
+      "id": "other-redirects"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  async redirects() {\n    return [\n      {\n        source: '/about',\n        destination: '/',\n        permanent: true,\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  source: '/old-blog/:path*',\n  destination: '/blog/:path*',\n  permanent: false\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async redirects() {\n    return [\n      {\n        source: '/old-blog/:slug',\n        destination: '/news/:slug', // Matched parameters can be used in the destination\n        permanent: true,\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async redirects() {\n    return [\n      {\n        source: '/blog/:slug*',\n        destination: '/news/:slug*', // Matched parameters can be used in the destination\n        permanent: true,\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async redirects() {\n    return [\n      {\n        source: '/post/:slug(\\\\d{1,})',\n        destination: '/news/:slug', // Matched parameters can be used in the destination\n        permanent: false,\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async redirects() {\n    return [\n      {\n        // this will match `/english(default)/something` being requested\n        source: '/english\\\\(default\\\\)/:slug',\n        destination: '/en-us/:slug',\n        permanent: false,\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async redirects() {\n    return [\n      // if the header `x-redirect-me` is present,\n      // this redirect will be applied\n      {\n        source: '/:path((?!another-page$).*)',\n        has: [\n          {\n            type: 'header',\n            key: 'x-redirect-me',\n          },\n        ],\n        permanent: false,\n        destination: '/another-page',\n      },\n      // if the header `x-dont-redirect` is present,\n      // this redirect will NOT be applied\n      {\n        source: '/:path((?!another-page$).*)',\n        missing: [\n          {\n            type: 'header',\n            key: 'x-do-not-redirect',\n          },\n        ],\n        permanent: false,\n        destination: '/another-page',\n      },\n      // if the source, query, and cookie are matched,\n      // this redirect will be applied\n      {\n        source: '/specific/:path*',\n        has: [\n          {\n            type: 'query',\n            key: 'page',\n            // the page value will not be available in the\n            // destination since value is provided and doesn't\n            // use a named capture group e.g. (?<page>home)\n            value: 'home',\n          },\n          {\n            type: 'cookie',\n            key: 'authorized',\n            value: 'true',\n          },\n        ],\n        permanent: false,\n        destination: '/another/:path*',\n      },\n      // if the header `x-authorized` is present and\n      // contains a matching value, this redirect will be applied\n      {\n        source: '/',\n        has: [\n          {\n            type: 'header',\n            key: 'x-authorized',\n            value: '(?<authorized>yes|true)',\n          },\n        ],\n        permanent: false,\n        destination: '/home?authorized=:authorized',\n      },\n      // if the host is `example.com`,\n      // this redirect will be applied\n      {\n        source: '/:path((?!another-page$).*)',\n        has: [\n          {\n            type: 'host',\n            value: 'example.com',\n          },\n        ],\n        permanent: false,\n        destination: '/another-page',\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  basePath: '/docs',\n \n  async redirects() {\n    return [\n      {\n        source: '/with-basePath', // automatically becomes /docs/with-basePath\n        destination: '/another', // automatically becomes /docs/another\n        permanent: false,\n      },\n      {\n        // does not add /docs since basePath: false is set\n        source: '/without-basePath',\n        destination: 'https://example.com',\n        basePath: false,\n        permanent: false,\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  i18n: {\n    locales: ['en', 'fr', 'de'],\n    defaultLocale: 'en',\n  },\n \n  async redirects() {\n    return [\n      {\n        source: '/with-locale', // automatically handles all locales\n        destination: '/another', // automatically passes the locale on\n        permanent: false,\n      },\n      {\n        // does not handle locales automatically since locale: false is set\n        source: '/nl/with-locale-manual',\n        destination: '/nl/another',\n        locale: false,\n        permanent: false,\n      },\n      {\n        // this matches '/' since `en` is the defaultLocale\n        source: '/en',\n        destination: '/en/another',\n        locale: false,\n        permanent: false,\n      },\n      // it's possible to match all locales even when locale: false is set\n      {\n        source: '/:locale/page',\n        destination: '/en/newpage',\n        permanent: false,\n        locale: false,\n      },\n      {\n        // this gets converted to /(en|fr|de)/(.*) so will not match the top-level\n        // `/` or `/fr` routes like /:path* would\n        source: '/(.*)',\n        destination: '/another',\n        permanent: false,\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/api-reference/config",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/redirects",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath",
+    "https://nextjs.org/docs/pages/guides/internationalization",
+    "https://nextjs.org/docs/pages/building-your-application/routing/api-routes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/reactStrictMode",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/rewrites"
+  ]
+}

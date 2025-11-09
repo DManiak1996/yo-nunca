@@ -1,0 +1,25 @@
+{
+  "title": "Get number of items returned by the previous node",
+  "content": "To get the number of items returned by the previous node:\n\nThe output will be similar to the following.\n\nThe output will be similar to the following.",
+  "code_samples": [
+    {
+      "code": "if (Object.keys(items[0].json).length === 0) {\nreturn [\n\t{\n\t\tjson: {\n\t\t\tresults: 0,\n\t\t}\n\t}\n]\n}\nreturn [\n\t{\n\t\tjson: {\n\t\t\tresults: items.length,\n\t\t}\n\t}\n];",
+      "language": "unknown"
+    },
+    {
+      "code": "[\n\t{\n\t\t\"results\": 8\n\t}\n]",
+      "language": "unknown"
+    },
+    {
+      "code": "if len(items[0].json) == 0:\n\treturn [\n\t\t{\n\t\t\t\"json\": {\n\t\t\t\t\"results\": 0,\n\t\t\t}\n\t\t}\n\t]\nelse:\n\treturn [\n\t\t{\n\t\t\t\"json\": {\n\t\t\t\t\"results\": items.length,\n\t\t\t}\n\t\t}\n\t]",
+      "language": "unknown"
+    },
+    {
+      "code": "[\n\t{\n\t\t\"results\": 8\n\t}\n]",
+      "language": "unknown"
+    }
+  ],
+  "headings": [],
+  "url": "llms-txt#get-number-of-items-returned-by-the-previous-node",
+  "links": []
+}

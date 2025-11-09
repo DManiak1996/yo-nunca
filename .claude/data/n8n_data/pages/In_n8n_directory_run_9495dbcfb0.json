@@ -1,0 +1,8 @@
+{
+  "title": "In ~/.n8n directory run",
+  "content": "mkdir custom \ncd custom \nnpm init\n```",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#in-~/.n8n-directory-run",
+  "links": []
+}

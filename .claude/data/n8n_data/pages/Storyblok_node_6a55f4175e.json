@@ -1,0 +1,29 @@
+{
+  "title": "Storyblok node",
+  "content": "Use the Storyblok node to automate work in Storyblok, and integrate Storyblok with other applications. n8n has built-in support for a wide range of Storyblok features, including getting, deleting, and publishing stories.\n\nOn this page, you'll find a list of operations the Storyblok node supports and links to more resources.\n\nRefer to [Storyblok credentials](../../credentials/storyblok/) for guidance on setting up authentication.\n\n- **Story**\n  - Get a story\n  - Get all stories\n\n- **Story**\n  - Delete a story\n  - Get a story\n  - Get all stories\n  - Publish a story\n  - Unpublish a story\n\n## Templates and examples\n\n[Browse Storyblok integration templates](https://n8n.io/integrations/storyblok/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h3",
+      "text": "Content API",
+      "id": "content-api"
+    },
+    {
+      "level": "h3",
+      "text": "Management API",
+      "id": "management-api"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#storyblok-node",
+  "links": []
+}

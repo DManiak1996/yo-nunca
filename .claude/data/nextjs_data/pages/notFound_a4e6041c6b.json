@@ -1,0 +1,37 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/not-found",
+  "title": "notFound",
+  "content": "The notFound function allows you to render the not-found file within a route segment as well as inject a <meta name=\"robots\" content=\"noindex\" /> tag.\n\nInvoking the notFound() function throws a NEXT_HTTP_ERROR_FALLBACK;404 error and terminates rendering of the route segment in which it was thrown. Specifying a not-found file allows you to gracefully handle such errors by rendering a Not Found UI within the segment.\n\nGood to know: notFound() does not require you to use return notFound() due to using the TypeScript never type.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "notFound",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "notFound()",
+      "id": "notfound"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { notFound } from 'next/navigation'\n \nasync function fetchUser(id) {\n  const res = await fetch('https://...')\n  if (!res.ok) return undefined\n  return res.json()\n}\n \nexport default async function Profile({ params }) {\n  const { id } = await params\n  const user = await fetchUser(id)\n \n  if (!user) {\n    notFound()\n  }\n \n  // ...\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/not-found",
+    "https://nextjs.org/docs/app/api-reference/functions/not-found",
+    "https://nextjs.org/docs/app/api-reference/functions/next-response",
+    "https://nextjs.org/docs/app/api-reference/functions/permanentRedirect"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "title": "If",
+  "content": "Use the If node to split a workflow conditionally based on comparison operations.\n\nCreate comparison **Conditions** for your If node.\n\n- Use the data type dropdown to select the data type and comparison operation type for your condition. For example, to filter for dates after a particular date, select **Date & Time > is after**.\n- The fields and values to enter into the condition change based on the data type and comparison you select. Refer to [Available data type comparisons](#available-data-type-comparisons) for a full list of all comparisons by data type.\n\nSelect **Add condition** to create more conditions.\n\n### Combining conditions\n\nYou can choose to keep data:\n\n- When it meets all conditions: Create two or more conditions and select **AND** in the dropdown between them.\n- When it meets any of the conditions: Create two or more conditions and select **OR** in the dropdown between them.\n\n## Templates and examples\n\n**AI agent that can scrape webpages**\n\n[View template details](https://n8n.io/workflows/2006-ai-agent-that-can-scrape-webpages/)\n\n**✨🤖Automate Multi-Platform Social Media Content Creation with AI**\n\n[View template details](https://n8n.io/workflows/3066-automate-multi-platform-social-media-content-creation-with-ai/)\n\n**Pulling data from services that n8n doesn’t have a pre-built integration for**\n\n[View template details](https://n8n.io/workflows/1748-pulling-data-from-services-that-n8n-doesnt-have-a-pre-built-integration-for/)\n\n[Browse If integration templates](https://n8n.io/integrations/if/), or [search all templates](https://n8n.io/workflows/)\n\n## Branch execution with If and Merge nodes\n\nn8n removed this execution behavior in version 1.0. This section applies to workflows using the **v0 (legacy)** workflow execution order. By default, this is all workflows built before version 1.0. You can change the execution order in your [workflow settings](../../../../workflows/settings/).\n\nIf you add a Merge node to a workflow containing an If node, it can result in both output data streams of the If node executing.\n\nOne data stream triggers the Merge node, which then goes and executes the other data stream.\n\nFor example, in the screenshot below there's a workflow containing an Edit Fields node, If node, and Merge node. The standard If node behavior is to execute one data stream (in the screenshot, this is the **true** output). However, due to the Merge node, both data streams execute, despite the If node not sending any data down the **false** data stream.\n\nRefer to [Splitting with conditionals](../../../../flow-logic/splitting/) for more information on using conditionals to create complex logic in n8n.\n\nIf you need more than two conditional outputs, use the [Switch node](../n8n-nodes-base.switch/).\n\n## Available data type comparisons\n\nString data type supports these comparisons:\n\n- exists\n- does not exist\n- is empty\n- is not empty\n- is equal to\n- is not equal to\n- contains\n- does not contain\n- starts with\n- does not start with\n- ends with\n- does not end with\n- matches regex\n- does not match regex\n\nNumber data type supports these comparisons:\n\n- exists\n- does not exist\n- is empty\n- is not empty\n- is equal to\n- is not equal to\n- is greater than\n- is less than\n- is greater than or equal to\n- is less than or equal to\n\nDate & Time data type supports these comparisons:\n\n- exists\n- does not exist\n- is empty\n- is not empty\n- is equal to\n- is not equal to\n- is after\n- is before\n- is after or equal to\n- is before or equal to\n\nBoolean data type supports these comparisons:\n\n- exists\n- does not exist\n- is empty\n- is not empty\n- is true\n- is false\n- is equal to\n- is not equal to\n\nArray data type supports these comparisons:\n\n- exists\n- does not exist\n- is empty\n- is not empty\n- contains\n- does not contain\n- length equal to\n- length not equal to\n- length greater than\n- length less than\n- length greater than or equal to\n- length less than or equal to\n\nObject data type supports these comparisons:\n\n- exists\n- does not exist\n- is empty\n- is not empty",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Add conditions",
+      "id": "add-conditions"
+    },
+    {
+      "level": "h3",
+      "text": "Combining conditions",
+      "id": "combining-conditions"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Branch execution with If and Merge nodes",
+      "id": "branch-execution-with-if-and-merge-nodes"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Available data type comparisons",
+      "id": "available-data-type-comparisons"
+    },
+    {
+      "level": "h3",
+      "text": "String",
+      "id": "string"
+    },
+    {
+      "level": "h3",
+      "text": "Number",
+      "id": "number"
+    },
+    {
+      "level": "h3",
+      "text": "Date & Time",
+      "id": "date-&-time"
+    },
+    {
+      "level": "h3",
+      "text": "Boolean",
+      "id": "boolean"
+    },
+    {
+      "level": "h3",
+      "text": "Array",
+      "id": "array"
+    },
+    {
+      "level": "h3",
+      "text": "Object",
+      "id": "object"
+    }
+  ],
+  "url": "llms-txt#if",
+  "links": []
+}

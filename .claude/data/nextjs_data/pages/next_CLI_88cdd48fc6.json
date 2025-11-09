@@ -1,0 +1,172 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/cli/next",
+  "title": "next CLI",
+  "content": "The Next.js CLI allows you to develop, build, start your application, and more.\n\nThe following options are available:\n\nThe following commands are available:\n\nGood to know: Running next without a command is an alias for next dev.\n\nnext dev starts the application in development mode with Hot Module Reloading (HMR), error reporting, and more. The following options are available when running next dev:\n\nnext build creates an optimized production build of your application. The output displays information about each route. For example:\n\nThe following options are available for the next build command:\n\nnext start starts the application in production mode. The application should be compiled with next build first.\n\nThe following options are available for the next start command:\n\nnext info prints relevant details about the current system which can be used to report Next.js bugs when opening a GitHub issue. This information includes Operating System platform/arch/version, Binaries (Node.js, npm, Yarn, pnpm), package versions (next, react, react-dom), and more.\n\nThe output should look like this:\n\nThe following options are available for the next info command:\n\nNext.js collects completely anonymous telemetry data about general usage. Participation in this anonymous program is optional, and you can opt-out if you prefer not to share information.\n\nThe following options are available for the next telemetry command:\n\nLearn more about Telemetry.\n\nnext typegen generates TypeScript definitions for your application's routes without performing a full build. This is useful for IDE autocomplete and CI type-checking of route usage.\n\nPreviously, route types were only generated during next dev or next build, which meant running tsc --noEmit directly wouldn't validate your route types. Now you can generate types independently and validate them externally:\n\nThe following options are available for the next typegen command:\n\nOutput files are written to <distDir>/types (typically: .next/dev/types or .next/types, see isolatedDevBuild):\n\nAdditionally, next typegen generates a next-env.d.ts file. We recommend adding next-env.d.ts to your .gitignore file.\n\nThe next-env.d.ts file is included into your tsconfig.json file, to make Next.js types available to your project.\n\nTo ensure next-env.d.ts is present before type-checking run next typegen. The commands next dev and next build also generate the next-env.d.ts file, but it is often undesirable to run these just to type-check, for example in CI/CD environments.\n\nGood to know: next typegen loads your Next.js config (next.config.js, next.config.mjs, or next.config.ts) using the production build phase. Ensure any required environment variables and dependencies are available so the config can load correctly.\n\nIf you encounter prerendering errors during next build, you can pass the --debug-prerender flag to get more detailed output:\n\nThis enables several experimental options to make debugging easier:\n\nThis helps surface more readable stack traces and code frames in the build output.\n\nWarning: --debug-prerender is for debugging in development only. Do not deploy builds generated with --debug-prerender to production, as it may impact performance.\n\nYou can build only specific routes in the App and Pages Routers using the --debug-build-paths option. This is useful for faster debugging when working with large applications. The --debug-build-paths option accepts comma-separated file paths and supports glob patterns:\n\nBy default, Next.js uses http://localhost:3000 during development and with next start. The default port can be changed with the -p option, like so:\n\nOr using the PORT environment variable:\n\nGood to know: PORT cannot be set in .env as booting up the HTTP server happens before any other code is initialized.\n\nFor certain use cases like webhooks or authentication, you can use HTTPS to have a secure environment on localhost. Next.js can generate a self-signed certificate with next dev using the --experimental-https flag:\n\nWith the generated certificate, the Next.js development server will exist at https://localhost:3000. The default port 3000 is used unless a port is specified with -p, --port, or PORT.\n\nYou can also provide a custom certificate and key with --experimental-https-key and --experimental-https-cert. Optionally, you can provide a custom CA certificate with --experimental-https-ca as well.\n\nnext dev --experimental-https is only intended for development and creates a locally trusted certificate with mkcert. In production, use properly issued certificates from trusted authorities.\n\nWhen deploying Next.js behind a downstream proxy (e.g. a load-balancer like AWS ELB/ALB), it's important to configure Next's underlying HTTP server with keep-alive timeouts that are larger than the downstream proxy's timeouts. Otherwise, once a keep-alive timeout is reached for a given TCP connection, Node.js will immediately terminate that connection without notifying the downstream proxy. This results in a proxy error whenever it attempts to reuse a connection that Node.js has already terminated.\n\nTo configure the timeout values for the production Next.js server, pass --keepAliveTimeout (in milliseconds) to next start, like so:\n\nYou can pass any node arguments to next commands. For example:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "next CLI",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Commands",
+      "id": "commands"
+    },
+    {
+      "level": "h3",
+      "text": "next dev options",
+      "id": "next-dev-options"
+    },
+    {
+      "level": "h3",
+      "text": "next build options",
+      "id": "next-build-options"
+    },
+    {
+      "level": "h3",
+      "text": "next start options",
+      "id": "next-start-options"
+    },
+    {
+      "level": "h3",
+      "text": "next info options",
+      "id": "next-info-options"
+    },
+    {
+      "level": "h3",
+      "text": "next telemetry options",
+      "id": "next-telemetry-options"
+    },
+    {
+      "level": "h3",
+      "text": "next typegen options",
+      "id": "next-typegen-options"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Debugging prerender errors",
+      "id": "debugging-prerender-errors"
+    },
+    {
+      "level": "h3",
+      "text": "Building specific routes",
+      "id": "building-specific-routes"
+    },
+    {
+      "level": "h3",
+      "text": "Changing the default port",
+      "id": "changing-the-default-port"
+    },
+    {
+      "level": "h3",
+      "text": "Using HTTPS during development",
+      "id": "using-https-during-development"
+    },
+    {
+      "level": "h3",
+      "text": "Configuring a timeout for downstream proxies",
+      "id": "configuring-a-timeout-for-downstream-proxies"
+    },
+    {
+      "level": "h3",
+      "text": "Passing Node.js arguments",
+      "id": "passing-nodejs-arguments"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "npx next [command] [options]",
+      "language": "unknown"
+    },
+    {
+      "code": "Route (app)\n┌ ○ /_not-found\n└ ƒ /products/[id]\n \n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand",
+      "language": "unknown"
+    },
+    {
+      "code": "Operating System:\n  Platform: darwin\n  Arch: arm64\n  Version: Darwin Kernel Version 23.6.0\n  Available memory (MB): 65536\n  Available CPU cores: 10\nBinaries:\n  Node: 20.12.0\n  npm: 10.5.0\n  Yarn: 1.22.19\n  pnpm: 9.6.0\nRelevant Packages:\n  next: 15.0.0-canary.115 // Latest available version is detected (15.0.0-canary.115).\n  eslint-config-next: 14.2.5\n  react: 19.0.0-rc\n  react-dom: 19.0.0\n  typescript: 5.5.4\nNext.js Config:\n  output: N/A",
+      "language": "unknown"
+    },
+    {
+      "code": "# Generate route types first, then validate with TypeScript\nnext typegen && tsc --noEmit\n \n# Or in CI workflows for type checking without building\nnext typegen && npm run type-check",
+      "language": "unknown"
+    },
+    {
+      "code": "next typegen\n# or for a specific app\nnext typegen ./apps/web",
+      "language": "unknown"
+    },
+    {
+      "code": "next build --debug-prerender",
+      "language": "unknown"
+    },
+    {
+      "code": "# Build a specific route\nnext build --debug-build-paths=\"app/page.tsx\"\n \n# Build more than one route\nnext build --debug-build-paths=\"app/page.tsx,pages/index.tsx\"\n \n# Use glob patterns\nnext build --debug-build-paths=\"app/**/page.tsx\"\nnext build --debug-build-paths=\"pages/*.tsx\"",
+      "language": "unknown"
+    },
+    {
+      "code": "next dev -p 4000",
+      "language": "unknown"
+    },
+    {
+      "code": "PORT=4000 next dev",
+      "language": "unknown"
+    },
+    {
+      "code": "next dev --experimental-https",
+      "language": "unknown"
+    },
+    {
+      "code": "next dev --experimental-https --experimental-https-key ./certificates/localhost-key.pem --experimental-https-cert ./certificates/localhost.pem",
+      "language": "unknown"
+    },
+    {
+      "code": "next start --keepAliveTimeout 70000",
+      "language": "unknown"
+    },
+    {
+      "code": "NODE_OPTIONS='--throw-deprecation' next\nNODE_OPTIONS='-r esm' next\nNODE_OPTIONS='--inspect' next",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "API ReferenceCLInext CLICopy pagenext CLI The Next.js CLI allows you to develop, build, start your application, and more. Basic usage: Terminalnpx next [command] [options] Reference The following options are available: OptionsDescription-h or --helpShows all available options-v or --versionOutputs the Next.js version number Commands The following commands are available: CommandDescriptiondevStarts Next.js in development mode with Hot Module Reloading, error reporting, and more.buildCreates an optimized production build of your application. Displaying information about each route.startStarts Next.js in production mode. The application should be compiled with next build first.infoPrints relevant details about the current system which can be used to report Next.js bugs.telemetryAllows you to enable or disable Next.js' completely anonymous telemetry collection.typegenGenerates TypeScript definitions for routes, pages, layouts, and route handlers without running a full build. Good to know: Running next without a command is an alias for next dev. next dev options next dev starts the application in development mode with Hot Module Reloading (HMR), error reporting, and more. The following options are available when running next dev: OptionDescription-h, --helpShow all available options.[directory]A directory in which to build the application. If not provided, current directory is used.--turbopackForce enable Turbopack (enabled by default). Also available as --turbo.--webpackUse Webpack instead of the default Turbopack bundler for development.-p or --port <port>Specify a port number on which to start the application. Default: 3000, env: PORT-Hor --hostname <hostname>Specify a hostname on which to start the application. Useful for making the application available for other devices on the network. Default: 0.0.0.0--experimental-httpsStarts the server with HTTPS and generates a self-signed certificate.--experimental-https-key <path>Path to a HTTPS key file.--experimental-https-cert <path>Path to a HTTPS certificate file.--experimental-https-ca <path>Path to a HTTPS certificate authority file.--experimental-upload-trace <traceUrl>Reports a subset of the debugging trace to a remote HTTP URL. next build options next build creates an optimized production build of your application. The output displays information about each route. For example: TerminalRoute (app) ┌ ○ /_not-found └ ƒ /products/[id] ○ (Static) prerendered as static content ƒ (Dynamic) server-rendered on demand The following options are available for the next build command: OptionDescription-h, --helpShow all available options.[directory]A directory on which to build the application. If not provided, the current directory will be used.--turbopackForce enable Turbopack (enabled by default). Also available as --turbo.--webpackBuild using Webpack.-d or --debugEnables a more verbose build output. With this flag enabled additional build output like rewrites, redirects, and headers will be shown.--profileEnables production profiling for React.--no-lintDisables linting. Note: linting will be removed from next build in Next 16. If you're using Next 15.5+ with a linter other than eslint, linting during build will not occur.--no-manglingDisables mangling. This may affect performance and should only be used for debugging purposes.--experimental-app-onlyBuilds only App Router routes.--experimental-build-mode [mode]Uses an experimental build mode. (choices: \"compile\", \"generate\", default: \"default\")--debug-prerenderDebug prerender errors in development.--debug-build-paths=<patterns>Build only specific routes for debugging. next start options next start starts the application in production mode. The application should be compiled with next build first. The following options are available for the next start command: OptionDescription-h or --helpShow all available options.[directory]A directory on which to start the application. If no directory is provided, the current directory will be used.-p or --port <port>Specify a port number on which to start the application. (default: 3000, env: PORT)-H or --hostname <hostname>Specify a hostname on which to start the application (default: 0.0.0.0).--keepAliveTimeout <keepAliveTimeout>Specify the maximum amount of milliseconds to wait before closing the inactive connections. next info options next info prints relevant details about the current system which can be used to report Next.js bugs when opening a GitHub issue. This information includes Operating System platform/arch/version, Binaries (Node.js, npm, Yarn, pnpm), package versions (next, react, react-dom), and more. The output should look like this: TerminalOperating System: Platform: darwin Arch: arm64 Version: Darwin Kernel Version 23.6.0 Available memory (MB): 65536 Available CPU cores: 10 Binaries: Node: 20.12.0 npm: 10.5.0 Yarn: 1.22.19 pnpm: 9.6.0 Relevant Packages: next: 15.0.0-canary.115 // Latest available version is detected (15.0.0-canary.115). eslint-config-next: 14.2.5 react: 19.0.0-rc react-dom: 19.0.0 typescript: 5.5.4 Next.js Config: output: N/A The following options are available for the next info command: OptionDescription-h or --helpShow all available options--verboseCollects additional information for debugging. next telemetry options Next.js collects completely anonymous telemetry data about general usage. Participation in this anonymous program is optional, and you can opt-out if you prefer not to share information. The following options are available for the next telemetry command: OptionDescription-h, --helpShow all available options.--enableEnables Next.js' telemetry collection.--disableDisables Next.js' telemetry collection. Learn more about Telemetry. next typegen options next typegen generates TypeScript definitions for your application's routes without performing a full build. This is useful for IDE autocomplete and CI type-checking of route usage. Previously, route types were only generated during next dev or next build, which meant running tsc --noEmit directly wouldn't validate your route types. Now you can generate types independently and validate them externally: Terminal# Generate route types first, then validate with TypeScript next typegen && tsc --noEmit # Or in CI workflows for type checking without building next typegen && npm run type-check The following options are available for the next typegen command: OptionDescription-h, --helpShow all available options.[directory]A directory on which to generate types. If not provided, the current directory will be used. Output files are written to <distDir>/types (typically: .next/dev/types or .next/types, see isolatedDevBuild): Terminalnext typegen # or for a specific app next typegen ./apps/web Additionally, next typegen generates a next-env.d.ts file. We recommend adding next-env.d.ts to your .gitignore file. The next-env.d.ts file is included into your tsconfig.json file, to make Next.js types available to your project. To ensure next-env.d.ts is present before type-checking run next typegen. The commands next dev and next build also generate the next-env.d.ts file, but it is often undesirable to run these just to type-check, for example in CI/CD environments. Good to know: next typegen loads your Next.js config (next.config.js, next.config.mjs, or next.config.ts) using the production build phase. Ensure any required environment variables and dependencies are available so the config can load correctly. Examples Debugging prerender errors If you encounter prerendering errors during next build, you can pass the --debug-prerender flag to get more detailed output: Terminalnext build --debug-prerender This enables several experimental options to make debugging easier: Disables server code minification: experimental.serverMinification = false experimental.turbopackMinify = false Generates source maps for server bundles: experimental.serverSourceMaps = true Enables source map consumption in child processes used for prerendering: enablePrerenderSourceMaps = true Continues building even after the first prerender error, so you can see all issues at once: experimental.prerenderEarlyExit = false This helps surface more readable stack traces and code frames in the build output. Warning: --debug-prerender is for debugging in development only. Do not deploy builds generated with --debug-prerender to production, as it may impact performance. Building specific routes You can build only specific routes in the App and Pages Routers using the --debug-build-paths option. This is useful for faster debugging when working with large applications. The --debug-build-paths option accepts comma-separated file paths and supports glob patterns: Terminal# Build a specific route next build --debug-build-paths=\"app/page.tsx\" # Build more than one route next build --debug-build-paths=\"app/page.tsx,pages/index.tsx\" # Use glob patterns next build --debug-build-paths=\"app/**/page.tsx\" next build --debug-build-paths=\"pages/*.tsx\" Changing the default port By default, Next.js uses http://localhost:3000 during development and with next start. The default port can be changed with the -p option, like so: Terminalnext dev -p 4000 Or using the PORT environment variable: TerminalPORT=4000 next dev Good to know: PORT cannot be set in .env as booting up the HTTP server happens before any other code is initialized. Using HTTPS during development For certain use cases like webhooks or authentication, you can use HTTPS to have a secure environment on localhost. Next.js can generate a self-signed certificate with next dev using the --experimental-https flag: Terminalnext dev --experimental-https With the generated certificate, the Next.js development server will exist at https://localhost:3000. The default port 3000 is used unless a port is specified with -p, --port, or PORT. You can also provide a custom certificate and key with --experimental-https-key and --experimental-https-cert. Optionally, you can provide a custom CA certificate with --experimental-https-ca as well. Terminalnext dev --experimental-https --experimental-https-key ./certificates/localhost-key.pem --experimental-https-cert ./certificates/localhost.pem next dev --experimental-https is only intended for development and creates a locally trusted certificate with mkcert. In production, use properly issued certificates from trusted authorities. Configuring a timeout for downstream proxies When deploying Next.js behind a downstream proxy (e.g. a load-balancer like AWS ELB/ALB), it's important to configure Next's underlying HTTP server with keep-alive timeouts that are larger than the downstream proxy's timeouts. Otherwise, once a keep-alive timeout is reached for a given TCP connection, Node.js will immediately terminate that connection without notifying the downstream proxy. This results in a proxy error whenever it attempts to reuse a connection that Node.js has already terminated. To configure the timeout values for the production Next.js server, pass --keepAliveTimeout (in milliseconds) to next start, like so: Terminalnext start --keepAliveTimeout 70000 Passing Node.js arguments You can pass any node arguments to next commands. For example: TerminalNODE_OPTIONS='--throw-deprecation' next NODE_OPTIONS='-r esm' next NODE_OPTIONS='--inspect' next VersionChangesv16.0.0The JS bundle size metrics have been removed from next buildv15.5.0Add the next typegen commandv15.4.0Add --debug-prerender option for next build to help debug prerender errors.",
+      "code": "npx next [command] [options]"
+    },
+    {
+      "description": "next CLI The Next.js CLI allows you to develop, build, start your application, and more. Basic usage: Terminalnpx next [command] [options] Reference The following options are available: OptionsDescription-h or --helpShows all available options-v or --versionOutputs the Next.js version number Commands The following commands are available: CommandDescriptiondevStarts Next.js in development mode with Hot Module Reloading, error reporting, and more.buildCreates an optimized production build of your application. Displaying information about each route.startStarts Next.js in production mode. The application should be compiled with next build first.infoPrints relevant details about the current system which can be used to report Next.js bugs.telemetryAllows you to enable or disable Next.js' completely anonymous telemetry collection.typegenGenerates TypeScript definitions for routes, pages, layouts, and route handlers without running a full build. Good to know: Running next without a command is an alias for next dev. next dev options next dev starts the application in development mode with Hot Module Reloading (HMR), error reporting, and more. The following options are available when running next dev: OptionDescription-h, --helpShow all available options.[directory]A directory in which to build the application. If not provided, current directory is used.--turbopackForce enable Turbopack (enabled by default). Also available as --turbo.--webpackUse Webpack instead of the default Turbopack bundler for development.-p or --port <port>Specify a port number on which to start the application. Default: 3000, env: PORT-Hor --hostname <hostname>Specify a hostname on which to start the application. Useful for making the application available for other devices on the network. Default: 0.0.0.0--experimental-httpsStarts the server with HTTPS and generates a self-signed certificate.--experimental-https-key <path>Path to a HTTPS key file.--experimental-https-cert <path>Path to a HTTPS certificate file.--experimental-https-ca <path>Path to a HTTPS certificate authority file.--experimental-upload-trace <traceUrl>Reports a subset of the debugging trace to a remote HTTP URL. next build options next build creates an optimized production build of your application. The output displays information about each route. For example: TerminalRoute (app) ┌ ○ /_not-found └ ƒ /products/[id] ○ (Static) prerendered as static content ƒ (Dynamic) server-rendered on demand The following options are available for the next build command: OptionDescription-h, --helpShow all available options.[directory]A directory on which to build the application. If not provided, the current directory will be used.--turbopackForce enable Turbopack (enabled by default). Also available as --turbo.--webpackBuild using Webpack.-d or --debugEnables a more verbose build output. With this flag enabled additional build output like rewrites, redirects, and headers will be shown.--profileEnables production profiling for React.--no-lintDisables linting. Note: linting will be removed from next build in Next 16. If you're using Next 15.5+ with a linter other than eslint, linting during build will not occur.--no-manglingDisables mangling. This may affect performance and should only be used for debugging purposes.--experimental-app-onlyBuilds only App Router routes.--experimental-build-mode [mode]Uses an experimental build mode. (choices: \"compile\", \"generate\", default: \"default\")--debug-prerenderDebug prerender errors in development.--debug-build-paths=<patterns>Build only specific routes for debugging. next start options next start starts the application in production mode. The application should be compiled with next build first. The following options are available for the next start command: OptionDescription-h or --helpShow all available options.[directory]A directory on which to start the application. If no directory is provided, the current directory will be used.-p or --port <port>Specify a port number on which to start the application. (default: 3000, env: PORT)-H or --hostname <hostname>Specify a hostname on which to start the application (default: 0.0.0.0).--keepAliveTimeout <keepAliveTimeout>Specify the maximum amount of milliseconds to wait before closing the inactive connections. next info options next info prints relevant details about the current system which can be used to report Next.js bugs when opening a GitHub issue. This information includes Operating System platform/arch/version, Binaries (Node.js, npm, Yarn, pnpm), package versions (next, react, react-dom), and more. The output should look like this: TerminalOperating System: Platform: darwin Arch: arm64 Version: Darwin Kernel Version 23.6.0 Available memory (MB): 65536 Available CPU cores: 10 Binaries: Node: 20.12.0 npm: 10.5.0 Yarn: 1.22.19 pnpm: 9.6.0 Relevant Packages: next: 15.0.0-canary.115 // Latest available version is detected (15.0.0-canary.115). eslint-config-next: 14.2.5 react: 19.0.0-rc react-dom: 19.0.0 typescript: 5.5.4 Next.js Config: output: N/A The following options are available for the next info command: OptionDescription-h or --helpShow all available options--verboseCollects additional information for debugging. next telemetry options Next.js collects completely anonymous telemetry data about general usage. Participation in this anonymous program is optional, and you can opt-out if you prefer not to share information. The following options are available for the next telemetry command: OptionDescription-h, --helpShow all available options.--enableEnables Next.js' telemetry collection.--disableDisables Next.js' telemetry collection. Learn more about Telemetry. next typegen options next typegen generates TypeScript definitions for your application's routes without performing a full build. This is useful for IDE autocomplete and CI type-checking of route usage. Previously, route types were only generated during next dev or next build, which meant running tsc --noEmit directly wouldn't validate your route types. Now you can generate types independently and validate them externally: Terminal# Generate route types first, then validate with TypeScript next typegen && tsc --noEmit # Or in CI workflows for type checking without building next typegen && npm run type-check The following options are available for the next typegen command: OptionDescription-h, --helpShow all available options.[directory]A directory on which to generate types. If not provided, the current directory will be used. Output files are written to <distDir>/types (typically: .next/dev/types or .next/types, see isolatedDevBuild): Terminalnext typegen # or for a specific app next typegen ./apps/web Additionally, next typegen generates a next-env.d.ts file. We recommend adding next-env.d.ts to your .gitignore file. The next-env.d.ts file is included into your tsconfig.json file, to make Next.js types available to your project. To ensure next-env.d.ts is present before type-checking run next typegen. The commands next dev and next build also generate the next-env.d.ts file, but it is often undesirable to run these just to type-check, for example in CI/CD environments. Good to know: next typegen loads your Next.js config (next.config.js, next.config.mjs, or next.config.ts) using the production build phase. Ensure any required environment variables and dependencies are available so the config can load correctly. Examples Debugging prerender errors If you encounter prerendering errors during next build, you can pass the --debug-prerender flag to get more detailed output: Terminalnext build --debug-prerender This enables several experimental options to make debugging easier: Disables server code minification: experimental.serverMinification = false experimental.turbopackMinify = false Generates source maps for server bundles: experimental.serverSourceMaps = true Enables source map consumption in child processes used for prerendering: enablePrerenderSourceMaps = true Continues building even after the first prerender error, so you can see all issues at once: experimental.prerenderEarlyExit = false This helps surface more readable stack traces and code frames in the build output. Warning: --debug-prerender is for debugging in development only. Do not deploy builds generated with --debug-prerender to production, as it may impact performance. Building specific routes You can build only specific routes in the App and Pages Routers using the --debug-build-paths option. This is useful for faster debugging when working with large applications. The --debug-build-paths option accepts comma-separated file paths and supports glob patterns: Terminal# Build a specific route next build --debug-build-paths=\"app/page.tsx\" # Build more than one route next build --debug-build-paths=\"app/page.tsx,pages/index.tsx\" # Use glob patterns next build --debug-build-paths=\"app/**/page.tsx\" next build --debug-build-paths=\"pages/*.tsx\" Changing the default port By default, Next.js uses http://localhost:3000 during development and with next start. The default port can be changed with the -p option, like so: Terminalnext dev -p 4000 Or using the PORT environment variable: TerminalPORT=4000 next dev Good to know: PORT cannot be set in .env as booting up the HTTP server happens before any other code is initialized. Using HTTPS during development For certain use cases like webhooks or authentication, you can use HTTPS to have a secure environment on localhost. Next.js can generate a self-signed certificate with next dev using the --experimental-https flag: Terminalnext dev --experimental-https With the generated certificate, the Next.js development server will exist at https://localhost:3000. The default port 3000 is used unless a port is specified with -p, --port, or PORT. You can also provide a custom certificate and key with --experimental-https-key and --experimental-https-cert. Optionally, you can provide a custom CA certificate with --experimental-https-ca as well. Terminalnext dev --experimental-https --experimental-https-key ./certificates/localhost-key.pem --experimental-https-cert ./certificates/localhost.pem next dev --experimental-https is only intended for development and creates a locally trusted certificate with mkcert. In production, use properly issued certificates from trusted authorities. Configuring a timeout for downstream proxies When deploying Next.js behind a downstream proxy (e.g. a load-balancer like AWS ELB/ALB), it's important to configure Next's underlying HTTP server with keep-alive timeouts that are larger than the downstream proxy's timeouts. Otherwise, once a keep-alive timeout is reached for a given TCP connection, Node.js will immediately terminate that connection without notifying the downstream proxy. This results in a proxy error whenever it attempts to reuse a connection that Node.js has already terminated. To configure the timeout values for the production Next.js server, pass --keepAliveTimeout (in milliseconds) to next start, like so: Terminalnext start --keepAliveTimeout 70000 Passing Node.js arguments You can pass any node arguments to next commands. For example: TerminalNODE_OPTIONS='--throw-deprecation' next NODE_OPTIONS='-r esm' next NODE_OPTIONS='--inspect' next VersionChangesv16.0.0The JS bundle size metrics have been removed from next buildv15.5.0Add the next typegen commandv15.4.0Add --debug-prerender option for next build to help debug prerender errors.",
+      "code": "npx next [command] [options]"
+    },
+    {
+      "description": "Basic usage:",
+      "code": "npx next [command] [options]"
+    },
+    {
+      "description": "next build creates an optimized production build of your application. The output displays information about each route. For example:",
+      "code": "next build"
+    },
+    {
+      "description": "You can pass any node arguments to next commands. For example:",
+      "code": "next"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/pages/api-reference",
+    "https://nextjs.org/docs/pages/api-reference/cli",
+    "https://nextjs.org/docs/pages/api-reference/cli/next",
+    "https://nextjs.org/docs/app/api-reference/turbopack",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/isolatedDevBuild",
+    "https://nextjs.org/docs/pages/api-reference/cli/create-next-app",
+    "https://nextjs.org/docs/pages/api-reference/edge"
+  ]
+}

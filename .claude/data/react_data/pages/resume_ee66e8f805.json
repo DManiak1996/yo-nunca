@@ -1,0 +1,79 @@
+{
+  "url": "https://react.dev/reference/react-dom/server/resume",
+  "title": "resume",
+  "content": "resume streams a pre-rendered React tree to a Readable Web Stream.\n\nThis API depends on Web Streams. For Node.js, use resumeToNodeStream instead.\n\nCall resume to resume rendering a pre-rendered React tree as HTML into a Readable Web Stream.\n\nSee more examples below.\n\nresume returns a Promise:\n\nThe returned stream has an additional property:\n\nResuming behaves like renderToReadableStream. For more examples, check out the usage section of renderToReadableStream. The usage section of prerender includes examples of how to use prerender specifically.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "resume",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Note",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "resume(node, postponedState, options?)",
+      "id": "resume"
+    },
+    {
+      "level": "h4",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h4",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Resuming a prerender",
+      "id": "resuming-a-prerender"
+    },
+    {
+      "level": "h3",
+      "text": "Further reading",
+      "id": "further-reading"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "const stream = await resume(reactNode, postponedState, options?)",
+      "language": "javascript"
+    },
+    {
+      "code": "import { resume } from 'react-dom/server';import {getPostponedState} from './storage';async function handler(request, writable) {  const postponed = await getPostponedState(request);  const resumeStream = await resume(<App />, postponed);  return resumeStream.pipeTo(writable)}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-dom/server",
+    "https://react.dev/reference/react-dom/server/resume",
+    "https://react.dev/reference/react-dom/server/renderToPipeableStream",
+    "https://react.dev/reference/react-dom/static/index",
+    "https://react.dev/reference/react-dom/server/renderToReadableStream",
+    "https://react.dev/reference/react-dom/static/prerender",
+    "https://react.dev/reference/react-dom/server/renderToString",
+    "https://react.dev/reference/react-dom/server/resumeToPipeableStream"
+  ]
+}

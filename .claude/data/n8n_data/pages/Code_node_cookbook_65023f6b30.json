@@ -1,0 +1,14 @@
+{
+  "title": "Code node cookbook",
+  "content": "This section contains examples and recipes for tasks you can do with the Code node.\n\n- [Get number of items returned by last node](/code/cookbook/code-node/number-items-last-node/)\n- [Get the binary data buffer](/code/cookbook/code-node/get-binary-data-buffer/)\n- [Output to the browser console](/code/cookbook/code-node/console-log/)\n\n- [Built-in methods and variables reference](../../builtin/overview/)\n- [Code node](../../code-node/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#code-node-cookbook",
+  "links": []
+}

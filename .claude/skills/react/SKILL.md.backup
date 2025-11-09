@@ -1,0 +1,395 @@
+---
+name: react
+description: React framework for building user interfaces. Use for React components, hooks, state management, JSX, and modern frontend development.
+---
+
+# React Skill
+
+Comprehensive assistance with React development, generated from official React documentation.
+
+## When to Use This Skill
+
+This skill should be triggered when:
+- Building or debugging React components
+- Working with React hooks (useState, useEffect, useRef, etc.)
+- Implementing state management in React applications
+- Creating forms and handling user input
+- Managing component lifecycle and side effects
+- Working with JSX and component composition
+- Optimizing React application performance
+- Using React Server Components or React 19 features
+
+## Key Concepts
+
+### Components
+React apps are built from components - reusable UI pieces that return JSX (JavaScript XML). Components can be functions or classes, with function components being the modern standard.
+
+### State
+State is data that changes over time in your component. Use `useState` for simple state, or `useReducer` for complex state logic.
+
+### Props
+Props (properties) are how you pass data from parent components to child components. Props are read-only and flow down the component tree.
+
+### Hooks
+Hooks are functions that let you "hook into" React features like state and lifecycle. They must be called at the top level of your component.
+
+### JSX
+JSX is a syntax extension that looks like HTML but is actually JavaScript. It gets compiled to `React.createElement()` calls.
+
+## Quick Reference
+
+### 1. Basic Function Component
+
+```javascript
+function Welcome({ name }) {
+  return <h1>Hello, {name}!</h1>;
+}
+
+// Usage
+<Welcome name="Sarah" />
+```
+
+**What it does:** Creates a simple component that accepts props and returns JSX.
+
+### 2. useState Hook - Managing Component State
+
+```javascript
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Clicked {count} times
+    </button>
+  );
+}
+```
+
+**What it does:** Adds state to a function component. `useState` returns the current state value and a function to update it.
+
+### 3. Controlled Input with State
+
+```javascript
+import { useState } from 'react';
+
+function Form() {
+  const [name, setName] = useState('');
+
+  return (
+    <input
+      value={name}
+      onChange={e => setName(e.target.value)}
+      placeholder="Enter your name"
+    />
+  );
+}
+```
+
+**What it does:** Creates a controlled input where React manages the input's value through state.
+
+### 4. useEffect Hook - Side Effects
+
+```javascript
+import { useState, useEffect } from 'react';
+
+function UserStatus({ userId }) {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch(`/api/users/${userId}`)
+      .then(res => res.json())
+      .then(data => setUser(data));
+  }, [userId]); // Re-run when userId changes
+
+  return <div>{user?.name}</div>;
+}
+```
+
+**What it does:** Runs side effects (data fetching, subscriptions, etc.) after render. The dependency array controls when it re-runs.
+
+### 5. useRef Hook - DOM Manipulation
+
+```javascript
+import { useRef } from 'react';
+
+function TextInput() {
+  const inputRef = useRef(null);
+
+  function handleFocus() {
+    inputRef.current.focus();
+  }
+
+  return (
+    <>
+      <input ref={inputRef} />
+      <button onClick={handleFocus}>
+        Focus the input
+      </button>
+    </>
+  );
+}
+```
+
+**What it does:** Creates a mutable reference to a DOM node or value that persists between renders.
+
+### 6. Conditional Rendering
+
+```javascript
+function Greeting({ isLoggedIn }) {
+  if (isLoggedIn) {
+    return <h1>Welcome back!</h1>;
+  }
+  return <h1>Please sign in.</h1>;
+}
+
+// Or using && operator
+function Notification({ hasNewMessages }) {
+  return (
+    <div>
+      {hasNewMessages && <p>You have new messages!</p>}
+    </div>
+  );
+}
+```
+
+**What it does:** Shows different UI based on conditions using JavaScript conditionals.
+
+### 7. Rendering Lists with map()
+
+```javascript
+function TodoList({ items }) {
+  return (
+    <ul>
+      {items.map(item => (
+        <li key={item.id}>
+          {item.text}
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+**What it does:** Renders arrays of data. Each item needs a unique `key` prop for React's reconciliation.
+
+### 8. Form Handling with FormData
+
+```javascript
+function MyForm() {
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    console.log(data); // { name: "value", email: "value" }
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input name="name" />
+      <input name="email" type="email" />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+**What it does:** Handles form submission without controlled components, reading values directly from form inputs.
+
+### 9. Custom Hook for Reusable Logic
+
+```javascript
+import { useState, useEffect } from 'react';
+
+function useWindowWidth() {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return width;
+}
+
+// Usage
+function MyComponent() {
+  const width = useWindowWidth();
+  return <div>Window width: {width}px</div>;
+}
+```
+
+**What it does:** Extracts reusable stateful logic into a custom hook.
+
+### 10. Context API for Prop Drilling
+
+```javascript
+import { createContext, useContext, useState } from 'react';
+
+const ThemeContext = createContext();
+
+function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState('light');
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+function ThemedButton() {
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  return (
+    <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+      Current theme: {theme}
+    </button>
+  );
+}
+```
+
+**What it does:** Shares data across the component tree without passing props manually at every level.
+
+## Reference Files
+
+This skill includes comprehensive documentation in `references/`:
+
+- **api.md** (66 pages) - Complete React API reference including hooks, components, and compiler directives
+- **components.md** (29 pages) - Built-in components like `<Suspense>`, `<Activity>`, forms, and fragments
+- **getting_started.md** (9 pages) - Quick start tutorial, tic-tac-toe game, and thinking in React
+- **hooks.md** (52 pages) - All React hooks (useState, useEffect, useRef, useContext, etc.)
+- **other.md** (7 pages) - React DOM APIs, testing, TypeScript integration
+- **state.md** (32 pages) - State management patterns, lifting state, avoiding duplication
+
+Use these reference files when you need detailed explanations, advanced patterns, or comprehensive API documentation.
+
+## Working with This Skill
+
+### For Beginners
+Start with `references/getting_started.md` for the official React tutorial. Practice with the quick reference examples above to understand components, state, and props.
+
+### For Component Development
+Use `references/components.md` for built-in component APIs and `references/hooks.md` for hook documentation. The Quick Reference section provides common patterns you'll use daily.
+
+### For State Management
+Check `references/state.md` for patterns on structuring state, lifting state up, and avoiding common pitfalls like state duplication and unnecessary nesting.
+
+### For Advanced Features
+Review `references/api.md` for React Server Components, Suspense, concurrent features, and the React Compiler. Use `references/other.md` for DOM operations and TypeScript integration.
+
+### For Performance
+Look for optimization techniques in `references/hooks.md` (useMemo, useCallback, useDeferredValue) and `references/components.md` (React.memo, Suspense).
+
+## Common Patterns
+
+### Lifting State Up
+When multiple components need to share state, move the state to their closest common ancestor:
+
+```javascript
+function Parent() {
+  const [value, setValue] = useState('');
+
+  return (
+    <>
+      <ChildA value={value} onChange={setValue} />
+      <ChildB value={value} />
+    </>
+  );
+}
+```
+
+### Compound Components
+Components that work together to form a cohesive UI:
+
+```javascript
+<Select value={selected} onChange={setSelected}>
+  <Option value="a">Option A</Option>
+  <Option value="b">Option B</Option>
+</Select>
+```
+
+### Render Props
+Pass a function as a prop to customize rendering:
+
+```javascript
+<DataProvider
+  render={data => <div>{data.name}</div>}
+/>
+```
+
+### Higher-Order Components
+Wrap components to add functionality:
+
+```javascript
+function withLogging(Component) {
+  return function LoggedComponent(props) {
+    useEffect(() => {
+      console.log('Component rendered');
+    });
+    return <Component {...props} />;
+  };
+}
+```
+
+## Best Practices
+
+1. **Keep components small and focused** - Each component should do one thing well
+2. **Use meaningful names** - Component names should describe what they render
+3. **Lift state up when needed** - Share state by moving it to common ancestors
+4. **Avoid prop drilling** - Use Context API for deeply nested prop passing
+5. **Use keys in lists** - Always provide unique keys when rendering arrays
+6. **Keep effects minimal** - Each useEffect should handle one concern
+7. **Clean up effects** - Return cleanup functions from useEffect
+8. **Prefer controlled components** - Manage form inputs with React state
+9. **Extract custom hooks** - Share stateful logic across components
+10. **Use TypeScript** - Add type safety to catch bugs early
+
+## Troubleshooting
+
+### Component Not Re-rendering
+- Check if you're mutating state directly (use setState functions)
+- Verify dependencies in useEffect, useMemo, useCallback
+- Ensure keys are unique and stable in lists
+
+### Infinite Loops
+- Check useEffect dependencies - missing or incorrect dependencies cause re-renders
+- Avoid creating new objects/arrays in render (use useMemo)
+
+### Stale Closures
+- Use the function form of setState: `setCount(c => c + 1)`
+- Include all dependencies in useEffect/useCallback arrays
+
+### Performance Issues
+- Use React DevTools Profiler to identify slow components
+- Implement React.memo for expensive components
+- Use useMemo for expensive calculations
+- Use useCallback to prevent unnecessary re-renders
+
+## Resources
+
+### Official Documentation
+- [React.dev](https://react.dev) - Official React documentation
+- [React Reference](https://react.dev/reference/react) - Complete API reference
+- [React Hooks](https://react.dev/reference/react/hooks) - All hooks documentation
+
+### Learning Resources
+- Check `references/getting_started.md` for the official tutorial
+- Review Quick Reference examples above for common patterns
+- Explore `references/hooks.md` for deep dives into each hook
+
+## Notes
+
+- This skill was automatically generated from official React documentation
+- Reference files preserve the structure and examples from React.dev
+- Code examples include proper language detection for syntax highlighting
+- Quick reference patterns focus on practical, real-world usage
+- All examples use modern React practices (function components, hooks)
+
+## Updating
+
+To refresh this skill with updated documentation:
+1. Re-run the scraper with the same configuration
+2. The skill will be rebuilt with the latest information from React.dev

@@ -1,0 +1,13 @@
+{
+  "title": "Data flow within nodes",
+  "content": "Nodes can process multiple items.\n\nFor example, if you set the Trello node to `Create-Card`, and create an expression that sets `Name` using a property called `name-input-value` from the incoming data, the node creates a card for each item, always choosing the `name-input-value` of the current item.\n\nFor example, this input will create two cards. One named `test1` the other one named `test2`:",
+  "code_samples": [
+    {
+      "code": "[\n\t{\n\t\tname-input-value: \"test1\"\n\t},\n\t{\n\t\tname-input-value: \"test2\"\n\t}\n]",
+      "language": "unknown"
+    }
+  ],
+  "headings": [],
+  "url": "llms-txt#data-flow-within-nodes",
+  "links": []
+}

@@ -1,0 +1,47 @@
+{
+  "url": "https://gotenberg.dev/docs/webhook",
+  "title": "Webhook",
+  "content": "The webhook feature lets Gotenberg asynchronously upload output files from multipart/form-data routes to a specified destination. The API immediately returns a 204 No Content response while the upload continues in the background.\n\nIt uses the following HTTP headers:\n\nCheckout the Webhook module configuration to tailor the Webhook feature to your needs.\n\nPipeDream provides an excellent platform if you wish to test the webhook feature.\n\nThis errors happens if one ore more headers are invalid.\n\nThis error happens if at least one of the given URLs is not authorized.\n\nSee the Webhook module configuration for more details.\n\nYou may customize the Content-Disposition header thanks to output filename header.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Webhook",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--header 'Gotenberg-Webhook-Extra-Http-Headers: {\"MyHeader\": \"MyValue\"}' \\--header 'Gotenberg-Webhook-Url: https://my.webhook.url' \\--header 'Gotenberg-Webhook-Method: PUT' \\--header 'Gotenberg-Webhook-Error-Url: https://my.webhook.error.url' \\--header 'Gotenberg-Webhook-Error-Method: POST' \\--form url=https://my.url",
+      "language": "bash"
+    },
+    {
+      "code": "Gotenberg-Trace: {trace}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: {error}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: Forbidden",
+      "language": "text"
+    },
+    {
+      "code": "Content-Disposition: attachment; filename={output-filename.ext}Content-Type: {content-type}Content-Length: {content-length}Gotenberg-Trace: {trace}User-Agent: GotenbergBody: {output-file}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: application/json; charset=UTF-8Gotenberg-Trace: {trace}User-Agent: Gotenberg",
+      "language": "text"
+    },
+    {
+      "code": "{    \"status\": \"{status}\",    \"message\": \"{message}\"}",
+      "language": "json"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://gotenberg.dev/docs/configuration",
+    "https://gotenberg.dev/docs/routes"
+  ]
+}

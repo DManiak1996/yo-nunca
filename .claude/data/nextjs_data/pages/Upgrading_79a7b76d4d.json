@@ -1,0 +1,61 @@
+{
+  "url": "https://nextjs.org/docs/pages/guides/upgrading",
+  "title": "Upgrading",
+  "content": "Learn how to upgrade to the latest versions of Next.js following the versions-specific guides:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Upgrading",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Codemods",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Version 10",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Version 11",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Version 12",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Version 13",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Version 14",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Version 9",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/guides",
+    "https://nextjs.org/docs/pages/guides/upgrading/codemods",
+    "https://nextjs.org/docs/pages/guides/upgrading/version-10",
+    "https://nextjs.org/docs/pages/guides/upgrading/version-11",
+    "https://nextjs.org/docs/pages/guides/upgrading/version-12",
+    "https://nextjs.org/docs/pages/guides/upgrading/version-13",
+    "https://nextjs.org/docs/pages/guides/upgrading/version-14",
+    "https://nextjs.org/docs/pages/guides/upgrading/version-9",
+    "https://nextjs.org/docs/pages/guides/third-party-libraries"
+  ]
+}

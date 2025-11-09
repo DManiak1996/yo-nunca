@@ -1,0 +1,50 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/htmlLimitedBots",
+  "title": "htmlLimitedBots",
+  "content": "The htmlLimitedBots config allows you to specify a list of user agents that should receive blocking metadata instead of streaming metadata.\n\nNext.js includes a default list of HTML limited bots, including:\n\nSee the full list here.\n\nSpecifying a htmlLimitedBots config will override the Next.js' default list. However, this is advanced behavior, and the default should be sufficient for most cases.\n\nTo fully disable streaming metadata:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "htmlLimitedBots",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Default list",
+      "id": "default-list"
+    },
+    {
+      "level": "h2",
+      "text": "Disabling",
+      "id": "disabling"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst config: NextConfig = {\n  htmlLimitedBots: /MySpecialBot|MyAnotherSpecialBot|SimpleCrawler/,\n}\n \nexport default config",
+      "language": "python"
+    },
+    {
+      "code": "const config: NextConfig = {\n  htmlLimitedBots: /MySpecialBot|MyAnotherSpecialBot|SimpleCrawler/,\n}\n \nexport default config",
+      "language": "javascript"
+    },
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst config: NextConfig = {\n  htmlLimitedBots: /.*/,\n}\n \nexport default config",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-metadata",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/htmlLimitedBots",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/headers",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/httpAgentOptions"
+  ]
+}

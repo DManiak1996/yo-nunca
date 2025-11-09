@@ -1,0 +1,8 @@
+{
+  "title": "Form.io Trigger node",
+  "content": "[Form.io](https://www.form.io/) is an enterprise class combined form and API data management platform for building complex form-based business process applications.\n\nYou can find authentication information for this node [here](../../credentials/formiotrigger/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Form.io Trigger integrations](https://n8n.io/integrations/formio-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#form.io-trigger-node",
+  "links": []
+}

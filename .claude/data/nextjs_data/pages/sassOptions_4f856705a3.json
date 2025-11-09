@@ -1,0 +1,25 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/sassOptions",
+  "title": "sassOptions",
+  "content": "sassOptions allow you to configure the Sass compiler.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "sassOptions",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst sassOptions = {\n  additionalData: `\n    $var: red;\n  `,\n}\n \nconst nextConfig: NextConfig = {\n  sassOptions: {\n    ...sassOptions,\n    implementation: 'sass-embedded',\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/serverActions"
+  ]
+}

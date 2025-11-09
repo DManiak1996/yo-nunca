@@ -1,0 +1,34 @@
+{
+  "title": "SearXNG Tool node",
+  "content": "The SearXNG Tool node allows you to integrate search capabilities into your workflows using SearXNG. SearXNG aggregates results from multiple search engines without tracking you.\n\nOn this page, you'll find the node options for the SearXNG Tool node, and links to more resources.\n\nYou can find authentication information for this node [here](../../../credentials/searxng/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Number of Results**: The number of results to retrieve. The default is 10.\n- **Page Number**: The page number of the search results to retrieve. The default is 1.\n- **Language**: A two-letter [language code](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) to filter search results by language. For example: `en` for English, `fr` for French. The default is `en`.\n- **Safe Search**: Enables or disables filtering explicit content in the search results. Can be None, Moderate, or Strict. The default is None.\n\n## Running a SearXNG instance\n\nThis node requires running the SearXNG service on the same network as your n8n instance. Ensure your n8n instance has network access to the SearXNG service.\n\nThis node requires results in JSON format, which isn't enabled in the default SearXNG configuration. To enable JSON output, add `json` to the `search.formats` section of your SearXNG instance's `settings.yml` file:\n\nIf the `formats` section isn't there, add it. The exact location of the `settings.yml` file depends on how you installed SearXNG. You can find more by visiting the [SearXNG configuration documentation](https://docs.searxng.org/admin/installation-searxng.html#configuration).\n\nThe quality and availability of search results depend on the configuration and health of the SearXNG instance you use.\n\n## Templates and examples\n\n[Browse SearXNG Tool integration templates](https://n8n.io/integrations/searxng/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [SearXNG's documentation](https://docs.searxng.org/) for more information about the service. You can also view [LangChain's documentation on their SearXNG integration](https://python.langchain.com/docs/integrations/tools/searx_search/).\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [
+    {
+      "code": "search:\n  # options available for formats: [html, csv, json, rss]\n  formats:\n    - html\n    - json",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node Options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Running a SearXNG instance",
+      "id": "running-a-searxng-instance"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#searxng-tool-node",
+  "links": []
+}

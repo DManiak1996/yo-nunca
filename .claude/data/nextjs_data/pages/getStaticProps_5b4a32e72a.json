@@ -1,0 +1,94 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/functions/get-static-props",
+  "title": "getStaticProps",
+  "content": "Exporting a function called getStaticProps will pre-render a page at build time using the props returned from the function:\n\nYou can import modules in top-level scope for use in getStaticProps. Imports used will not be bundled for the client-side. This means you can write server-side code directly in getStaticProps, including fetching data from your database.\n\nThe context parameter is an object containing the following keys:\n\nThe getStaticProps function should return an object containing either props, redirect, or notFound followed by an optional revalidate property.\n\nThe props object is a key-value pair, where each value is received by the page component. It should be a serializable object so that any props passed, could be serialized with JSON.stringify.\n\nThe revalidate property is the amount in seconds after which a page re-generation can occur (defaults to false or no revalidation).\n\nLearn more about Incremental Static Regeneration.\n\nThe cache status of a page leveraging ISR can be determined by reading the value of the x-nextjs-cache response header. The possible values are the following:\n\nThe notFound boolean allows the page to return a 404 status and 404 Page. With notFound: true, the page will return a 404 even if there was a successfully generated page before. This is meant to support use cases like user-generated content getting removed by its author. Note, notFound follows the same revalidate behavior described here.\n\nGood to know: notFound is not needed for fallback: false mode as only paths returned from getStaticPaths will be pre-rendered.\n\nThe redirect object allows redirecting to internal or external resources. It should match the shape of { destination: string, permanent: boolean }.\n\nIn some rare cases, you might need to assign a custom status code for older HTTP clients to properly redirect. In these cases, you can use the statusCode property instead of the permanent property, but not both. You can also set basePath: false similar to redirects in next.config.js.\n\nIf the redirects are known at build-time, they should be added in next.config.js instead.\n\nFiles can be read directly from the filesystem in getStaticProps.\n\nIn order to do so you have to get the full path to a file.\n\nSince Next.js compiles your code into a separate directory you can't use __dirname as the path it returns will be different from the Pages Router.\n\nInstead you can use process.cwd() which gives you the directory where Next.js is being executed.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "getStaticProps",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Context parameter",
+      "id": "context-parameter"
+    },
+    {
+      "level": "h2",
+      "text": "getStaticProps return values",
+      "id": "getstaticprops-return-values"
+    },
+    {
+      "level": "h3",
+      "text": "props",
+      "id": "props"
+    },
+    {
+      "level": "h3",
+      "text": "revalidate",
+      "id": "revalidate"
+    },
+    {
+      "level": "h3",
+      "text": "notFound",
+      "id": "notfound"
+    },
+    {
+      "level": "h3",
+      "text": "redirect",
+      "id": "redirect"
+    },
+    {
+      "level": "h2",
+      "text": "Reading files: Use process.cwd()",
+      "id": "reading-files-use-processcwd"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { InferGetStaticPropsType, GetStaticProps } from 'next'\n \ntype Repo = {\n  name: string\n  stargazers_count: number\n}\n \nexport const getStaticProps = (async (context) => {\n  const res = await fetch('https://api.github.com/repos/vercel/next.js')\n  const repo = await res.json()\n  return { props: { repo } }\n}) satisfies GetStaticProps<{\n  repo: Repo\n}>\n \nexport default function Page({\n  repo,\n}: InferGetStaticPropsType<typeof getStaticProps>) {\n  return repo.stargazers_count\n}",
+      "language": "python"
+    },
+    {
+      "code": "export async function getStaticProps(context) {\n  return {\n    props: { message: `Next.js is awesome` }, // will be passed to the page component as props\n  }\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "// This function gets called at build time on server-side.\n// It may be called again, on a serverless function, if\n// revalidation is enabled and a new request comes in\nexport async function getStaticProps() {\n  const res = await fetch('https://.../posts')\n  const posts = await res.json()\n \n  return {\n    props: {\n      posts,\n    },\n    // Next.js will attempt to re-generate the page:\n    // - When a request comes in\n    // - At most once every 10 seconds\n    revalidate: 10, // In seconds\n  }\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function getStaticProps(context) {\n  const res = await fetch(`https://.../data`)\n  const data = await res.json()\n \n  if (!data) {\n    return {\n      notFound: true,\n    }\n  }\n \n  return {\n    props: { data }, // will be passed to the page component as props\n  }\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function getStaticProps(context) {\n  const res = await fetch(`https://...`)\n  const data = await res.json()\n \n  if (!data) {\n    return {\n      redirect: {\n        destination: '/',\n        permanent: false,\n        // statusCode: 301\n      },\n    }\n  }\n \n  return {\n    props: { data }, // will be passed to the page component as props\n  }\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { promises as fs } from 'fs'\nimport path from 'path'\n \n// posts will be populated at build time by getStaticProps()\nfunction Blog({ posts }) {\n  return (\n    <ul>\n      {posts.map((post) => (\n        <li>\n          <h3>{post.filename}</h3>\n          <p>{post.content}</p>\n        </li>\n      ))}\n    </ul>\n  )\n}\n \n// This function gets called at build time on server-side.\n// It won't be called on client-side, so you can even do\n// direct database queries.\nexport async function getStaticProps() {\n  const postsDirectory = path.join(process.cwd(), 'posts')\n  const filenames = await fs.readdir(postsDirectory)\n \n  const posts = filenames.map(async (filename) => {\n    const filePath = path.join(postsDirectory, filename)\n    const fileContents = await fs.readFile(filePath, 'utf8')\n \n    // Generally you would parse/transform the contents\n    // For example you can transform markdown to HTML here\n \n    return {\n      filename,\n      content: fileContents,\n    }\n  })\n  // By returning { props: { posts } }, the Blog component\n  // will receive `posts` as a prop at build time\n  return {\n    props: {\n      posts: await Promise.all(posts),\n    },\n  }\n}\n \nexport default Blog",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/api-reference",
+    "https://nextjs.org/docs/pages/api-reference/functions",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-static-props",
+    "https://nextjs.org/docs/pages/building-your-application/routing/dynamic-routes",
+    "https://nextjs.org/docs/pages/guides/preview-mode",
+    "https://nextjs.org/docs/pages/guides/draft-mode",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props",
+    "https://nextjs.org/docs/pages/guides/incremental-static-regeneration",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-error",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-static-paths",
+    "https://nextjs.org/docs/pages/api-reference/config/next-config-js/redirects",
+    "https://nextjs.org/docs/app/getting-started/fetching-data",
+    "https://nextjs.org/docs/pages/api-reference/functions/next-request"
+  ]
+}

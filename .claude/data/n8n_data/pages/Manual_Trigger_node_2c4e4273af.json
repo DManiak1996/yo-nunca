@@ -1,0 +1,19 @@
+{
+  "title": "Manual Trigger node",
+  "content": "Use this node if you want to start a workflow by selecting **Execute Workflow** and don't want any option for the workflow to run automatically.\n\nWorkflows always need a trigger, or start point. Most workflows start with a trigger node firing in response to an external event or the [Schedule Trigger](../n8n-nodes-base.scheduletrigger/) firing on a set schedule.\n\nThe Manual Trigger node serves as the workflow trigger for workflows that don't have an automatic trigger.\n\n- To test your workflow before you add an automatic trigger of some kind.\n- When you don't want the workflow to run automatically.\n\nHere are some common errors and issues with the Manual Trigger node and steps to resolve or troubleshoot them.\n\n### Only one 'Manual Trigger' node is allowed in a workflow\n\nThis error displays if you try to add a Manual Trigger node to a workflow which already includes a Manual Trigger node.\n\nRemove your existing Manual Trigger or edit your workflow to connect that trigger to a different node.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    },
+    {
+      "level": "h3",
+      "text": "Only one 'Manual Trigger' node is allowed in a workflow",
+      "id": "only-one-'manual-trigger'-node-is-allowed-in-a-workflow"
+    }
+  ],
+  "url": "llms-txt#manual-trigger-node",
+  "links": []
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Test a node",
+  "content": "This section contains information about testing your node.\n\nThere are two ways to test your node:\n\n- Manually, by [running it on your own machine](run-node-locally/) within a local n8n instance.\n- Automatically, using the [linter](node-linter/).\n\nYou should use both methods before publishing your node.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#test-a-node",
+  "links": []
+}

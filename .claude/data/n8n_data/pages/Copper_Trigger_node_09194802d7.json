@@ -1,0 +1,19 @@
+{
+  "title": "Copper Trigger node",
+  "content": "[Copper](https://www.copper.com/) is a CRM that focuses on strong integration with Google Workspace. It's mainly targeted towards small and medium-sized businesses.\n\nYou can find authentication information for this node [here](../../credentials/copper/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Copper Trigger integrations](https://n8n.io/integrations/copper-trigger/) page.\n\n- Delete\n- New\n- Update\n\nn8n provides an app node for Copper. You can find the node docs [here](../../app-nodes/n8n-nodes-base.copper/).\n\nView [example workflows and related content](https://n8n.io/integrations/copper-trigger/) on n8n's website.\n\nRefer to [Copper's documentation](https://developer.copper.com/) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#copper-trigger-node",
+  "links": []
+}

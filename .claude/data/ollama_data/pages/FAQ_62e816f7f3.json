@@ -1,0 +1,147 @@
+{
+  "title": "FAQ",
+  "content": "Source: https://docs.ollama.com/faq\n\n## How can I upgrade Ollama?\n\nOllama on macOS and Windows will automatically download updates. Click on the taskbar or menubar item and then click \"Restart to update\" to apply the update. Updates can also be installed by downloading the latest version [manually](https://ollama.com/download/).\n\nOn Linux, re-run the install script:\n\n## How can I view the logs?\n\nReview the [Troubleshooting](./troubleshooting.md) docs for more about using logs.\n\n## Is my GPU compatible with Ollama?\n\nPlease refer to the [GPU docs](./gpu.md).\n\n## How can I specify the context window size?\n\nBy default, Ollama uses a context window size of 2048 tokens.\n\nThis can be overridden with the `OLLAMA_CONTEXT_LENGTH` environment variable. For example, to set the default context window to 8K, use:\n\nTo change this when using `ollama run`, use `/set parameter`:\n\nWhen using the API, specify the `num_ctx` parameter:\n\n## How can I tell if my model was loaded onto the GPU?\n\nUse the `ollama ps` command to see what models are currently loaded into memory.\n\n<Info>\n  **Output**: `NAME ID SIZE PROCESSOR UNTIL llama3:70b bcfb190ca3a7 42 GB\n    100% GPU 4 minutes from now`\n</Info>\n\nThe `Processor` column will show which memory the model was loaded in to:\n\n* `100% GPU` means the model was loaded entirely into the GPU\n* `100% CPU` means the model was loaded entirely in system memory\n* `48%/52% CPU/GPU` means the model was loaded partially onto both the GPU and into system memory\n\n## How do I configure Ollama server?\n\nOllama server can be configured with environment variables.\n\n### Setting environment variables on Mac\n\nIf Ollama is run as a macOS application, environment variables should be set using `launchctl`:\n\n1. For each environment variable, call `launchctl setenv`.\n\n2. Restart Ollama application.\n\n### Setting environment variables on Linux\n\nIf Ollama is run as a systemd service, environment variables should be set using `systemctl`:\n\n1. Edit the systemd service by calling `systemctl edit ollama.service`. This will open an editor.\n\n2. For each environment variable, add a line `Environment` under section `[Service]`:\n\n4. Reload `systemd` and restart Ollama:\n\n### Setting environment variables on Windows\n\nOn Windows, Ollama inherits your user and system environment variables.\n\n1. First Quit Ollama by clicking on it in the task bar.\n\n2. Start the Settings (Windows 11) or Control Panel (Windows 10) application and search for *environment variables*.\n\n3. Click on *Edit environment variables for your account*.\n\n4. Edit or create a new variable for your user account for `OLLAMA_HOST`, `OLLAMA_MODELS`, etc.\n\n5. Click OK/Apply to save.\n\n6. Start the Ollama application from the Windows Start menu.\n\n## How do I use Ollama behind a proxy?\n\nOllama pulls models from the Internet and may require a proxy server to access the models. Use `HTTPS_PROXY` to redirect outbound requests through the proxy. Ensure the proxy certificate is installed as a system certificate. Refer to the section above for how to use environment variables on your platform.\n\n<Note>\n  Avoid setting `HTTP_PROXY`. Ollama does not use HTTP for model pulls, only\n  HTTPS. Setting `HTTP_PROXY` may interrupt client connections to the server.\n</Note>\n\n### How do I use Ollama behind a proxy in Docker?\n\nThe Ollama Docker container image can be configured to use a proxy by passing `-e HTTPS_PROXY=https://proxy.example.com` when starting the container.\n\nAlternatively, the Docker daemon can be configured to use a proxy. Instructions are available for Docker Desktop on [macOS](https://docs.docker.com/desktop/settings/mac/#proxies), [Windows](https://docs.docker.com/desktop/settings/windows/#proxies), and [Linux](https://docs.docker.com/desktop/settings/linux/#proxies), and Docker [daemon with systemd](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy).\n\nEnsure the certificate is installed as a system certificate when using HTTPS. This may require a new Docker image when using a self-signed certificate.\n\nBuild and run this image:\n\n## Does Ollama send my prompts and answers back to ollama.com?\n\nNo. Ollama runs locally, and conversation data does not leave your machine.\n\n## How can I expose Ollama on my network?\n\nOllama binds 127.0.0.1 port 11434 by default. Change the bind address with the `OLLAMA_HOST` environment variable.\n\nRefer to the section [above](#how-do-i-configure-ollama-server) for how to set environment variables on your platform.\n\n## How can I use Ollama with a proxy server?\n\nOllama runs an HTTP server and can be exposed using a proxy server such as Nginx. To do so, configure the proxy to forward requests and optionally set required headers (if not exposing Ollama on the network). For example, with Nginx:\n\n## How can I use Ollama with ngrok?\n\nOllama can be accessed using a range of tools for tunneling tools. For example with Ngrok:\n\n## How can I use Ollama with Cloudflare Tunnel?\n\nTo use Ollama with Cloudflare Tunnel, use the `--url` and `--http-host-header` flags:\n\n## How can I allow additional web origins to access Ollama?\n\nOllama allows cross-origin requests from `127.0.0.1` and `0.0.0.0` by default. Additional origins can be configured with `OLLAMA_ORIGINS`.\n\nFor browser extensions, you'll need to explicitly allow the extension's origin pattern. Set `OLLAMA_ORIGINS` to include `chrome-extension://*`, `moz-extension://*`, and `safari-web-extension://*` if you wish to allow all browser extensions access, or specific extensions as needed:",
+  "code_samples": [
+    {
+      "code": "## How can I view the logs?\n\nReview the [Troubleshooting](./troubleshooting.md) docs for more about using logs.\n\n## Is my GPU compatible with Ollama?\n\nPlease refer to the [GPU docs](./gpu.md).\n\n## How can I specify the context window size?\n\nBy default, Ollama uses a context window size of 2048 tokens.\n\nThis can be overridden with the `OLLAMA_CONTEXT_LENGTH` environment variable. For example, to set the default context window to 8K, use:",
+      "language": "unknown"
+    },
+    {
+      "code": "To change this when using `ollama run`, use `/set parameter`:",
+      "language": "unknown"
+    },
+    {
+      "code": "When using the API, specify the `num_ctx` parameter:",
+      "language": "unknown"
+    },
+    {
+      "code": "## How can I tell if my model was loaded onto the GPU?\n\nUse the `ollama ps` command to see what models are currently loaded into memory.",
+      "language": "unknown"
+    },
+    {
+      "code": "<Info>\n  **Output**: `NAME ID SIZE PROCESSOR UNTIL llama3:70b bcfb190ca3a7 42 GB\n    100% GPU 4 minutes from now`\n</Info>\n\nThe `Processor` column will show which memory the model was loaded in to:\n\n* `100% GPU` means the model was loaded entirely into the GPU\n* `100% CPU` means the model was loaded entirely in system memory\n* `48%/52% CPU/GPU` means the model was loaded partially onto both the GPU and into system memory\n\n## How do I configure Ollama server?\n\nOllama server can be configured with environment variables.\n\n### Setting environment variables on Mac\n\nIf Ollama is run as a macOS application, environment variables should be set using `launchctl`:\n\n1. For each environment variable, call `launchctl setenv`.",
+      "language": "unknown"
+    },
+    {
+      "code": "2. Restart Ollama application.\n\n### Setting environment variables on Linux\n\nIf Ollama is run as a systemd service, environment variables should be set using `systemctl`:\n\n1. Edit the systemd service by calling `systemctl edit ollama.service`. This will open an editor.\n\n2. For each environment variable, add a line `Environment` under section `[Service]`:",
+      "language": "unknown"
+    },
+    {
+      "code": "3. Save and exit.\n\n4. Reload `systemd` and restart Ollama:",
+      "language": "unknown"
+    },
+    {
+      "code": "### Setting environment variables on Windows\n\nOn Windows, Ollama inherits your user and system environment variables.\n\n1. First Quit Ollama by clicking on it in the task bar.\n\n2. Start the Settings (Windows 11) or Control Panel (Windows 10) application and search for *environment variables*.\n\n3. Click on *Edit environment variables for your account*.\n\n4. Edit or create a new variable for your user account for `OLLAMA_HOST`, `OLLAMA_MODELS`, etc.\n\n5. Click OK/Apply to save.\n\n6. Start the Ollama application from the Windows Start menu.\n\n## How do I use Ollama behind a proxy?\n\nOllama pulls models from the Internet and may require a proxy server to access the models. Use `HTTPS_PROXY` to redirect outbound requests through the proxy. Ensure the proxy certificate is installed as a system certificate. Refer to the section above for how to use environment variables on your platform.\n\n<Note>\n  Avoid setting `HTTP_PROXY`. Ollama does not use HTTP for model pulls, only\n  HTTPS. Setting `HTTP_PROXY` may interrupt client connections to the server.\n</Note>\n\n### How do I use Ollama behind a proxy in Docker?\n\nThe Ollama Docker container image can be configured to use a proxy by passing `-e HTTPS_PROXY=https://proxy.example.com` when starting the container.\n\nAlternatively, the Docker daemon can be configured to use a proxy. Instructions are available for Docker Desktop on [macOS](https://docs.docker.com/desktop/settings/mac/#proxies), [Windows](https://docs.docker.com/desktop/settings/windows/#proxies), and [Linux](https://docs.docker.com/desktop/settings/linux/#proxies), and Docker [daemon with systemd](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy).\n\nEnsure the certificate is installed as a system certificate when using HTTPS. This may require a new Docker image when using a self-signed certificate.",
+      "language": "unknown"
+    },
+    {
+      "code": "Build and run this image:",
+      "language": "unknown"
+    },
+    {
+      "code": "## Does Ollama send my prompts and answers back to ollama.com?\n\nNo. Ollama runs locally, and conversation data does not leave your machine.\n\n## How can I expose Ollama on my network?\n\nOllama binds 127.0.0.1 port 11434 by default. Change the bind address with the `OLLAMA_HOST` environment variable.\n\nRefer to the section [above](#how-do-i-configure-ollama-server) for how to set environment variables on your platform.\n\n## How can I use Ollama with a proxy server?\n\nOllama runs an HTTP server and can be exposed using a proxy server such as Nginx. To do so, configure the proxy to forward requests and optionally set required headers (if not exposing Ollama on the network). For example, with Nginx:",
+      "language": "unknown"
+    },
+    {
+      "code": "## How can I use Ollama with ngrok?\n\nOllama can be accessed using a range of tools for tunneling tools. For example with Ngrok:",
+      "language": "unknown"
+    },
+    {
+      "code": "## How can I use Ollama with Cloudflare Tunnel?\n\nTo use Ollama with Cloudflare Tunnel, use the `--url` and `--http-host-header` flags:",
+      "language": "unknown"
+    },
+    {
+      "code": "## How can I allow additional web origins to access Ollama?\n\nOllama allows cross-origin requests from `127.0.0.1` and `0.0.0.0` by default. Additional origins can be configured with `OLLAMA_ORIGINS`.\n\nFor browser extensions, you'll need to explicitly allow the extension's origin pattern. Set `OLLAMA_ORIGINS` to include `chrome-extension://*`, `moz-extension://*`, and `safari-web-extension://*` if you wish to allow all browser extensions access, or specific extensions as needed:",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "How can I upgrade Ollama?",
+      "id": "how-can-i-upgrade-ollama?"
+    },
+    {
+      "level": "h2",
+      "text": "How can I view the logs?",
+      "id": "how-can-i-view-the-logs?"
+    },
+    {
+      "level": "h2",
+      "text": "Is my GPU compatible with Ollama?",
+      "id": "is-my-gpu-compatible-with-ollama?"
+    },
+    {
+      "level": "h2",
+      "text": "How can I specify the context window size?",
+      "id": "how-can-i-specify-the-context-window-size?"
+    },
+    {
+      "level": "h2",
+      "text": "How can I tell if my model was loaded onto the GPU?",
+      "id": "how-can-i-tell-if-my-model-was-loaded-onto-the-gpu?"
+    },
+    {
+      "level": "h2",
+      "text": "How do I configure Ollama server?",
+      "id": "how-do-i-configure-ollama-server?"
+    },
+    {
+      "level": "h3",
+      "text": "Setting environment variables on Mac",
+      "id": "setting-environment-variables-on-mac"
+    },
+    {
+      "level": "h3",
+      "text": "Setting environment variables on Linux",
+      "id": "setting-environment-variables-on-linux"
+    },
+    {
+      "level": "h3",
+      "text": "Setting environment variables on Windows",
+      "id": "setting-environment-variables-on-windows"
+    },
+    {
+      "level": "h2",
+      "text": "How do I use Ollama behind a proxy?",
+      "id": "how-do-i-use-ollama-behind-a-proxy?"
+    },
+    {
+      "level": "h3",
+      "text": "How do I use Ollama behind a proxy in Docker?",
+      "id": "how-do-i-use-ollama-behind-a-proxy-in-docker?"
+    },
+    {
+      "level": "h2",
+      "text": "Does Ollama send my prompts and answers back to ollama.com?",
+      "id": "does-ollama-send-my-prompts-and-answers-back-to-ollama.com?"
+    },
+    {
+      "level": "h2",
+      "text": "How can I expose Ollama on my network?",
+      "id": "how-can-i-expose-ollama-on-my-network?"
+    },
+    {
+      "level": "h2",
+      "text": "How can I use Ollama with a proxy server?",
+      "id": "how-can-i-use-ollama-with-a-proxy-server?"
+    },
+    {
+      "level": "h2",
+      "text": "How can I use Ollama with ngrok?",
+      "id": "how-can-i-use-ollama-with-ngrok?"
+    },
+    {
+      "level": "h2",
+      "text": "How can I use Ollama with Cloudflare Tunnel?",
+      "id": "how-can-i-use-ollama-with-cloudflare-tunnel?"
+    },
+    {
+      "level": "h2",
+      "text": "How can I allow additional web origins to access Ollama?",
+      "id": "how-can-i-allow-additional-web-origins-to-access-ollama?"
+    }
+  ],
+  "url": "llms-txt#faq",
+  "links": []
+}

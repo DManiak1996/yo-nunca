@@ -1,0 +1,133 @@
+{
+  "title": "Build a programmatic-style node",
+  "content": "This tutorial walks through building a programmatic-style node. Before you begin, make sure this is the node style you need. Refer to [Choose your node building approach](../../plan/choose-node-method/) for more information.\n\nYou need the following installed on your development machine:\n\n- [git](https://git-scm.com/downloads)\n- Node.js and npm. Minimum version Node 18.17.0. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).\n\nYou need some understanding of:\n\n- JavaScript/TypeScript\n- REST APIs\n- git\n- [Expressions](../../../../glossary/#expression-n8n) in n8n\n\nIn this section, you'll clone n8n's node starter repository, and build a node that integrates the [SendGrid](https://sendgrid.com/). You'll create a node that implements one piece of SendGrid functionality: create a contact.\n\nn8n has a built-in SendGrid node. To avoid clashing with the existing node, you'll give your version a different name.\n\n### Step 1: Set up the project\n\nn8n provides a starter repository for node development. Using the starter ensures you have all necessary dependencies. It also provides a linter.\n\nClone the repository and navigate into the directory:\n\n1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from the template repository.\n\n1. Clone your new repository:\n\nThe starter contains example nodes and credentials. Delete the following directories and files:\n\n- `nodes/ExampleNode`\n- `nodes/HTTPBin`\n- `credentials/ExampleCredentials.credentials.ts`\n- `credentials/HttpBinApi.credentials.ts`\n\nNow create the following directories and files:\n\n`nodes/FriendGrid`\\\n`nodes/FriendGrid/FriendGrid.node.json`\\\n`nodes/FriendGrid/FriendGrid.node.ts`\\\n`credentials/FriendGridApi.credentials.ts`\n\nThese are the key files required for any node. Refer to [Node file structure](../reference/node-file-structure/) for more information on required files and recommended organization.\n\nNow install the project dependencies:\n\n### Step 2: Add an icon\n\nSave the SendGrid SVG logo from [here](https://github.com/n8n-io/n8n/blob/master/packages/nodes-base/nodes/SendGrid/sendGrid.svg) as `friendGrid.svg` in `nodes/FriendGrid/`.\n\nn8n recommends using an SVG for your node icon, but you can also use PNG. If using PNG, the icon resolution should be 60x60px. Node icons should have a square or near-square aspect ratio.\n\nDon't reference Font Awesome\n\nIf you want to use a Font Awesome icon in your node, download and embed the image.\n\n### Step 3: Define the node in the base file\n\nEvery node must have a base file. Refer to [Node base file](../reference/node-base-files/) for detailed information about base file parameters.\n\nIn this example, the file is `FriendGrid.node.ts`. To keep this tutorial short, you'll place all the node functionality in this one file. When building more complex nodes, you should consider splitting out your functionality into modules. Refer to [Node file structure](../reference/node-file-structure/) for more information.\n\n#### Step 3.1: Imports\n\nStart by adding the import statements:\n\n#### Step 3.2: Create the main class\n\nThe node must export an interface that implements `INodeType`. This interface must include a `description` interface, which in turn contains the `properties` array.\n\nClass names and file names\n\nMake sure the class name and the file name match. For example, given a class `FriendGrid`, the filename must be `FriendGrid.node.ts`.\n\n#### Step 3.3: Add node details\n\nAll programmatic nodes need some basic parameters, such as their display name and icon. Add the following to the `description`:\n\nn8n uses some of the properties set in `description` to render the node in the Editor UI. These properties are `displayName`, `icon`, and `description`.\n\n#### Step 3.4: Add the resource\n\nThe resource object defines the API resource that the node uses. In this tutorial, you're creating a node to access one of SendGrid's API endpoints: `/v3/marketing/contacts`. This means you need to define a resource for this endpoint. Update the `properties` array with the resource object:\n\n`type` controls which UI element n8n displays for the resource, and tells n8n what type of data to expect from the user. `options` results in n8n adding a dropdown that allows users to choose one option. Refer to [Node UI elements](../reference/ui-elements/) for more information.\n\n#### Step 3.5: Add operations\n\nThe operations object defines what you can do with a resource. It usually relates to REST API verbs (GET, POST, and so on). In this tutorial, there's one operation: create a contact. It has one required field, the email address for the contact the user creates.\n\nAdd the following to the `properties` array, after the `resource` object:\n\n#### Step 3.6: Add optional fields\n\nMost APIs, including the SendGrid API that you're using in this example, have optional fields you can use to refine your query.\n\nTo avoid overwhelming users, n8n displays these under **Additional Fields** in the UI.\n\nFor this tutorial, you'll add two additional fields, to allow users to enter the contact's first name and last name. Add the following to the properties array:\n\n### Step 4: Add the execute method\n\nYou've set up the node UI and basic information. It's time to map the node UI to API requests, and make the node actually do something.\n\nThe `execute` method runs every time the node runs. In this method, you have access to the input items and to the parameters that the user set in the UI, including the credentials.\n\nAdd the following the `execute` method in the `FriendGrid.node.ts`:\n\nNote the following lines of this code:\n\nUsers can provide data in two ways:\n\n- Entered directly in the node fields\n- By mapping data from earlier nodes in the workflow\n\n`getInputData()`, and the subsequent loop, allows the node to handle situations where data comes from a previous node. This includes supporting multiple inputs. This means that if, for example, the previous node outputs contact information for five people, your FriendGrid node can create five contacts.\n\n### Step 5: Set up authentication\n\nThe SendGrid API requires users to authenticate with an API key.\n\nAdd the following to `FriendGridApi.credentials.ts`\n\nFor more information about credentials files and options, refer to [Credentials file](../reference/credentials-files/).\n\n### Step 6: Add node metadata\n\nMetadata about your node goes in the JSON file at the root of your node. n8n refers to this as the codex file. In this example, the file is `FriendGrid.node.json`.\n\nAdd the following code to the JSON file:\n\nFor more information on these parameters, refer to [Node codex files](../reference/node-codex-files/).\n\n### Step 7: Update the npm package details\n\nYour npm package details are in the `package.json` at the root of the project. It's essential to include the `n8n` object with links to the credentials and base node file. Update this file to include the following information:\n\nYou need to update the `package.json` to include your own information, such as your name and repository URL. For more information on npm `package.json` files, refer to [npm's package.json documentation](https://docs.npmjs.com/cli/v8/configuring-npm/package-json).\n\nYou can test your node as you build it by running it in a local n8n instance.\n\n1. Install n8n using npm:\n\n1. When you are ready to test your node, publish it locally:\n\n1. Install the node into your local n8n instance:\n\nMake sure you run `npm link <node-name>` in the nodes directory within your n8n installation. This can be:\n\n- `~/.n8n/custom/`\n   - `~/.n8n/<your-custom-name>`: if your n8n installation set a different name using `N8N_CUSTOM_EXTENSIONS`.\n\n1. Open n8n in your browser. You should see your nodes when you search for them in the nodes panel.\n\nMake sure you search using the node name, not the package name. For example, if your npm package name is `n8n-nodes-weather-nodes`, and the package contains nodes named `rain`, `sun`, `snow`, you should search for `rain`, not `weather-nodes`.\n\nIf there's no `custom` directory in `~/.n8n` local installation, you have to create `custom` directory manually and run `npm init`:",
+  "code_samples": [
+    {
+      "code": "git clone https://github.com/<your-organization>/<your-repo-name>.git n8n-nodes-friendgrid\n   cd n8n-nodes-friendgrid",
+      "language": "unknown"
+    },
+    {
+      "code": "npm i",
+      "language": "unknown"
+    },
+    {
+      "code": "import {\n\tIExecuteFunctions,\n} from 'n8n-core';\n\nimport {\n\tIDataObject,\n\tINodeExecutionData,\n\tINodeType,\n\tINodeTypeDescription,\n    NodeConnectionType\n} from 'n8n-workflow';\n\nimport {\n\tOptionsWithUri,\n} from 'request';",
+      "language": "unknown"
+    },
+    {
+      "code": "export class FriendGrid implements INodeType {\n\tdescription: INodeTypeDescription = {\n\t\t// Basic node details will go here\n\t\tproperties: [\n\t\t\t// Resources and operations will go here\n\t\t],\n\t};\n\t// The execute method will go here\n\tasync execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {\n\t}\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "displayName: 'FriendGrid',\nname: 'friendGrid',\nicon: 'file:friendGrid.svg',\ngroup: ['transform'],\nversion: 1,\ndescription: 'Consume SendGrid API',\ndefaults: {\n\tname: 'FriendGrid',\n},\ninputs: [NodeConnectionType.Main],\noutputs: [NodeConnectionType.Main],\ncredentials: [\n\t{\n\t\tname: 'friendGridApi',\n\t\trequired: true,\n\t},\n],",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n\tdisplayName: 'Resource',\n\tname: 'resource',\n\ttype: 'options',\n\toptions: [\n\t\t{\n\t\t\tname: 'Contact',\n\t\t\tvalue: 'contact',\n\t\t},\n\t],\n\tdefault: 'contact',\n\tnoDataExpression: true,\n\trequired: true,\n\tdescription: 'Create a new contact',\n},",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n\tdisplayName: 'Operation',\n\tname: 'operation',\n\ttype: 'options',\n\tdisplayOptions: {\n\t\tshow: {\n\t\t\tresource: [\n\t\t\t\t'contact',\n\t\t\t],\n\t\t},\n\t},\n\toptions: [\n\t\t{\n\t\t\tname: 'Create',\n\t\t\tvalue: 'create',\n\t\t\tdescription: 'Create a contact',\n\t\t\taction: 'Create a contact',\n\t\t},\n\t],\n\tdefault: 'create',\n\tnoDataExpression: true,\n},\n{\n\tdisplayName: 'Email',\n\tname: 'email',\n\ttype: 'string',\n\trequired: true,\n\tdisplayOptions: {\n\t\tshow: {\n\t\t\toperation: [\n\t\t\t\t'create',\n\t\t\t],\n\t\t\tresource: [\n\t\t\t\t'contact',\n\t\t\t],\n\t\t},\n\t},\n\tdefault:'',\n\tplaceholder: 'name@email.com',\n\tdescription:'Primary email for the contact',\n},",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n\tdisplayName: 'Additional Fields',\n\tname: 'additionalFields',\n\ttype: 'collection',\n\tplaceholder: 'Add Field',\n\tdefault: {},\n\tdisplayOptions: {\n\t\tshow: {\n\t\t\tresource: [\n\t\t\t\t'contact',\n\t\t\t],\n\t\t\toperation: [\n\t\t\t\t'create',\n\t\t\t],\n\t\t},\n\t},\n\toptions: [\n\t\t{\n\t\t\tdisplayName: 'First Name',\n\t\t\tname: 'firstName',\n\t\t\ttype: 'string',\n\t\t\tdefault: '',\n\t\t},\n\t\t{\n\t\t\tdisplayName: 'Last Name',\n\t\t\tname: 'lastName',\n\t\t\ttype: 'string',\n\t\t\tdefault: '',\n\t\t},\n\t],\n},",
+      "language": "unknown"
+    },
+    {
+      "code": "// Handle data coming from previous nodes\nconst items = this.getInputData();\nlet responseData;\nconst returnData = [];\nconst resource = this.getNodeParameter('resource', 0) as string;\nconst operation = this.getNodeParameter('operation', 0) as string;\n\n// For each item, make an API call to create a contact\nfor (let i = 0; i < items.length; i++) {\n\tif (resource === 'contact') {\n\t\tif (operation === 'create') {\n\t\t\t// Get email input\n\t\t\tconst email = this.getNodeParameter('email', i) as string;\n\t\t\t// Get additional fields input\n\t\t\tconst additionalFields = this.getNodeParameter('additionalFields', i) as IDataObject;\n\t\t\tconst data: IDataObject = {\n\t\t\t\temail,\n\t\t\t};\n\n\t\t\tObject.assign(data, additionalFields);\n\n\t\t\t// Make HTTP request according to https://sendgrid.com/docs/api-reference/\n\t\t\tconst options: OptionsWithUri = {\n\t\t\t\theaders: {\n\t\t\t\t\t'Accept': 'application/json',\n\t\t\t\t},\n\t\t\t\tmethod: 'PUT',\n\t\t\t\tbody: {\n\t\t\t\t\tcontacts: [\n\t\t\t\t\t\tdata,\n\t\t\t\t\t],\n\t\t\t\t},\n\t\t\t\turi: `https://api.sendgrid.com/v3/marketing/contacts`,\n\t\t\t\tjson: true,\n\t\t\t};\n\t\t\tresponseData = await this.helpers.requestWithAuthentication.call(this, 'friendGridApi', options);\n\t\t\treturnData.push(responseData);\n\t\t}\n\t}\n}\n// Map data to n8n data structure\nreturn [this.helpers.returnJsonArray(returnData)];",
+      "language": "unknown"
+    },
+    {
+      "code": "const items = this.getInputData();\n... \nfor (let i = 0; i < items.length; i++) {\n\t...\n\tconst email = this.getNodeParameter('email', i) as string;\n\t...\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import {\n\tIAuthenticateGeneric,\n\tICredentialTestRequest,\n\tICredentialType,\n\tINodeProperties,\n} from 'n8n-workflow';\n\nexport class FriendGridApi implements ICredentialType {\n\tname = 'friendGridApi';\n\tdisplayName = 'FriendGrid API';\n\tproperties: INodeProperties[] = [\n\t\t{\n\t\t\tdisplayName: 'API Key',\n\t\t\tname: 'apiKey',\n\t\t\ttype: 'string',\n\t\t\tdefault: '',\n\t\t},\n\t];\n\n\tauthenticate: IAuthenticateGeneric = {\n\t\ttype: 'generic',\n\t\tproperties: {\n\t\t\theaders: {\n\t\t\t\tAuthorization: '=Bearer {{$credentials.apiKey}}',\n\t\t\t},\n\t\t},\n\t};\n\n\ttest: ICredentialTestRequest = {\n\t\trequest: {\n\t\t\tbaseURL: 'https://api.sendgrid.com/v3',\n\t\t\turl: '/marketing/contacts',\n\t\t},\n\t};\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n\t\"node\": \"n8n-nodes-base.FriendGrid\",\n\t\"nodeVersion\": \"1.0\",\n\t\"codexVersion\": \"1.0\",\n\t\"categories\": [\n\t\t\"Miscellaneous\"\n\t],\n\t\"resources\": {\n\t\t\"credentialDocumentation\": [\n\t\t\t{\n\t\t\t\t\"url\": \"\"\n\t\t\t}\n\t\t],\n\t\t\"primaryDocumentation\": [\n\t\t\t{\n\t\t\t\t\"url\": \"\"\n\t\t\t}\n\t\t]\n\t}\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n\t// All node names must start with \"n8n-nodes-\"\n\t\"name\": \"n8n-nodes-friendgrid\",\n\t\"version\": \"0.1.0\",\n\t\"description\": \"n8n node to create contacts in SendGrid\",\n\t\"keywords\": [\n\t\t// This keyword is required for community nodes\n\t\t\"n8n-community-node-package\"\n\t],\n\t\"license\": \"MIT\",\n\t\"homepage\": \"https://n8n.io\",\n\t\"author\": {\n\t\t\"name\": \"Test\",\n\t\t\"email\": \"test@example.com\"\n\t},\n\t\"repository\": {\n\t\t\"type\": \"git\",\n\t\t// Change the git remote to your own repository\n\t\t// Add the new URL here\n\t\t\"url\": \"git+<your-repo-url>\"\n\t},\n\t\"main\": \"index.js\",\n\t\"scripts\": {\n\t\t// don't change\n\t},\n\t\"files\": [\n\t\t\"dist\"\n\t],\n\t// Link the credentials and node\n\t\"n8n\": {\n\t\t\"n8nNodesApiVersion\": 1,\n\t\t\"credentials\": [\n\t\t\t\"dist/credentials/FriendGridApi.credentials.js\"\n\t\t],\n\t\t\"nodes\": [\n\t\t\t\"dist/nodes/FriendGrid/FriendGrid.node.js\"\n\t\t]\n\t},\n\t\"devDependencies\": {\n\t\t// don't change\n\t},\n\t\"peerDependencies\": {\n\t\t// don't change\n\t}\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "npm install n8n -g",
+      "language": "unknown"
+    },
+    {
+      "code": "# In your node directory\n   npm run build\n   npm link",
+      "language": "unknown"
+    },
+    {
+      "code": "# In the nodes directory within your n8n installation\n   # node-package-name is the name from the package.json\n   npm link <node-package-name>",
+      "language": "unknown"
+    },
+    {
+      "code": "n8n start",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Prerequisites",
+      "id": "prerequisites"
+    },
+    {
+      "level": "h2",
+      "text": "Build your node",
+      "id": "build-your-node"
+    },
+    {
+      "level": "h3",
+      "text": "Step 1: Set up the project",
+      "id": "step-1:-set-up-the-project"
+    },
+    {
+      "level": "h3",
+      "text": "Step 2: Add an icon",
+      "id": "step-2:-add-an-icon"
+    },
+    {
+      "level": "h3",
+      "text": "Step 3: Define the node in the base file",
+      "id": "step-3:-define-the-node-in-the-base-file"
+    },
+    {
+      "level": "h3",
+      "text": "Step 4: Add the execute method",
+      "id": "step-4:-add-the-execute-method"
+    },
+    {
+      "level": "h3",
+      "text": "Step 5: Set up authentication",
+      "id": "step-5:-set-up-authentication"
+    },
+    {
+      "level": "h3",
+      "text": "Step 6: Add node metadata",
+      "id": "step-6:-add-node-metadata"
+    },
+    {
+      "level": "h3",
+      "text": "Step 7: Update the npm package details",
+      "id": "step-7:-update-the-npm-package-details"
+    },
+    {
+      "level": "h2",
+      "text": "Test your node",
+      "id": "test-your-node"
+    },
+    {
+      "level": "h3",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    }
+  ],
+  "url": "llms-txt#build-a-programmatic-style-node",
+  "links": []
+}

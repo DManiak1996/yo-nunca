@@ -1,0 +1,67 @@
+{
+  "url": "https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout",
+  "title": "Missing Suspense boundary with useSearchParams",
+  "content": "Reading search parameters through useSearchParams() without a Suspense boundary will opt the entire page into client-side rendering. This could cause your page to be blank until the client-side JavaScript has loaded.\n\nYou have a few options depending on your intent:\n\nNote: This is only available with Next.js version 14.x. If you're in versions above 14 please fix it with the approach above.\n\nWe don't recommend disabling this rule. However, if you need to, you can disable it by setting the missingSuspenseWithCSRBailout option to false in your next.config.js:\n\nThis configuration option will be removed in a future major version.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Missing Suspense boundary with useSearchParams",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Why This Error Occurred",
+      "id": "why-this-error-occurred"
+    },
+    {
+      "level": "h2",
+      "text": "Possible Ways to Fix It",
+      "id": "possible-ways-to-fix-it"
+    },
+    {
+      "level": "h2",
+      "text": "Disabling",
+      "id": "disabling"
+    },
+    {
+      "level": "h2",
+      "text": "Useful Links",
+      "id": "useful-links"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { connection } from 'next/server'\n \nexport default async function Page() {\n  await connection()\n  return <div>...</div>\n}",
+      "language": "python"
+    },
+    {
+      "code": "export const dynamic = 'force-dynamic'\n \nexport default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  return children\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { Suspense } from 'react'\nimport ClientSearch from './client-search'\n \nexport default function Page({\n  searchParams,\n}: {\n  searchParams: Promise<{ q?: string }>\n}) {\n  return (\n    <Suspense fallback={<>...</>}>\n      <ClientSearch searchParams={searchParams} />\n    </Suspense>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { use } from 'react'\n \nexport default function ClientSearch({\n  searchParams,\n}: {\n  searchParams: Promise<{ q?: string }>\n}) {\n  const params = use(searchParams)\n  return <div>Query: {params.q}</div>\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { useSearchParams } from 'next/navigation'\nimport { Suspense } from 'react'\n \nfunction Search() {\n  const searchParams = useSearchParams()\n \n  return <input placeholder=\"Search...\" />\n}\n \nexport function Searchbar() {\n  return (\n    // You could have a loading skeleton as the `fallback` too\n    <Suspense>\n      <Search />\n    </Suspense>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "module.exports = {\n  experimental: {\n    missingSuspenseWithCSRBailout: false,\n  },\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs",
+    "https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout",
+    "https://nextjs.org/docs/app/api-reference/functions/connection",
+    "https://nextjs.org/docs/app/getting-started/layouts-and-pages",
+    "https://nextjs.org/docs/app/api-reference/functions/use-search-params",
+    "https://nextjs.org/docs/app/guides/caching"
+  ]
+}

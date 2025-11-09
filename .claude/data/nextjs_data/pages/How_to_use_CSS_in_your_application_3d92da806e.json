@@ -1,0 +1,156 @@
+{
+  "url": "https://nextjs.org/docs/pages/getting-started/css",
+  "title": "How to use CSS in your application",
+  "content": "Next.js provides several ways to style your application using CSS, including:\n\nTailwind CSS is a utility-first CSS framework that provides low-level utility classes to build custom designs.\n\nInstall Tailwind CSS:\n\nAdd the PostCSS plugin to your postcss.config.mjs file:\n\nImport Tailwind in your global CSS file:\n\nImport the CSS file in your pages/_app.js file:\n\nNow you can start using Tailwind's utility classes in your application:\n\nGood to know: If you need broader browser support for very old browsers, see the Tailwind CSS v3 setup instructions.\n\nCSS Modules locally scope CSS by generating unique class names. This allows you to use the same class in different files without worrying about naming collisions.\n\nTo start using CSS Modules, create a new file with the extension .module.css and import it into any component inside the pages directory:\n\nYou can use global CSS to apply styles across your application.\n\nImport the stylesheet in the pages/_app.js file to apply the styles to every route in your application:\n\nDue to the global nature of stylesheets, and to avoid conflicts, you should import them inside pages/_app.js.\n\nNext.js allows you to import CSS files from a JavaScript file. This is possible because Next.js extends the concept of import beyond JavaScript.\n\nSince Next.js 9.5.4, importing a CSS file from node_modules is permitted anywhere in your application.\n\nFor global stylesheets, like bootstrap or nprogress, you should import the file inside pages/_app.js. For example:\n\nTo import CSS required by a third-party component, you can do so in your component. For example:\n\nNext.js optimizes CSS during production builds by automatically chunking (merging) stylesheets. The order of your CSS depends on the order you import styles in your code.\n\nFor example, base-button.module.css will be ordered before page.module.css since <BaseButton> is imported before page.module.css:\n\nTo keep CSS ordering predictable:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to use CSS in your application",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Tailwind CSS",
+      "id": "tailwind-css"
+    },
+    {
+      "level": "h2",
+      "text": "CSS Modules",
+      "id": "css-modules"
+    },
+    {
+      "level": "h2",
+      "text": "Global CSS",
+      "id": "global-css"
+    },
+    {
+      "level": "h2",
+      "text": "External stylesheets",
+      "id": "external-stylesheets"
+    },
+    {
+      "level": "h3",
+      "text": "Import styles from node_modules",
+      "id": "import-styles-from-node_modules"
+    },
+    {
+      "level": "h2",
+      "text": "Ordering and Merging",
+      "id": "ordering-and-merging"
+    },
+    {
+      "level": "h3",
+      "text": "Recommendations",
+      "id": "recommendations"
+    },
+    {
+      "level": "h2",
+      "text": "Development vs Production",
+      "id": "development-vs-production"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "Tailwind CSS",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Sass",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "CSS-in-JS",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "pnpm add -D tailwindcss @tailwindcss/postcss",
+      "language": "unknown"
+    },
+    {
+      "code": "export default {\n  plugins: {\n    '@tailwindcss/postcss': {},\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "@import 'tailwindcss';",
+      "language": "unknown"
+    },
+    {
+      "code": "import '@/styles/globals.css'\n \nexport default function MyApp({ Component, pageProps }) {\n  return <Component {...pageProps} />\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export default function Home() {\n  return (\n    <main className=\"flex min-h-screen flex-col items-center justify-between p-24\">\n      <h1 className=\"text-4xl font-bold\">Welcome to Next.js!</h1>\n    </main>\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": ".blog {\n  padding: 24px;\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import styles from './blog.module.css'\n \nexport default function Page() {\n  return <main className={styles.blog}></main>\n}",
+      "language": "python"
+    },
+    {
+      "code": "import '@/styles/global.css'\n \nexport default function MyApp({ Component, pageProps }) {\n  return <Component {...pageProps} />\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import 'bootstrap/dist/css/bootstrap.css'\n \nexport default function MyApp({ Component, pageProps }) {\n  return <Component {...pageProps} />\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import { useState } from 'react'\nimport { Dialog } from '@reach/dialog'\nimport VisuallyHidden from '@reach/visually-hidden'\nimport '@reach/dialog/styles.css'\n \nfunction ExampleDialog(props) {\n  const [showDialog, setShowDialog] = useState(false)\n  const open = () => setShowDialog(true)\n  const close = () => setShowDialog(false)\n \n  return (\n    <div>\n      <button onClick={open}>Open Dialog</button>\n      <Dialog isOpen={showDialog} onDismiss={close}>\n        <button className=\"close-button\" onClick={close}>\n          <VisuallyHidden>Close</VisuallyHidden>\n          <span aria-hidden>×</span>\n        </button>\n        <p>Hello there. I am a dialog</p>\n      </Dialog>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { BaseButton } from './base-button'\nimport styles from './page.module.css'\n \nexport default function Page() {\n  return <BaseButton className={styles.primary} />\n}",
+      "language": "python"
+    },
+    {
+      "code": "import styles from './base-button.module.css'\n \nexport function BaseButton() {\n  return <button className={styles.primary} />\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "Pages RouterGetting StartedCSSCopy pageHow to use CSS in your applicationNext.js provides several ways to style your application using CSS, including: Tailwind CSS CSS Modules Global CSS External Stylesheets Sass CSS-in-JS Tailwind CSS Tailwind CSS is a utility-first CSS framework that provides low-level utility classes to build custom designs. Install Tailwind CSS:pnpmnpmyarnbunTerminalpnpm add -D tailwindcss @tailwindcss/postcssAdd the PostCSS plugin to your postcss.config.mjs file:postcss.config.mjsexport default { plugins: { '@tailwindcss/postcss': {}, }, }Import Tailwind in your global CSS file:styles/globals.css@import 'tailwindcss';Import the CSS file in your pages/_app.js file:pages/_app.jsimport '@/styles/globals.css' export default function MyApp({ Component, pageProps }) { return <Component {...pageProps} /> }Now you can start using Tailwind's utility classes in your application:pages/index.tsxTypeScriptJavaScriptTypeScriptexport default function Home() { return ( <main className=\"flex min-h-screen flex-col items-center justify-between p-24\"> <h1 className=\"text-4xl font-bold\">Welcome to Next.js!</h1> </main> ) } Good to know: If you need broader browser support for very old browsers, see the Tailwind CSS v3 setup instructions. CSS Modules CSS Modules locally scope CSS by generating unique class names. This allows you to use the same class in different files without worrying about naming collisions. To start using CSS Modules, create a new file with the extension .module.css and import it into any component inside the pages directory:/styles/blog.module.css.blog { padding: 24px; }pages/blog/index.tsxTypeScriptJavaScriptTypeScriptimport styles from './blog.module.css' export default function Page() { return <main className={styles.blog}></main> } Global CSS You can use global CSS to apply styles across your application. Import the stylesheet in the pages/_app.js file to apply the styles to every route in your application:pages/_app.jsimport '@/styles/global.css' export default function MyApp({ Component, pageProps }) { return <Component {...pageProps} /> }Due to the global nature of stylesheets, and to avoid conflicts, you should import them inside pages/_app.js. External stylesheets Next.js allows you to import CSS files from a JavaScript file. This is possible because Next.js extends the concept of import beyond JavaScript.Import styles from node_modules Since Next.js 9.5.4, importing a CSS file from node_modules is permitted anywhere in your application.For global stylesheets, like bootstrap or nprogress, you should import the file inside pages/_app.js. For example:pages/_app.jsimport 'bootstrap/dist/css/bootstrap.css' export default function MyApp({ Component, pageProps }) { return <Component {...pageProps} /> }To import CSS required by a third-party component, you can do so in your component. For example:components/example-dialog.jsimport { useState } from 'react' import { Dialog } from '@reach/dialog' import VisuallyHidden from '@reach/visually-hidden' import '@reach/dialog/styles.css' function ExampleDialog(props) { const [showDialog, setShowDialog] = useState(false) const open = () => setShowDialog(true) const close = () => setShowDialog(false) return ( <div> <button onClick={open}>Open Dialog</button> <Dialog isOpen={showDialog} onDismiss={close}> <button className=\"close-button\" onClick={close}> <VisuallyHidden>Close</VisuallyHidden> <span aria-hidden>×</span> </button> <p>Hello there. I am a dialog</p> </Dialog> </div> ) } Ordering and Merging Next.js optimizes CSS during production builds by automatically chunking (merging) stylesheets. The order of your CSS depends on the order you import styles in your code. For example, base-button.module.css will be ordered before page.module.css since <BaseButton> is imported before page.module.css: page.tsxTypeScriptJavaScriptTypeScriptimport { BaseButton } from './base-button' import styles from './page.module.css' export default function Page() { return <BaseButton className={styles.primary} /> } base-button.tsxTypeScriptJavaScriptTypeScriptimport styles from './base-button.module.css' export function BaseButton() { return <button className={styles.primary} /> } Recommendations To keep CSS ordering predictable: Try to contain CSS imports to a single JavaScript or TypeScript entry file Import global styles and Tailwind stylesheets in the root of your application. Use Tailwind CSS for most styling needs as it covers common design patterns with utility classes. Use CSS Modules for component-specific styles when Tailwind utilities aren't sufficient. Use a consistent naming convention for your CSS modules. For example, using <name>.module.css over <name>.tsx. Extract shared styles into shared components to avoid duplicate imports. Turn off linters or formatters that auto-sort imports like ESLint’s sort-imports. You can use the cssChunking option in next.config.js to control how CSS is chunked. Development vs Production In development (next dev), CSS updates apply instantly with Fast Refresh. In production (next build), all CSS files are automatically concatenated into many minified and code-split .css files, ensuring the minimal amount of CSS is loaded for a route. CSS still loads with JavaScript disabled in production, but JavaScript is required in development for Fast Refresh. CSS ordering can behave differently in development, always ensure to check the build (next build) to verify the final CSS order. Next StepsLearn more about the features mentioned in this page.Tailwind CSSStyle your Next.js Application using Tailwind CSS.SassLearn how to use Sass in your Next.js application.CSS-in-JSUse CSS-in-JS libraries with Next.js",
+      "code": "pnpm add -D tailwindcss @tailwindcss/postcss"
+    },
+    {
+      "description": "How to use CSS in your applicationNext.js provides several ways to style your application using CSS, including: Tailwind CSS CSS Modules Global CSS External Stylesheets Sass CSS-in-JS Tailwind CSS Tailwind CSS is a utility-first CSS framework that provides low-level utility classes to build custom designs. Install Tailwind CSS:pnpmnpmyarnbunTerminalpnpm add -D tailwindcss @tailwindcss/postcssAdd the PostCSS plugin to your postcss.config.mjs file:postcss.config.mjsexport default { plugins: { '@tailwindcss/postcss': {}, }, }Import Tailwind in your global CSS file:styles/globals.css@import 'tailwindcss';Import the CSS file in your pages/_app.js file:pages/_app.jsimport '@/styles/globals.css' export default function MyApp({ Component, pageProps }) { return <Component {...pageProps} /> }Now you can start using Tailwind's utility classes in your application:pages/index.tsxTypeScriptJavaScriptTypeScriptexport default function Home() { return ( <main className=\"flex min-h-screen flex-col items-center justify-between p-24\"> <h1 className=\"text-4xl font-bold\">Welcome to Next.js!</h1> </main> ) } Good to know: If you need broader browser support for very old browsers, see the Tailwind CSS v3 setup instructions. CSS Modules CSS Modules locally scope CSS by generating unique class names. This allows you to use the same class in different files without worrying about naming collisions. To start using CSS Modules, create a new file with the extension .module.css and import it into any component inside the pages directory:/styles/blog.module.css.blog { padding: 24px; }pages/blog/index.tsxTypeScriptJavaScriptTypeScriptimport styles from './blog.module.css' export default function Page() { return <main className={styles.blog}></main> } Global CSS You can use global CSS to apply styles across your application. Import the stylesheet in the pages/_app.js file to apply the styles to every route in your application:pages/_app.jsimport '@/styles/global.css' export default function MyApp({ Component, pageProps }) { return <Component {...pageProps} /> }Due to the global nature of stylesheets, and to avoid conflicts, you should import them inside pages/_app.js. External stylesheets Next.js allows you to import CSS files from a JavaScript file. This is possible because Next.js extends the concept of import beyond JavaScript.Import styles from node_modules Since Next.js 9.5.4, importing a CSS file from node_modules is permitted anywhere in your application.For global stylesheets, like bootstrap or nprogress, you should import the file inside pages/_app.js. For example:pages/_app.jsimport 'bootstrap/dist/css/bootstrap.css' export default function MyApp({ Component, pageProps }) { return <Component {...pageProps} /> }To import CSS required by a third-party component, you can do so in your component. For example:components/example-dialog.jsimport { useState } from 'react' import { Dialog } from '@reach/dialog' import VisuallyHidden from '@reach/visually-hidden' import '@reach/dialog/styles.css' function ExampleDialog(props) { const [showDialog, setShowDialog] = useState(false) const open = () => setShowDialog(true) const close = () => setShowDialog(false) return ( <div> <button onClick={open}>Open Dialog</button> <Dialog isOpen={showDialog} onDismiss={close}> <button className=\"close-button\" onClick={close}> <VisuallyHidden>Close</VisuallyHidden> <span aria-hidden>×</span> </button> <p>Hello there. I am a dialog</p> </Dialog> </div> ) } Ordering and Merging Next.js optimizes CSS during production builds by automatically chunking (merging) stylesheets. The order of your CSS depends on the order you import styles in your code. For example, base-button.module.css will be ordered before page.module.css since <BaseButton> is imported before page.module.css: page.tsxTypeScriptJavaScriptTypeScriptimport { BaseButton } from './base-button' import styles from './page.module.css' export default function Page() { return <BaseButton className={styles.primary} /> } base-button.tsxTypeScriptJavaScriptTypeScriptimport styles from './base-button.module.css' export function BaseButton() { return <button className={styles.primary} /> } Recommendations To keep CSS ordering predictable: Try to contain CSS imports to a single JavaScript or TypeScript entry file Import global styles and Tailwind stylesheets in the root of your application. Use Tailwind CSS for most styling needs as it covers common design patterns with utility classes. Use CSS Modules for component-specific styles when Tailwind utilities aren't sufficient. Use a consistent naming convention for your CSS modules. For example, using <name>.module.css over <name>.tsx. Extract shared styles into shared components to avoid duplicate imports. Turn off linters or formatters that auto-sort imports like ESLint’s sort-imports. You can use the cssChunking option in next.config.js to control how CSS is chunked. Development vs Production In development (next dev), CSS updates apply instantly with Fast Refresh. In production (next build), all CSS files are automatically concatenated into many minified and code-split .css files, ensuring the minimal amount of CSS is loaded for a route. CSS still loads with JavaScript disabled in production, but JavaScript is required in development for Fast Refresh. CSS ordering can behave differently in development, always ensure to check the build (next build) to verify the final CSS order.",
+      "code": "pnpm add -D tailwindcss @tailwindcss/postcss"
+    },
+    {
+      "description": "For global stylesheets, like bootstrap or nprogress, you should import the file inside pages/_app.js. For example:",
+      "code": "bootstrap"
+    },
+    {
+      "description": "To import CSS required by a third-party component, you can do so in your component. For example:",
+      "code": "import { useState } from 'react'\nimport { Dialog } from '@reach/dialog'\nimport VisuallyHidden from '@reach/visually-hidden'\nimport '@reach/dialog/styles.css'\n \nfunction ExampleDialog(props) {\n  const [showDialog, setShowDialog] = useState(false)\n  const open = () => setShowDialog(true)\n  const close = () => setShowDialog(false)\n \n  return (\n    <div>\n      <button onClick={open}>Open Dialog</button>\n      <Dialog isOpen={showDialog} onDismiss={close}>\n        <button className=\"close-button\" onClick={close}>\n          <VisuallyHidden>Close</VisuallyHidden>\n          <span aria-hidden>×</span>\n        </button>\n        <p>Hello there. I am a dialog</p>\n      </Dialog>\n    </div>\n  )\n}"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/getting-started",
+    "https://nextjs.org/docs/pages/getting-started/css",
+    "https://nextjs.org/docs/app/guides/sass",
+    "https://nextjs.org/docs/app/guides/css-in-js",
+    "https://nextjs.org/docs/app/guides/tailwind-v3-css",
+    "https://nextjs.org/docs/pages/building-your-application/routing/custom-app",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cssChunking",
+    "https://nextjs.org/docs/architecture/fast-refresh",
+    "https://nextjs.org/docs/pages/guides/tailwind-v3-css",
+    "https://nextjs.org/docs/pages/guides/sass",
+    "https://nextjs.org/docs/pages/guides/css-in-js",
+    "https://nextjs.org/docs/pages/getting-started/fonts",
+    "https://nextjs.org/docs/pages/getting-started/deploying"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Set a 50 MB maximum size for each log file",
+  "content": "export N8N_LOG_FILE_SIZE_MAX=50",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#set-a-50-mb-maximum-size-for-each-log-file",
+  "links": []
+}

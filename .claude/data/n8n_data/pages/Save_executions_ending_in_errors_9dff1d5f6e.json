@@ -1,0 +1,8 @@
+{
+  "title": "Save executions ending in errors",
+  "content": "export EXECUTIONS_DATA_SAVE_ON_ERROR=all",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#save-executions-ending-in-errors",
+  "links": []
+}

@@ -1,0 +1,48 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/reactCompiler",
+  "title": "reactCompiler",
+  "content": "Next.js includes support for the React Compiler, a tool designed to improve performance by automatically optimizing component rendering. This reduces the need for manual memoization using useMemo and useCallback.\n\nNext.js includes a custom performance optimization written in SWC that makes the React Compiler more efficient. Instead of running the compiler on every file, Next.js analyzes your project and only applies the React Compiler to relevant files. This avoids unnecessary work and leads to faster builds compared to using the Babel plugin on its own.\n\nThe React Compiler runs through a Babel plugin. To keep builds fast, Next.js uses a custom SWC optimization that only applies the React Compiler to relevant files—like those with JSX or React Hooks.\n\nThis avoids compiling everything and keeps the performance cost minimal. You may still see slightly slower builds compared to the default Rust-based compiler, but the impact is small and localized.\n\nTo use it, install the babel-plugin-react-compiler:\n\nThen, add reactCompiler option in next.config.js:\n\nYou can configure the compiler to run in \"opt-in\" mode as follows:\n\nThen, you can annotate specific components or hooks with the \"use memo\" directive from React to opt-in:\n\nNote: You can also use the \"use no memo\" directive from React for the opposite effect, to opt-out a component or hook.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "reactCompiler",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "How It Works",
+      "id": "how-it-works"
+    },
+    {
+      "level": "h2",
+      "text": "Annotations",
+      "id": "annotations"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "npm install -D babel-plugin-react-compiler",
+      "language": "unknown"
+    },
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  reactCompiler: true,\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  reactCompiler: {\n    compilationMode: 'annotation',\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "export default function Page() {\n  'use memo'\n  // ...\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/reactCompiler",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/proxyClientMaxBodySize",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/reactMaxHeadersLength"
+  ]
+}

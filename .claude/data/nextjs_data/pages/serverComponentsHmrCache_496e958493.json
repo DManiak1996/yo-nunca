@@ -1,0 +1,26 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/serverComponentsHmrCache",
+  "title": "serverComponentsHmrCache",
+  "content": "The experimental serverComponentsHmrCache option allows you to cache fetch responses in Server Components across Hot Module Replacement (HMR) refreshes in local development. This results in faster responses and reduced costs for billed API calls.\n\nBy default, the HMR cache applies to all fetch requests, including those with the cache: 'no-store' option. This means uncached requests will not show fresh data between HMR refreshes. However, the cache will be cleared on navigation or full-page reloads.\n\nYou can disable the HMR cache by setting serverComponentsHmrCache to false in your next.config.js file:\n\nGood to know: For better observability, we recommend using the logging.fetches option which logs fetch cache hits and misses in the console during development.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "serverComponentsHmrCache",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    serverComponentsHmrCache: false, // defaults to true\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/logging",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/serverActions",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/serverExternalPackages"
+  ]
+}

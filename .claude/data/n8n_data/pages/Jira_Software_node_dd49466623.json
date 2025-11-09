@@ -1,0 +1,34 @@
+{
+  "title": "Jira Software node",
+  "content": "Use the Jira Software node to automate work in Jira, and integrate Jira with other applications. n8n has built-in support for a wide range of Jira features, including creating, updating, deleting, and getting issues, and users.\n\nOn this page, you'll find a list of operations the Jira Software node supports and links to more resources.\n\nRefer to [Jira credentials](../../credentials/jira/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- Issue\n  - Get issue changelog\n  - Create a new issue\n  - Delete an issue\n  - Get an issue\n  - Get all issues\n  - Create an email notification for an issue and add it to the mail queue\n  - Return either all transitions or a transition that can be performed by the user on an issue, based on the issue's status\n  - Update an issue\n- Issue Attachment\n  - Add attachment to issue\n  - Get an attachment\n  - Get all attachments\n  - Remove an attachment\n- Issue Comment\n  - Add comment to issue\n  - Get a comment\n  - Get all comments\n  - Remove a comment\n  - Update a comment\n- User\n  - Create a new user.\n  - Delete a user.\n  - Retrieve a user.\n\n## Templates and examples\n\n**Automate Customer Support Issue Resolution using AI Text Classifier**\n\n[View template details](https://n8n.io/workflows/2468-automate-customer-support-issue-resolution-using-ai-text-classifier/)\n\n**Create a new issue in Jira**\n\n[View template details](https://n8n.io/workflows/459-create-a-new-issue-in-jira/)\n\n**Analyze & Sort Suspicious Email Contents with ChatGPT**\n\n[View template details](https://n8n.io/workflows/2666-analyze-and-sort-suspicious-email-contents-with-chatgpt/)\n\n[Browse Jira Software integration templates](https://n8n.io/integrations/jira-software/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.\n\nRefer to the [official JQL documentation](https://www.atlassian.com/software/jira/guides/expand-jira/jql) about Jira Query Language (JQL) to learn more about it.\n\n## Fetch issues for a specific project\n\nThe **Get All** operation returns all the issues from Jira. To fetch issues for a particular project, you need to use Jira Query Language (JQL).\n\nFor example, if you want to receive all the issues of a project named `n8n`, you'd do something like this:\n\n- Select **Get All** from the **Operation** dropdown list.\n- Toggle **Return All** to true.\n- Select **Add Option** and select **JQL**.\n- Enter `project=n8n` in the **JQL** field.\n\nThis query will fetch all the issues in the project named `n8n`. Enter the name of your project instead of `n8n` to fetch all the issues for your project.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Fetch issues for a specific project",
+      "id": "fetch-issues-for-a-specific-project"
+    }
+  ],
+  "url": "llms-txt#jira-software-node",
+  "links": []
+}

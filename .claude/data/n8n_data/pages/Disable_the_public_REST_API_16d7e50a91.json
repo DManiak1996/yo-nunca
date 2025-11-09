@@ -1,0 +1,28 @@
+{
+  "title": "Disable the public REST API",
+  "content": "The [n8n public REST API](../../../api/) allows you to programmatically perform many of the same tasks as you can in the n8n GUI.\n\nIf you don't plan on using this API, n8n recommends disabling it to improve the security of your n8n installation.\n\nTo disable the [public REST API](../../../api/), set the `N8N_PUBLIC_API_DISABLED` environment variable to `true`, for example:\n\n## Disable the API playground\n\nTo disable the [API playground](../../../api/using-api-playground/), set the `N8N_PUBLIC_API_SWAGGERUI_DISABLED` environment variable to `true`, for example:\n\nRefer to [Deployment environment variables](../../configuration/environment-variables/deployment/) for more information on these environment variables.\n\nRefer to [Configuration](../../configuration/configuration-methods/) for more information on setting environment variables.",
+  "code_samples": [
+    {
+      "code": "export N8N_PUBLIC_API_DISABLED=true",
+      "language": "unknown"
+    },
+    {
+      "code": "export N8N_PUBLIC_API_SWAGGERUI_DISABLED=true",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Disable the API playground",
+      "id": "disable-the-api-playground"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#disable-the-public-rest-api",
+  "links": []
+}

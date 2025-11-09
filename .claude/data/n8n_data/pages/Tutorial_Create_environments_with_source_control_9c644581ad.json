@@ -1,0 +1,74 @@
+{
+  "title": "Tutorial: Create environments with source control",
+  "content": "- Available on Enterprise.\n- You must be an n8n instance owner or instance admin to enable and configure source control.\n- Instance owners and instance admins can push changes to and pull changes from the connected repository.\n- Project admins can push changes to the connected repository. They can't pull changes from the repository.\n\nThis tutorial walks through the process of setting up environments end-to-end. You'll create two environments: development and production. It uses GitHub as the Git provider. The process is similar for other providers.\n\nn8n has built its environments feature on top of Git, a version control software. You link an n8n instance to a Git branch, and use a push-pull pattern to move work between environments. You should have some understanding of environments and Git. If you need more information on these topics, refer to:\n\n- [Environments in n8n](../understand/environments/): the purpose of environments, and how they work in n8n.\n- [Git and n8n](../understand/git/): Git concepts and source control in n8n.\n\n## Choose your source control pattern\n\nBefore setting up source control and environments, you need to plan your environments, and how they relate to Git branches. n8n supports different [Branch patterns](../understand/patterns/). For environments, you need to choose between two patterns: multi-instance, multi-branch, or multi-instance, single-branch. This tutorial covers both patterns.\n\nRecommendation: don't push and pull to the same n8n instance\n\nYou can push work from an instance to a branch, and pull to the same instance. n8n doesn't recommend this. To reduce the risk of merge conflicts and overwriting work, try to create a process where work goes in one direction: either to Git, or from Git, but not both.\n\n### Multiple instances, multiple branches\n\nThe advantages of this pattern are:\n\n- An added safety layer to prevent changes getting into your production environment by mistake. You have to do a pull request in GitHub to copy work between environments.\n- It supports more than two instances.\n\nThe disadvantage is more manual steps to copy work between environments.\n\n### Multiple instances, one branch\n\nThe advantage of this pattern is that work is instantly available to other environments when you push from one instance.\n\nThe disadvantages are:\n\n- If you push by mistake, there is a risk the work will make it into your production instance. If you [use a GitHub Action to automate pulls](./#optional-use-a-github-action-to-automate-pulls) to production, you must either use the multi-instance, multi-branch pattern, or be careful to never push work that you don't want in production.\n- Pushing and pulling to the same instance can cause data loss as changes are overridden when performing these actions. You should set up processes to ensure content flows in one direction.\n\n## Set up your repository\n\nOnce you've chosen your pattern, you need to set up your GitHub repository.\n\n1. [Create a new repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository).\n   - Make sure the repository is private, unless you want your workflows, tags, and variable and credential stubs exposed to the internet.\n   - Create the new repository with a README so you can immediately create branches.\n1. Create one branch named `production` and another named `development`. Refer to [Creating and deleting branches within your repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository) for guidance.\n\n[Create a new repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository).\n\n- Make sure the repository is private, unless you want your workflows, tags, and variable and credential stubs exposed to the internet.\n- Create the new repository with a README. This creates the `main` branch, which you'll connect to.\n\n## Connect your n8n instances to your repository\n\nCreate two n8n instances, one for development, one for production.\n\n### Configure Git in n8n\n\n1. Go to **Settings** > **Environments**.\n1. Choose your connection method:\n   - **SSH**: In **Git repository URL**, enter the SSH URL for your repository (for example, `git@github.com:username/repo.git`).\n   - **HTTPS**: In **Git repository URL** enter the HTTPS URL for your repository (for example, `https://github.com/username/repo.git`).\n1. Configure authentication based on your connection method:\n   - **For SSH**: n8n supports ED25519 and RSA public key algorithms. ED25519 is the default. Select **RSA** under **SSH Key** if your git host requires RSA. Copy the SSH key.\n   - **For HTTPS**: Enter your credentials:\n     - **Username**: Your Git provider username.\n     - **Token**: Your Personal Access Token (PAT) from your Git provider.\n\n### Set up a deploy key\n\nSet up SSH access by creating a deploy key for the repository using the SSH key from n8n. The key must have write access. Refer to [GitHub | Managing deploy keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys) for guidance.\n\n### Connect n8n and configure your instance\n\n1. In **Settings** > **Environments** in n8n, select **Connect**. n8n connects to your Git repository.\n\n1. Under **Instance settings**, choose which branch you want to use for the current n8n instance. Connect the production branch to the production instance, and the development branch to the development instance.\n\n1. Production instance only: select **Protected instance** to prevent users editing workflows in this instance.\n\n1. Select **Save settings**.\n\n1. In **Settings** > **Environments** in n8n, select **Connect**.\n\n1. Under **Instance settings**, select the main branch.\n\n1. Production instance only: select **Protected instance** to prevent users editing workflows in this instance.\n\n1. Select **Save settings**.\n\n## Push work from development\n\nIn your development instance, create a few workflows, tags, variables, and credentials.\n\n1. Select **Push** in the main menu.\n\nPull and push buttons when menu is closed\n\nPull and push buttons when menu is open\n\n1. In the **Commit and push changes** modal, select which workflows you want to push. You can filter by status (new, modified, deleted) and search for workflows. n8n automatically pushes tags, and variable and credential stubs.\n\n1. Enter a commit message. This should be a one sentence description of the changes you're making.\n\n1. Select **Commit and Push**. n8n sends the work to Git, and displays a success message on completion.\n\n## Pull work to production\n\nYour work is now in GitHub. If you're using a multi-branch setup, it's on the development branch. If you chose the single-branch setup, it's on main.\n\n1. In GitHub, create a pull request to merge development into production.\n1. Merge the pull request.\n1. In your production instance, select **Pull** in the main menu.\n\nIn your production instance, select **Pull** in the main menu.\n\nPull and push buttons when menu is closed\n\nPull and push buttons when menu is open\n\n### Optional: Use a GitHub Action to automate pulls\n\nIf you want to avoid logging in to your production instance to pull, you can use a [GitHub Action](https://docs.github.com/en/actions/creating-actions/about-custom-actions) and the [n8n API](../../api/) to automatically pull every time you push new work to your production or main branch.\n\nA GitHub Action example:\n\n- [Environments in n8n](../understand/environments/) and [Git and n8n](../understand/git/)\n- [Source control patterns](../understand/patterns/)",
+  "code_samples": [
+    {
+      "code": "name: CI\non:\n  # Trigger the workflow on push or pull request events for the \"production\" branch\n  push:\n    branches: [ \"production\" ]\n  # Allows you to run this workflow manually from the Actions tab\n  workflow_dispatch:\njobs:\n  run-pull:\n    runs-on: ubuntu-latest\n    steps:\n      - name: PULL\n\t\t\t\t# Use GitHub secrets to protect sensitive information\n        run: >\n          curl --location '${{ secrets.INSTANCE_URL }}/version-control/pull' --header\n          'Content-Type: application/json' --header 'X-N8N-API-KEY: ${{ secrets.INSTANCE_API_KEY }}'",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Choose your source control pattern",
+      "id": "choose-your-source-control-pattern"
+    },
+    {
+      "level": "h3",
+      "text": "Multiple instances, multiple branches",
+      "id": "multiple-instances,-multiple-branches"
+    },
+    {
+      "level": "h3",
+      "text": "Multiple instances, one branch",
+      "id": "multiple-instances,-one-branch"
+    },
+    {
+      "level": "h2",
+      "text": "Set up your repository",
+      "id": "set-up-your-repository"
+    },
+    {
+      "level": "h2",
+      "text": "Connect your n8n instances to your repository",
+      "id": "connect-your-n8n-instances-to-your-repository"
+    },
+    {
+      "level": "h3",
+      "text": "Configure Git in n8n",
+      "id": "configure-git-in-n8n"
+    },
+    {
+      "level": "h3",
+      "text": "Set up a deploy key",
+      "id": "set-up-a-deploy-key"
+    },
+    {
+      "level": "h3",
+      "text": "Connect n8n and configure your instance",
+      "id": "connect-n8n-and-configure-your-instance"
+    },
+    {
+      "level": "h2",
+      "text": "Push work from development",
+      "id": "push-work-from-development"
+    },
+    {
+      "level": "h2",
+      "text": "Pull work to production",
+      "id": "pull-work-to-production"
+    },
+    {
+      "level": "h3",
+      "text": "Optional: Use a GitHub Action to automate pulls",
+      "id": "optional:-use-a-github-action-to-automate-pulls"
+    },
+    {
+      "level": "h2",
+      "text": "Next steps",
+      "id": "next-steps"
+    }
+  ],
+  "url": "llms-txt#tutorial:-create-environments-with-source-control",
+  "links": []
+}

@@ -1,0 +1,24 @@
+{
+  "title": "Airtable node common issues",
+  "content": "Here are some common errors and issues with the [Airtable node](../) and steps to resolve or troubleshoot them.\n\n## Forbidden - perhaps check your credentials\n\nThis error displays when trying to perform actions not permitted by your current level of access. The full text looks something like this:\n\nThe error most often displays when the credential you're using doesn't have the scopes it requires on the resources you're attempting to manage.\n\nRefer to the [Airtable credentials](../../../credentials/airtable/) and [Airtables scopes documentation](https://airtable.com/developers/web/api/scopes) for more information.\n\n## Service is receiving too many requests from you\n\nAirtable has a hard API limit on the number of requests generated using personal access tokens.\n\nIf you send more than five requests per second per base, you will receive a 429 error, indicating that you have sent too many requests. You will have to wait 30 seconds before resuming requests. This same limit applies for sending more than 50 requests across all bases per access token.\n\nYou can find out more in the [Airtable's rate limits documentation](https://airtable.com/developers/web/api/rate-limits). If you find yourself running into rate limits with the Airtable node, consider implementing one of the suggestions on the [handling rate limits](../../../rate-limits/) page.",
+  "code_samples": [
+    {
+      "code": "There was a problem loading the parameter options from server: \"Forbidden - perhaps check your credentials?\"",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Forbidden - perhaps check your credentials",
+      "id": "forbidden---perhaps-check-your-credentials"
+    },
+    {
+      "level": "h2",
+      "text": "Service is receiving too many requests from you",
+      "id": "service-is-receiving-too-many-requests-from-you"
+    }
+  ],
+  "url": "llms-txt#airtable-node-common-issues",
+  "links": []
+}

@@ -1,0 +1,37 @@
+{
+  "title": "Monitoring",
+  "content": "There are three API endpoints you can call to check the status of your instance: `/healthz`, `healthz/readiness`, and `/metrics`.\n\n## healthz and healthz/readiness\n\nThe `/healthz` endpoint returns a standard HTTP status code. 200 indicates the instance is reachable. It doesn't indicate DB status. It's available for both self-hosted and Cloud users.\n\nThe `/healthz/readiness` endpoint is similar to the `/healthz` endpoint, but it returns a HTTP status code of 200 if the DB is connected and migrated and therefore the instance is ready to accept traffic.\n\nThe `/metrics` endpoint provides more detailed information about the current status of the instance.\n\nThe `/metrics` endpoint isn't available on n8n Cloud.\n\n## Enable metrics and healthz for self-hosted n8n\n\nThe `/metrics` and `/healthz` endpoints are disabled by default. To enable them, configure your n8n instance:",
+  "code_samples": [
+    {
+      "code": "<your-instance-url>/healthz",
+      "language": "unknown"
+    },
+    {
+      "code": "<your-instance-url>/healthz/readiness",
+      "language": "unknown"
+    },
+    {
+      "code": "<your-instance-url>/metrics",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "healthz and healthz/readiness",
+      "id": "healthz-and-healthz/readiness"
+    },
+    {
+      "level": "h2",
+      "text": "metrics",
+      "id": "metrics"
+    },
+    {
+      "level": "h2",
+      "text": "Enable metrics and healthz for self-hosted n8n",
+      "id": "enable-metrics-and-healthz-for-self-hosted-n8n"
+    }
+  ],
+  "url": "llms-txt#monitoring",
+  "links": []
+}

@@ -1,0 +1,79 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/taint",
+  "title": "taint",
+  "content": "The taint option enables support for experimental React APIs for tainting objects and values. This feature helps prevent sensitive data from being accidentally passed to the client. When enabled, you can use:\n\nGood to know: Activating this flag also enables the React experimental channel for app directory.\n\nWarning: Do not rely on the taint API as your only mechanism to prevent exposing sensitive data to the client. See our security recommendations.\n\nThe taint APIs allows you to be defensive, by declaratively and explicitly marking data that is not allowed to pass through the Server-Client boundary. When an object or value, is passed through the Server-Client boundary, React throws an error.\n\nThis is helpful for cases where:\n\nIt is recommended to model your data and APIs so that sensitive data is not returned to contexts where it is not needed.\n\nIn this case, the getUserDetails function returns data about a given user. We taint the user object reference, so that it cannot cross a Server-Client boundary. For example, assuming UserCard is a Client Component.\n\nWe can still access individual fields from the tainted userDetails object.\n\nNow, passing the entire object to the Client Component will throw an error.\n\nIn this case, we can access the server configuration by awaiting calls to config.getConfigDetails. However, the system configuration contains the SERVICE_API_KEY that we don't want to expose to clients.\n\nWe can taint the config.SERVICE_API_KEY value.\n\nWe can still access other properties of the systemConfig object.\n\nHowever, passing SERVICE_API_KEY to ClientDashboard throws an error.\n\nNote that, even though, systemConfig.SERVICE_API_KEY is reassigned to a new variable. Passing it to a Client Component still throws an error.\n\nWhereas, a value derived from a tainted unique value, will be exposed to the client.\n\nA better approach is to remove SERVICE_API_KEY from the data returned by getSystemConfig.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "taint",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h2",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Tainting an object reference",
+      "id": "tainting-an-object-reference"
+    },
+    {
+      "level": "h3",
+      "text": "Tainting a unique value",
+      "id": "tainting-a-unique-value"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    taint: true,\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "import { experimental_taintObjectReference } from 'react'\n \nfunction getUserDetails(id: string): UserDetails {\n  const user = await db.queryUserById(id)\n \n  experimental_taintObjectReference(\n    'Do not use the entire user info object. Instead, select only the fields you need.',\n    user\n  )\n \n  return user\n}",
+      "language": "python"
+    },
+    {
+      "code": "export async function ContactPage({\n  params,\n}: {\n  params: Promise<{ id: string }>\n}) {\n  const { id } = await params\n  const userDetails = await getUserDetails(id)\n \n  return (\n    <UserCard\n      firstName={userDetails.firstName}\n      lastName={userDetails.lastName}\n    />\n  )\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function ContactPage({\n  params,\n}: {\n  params: Promise<{ id: string }>\n}) {\n  const userDetails = await getUserDetails(id)\n \n  // Throws an error\n  return <UserCard user={userDetails} />\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { experimental_taintUniqueValue } from 'react'\n \nfunction getSystemConfig(): SystemConfig {\n  const config = await config.getConfigDetails()\n \n  experimental_taintUniqueValue(\n    'Do not pass configuration tokens to the client',\n    config,\n    config.SERVICE_API_KEY\n  )\n \n  return config\n}",
+      "language": "python"
+    },
+    {
+      "code": "export async function Dashboard() {\n  const systemConfig = await getSystemConfig()\n \n  return <ClientDashboard version={systemConfig.SERVICE_API_VERSION} />\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function Dashboard() {\n  const systemConfig = await getSystemConfig()\n  // Someone makes a mistake in a PR\n  const version = systemConfig.SERVICE_API_KEY\n \n  return <ClientDashboard version={version} />\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export async function Dashboard() {\n  const systemConfig = await getSystemConfig()\n  // Someone makes a mistake in a PR\n  const version = `version::${systemConfig.SERVICE_API_KEY}`\n \n  return <ClientDashboard version={version} />\n}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/taint",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/staticGeneration",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/trailingSlash"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Workflow Trigger node",
+  "content": "The Workflow Trigger node gets triggered when a workflow is updated or activated.\n\nn8n has deprecated the Workflow Trigger node and moved its functionality to the [n8n Trigger node](../n8n-nodes-base.n8ntrigger/).\n\nIf you want to use the Workflow Trigger node for a workflow, add the node to the workflow. You don't have to create a separate workflow.\n\nThe Workflow Trigger node gets triggered for the workflow that it gets added to. You can use the Workflow Trigger node to trigger a workflow to notify the state of the workflow.\n\nThe node includes a single parameter to identify the **Events** that should trigger it. Choose from these events:\n\n- **Active Workflow Updated**: If you select this event, the node triggers when this workflow is updated.\n- **Workflow Activated**: If you select this event, the node triggers when this workflow is activated.\n\nYou can select one or both of these events.\n\n## Templates and examples\n\n**Qualys Vulnerability Trigger Scan SubWorkflow**\n\n[View template details](https://n8n.io/workflows/2511-qualys-vulnerability-trigger-scan-subworkflow/)\n\n**Pattern for Multiple Triggers Combined to Continue Workflow**\n\n[View template details](https://n8n.io/workflows/2857-pattern-for-multiple-triggers-combined-to-continue-workflow/)\n\n**Unify multiple triggers into a single workflow**\n\nby Guillaume Duvernay\n\n[View template details](https://n8n.io/workflows/7784-unify-multiple-triggers-into-a-single-workflow/)\n\n[Browse Workflow Trigger integration templates](https://n8n.io/integrations/workflow-trigger/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#workflow-trigger-node",
+  "links": []
+}

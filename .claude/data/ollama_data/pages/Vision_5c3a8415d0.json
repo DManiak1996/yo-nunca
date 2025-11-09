@@ -1,0 +1,32 @@
+{
+  "title": "Vision",
+  "content": "Source: https://docs.ollama.com/capabilities/vision\n\nVision models accept images alongside text so the model can describe, classify, and answer questions about what it sees.\n\n## Usage with Ollama's API\n\nProvide an `images` array. SDKs accept file paths, URLs or raw bytes while the REST API expects base64-encoded image data.\n\n<Tabs>\n  <Tab title=\"cURL\">\n    \n  </Tab>\n\n<Tab title=\"Python\">\n    \n  </Tab>\n\n<Tab title=\"JavaScript\">\n    \n  </Tab>\n</Tabs>",
+  "code_samples": [
+    {
+      "code": "## Usage with Ollama's API\n\nProvide an `images` array. SDKs accept file paths, URLs or raw bytes while the REST API expects base64-encoded image data.\n\n<Tabs>\n  <Tab title=\"cURL\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"Python\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"JavaScript\">",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Quick start",
+      "id": "quick-start"
+    },
+    {
+      "level": "h2",
+      "text": "Usage with Ollama's API",
+      "id": "usage-with-ollama's-api"
+    }
+  ],
+  "url": "llms-txt#vision",
+  "links": []
+}

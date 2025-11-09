@@ -1,0 +1,8 @@
+{
+  "title": "Update its data",
+  "content": "nodeStaticData.lastExecution = new Date().getTime()",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#update-its-data",
+  "links": []
+}

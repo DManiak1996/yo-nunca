@@ -1,0 +1,48 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segments",
+  "title": "useSelectedLayoutSegments",
+  "content": "useSelectedLayoutSegments is a Client Component hook that lets you read the active route segments below the Layout it is called from.\n\nIt is useful for creating UI in parent Layouts that need knowledge of active child segments such as breadcrumbs.\n\nuseSelectedLayoutSegments optionally accepts a parallelRoutesKey, which allows you to read the active route segment within that slot.\n\nuseSelectedLayoutSegments returns an array of strings containing the active segments one level down from the layout the hook was called from. Or an empty array if none exist.\n\nFor example, given the Layouts and URLs below, the returned segments would be:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "useSelectedLayoutSegments",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "'use client'\n \nimport { useSelectedLayoutSegments } from 'next/navigation'\n \nexport default function ExampleClientComponent() {\n  const segments = useSelectedLayoutSegments()\n \n  return (\n    <ul>\n      {segments.map((segment, index) => (\n        <li key={index}>{segment}</li>\n      ))}\n    </ul>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "const segments = useSelectedLayoutSegments(parallelRoutesKey?: string)",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-groups",
+    "https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segments",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/parallel-routes",
+    "https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segment",
+    "https://nextjs.org/docs/app/api-reference/functions/userAgent"
+  ]
+}

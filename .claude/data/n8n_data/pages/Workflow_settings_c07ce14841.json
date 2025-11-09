@@ -1,0 +1,69 @@
+{
+  "title": "Workflow settings",
+  "content": "You can customize workflow behavior for individual workflows using workflow settings.\n\n## Access workflow settings\n\nTo open the settings:\n\n1. Open your workflow.\n1. Select the **three dots icon** in the upper-right corner.\n1. Select **Settings**. n8n opens the **Workflow settings** modal.\n\n## Available settings\n\nThe following settings are available:\n\nChoose the execution order for multi-branch workflows:\n\n**v1 (recommended)** executes each branch in turn, completing one branch before starting another. n8n orders the branches based on their position on the [canvas](../../glossary/#canvas-n8n), from topmost to bottommost. If two branches are at the same height, the leftmost branch executes first.\n\n**v0 (legacy)** executes the first node of each branch, then the second node of each branch, and so on.\n\n### Error Workflow (to notify when this one errors)\n\nSelect a workflow to trigger if the current workflow fails. See [error workflows](../../flow-logic/error-handling/) for more details.\n\n### This workflow can be called by\n\nChoose which other workflows can call this workflow.\n\nSets the timezone for this workflow. The timezone setting is important for the Schedule Trigger node.\n\nYou can set your n8n instance's timezone to configure the default timezone workflows use:\n\n- [Set a n8n Cloud instance timezone](../../manage-cloud/set-cloud-timezone/)\n- [Configure the timezone for self-hosted instances](../../hosting/configuration/environment-variables/timezone-localization/)\n\nIf you don't configure the workflow or instance timezone, n8n defaults to the EDT (New York) timezone.\n\n### Save failed production executions\n\nWhether n8n should save failed executions for active workflows.\n\n### Save successful production executions\n\nWhether n8n should save successful executions for active workflows.\n\n### Save manual executions\n\nWhether n8n should save executions for workflows started by the user in the editor.\n\n### Save execution progress\n\nWhether n8n should save execution data for each node.\n\nIf set to **Save**, the workflow resumes from where it stopped in case of an error. This may increase latency.\n\nWhether n8n should cancel the current workflow execution after a certain amount of time elapses.\n\nWhen enabled, the **Timeout After** option appears. Here, you can set the time (in hours, minutes, and seconds) after which the workflow should timeout. For n8n Cloud users, n8n enforces a maximum available timeout for each plan.\n\n### Estimated time saved\n\nAn estimate of the number of minutes each of execution of this workflow saves you.\n\nSetting this lets n8n calculate the amount of time saved for [insights](../../insights/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Access workflow settings",
+      "id": "access-workflow-settings"
+    },
+    {
+      "level": "h2",
+      "text": "Available settings",
+      "id": "available-settings"
+    },
+    {
+      "level": "h3",
+      "text": "Execution order",
+      "id": "execution-order"
+    },
+    {
+      "level": "h3",
+      "text": "Error Workflow (to notify when this one errors)",
+      "id": "error-workflow-(to-notify-when-this-one-errors)"
+    },
+    {
+      "level": "h3",
+      "text": "This workflow can be called by",
+      "id": "this-workflow-can-be-called-by"
+    },
+    {
+      "level": "h3",
+      "text": "Timezone",
+      "id": "timezone"
+    },
+    {
+      "level": "h3",
+      "text": "Save failed production executions",
+      "id": "save-failed-production-executions"
+    },
+    {
+      "level": "h3",
+      "text": "Save successful production executions",
+      "id": "save-successful-production-executions"
+    },
+    {
+      "level": "h3",
+      "text": "Save manual executions",
+      "id": "save-manual-executions"
+    },
+    {
+      "level": "h3",
+      "text": "Save execution progress",
+      "id": "save-execution-progress"
+    },
+    {
+      "level": "h3",
+      "text": "Timeout Workflow",
+      "id": "timeout-workflow"
+    },
+    {
+      "level": "h3",
+      "text": "Estimated time saved",
+      "id": "estimated-time-saved"
+    }
+  ],
+  "url": "llms-txt#workflow-settings",
+  "links": []
+}

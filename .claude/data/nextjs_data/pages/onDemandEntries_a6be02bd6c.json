@@ -1,0 +1,25 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/onDemandEntries",
+  "title": "onDemandEntries",
+  "content": "Next.js exposes some options that give you some control over how the server will dispose or keep in memory built pages in development.\n\nTo change the defaults, open next.config.js and add the onDemandEntries config:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "onDemandEntries",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  onDemandEntries: {\n    // period (in ms) where the server will keep pages in the buffer\n    maxInactiveAge: 25 * 1000,\n    // number of pages that should be kept simultaneously without being disposed\n    pagesBufferLength: 2,\n  },\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/mdxRs",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/optimizePackageImports"
+  ]
+}

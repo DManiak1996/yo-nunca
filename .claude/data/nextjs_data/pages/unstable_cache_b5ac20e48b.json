@@ -1,0 +1,56 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/unstable_cache",
+  "title": "unstable_cache",
+  "content": "Warning: This API will be replaced by use cache when it reaches stability.\n\nunstable_cache allows you to cache the results of expensive operations, like database queries, and reuse them across multiple requests.\n\nunstable_cache returns a function that when invoked, returns a Promise that resolves to the cached data. If the data is not in the cache, the provided function will be invoked, and its result will be cached and returned.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "unstable_cache",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Example",
+      "id": "example"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { getUser } from './data';\nimport { unstable_cache } from 'next/cache';\n \nconst getCachedUser = unstable_cache(\n  async (id) => getUser(id),\n  ['my-app-user']\n);\n \nexport default async function Component({ userID }) {\n  const user = await getCachedUser(userID);\n  ...\n}",
+      "language": "python"
+    },
+    {
+      "code": "const data = unstable_cache(fetchData, keyParts, options)()",
+      "language": "javascript"
+    },
+    {
+      "code": "import { unstable_cache } from 'next/cache'\n \nexport default async function Page({\n  params,\n}: {\n  params: Promise<{ userId: string }>\n}) {\n  const { userId } = await params\n  const getCachedUser = unstable_cache(\n    async () => {\n      return { id: userId }\n    },\n    [userId], // add the user ID to the cache key\n    {\n      tags: ['users'],\n      revalidate: 60,\n    }\n  )\n \n  //...\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache",
+    "https://nextjs.org/docs/app/guides/caching",
+    "https://nextjs.org/docs/app/api-reference/functions/unstable_cache",
+    "https://nextjs.org/docs/app/api-reference/functions/unauthorized",
+    "https://nextjs.org/docs/app/api-reference/functions/unstable_noStore"
+  ]
+}

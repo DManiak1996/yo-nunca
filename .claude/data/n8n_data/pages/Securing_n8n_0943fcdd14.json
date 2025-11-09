@@ -1,0 +1,8 @@
+{
+  "title": "Securing n8n",
+  "content": "Securing your n8n instance can take several forms.\n\nAt a high level, you can:\n\n- Conduct a [security audit](../security-audit/) to identify security risks.\n- [Set up SSL](../set-up-ssl/) to enforce secure connections.\n- [Set up Single Sign-On](../set-up-sso/) for user account management.\n- Use [two-factor authentication (2FA)](../../../user-management/two-factor-auth/) for your users.\n\nMore granularly, consider blocking or opting out of features or data collection you don't want:\n\n- [Disable the public API](../disable-public-api/) if you aren't using it.\n- [Opt out of data collection](../telemetry-opt-out/) of the anonymous data n8n collects automatically.\n- [Block certain nodes](../blocking-nodes/) from being available to your users.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#securing-n8n",
+  "links": []
+}

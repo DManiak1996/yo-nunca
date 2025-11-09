@@ -1,0 +1,8 @@
+{
+  "title": "Splitting workflows with conditional nodes",
+  "content": "Splitting uses the [IF](../../integrations/builtin/core-nodes/n8n-nodes-base.if/) or [Switch](../../integrations/builtin/core-nodes/n8n-nodes-base.switch/) nodes. It turns a single-branch workflow into a multi-branch workflow. This is a key piece of representing complex logic in n8n.\n\nCompare these workflows:\n\nThis is the power of splitting and conditional nodes in n8n.\n\nRefer to the [IF](../../integrations/builtin/core-nodes/n8n-nodes-base.if/) or [Switch](../../integrations/builtin/core-nodes/n8n-nodes-base.switch/) documentation for usage details.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#splitting-workflows-with-conditional-nodes",
+  "links": []
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Cloud free trial",
+  "content": "When you create a new n8n cloud trial, you have 14 days to try all the features of the [Pro plan](https://n8n.io/pricing/), including:\n\n- Global variables\n- Insights dashboard\n- Execution search\n- 5 days workflow history to rollback\n\nThe trial gives you Pro plan features with limits of 1000 executions and the same computing power as the [Starter plan](https://n8n.io/pricing/).\n\n## Upgrade to a paid account\n\nYou can upgrade to a paid n8n account at any time. To upgrade:\n\n1. Log in to your account.\n1. Click the **Upgrade** button in the upper-right corner.\n1. Select your plan and whether to pay annually or by the month.\n1. Select a payment method.\n\nIf you don't upgrade by the end of your trial, the trial will automatically expire and your workspace will be deleted.\n\nDownload your workflows\n\nYou can [download your workflows](../download-workflows/) to reuse them later. You have 90 days to download your workflows after your free trial ends.\n\n### Cancelling your trial\n\nYou don't need to cancel your trial. Your trial will automatically expire at the end of the trial period and no charges will occur. All your data will be deleted soon after.\n\nYou can contact the sales team if you want to test the [Enterprise plan](https://n8n.io/pricing/), which includes features such as:\n\n- SSO SAML and LDAP\n- Different environments\n- External secret store integration\n- Log streaming\n- Version control using Git\n\nClick the **Contact** button on the [n8n website](https://n8n.io/pricing/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Upgrade to a paid account",
+      "id": "upgrade-to-a-paid-account"
+    },
+    {
+      "level": "h2",
+      "text": "Trial expiration",
+      "id": "trial-expiration"
+    },
+    {
+      "level": "h3",
+      "text": "Cancelling your trial",
+      "id": "cancelling-your-trial"
+    },
+    {
+      "level": "h2",
+      "text": "Enterprise trial",
+      "id": "enterprise-trial"
+    }
+  ],
+  "url": "llms-txt#cloud-free-trial",
+  "links": []
+}

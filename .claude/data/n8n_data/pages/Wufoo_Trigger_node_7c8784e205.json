@@ -1,0 +1,8 @@
+{
+  "title": "Wufoo Trigger node",
+  "content": "[Wufoo](https://wufoo.com) is an online form builder that helps you create custom HTML forms without writing code.\n\nYou can find authentication information for this node [here](../../credentials/wufoo/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Wufoo Trigger integrations](https://n8n.io/integrations/wufoo-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#wufoo-trigger-node",
+  "links": []
+}

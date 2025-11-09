@@ -1,0 +1,43 @@
+{
+  "url": "https://nextjs.org/docs/app/guides/upgrading",
+  "title": "Upgrade Guides",
+  "content": "Learn how to upgrade to the latest versions of Next.js following the versions-specific guides:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Upgrade Guides",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Codemods",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Version 14",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Version 15",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Version 16",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/guides",
+    "https://nextjs.org/docs/app/guides/upgrading/codemods",
+    "https://nextjs.org/docs/app/guides/upgrading/version-14",
+    "https://nextjs.org/docs/app/guides/upgrading/version-15",
+    "https://nextjs.org/docs/app/guides/upgrading/version-16",
+    "https://nextjs.org/docs/app/guides/third-party-libraries"
+  ]
+}

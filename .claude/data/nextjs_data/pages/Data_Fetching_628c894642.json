@@ -1,0 +1,55 @@
+{
+  "url": "https://nextjs.org/docs/pages/building-your-application/data-fetching",
+  "title": "Data Fetching",
+  "content": "Data fetching in Next.js allows you to render your content in different ways, depending on your application's use case. These include pre-rendering with Server-side Rendering or Static Generation, and updating or creating content at runtime with Incremental Static Regeneration.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Data Fetching",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "getStaticProps",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "getStaticPaths",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Forms and Mutations",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "getServerSideProps",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Client-side Fetching",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/building-your-application",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-paths",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/forms-and-mutations",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/client-side",
+    "https://nextjs.org/docs/pages/building-your-application/rendering/client-side-rendering"
+  ]
+}

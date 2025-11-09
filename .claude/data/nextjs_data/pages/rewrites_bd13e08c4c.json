@@ -1,0 +1,130 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites",
+  "title": "rewrites",
+  "content": "Rewrites allow you to map an incoming request path to a different destination path.\n\nRewrites act as a URL proxy and mask the destination path, making it appear the user hasn't changed their location on the site. In contrast, redirects will reroute to a new page and show the URL changes.\n\nTo use rewrites you can use the rewrites key in next.config.js:\n\nRewrites are applied to client-side routing. In the example above, navigating to <Link href=\"/about\"> will serve content from / while keeping the URL as /about.\n\nrewrites is an async function that expects to return either an array or an object of arrays (see below) holding objects with source and destination properties:\n\nWhen the rewrites function returns an array, rewrites are applied after checking the filesystem (pages and /public files) and before dynamic routes. When the rewrites function returns an object of arrays with a specific shape, this behavior can be changed and more finely controlled, as of v10.1 of Next.js:\n\nGood to know: rewrites in beforeFiles do not check the filesystem/dynamic routes immediately after matching a source, they continue until all beforeFiles have been checked.\n\nThe order Next.js routes are checked is:\n\nWhen using parameters in a rewrite the parameters will be passed in the query by default when none of the parameters are used in the destination.\n\nIf a parameter is used in the destination none of the parameters will be automatically passed in the query.\n\nYou can still pass the parameters manually in the query if one is already used in the destination by specifying the query in the destination.\n\nGood to know: Static pages from Automatic Static Optimization or prerendering params from rewrites will be parsed on the client after hydration and provided in the query.\n\nPath matches are allowed, for example /blog/:slug will match /blog/first-post (no nested paths):\n\nThe pattern /blog/:slug matches /blog/first-post and /blog/post-1 but not /blog/a/b (no nested paths). Patterns are anchored to the start: /blog/:slug will not match /archive/blog/first-post.\n\nYou can use modifiers on parameters: * (zero or more), + (one or more), ? (zero or one). For example, /blog/:slug* matches /blog, /blog/a, and /blog/a/b/c.\n\nRead more details on path-to-regexp documentation.\n\nTo match a wildcard path you can use * after a parameter, for example /blog/:slug* will match /blog/a/b/c/d/hello-world:\n\nTo match a regex path you can wrap the regex in parenthesis after a parameter, for example /blog/:slug(\\\\d{1,}) will match /blog/123 but not /blog/abc:\n\nThe following characters (, ), {, }, [, ], |, \\, ^, ., :, *, +, -, ?, $ are used for regex path matching, so when used in the source as non-special values they must be escaped by adding \\\\ before them:\n\nTo only match a rewrite when header, cookie, or query values also match the has field or don't match the missing field can be used. Both the source and all has items must match and all missing items must not match for the rewrite to be applied.\n\nhas and missing items can have the following fields:\n\nRewrites allow you to rewrite to an external URL. This is especially useful for incrementally adopting Next.js. The following is an example rewrite for redirecting the /blog route of your main app to an external site.\n\nIf you're using trailingSlash: true, you also need to insert a trailing slash in the source parameter. If the destination server is also expecting a trailing slash it should be included in the destination parameter as well.\n\nYou can also have Next.js fall back to proxying to an existing website after checking all Next.js routes.\n\nThis way you don't have to change the rewrites configuration when migrating more pages to Next.js\n\nWhen leveraging basePath support with rewrites each source and destination is automatically prefixed with the basePath unless you add basePath: false to the rewrite:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "rewrites",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Rewrite parameters",
+      "id": "rewrite-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Path Matching",
+      "id": "path-matching"
+    },
+    {
+      "level": "h3",
+      "text": "Wildcard Path Matching",
+      "id": "wildcard-path-matching"
+    },
+    {
+      "level": "h3",
+      "text": "Regex Path Matching",
+      "id": "regex-path-matching"
+    },
+    {
+      "level": "h2",
+      "text": "Header, Cookie, and Query Matching",
+      "id": "header-cookie-and-query-matching"
+    },
+    {
+      "level": "h2",
+      "text": "Rewriting to an external URL",
+      "id": "rewriting-to-an-external-url"
+    },
+    {
+      "level": "h3",
+      "text": "Incremental adoption of Next.js",
+      "id": "incremental-adoption-of-nextjs"
+    },
+    {
+      "level": "h3",
+      "text": "Rewrites with basePath support",
+      "id": "rewrites-with-basepath-support"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "module.exports = {\n  async rewrites() {\n    return [\n      {\n        source: '/about',\n        destination: '/',\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async rewrites() {\n    return {\n      beforeFiles: [\n        // These rewrites are checked after headers/redirects\n        // and before all files including _next/public files which\n        // allows overriding page files\n        {\n          source: '/some-page',\n          destination: '/somewhere-else',\n          has: [{ type: 'query', key: 'overrideMe' }],\n        },\n      ],\n      afterFiles: [\n        // These rewrites are checked after pages/public files\n        // are checked but before dynamic routes\n        {\n          source: '/non-existent',\n          destination: '/somewhere-else',\n        },\n      ],\n      fallback: [\n        // These rewrites are checked after both pages/public files\n        // and dynamic routes are checked\n        {\n          source: '/:path*',\n          destination: `https://my-old-site.com/:path*`,\n        },\n      ],\n    }\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async rewrites() {\n    return [\n      {\n        source: '/old-about/:path*',\n        destination: '/about', // The :path parameter isn't used here so will be automatically passed in the query\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async rewrites() {\n    return [\n      {\n        source: '/docs/:path*',\n        destination: '/:path*', // The :path parameter is used here so will not be automatically passed in the query\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async rewrites() {\n    return [\n      {\n        source: '/:first/:second',\n        destination: '/:first?second=:second',\n        // Since the :first parameter is used in the destination the :second parameter\n        // will not automatically be added in the query although we can manually add it\n        // as shown above\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async rewrites() {\n    return [\n      {\n        source: '/blog/:slug',\n        destination: '/news/:slug', // Matched parameters can be used in the destination\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async rewrites() {\n    return [\n      {\n        source: '/blog/:slug*',\n        destination: '/news/:slug*', // Matched parameters can be used in the destination\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async rewrites() {\n    return [\n      {\n        source: '/old-blog/:post(\\\\d{1,})',\n        destination: '/blog/:post', // Matched parameters can be used in the destination\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async rewrites() {\n    return [\n      {\n        // this will match `/english(default)/something` being requested\n        source: '/english\\\\(default\\\\)/:slug',\n        destination: '/en-us/:slug',\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async rewrites() {\n    return [\n      // if the header `x-rewrite-me` is present,\n      // this rewrite will be applied\n      {\n        source: '/:path*',\n        has: [\n          {\n            type: 'header',\n            key: 'x-rewrite-me',\n          },\n        ],\n        destination: '/another-page',\n      },\n      // if the header `x-rewrite-me` is not present,\n      // this rewrite will be applied\n      {\n        source: '/:path*',\n        missing: [\n          {\n            type: 'header',\n            key: 'x-rewrite-me',\n          },\n        ],\n        destination: '/another-page',\n      },\n      // if the source, query, and cookie are matched,\n      // this rewrite will be applied\n      {\n        source: '/specific/:path*',\n        has: [\n          {\n            type: 'query',\n            key: 'page',\n            // the page value will not be available in the\n            // destination since value is provided and doesn't\n            // use a named capture group e.g. (?<page>home)\n            value: 'home',\n          },\n          {\n            type: 'cookie',\n            key: 'authorized',\n            value: 'true',\n          },\n        ],\n        destination: '/:path*/home',\n      },\n      // if the header `x-authorized` is present and\n      // contains a matching value, this rewrite will be applied\n      {\n        source: '/:path*',\n        has: [\n          {\n            type: 'header',\n            key: 'x-authorized',\n            value: '(?<authorized>yes|true)',\n          },\n        ],\n        destination: '/home?authorized=:authorized',\n      },\n      // if the host is `example.com`,\n      // this rewrite will be applied\n      {\n        source: '/:path*',\n        has: [\n          {\n            type: 'host',\n            value: 'example.com',\n          },\n        ],\n        destination: '/another-page',\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async rewrites() {\n    return [\n      {\n        source: '/blog',\n        destination: 'https://example.com/blog',\n      },\n      {\n        source: '/blog/:slug',\n        destination: 'https://example.com/blog/:slug', // Matched parameters can be used in the destination\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  trailingSlash: true,\n  async rewrites() {\n    return [\n      {\n        source: '/blog/',\n        destination: 'https://example.com/blog/',\n      },\n      {\n        source: '/blog/:path*/',\n        destination: 'https://example.com/blog/:path*/',\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  async rewrites() {\n    return {\n      fallback: [\n        {\n          source: '/:path*',\n          destination: `https://custom-routes-proxying-endpoint.vercel.app/:path*`,\n        },\n      ],\n    }\n  },\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  basePath: '/docs',\n \n  async rewrites() {\n    return [\n      {\n        source: '/with-basePath', // automatically becomes /docs/with-basePath\n        destination: '/another', // automatically becomes /docs/another\n      },\n      {\n        // does not add /docs to /without-basePath since basePath: false is set\n        // Note: this can not be used for internal rewrites e.g. `destination: '/another'`\n        source: '/without-basePath',\n        destination: 'https://example.com',\n        basePath: false,\n      },\n    ]\n  },\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/redirects",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/headers",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/public-folder",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-static-paths",
+    "https://nextjs.org/docs/pages/building-your-application/rendering/automatic-static-optimization",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/sassOptions"
+  ]
+}

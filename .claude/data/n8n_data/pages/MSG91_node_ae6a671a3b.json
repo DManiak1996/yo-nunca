@@ -1,0 +1,24 @@
+{
+  "title": "MSG91 node",
+  "content": "Use the MSG91 node to automate work in MSG91, and integrate MSG91 with other applications. n8n supports sending SMS with MSG91.\n\nOn this page, you'll find a list of operations the MSG91 node supports and links to more resources.\n\nRefer to [MSG91 credentials](../../credentials/msg91/) for guidance on setting up authentication.\n\n## Templates and examples\n\n[Browse MSG91 integration templates](https://n8n.io/integrations/msg91/), or [search all templates](https://n8n.io/workflows/)\n\n## Find your Sender ID\n\n1. Log in to your MSG91 dashboard.\n1. Select **Sender Id** in the left panel.\n1. If you don't already have one, select **Add Sender Id +**, fill in the details, and select **Save Sender Id**.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Find your Sender ID",
+      "id": "find-your-sender-id"
+    }
+  ],
+  "url": "llms-txt#msg91-node",
+  "links": []
+}

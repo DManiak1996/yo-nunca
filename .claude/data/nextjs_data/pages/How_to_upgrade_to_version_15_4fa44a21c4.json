@@ -1,0 +1,264 @@
+{
+  "url": "https://nextjs.org/docs/app/guides/upgrading/version-15",
+  "title": "How to upgrade to version 15",
+  "content": "To update to Next.js version 15, you can use the upgrade codemod:\n\nIf you prefer to do it manually, ensure that you're installing the latest Next & React versions:\n\nGood to know: If you are using TypeScript, ensure you also upgrade @types/react and @types/react-dom to their latest versions.\n\nPreviously synchronous Dynamic APIs that rely on runtime information are now asynchronous:\n\nTo ease the burden of migration, a codemod is available to automate the process and the APIs can temporarily be accessed synchronously.\n\nThe runtime segment configuration previously supported a value of experimental-edge in addition to edge. Both configurations refer to the same thing, and to simplify the options, we will now error if experimental-edge is used. To fix this, update your runtime configuration to edge. A codemod is available to automatically do this.\n\nfetch requests are no longer cached by default.\n\nTo opt specific fetch requests into caching, you can pass the cache: 'force-cache' option.\n\nTo opt all fetch requests in a layout or page into caching, you can use the export const fetchCache = 'default-cache' segment config option. If individual fetch requests specify a cache option, that will be used instead.\n\nGET functions in Route Handlers are no longer cached by default. To opt GET methods into caching, you can use a route config option such as export const dynamic = 'force-static' in your Route Handler file.\n\nWhen navigating between pages via <Link> or useRouter, page segments are no longer reused from the client-side router cache. However, they are still reused during browser backward and forward navigation and for shared layouts.\n\nTo opt page segments into caching, you can use the staleTimes config option:\n\nLayouts and loading states are still cached and reused on navigation.\n\nThe @next/font package has been removed in favor of the built-in next/font. A codemod is available to safely and automatically rename your imports.\n\nexperimental.bundlePagesExternals is now stable and renamed to bundlePagesRouterDependencies.\n\nexperimental.serverComponentsExternalPackages is now stable and renamed to serverExternalPackages.\n\nAuto instrumentation for Speed Insights was removed in Next.js 15.\n\nTo continue using Speed Insights, follow the Vercel Speed Insights Quickstart guide.\n\nThe geo and ip properties on NextRequest have been removed as these values are provided by your hosting provider. A codemod is available to automate this migration.\n\nIf you are using Vercel, you can alternatively use the geolocation and ipAddress functions from @vercel/functions instead:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to upgrade to version 15",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Upgrading from 14 to 15",
+      "id": "upgrading-from-14-to-15"
+    },
+    {
+      "level": "h2",
+      "text": "React 19",
+      "id": "react-19"
+    },
+    {
+      "level": "h2",
+      "text": "Async Request APIs (Breaking change)",
+      "id": "async-request-apis-breaking-change"
+    },
+    {
+      "level": "h3",
+      "text": "cookies",
+      "id": "cookies"
+    },
+    {
+      "level": "h4",
+      "text": "Recommended Async Usage",
+      "id": "recommended-async-usage"
+    },
+    {
+      "level": "h4",
+      "text": "Temporary Synchronous Usage",
+      "id": "temporary-synchronous-usage"
+    },
+    {
+      "level": "h3",
+      "text": "headers",
+      "id": "headers"
+    },
+    {
+      "level": "h4",
+      "text": "Recommended Async Usage",
+      "id": "recommended-async-usage-1"
+    },
+    {
+      "level": "h4",
+      "text": "Temporary Synchronous Usage",
+      "id": "temporary-synchronous-usage-1"
+    },
+    {
+      "level": "h3",
+      "text": "draftMode",
+      "id": "draftmode"
+    },
+    {
+      "level": "h4",
+      "text": "Recommended Async Usage",
+      "id": "recommended-async-usage-2"
+    },
+    {
+      "level": "h4",
+      "text": "Temporary Synchronous Usage",
+      "id": "temporary-synchronous-usage-2"
+    },
+    {
+      "level": "h3",
+      "text": "params & searchParams",
+      "id": "params--searchparams"
+    },
+    {
+      "level": "h4",
+      "text": "Asynchronous Layout",
+      "id": "asynchronous-layout"
+    },
+    {
+      "level": "h4",
+      "text": "Synchronous Layout",
+      "id": "synchronous-layout"
+    },
+    {
+      "level": "h4",
+      "text": "Asynchronous Page",
+      "id": "asynchronous-page"
+    },
+    {
+      "level": "h4",
+      "text": "Synchronous Page",
+      "id": "synchronous-page"
+    },
+    {
+      "level": "h4",
+      "text": "Route Handlers",
+      "id": "route-handlers"
+    },
+    {
+      "level": "h2",
+      "text": "runtime configuration (Breaking change)",
+      "id": "runtime-configuration-breaking-change"
+    },
+    {
+      "level": "h2",
+      "text": "fetch requests",
+      "id": "fetch-requests"
+    },
+    {
+      "level": "h2",
+      "text": "Route Handlers",
+      "id": "route-handlers-1"
+    },
+    {
+      "level": "h2",
+      "text": "Client-side Router Cache",
+      "id": "client-side-router-cache"
+    },
+    {
+      "level": "h2",
+      "text": "next/font",
+      "id": "nextfont"
+    },
+    {
+      "level": "h2",
+      "text": "bundlePagesRouterDependencies",
+      "id": "bundlepagesrouterdependencies"
+    },
+    {
+      "level": "h2",
+      "text": "serverExternalPackages",
+      "id": "serverexternalpackages"
+    },
+    {
+      "level": "h2",
+      "text": "Speed Insights",
+      "id": "speed-insights"
+    },
+    {
+      "level": "h2",
+      "text": "NextRequest Geolocation",
+      "id": "nextrequest-geolocation"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "npx @next/codemod@canary upgrade latest",
+      "language": "unknown"
+    },
+    {
+      "code": "npm i next@latest react@latest react-dom@latest eslint-config-next@latest",
+      "language": "unknown"
+    },
+    {
+      "code": "import { cookies } from 'next/headers'\n \n// Before\nconst cookieStore = cookies()\nconst token = cookieStore.get('token')\n \n// After\nconst cookieStore = await cookies()\nconst token = cookieStore.get('token')",
+      "language": "python"
+    },
+    {
+      "code": "import { cookies, type UnsafeUnwrappedCookies } from 'next/headers'\n \n// Before\nconst cookieStore = cookies()\nconst token = cookieStore.get('token')\n \n// After\nconst cookieStore = cookies() as unknown as UnsafeUnwrappedCookies\n// will log a warning in dev\nconst token = cookieStore.get('token')",
+      "language": "python"
+    },
+    {
+      "code": "import { headers } from 'next/headers'\n \n// Before\nconst headersList = headers()\nconst userAgent = headersList.get('user-agent')\n \n// After\nconst headersList = await headers()\nconst userAgent = headersList.get('user-agent')",
+      "language": "python"
+    },
+    {
+      "code": "import { headers, type UnsafeUnwrappedHeaders } from 'next/headers'\n \n// Before\nconst headersList = headers()\nconst userAgent = headersList.get('user-agent')\n \n// After\nconst headersList = headers() as unknown as UnsafeUnwrappedHeaders\n// will log a warning in dev\nconst userAgent = headersList.get('user-agent')",
+      "language": "python"
+    },
+    {
+      "code": "import { draftMode } from 'next/headers'\n \n// Before\nconst { isEnabled } = draftMode()\n \n// After\nconst { isEnabled } = await draftMode()",
+      "language": "python"
+    },
+    {
+      "code": "import { draftMode, type UnsafeUnwrappedDraftMode } from 'next/headers'\n \n// Before\nconst { isEnabled } = draftMode()\n \n// After\n// will log a warning in dev\nconst { isEnabled } = draftMode() as unknown as UnsafeUnwrappedDraftMode",
+      "language": "python"
+    },
+    {
+      "code": "// Before\ntype Params = { slug: string }\n \nexport function generateMetadata({ params }: { params: Params }) {\n  const { slug } = params\n}\n \nexport default async function Layout({\n  children,\n  params,\n}: {\n  children: React.ReactNode\n  params: Params\n}) {\n  const { slug } = params\n}\n \n// After\ntype Params = Promise<{ slug: string }>\n \nexport async function generateMetadata({ params }: { params: Params }) {\n  const { slug } = await params\n}\n \nexport default async function Layout({\n  children,\n  params,\n}: {\n  children: React.ReactNode\n  params: Params\n}) {\n  const { slug } = await params\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "// Before\ntype Params = { slug: string }\n \nexport default function Layout({\n  children,\n  params,\n}: {\n  children: React.ReactNode\n  params: Params\n}) {\n  const { slug } = params\n}\n \n// After\nimport { use } from 'react'\n \ntype Params = Promise<{ slug: string }>\n \nexport default function Layout(props: {\n  children: React.ReactNode\n  params: Params\n}) {\n  const params = use(props.params)\n  const slug = params.slug\n}",
+      "language": "python"
+    },
+    {
+      "code": "// Before\ntype Params = { slug: string }\ntype SearchParams = { [key: string]: string | string[] | undefined }\n \nexport function generateMetadata({\n  params,\n  searchParams,\n}: {\n  params: Params\n  searchParams: SearchParams\n}) {\n  const { slug } = params\n  const { query } = searchParams\n}\n \nexport default async function Page({\n  params,\n  searchParams,\n}: {\n  params: Params\n  searchParams: SearchParams\n}) {\n  const { slug } = params\n  const { query } = searchParams\n}\n \n// After\ntype Params = Promise<{ slug: string }>\ntype SearchParams = Promise<{ [key: string]: string | string[] | undefined }>\n \nexport async function generateMetadata(props: {\n  params: Params\n  searchParams: SearchParams\n}) {\n  const params = await props.params\n  const searchParams = await props.searchParams\n  const slug = params.slug\n  const query = searchParams.query\n}\n \nexport default async function Page(props: {\n  params: Params\n  searchParams: SearchParams\n}) {\n  const params = await props.params\n  const searchParams = await props.searchParams\n  const slug = params.slug\n  const query = searchParams.query\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "'use client'\n \n// Before\ntype Params = { slug: string }\ntype SearchParams = { [key: string]: string | string[] | undefined }\n \nexport default function Page({\n  params,\n  searchParams,\n}: {\n  params: Params\n  searchParams: SearchParams\n}) {\n  const { slug } = params\n  const { query } = searchParams\n}\n \n// After\nimport { use } from 'react'\n \ntype Params = Promise<{ slug: string }>\ntype SearchParams = Promise<{ [key: string]: string | string[] | undefined }>\n \nexport default function Page(props: {\n  params: Params\n  searchParams: SearchParams\n}) {\n  const params = use(props.params)\n  const searchParams = use(props.searchParams)\n  const slug = params.slug\n  const query = searchParams.query\n}",
+      "language": "python"
+    },
+    {
+      "code": "// Before\nexport default function Page({ params, searchParams }) {\n  const { slug } = params\n  const { query } = searchParams\n}\n \n// After\nimport { use } from \"react\"\n \nexport default function Page(props) {\n  const params = use(props.params)\n  const searchParams = use(props.searchParams)\n  const slug = params.slug\n  const query = searchParams.query\n}",
+      "language": "python"
+    },
+    {
+      "code": "// Before\ntype Params = { slug: string }\n \nexport async function GET(request: Request, segmentData: { params: Params }) {\n  const params = segmentData.params\n  const slug = params.slug\n}\n \n// After\ntype Params = Promise<{ slug: string }>\n \nexport async function GET(request: Request, segmentData: { params: Params }) {\n  const params = await segmentData.params\n  const slug = params.slug\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export default async function RootLayout() {\n  const a = await fetch('https://...') // Not Cached\n  const b = await fetch('https://...', { cache: 'force-cache' }) // Cached\n \n  // ...\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "// Since this is the root layout, all fetch requests in the app\n// that don't set their own cache option will be cached.\nexport const fetchCache = 'default-cache'\n \nexport default async function RootLayout() {\n  const a = await fetch('https://...') // Cached\n  const b = await fetch('https://...', { cache: 'no-store' }) // Not cached\n \n  // ...\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export const dynamic = 'force-static'\n \nexport async function GET() {}",
+      "language": "javascript"
+    },
+    {
+      "code": "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  experimental: {\n    staleTimes: {\n      dynamic: 30,\n      static: 180,\n    },\n  },\n}\n \nmodule.exports = nextConfig",
+      "language": "javascript"
+    },
+    {
+      "code": "// Before\nimport { Inter } from '@next/font/google'\n \n// After\nimport { Inter } from 'next/font/google'",
+      "language": "python"
+    },
+    {
+      "code": "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  // Before\n  experimental: {\n    bundlePagesExternals: true,\n  },\n \n  // After\n  bundlePagesRouterDependencies: true,\n}\n \nmodule.exports = nextConfig",
+      "language": "javascript"
+    },
+    {
+      "code": "/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  // Before\n  experimental: {\n    serverComponentsExternalPackages: ['package-name'],\n  },\n \n  // After\n  serverExternalPackages: ['package-name'],\n}\n \nmodule.exports = nextConfig",
+      "language": "javascript"
+    },
+    {
+      "code": "import { geolocation } from '@vercel/functions'\nimport type { NextRequest } from 'next/server'\n \nexport function middleware(request: NextRequest) {\n  const { city } = geolocation(request)\n \n  // ...\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { ipAddress } from '@vercel/functions'\nimport type { NextRequest } from 'next/server'\n \nexport function middleware(request: NextRequest) {\n  const ip = ipAddress(request)\n \n  // ...\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/guides",
+    "https://nextjs.org/docs/app/guides/upgrading",
+    "https://nextjs.org/docs/app/guides/upgrading/version-15",
+    "https://nextjs.org/docs/app/api-reference/functions/cookies",
+    "https://nextjs.org/docs/app/api-reference/functions/headers",
+    "https://nextjs.org/docs/app/api-reference/functions/draft-mode",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/default",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/app-icons",
+    "https://nextjs.org/docs/app/guides/upgrading/codemods",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config",
+    "https://nextjs.org/docs/app/api-reference/functions/fetch",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/staleTimes",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/app/api-reference/components/font",
+    "https://nextjs.org/docs/app/guides/upgrading/version-14",
+    "https://nextjs.org/docs/app/guides/upgrading/version-16"
+  ]
+}

@@ -1,0 +1,673 @@
+{
+  "url": "https://gotenberg.dev/docs/routes",
+  "title": "Routes",
+  "content": "Most routes within Gotenberg are designed to accept multipart/form-data requests and generate one or more PDF files. This guide will assist you in understanding their usage.\n\nThe next routes leverage the capabilities of the Chromium browser to effectively transform a diverse range of HTML documents into PDFs.\n\nCheckout the Chromium module configuration to tailor the Chromium behavior to your needs.\n\nThis multipart/form-data route converts a web page into PDF.\n\nIt accepts the following specific form field:\n\nThis errors happens if one ore more form fields are invalid.\n\nGotenberg also returns a 400 Bad Request if it encounters any of the following network errors while attempting to load the main page:\n\nThis error happens when the given URL is not authorized.\n\nSee the Chromium module configuration for more details.\n\nIf a request doesn't complete within a specified duration, the API will respond with a 503 Service Unavailable status.\n\nSee the API module configuration for more details.\n\nThis multipart/form-data route converts an HTML file into PDF.\n\nIt accepts the following specific form file:\n\nThis errors happens if one ore more form fields are invalid.\n\nGotenberg also returns a 400 Bad Request if it encounters any of the following network errors while attempting to load the main page:\n\nIf a request doesn't complete within a specified duration, the API will respond with a 503 Service Unavailable status.\n\nSee the API module configuration for more details.\n\nYou may also send additional files, like images, fonts, stylesheets, and so on.\n\nThe only requirement is that their paths in the index.html file are on the root level.\n\nFor instance, this will work:\n\nRemote paths for images, fonts (e.g., Google Fonts), etc., work too.\n\nBeware of the <base> HTML element, as it may break path resolution for any relative href.\n\nThis multipart/form-data route converts Markdown file(s) into PDF.\n\nIt accepts the following specific form files:\n\nIt works like the HTML route but with access to a Go template function toHTML. This function converts a markdown file's content into HTML (with MathJaX support).\n\nThis errors happens if one ore more form fields are invalid.\n\nGotenberg also returns a 400 Bad Request if it encounters any of the following network errors while attempting to load the main page:\n\nIf a request doesn't complete within a specified duration, the API will respond with a 503 Service Unavailable status.\n\nSee the API module configuration for more details.\n\nEach route accepts the following form fields:\n\nIf the singlePage form field is set to true, it automatically overrides the values from the paperHeight and nativePageRanges form fields.\n\nExamples of paper size (width x height):\n\nThe rules regarding the printBackground and omitBackground form fields are the following:\n\nEach route accepts the following form files:\n\nEach of them has to be a complete HTML document:\n\nIt is recommended to use a large font-size to ensure that the content displays correctly.\n\nThe following classes allow you to inject printing values:\n\nThere are some limitations:\n\nRemove external assets from your header and footer; they can slow rendering or cause the request to fail.\n\nEach route accepts the following form fields:\n\nThese form fields do not work if JavaScript is disabled via --chromium-disable-javascript.\n\nSee the Chromium module configuration for more details.\n\nWhen the page relies on JavaScript for rendering, and you don't have access to the page's code, you may want to wait a certain amount of time to make sure Chromium has fully rendered the page you're trying to generate.\n\nA more reliable option than the previous form field:\n\nEach route accepts the following form field:\n\nSome websites have dedicated CSS rules for print. Using \"screen\" allows you to force the \"standard\" CSS rules.\n\nEach route accepts the following form field:\n\nCookies are set to automatically expire after a specified duration, determined by the request time limit. Additionally, you have the option to clear cookies after each conversion.\n\nFor further details, refer to the API module configuration and the Chromium module configuration sections.\n\nThis form field is a JSON-formatted array with items accepting the following keys:\n\nEach route accepts the following form fields:\n\nYou can add an optional scope token to a header value to restrict its application using a regular expression.\n\nFor example, \"X-Scoped-Header\":\"value;scope=https?:\\\\/\\\\/([a-zA-Z0-9-]+\\\\.)*domain\\\\.com\\\\/.*\" will apply the X-Scoped-Header only to requests directed at domain.com and its subdomains.\n\nNote that the scope token is only processed by Gotenberg and is never sent with the header value.\n\nEach route accepts the following form field:\n\nAn X99 entry means every HTTP status codes between X00 and X99 (e.g., 499 means every HTTP status codes between 400 and 499).\n\nGotenberg returns a 400 Bad Request if it encounters any of the following network errors while attempting to load the main page:\n\nIf you want a similar behavior for resources too, you may use the following form field:\n\nIt's currently not possible to have more details about the exact resource that is failing.\n\nEach route accepts the following form field:\n\nThis form field does not work if JavaScript is disabled via --chromium-disable-javascript.\n\nSee the Chromium module configuration for more details.\n\nEach route accepts the following form field:\n\nBy default, Gotenberg does not wait for the network idle event, significantly speeding up the conversion process.\n\nPrior to Gotenberg 8.11.0, false was the default value.\n\nEach route accepts the following form fields:\n\nGotenberg currently does not validate the splitSpan value if splitMode is pages, as it depends on the selected engine for the split feature:\n\nSee also the PDF Engines module configuration for more details.\n\nEach route accepts the following form fields:\n\nAs of Gotenberg 8.21.0, using the generateTaggedPdf form field may yield better results if you're prioritizing accessibility over strict (and sometimes hacky) PDF/UA compliance.\n\nAt present, the following PDF/A formats are available:\n\nEach route accepts the following form field:\n\nNot all metadata are writable. Consider taking a look at https://exiftool.org/TagNames/XMP.html#pdf for an (exhaustive?) list of available metadata.\n\nWriting metadata may compromise PDF/A compliance.\n\nEach route accepts the following form field:\n\nYou can capture screenshots using the following three routes, which function similarly to their PDF equivalents:\n\nThese routes accept the following form fields:\n\nThe following features are also available:\n\nIf your screenshots' content is repeated and clipped, consider setting the skipNetworkIdleEvent form field to false.\n\nThe next route leverage the capabilities of LibreOffice to effectively transform a diverse range of Office documents (Word, Excel, PowerPoint, etc.) into PDFs.\n\nCheckout the LibreOffice module configuration to tailor the LibreOffice behavior to your needs.\n\nThis route mainly targets Office documents, but you can also use it to manipulate PDFs, for instance by compressing images.\n\nThis multipart/form-data route convert one or more Office documents into PDF.\n\nCurrently, the following extensions are supported:\n\n.123 .602 .abw .bib .bmp .cdr .cgm .cmx .csv .cwk .dbf .dif .doc .docm .docx .dot .dotm .dotx .dxf .emf .eps .epub .fodg .fodp .fods .fodt .fopd .gif .htm .html .hwp .jpeg .jpg .key .ltx .lwp .mcw .met .mml .mw .numbers .odd .odg .odm .odp .ods .odt .otg .oth .otp .ots .ott .pages .pbm .pcd .pct .pcx .pdb .pdf .pgm .png .pot .potm .potx .ppm .pps .ppt .pptm .pptx .psd .psw .pub .pwp .pxl .ras .rtf .sda .sdc .sdd .sdp .sdw .sgl .slk .smf .stc .std .sti .stw .svg .svm .swf .sxc .sxd .sxg .sxi .sxm .sxw .tga .tif .tiff .txt .uof .uop .uos .uot .vdx .vor .vsd .vsdm .vsdx .wb2 .wk1 .wks .wmf .wpd .wpg .wps .xbm .xhtml .xls .xlsb .xlsm .xlsx .xlt .xltm .xltx .xlw .xml .xpm .zabw\n\nThis errors happens if one ore more form fields are invalid.\n\nIf a request doesn't complete within a specified duration, the API will respond with a 503 Service Unavailable status.\n\nSee the API module configuration for more details.\n\nThe route also accepts the following form fields:\n\nIf multiple files are provided, the page ranges will be applied independently to each file.\n\nThe route accepts the following form fields:\n\nThe route also accepts the following form fields:\n\nAlphanumerically means numbers first, then letters in alphabetical order.\n\nThe route accepts the following form fields:\n\nGotenberg currently does not validate the splitSpan value if splitMode is pages, as it depends on the selected engine for the split feature:\n\nSee also the PDF Engines module configuration for more details.\n\nThe route also accepts the following form fields:\n\nAt present, the following PDF/A formats are available:\n\nThe route accepts the following form field:\n\nNot all metadata are writable. Consider taking a look at https://exiftool.org/TagNames/XMP.html#pdf for an (exhaustive?) list of available metadata.\n\nWriting metadata may compromise PDF/A compliance.\n\nThe route accepts the following form field:\n\nThis multipart/form-data route transforms one or more PDF files into the requested PDF/A format and/or PDF/UA.\n\nIt accepts the following form files and form fields:\n\n*Note that at least one of the form field must be provided.\n\nAt present, the following PDF/A formats are available:\n\nThis errors happens if one ore more form fields are invalid.\n\nIf a request doesn't complete within a specified duration, the API will respond with a 503 Service Unavailable status.\n\nSee the API module configuration for more details.\n\nThis multipart/form-data route returns the metadata of one or more PDF files.\n\nIt accepts the following form files:\n\nThis errors happens if one ore more form fields are invalid.\n\nIf a request doesn't complete within a specified duration, the API will respond with a 503 Service Unavailable status.\n\nSee the API module configuration for more details.\n\nThis multipart/form-data route accepts one or more PDF files and writes/overrides their metadata.\n\nIt accepts the following form files and form field:\n\nNot all metadata are writable. Consider taking a look at https://exiftool.org/TagNames/XMP.html#pdf for an (exhaustive?) list of available metadata.\n\nWriting metadata may compromise PDF/A compliance.\n\nThis errors happens if one ore more form fields are invalid.\n\nIf a request doesn't complete within a specified duration, the API will respond with a 503 Service Unavailable status.\n\nSee the API module configuration for more details.\n\nThis multipart/form-data route accepts PDF files and merges them alphanumerically.\n\nAlphanumerically means numbers first, then letters in alphabetical order.\n\nThis errors happens if one ore more form fields are invalid.\n\nIf a request doesn't complete within a specified duration, the API will respond with a 503 Service Unavailable status.\n\nSee the API module configuration for more details.\n\nThis multipart/form-data route splits PDF files.\n\nGotenberg currently does not validate the splitSpan value if splitMode is pages, as it depends on the selected engine for the split feature:\n\nSee also the PDF Engines module configuration for more details.\n\nThis errors happens if one ore more form fields are invalid.\n\nIf a request doesn't complete within a specified duration, the API will respond with a 503 Service Unavailable status.\n\nSee the API module configuration for more details.\n\nThis multipart/form-data route flatten PDF files.\n\nThis errors happens if one ore more form fields are invalid.\n\nIf a request doesn't complete within a specified duration, the API will respond with a 503 Service Unavailable status.\n\nSee the API module configuration for more details.\n\nThe details entry gathers the health checks from modules:\n\nThe body will be empty with the HEAD method.\n\nThis route exposes the metrics from other modules using the Prometheus format.\n\nCurrently, the metrics include:\n\nSee the Prometheus module configuration for more information.\n\nCustom variants of Gotenberg may not print a strict semver version.\n\nFor instance, the live demo prints 8.24.0-live-demo-snapshot.\n\nSee for instance https://demo.gotenberg.dev/debug.\n\nThis route is only available if the flag --api-enable-debug-route is set to true.\n\nA trace, or request ID, serves to identify a specific request in the logs.\n\nBy default, the API assigns a unique UUID trace to every request. However, you also have the option to specify the trace for each request using the Gotenberg-Trace header.\n\nThe API also incorporates a Gotenberg-Trace header into each response. If you're utilizing the webhook feature, this header will also be added to each request made to your callbacks.\n\nThe --api-trace-header flag allows you to configure the header key. See the API module configuration for more details.\n\nBy default, for multipart/form-data endpoints, the API generates a response with a UUID filename. However, you have the option to specify the filename for each request using the Gotenberg-Output-Filename header.\n\nThe API automatically appends the file extension, so there's no need for you to set it manually.\n\nAll multipart/form-data endpoints accept the following form field:\n\nThis form field does not work if this feature is disabled via --api-disable-download-from.\n\nFor further details, refer to the API module configuration.\n\nThis form field is a JSON-formatted array with items accepting the following keys:\n\nThis errors happens if at least one entry is invalid.\n\nThis error happens if at least one of the given URLs is not authorized.\n\nSee the API module configuration for more details.\n\nCurrently, a bug is preventing Gotenberg to parse an empty mediatype. If you're using AWS S3, make sure to set the Content-Disposition header with the attachment value in the S3 metadata.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Routes",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Convert with Chromium​",
+      "id": "convert-with-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "URL into PDF route​",
+      "id": "url-into-pdf-route"
+    },
+    {
+      "level": "h3",
+      "text": "HTML file into PDF route​",
+      "id": "html-file-into-pdf-route"
+    },
+    {
+      "level": "h3",
+      "text": "Markdown file(s) into PDF route​",
+      "id": "markdown-files-into-pdf-route"
+    },
+    {
+      "level": "h3",
+      "text": "Page Properties​",
+      "id": "page-properties-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "Header & Footer​",
+      "id": "header-footer-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "Wait Before Rendering​",
+      "id": "wait-before-rendering-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "Emulated Media Type​",
+      "id": "emulated-media-type-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "Cookies​",
+      "id": "cookies-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "Custom HTTP Headers​",
+      "id": "custom-http-headers-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "Invalid HTTP Status Codes​",
+      "id": "invalid-http-status-codes-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "Network Errors​",
+      "id": "network-errors-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "Console Exceptions​",
+      "id": "console-exceptions-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "Performance Mode​",
+      "id": "performance-mode-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "Split​",
+      "id": "split-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "PDF/A & PDF/UA​",
+      "id": "pdfa-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "Metadata​",
+      "id": "metadata-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "Flatten​",
+      "id": "flatten-chromium"
+    },
+    {
+      "level": "h3",
+      "text": "Screenshots route​",
+      "id": "screenshots-route"
+    },
+    {
+      "level": "h2",
+      "text": "Convert with LibreOffice​",
+      "id": "convert-with-libreoffice"
+    },
+    {
+      "level": "h3",
+      "text": "Office documents into PDFs route​",
+      "id": "office-documents-into-pdfs-route"
+    },
+    {
+      "level": "h3",
+      "text": "Page Properties​",
+      "id": "page-properties-libreoffice"
+    },
+    {
+      "level": "h3",
+      "text": "Compress​",
+      "id": "compress-libreoffice"
+    },
+    {
+      "level": "h3",
+      "text": "Merge​",
+      "id": "merge-libreoffice"
+    },
+    {
+      "level": "h3",
+      "text": "Split​",
+      "id": "split-libreoffice"
+    },
+    {
+      "level": "h3",
+      "text": "PDF/A & PDF/UA​",
+      "id": "pdfa-libreoffice"
+    },
+    {
+      "level": "h3",
+      "text": "Metadata​",
+      "id": "metadata-libreoffice"
+    },
+    {
+      "level": "h3",
+      "text": "Flatten​",
+      "id": "flatten-libreoffice"
+    },
+    {
+      "level": "h2",
+      "text": "Convert into PDF/A & PDF/UA route​",
+      "id": "convert-into-pdfa--pdfua-route"
+    },
+    {
+      "level": "h2",
+      "text": "Read PDF metadata route​",
+      "id": "read-pdf-metadata-route"
+    },
+    {
+      "level": "h2",
+      "text": "Write PDF metadata route​",
+      "id": "write-pdf-metadata-route"
+    },
+    {
+      "level": "h2",
+      "text": "Merge PDFs route​",
+      "id": "merge-pdfs-route"
+    },
+    {
+      "level": "h2",
+      "text": "Split PDFs route​",
+      "id": "split-pdfs-route"
+    },
+    {
+      "level": "h2",
+      "text": "Flatten PDFs route​",
+      "id": "flatten-pdfs-route"
+    },
+    {
+      "level": "h2",
+      "text": "Health Check route​",
+      "id": "health-check-route"
+    },
+    {
+      "level": "h2",
+      "text": "Metrics route​",
+      "id": "metrics-route"
+    },
+    {
+      "level": "h2",
+      "text": "Version route​",
+      "id": "version-route"
+    },
+    {
+      "level": "h2",
+      "text": "Debug route​",
+      "id": "debug-route"
+    },
+    {
+      "level": "h2",
+      "text": "Request Tracing​",
+      "id": "request-tracing"
+    },
+    {
+      "level": "h2",
+      "text": "Output Filename​",
+      "id": "output-filename"
+    },
+    {
+      "level": "h2",
+      "text": "Download From​",
+      "id": "download-from"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "POST /forms/chromium/convert/url",
+      "language": "text"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--form url=https://my.url \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "Content-Disposition: attachement; filename={output-filename.pdf}Content-Type: {content-type}Content-Length: {content-length}Gotenberg-Trace: {trace}Body: {output-file}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: {error}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: '{url}' does not match the authorized URLs",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: Service Unavailable",
+      "language": "text"
+    },
+    {
+      "code": "POST /forms/chromium/convert/html",
+      "language": "text"
+    },
+    {
+      "code": "<!DOCTYPE html><html lang=\"en\">  <head>    <meta charset=\"utf-8\" />    <title>My PDF</title>  </head>  <body>    <h1>Hello world!</h1>  </body></html>",
+      "language": "html"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/html \\--form files=@/path/to/index.html \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "Content-Disposition: attachement; filename={output-filename.pdf}Content-Type: {content-type}Content-Length: {content-length}Gotenberg-Trace: {trace}Body: {output-file}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: {error}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: Service Unavailable",
+      "language": "text"
+    },
+    {
+      "code": "<!DOCTYPE html><html lang=\"en\">  <head>    <meta charset=\"utf-8\" />    <title>My PDF</title>  </head>  <body>    <h1>Hello world!</h1>    <img src=\"img.png\" />  </body></html>",
+      "language": "html"
+    },
+    {
+      "code": "<!DOCTYPE html><html lang=\"en\">  <head>    <meta charset=\"utf-8\" />    <title>My PDF</title>  </head>  <body>    <h1>Hello world!</h1>    <img src=\"/foo/img.png\" />  </body></html>",
+      "language": "html"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/html \\--form files=@/path/to/index.html \\--form files=@/path/to/img.png \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "POST /forms/chromium/convert/markdown",
+      "language": "text"
+    },
+    {
+      "code": "<!doctype html><html lang=\"en\">  <head>    <meta charset=\"utf-8\">    <title>My PDF</title>  </head>  <body>    {{ toHTML \"file.md\" }}  </body></html>",
+      "language": "html"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/markdown \\--form files=@/path/to/index.html \\--form files=@/path/to/file.md \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "Content-Disposition: attachement; filename={output-filename.pdf}Content-Type: {content-type}Content-Length: {content-length}Gotenberg-Trace: {trace}Body: {output-file}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: {error}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: Service Unavailable",
+      "language": "text"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--form url=https://my.url \\--form paperWidth=8.27 \\--form paperHeight=11.7 \\--form marginTop=1 \\--form marginBottom=1 \\--form marginLeft=1 \\--form marginRight=1 \\--form preferCssPageSize=false \\--form printBackground=true \\--form omitBackground=true \\--form landscape=true \\--form scale=2.0 \\--form nativePageRanges=1-5 \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--form url=https://my.url \\--form files=@/path/to/header.html \\--form files=@/path/to/footer.html \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "<html><head>    <style>    body {        font-size: 12px;        margin: auto 20px;    }    </style></head><body><p><span class=\"pageNumber\"></span> of <span class=\"totalPages\"></span></p></body></html>",
+      "language": "html"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--form url=https://my.url \\--form waitDelay=5s \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "// Somewhere in the HTML document.var globalVar = 'notReady'await promises()window.globalVar = 'ready'",
+      "language": "js"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--form url=https://my.url \\--form 'waitForExpression=window.globalVar === '\\''ready'\\''' \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--form url=https://my.url \\--form emulatedMediaType=screen \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--form url=https://my.url \\--form 'cookies=[{\"name\":\"yummy_cookie\",\"value\":\"choco\",\"domain\":\"theyummycookie.com\"}]' \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--form url=https://my.url \\--form 'userAgent=\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)\"' \\--form-string 'extraHttpHeaders={\"X-Header\":\"value\",\"X-Scoped-Header\":\"value;scope=https?:\\\\/\\\\/([a-zA-Z0-9-]+\\\\.)*domain\\\\.com\\\\/.*\"}' \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--form url=https://httpstat.us/400 \\--form 'failOnHttpStatusCodes=[499]'",
+      "language": "bash"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body:Invalid HTTP status code from the main page: 400: Bad Request",
+      "language": "text"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/html \\--form files=@/path/to/index.html \\--form failOnResourceLoadingFailed=true",
+      "language": "bash"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body:Chromium failed to load resources: resource Stylesheet: net::ERR_FILE_NOT_FOUND; resource Image: net::ERR_CONNECTION_REFUSED",
+      "language": "text"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/html \\--form files=@/path/to/index.html \\--form failOnConsoleExceptions=true",
+      "language": "bash"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body:Chromium console exceptions:exception \"Uncaught\" (17:10): Error: Exception 1at file:///tmp/db09d2c8-31e3-4058-9923-c2705350f2b3/index.html:18:11;exception \"Uncaught\" (20:10): Error: Exception 2at file:///tmp/db09d2c8-31e3-4058-9923-c2705350f2b3/index.html:21:11:",
+      "language": "text"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/html \\--form files=@/path/to/index.html \\--form skipNetworkIdleEvent=false \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--form url=https://my.url \\--form splitMode=intervals \\--form splitSpan=1 \\-o my.zip",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--form url=https://my.url \\--form splitMode=pages \\--form splitSpan=1-2 \\--form splitUnify=true \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--form url=https://my.url \\--form pdfa=PDF/A-1b \\--form pdfua=true \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--form url=https://my.url \\--form 'metadata={\"Author\":\"Julien Neuhart\",\"Copyright\":\"Julien Neuhart\",\"CreationDate\":\"2006-09-18T16:27:50-04:00\",\"Creator\":\"Gotenberg\",\"Keywords\":[\"first\",\"second\"],\"Marked\":true,\"ModDate\":\"2006-09-18T16:27:50-04:00\",\"PDFVersion\":1.7,\"Producer\":\"Gotenberg\",\"Subject\":\"Sample\",\"Title\":\"Sample\",\"Trapped\":\"Unknown\"}' \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert \\--form url=https://my.url \\--form flatten=true \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "POST /forms/chromium/screenshot/url",
+      "language": "text"
+    },
+    {
+      "code": "POST /forms/chromium/screenshot/html",
+      "language": "text"
+    },
+    {
+      "code": "POST /forms/chromium/screenshot/markdown",
+      "language": "text"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/screenshot/html \\--form files=@/path/to/index.html \\--form format=jpeg \\--form quality=100 \\--form optimizeForSpeed=true \\-o my.jpeg",
+      "language": "bash"
+    },
+    {
+      "code": "POST /forms/libreoffice/convert",
+      "language": "text"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/libreoffice/convert \\--form files=@/path/to/file.docx \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/libreoffice/convert \\--form files=@/path/to/file.docx \\--form files=@/path/to/file.xlsx \\-o my.zip",
+      "language": "bash"
+    },
+    {
+      "code": "Content-Disposition: attachement; filename={output-filename.ext}Content-Type: {content-type}Content-Length: {content-length}Gotenberg-Trace: {trace}Body: {output-file}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: {error}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: Service Unavailable",
+      "language": "text"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/libreoffice/convert \\--form files=@/path/to/file.docx \\--form landscape=true \\--form nativePageRanges=1-5 \\--form exportFormFields=false \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/libreoffice/convert \\--form files=@/path/to/file.xlsx \\--form singlePageSheets=true \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/libreoffice/convert \\--form files=@/path/to/file.docx \\--form losslessImageCompression=false \\--form quality=50 \\--form reduceImageResolution=true \\--form maxImageResolution=75 \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/libreoffice/convert \\--form files=@/path/to/file.docx \\--form files=@/path/to/file.xlsx \\--form merge=true \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/libreoffice/convert \\--form files=@/path/to/file.docx \\--form splitMode=intervals \\--form splitSpan=1 \\-o my.zip",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/libreoffice/convert \\--form files=@/path/to/file.docx \\--form splitMode=pages \\--form splitSpan=1-2 \\--form splitUnify=true \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/libreoffice/convert \\--form files=@/path/to/file.docx \\--form pdfa=PDF/A-1b \\--form pdfua=true \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/libreoffice/convert \\--form files=@/path/to/file.docx \\--form 'metadata={\"Author\":\"Julien Neuhart\",\"Copyright\":\"Julien Neuhart\",\"CreateDate\":\"2006-09-18T16:27:50-04:00\",\"Creator\":\"Gotenberg\",\"Keywords\":[\"first\",\"second\"],\"Marked\":true,\"ModDate\":\"2006-09-18T16:27:50-04:00\",\"PDFVersion\":1.7,\"Producer\":\"Gotenberg\",\"Subject\":\"Sample\",\"Title\":\"Sample\",\"Trapped\":\"Unknown\"}' \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/libreoffice/convert \\--form files=@/path/to/file.docx \\--form flatten=true \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "POST /forms/pdfengines/convert",
+      "language": "text"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/pdfengines/convert \\--form files=@/path/to/pdf.pdf \\--form pdfa=PDF/A-1b \\--form pdfua=true \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/pdfengines/convert \\--form files=@/path/to/pdf1.pdf \\--form files=@/path/to/pdf2.pdf \\--form files=@/path/to/pdf3.pdf \\--form files=@/path/to/pdf4.pdf \\--form pdfa=PDF/A-1b \\--form pdfua=true \\-o my.zip",
+      "language": "bash"
+    },
+    {
+      "code": "Content-Disposition: attachement; filename={output-filename.ext}Content-Type: {content-type}Content-Length: {content-length}Gotenberg-Trace: {trace}Body: {output-file}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: {error}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: Service Unavailable",
+      "language": "text"
+    },
+    {
+      "code": "POST /forms/pdfengines/metadata/read",
+      "language": "text"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/pdfengines/metadata/read \\--form files=@/path/to/file1.pdf \\--form files=@/path/to/file2.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "Content-Type: application/json; charset=UTF-8Content-Length: {content-length}Gotenberg-Trace: {trace}Body:",
+      "language": "text"
+    },
+    {
+      "code": "{    \"file1.pdf\": {        \"CreateDate\": \"2024:03:05 09:15:32Z\",        \"Creator\": \"Writer\",        \"TaggedPDF\": \"Yes\",        \"XMPToolkit\": \"Image::ExifTool 12.57\"        // ...    },    \"file2.pdf\": {        \"CreateDate\": \"2024:03:05 09:15:32Z\",        \"Creator\": \"Writer\",        \"TaggedPDF\": \"Yes\",        \"XMPToolkit\": \"Image::ExifTool 12.57\"        // ...    }}",
+      "language": "json"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: {error}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: Service Unavailable",
+      "language": "text"
+    },
+    {
+      "code": "POST /forms/pdfengines/metadata/write",
+      "language": "text"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/pdfengines/metadata/write \\--form files=@/path/to/file.pdf \\--form 'metadata={\"Author\":\"Julien Neuhart\",\"Copyright\":\"Julien Neuhart\",\"CreateDate\":\"2006-09-18T16:27:50-04:00\",\"Creator\":\"Gotenberg\",\"Keywords\":[\"first\",\"second\"],\"Marked\":true,\"ModDate\":\"2006-09-18T16:27:50-04:00\",\"PDFVersion\":1.7,\"Producer\":\"Gotenberg\",\"Subject\":\"Sample\",\"Title\":\"Sample\",\"Trapped\":\"Unknown\"}' \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/pdfengines/metadata/write \\--form files=@/path/to/file1.pdf \\--form files=@/path/to/file2.pdf \\--form 'metadata={\"Author\":\"Julien Neuhart\",\"Copyright\":\"Julien Neuhart\",\"CreateDate\":\"2006-09-18T16:27:50-04:00\",\"Creator\":\"Gotenberg\",\"Keywords\":[\"first\",\"second\"],\"Marked\":true,\"ModDate\":\"2006-09-18T16:27:50-04:00\",\"PDFVersion\":1.7,\"Producer\":\"Gotenberg\",\"Subject\":\"Sample\",\"Title\":\"Sample\",\"Trapped\":\"Unknown\"}' \\-o my.zip",
+      "language": "bash"
+    },
+    {
+      "code": "Content-Disposition: attachement; filename={output-filename.ext}Content-Type: {content-type}Content-Length: {content-length}Gotenberg-Trace: {trace}Body: {output-file}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: {error}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: Service Unavailable",
+      "language": "text"
+    },
+    {
+      "code": "POST /forms/pdfengines/merge",
+      "language": "text"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/pdfengines/merge \\--form files=@/path/to/pdf1.pdf \\--form files=@/path/to/pdf2.pdf \\--form files=@/path/to/pdf3.pdf \\--form files=@/path/to/pdf4.pdf \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "Content-Disposition: attachement; filename={output-filename.pdf}Content-Type: {content-type}Content-Length: {content-length}Gotenberg-Trace: {trace}Body: {output-file}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: {error}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: Service Unavailable",
+      "language": "text"
+    },
+    {
+      "code": "POST /forms/pdfengines/split",
+      "language": "text"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/pdfengines/split \\--form files=@/path/to/pdf.pdf \\--form splitMode=intervals \\--form splitSpan=1 \\-o my.zip",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/pdfengines/split \\--form files=@/path/to/pdf.pdf \\--form splitMode=pages \\--form splitSpan=1-2 \\--form splitUnify=true \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "Content-Disposition: attachement; filename={output-filename.pdf}Content-Type: {content-type}Content-Length: {content-length}Gotenberg-Trace: {trace}Body: {output-file}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: {error}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: Service Unavailable",
+      "language": "text"
+    },
+    {
+      "code": "POST /forms/pdfengines/flatten",
+      "language": "text"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/pdfengines/flatten \\--form files=@/path/to/pdf.pdf \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "Content-Disposition: attachement; filename={output-filename.pdf}Content-Type: {content-type}Content-Length: {content-length}Gotenberg-Trace: {trace}Body: {output-file}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: {error}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: Service Unavailable",
+      "language": "text"
+    },
+    {
+      "code": "GET /health",
+      "language": "text"
+    },
+    {
+      "code": "HEAD /health",
+      "language": "text"
+    },
+    {
+      "code": "curl --request GET http://localhost:3000/health",
+      "language": "bash"
+    },
+    {
+      "code": "curl --request HEAD http://localhost:3000/health",
+      "language": "bash"
+    },
+    {
+      "code": "{    \"status\": \"up\",    \"details\": {        \"chromium\": {            \"status\": \"up\",            \"timestamp\": \"2021-07-01T08:05:14.603364Z\"        },        \"libreoffice\": {            \"status\": \"up\",            \"timestamp\": \"2021-07-01T08:05:14.603364Z\"        }    }}",
+      "language": "json"
+    },
+    {
+      "code": "{    \"status\": \"down\",    \"details\": {        \"chromium\": {            \"status\": \"up\",            \"timestamp\": \"2021-07-01T08:05:14.603364Z\"        },        \"libreoffice\": {            \"status\": \"down\",            \"timestamp\": \"2021-07-01T08:05:14.603364Z\",            \"error\": \"LibreOffice is unhealthy\"        }    }}",
+      "language": "json"
+    },
+    {
+      "code": "GET /prometheus/metrics",
+      "language": "text"
+    },
+    {
+      "code": "GET /version",
+      "language": "text"
+    },
+    {
+      "code": "curl --request GET http://localhost:3000/version",
+      "language": "bash"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body:8.24.0",
+      "language": "text"
+    },
+    {
+      "code": "curl --request GET http://localhost:3000/debug",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--header 'Gotenberg-Trace: debug' \\--form url=https://my.url \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/chromium/convert/url \\--header 'Gotenberg-Output-Filename: my_filename' \\--form url=https://my.url \\-O -J",
+      "language": "bash"
+    },
+    {
+      "code": "curl \\--request POST http://localhost:3000/forms/libreoffice/convert \\--form 'downloadFrom=[{\"url\":\"http://url/to/file.com\",\"extraHttpHeaders\":{\"X-Header\": \"value\"}}]' \\-o my.pdf",
+      "language": "bash"
+    },
+    {
+      "code": "GET http://url/to/file.comGotenberg-Trace: {trace}User-Agent: GotenbergX-Header: value",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: {error}",
+      "language": "text"
+    },
+    {
+      "code": "Content-Type: text/plain; charset=UTF-8Gotenberg-Trace: {trace}Body: Forbidden",
+      "language": "text"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://gotenberg.dev/docs/routes",
+    "https://gotenberg.dev/docs/configuration",
+    "https://gotenberg.dev/docs/webhook"
+  ]
+}

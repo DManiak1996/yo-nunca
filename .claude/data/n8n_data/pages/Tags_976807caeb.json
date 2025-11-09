@@ -1,0 +1,24 @@
+{
+  "title": "Tags",
+  "content": "Workflow tags allow you to label your workflows. You can then filter workflows by tag.\n\nTags are global. This means when you create a tag, it's available to all users on your n8n instance.\n\n## Add a tag to a workflow\n\nTo add a tag to your workflow:\n\n1. In your workflow, select **+ Add tag**.\n1. Select an existing tag, or enter a new tag name.\n1. Once you select a tag and click away from the tag modal, n8n displays the tag next to the workflow name.\n\nYou can add more than one tag.\n\nWhen browsing the workflows on your instance, you can filter by tag.\n\n1. On the **Workflows** page, select **Filters**.\n1. Select **Tags**.\n1. Select the tag or tags you want to filter by. n8n lists the workflows with that tag.\n\nYou can edit existing tags. Instance owners can delete tags.\n\n1. Select **Manage tags**. This is available from **Filters** > **Tags** on the **Workflows** page, or in the **+ Add tag** modal in your workflow.\n1. Hover over the tag you want to change.\n1. Select **Edit** to rename it, or **Delete** to delete it.\n\nTags are global. If you edit or delete a tag, this affects all users of your n8n instance.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Add a tag to a workflow",
+      "id": "add-a-tag-to-a-workflow"
+    },
+    {
+      "level": "h2",
+      "text": "Filter by tag",
+      "id": "filter-by-tag"
+    },
+    {
+      "level": "h2",
+      "text": "Manage tags",
+      "id": "manage-tags"
+    }
+  ],
+  "url": "llms-txt#tags",
+  "links": []
+}

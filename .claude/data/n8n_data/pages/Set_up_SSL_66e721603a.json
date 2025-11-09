@@ -1,0 +1,19 @@
+{
+  "title": "Set up SSL",
+  "content": "There are two methods to support TLS/SSL in n8n.\n\n## Use a reverse proxy (recommended)\n\nUse a reverse proxy like [Traefik](https://doc.traefik.io/traefik/) or a Network Load Balancer (NLB) in front of the n8n instance. This should also take care of certificate renewals.\n\nRefer to [Security | Data encryption](https://n8n.io/legal/#security) for more information.\n\n## Pass certificates into n8n directly\n\nYou can also choose to pass certificates into n8n directly. To do so, set the `N8N_SSL_CERT` and `N8N_SSL_KEY` environment variables to point to your generated certificate and key file.\n\nYou'll need to make sure the certificate stays renewed and up to date.\n\nRefer to [Deployment environment variables](../../configuration/environment-variables/deployment/) for more information on these variables and [Configuration](../../configuration/configuration-methods/) for more information on setting environment variables.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Use a reverse proxy (recommended)",
+      "id": "use-a-reverse-proxy-(recommended)"
+    },
+    {
+      "level": "h2",
+      "text": "Pass certificates into n8n directly",
+      "id": "pass-certificates-into-n8n-directly"
+    }
+  ],
+  "url": "llms-txt#set-up-ssl",
+  "links": []
+}

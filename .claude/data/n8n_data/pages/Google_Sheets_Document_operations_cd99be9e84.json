@@ -1,0 +1,24 @@
+{
+  "title": "Google Sheets Document operations",
+  "content": "Use this operation to create or delete a Google spreadsheet from Google Sheets. Refer to [Google Sheets](../) for more information on the Google Sheets node itself.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../../advanced-ai/examples/using-the-fromai-function/).\n\n## Create a spreadsheet\n\nUse this operation to create a new spreadsheet.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [Google Sheets credentials](../../../credentials/google/).\n- **Resource**: Select **Document**.\n- **Operation**: Select **Create**.\n- **Title**: Enter the title of the new spreadsheet you want to create.\n- **Sheets**: Add the **Title(s)** of the sheet(s) you want to create within the spreadsheet.\n\n- **Locale**: Enter the locale of the spreadsheet. This affects formatting details such as functions, dates, and currency. Use one of the following formats:\n  - `en` (639-1)\n  - `fil` (639-2 if no 639-1 format exists)\n  - `en_US` (combination of ISO language and country).\n  - Refer to [List of ISO 639 language codes](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) and [List of ISO 3166 country codes](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) for language and country codes. Note that Google doesn't support all locales/languages.\n- **Recalculation Interval**: Enter the desired recalculation interval for the spreadsheet functions. This affects how often `NOW`, `TODAY`, `RAND`, and `RANDBETWEEN` are updated. Select **On Change** for recalculating whenever there is a change in the spreadsheet, **Minute** for recalculating every minute, or **Hour** for recalculating every hour. Refer to [Set a spreadsheet’s location & calculation settings](https://support.google.com/docs/answer/58515) for more information about these options.\n\nRefer to the [Method: spreadsheets.create | Google Sheets](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/create) API documentation for more information.\n\n## Delete a spreadsheet\n\nUse this operation to delete an existing spreadsheet.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [Google Sheets credentials](../../../credentials/google/).\n- **Resource**: Select **Document**.\n- **Operation**: Select **Delete**.\n- **Document**: Choose a spreadsheet you want to delete.\n  - Select **From list** to choose the title from the dropdown list, **By URL** to enter the url of the spreadsheet, or **By ID** to enter the `spreadsheetId`.\n  - You can find the `spreadsheetId` in a Google Sheets URL: `https://docs.google.com/spreadsheets/d/spreadsheetId/edit#gid=0`.\n\nRefer to the [Method: files.delete | Google Drive](https://developers.google.com/drive/api/reference/rest/v2/files/delete) API documentation for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Create a spreadsheet",
+      "id": "create-a-spreadsheet"
+    },
+    {
+      "level": "h3",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h2",
+      "text": "Delete a spreadsheet",
+      "id": "delete-a-spreadsheet"
+    }
+  ],
+  "url": "llms-txt#google-sheets-document-operations",
+  "links": []
+}

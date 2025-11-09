@@ -1,0 +1,8 @@
+{
+  "title": "Generate a chat message",
+  "content": "Source: https://docs.ollama.com/api/chat\n\nopenapi.yaml post /api/chat\nGenerate the next chat message in a conversation between a user and an assistant.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#generate-a-chat-message",
+  "links": []
+}

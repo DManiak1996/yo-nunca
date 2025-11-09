@@ -1,0 +1,31 @@
+{
+  "title": "Item linking in the Code node",
+  "content": "Use n8n's item linking to access data from items that precede the current item. It also has implications when using the Code node. Most nodes link every output item to an input item. This creates a chain of items that you can work back along to access previous items. For a deeper conceptual overview of this topic, refer to [Item linking concepts](../item-linking-concepts/). This document focuses on practical usage examples.\n\nWhen using the Code node, there are some scenarios where you need to manually supply item linking information if you want to be able to use `$(\"<node-name>\").item` later in the workflow. All these scenarios only apply if you have more than one incoming item. n8n automatically handles item linking for single items.\n\nThese scenarios are when you:\n\n- Add new items: the new items aren't linked to any input.\n- Return new items.\n- Want to manually control the item linking.\n\n[n8n's automatic item linking](../item-linking-concepts/) handles the other scenarios.\n\nTo control item linking, set `pairedItem` when returning data. For example, to link to the item at index 0:\n\n### `pairedItem` usage example\n\nTake this input data:\n\nAnd use it to generate new items, containing just the name, along with a new piece of data:\n\n`newItems` is an array of items with no `pairedItem`. This means there's no way to trace back from these items to the items used to generate them.\n\nAdd the `pairedItem` object:\n\nEach new item now links to the item used to create it.",
+  "code_samples": [
+    {
+      "code": "[\n\t{\n\t\t\"json\": {\n\t\t\t. . . \n\t\t},\n\t\t// The index of the input item that generated this output item\n\t\t\"pairedItem\": 0\n\t}\n]",
+      "language": "unknown"
+    },
+    {
+      "code": "[\n  {\n    \"id\": \"23423532\",\n    \"name\": \"Jay Gatsby\"\n  },\n  {\n    \"id\": \"23423533\",\n    \"name\": \"José Arcadio Buendía\"\n  },\n  {\n    \"id\": \"23423534\",\n    \"name\": \"Max Sendak\"\n  },\n  {\n    \"id\": \"23423535\",\n    \"name\": \"Zaphod Beeblebrox\"\n  },\n  {\n    \"id\": \"23423536\",\n    \"name\": \"Edmund Pevensie\"\n  }\n]",
+      "language": "unknown"
+    },
+    {
+      "code": "newItems = [];\nfor(let i=0; i<items.length; i++){\n  newItems.push(\n    {\n    \"json\":\n      {\n        \"name\": items[i].json.name,\n\t\t\t\t\"aBrandNewField\": \"New data for item \" + i\n      }\n    }\n  )\n}\n\nreturn newItems;",
+      "language": "unknown"
+    },
+    {
+      "code": "newItems = [];\nfor(let i=0; i<items.length; i++){\n  newItems.push(\n    {\n      \"json\":\n        {\n          \"name\": items[i].json.name,\n\t\t\t\t\t\"aBrandNewField\": \"New data for item \" + i\n        },\n      \"pairedItem\": i\n    }    \n  )\n}\nreturn newItems;",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h3",
+      "text": "`pairedItem` usage example",
+      "id": "`paireditem`-usage-example"
+    }
+  ],
+  "url": "llms-txt#item-linking-in-the-code-node",
+  "links": []
+}

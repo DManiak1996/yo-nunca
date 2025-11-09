@@ -1,0 +1,40 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/functions/get-initial-props",
+  "title": "getInitialProps",
+  "content": "Good to know: getInitialProps is a legacy API. We recommend using getStaticProps or getServerSideProps instead.\n\ngetInitialProps is an async function that can be added to the default exported React component for the page. It will run on both the server-side and again on the client-side during page transitions. The result of the function will be forwarded to the React component as props.\n\ngetInitialProps receives a single argument called context, which is an object with the following properties:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "getInitialProps",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Context Object",
+      "id": "context-object"
+    },
+    {
+      "level": "h2",
+      "text": "Caveats",
+      "id": "caveats"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { NextPageContext } from 'next'\n \nPage.getInitialProps = async (ctx: NextPageContext) => {\n  const res = await fetch('https://api.github.com/repos/vercel/next.js')\n  const json = await res.json()\n  return { stars: json.stargazers_count }\n}\n \nexport default function Page({ stars }: { stars: number }) {\n  return stars\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/api-reference",
+    "https://nextjs.org/docs/pages/api-reference/functions",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-props",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props",
+    "https://nextjs.org/docs/pages/api-reference/components/link",
+    "https://nextjs.org/docs/pages/api-reference/functions/use-router",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-initial-props",
+    "https://nextjs.org/docs/app/getting-started/fetching-data",
+    "https://nextjs.org/docs/pages/api-reference/functions/get-server-side-props"
+  ]
+}

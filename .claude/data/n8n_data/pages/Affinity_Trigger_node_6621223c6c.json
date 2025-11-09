@@ -1,0 +1,19 @@
+{
+  "title": "Affinity Trigger node",
+  "content": "[Affinity](https://www.affinity.co/) is a powerful relationship intelligence platform enabling teams to leverage their network to close the next big deal.\n\nYou can find authentication information for this node [here](../../credentials/affinity/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Affinity Trigger integrations](https://n8n.io/integrations/affinity-trigger/) page.\n\n- Field value\n- Created\n- Deleted\n- Updated\n- Field\n- Created\n- Deleted\n- Updated\n- File\n- Created\n- Deleted\n- List entry\n- Created\n- Deleted\n- List\n- Created\n- Deleted\n- Updated\n- Note\n- Created\n- Deleted\n- Updated\n- Opportunity\n- Created\n- Deleted\n- Updated\n- Organization\n- Created\n- Deleted\n- Updated\n- Person\n- Created\n- Deleted\n- Updated\n\nn8n provides an app node for Affinity. You can find the node docs [here](../../app-nodes/n8n-nodes-base.affinity/).\n\nView [example workflows and related content](https://n8n.io/integrations/affinity-trigger/) on n8n's website.\n\nRefer to [Affinity's documentation](https://api-docs.affinity.co/) for details about their API.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Events",
+      "id": "events"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#affinity-trigger-node",
+  "links": []
+}

@@ -1,0 +1,74 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/use-report-web-vitals",
+  "title": "useReportWebVitals",
+  "content": "The useReportWebVitals hook allows you to report Core Web Vitals, and can be used in combination with your analytics service.\n\nNew functions passed to useReportWebVitals are called with the available metrics up to that point. To prevent reporting duplicated data, ensure that the callback function reference does not change (as shown in the code examples below).\n\nSince the useReportWebVitals hook requires the 'use client' directive, the most performant approach is to create a separate component that the root layout imports. This confines the client boundary exclusively to the WebVitals component.\n\nThe metric object passed as the hook's argument consists of a number of properties:\n\nWeb Vitals are a set of useful metrics that aim to capture the user experience of a web page. The following web vitals are all included:\n\nYou can handle all the results of these metrics using the name property.\n\nYou can send results to any endpoint to measure and track real user performance on your site. For example:\n\nGood to know: If you use Google Analytics, using the id value can allow you to construct metric distributions manually (to calculate percentiles, etc.)\n\nRead more about sending results to Google Analytics.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "useReportWebVitals",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "useReportWebVitals",
+      "id": "usereportwebvitals"
+    },
+    {
+      "level": "h2",
+      "text": "Web Vitals",
+      "id": "web-vitals"
+    },
+    {
+      "level": "h2",
+      "text": "Sending results to external systems",
+      "id": "sending-results-to-external-systems"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "'use client'\n \nimport { useReportWebVitals } from 'next/web-vitals'\n \nconst logWebVitals = (metric) => {\n  console.log(metric)\n}\n \nexport function WebVitals() {\n  useReportWebVitals(logWebVitals)\n \n  return null\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { WebVitals } from './_components/web-vitals'\n \nexport default function Layout({ children }) {\n  return (\n    <html>\n      <body>\n        <WebVitals />\n        {children}\n      </body>\n    </html>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { useReportWebVitals } from 'next/web-vitals'\n \ntype ReportWebVitalsCallback = Parameters<typeof useReportWebVitals>[0]\n \nconst handleWebVitals: ReportWebVitalsCallback = (metric) => {\n  switch (metric.name) {\n    case 'FCP': {\n      // handle FCP results\n    }\n    case 'LCP': {\n      // handle LCP results\n    }\n    // ...\n  }\n}\n \nexport function WebVitals() {\n  useReportWebVitals(handleWebVitals)\n}",
+      "language": "python"
+    },
+    {
+      "code": "function postWebVitals(metrics) {\n  const body = JSON.stringify(metric)\n  const url = 'https://example.com/analytics'\n \n  // Use `navigator.sendBeacon()` if available, falling back to `fetch()`.\n  if (navigator.sendBeacon) {\n    navigator.sendBeacon(url, body)\n  } else {\n    fetch(url, { body, method: 'POST', keepalive: true })\n  }\n}\n \nuseReportWebVitals(postWebVitals)",
+      "language": "javascript"
+    },
+    {
+      "code": "useReportWebVitals(metric => {\n  // Use `window.gtag` if you initialized Google Analytics as this example:\n  // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics\n  window.gtag('event', metric.name, {\n    value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value), // values must be integers\n    event_label: metric.id, // id unique to current page load\n    non_interaction: true, // avoids affecting bounce rate.\n  });\n}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "API ReferenceFunctionsuseReportWebVitalsCopy pageuseReportWebVitals The useReportWebVitals hook allows you to report Core Web Vitals, and can be used in combination with your analytics service. New functions passed to useReportWebVitals are called with the available metrics up to that point. To prevent reporting duplicated data, ensure that the callback function reference does not change (as shown in the code examples below). app/_components/web-vitals.js'use client' import { useReportWebVitals } from 'next/web-vitals' const logWebVitals = (metric) => { console.log(metric) } export function WebVitals() { useReportWebVitals(logWebVitals) return null }app/layout.jsimport { WebVitals } from './_components/web-vitals' export default function Layout({ children }) { return ( <html> <body> <WebVitals /> {children} </body> </html> ) } Since the useReportWebVitals hook requires the 'use client' directive, the most performant approach is to create a separate component that the root layout imports. This confines the client boundary exclusively to the WebVitals component. useReportWebVitals The metric object passed as the hook's argument consists of a number of properties: id: Unique identifier for the metric in the context of the current page load name: The name of the performance metric. Possible values include names of Web Vitals metrics (TTFB, FCP, LCP, FID, CLS) specific to a web application. delta: The difference between the current value and the previous value of the metric. The value is typically in milliseconds and represents the change in the metric's value over time. entries: An array of Performance Entries associated with the metric. These entries provide detailed information about the performance events related to the metric. navigationType: Indicates the type of navigation that triggered the metric collection. Possible values include \"navigate\", \"reload\", \"back_forward\", and \"prerender\". rating: A qualitative rating of the metric value, providing an assessment of the performance. Possible values are \"good\", \"needs-improvement\", and \"poor\". The rating is typically determined by comparing the metric value against predefined thresholds that indicate acceptable or suboptimal performance. value: The actual value or duration of the performance entry, typically in milliseconds. The value provides a quantitative measure of the performance aspect being tracked by the metric. The source of the value depends on the specific metric being measured and can come from various Performance APIs. Web Vitals Web Vitals are a set of useful metrics that aim to capture the user experience of a web page. The following web vitals are all included: Time to First Byte (TTFB) First Contentful Paint (FCP) Largest Contentful Paint (LCP) First Input Delay (FID) Cumulative Layout Shift (CLS) Interaction to Next Paint (INP) You can handle all the results of these metrics using the name property. app/components/web-vitals.tsxTypeScriptJavaScriptTypeScript'use client' import { useReportWebVitals } from 'next/web-vitals' type ReportWebVitalsCallback = Parameters<typeof useReportWebVitals>[0] const handleWebVitals: ReportWebVitalsCallback = (metric) => { switch (metric.name) { case 'FCP': { // handle FCP results } case 'LCP': { // handle LCP results } // ... } } export function WebVitals() { useReportWebVitals(handleWebVitals) } Sending results to external systems You can send results to any endpoint to measure and track real user performance on your site. For example: function postWebVitals(metrics) { const body = JSON.stringify(metric) const url = 'https://example.com/analytics' // Use `navigator.sendBeacon()` if available, falling back to `fetch()`. if (navigator.sendBeacon) { navigator.sendBeacon(url, body) } else { fetch(url, { body, method: 'POST', keepalive: true }) } } useReportWebVitals(postWebVitals) Good to know: If you use Google Analytics, using the id value can allow you to construct metric distributions manually (to calculate percentiles, etc.) useReportWebVitals(metric => { // Use `window.gtag` if you initialized Google Analytics as this example: // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics window.gtag('event', metric.name, { value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value), // values must be integers event_label: metric.id, // id unique to current page load non_interaction: true, // avoids affecting bounce rate. }); } Read more about sending results to Google Analytics.",
+      "code": "useReportWebVitals"
+    },
+    {
+      "description": "useReportWebVitals The useReportWebVitals hook allows you to report Core Web Vitals, and can be used in combination with your analytics service. New functions passed to useReportWebVitals are called with the available metrics up to that point. To prevent reporting duplicated data, ensure that the callback function reference does not change (as shown in the code examples below). app/_components/web-vitals.js'use client' import { useReportWebVitals } from 'next/web-vitals' const logWebVitals = (metric) => { console.log(metric) } export function WebVitals() { useReportWebVitals(logWebVitals) return null }app/layout.jsimport { WebVitals } from './_components/web-vitals' export default function Layout({ children }) { return ( <html> <body> <WebVitals /> {children} </body> </html> ) } Since the useReportWebVitals hook requires the 'use client' directive, the most performant approach is to create a separate component that the root layout imports. This confines the client boundary exclusively to the WebVitals component. useReportWebVitals The metric object passed as the hook's argument consists of a number of properties: id: Unique identifier for the metric in the context of the current page load name: The name of the performance metric. Possible values include names of Web Vitals metrics (TTFB, FCP, LCP, FID, CLS) specific to a web application. delta: The difference between the current value and the previous value of the metric. The value is typically in milliseconds and represents the change in the metric's value over time. entries: An array of Performance Entries associated with the metric. These entries provide detailed information about the performance events related to the metric. navigationType: Indicates the type of navigation that triggered the metric collection. Possible values include \"navigate\", \"reload\", \"back_forward\", and \"prerender\". rating: A qualitative rating of the metric value, providing an assessment of the performance. Possible values are \"good\", \"needs-improvement\", and \"poor\". The rating is typically determined by comparing the metric value against predefined thresholds that indicate acceptable or suboptimal performance. value: The actual value or duration of the performance entry, typically in milliseconds. The value provides a quantitative measure of the performance aspect being tracked by the metric. The source of the value depends on the specific metric being measured and can come from various Performance APIs. Web Vitals Web Vitals are a set of useful metrics that aim to capture the user experience of a web page. The following web vitals are all included: Time to First Byte (TTFB) First Contentful Paint (FCP) Largest Contentful Paint (LCP) First Input Delay (FID) Cumulative Layout Shift (CLS) Interaction to Next Paint (INP) You can handle all the results of these metrics using the name property. app/components/web-vitals.tsxTypeScriptJavaScriptTypeScript'use client' import { useReportWebVitals } from 'next/web-vitals' type ReportWebVitalsCallback = Parameters<typeof useReportWebVitals>[0] const handleWebVitals: ReportWebVitalsCallback = (metric) => { switch (metric.name) { case 'FCP': { // handle FCP results } case 'LCP': { // handle LCP results } // ... } } export function WebVitals() { useReportWebVitals(handleWebVitals) } Sending results to external systems You can send results to any endpoint to measure and track real user performance on your site. For example: function postWebVitals(metrics) { const body = JSON.stringify(metric) const url = 'https://example.com/analytics' // Use `navigator.sendBeacon()` if available, falling back to `fetch()`. if (navigator.sendBeacon) { navigator.sendBeacon(url, body) } else { fetch(url, { body, method: 'POST', keepalive: true }) } } useReportWebVitals(postWebVitals) Good to know: If you use Google Analytics, using the id value can allow you to construct metric distributions manually (to calculate percentiles, etc.) useReportWebVitals(metric => { // Use `window.gtag` if you initialized Google Analytics as this example: // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics window.gtag('event', metric.name, { value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value), // values must be integers event_label: metric.id, // id unique to current page load non_interaction: true, // avoids affecting bounce rate. }); } Read more about sending results to Google Analytics.",
+      "code": "useReportWebVitals"
+    },
+    {
+      "description": "You can send results to any endpoint to measure and track real user performance on your site. For example:",
+      "code": "function postWebVitals(metrics) {\n  const body = JSON.stringify(metric)\n  const url = 'https://example.com/analytics'\n \n  // Use `navigator.sendBeacon()` if available, falling back to `fetch()`.\n  if (navigator.sendBeacon) {\n    navigator.sendBeacon(url, body)\n  } else {\n    fetch(url, { body, method: 'POST', keepalive: true })\n  }\n}\n \nuseReportWebVitals(postWebVitals)"
+    },
+    {
+      "description": "useReportWebVitals(metric => { // Use `window.gtag` if you initialized Google Analytics as this example: // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics window.gtag('event', metric.name, { value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value), // values must be integers event_label: metric.id, // id unique to current page load non_interaction: true, // avoids affecting bounce rate. }); }",
+      "code": "useReportWebVitals(metric => {\n  // Use `window.gtag` if you initialized Google Analytics as this example:\n  // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics\n  window.gtag('event', metric.name, {\n    value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value), // values must be integers\n    event_label: metric.id, // id unique to current page load\n    non_interaction: true, // avoids affecting bounce rate.\n  });\n}"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/functions/use-report-web-vitals",
+    "https://nextjs.org/docs/app/api-reference/functions/use-pathname",
+    "https://nextjs.org/docs/app/api-reference/functions/use-router"
+  ]
+}

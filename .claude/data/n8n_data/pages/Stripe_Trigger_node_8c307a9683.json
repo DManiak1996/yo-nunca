@@ -1,0 +1,8 @@
+{
+  "title": "Stripe Trigger node",
+  "content": "[Stripe](https://stripe.com/) is a suite of payment APIs that powers commerce for online businesses.\n\nYou can find authentication information for this node [here](../../credentials/stripe/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [Stripe Trigger integrations](https://n8n.io/integrations/stripe-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#stripe-trigger-node",
+  "links": []
+}

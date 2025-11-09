@@ -1,0 +1,95 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/use-link-status",
+  "title": "useLinkStatus",
+  "content": "The useLinkStatus hook lets you track the pending state of a <Link>. Use it for subtle, inline feedback, for example a shimmer effect over the clicked link, while navigation completes. Prefer route-level fallbacks with loading.js, and prefetching for instant transitions.\n\nuseLinkStatus is useful when:\n\nBefore adding inline feedback, consider if:\n\nNavigation is typically fast. Use useLinkStatus as a quick patch when you identify a slow transition, then iterate to fix the root cause with prefetching or a loading.js fallback.\n\nuseLinkStatus does not take any parameters.\n\nuseLinkStatus returns an object with a single property:\n\nAdd a subtle, fixed-size hint that doesn’t affect layout to confirm a click when prefetching hasn’t completed.\n\nIf the navigation to a new route is fast, users may see an unnecessary flash of the hint. One way to improve the user experience and only show the hint when the navigation takes time to complete is to add an initial animation delay (e.g. 100ms) and start the animation as invisible (e.g. opacity: 0).",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "useLinkStatus",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "You might not need useLinkStatus",
+      "id": "you-might-not-need-uselinkstatus"
+    },
+    {
+      "level": "h2",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Example",
+      "id": "example"
+    },
+    {
+      "level": "h3",
+      "text": "Inline link hint",
+      "id": "inline-link-hint"
+    },
+    {
+      "level": "h2",
+      "text": "Gracefully handling fast navigation",
+      "id": "gracefully-handling-fast-navigation"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "Link Component",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "loading.js",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "'use client'\n \nimport Link from 'next/link'\nimport { useLinkStatus } from 'next/link'\n \nfunction Hint() {\n  const { pending } = useLinkStatus()\n  return (\n    <span aria-hidden className={`link-hint ${pending ? 'is-pending' : ''}`} />\n  )\n}\n \nexport default function Header() {\n  return (\n    <header>\n      <Link href=\"/dashboard\" prefetch={false}>\n        <span className=\"label\">Dashboard</span> <Hint />\n      </Link>\n    </header>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "const { pending } = useLinkStatus()",
+      "language": "javascript"
+    },
+    {
+      "code": "'use client'\n \nimport { useLinkStatus } from 'next/link'\n \nexport default function LoadingIndicator() {\n  const { pending } = useLinkStatus()\n  return (\n    <span aria-hidden className={`link-hint ${pending ? 'is-pending' : ''}`} />\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Link from 'next/link'\nimport LoadingIndicator from './components/loading-indicator'\n \nconst links = [\n  { href: '/shop/electronics', label: 'Electronics' },\n  { href: '/shop/clothing', label: 'Clothing' },\n  { href: '/shop/books', label: 'Books' },\n]\n \nfunction Menubar() {\n  return (\n    <div>\n      {links.map((link) => (\n        <Link key={link.label} href={link.href}>\n          <span className=\"label\">{link.label}</span> <LoadingIndicator />\n        </Link>\n      ))}\n    </div>\n  )\n}\n \nexport default function Layout({ children }: { children: React.ReactNode }) {\n  return (\n    <div>\n      <Menubar />\n      {children}\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": ".link-hint {\n  display: inline-block;\n  width: 0.6em;\n  height: 0.6em;\n  margin-left: 0.25rem;\n  border-radius: 9999px;\n  background: currentColor;\n  opacity: 0;\n  visibility: hidden; /* reserve space without showing the hint */\n}\n \n.link-hint.is-pending {\n  /* Animation 1: fade in after 100ms and keep final opacity */\n  /* Animation 2: subtle pulsing while pending */\n  visibility: visible;\n  animation-name: fadeIn, pulse;\n  animation-duration: 200ms, 1s;\n  /* Appear only if navigation actually takes time */\n  animation-delay: 100ms, 100ms;\n  animation-timing-function: ease, ease-in-out;\n  animation-iteration-count: 1, infinite;\n  animation-fill-mode: forwards, none;\n}\n \n@keyframes fadeIn {\n  to {\n    opacity: 0.35;\n  }\n}\n@keyframes pulse {\n  50% {\n    opacity: 0.15;\n  }\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/getting-started/linking-and-navigating",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/app/api-reference/functions/use-link-status",
+    "https://nextjs.org/docs/app/api-reference/components/link",
+    "https://nextjs.org/docs/app/api-reference/functions/updateTag",
+    "https://nextjs.org/docs/app/api-reference/functions/use-params"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "title": "Embeddings",
+  "content": "Source: https://docs.ollama.com/capabilities/embeddings\n\nGenerate text embeddings for semantic search, retrieval, and RAG.\n\nEmbeddings turn text into numeric vectors you can store in a vector database, search with cosine similarity, or use in RAG pipelines. The vector length depends on the model (typically 384–1024 dimensions).\n\n## Recommended models\n\n* [embeddinggemma](https://ollama.com/library/embeddinggemma)\n* [qwen3-embedding](https://ollama.com/library/qwen3-embedding)\n* [all-minilm](https://ollama.com/library/all-minilm)\n\n## Generate embeddings\n\nUse `/api/embed` with a single string.\n\n<Tabs>\n  <Tab title=\"cURL\">\n    \n  </Tab>\n\n<Tab title=\"Python\">\n    \n  </Tab>\n\n<Tab title=\"JavaScript\">\n    \n  </Tab>\n</Tabs>\n\n<Note>\n  The `/api/embed` endpoint returns L2‑normalized (unit‑length) vectors.\n</Note>\n\n## Generate a batch of embeddings\n\nPass an array of strings to `input`.\n\n<Tabs>\n  <Tab title=\"cURL\">\n    \n  </Tab>\n\n<Tab title=\"Python\">\n    \n  </Tab>\n\n<Tab title=\"JavaScript\">\n    \n  </Tab>\n</Tabs>\n\n* Use cosine similarity for most semantic search use cases.\n* Use the same embedding model for both indexing and querying.",
+  "code_samples": [
+    {
+      "code": "</Tab>\n\n  <Tab title=\"Python\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"JavaScript\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n</Tabs>\n\n<Note>\n  The `/api/embed` endpoint returns L2‑normalized (unit‑length) vectors.\n</Note>\n\n## Generate a batch of embeddings\n\nPass an array of strings to `input`.\n\n<Tabs>\n  <Tab title=\"cURL\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"Python\">",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"JavaScript\">",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Recommended models",
+      "id": "recommended-models"
+    },
+    {
+      "level": "h2",
+      "text": "Generate embeddings",
+      "id": "generate-embeddings"
+    },
+    {
+      "level": "h2",
+      "text": "Generate a batch of embeddings",
+      "id": "generate-a-batch-of-embeddings"
+    },
+    {
+      "level": "h2",
+      "text": "Tips",
+      "id": "tips"
+    }
+  ],
+  "url": "llms-txt#embeddings",
+  "links": []
+}

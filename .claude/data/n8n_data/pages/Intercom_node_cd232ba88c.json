@@ -1,0 +1,19 @@
+{
+  "title": "Intercom node",
+  "content": "Use the Intercom node to automate work in Intercom, and integrate Intercom with other applications. n8n has built-in support for a wide range of Intercom features, including creating, updating, deleting, and getting companies, leads, and users.\n\nOn this page, you'll find a list of operations the Intercom node supports and links to more resources.\n\nRefer to [Intercom credentials](../../credentials/intercom/) for guidance on setting up authentication.\n\n- Company\n  - Create a new company\n  - Get data of a company\n  - Get data of all companies\n  - Update a company\n  - List company's users\n- Lead\n  - Create a new lead\n  - Delete a lead\n  - Get data of a lead\n  - Get data of all leads\n  - Update new lead\n- User\n  - Create a new user\n  - Delete a user\n  - Get data of a user\n  - Get data of all users\n  - Update a user\n\n## Templates and examples\n\n**Enrich new Intercom users with contact details and more from ExactBuyer**\n\n[View template details](https://n8n.io/workflows/2108-enrich-new-intercom-users-with-contact-details-and-more-from-exactbuyer/)\n\n**Create a new user in Intercom**\n\n[View template details](https://n8n.io/workflows/464-create-a-new-user-in-intercom/)\n\n**Autonomous Customizable Support Chatbot on Intercom + Discord Thread Reports**\n\n[View template details](https://n8n.io/workflows/3558-autonomous-customizable-support-chatbot-on-intercom-discord-thread-reports/)\n\n[Browse Intercom integration templates](https://n8n.io/integrations/intercom/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#intercom-node",
+  "links": []
+}

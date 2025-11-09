@@ -1,0 +1,8 @@
+{
+  "title": "Docker Compose",
+  "content": "n8n:\n    environment:\n      - EXECUTIONS_DATA_PRUNE=true\n      - EXECUTIONS_DATA_MAX_AGE=168\n\t  \t- EXECUTIONS_DATA_PRUNE_MAX_COUNT=50000\n```\n\nIf you run n8n using the default SQLite database, the disk space of any pruned data isn't automatically freed up but rather reused for future executions data. To free up this space configure the `DB_SQLITE_VACUUM_ON_STARTUP` [environment variable](../../configuration/environment-variables/database/#sqlite) or manually run the [VACUUM](https://www.sqlite.org/lang_vacuum.html) operation.\n\nBinary data pruning operates on the active binary data mode. For example, if your instance stored data in S3, and you later switched to filesystem mode, n8n only prunes binary data in the filesystem. This may change in future.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#docker-compose",
+  "links": []
+}

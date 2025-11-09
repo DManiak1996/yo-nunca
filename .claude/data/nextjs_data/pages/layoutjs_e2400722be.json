@@ -1,0 +1,208 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+  "title": "layout.js",
+  "content": "The layout file is used to define a layout in your Next.js application.\n\nA root layout is the top-most layout in the root app directory. It is used to define the <html> and <body> tags and other globally shared UI.\n\nLayout components should accept and use a children prop. During rendering, children will be populated with the route segments the layout is wrapping. These will primarily be the component of a child Layout (if it exists) or Page, but could also be other special files like Loading or Error when applicable.\n\nA promise that resolves to an object containing the dynamic route parameters object from the root segment down to that layout.\n\nYou can type layouts with LayoutProps to get a strongly typed params and named slots inferred from your directory structure. LayoutProps is a globally available helper.\n\nThe app directory must include a root layout, which is the top-most layout in the root app directory. Typically, the root layout is app/layout.js.\n\nLayouts are cached in the client during navigation to avoid unnecessary server requests.\n\nLayouts do not rerender. They can be cached and reused to avoid unnecessary computation when navigating between pages. By restricting layouts from accessing the raw request, Next.js can prevent the execution of potentially slow or expensive user code within the layout, which could negatively impact performance.\n\nTo access the request object, you can use headers and cookies APIs in Server Components and Functions.\n\nLayouts do not rerender on navigation, so they cannot access search params which would otherwise become stale.\n\nTo access updated query parameters, you can use the Page searchParams prop, or read them inside a Client Component using the useSearchParams hook. Since Client Components re-render on navigation, they have access to the latest query parameters.\n\nLayouts do not re-render on navigation, so they do not access pathname which would otherwise become stale.\n\nTo access the current pathname, you can read it inside a Client Component using the usePathname hook. Since Client Components re-render during navigation, they have access to the latest pathname.\n\nLayouts cannot pass data to their children. However, you can fetch the same data in a route more than once, and use React cache to dedupe the requests without affecting performance.\n\nAlternatively, when using fetchin Next.js, requests are automatically deduped.\n\nLayouts do not have access to the route segments below itself. To access all route segments, you can use useSelectedLayoutSegment or useSelectedLayoutSegments in a Client Component.\n\nYou can modify the <head> HTML elements such as title and meta using the metadata object or generateMetadata function.\n\nGood to know: You should not manually add <head> tags such as <title> and <meta> to root layouts. Instead, use the Metadata APIs which automatically handles advanced requirements such as streaming and de-duplicating <head> elements.\n\nYou can use the usePathname hook to determine if a nav link is active.\n\nSince usePathname is a client hook, you need to extract the nav links into a Client Component, which can be imported into your layout:\n\nUsing dynamic route segments, you can display or fetch specific content based on the params prop.\n\nTo use params in a Client Component (which cannot be async), you can use React's use function to read the promise:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "layout.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Props",
+      "id": "props"
+    },
+    {
+      "level": "h4",
+      "text": "children (required)",
+      "id": "children-required"
+    },
+    {
+      "level": "h4",
+      "text": "params (optional)",
+      "id": "params-optional"
+    },
+    {
+      "level": "h3",
+      "text": "Layout Props Helper",
+      "id": "layout-props-helper"
+    },
+    {
+      "level": "h3",
+      "text": "Root Layout",
+      "id": "root-layout"
+    },
+    {
+      "level": "h2",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h3",
+      "text": "Request Object",
+      "id": "request-object"
+    },
+    {
+      "level": "h3",
+      "text": "Query params",
+      "id": "query-params"
+    },
+    {
+      "level": "h3",
+      "text": "Pathname",
+      "id": "pathname"
+    },
+    {
+      "level": "h3",
+      "text": "Fetching Data",
+      "id": "fetching-data"
+    },
+    {
+      "level": "h3",
+      "text": "Accessing child segments",
+      "id": "accessing-child-segments"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Metadata",
+      "id": "metadata"
+    },
+    {
+      "level": "h3",
+      "text": "Active Nav Links",
+      "id": "active-nav-links"
+    },
+    {
+      "level": "h3",
+      "text": "Displaying content based on params",
+      "id": "displaying-content-based-on-params"
+    },
+    {
+      "level": "h3",
+      "text": "Reading params in Client Components",
+      "id": "reading-params-in-client-components"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export default function DashboardLayout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  return <section>{children}</section>\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  return (\n    <html lang=\"en\">\n      <body>{children}</body>\n    </html>\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export default async function Layout({\n  children,\n  params,\n}: {\n  children: React.ReactNode\n  params: Promise<{ team: string }>\n}) {\n  const { team } = await params\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export default function Layout(props: LayoutProps<'/dashboard'>) {\n  return (\n    <section>\n      {props.children}\n      {/* If you have app/dashboard/@analytics, it appears as a typed slot: */}\n      {/* {props.analytics} */}\n    </section>\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  return (\n    <html>\n      <body>{children}</body>\n    </html>\n  )\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import { cookies } from 'next/headers'\n \nexport default async function Layout({ children }) {\n  const cookieStore = await cookies()\n  const theme = cookieStore.get('theme')\n  return '...'\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { useSearchParams } from 'next/navigation'\n \nexport default function Search() {\n  const searchParams = useSearchParams()\n \n  const search = searchParams.get('search')\n \n  return '...'\n}",
+      "language": "python"
+    },
+    {
+      "code": "import Search from '@/app/ui/search'\n \nexport default function Layout({ children }) {\n  return (\n    <>\n      <Search />\n      {children}\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { usePathname } from 'next/navigation'\n \n// Simplified breadcrumbs logic\nexport default function Breadcrumbs() {\n  const pathname = usePathname()\n  const segments = pathname.split('/')\n \n  return (\n    <nav>\n      {segments.map((segment, index) => (\n        <span key={index}>\n          {' > '}\n          {segment}\n        </span>\n      ))}\n    </nav>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { Breadcrumbs } from '@/app/ui/Breadcrumbs'\n \nexport default function Layout({ children }) {\n  return (\n    <>\n      <Breadcrumbs />\n      <main>{children}</main>\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "export async function getUser(id: string) {\n  const res = await fetch(`https://.../users/${id}`)\n  return res.json()\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { getUser } from '@/app/lib/data'\nimport { UserName } from '@/app/ui/user-name'\n \nexport default async function Layout({ children }) {\n  const user = await getUser('1')\n \n  return (\n    <>\n      <nav>\n        {/* ... */}\n        <UserName user={user.name} />\n      </nav>\n      {children}\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { getUser } from '@/app/lib/data'\nimport { UserName } from '@/app/ui/user-name'\n \nexport default async function Page() {\n  const user = await getUser('1')\n \n  return (\n    <div>\n      <h1>Welcome {user.name}</h1>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport Link from 'next/link'\nimport { useSelectedLayoutSegment } from 'next/navigation'\n \nexport default function NavLink({\n  slug,\n  children,\n}: {\n  slug: string\n  children: React.ReactNode\n}) {\n  const segment = useSelectedLayoutSegment()\n  const isActive = slug === segment\n \n  return (\n    <Link\n      href={`/blog/${slug}`}\n      // Change style depending on whether the link is active\n      style={{ fontWeight: isActive ? 'bold' : 'normal' }}\n    >\n      {children}\n    </Link>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NavLink } from './nav-link'\nimport getPosts from './get-posts'\n \nexport default async function Layout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  const featuredPosts = await getPosts()\n  return (\n    <div>\n      {featuredPosts.map((post) => (\n        <div key={post.id}>\n          <NavLink slug={post.slug}>{post.title}</NavLink>\n        </div>\n      ))}\n      <div>{children}</div>\n    </div>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import type { Metadata } from 'next'\n \nexport const metadata: Metadata = {\n  title: 'Next.js',\n}\n \nexport default function Layout({ children }: { children: React.ReactNode }) {\n  return '...'\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { usePathname } from 'next/navigation'\nimport Link from 'next/link'\n \nexport function NavLinks() {\n  const pathname = usePathname()\n \n  return (\n    <nav>\n      <Link className={`link ${pathname === '/' ? 'active' : ''}`} href=\"/\">\n        Home\n      </Link>\n \n      <Link\n        className={`link ${pathname === '/about' ? 'active' : ''}`}\n        href=\"/about\"\n      >\n        About\n      </Link>\n    </nav>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { NavLinks } from '@/app/ui/nav-links'\n \nexport default function Layout({ children }: { children: React.ReactNode }) {\n  return (\n    <html lang=\"en\">\n      <body>\n        <NavLinks />\n        <main>{children}</main>\n      </body>\n    </html>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "export default async function DashboardLayout({\n  children,\n  params,\n}: {\n  children: React.ReactNode\n  params: Promise<{ team: string }>\n}) {\n  const { team } = await params\n \n  return (\n    <section>\n      <header>\n        <h1>Welcome to {team}'s Dashboard</h1>\n      </header>\n      <main>{children}</main>\n    </section>\n  )\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "'use client'\n \nimport { use } from 'react'\n \nexport default function Page({\n  params,\n}: {\n  params: Promise<{ slug: string }>\n}) {\n  const { slug } = use(params)\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/page",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/app/getting-started/error-handling",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes",
+    "https://nextjs.org/docs/app/getting-started/metadata-and-og-images",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-groups",
+    "https://nextjs.org/docs/app/guides/internationalization",
+    "https://nextjs.org/docs/app/api-reference/functions/headers",
+    "https://nextjs.org/docs/app/api-reference/functions/cookies",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/api-reference/functions/use-search-params",
+    "https://nextjs.org/docs/app/api-reference/functions/use-pathname",
+    "https://nextjs.org/docs/app/api-reference/functions/fetch",
+    "https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segment",
+    "https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segments",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-metadata",
+    "https://nextjs.org/docs/app/guides/upgrading/codemods",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/intercepting-routes"
+  ]
+}

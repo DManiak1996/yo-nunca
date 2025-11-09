@@ -1,0 +1,24 @@
+{
+  "title": "OpenAI compatibility",
+  "content": "Source: https://docs.ollama.com/api/openai-compatibility\n\nOllama provides compatibility with parts of the [OpenAI API](https://platform.openai.com/docs/api-reference) to help connect existing applications to Ollama.\n\n### OpenAI Python library\n\n#### Structured outputs\n\n```python  theme={\"system\"}\nfrom pydantic import BaseModel\nfrom openai import OpenAI\n\nclient = OpenAI(base_url=\"http://localhost:11434/v1\", api_key=\"ollama\")",
+  "code_samples": [
+    {
+      "code": "#### Structured outputs",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "OpenAI Python library",
+      "id": "openai-python-library"
+    }
+  ],
+  "url": "llms-txt#openai-compatibility",
+  "links": []
+}

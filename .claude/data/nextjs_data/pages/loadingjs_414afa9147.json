@@ -1,0 +1,102 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+  "title": "loading.js",
+  "content": "The special file loading.js helps you create meaningful Loading UI with React Suspense. With this convention, you can show an instant loading state from the server while the content of a route segment streams in. The new content is automatically swapped in once complete.\n\nInside the loading.js file, you can add any light-weight loading UI. You may find it helpful to use the React Developer Tools to manually toggle Suspense boundaries.\n\nBy default, this file is a Server Component - but can also be used as a Client Component through the \"use client\" directive.\n\nLoading UI components do not accept any parameters.\n\nAn instant loading state is fallback UI that is shown immediately upon navigation. You can pre-render loading indicators such as skeletons and spinners, or a small but meaningful part of future screens such as a cover photo, title, etc. This helps users understand the app is responding and provides a better user experience.\n\nCreate a loading state by adding a loading.js file inside a folder.\n\nIn the same folder, loading.js will be nested inside layout.js. It will automatically wrap the page.js file and any children below in a <Suspense> boundary.\n\nWhen streaming, a 200 status code will be returned to signal that the request was successful.\n\nThe server can still communicate errors or issues to the client within the streamed content itself, for example, when using redirect or notFound. Because the response headers have already been sent to the client, the status code of the response cannot be updated.\n\nFor example, when a 404 page is streamed to the client, Next.js includes a <meta name=\"robots\" content=\"noindex\"> tag in the streamed HTML. This prevents search engines from indexing that URL even if the HTTP status is 200. See Google’s guidance on the robots meta tag.\n\nSome crawlers may label these responses as “soft 404s”. In the streaming case, this does not lead to indexation because the page is explicitly marked noindex in the HTML.\n\nIf you need a 404 status, for compliance or analytics, ensure the resource exists before the response body is streamed, so that the server can set the HTTP status code.\n\nYou can run this check in proxy to rewrite missing slugs to a not-found route, or produce a 404 response. Keep proxy checks fast, and avoid fetching full content there.\n\nThe response body starts streaming when a Suspense fallback renders (for example, a loading.tsx) or when a Server Component suspends under a Suspense boundary. Place notFound() before those boundaries and before any await that may suspend.\n\nTo start streaming, the response headers must be set. This is why it is not possible to change the status code after streaming started.\n\nSome browsers buffer a streaming response. You may not see the streamed response until the response exceeds 1024 bytes. This typically only affects “hello world” applications, but not real applications.\n\nLearn how to configure streaming when self-hosting Next.js.\n\nIn addition to loading.js, you can also manually create Suspense Boundaries for your own UI components. The App Router supports streaming with Suspense.\n\n<Suspense> works by wrapping a component that performs an asynchronous action (e.g. fetch data), showing fallback UI (e.g. skeleton, spinner) while it's happening, and then swapping in your component once the action completes.\n\nBy using Suspense, you get the benefits of:\n\nFor more Suspense examples and use cases, please see the React Documentation.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "loading.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Behavior",
+      "id": "behavior"
+    },
+    {
+      "level": "h3",
+      "text": "Navigation",
+      "id": "navigation"
+    },
+    {
+      "level": "h3",
+      "text": "Instant Loading States",
+      "id": "instant-loading-states"
+    },
+    {
+      "level": "h3",
+      "text": "SEO",
+      "id": "seo"
+    },
+    {
+      "level": "h3",
+      "text": "Status Codes",
+      "id": "status-codes"
+    },
+    {
+      "level": "h3",
+      "text": "Browser limits",
+      "id": "browser-limits"
+    },
+    {
+      "level": "h2",
+      "text": "Platform Support",
+      "id": "platform-support"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Streaming with Suspense",
+      "id": "streaming-with-suspense"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export default function Loading() {\n  // Or a custom loading skeleton component\n  return <p>Loading...</p>\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "export default function Loading() {\n  // You can add any UI inside Loading, including a Skeleton.\n  return <LoadingSkeleton />\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "import { Suspense } from 'react'\nimport { PostFeed, Weather } from './Components'\n \nexport default function Posts() {\n  return (\n    <section>\n      <Suspense fallback={<p>Loading feed...</p>}>\n        <PostFeed />\n      </Suspense>\n      <Suspense fallback={<p>Loading weather...</p>}>\n        <Weather />\n      </Suspense>\n    </section>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/file-conventions",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/getting-started/linking-and-navigating",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-metadata",
+    "https://nextjs.org/docs/app/api-reference/functions/redirect",
+    "https://nextjs.org/docs/app/api-reference/functions/not-found",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+    "https://nextjs.org/docs/app/getting-started/deploying",
+    "https://nextjs.org/docs/app/guides/self-hosting",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/layout",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/mdx-components"
+  ]
+}

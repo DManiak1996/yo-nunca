@@ -1,0 +1,67 @@
+{
+  "url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/use-memo",
+  "title": "use-memo",
+  "content": "Validates that the useMemo hook is used with a return value. See useMemo docs for more information.\n\nuseMemo is for computing and caching expensive values, not for side effects. Without a return value, useMemo returns undefined, which defeats its purpose and likely indicates you’re using the wrong hook.\n\nExamples of incorrect code for this rule:\n\nExamples of correct code for this rule:\n\nYou might try to use useMemo for side effects:\n\nIf the side effect needs to happen in response to user interaction, it’s best to colocate the side effect with the event:\n\nIf the side effect sychronizes React state with some external state (or vice versa), use useEffect:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "use-memo",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Rule Details",
+      "id": "rule-details"
+    },
+    {
+      "level": "h3",
+      "text": "Invalid",
+      "id": "invalid"
+    },
+    {
+      "level": "h3",
+      "text": "Valid",
+      "id": "valid"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "I need to run side effects when dependencies change",
+      "id": "side-effects"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "// ❌ No return valuefunction Component({ data }) {  const processed = useMemo(() => {    data.forEach(item => console.log(item));    // Missing return!  }, [data]);  return <div>{processed}</div>; // Always undefined}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Returns computed valuefunction Component({ data }) {  const processed = useMemo(() => {    return data.map(item => item * 2);  }, [data]);  return <div>{processed}</div>;}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ❌ Wrong: Side effects in useMemofunction Component({user}) {  // No return value, just side effect  useMemo(() => {    analytics.track('UserViewed', {userId: user.id});  }, [user.id]);  // Not assigned to a variable  useMemo(() => {    return analytics.track('UserViewed', {userId: user.id});  }, [user.id]);}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Good: Side effects in event handlersfunction Component({user}) {  const handleClick = () => {    analytics.track('ButtonClicked', {userId: user.id});    // Other click logic...  };  return <button onClick={handleClick}>Click me</button>;}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Good: Synchronization in useEffectfunction Component({theme}) {  useEffect(() => {    localStorage.setItem('preferredTheme', theme);    document.body.className = theme;  }, [theme]);  return <div>Current theme: {theme}</div>;}",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/eslint-plugin-react-hooks",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/use-memo",
+    "https://react.dev/reference/react/useMemo",
+    "https://react.dev/reference/eslint-plugin-react-hooks/lints/unsupported-syntax"
+  ]
+}

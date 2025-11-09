@@ -1,0 +1,29 @@
+{
+  "title": "Retrieve linked items from earlier in the workflow",
+  "content": "Every item in a node's input data links back to the items used in previous nodes to generate it. This is useful if you need to retrieve linked items from further back than the immediate previous node.\n\nTo access the linked items from earlier in the workflow, use `(\"<node-name>\").itemMatching(currentNodeinputIndex)`.\n\nFor example, consider a workflow that does the following:\n\n1. The Customer Datastore node generates example data:\n\n1. The Edit Fields node simplifies this data:\n\n1. The Code node restore the email address to the correct person:\n\nThe Code node does this using the following code:\n\nYou can view and download the example workflow from [n8n website | itemMatchin usage example](https://n8n.io/workflows/1966-itemmatching-usage-example/) .",
+  "code_samples": [
+    {
+      "code": "[\n   \t{\n   \t\t\"id\": \"23423532\",\n   \t\t\"name\": \"Jay Gatsby\",\n   \t\t\"email\": \"gatsby@west-egg.com\",\n   \t\t\"notes\": \"Keeps asking about a green light??\",\n   \t\t\"country\": \"US\",\n   \t\t\"created\": \"1925-04-10\"\n   \t},\n   \t{\n   \t\t\"id\": \"23423533\",\n   \t\t\"name\": \"José Arcadio Buendía\",\n   \t\t\"email\": \"jab@macondo.co\",\n   \t\t\"notes\": \"Lots of people named after him. Very confusing\",\n   \t\t\"country\": \"CO\",\n   \t\t\"created\": \"1967-05-05\"\n   \t},\n   \t...\n   ]",
+      "language": "unknown"
+    },
+    {
+      "code": "[\n   \t{\n   \t\t\"name\": \"Jay Gatsby\"\n   \t},\n   \t{\n   \t\t\"name\": \"José Arcadio Buendía\"\n   \t},\n       ...\n   ]",
+      "language": "unknown"
+    },
+    {
+      "code": "[\n   \t{\n   \t\t\"name\": \"Jay Gatsby\",\n   \t\t\"restoreEmail\": \"gatsby@west-egg.com\"\n   \t},\n   \t{\n   \t\t\"name\": \"José Arcadio Buendía\",\n   \t\t\"restoreEmail\": \"jab@macondo.co\"\n   \t},\n   \t...\n   ]",
+      "language": "unknown"
+    },
+    {
+      "code": "for(let i=0; i<$input.all().length; i++) {\n\t$input.all()[i].json.restoreEmail = $('Customer Datastore (n8n training)').itemMatching(i).json.email;\n}\nreturn $input.all();",
+      "language": "unknown"
+    },
+    {
+      "code": "for i,item in enumerate(_input.all()):\n\t_input.all()[i].json.restoreEmail = _('Customer Datastore (n8n training)').itemMatching(i).json.email\n\nreturn _input.all();",
+      "language": "unknown"
+    }
+  ],
+  "headings": [],
+  "url": "llms-txt#retrieve-linked-items-from-earlier-in-the-workflow",
+  "links": []
+}

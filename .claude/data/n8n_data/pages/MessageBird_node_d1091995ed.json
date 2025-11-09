@@ -1,0 +1,19 @@
+{
+  "title": "MessageBird node",
+  "content": "Use the MessageBird node to automate work in MessageBird, and integrate MessageBird with other applications. n8n has built-in support for a wide range of MessageBird features, including sending messages, and getting balances.\n\nOn this page, you'll find a list of operations the MessageBird node supports and links to more resources.\n\nRefer to [MessageBird credentials](../../credentials/messagebird/) for guidance on setting up authentication.\n\n- SMS\n  - Send text messages (SMS)\n- Balance\n  - Get the balance\n\n## Templates and examples\n\n[Browse MessageBird integration templates](https://n8n.io/integrations/messagebird/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#messagebird-node",
+  "links": []
+}

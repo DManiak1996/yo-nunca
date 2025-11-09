@@ -1,0 +1,8 @@
+{
+  "title": "Remove the container with the `<container_id>`",
+  "content": "docker rm <container_id>",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#remove-the-container-with-the-`<container_id>`",
+  "links": []
+}

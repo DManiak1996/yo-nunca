@@ -1,0 +1,57 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/generate-sitemaps",
+  "title": "generateSitemaps",
+  "content": "You can use the generateSitemaps function to generate multiple sitemaps for your application.\n\nThe generateSitemaps returns an array of objects with an id property.\n\nYour generated sitemaps will be available at /.../sitemap/[id].xml. For example, /product/sitemap/1.xml.\n\nFor example, to split a sitemap using generateSitemaps, return an array of objects with the sitemap id. Then, use the id to generate the unique sitemaps.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "generateSitemaps",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "URLs",
+      "id": "urls"
+    },
+    {
+      "level": "h2",
+      "text": "Example",
+      "id": "example"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "sitemap.xml",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { MetadataRoute } from 'next'\nimport { BASE_URL } from '@/app/lib/constants'\n \nexport async function generateSitemaps() {\n  // Fetch the total number of products and calculate the number of sitemaps needed\n  return [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }]\n}\n \nexport default async function sitemap(props: {\n  id: Promise<number>\n}): Promise<MetadataRoute.Sitemap> {\n  const id = await props.id\n  // Google's limit is 50,000 URLs per sitemap\n  const start = id * 50000\n  const end = start + 50000\n  const products = await getProducts(\n    `SELECT id, date FROM products WHERE id BETWEEN ${start} AND ${end}`\n  )\n  return products.map((product) => ({\n    url: `${BASE_URL}/product/${product.id}`,\n    lastModified: product.date,\n  }))\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-sitemaps",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-metadata",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-static-params"
+  ]
+}

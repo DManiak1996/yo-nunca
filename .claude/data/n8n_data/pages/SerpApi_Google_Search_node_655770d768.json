@@ -1,0 +1,24 @@
+{
+  "title": "SerpApi (Google Search) node",
+  "content": "The SerpAPI node allows an [agent](../../../../../glossary/#ai-agent) in your workflow to call Google's Search API.\n\nOn this page, you'll find the node parameters for the SerpAPI node, and links to more resources.\n\nYou can find authentication information for this node [here](../../../credentials/serp/).\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Country**: Enter the country code you'd like to use. Refer to [Google GL Parameter: Supported Google Countries](https://serpapi.com/google-countries) for supported countries and country codes.\n- **Device**: Select the device to use to get the search results.\n- **Explicit Array**: Choose whether to force SerpApi to fetch the Google results even if a cached version is already present (turned on) or not (turned off).\n- **Google Domain**: Enter the Google Domain to use. Refer to [Supported Google Domains](https://serpapi.com/google-domains) for supported domains.\n- **Language**: Enter the language code you'd like to use. Refer to [Google HL Parameter: Supported Google Languages](https://serpapi.com/google-languages) for supported languages and language codes.\n\n## Templates and examples\n\n[View template details](https://n8n.io/workflows/1954-ai-agent-chat/)\n\n**✨🤖Automate Multi-Platform Social Media Content Creation with AI**\n\n[View template details](https://n8n.io/workflows/3066-automate-multi-platform-social-media-content-creation-with-ai/)\n\n**AI chatbot that can search the web**\n\n[View template details](https://n8n.io/workflows/1959-ai-chatbot-that-can-search-the-web/)\n\n[Browse SerpApi (Google Search) integration templates](https://n8n.io/integrations/serpapi/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [Serp's documentation](https://serpapi.com/search-api) for more information about the service. You can also view [LangChain's documentation on their Serp integration](https://js.langchain.com/docs/integrations/tools/serpapi/).\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node options",
+      "id": "node-options"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#serpapi-(google-search)-node",
+  "links": []
+}

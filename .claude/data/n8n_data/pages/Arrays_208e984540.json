@@ -1,0 +1,119 @@
+{
+  "title": "Arrays",
+  "content": "A reference document listing built-in convenience functions to support data transformation in [expressions](../../../../glossary/#expression-n8n) for arrays.\n\nJavaScript in expressions\n\nYou can use any JavaScript in expressions. Refer to [Expressions](../../../expressions/) for more information.\n\n### average(): Number\n\nReturns the value of elements in an array\n\n______________________________________________________________________\n\n### chunk(size: Number): Array\n\nSplits arrays into chunks with a length of size\n\n#### Function parameters\n\nThe size of each chunk.\n\n______________________________________________________________________\n\nRemoves empty values from the array.\n\n______________________________________________________________________\n\n### difference(arr: Array): Array\n\nCompares two arrays. Returns all elements in the base array that aren't present in arr.\n\n#### Function parameters\n\nThe array to compare to the base array.\n\n______________________________________________________________________\n\n### intersection(arr: Array): Array\n\nCompares two arrays. Returns all elements in the base array that are present in arr.\n\n#### Function parameters\n\nThe array to compare to the base array.\n\n______________________________________________________________________\n\n### first(): Array item\n\nReturns the first element of the array.\n\n______________________________________________________________________\n\n### isEmpty(): Boolean\n\nChecks if the array doesn't have any elements.\n\n______________________________________________________________________\n\n### isNotEmpty(): Boolean\n\nChecks if the array has elements.\n\n______________________________________________________________________\n\n### last(): Array item\n\nReturns the last element of the array.\n\n______________________________________________________________________\n\nReturns the highest value in an array.\n\n______________________________________________________________________\n\n### merge(arr: Array): Array\n\nMerges two Object-arrays into one array by merging the key-value pairs of each element.\n\n#### Function parameters\n\nThe array to merge into the base array.\n\n______________________________________________________________________\n\nGets the minimum value from a number-only array.\n\n______________________________________________________________________\n\n### pluck(fieldName?: String): Array\n\nReturns an array of Objects where keys equal the given field names.\n\n#### Function parameters\n\nfieldNameOptionalString\n\nThe key(s) you want to retrieve. You can enter as many keys as you want, as comma-separated strings.\n\n______________________________________________________________________\n\n### randomItem(): Array item\n\nReturns a random element from an array.\n\n______________________________________________________________________\n\n### removeDuplicates(key?: String): Array\n\nRemoves duplicates from an array.\n\n#### Function parameters\n\nA key, or comma-separated list of keys, to check for duplicates.\n\n______________________________________________________________________\n\n### renameKeys(from: String, to: String): Array\n\nRenames all matching keys in the array. You can rename more than one key by entering a series of comma separated strings, in the pattern oldKeyName, newKeyName.\n\n#### Function parameters\n\nThe key you want to rename.\n\n______________________________________________________________________\n\n### smartJoin(keyField: String, nameField: String): Array\n\nOperates on an array of objects where each object contains key-value pairs. Creates a new object containing key-value pairs, where the key is the value of the first pair, and the value is the value of the second pair. Removes non-matching and empty values and trims any whitespace before joining.\n\n#### Function parameters\n\nkeyFieldRequiredString\n\nnameFieldRequiredString\n\n______________________________________________________________________\n\nReturns the total sum all the values in an array of parsable numbers.\n\n______________________________________________________________________\n\n### toJsonString(): String\n\nConvert an array to a JSON string. Equivalent of `JSON.stringify`.\n\n______________________________________________________________________\n\n### union(arr: Array): Array\n\nConcatenates two arrays and then removes duplicate.\n\n#### Function parameters\n\nThe array to compare to the base array.\n\n______________________________________________________________________\n\n### unique(key?: String): Array\n\nRemove duplicates from an array.\n\n#### Function parameters\n\nA key, or comma-separated list of keys, to check for duplicates.\n\n______________________________________________________________________",
+  "code_samples": [
+    {
+      "code": "// Input\n{{ [{\"type\":\"fruit\", \"name\":\"apple\"},{\"type\":\"vegetable\", \"name\":\"carrot\"} ].smartJoin(\"type\",\"name\") }}\n// Output\n[Object: {\"fruit\":\"apple\",\"vegetable\":\"carrot\"}]",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h3",
+      "text": "average(): Number",
+      "id": "average():-number"
+    },
+    {
+      "level": "h3",
+      "text": "chunk(size: Number): Array",
+      "id": "chunk(size:-number):-array"
+    },
+    {
+      "level": "h3",
+      "text": "compact(): Array",
+      "id": "compact():-array"
+    },
+    {
+      "level": "h3",
+      "text": "difference(arr: Array): Array",
+      "id": "difference(arr:-array):-array"
+    },
+    {
+      "level": "h3",
+      "text": "intersection(arr: Array): Array",
+      "id": "intersection(arr:-array):-array"
+    },
+    {
+      "level": "h3",
+      "text": "first(): Array item",
+      "id": "first():-array-item"
+    },
+    {
+      "level": "h3",
+      "text": "isEmpty(): Boolean",
+      "id": "isempty():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "isNotEmpty(): Boolean",
+      "id": "isnotempty():-boolean"
+    },
+    {
+      "level": "h3",
+      "text": "last(): Array item",
+      "id": "last():-array-item"
+    },
+    {
+      "level": "h3",
+      "text": "max(): Number",
+      "id": "max():-number"
+    },
+    {
+      "level": "h3",
+      "text": "merge(arr: Array): Array",
+      "id": "merge(arr:-array):-array"
+    },
+    {
+      "level": "h3",
+      "text": "min(): Number",
+      "id": "min():-number"
+    },
+    {
+      "level": "h3",
+      "text": "pluck(fieldName?: String): Array",
+      "id": "pluck(fieldname?:-string):-array"
+    },
+    {
+      "level": "h3",
+      "text": "randomItem(): Array item",
+      "id": "randomitem():-array-item"
+    },
+    {
+      "level": "h3",
+      "text": "removeDuplicates(key?: String): Array",
+      "id": "removeduplicates(key?:-string):-array"
+    },
+    {
+      "level": "h3",
+      "text": "renameKeys(from: String, to: String): Array",
+      "id": "renamekeys(from:-string,-to:-string):-array"
+    },
+    {
+      "level": "h3",
+      "text": "smartJoin(keyField: String, nameField: String): Array",
+      "id": "smartjoin(keyfield:-string,-namefield:-string):-array"
+    },
+    {
+      "level": "h3",
+      "text": "sum(): Number",
+      "id": "sum():-number"
+    },
+    {
+      "level": "h3",
+      "text": "toJsonString(): String",
+      "id": "tojsonstring():-string"
+    },
+    {
+      "level": "h3",
+      "text": "union(arr: Array): Array",
+      "id": "union(arr:-array):-array"
+    },
+    {
+      "level": "h3",
+      "text": "unique(key?: String): Array",
+      "id": "unique(key?:-string):-array"
+    }
+  ],
+  "url": "llms-txt#arrays",
+  "links": []
+}

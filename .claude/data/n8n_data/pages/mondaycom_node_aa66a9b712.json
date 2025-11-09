@@ -1,0 +1,24 @@
+{
+  "title": "monday.com node",
+  "content": "Use the monday.com node to automate work in monday.com, and integrate monday.com with other applications. n8n has built-in support for a wide range of monday.com features, including creating a new board, and adding, deleting, and getting items on the board.\n\nOn this page, you'll find a list of operations the monday.com node supports and links to more resources.\n\nMinimum required version\n\nThis node requires n8n version 1.22.6 or above.\n\nRefer to [monday.com credentials](../../credentials/mondaycom/) for guidance on setting up authentication.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../advanced-ai/examples/using-the-fromai-function/).\n\n- Board\n  - Archive a board\n  - Create a new board\n  - Get a board\n  - Get all boards\n- Board Column\n  - Create a new column\n  - Get all columns\n- Board Group\n  - Delete a group in a board\n  - Create a group in a board\n  - Get list of groups in a board\n- Board Item\n  - Add an update to an item.\n  - Change a column value for a board item\n  - Change multiple column values for a board item\n  - Create an item in a board's group\n  - Delete an item\n  - Get an item\n  - Get all items\n  - Get items by column value\n  - Move item to group\n\n## Templates and examples\n\n**Create ticket on specific customer messages in Telegram**\n\n[View template details](https://n8n.io/workflows/368-create-ticket-on-specific-customer-messages-in-telegram/)\n\n**Microsoft Outlook AI Email Assistant with contact support from Monday and Airtable**\n\nby Cognitive Creators\n\n[View template details](https://n8n.io/workflows/2809-microsoft-outlook-ai-email-assistant-with-contact-support-from-monday-and-airtable/)\n\n**Retrieve a Monday.com row and all data in a single node**\n\n[View template details](https://n8n.io/workflows/2086-retrieve-a-mondaycom-row-and-all-data-in-a-single-node/)\n\n[Browse monday.com integration templates](https://n8n.io/integrations/mondaycom/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#monday.com-node",
+  "links": []
+}

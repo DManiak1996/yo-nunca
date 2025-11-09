@@ -1,0 +1,47 @@
+{
+  "title": "Quickstart",
+  "content": "Source: https://docs.ollama.com/quickstart\n\nThis quickstart will walk your through running your first model with Ollama. To get started, download Ollama on macOS, Windows or Linux.\n\n<a href=\"https://ollama.com/download\" target=\"_blank\" className=\"inline-block px-6 py-2 bg-black rounded-full dark:bg-neutral-700 text-white font-normal border-none\">\n  Download Ollama\n</a>\n\n<Tabs>\n  <Tab title=\"CLI\">\n    Open a terminal and run the command:\n\nLastly, chat with the model:\n\n<Tab title=\"Python\">\n    Start by downloading a model:\n\nThen install Ollama's Python library:\n\nLastly, chat with the model:\n\n<Tab title=\"JavaScript\">\n    Start by downloading a model:\n\nThen install the Ollama JavaScript library:\n\nLastly, chat with the model:\n\nSee a full list of available models [here](https://ollama.com/models).",
+  "code_samples": [
+    {
+      "code": "ollama run gemma3",
+      "language": "unknown"
+    },
+    {
+      "code": "ollama pull gemma3",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"Python\">\n    Start by downloading a model:",
+      "language": "unknown"
+    },
+    {
+      "code": "Then install Ollama's Python library:",
+      "language": "unknown"
+    },
+    {
+      "code": "Lastly, chat with the model:",
+      "language": "unknown"
+    },
+    {
+      "code": "</Tab>\n\n  <Tab title=\"JavaScript\">\n    Start by downloading a model:",
+      "language": "unknown"
+    },
+    {
+      "code": "Then install the Ollama JavaScript library:",
+      "language": "unknown"
+    },
+    {
+      "code": "Lastly, chat with the model:",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Run a model",
+      "id": "run-a-model"
+    }
+  ],
+  "url": "llms-txt#quickstart",
+  "links": []
+}

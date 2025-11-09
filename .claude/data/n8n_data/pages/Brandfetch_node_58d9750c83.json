@@ -1,0 +1,19 @@
+{
+  "title": "Brandfetch node",
+  "content": "Use the Brandfetch node to automate work in Brandfetch, and integrate Brandfetch with other applications. n8n has built-in support for a wide range of Brandfetch features, including returning a company’s information.\n\nOn this page, you'll find a list of operations the Brandfetch node supports and links to more resources.\n\nRefer to [Brandfetch credentials](../../credentials/brandfetch/) for guidance on setting up authentication.\n\n- Return a company's colors\n- Return a company's data\n- Return a company's fonts\n- Return a company's industry\n- Return a company's logo & icon\n\n## Templates and examples\n\n[Browse Brandfetch integration templates](https://n8n.io/integrations/brandfetch/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#brandfetch-node",
+  "links": []
+}

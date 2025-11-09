@@ -1,0 +1,64 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/components/head",
+  "title": "Head",
+  "content": "We expose a built-in component for appending elements to the head of the page:\n\nTo avoid duplicate tags in your head you can use the key property, which will make sure the tag is only rendered once, as in the following example:\n\nIn this case only the second <meta property=\"og:title\" /> is rendered. meta tags with duplicate key attributes are automatically handled.\n\nGood to know: <title> and <base> tags are automatically checked for duplicates by Next.js, so using key is not necessary for these tags.\n\nThe contents of head get cleared upon unmounting the component, so make sure each page completely defines what it needs in head, without making assumptions about what other pages added.\n\ntitle, meta or any other elements (e.g. script) need to be contained as direct children of the Head element, or wrapped into maximum one level of <React.Fragment> or arrays—otherwise the tags won't be correctly picked up on client-side navigations.\n\nWe recommend using next/script in your component instead of manually creating a <script> in next/head.\n\nYou cannot use <Head> to set attributes on <html> or <body> tags. This will result in an next-head-count is missing error. next/head can only handle tags inside the HTML <head> tag.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Head",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Avoid duplicated tags",
+      "id": "avoid-duplicated-tags"
+    },
+    {
+      "level": "h2",
+      "text": "Use minimal nesting",
+      "id": "use-minimal-nesting"
+    },
+    {
+      "level": "h2",
+      "text": "Use next/script for scripts",
+      "id": "use-nextscript-for-scripts"
+    },
+    {
+      "level": "h2",
+      "text": "No html or body tags",
+      "id": "no-html-or-body-tags"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import Head from 'next/head'\n \nfunction IndexPage() {\n  return (\n    <div>\n      <Head>\n        <title>My page title</title>\n      </Head>\n      <p>Hello world!</p>\n    </div>\n  )\n}\n \nexport default IndexPage",
+      "language": "python"
+    },
+    {
+      "code": "import Head from 'next/head'\n \nfunction IndexPage() {\n  return (\n    <div>\n      <Head>\n        <title>My page title</title>\n        <meta property=\"og:title\" content=\"My page title\" key=\"title\" />\n      </Head>\n      <Head>\n        <meta property=\"og:title\" content=\"My new title\" key=\"title\" />\n      </Head>\n      <p>Hello world!</p>\n    </div>\n  )\n}\n \nexport default IndexPage",
+      "language": "python"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "API ReferenceComponentsHeadCopy pageHeadWe expose a built-in component for appending elements to the head of the page: import Head from 'next/head' function IndexPage() { return ( <div> <Head> <title>My page title</title> </Head> <p>Hello world!</p> </div> ) } export default IndexPage Avoid duplicated tags To avoid duplicate tags in your head you can use the key property, which will make sure the tag is only rendered once, as in the following example: import Head from 'next/head' function IndexPage() { return ( <div> <Head> <title>My page title</title> <meta property=\"og:title\" content=\"My page title\" key=\"title\" /> </Head> <Head> <meta property=\"og:title\" content=\"My new title\" key=\"title\" /> </Head> <p>Hello world!</p> </div> ) } export default IndexPage In this case only the second <meta property=\"og:title\" /> is rendered. meta tags with duplicate key attributes are automatically handled. Good to know: <title> and <base> tags are automatically checked for duplicates by Next.js, so using key is not necessary for these tags. The contents of head get cleared upon unmounting the component, so make sure each page completely defines what it needs in head, without making assumptions about what other pages added. Use minimal nesting title, meta or any other elements (e.g. script) need to be contained as direct children of the Head element, or wrapped into maximum one level of <React.Fragment> or arrays—otherwise the tags won't be correctly picked up on client-side navigations. Use next/script for scripts We recommend using next/script in your component instead of manually creating a <script> in next/head. No html or body tags You cannot use <Head> to set attributes on <html> or <body> tags. This will result in an next-head-count is missing error. next/head can only handle tags inside the HTML <head> tag.",
+      "code": "head"
+    },
+    {
+      "description": "HeadWe expose a built-in component for appending elements to the head of the page: import Head from 'next/head' function IndexPage() { return ( <div> <Head> <title>My page title</title> </Head> <p>Hello world!</p> </div> ) } export default IndexPage Avoid duplicated tags To avoid duplicate tags in your head you can use the key property, which will make sure the tag is only rendered once, as in the following example: import Head from 'next/head' function IndexPage() { return ( <div> <Head> <title>My page title</title> <meta property=\"og:title\" content=\"My page title\" key=\"title\" /> </Head> <Head> <meta property=\"og:title\" content=\"My new title\" key=\"title\" /> </Head> <p>Hello world!</p> </div> ) } export default IndexPage In this case only the second <meta property=\"og:title\" /> is rendered. meta tags with duplicate key attributes are automatically handled. Good to know: <title> and <base> tags are automatically checked for duplicates by Next.js, so using key is not necessary for these tags. The contents of head get cleared upon unmounting the component, so make sure each page completely defines what it needs in head, without making assumptions about what other pages added. Use minimal nesting title, meta or any other elements (e.g. script) need to be contained as direct children of the Head element, or wrapped into maximum one level of <React.Fragment> or arrays—otherwise the tags won't be correctly picked up on client-side navigations. Use next/script for scripts We recommend using next/script in your component instead of manually creating a <script> in next/head. No html or body tags You cannot use <Head> to set attributes on <html> or <body> tags. This will result in an next-head-count is missing error. next/head can only handle tags inside the HTML <head> tag.",
+      "code": "head"
+    },
+    {
+      "description": "To avoid duplicate tags in your head you can use the key property, which will make sure the tag is only rendered once, as in the following example:",
+      "code": "head"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/pages/api-reference",
+    "https://nextjs.org/docs/pages/api-reference/components",
+    "https://nextjs.org/docs/pages/api-reference/components/head",
+    "https://nextjs.org/docs/pages/guides/scripts",
+    "https://nextjs.org/docs/pages/api-reference/components/form",
+    "https://nextjs.org/docs/pages/api-reference/components/image"
+  ]
+}

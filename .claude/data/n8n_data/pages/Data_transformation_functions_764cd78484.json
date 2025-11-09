@@ -1,0 +1,23 @@
+{
+  "title": "Data transformation functions",
+  "content": "Data transformation functions are helper functions to make data transformation easier in [expressions](../../../glossary/#expression-n8n).\n\nJavaScript in expressions\n\nYou can use any JavaScript in expressions. Refer to [Expressions](../../expressions/) for more information.\n\nFor a list of available functions, refer to the page for your data type:\n\n- [Arrays](arrays/)\n- [Dates](dates/)\n- [Numbers](numbers/)\n- [Objects](objects/)\n- [Strings](strings/)\n\nData transformation functions are available in the expressions editor.\n\nFor example, to check if a string is an email:",
+  "code_samples": [
+    {
+      "code": "{{ dataItem.function() }}",
+      "language": "unknown"
+    },
+    {
+      "code": "{{ \"example@example.com\".isEmail() }}\n\n// Returns true",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    }
+  ],
+  "url": "llms-txt#data-transformation-functions",
+  "links": []
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Flow logic",
+  "content": "n8n allows you to represent complex logic in your workflows.\n\n- [Splitting with conditionals](/flow-logic/splitting/)\n- [Merging data](/flow-logic/merging/)\n- [Looping](/flow-logic/looping/)\n- [Waiting](/flow-logic/waiting/)\n- [Sub-workflows](/flow-logic/subworkflows/)\n- [Error handling](/flow-logic/error-handling/)\n- [Execution order in multi-branch workflows](/flow-logic/execution-order/)\n\nYou need some understanding of [Data](../data/) in n8n, including [Data structure](../data/data-structure/) and [Data flow within nodes](../data/data-flow-nodes/).\n\nWhen building your logic, you'll use n8n's [Core nodes](../integrations/builtin/core-nodes/), including:\n\n- Splitting: [IF](../integrations/builtin/core-nodes/n8n-nodes-base.if/) and [Switch](../integrations/builtin/core-nodes/n8n-nodes-base.switch/).\n- Merging: [Merge](../integrations/builtin/core-nodes/n8n-nodes-base.merge/), [Compare Datasets](../integrations/builtin/core-nodes/n8n-nodes-base.comparedatasets/), and [Code](../integrations/builtin/core-nodes/n8n-nodes-base.code/).\n- Looping: [IF](../integrations/builtin/core-nodes/n8n-nodes-base.if/) and [Loop Over Items](../integrations/builtin/core-nodes/n8n-nodes-base.splitinbatches/).\n- Waiting: [Wait](../integrations/builtin/core-nodes/n8n-nodes-base.wait/).\n- Creating sub-workflows: [Execute Workflow](../integrations/builtin/core-nodes/n8n-nodes-base.executeworkflow/) and [Execute Workflow Trigger](../integrations/builtin/core-nodes/n8n-nodes-base.executeworkflowtrigger/).\n- Error handling: [Stop And Error](../integrations/builtin/core-nodes/n8n-nodes-base.stopanderror/) and [Error Trigger](../integrations/builtin/core-nodes/n8n-nodes-base.errortrigger/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Related sections",
+      "id": "related-sections"
+    }
+  ],
+  "url": "llms-txt#flow-logic",
+  "links": []
+}

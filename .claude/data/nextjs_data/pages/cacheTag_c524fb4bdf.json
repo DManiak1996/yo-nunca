@@ -1,0 +1,110 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/cacheTag",
+  "title": "cacheTag",
+  "content": "The cacheTag function allows you to tag cached data for on-demand invalidation. By associating tags with cache entries, you can selectively purge or revalidate specific cache entries without affecting other cached data.\n\nTo use cacheTag, enable the cacheComponents flag in your next.config.js file:\n\nThe cacheTag function takes one or more string values.\n\nYou can then purge the cache on-demand using revalidateTag API in another function, for example, a route handler or Server Action:\n\nTag your cached data by calling cacheTag within a cached function or component:\n\nYou can use the data returned from an async function to tag the cache entry.\n\nUsing revalidateTag, you can invalidate the cache for a specific tag when needed:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "cacheTag",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h2",
+      "text": "Good to know",
+      "id": "good-to-know"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Tagging components or functions",
+      "id": "tagging-components-or-functions"
+    },
+    {
+      "level": "h3",
+      "text": "Creating tags from external data",
+      "id": "creating-tags-from-external-data"
+    },
+    {
+      "level": "h3",
+      "text": "Invalidating tagged cache",
+      "id": "invalidating-tagged-cache"
+    },
+    {
+      "level": "h2",
+      "text": "Related",
+      "id": "related"
+    },
+    {
+      "level": "h3",
+      "text": "cacheComponents",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "use cache",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "revalidateTag",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "cacheLife",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  cacheComponents: true,\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "import { cacheTag } from 'next/cache'\n \nexport async function getData() {\n  'use cache'\n  cacheTag('my-data')\n  const data = await fetch('/api/data')\n  return data\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nimport { revalidateTag } from 'next/cache'\n \nexport default async function submit() {\n  await addPost()\n  revalidateTag('my-data')\n}",
+      "language": "python"
+    },
+    {
+      "code": "cacheTag('tag-one', 'tag-two')",
+      "language": "unknown"
+    },
+    {
+      "code": "import { cacheTag } from 'next/cache'\n \ninterface BookingsProps {\n  type: string\n}\n \nexport async function Bookings({ type = 'haircut' }: BookingsProps) {\n  'use cache'\n  cacheTag('bookings-data')\n \n  async function getBookingsData() {\n    const data = await fetch(`/api/bookings?type=${encodeURIComponent(type)}`)\n    return data\n  }\n \n  return //...\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { cacheTag } from 'next/cache'\n \ninterface BookingsProps {\n  type: string\n}\n \nexport async function Bookings({ type = 'haircut' }: BookingsProps) {\n  async function getBookingsData() {\n    'use cache'\n    const data = await fetch(`/api/bookings?type=${encodeURIComponent(type)}`)\n    cacheTag('bookings-data', data.id)\n    return data\n  }\n  return //...\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nimport { revalidateTag } from 'next/cache'\n \nexport async function updateBookings() {\n  await updateBookingData()\n  revalidateTag('bookings-data')\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheTag",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents",
+    "https://nextjs.org/docs/app/api-reference/functions/revalidateTag",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route",
+    "https://nextjs.org/docs/app/getting-started/updating-data",
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache",
+    "https://nextjs.org/docs/app/api-reference/functions/cacheLife",
+    "https://nextjs.org/docs/app/api-reference/functions/connection"
+  ]
+}

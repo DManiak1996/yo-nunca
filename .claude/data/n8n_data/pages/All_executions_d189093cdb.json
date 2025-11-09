@@ -1,0 +1,24 @@
+{
+  "title": "All executions",
+  "content": "To view **all executions** from an n8n instance, navigate to the **Overview** page and then click into the Executions tab. This will show you all executions from the workflows you have access to.\n\nIf your n8n instance supports **projects**, you'll also be able to view the executions tab within projects you have access to. This will show you executions only from the workflows within the specified project.\n\nWhen you delete a workflow, n8n deletes its execution history as well. This means you can't view executions for deleted workflows.\n\nYou can filter the executions list:\n\n1. Select the **Executions** tab either from within the **Overview** page or a specific **project** to open the list.\n1. Select **Filters**.\n1. Enter your filters. You can filter by:\n   - **Workflows**: choose all workflows, or a specific workflow name.\n   - **Status**: choose from **Failed**, **Running**, **Success**, or **Waiting**.\n   - **Execution start**: see executions that started in the given time.\n   - **Saved custom data**: this is data you create within the workflow using the Code node. Enter the key and value to filter. Refer to [Custom executions data](../custom-executions-data/) for information on adding custom data.\n\nCustom executions data is available on:\n\n- Cloud: Pro, Enterprise\n- Self-Hosted: Enterprise, registered Community\n\n## Retry failed workflows\n\nIf your workflow execution fails, you can retry the execution. To retry a failed workflow:\n\n1. Select the **Executions** tab from within either the **Overview** page or a specific **project** to open the list.\n1. On the execution you want to retry, select **Retry execution** .\n1. Select either of the following options to retry the execution:\n   - **Retry with currently saved workflow**: Once you make changes to your workflow, you can select this option to execute the workflow with the previous execution data.\n   - **Retry with original workflow**: If you want to retry the execution without making changes to your workflow, you can select this option to retry the execution with the previous execution data.\n\n## Load data from previous executions into your current workflow\n\nYou can load data from a previous workflow back into the canvas. Refer to [Debug executions](../debug/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Filter executions",
+      "id": "filter-executions"
+    },
+    {
+      "level": "h2",
+      "text": "Retry failed workflows",
+      "id": "retry-failed-workflows"
+    },
+    {
+      "level": "h2",
+      "text": "Load data from previous executions into your current workflow",
+      "id": "load-data-from-previous-executions-into-your-current-workflow"
+    }
+  ],
+  "url": "llms-txt#all-executions",
+  "links": []
+}

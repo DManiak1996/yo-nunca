@@ -1,0 +1,19 @@
+{
+  "title": "Data pinning",
+  "content": "You can 'pin' data during workflow development. Data pinning means saving the output data of a node, and using the saved data instead of fetching fresh data in future workflow executions.\n\nYou can use this when working with data from external sources to avoid having to repeat requests to the external system. This can save time and resources:\n\n- If your workflow relies on an external system to trigger it, such as a webhook call, being able to pin data means you don't need to use the external system every time you test the workflow.\n- If the external resource has data or usage limits, pinning data during tests avoids consuming your resource limits.\n- You can fetch and pin the data you want to test, then have confidence that the data is consistent in all your workflow tests.\n\nYou can only pin data for nodes that have a single main output (\"error\" outputs don't count for this purpose).\n\nData pinning isn't available for production workflow executions. It's a feature to help test workflows during development.\n\nTo pin data in a node:\n\n1. Run the node to load data.\n1. In the **OUTPUT** view, select **Pin data** . When data pinning is active, the button is disabled and a \"This data is pinned\" banner is displayed in the **OUTPUT** view.\n\nNodes that output binary data\n\nYou can't pin data if the output data includes binary data.\n\nWhen data pinning is active, a banner appears at the top of the node's output panel indicating that n8n has pinned the data. To unpin data and fetch fresh data on the next execution, select the **Unpin** link in the banner.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Pin data",
+      "id": "pin-data"
+    },
+    {
+      "level": "h2",
+      "text": "Unpin data",
+      "id": "unpin-data"
+    }
+  ],
+  "url": "llms-txt#data-pinning",
+  "links": []
+}

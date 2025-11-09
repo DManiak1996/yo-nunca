@@ -1,0 +1,59 @@
+{
+  "title": "Configuration",
+  "content": "You can change n8n's settings using environment variables. For a full list of available configurations see [Environment Variables](../environment-variables/).\n\n## Set environment variables by command line\n\nFor npm, set your desired environment variables in terminal. The command depends on your command line.\n\nIn Docker you can use the `-e` flag from the command line:\n\n## Docker Compose file\n\nIn Docker, you can set your environment variables in the `n8n: environment:` element of your `docker-compose.yaml` file.\n\n## Keeping sensitive data in separate files\n\nYou can append `_FILE` to individual environment variables to provide their configuration in a separate file, enabling you to avoid passing sensitive details using environment variables. n8n loads the data from the file with the given name, making it possible to load data from [Docker-Secrets](https://docs.docker.com/engine/swarm/secrets/) and [Kubernetes-Secrets](https://kubernetes.io/docs/concepts/configuration/secret/).\n\nRefer to [Environment variables](../environment-variables/) for details on each variable.\n\nWhile most environment variables can use the `_FILE` suffix, it's more beneficial for sensitive data such as [credentials](../../../glossary/#credential-n8n) and database configuration. Here are some examples:",
+  "code_samples": [
+    {
+      "code": "export <variable>=<value>",
+      "language": "unknown"
+    },
+    {
+      "code": "set <variable>=<value>",
+      "language": "unknown"
+    },
+    {
+      "code": "$env:<variable>=<value>",
+      "language": "unknown"
+    },
+    {
+      "code": "docker run -it --rm \\\n --name n8n \\\n -p 5678:5678 \\\n -e N8N_TEMPLATES_ENABLED=\"false\" \\\n docker.n8n.io/n8nio/n8n",
+      "language": "unknown"
+    },
+    {
+      "code": "n8n:\n    environment:\n      - N8N_TEMPLATES_ENABLED=false",
+      "language": "unknown"
+    },
+    {
+      "code": "CREDENTIALS_OVERWRITE_DATA_FILE=/path/to/credentials_data\nDB_TYPE_FILE=/path/to/db_type\nDB_POSTGRESDB_DATABASE_FILE=/path/to/database_name\nDB_POSTGRESDB_HOST_FILE=/path/to/database_host\nDB_POSTGRESDB_PORT_FILE=/path/to/database_port\nDB_POSTGRESDB_USER_FILE=/path/to/database_user\nDB_POSTGRESDB_PASSWORD_FILE=/path/to/database_password\nDB_POSTGRESDB_SCHEMA_FILE=/path/to/database_schema\nDB_POSTGRESDB_SSL_CA_FILE=/path/to/ssl_ca\nDB_POSTGRESDB_SSL_CERT_FILE=/path/to/ssl_cert\nDB_POSTGRESDB_SSL_KEY_FILE=/path/to/ssl_key\nDB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED_FILE=/path/to/ssl_reject_unauth",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Set environment variables by command line",
+      "id": "set-environment-variables-by-command-line"
+    },
+    {
+      "level": "h3",
+      "text": "npm",
+      "id": "npm"
+    },
+    {
+      "level": "h3",
+      "text": "Docker",
+      "id": "docker"
+    },
+    {
+      "level": "h2",
+      "text": "Docker Compose file",
+      "id": "docker-compose-file"
+    },
+    {
+      "level": "h2",
+      "text": "Keeping sensitive data in separate files",
+      "id": "keeping-sensitive-data-in-separate-files"
+    }
+  ],
+  "url": "llms-txt#configuration",
+  "links": []
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Structured Output Parser node",
+  "content": "Use the Structured Output Parser node to return fields based on a JSON Schema.\n\nOn this page, you'll find the node parameters for the Structured Output Parser node, and links to more resources.\n\nParameter resolution in sub-nodes\n\nSub-nodes behave differently to other nodes when processing multiple items using an expression.\n\nMost nodes, including root nodes, take any number of items as input, process these items, and output the results. You can use expressions to refer to input items, and the node resolves the expression for each item in turn. For example, given an input of five `name` values, the expression `{{ $json.name }}` resolves to each name in turn.\n\nIn sub-nodes, the expression always resolves to the first item. For example, given an input of five `name` values, the expression `{{ $json.name }}` always resolves to the first name.\n\n- **Schema Type**: Define the output structure and validation. You have two options to provide the schema:\n\n1. **Generate from JSON Example**: Input an example JSON object to automatically generate the schema. The node uses the object property types and names. It ignores the actual values. n8n treats every field as mandatory when generating schemas from JSON examples.\n1. **Define using JSON Schema**: Manually input the JSON schema. Read the JSON Schema [guides and examples](https://json-schema.org/learn/miscellaneous-examples) for help creating a valid JSON schema. Please note that we don't support references (using `$ref`) in JSON schemas.\n\n## Templates and examples\n\n**Generate AI Viral Videos with Seedance and Upload to TikTok, YouTube & Instagram**\n\n[View template details](https://n8n.io/workflows/5338-generate-ai-viral-videos-with-seedance-and-upload-to-tiktok-youtube-and-instagram/)\n\n**✨🤖Automate Multi-Platform Social Media Content Creation with AI**\n\n[View template details](https://n8n.io/workflows/3066-automate-multi-platform-social-media-content-creation-with-ai/)\n\n**AI-Powered Social Media Content Generator & Publisher**\n\n[View template details](https://n8n.io/workflows/2950-ai-powered-social-media-content-generator-and-publisher/)\n\n[Browse Structured Output Parser integration templates](https://n8n.io/integrations/structured-output-parser/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [LangChain's output parser documentation](https://js.langchain.com/docs/concepts/output_parsers) for more information about the service.\n\nView n8n's [Advanced AI](../../../../../advanced-ai/) documentation.\n\nFor common questions or issues and suggested solutions, refer to [Common issues](common-issues/).",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Node parameters",
+      "id": "node-parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    },
+    {
+      "level": "h2",
+      "text": "Common issues",
+      "id": "common-issues"
+    }
+  ],
+  "url": "llms-txt#structured-output-parser-node",
+  "links": []
+}

@@ -1,0 +1,67 @@
+{
+  "url": "https://nextjs.org/docs/pages/guides/post-css",
+  "title": "How to configure PostCSS in Next.js",
+  "content": "Next.js compiles CSS for its built-in CSS support using PostCSS.\n\nOut of the box, with no configuration, Next.js compiles CSS with the following transformations:\n\nBy default, CSS Grid and Custom Properties (CSS variables) are not compiled for IE11 support.\n\nTo compile CSS Grid Layout for IE11, you can place the following comment at the top of your CSS file:\n\nYou can also enable IE11 support for CSS Grid Layout in your entire project by configuring autoprefixer with the configuration shown below (collapsed). See \"Customizing Plugins\" below for more information.\n\nCSS variables are not compiled because it is not possible to safely do so. If you must use variables, consider using something like Sass variables which are compiled away by Sass.\n\nNext.js allows you to configure the target browsers (for Autoprefixer and compiled css features) through Browserslist.\n\nTo customize browserslist, create a browserslist key in your package.json like so:\n\nYou can use the browsersl.ist tool to visualize what browsers you are targeting.\n\nNo configuration is needed to support CSS Modules. To enable CSS Modules for a file, rename the file to have the extension .module.css.\n\nYou can learn more about Next.js' CSS Module support here.\n\nWarning: When you define a custom PostCSS configuration file, Next.js completely disables the default behavior. Be sure to manually configure all the features you need compiled, including Autoprefixer. You also need to install any plugins included in your custom configuration manually, i.e. npm install postcss-flexbugs-fixes postcss-preset-env.\n\nTo customize the PostCSS configuration, create a postcss.config.json file in the root of your project.\n\nThis is the default configuration used by Next.js:\n\nGood to know: Next.js also allows the file to be named .postcssrc.json, or, to be read from the postcss key in package.json.\n\nIt is also possible to configure PostCSS with a postcss.config.js file, which is useful when you want to conditionally include plugins based on environment:\n\nGood to know: Next.js also allows the file to be named .postcssrc.js.\n\nDo not use require() to import the PostCSS Plugins. Plugins must be provided as strings.\n\nGood to know: If your postcss.config.js needs to support other non-Next.js tools in the same project, you must use the interoperable object-based format instead:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to configure PostCSS in Next.js",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Default Behavior",
+      "id": "default-behavior"
+    },
+    {
+      "level": "h2",
+      "text": "Customizing Target Browsers",
+      "id": "customizing-target-browsers"
+    },
+    {
+      "level": "h2",
+      "text": "CSS Modules",
+      "id": "css-modules"
+    },
+    {
+      "level": "h2",
+      "text": "Customizing Plugins",
+      "id": "customizing-plugins"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "/* autoprefixer grid: autoplace */",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  \"plugins\": [\n    \"postcss-flexbugs-fixes\",\n    [\n      \"postcss-preset-env\",\n      {\n        \"autoprefixer\": {\n          \"flexbox\": \"no-2009\",\n          \"grid\": \"autoplace\"\n        },\n        \"stage\": 3,\n        \"features\": {\n          \"custom-properties\": false\n        }\n      }\n    ]\n  ]\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  \"browserslist\": [\">0.3%\", \"not dead\", \"not op_mini all\"]\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n  \"plugins\": [\n    \"postcss-flexbugs-fixes\",\n    [\n      \"postcss-preset-env\",\n      {\n        \"autoprefixer\": {\n          \"flexbox\": \"no-2009\"\n        },\n        \"stage\": 3,\n        \"features\": {\n          \"custom-properties\": false\n        }\n      }\n    ]\n  ]\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  plugins:\n    process.env.NODE_ENV === 'production'\n      ? [\n          'postcss-flexbugs-fixes',\n          [\n            'postcss-preset-env',\n            {\n              autoprefixer: {\n                flexbox: 'no-2009',\n              },\n              stage: 3,\n              features: {\n                'custom-properties': false,\n              },\n            },\n          ],\n        ]\n      : [\n          // No transformations in development\n        ],\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "module.exports = {\n  plugins: {\n    'postcss-flexbugs-fixes': {},\n    'postcss-preset-env': {\n      autoprefixer: {\n        flexbox: 'no-2009',\n      },\n      stage: 3,\n      features: {\n        'custom-properties': false,\n      },\n    },\n  },\n}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages",
+    "https://nextjs.org/docs/pages/guides",
+    "https://nextjs.org/docs/pages/guides/post-css",
+    "https://nextjs.org/docs/app/getting-started/css",
+    "https://nextjs.org/docs/pages/guides/package-bundling",
+    "https://nextjs.org/docs/pages/guides/preview-mode"
+  ]
+}

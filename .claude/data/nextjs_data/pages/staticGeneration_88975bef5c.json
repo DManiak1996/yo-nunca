@@ -1,0 +1,31 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/staticGeneration",
+  "title": "staticGeneration*",
+  "content": "The staticGeneration* options allow you to configure the Static Generation process for advanced use cases.\n\nThe following options are available:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "staticGeneration*",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Config Options",
+      "id": "config-options"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    staticGenerationRetryCount: 1,\n    staticGenerationMaxConcurrency: 8,\n    staticGenerationMinPagesPerWorker: 25,\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/staticGeneration",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/staleTimes",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/taint"
+  ]
+}

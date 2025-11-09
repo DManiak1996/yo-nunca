@@ -1,0 +1,176 @@
+{
+  "url": "https://nextjs.org/docs/pages/api-reference/config/eslint",
+  "title": "ESLint",
+  "content": "Next.js provides an ESLint plugin, @next/eslint-plugin-next, already bundled within the base configuration that makes it possible to catch common issues and problems in a Next.js application.\n\nGet linting working quickly with the ESLint CLI (flat config):\n\nInstall ESLint and the Next.js config:\n\nCreate eslint.config.mjs with the Next.js config:\n\nRecommended rule-sets from the following ESLint plugins are all used within eslint-config-next:\n\nThe full set of rules is as follows:\n\nWe recommend using an appropriate integration to view warnings and errors directly in your code editor during development.\n\nStarting with Next.js 16, next lint is removed.\n\nAs part of the removal, the eslint option in your Next config file is no longer needed and can be safely removed.\n\nIf you're using @next/eslint-plugin-next in a project where Next.js isn't installed in your root directory (such as a monorepo), you can tell @next/eslint-plugin-next where to find your Next.js application using the settings property in your eslint.config.mjs:\n\nrootDir can be a path (relative or absolute), a glob (i.e. \"packages/*/\"), or an array of paths and/or globs.\n\nIf you would like to modify or disable any rules provided by the supported plugins (react, react-hooks, next), you can directly change them using the rules property in your eslint.config.mjs:\n\nEnable the next/core-web-vitals rule set by extending it in your ESLint config.\n\nnext/core-web-vitals updates @next/eslint-plugin-next to error on a number of rules that are warnings by default if they affect Core Web Vitals.\n\nThe next/core-web-vitals entry point is automatically included for new applications built with Create Next App.\n\nIn addition to the Next.js ESLint rules, create-next-app --typescript will also add TypeScript-specific lint rules with next/typescript to your config:\n\nThose rules are based on plugin:@typescript-eslint/recommended. See typescript-eslint > Configs for more details.\n\nESLint also contains code formatting rules, which can conflict with your existing Prettier setup. We recommend including eslint-config-prettier in your ESLint config to make ESLint and Prettier work together.\n\nFirst, install the dependency:\n\nThen, add prettier to your existing ESLint config:\n\nIf you would like to use ESLint with lint-staged to run the linter on staged git files, add the following to the .lintstagedrc.js file in the root of your project:\n\nIf you already have ESLint configured in your application, we recommend extending from this plugin directly instead of including eslint-config-next unless a few conditions are met.\n\nIf the following conditions are true:\n\nThen we recommend either removing these settings if you prefer how these properties have been configured within eslint-config-next or extending directly from the Next.js ESLint plugin instead:\n\nThe plugin can be installed normally in your project:\n\nThis eliminates the risk of collisions or errors that can occur due to importing the same plugin or parser across multiple configurations.\n\nIf you already use a separate ESLint configuration and want to include eslint-config-next, ensure that it is extended last after other configurations. For example:\n\nThe next configuration already handles setting default values for the parser, plugins and settings properties. There is no need to manually re-declare any of these properties unless you need a different configuration for your use case.\n\nIf you include any other shareable configurations, you will need to make sure that these properties are not overwritten or modified. Otherwise, we recommend removing any configurations that share behavior with the next configuration or extending directly from the Next.js ESLint plugin as mentioned above.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "ESLint",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Setup ESLint",
+      "id": "setup-eslint"
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "Rules",
+      "id": "rules"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Specifying a root directory within a monorepo",
+      "id": "specifying-a-root-directory-within-a-monorepo"
+    },
+    {
+      "level": "h3",
+      "text": "Disabling rules",
+      "id": "disabling-rules"
+    },
+    {
+      "level": "h3",
+      "text": "With Core Web Vitals",
+      "id": "with-core-web-vitals"
+    },
+    {
+      "level": "h3",
+      "text": "With TypeScript",
+      "id": "with-typescript"
+    },
+    {
+      "level": "h3",
+      "text": "With Prettier",
+      "id": "with-prettier"
+    },
+    {
+      "level": "h3",
+      "text": "Running lint on staged files",
+      "id": "running-lint-on-staged-files"
+    },
+    {
+      "level": "h3",
+      "text": "Migrating existing config",
+      "id": "migrating-existing-config"
+    },
+    {
+      "level": "h4",
+      "text": "Recommended plugin ruleset",
+      "id": "recommended-plugin-ruleset"
+    },
+    {
+      "level": "h4",
+      "text": "Additional configurations",
+      "id": "additional-configurations"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "pnpm add -D eslint eslint-config-next",
+      "language": "unknown"
+    },
+    {
+      "code": "import { defineConfig, globalIgnores } from 'eslint/config'\nimport nextVitals from 'eslint-config-next/core-web-vitals'\n \nconst eslintConfig = defineConfig([\n  ...nextVitals,\n  // Override default ignores of eslint-config-next.\n  globalIgnores([\n    // Default ignores of eslint-config-next:\n    '.next/**',\n    'out/**',\n    'build/**',\n    'next-env.d.ts',\n  ]),\n])\n \nexport default eslintConfig",
+      "language": "python"
+    },
+    {
+      "code": "pnpm exec eslint .",
+      "language": "unknown"
+    },
+    {
+      "code": "import { defineConfig } from 'eslint/config'\nimport eslintNextPlugin from '@next/eslint-plugin-next'\n \nconst eslintConfig = defineConfig([\n  {\n    plugins: {\n      next: eslintNextPlugin,\n    },\n    settings: {\n      next: {\n        rootDir: 'packages/my-app/',\n      },\n    },\n    files: [\n      // ...files\n    ],\n    ignores: [\n      // ...ignores\n    ],\n  },\n])\n \nexport default eslintConfig",
+      "language": "python"
+    },
+    {
+      "code": "import { defineConfig, globalIgnores } from 'eslint/config'\nimport nextVitals from 'eslint-config-next/core-web-vitals'\n \nconst eslintConfig = defineConfig([\n  ...nextVitals,\n  {\n    rules: {\n      'react/no-unescaped-entities': 'off',\n      '@next/next/no-page-custom-font': 'off',\n    },\n  },\n  // Override default ignores of eslint-config-next.\n  globalIgnores([\n    // Default ignores of eslint-config-next:\n    '.next/**',\n    'out/**',\n    'build/**',\n    'next-env.d.ts',\n  ]),\n])\n \nexport default eslintConfig",
+      "language": "python"
+    },
+    {
+      "code": "import { defineConfig, globalIgnores } from 'eslint/config'\nimport nextVitals from 'eslint-config-next/core-web-vitals'\n \nconst eslintConfig = defineConfig([\n  ...nextVitals,\n  // Override default ignores of eslint-config-next.\n  globalIgnores([\n    // Default ignores of eslint-config-next:\n    '.next/**',\n    'out/**',\n    'build/**',\n    'next-env.d.ts',\n  ]),\n])\n \nexport default eslintConfig",
+      "language": "python"
+    },
+    {
+      "code": "import { defineConfig, globalIgnores } from 'eslint/config'\nimport nextVitals from 'eslint-config-next/core-web-vitals'\nimport nextTs from 'eslint-config-next/typescript'\n \nconst eslintConfig = defineConfig([\n  ...nextVitals,\n  ...nextTs,\n  // Override default ignores of eslint-config-next.\n  globalIgnores([\n    // Default ignores of eslint-config-next:\n    '.next/**',\n    'out/**',\n    'build/**',\n    'next-env.d.ts',\n  ]),\n])\n \nexport default eslintConfig",
+      "language": "python"
+    },
+    {
+      "code": "pnpm add -D eslint-config-prettier",
+      "language": "unknown"
+    },
+    {
+      "code": "import { defineConfig, globalIgnores } from 'eslint/config'\nimport nextVitals from 'eslint-config-next/core-web-vitals'\nimport prettier from 'eslint-config-prettier/flat'\n \nconst eslintConfig = defineConfig([\n  ...nextVitals,\n  prettier,\n  // Override default ignores of eslint-config-next.\n  globalIgnores([\n    // Default ignores of eslint-config-next:\n    '.next/**',\n    'out/**',\n    'build/**',\n    'next-env.d.ts',\n  ]),\n])\n \nexport default eslintConfig",
+      "language": "python"
+    },
+    {
+      "code": "const path = require('path')\n \nconst buildEslintCommand = (filenames) =>\n  `eslint --fix ${filenames\n    .map((f) => `\"${path.relative(process.cwd(), f)}\"`)\n    .join(' ')}`\n \nmodule.exports = {\n  '*.{js,jsx,ts,tsx}': [buildEslintCommand],\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "module.exports = {\n  extends: [\n    //...\n    'plugin:@next/next/recommended',\n  ],\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "pnpm add -D @next/eslint-plugin-next",
+      "language": "unknown"
+    },
+    {
+      "code": "import { defineConfig, globalIgnores } from 'eslint/config'\nimport nextPlugin from '@next/eslint-plugin-next'\n \nconst eslintConfig = defineConfig([\n  nextPlugin.configs['core-web-vitals'],\n  // List of ignore patterns.\n  globalIgnores([]),\n])\n \nexport default eslintConfig",
+      "language": "python"
+    }
+  ],
+  "patterns": [
+    {
+      "description": "API ReferenceConfigurationESLintCopy pageESLint Next.js provides an ESLint plugin, @next/eslint-plugin-next, already bundled within the base configuration that makes it possible to catch common issues and problems in a Next.js application. Setup ESLint Get linting working quickly with the ESLint CLI (flat config): Install ESLint and the Next.js config: pnpmnpmyarnbunTerminalpnpm add -D eslint eslint-config-next Create eslint.config.mjs with the Next.js config: eslint.config.mjsimport { defineConfig, globalIgnores } from 'eslint/config' import nextVitals from 'eslint-config-next/core-web-vitals' const eslintConfig = defineConfig([ ...nextVitals, // Override default ignores of eslint-config-next. globalIgnores([ // Default ignores of eslint-config-next: '.next/**', 'out/**', 'build/**', 'next-env.d.ts', ]), ]) export default eslintConfig Run ESLint: pnpmnpmyarnbunTerminalpnpm exec eslint . Reference Recommended rule-sets from the following ESLint plugins are all used within eslint-config-next: eslint-plugin-react eslint-plugin-react-hooks @next/eslint-plugin-next Rules The full set of rules is as follows: Enabled in recommended configRuleDescription@next/next/google-font-displayEnforce font-display behavior with Google Fonts.@next/next/google-font-preconnectEnsure preconnect is used with Google Fonts.@next/next/inline-script-idEnforce id attribute on next/script components with inline content.@next/next/next-script-for-gaPrefer next/script component when using the inline script for Google Analytics.@next/next/no-assign-module-variablePrevent assignment to the module variable.@next/next/no-async-client-componentPrevent Client Components from being async functions.@next/next/no-before-interactive-script-outside-documentPrevent usage of next/script's beforeInteractive strategy outside of pages/_document.js.@next/next/no-css-tagsPrevent manual stylesheet tags.@next/next/no-document-import-in-pagePrevent importing next/document outside of pages/_document.js.@next/next/no-duplicate-headPrevent duplicate usage of <Head> in pages/_document.js.@next/next/no-head-elementPrevent usage of <head> element.@next/next/no-head-import-in-documentPrevent usage of next/head in pages/_document.js.@next/next/no-html-link-for-pagesPrevent usage of <a> elements to navigate to internal Next.js pages.@next/next/no-img-elementPrevent usage of <img> element due to slower LCP and higher bandwidth.@next/next/no-page-custom-fontPrevent page-only custom fonts.@next/next/no-script-component-in-headPrevent usage of next/script in next/head component.@next/next/no-styled-jsx-in-documentPrevent usage of styled-jsx in pages/_document.js.@next/next/no-sync-scriptsPrevent synchronous scripts.@next/next/no-title-in-document-headPrevent usage of <title> with Head component from next/document.@next/next/no-typosPrevent common typos in Next.js's data fetching functions@next/next/no-unwanted-polyfillioPrevent duplicate polyfills from Polyfill.io. We recommend using an appropriate integration to view warnings and errors directly in your code editor during development. next lint removalStarting with Next.js 16, next lint is removed.As part of the removal, the eslint option in your Next config file is no longer needed and can be safely removed. Examples Specifying a root directory within a monorepo If you're using @next/eslint-plugin-next in a project where Next.js isn't installed in your root directory (such as a monorepo), you can tell @next/eslint-plugin-next where to find your Next.js application using the settings property in your eslint.config.mjs: eslint.config.mjsimport { defineConfig } from 'eslint/config' import eslintNextPlugin from '@next/eslint-plugin-next' const eslintConfig = defineConfig([ { plugins: { next: eslintNextPlugin, }, settings: { next: { rootDir: 'packages/my-app/', }, }, files: [ // ...files ], ignores: [ // ...ignores ], }, ]) export default eslintConfig rootDir can be a path (relative or absolute), a glob (i.e. \"packages/*/\"), or an array of paths and/or globs. Disabling rules If you would like to modify or disable any rules provided by the supported plugins (react, react-hooks, next), you can directly change them using the rules property in your eslint.config.mjs: eslint.config.mjsimport { defineConfig, globalIgnores } from 'eslint/config' import nextVitals from 'eslint-config-next/core-web-vitals' const eslintConfig = defineConfig([ ...nextVitals, { rules: { 'react/no-unescaped-entities': 'off', '@next/next/no-page-custom-font': 'off', }, }, // Override default ignores of eslint-config-next. globalIgnores([ // Default ignores of eslint-config-next: '.next/**', 'out/**', 'build/**', 'next-env.d.ts', ]), ]) export default eslintConfig With Core Web Vitals Enable the next/core-web-vitals rule set by extending it in your ESLint config. eslint.config.mjsimport { defineConfig, globalIgnores } from 'eslint/config' import nextVitals from 'eslint-config-next/core-web-vitals' const eslintConfig = defineConfig([ ...nextVitals, // Override default ignores of eslint-config-next. globalIgnores([ // Default ignores of eslint-config-next: '.next/**', 'out/**', 'build/**', 'next-env.d.ts', ]), ]) export default eslintConfig next/core-web-vitals updates @next/eslint-plugin-next to error on a number of rules that are warnings by default if they affect Core Web Vitals. The next/core-web-vitals entry point is automatically included for new applications built with Create Next App. With TypeScript In addition to the Next.js ESLint rules, create-next-app --typescript will also add TypeScript-specific lint rules with next/typescript to your config: eslint.config.mjsimport { defineConfig, globalIgnores } from 'eslint/config' import nextVitals from 'eslint-config-next/core-web-vitals' import nextTs from 'eslint-config-next/typescript' const eslintConfig = defineConfig([ ...nextVitals, ...nextTs, // Override default ignores of eslint-config-next. globalIgnores([ // Default ignores of eslint-config-next: '.next/**', 'out/**', 'build/**', 'next-env.d.ts', ]), ]) export default eslintConfig Those rules are based on plugin:@typescript-eslint/recommended. See typescript-eslint > Configs for more details. With Prettier ESLint also contains code formatting rules, which can conflict with your existing Prettier setup. We recommend including eslint-config-prettier in your ESLint config to make ESLint and Prettier work together. First, install the dependency: pnpmnpmyarnbunTerminalpnpm add -D eslint-config-prettier Then, add prettier to your existing ESLint config: eslint.config.mjsimport { defineConfig, globalIgnores } from 'eslint/config' import nextVitals from 'eslint-config-next/core-web-vitals' import prettier from 'eslint-config-prettier/flat' const eslintConfig = defineConfig([ ...nextVitals, prettier, // Override default ignores of eslint-config-next. globalIgnores([ // Default ignores of eslint-config-next: '.next/**', 'out/**', 'build/**', 'next-env.d.ts', ]), ]) export default eslintConfig Running lint on staged files If you would like to use ESLint with lint-staged to run the linter on staged git files, add the following to the .lintstagedrc.js file in the root of your project: .lintstagedrc.jsconst path = require('path') const buildEslintCommand = (filenames) => `eslint --fix ${filenames .map((f) => `\"${path.relative(process.cwd(), f)}\"`) .join(' ')}` module.exports = { '*.{js,jsx,ts,tsx}': [buildEslintCommand], } Migrating existing config If you already have ESLint configured in your application, we recommend extending from this plugin directly instead of including eslint-config-next unless a few conditions are met. Recommended plugin ruleset If the following conditions are true: You have one or more of the following plugins already installed (either separately or through a different config such as airbnb or react-app): react react-hooks jsx-a11y import You've defined specific parserOptions that are different from how Babel is configured within Next.js (this is not recommended unless you have customized your Babel configuration) You have eslint-plugin-import installed with Node.js and/or TypeScript resolvers defined to handle imports Then we recommend either removing these settings if you prefer how these properties have been configured within eslint-config-next or extending directly from the Next.js ESLint plugin instead: module.exports = { extends: [ //... 'plugin:@next/next/recommended', ], } The plugin can be installed normally in your project: pnpmnpmyarnbunTerminalpnpm add -D @next/eslint-plugin-next This eliminates the risk of collisions or errors that can occur due to importing the same plugin or parser across multiple configurations. Additional configurations If you already use a separate ESLint configuration and want to include eslint-config-next, ensure that it is extended last after other configurations. For example: eslint.config.mjsimport { defineConfig, globalIgnores } from 'eslint/config' import nextPlugin from '@next/eslint-plugin-next' const eslintConfig = defineConfig([ nextPlugin.configs['core-web-vitals'], // List of ignore patterns. globalIgnores([]), ]) export default eslintConfig The next configuration already handles setting default values for the parser, plugins and settings properties. There is no need to manually re-declare any of these properties unless you need a different configuration for your use case. If you include any other shareable configurations, you will need to make sure that these properties are not overwritten or modified. Otherwise, we recommend removing any configurations that share behavior with the next configuration or extending directly from the Next.js ESLint plugin as mentioned above. VersionChangesv16.0.0next lint and the eslint next.config.js option were removed in favor of the ESLint CLI. A codemod is available to help you migrate.",
+      "code": "@next/eslint-plugin-next"
+    },
+    {
+      "description": "ESLint Next.js provides an ESLint plugin, @next/eslint-plugin-next, already bundled within the base configuration that makes it possible to catch common issues and problems in a Next.js application. Setup ESLint Get linting working quickly with the ESLint CLI (flat config): Install ESLint and the Next.js config: pnpmnpmyarnbunTerminalpnpm add -D eslint eslint-config-next Create eslint.config.mjs with the Next.js config: eslint.config.mjsimport { defineConfig, globalIgnores } from 'eslint/config' import nextVitals from 'eslint-config-next/core-web-vitals' const eslintConfig = defineConfig([ ...nextVitals, // Override default ignores of eslint-config-next. globalIgnores([ // Default ignores of eslint-config-next: '.next/**', 'out/**', 'build/**', 'next-env.d.ts', ]), ]) export default eslintConfig Run ESLint: pnpmnpmyarnbunTerminalpnpm exec eslint . Reference Recommended rule-sets from the following ESLint plugins are all used within eslint-config-next: eslint-plugin-react eslint-plugin-react-hooks @next/eslint-plugin-next Rules The full set of rules is as follows: Enabled in recommended configRuleDescription@next/next/google-font-displayEnforce font-display behavior with Google Fonts.@next/next/google-font-preconnectEnsure preconnect is used with Google Fonts.@next/next/inline-script-idEnforce id attribute on next/script components with inline content.@next/next/next-script-for-gaPrefer next/script component when using the inline script for Google Analytics.@next/next/no-assign-module-variablePrevent assignment to the module variable.@next/next/no-async-client-componentPrevent Client Components from being async functions.@next/next/no-before-interactive-script-outside-documentPrevent usage of next/script's beforeInteractive strategy outside of pages/_document.js.@next/next/no-css-tagsPrevent manual stylesheet tags.@next/next/no-document-import-in-pagePrevent importing next/document outside of pages/_document.js.@next/next/no-duplicate-headPrevent duplicate usage of <Head> in pages/_document.js.@next/next/no-head-elementPrevent usage of <head> element.@next/next/no-head-import-in-documentPrevent usage of next/head in pages/_document.js.@next/next/no-html-link-for-pagesPrevent usage of <a> elements to navigate to internal Next.js pages.@next/next/no-img-elementPrevent usage of <img> element due to slower LCP and higher bandwidth.@next/next/no-page-custom-fontPrevent page-only custom fonts.@next/next/no-script-component-in-headPrevent usage of next/script in next/head component.@next/next/no-styled-jsx-in-documentPrevent usage of styled-jsx in pages/_document.js.@next/next/no-sync-scriptsPrevent synchronous scripts.@next/next/no-title-in-document-headPrevent usage of <title> with Head component from next/document.@next/next/no-typosPrevent common typos in Next.js's data fetching functions@next/next/no-unwanted-polyfillioPrevent duplicate polyfills from Polyfill.io. We recommend using an appropriate integration to view warnings and errors directly in your code editor during development. next lint removalStarting with Next.js 16, next lint is removed.As part of the removal, the eslint option in your Next config file is no longer needed and can be safely removed. Examples Specifying a root directory within a monorepo If you're using @next/eslint-plugin-next in a project where Next.js isn't installed in your root directory (such as a monorepo), you can tell @next/eslint-plugin-next where to find your Next.js application using the settings property in your eslint.config.mjs: eslint.config.mjsimport { defineConfig } from 'eslint/config' import eslintNextPlugin from '@next/eslint-plugin-next' const eslintConfig = defineConfig([ { plugins: { next: eslintNextPlugin, }, settings: { next: { rootDir: 'packages/my-app/', }, }, files: [ // ...files ], ignores: [ // ...ignores ], }, ]) export default eslintConfig rootDir can be a path (relative or absolute), a glob (i.e. \"packages/*/\"), or an array of paths and/or globs. Disabling rules If you would like to modify or disable any rules provided by the supported plugins (react, react-hooks, next), you can directly change them using the rules property in your eslint.config.mjs: eslint.config.mjsimport { defineConfig, globalIgnores } from 'eslint/config' import nextVitals from 'eslint-config-next/core-web-vitals' const eslintConfig = defineConfig([ ...nextVitals, { rules: { 'react/no-unescaped-entities': 'off', '@next/next/no-page-custom-font': 'off', }, }, // Override default ignores of eslint-config-next. globalIgnores([ // Default ignores of eslint-config-next: '.next/**', 'out/**', 'build/**', 'next-env.d.ts', ]), ]) export default eslintConfig With Core Web Vitals Enable the next/core-web-vitals rule set by extending it in your ESLint config. eslint.config.mjsimport { defineConfig, globalIgnores } from 'eslint/config' import nextVitals from 'eslint-config-next/core-web-vitals' const eslintConfig = defineConfig([ ...nextVitals, // Override default ignores of eslint-config-next. globalIgnores([ // Default ignores of eslint-config-next: '.next/**', 'out/**', 'build/**', 'next-env.d.ts', ]), ]) export default eslintConfig next/core-web-vitals updates @next/eslint-plugin-next to error on a number of rules that are warnings by default if they affect Core Web Vitals. The next/core-web-vitals entry point is automatically included for new applications built with Create Next App. With TypeScript In addition to the Next.js ESLint rules, create-next-app --typescript will also add TypeScript-specific lint rules with next/typescript to your config: eslint.config.mjsimport { defineConfig, globalIgnores } from 'eslint/config' import nextVitals from 'eslint-config-next/core-web-vitals' import nextTs from 'eslint-config-next/typescript' const eslintConfig = defineConfig([ ...nextVitals, ...nextTs, // Override default ignores of eslint-config-next. globalIgnores([ // Default ignores of eslint-config-next: '.next/**', 'out/**', 'build/**', 'next-env.d.ts', ]), ]) export default eslintConfig Those rules are based on plugin:@typescript-eslint/recommended. See typescript-eslint > Configs for more details. With Prettier ESLint also contains code formatting rules, which can conflict with your existing Prettier setup. We recommend including eslint-config-prettier in your ESLint config to make ESLint and Prettier work together. First, install the dependency: pnpmnpmyarnbunTerminalpnpm add -D eslint-config-prettier Then, add prettier to your existing ESLint config: eslint.config.mjsimport { defineConfig, globalIgnores } from 'eslint/config' import nextVitals from 'eslint-config-next/core-web-vitals' import prettier from 'eslint-config-prettier/flat' const eslintConfig = defineConfig([ ...nextVitals, prettier, // Override default ignores of eslint-config-next. globalIgnores([ // Default ignores of eslint-config-next: '.next/**', 'out/**', 'build/**', 'next-env.d.ts', ]), ]) export default eslintConfig Running lint on staged files If you would like to use ESLint with lint-staged to run the linter on staged git files, add the following to the .lintstagedrc.js file in the root of your project: .lintstagedrc.jsconst path = require('path') const buildEslintCommand = (filenames) => `eslint --fix ${filenames .map((f) => `\"${path.relative(process.cwd(), f)}\"`) .join(' ')}` module.exports = { '*.{js,jsx,ts,tsx}': [buildEslintCommand], } Migrating existing config If you already have ESLint configured in your application, we recommend extending from this plugin directly instead of including eslint-config-next unless a few conditions are met. Recommended plugin ruleset If the following conditions are true: You have one or more of the following plugins already installed (either separately or through a different config such as airbnb or react-app): react react-hooks jsx-a11y import You've defined specific parserOptions that are different from how Babel is configured within Next.js (this is not recommended unless you have customized your Babel configuration) You have eslint-plugin-import installed with Node.js and/or TypeScript resolvers defined to handle imports Then we recommend either removing these settings if you prefer how these properties have been configured within eslint-config-next or extending directly from the Next.js ESLint plugin instead: module.exports = { extends: [ //... 'plugin:@next/next/recommended', ], } The plugin can be installed normally in your project: pnpmnpmyarnbunTerminalpnpm add -D @next/eslint-plugin-next This eliminates the risk of collisions or errors that can occur due to importing the same plugin or parser across multiple configurations. Additional configurations If you already use a separate ESLint configuration and want to include eslint-config-next, ensure that it is extended last after other configurations. For example: eslint.config.mjsimport { defineConfig, globalIgnores } from 'eslint/config' import nextPlugin from '@next/eslint-plugin-next' const eslintConfig = defineConfig([ nextPlugin.configs['core-web-vitals'], // List of ignore patterns. globalIgnores([]), ]) export default eslintConfig The next configuration already handles setting default values for the parser, plugins and settings properties. There is no need to manually re-declare any of these properties unless you need a different configuration for your use case. If you include any other shareable configurations, you will need to make sure that these properties are not overwritten or modified. Otherwise, we recommend removing any configurations that share behavior with the next configuration or extending directly from the Next.js ESLint plugin as mentioned above. VersionChangesv16.0.0next lint and the eslint next.config.js option were removed in favor of the ESLint CLI. A codemod is available to help you migrate.",
+      "code": "@next/eslint-plugin-next"
+    },
+    {
+      "description": "If you already use a separate ESLint configuration and want to include eslint-config-next, ensure that it is extended last after other configurations. For example:",
+      "code": "eslint-config-next"
+    }
+  ],
+  "links": [
+    "https://nextjs.org/docs/pages/api-reference",
+    "https://nextjs.org/docs/pages/api-reference/config",
+    "https://nextjs.org/docs/pages/api-reference/config/eslint",
+    "https://nextjs.org/docs/messages/google-font-display",
+    "https://nextjs.org/docs/messages/google-font-preconnect",
+    "https://nextjs.org/docs/messages/inline-script-id",
+    "https://nextjs.org/docs/messages/next-script-for-ga",
+    "https://nextjs.org/docs/messages/no-assign-module-variable",
+    "https://nextjs.org/docs/messages/no-async-client-component",
+    "https://nextjs.org/docs/messages/no-before-interactive-script-outside-document",
+    "https://nextjs.org/docs/messages/no-css-tags",
+    "https://nextjs.org/docs/messages/no-document-import-in-page",
+    "https://nextjs.org/docs/messages/no-duplicate-head",
+    "https://nextjs.org/docs/messages/no-head-element",
+    "https://nextjs.org/docs/messages/no-head-import-in-document",
+    "https://nextjs.org/docs/messages/no-html-link-for-pages",
+    "https://nextjs.org/docs/messages/no-img-element",
+    "https://nextjs.org/docs/messages/no-page-custom-font",
+    "https://nextjs.org/docs/messages/no-script-component-in-head",
+    "https://nextjs.org/docs/messages/no-styled-jsx-in-document",
+    "https://nextjs.org/docs/messages/no-sync-scripts",
+    "https://nextjs.org/docs/messages/no-title-in-document-head",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching",
+    "https://nextjs.org/docs/messages/no-unwanted-polyfillio",
+    "https://nextjs.org/docs/app/api-reference/cli/create-next-app",
+    "https://nextjs.org/docs/pages/guides/babel",
+    "https://nextjs.org/docs/app/guides/upgrading/codemods",
+    "https://nextjs.org/docs/pages/api-reference/config/typescript",
+    "https://nextjs.org/docs/pages/api-reference/cli"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Don't save successful executions",
+  "content": "export EXECUTIONS_DATA_SAVE_ON_SUCCESS=none",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#don't-save-successful-executions",
+  "links": []
+}

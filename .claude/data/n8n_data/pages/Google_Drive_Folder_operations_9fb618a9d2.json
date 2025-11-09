@@ -1,0 +1,39 @@
+{
+  "title": "Google Drive Folder operations",
+  "content": "Use this operation to create, delete, and share folders in Google Drive. Refer to [Google Drive](../) for more information on the Google Drive node itself.\n\nThis node can be used as an AI tool\n\nThis node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](../../../../../advanced-ai/examples/using-the-fromai-function/).\n\nUse this operation to create a new folder in a drive.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [Google Drive credentials](../../../credentials/google/).\n- **Resource**: Select **Folder**.\n- **Operation**: Select **Create**.\n- **Folder Name**: The name to use for the new folder.\n- **Parent Drive**: Select **From list** to choose the drive from the dropdown list, **By URL** to enter the URL of the drive, or **By ID** to enter the `driveId`.\n- **Parent Folder**: Select **From list** to choose the folder from the dropdown list, **By URL** to enter the URL of the folder, or **By ID** to enter the `folderId`.\n\nYou can find the `driveId` and `folderID` by visiting the shared drive or folder in your browser and copying the last URL component: `https://drive.google.com/drive/u/1/folders/driveId`.\n\n- **Simplify Output**: Choose whether to return a simplified version of the response instead of including all fields.\n- **Folder Color**: The color of the folder as an RGB hex string.\n\nRefer to the [Method: files.insert | Google Drive](https://developers.google.com/drive/api/reference/rest/v2/files/insert) API documentation for more information.\n\nUse this operation to delete a folder from a drive.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [Google Drive credentials](../../../credentials/google/).\n- **Resource**: Select **Folder**.\n- **Operation**: Select **Delete**.\n- **Folder**: Choose a folder you want to delete.\n  - Select **From list** to choose the folder from the dropdown list, **By URL** to enter the URL of the folder, or **By ID** to enter the `folderId`.\n  - You can find the `folderId` in a Google Drive folder URL: `https://drive.google.com/drive/u/0/folders/folderID`.\n\n- **Delete Permanently**: Choose whether to delete the folder now instead of moving it to the trash.\n\nRefer to the [Method: files.delete | Google Drive](https://developers.google.com/drive/api/reference/rest/v2/files/delete) API documentation for more information.\n\nUse this operation to add sharing permissions to a folder.\n\nEnter these parameters:\n\n- **Credential to connect with**: Create or select an existing [Google Drive credentials](../../../credentials/google/).\n- **Resource**: Select **Folder**.\n- **Operation**: Select **Share**.\n- **Folder**: Choose a file you want to move.\n  - Select **From list** to choose the folder from the dropdown list, **By URL** to enter the URL of the folder, or **By ID** to enter the `folderId`.\n  - You can find the `folderId` in a Google Drive folder URL: `https://drive.google.com/drive/u/0/folders/folderID`.\n- **Permissions**: The permissions to add to the folder:\n  - **Role**: Select what users can do with the folder. Can be one of **Commenter**, **File Organizer**, **Organizer**, **Owner**, **Reader**, **Writer**.\n  - **Type**: Select the scope of the new permission:\n    - **User**: Grant permission to a specific user, defined by entering their **Email Address**.\n    - **Group**: Grant permission to a specific group, defined by entering its **Email Address**.\n    - **Domain**: Grant permission to a complete domain, defined by the **Domain**.\n    - **Anyone**: Grant permission to anyone. Can optionally **Allow File Discovery** to make the file discoverable through search.\n\n- **Email Message**: A plain text custom message to include in the notification email.\n\n- **Move to New Owners Root**: Available when trying to transfer ownership while sharing an item not in a shared drive. When enabled, moves the folder to the new owner's My Drive root folder.\n\n- **Send Notification Email**: Whether to send a notification email when sharing to users or groups.\n\n- **Transfer Ownership**: Whether to transfer ownership to the specified user and downgrade the current owner to writer permissions.\n\n- **Use Domain Admin Access**: Whether to perform the action as a domain administrator.\n\nRefer to the [REST Resources: files | Google Drive](https://developers.google.com/drive/api/reference/rest/v2/files) API documentation for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Create a folder",
+      "id": "create-a-folder"
+    },
+    {
+      "level": "h3",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h2",
+      "text": "Delete a folder",
+      "id": "delete-a-folder"
+    },
+    {
+      "level": "h3",
+      "text": "Options",
+      "id": "options"
+    },
+    {
+      "level": "h2",
+      "text": "Share a folder",
+      "id": "share-a-folder"
+    },
+    {
+      "level": "h3",
+      "text": "Options",
+      "id": "options"
+    }
+  ],
+  "url": "llms-txt#google-drive-folder-operations",
+  "links": []
+}

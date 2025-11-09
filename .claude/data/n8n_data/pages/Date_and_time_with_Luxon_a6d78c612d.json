@@ -1,0 +1,38 @@
+{
+  "title": "Date and time with Luxon",
+  "content": "[Luxon](https://github.com/moment/luxon/) is a JavaScript library that makes it easier to work with date and time. For full details of how to use Luxon, refer to [Luxon's documentation](https://moment.github.io/luxon/#/?id=luxon).\n\nn8n passes dates between nodes as strings, so you need to parse them. Luxon makes this easier.\n\nLuxon is a JavaScript library. The two convenience [variables](#get-the-current-datetime-or-date) created by n8n are available when using Python in the Code node, but their functionality is limited:\n\n- You can't perform Luxon operations on these variables. For example, there is no Python equivalent for `$today.minus(...)`.\n- The generic Luxon functionality, such as [Convert date string to Luxon](#convert-date-string-to-luxon), isn't available for Python users.\n\n## Date and time behavior in n8n\n\nBe aware of the following:\n\n- In a workflow, n8n converts dates and times to strings between nodes. Keep this in mind when doing arithmetic on dates and times from other nodes.\n- With vanilla JavaScript, you can convert a string to a date with `new Date('2019-06-23')`. In Luxon, you must use a function explicitly stating the format, such as `DateTime.fromISO('2019-06-23')` or `DateTime.fromFormat(\"23-06-2019\", \"dd-MM-yyyy\")`.\n\n## Setting the timezone in n8n\n\nLuxon uses the n8n timezone. This value is either:\n\n- Default: `America/New York`\n- A custom timezone for your n8n instance, set using the `GENERIC_TIMEZONE` environment variable.\n- A custom timezone for an individual workflow, configured in workflow settings.\n\nThis section provides examples for some common operations. More examples, and detailed guidance, are available in [Luxon's own documentation](https://moment.github.io/luxon/#/?id=luxon).\n\n### Get the current datetime or date\n\nUse the [`$now` and `$today` Luxon objects](../../builtin/date-time/) to get the current time or day:\n\n- `now`: a Luxon object containing the current timestamp. Equivalent to `DateTime.now()`.\n- `today`: a Luxon object containing the current timestamp, rounded down to the day. Equivalent to `DateTime.now().set({ hour: 0, minute: 0, second: 0, millisecond: 0 })`.\n\nNote that these variables can return different time formats when cast as a string:",
+  "code_samples": [
+    {
+      "code": "{{$now}}\n// n8n displays the ISO formatted timestamp\n// For example 2022-03-09T14:02:37.065+00:00\n{{\"Today's date is \" + $now}}\n// n8n displays \"Today's date is <unix timestamp>\"\n// For example \"Today's date is 1646834498755\"",
+      "language": "unknown"
+    },
+    {
+      "code": "$now\n// n8n displays <ISO formatted timestamp>\n// For example 2022-03-09T14:00:25.058+00:00\nlet rightNow = \"Today's date is \" + $now\n// n8n displays \"Today's date is <unix timestamp>\"\n// For example \"Today's date is 1646834498755\"",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Date and time behavior in n8n",
+      "id": "date-and-time-behavior-in-n8n"
+    },
+    {
+      "level": "h2",
+      "text": "Setting the timezone in n8n",
+      "id": "setting-the-timezone-in-n8n"
+    },
+    {
+      "level": "h2",
+      "text": "Common tasks",
+      "id": "common-tasks"
+    },
+    {
+      "level": "h3",
+      "text": "Get the current datetime or date",
+      "id": "get-the-current-datetime-or-date"
+    }
+  ],
+  "url": "llms-txt#date-and-time-with-luxon",
+  "links": []
+}

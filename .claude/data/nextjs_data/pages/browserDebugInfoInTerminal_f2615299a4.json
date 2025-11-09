@@ -1,0 +1,57 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/browserDebugInfoInTerminal",
+  "title": "browserDebugInfoInTerminal",
+  "content": "The experimental.browserDebugInfoInTerminal option forwards console output and runtime errors originating in the browser to the dev server terminal.\n\nThis option is disabled by default. When enabled it only works in development mode.\n\nDeeply nested objects/arrays are truncated using sensible defaults. You can tweak these limits:\n\nSource locations are included by default when this feature is enabled.\n\nClicking the button prints this message to the terminal.\n\nTo suppress them, set showSourceLocation: false.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "browserDebugInfoInTerminal",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h3",
+      "text": "Serialization limits",
+      "id": "serialization-limits"
+    },
+    {
+      "level": "h3",
+      "text": "Source location",
+      "id": "source-location"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    browserDebugInfoInTerminal: true,\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    browserDebugInfoInTerminal: {\n      depthLimit: 5,\n      edgeLimit: 100,\n    },\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nexport default function Home() {\n  return (\n    <button\n      type=\"button\"\n      onClick={() => {\n        console.log('Hello World')\n      }}\n    >\n      Click me\n    </button>\n  )\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "[browser] Hello World (app/page.tsx:8:17)",
+      "language": "unknown"
+    },
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    browserDebugInfoInTerminal: {\n      showSourceLocation: false,\n    },\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/browserDebugInfoInTerminal",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Update self-hosted n8n",
+  "content": "It's important to keep your n8n version up to date. This ensures you get the latest features and fixes.\n\nSome tips when updating:\n\n- Update frequently: this avoids having to jump multiple versions at once, reducing the risk of a disruptive update. Try to update at least once a month.\n- Check the [Release notes](../../../release-notes/) for breaking changes.\n- Use [Environments](../../../source-control-environments/) to create a test version of your instance. Test the update there first.\n\nFor instructions on how to update, refer to the documentation for your installation method:\n\n- [Installed with npm](../npm/#updating)\n- [Installed with Docker](../docker/#updating)",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#update-self-hosted-n8n",
+  "links": []
+}

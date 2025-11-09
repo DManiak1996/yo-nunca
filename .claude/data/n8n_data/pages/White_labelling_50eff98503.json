@@ -1,0 +1,67 @@
+{
+  "title": "White labelling",
+  "content": "Embed requires an embed license. For more information about when to use Embed, as well as costs and licensing processes, refer to [Embed](https://n8n.io/embed/) on the n8n website.\n\nWhite labelling n8n means customizing the frontend styling and assets to match your brand identity. The process involves changing two packages in n8n's source code [github.com/n8n-io/n8n](https://github.com/n8n-io/n8n):\n\n- [packages/frontend/@n8n/design-system](https://github.com/n8n-io/n8n/tree/master/packages/frontend/@n8n/design-system): n8n's [storybook](https://storybook.js.org/) design system with CSS styles and Vue.js components\n- [packages/frontend/editor-ui](https://github.com/n8n-io/n8n/tree/master/packages/frontend/editor-ui): n8n's [Vue.js](https://vuejs.org/) frontend build with [Vite.js](https://vitejs.dev)\n\nYou need the following installed on your development machine:\n\n- [git](https://git-scm.com/downloads)\n- Node.js and npm. Minimum version Node 18.17.0. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).\n\nCreate a fork of [n8n's repository](https://github.com/n8n-io/n8n) and clone your new repository.\n\nInstall all dependencies, build and start n8n.\n\nWhenever you make changes you need to rebuild and restart n8n. While developing you can use `npm run dev` to automatically rebuild and restart n8n anytime you make code changes.\n\nTo customize theme colors open [packages/frontend/@n8n/design-system](https://github.com/n8n-io/n8n/tree/master/packages/frontend/@n8n/design-system) and start with:\n\n- [packages/frontend/@n8n/design-system/src/css/\\_tokens.scss](https://github.com/n8n-io/n8n/blob/master/packages/frontend/@n8n/design-system/src/css/_tokens.scss)\n- [packages/frontend/@n8n/design-system/src/css/\\_tokens.dark.scss](https://github.com/n8n-io/n8n/blob/master/packages/frontend/@n8n/design-system/src/css/_tokens.dark.scss)\n\nAt the top of `_tokens.scss` you will find `--color-primary` variables as HSL colors:\n\nIn the following example the primary color changes to #0099ff. To convert to HSL you can use a [color converter tool](https://www.w3schools.com/colors/colors_converter.asp).\n\nTo change the editor’s logo assets look into [packages/frontend/editor-ui/public](https://github.com/n8n-io/n8n/tree/master/packages/frontend/editor-ui/public) and replace:\n\n- favicon-16x16.png\n- favicon-32x32.png\n- favicon.ico\n- n8n-logo.svg\n- n8n-logo-collapsed.svg\n- n8n-logo-expanded.svg\n\nReplace these logo assets. n8n uses them in Vue.js components, including:\n\n- [MainSidebar.vue](https://github.com/n8n-io/n8n/blob/master/packages/frontend/editor-ui/src/components/MainSidebar.vue): top/left logo in the main sidebar.\n- [Logo.vue](https://github.com/n8n-io/n8n/blob/master/packages/frontend/editor-ui/src/components/Logo/Logo.vue): reused in other components.\n\nIn the following example replace `n8n-logo-collapsed.svg` and `n8n-logo-expanded.svg` to update the main sidebar's logo assets.\n\nIf your logo assets require different sizing or placement you can customize SCSS styles at the bottom of [MainSidebar.vue](https://github.com/n8n-io/n8n/blob/master/packages/frontend/editor-ui/src/components/MainSidebar.vue).\n\nTo change all text occurrences like `n8n` or `n8n.io` to your brand identity you can customize n8n's English internationalization file: [packages/frontend/@n8n/i18n/src/locales/en.json](https://github.com/n8n-io/n8n/blob/master/packages/frontend/@n8n/i18n/src/locales/en.json).\n\nn8n uses the [Vue I18n](https://kazupon.github.io/vue-i18n/) internationalization plugin for Vue.js to translate the majority of UI texts. To search and replace text occurrences inside `en.json` you can use [Linked locale messages](https://kazupon.github.io/vue-i18n/guide/messages.html#linked-locale-messages).\n\nIn the following example add the `_brand.name` translation key to white label n8n's [AboutModal.vue](https://github.com/n8n-io/n8n/blob/master/packages/frontend/editor-ui/src/components/AboutModal.vue).\n\nTo change n8n's window title to your brand name, edit the following:\n\n- [packages/frontend/editor-ui/index.html](https://github.com/n8n-io/n8n/blob/master/packages/frontend/editor-ui/index.html)\n- [packages/frontend/editor-ui/src/composables/useDocumentTitle.ts](https://github.com/n8n-io/n8n/blob/master/packages/frontend/editor-ui/src/composables/useDocumentTitle.ts)\n\nThe following example replaces all occurrences of `n8n` and `n8n.io` with `My Brand` in `index.html` and `useDocumentTitle.ts`.",
+  "code_samples": [
+    {
+      "code": "git clone https://github.com/<your-organization>/n8n.git n8n\ncd n8n",
+      "language": "unknown"
+    },
+    {
+      "code": "npm install\nnpm run build\nnpm run start",
+      "language": "unknown"
+    },
+    {
+      "code": "@mixin theme {\n\t--color-primary-h: 6.9;\n\t--color-primary-s: 100%;\n\t--color-primary-l: 67.6%;",
+      "language": "unknown"
+    },
+    {
+      "code": "@mixin theme {\n\t--color-primary-h: 204;\n\t--color-primary-s: 100%;\n\t--color-primary-l: 50%;",
+      "language": "unknown"
+    },
+    {
+      "code": ".logoItem {\n\tdisplay: flex;\n\tjustify-content: space-between;\n\theight: $header-height;\n\tline-height: $header-height;\n\tmargin: 0 !important;\n\tborder-radius: 0 !important;\n\tborder-bottom: var(--border-width-base) var(--border-style-base) var(--color-background-xlight);\n\tcursor: default;\n\n\t&:hover, &:global(.is-active):hover {\n\t\tbackground-color: initial !important;\n\t}\n\n\t* { vertical-align: middle; }\n\t.icon {\n\t\theight: 18px;\n\t\tposition: relative;\n\t\tleft: 6px;\n\t}\n\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "{\n\t\"_brand.name\": \"My Brand\",\n\t//replace n8n with link to _brand.name\n\t\"about.aboutN8n\": \"About @:_brand.name\",\n\t\"about.n8nVersion\": \"@:_brand.name Version\",\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n\t<!-- Replace html title attribute -->\n\t<title>My Brand - Workflow Automation</title>\n</head>",
+      "language": "unknown"
+    },
+    {
+      "code": "import { useSettingsStore } from '@/stores/settings.store';\n\n// replace n8n\nconst DEFAULT_TITLE = 'My Brand';\nconst DEFAULT_TAGLINE = 'Workflow Automation';",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Prerequisites",
+      "id": "prerequisites"
+    },
+    {
+      "level": "h2",
+      "text": "Theme colors",
+      "id": "theme-colors"
+    },
+    {
+      "level": "h2",
+      "text": "Theme logos",
+      "id": "theme-logos"
+    },
+    {
+      "level": "h2",
+      "text": "Text localization",
+      "id": "text-localization"
+    },
+    {
+      "level": "h3",
+      "text": "Window title",
+      "id": "window-title"
+    }
+  ],
+  "url": "llms-txt#white-labelling",
+  "links": []
+}

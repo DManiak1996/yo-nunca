@@ -1,0 +1,174 @@
+{
+  "url": "https://nextjs.org/docs/15/app/getting-started/updating-data",
+  "title": "Updating Data",
+  "content": "You can update data in Next.js using React's Server Functions. This page will go through how you can create and invoke Server Functions.\n\nA Server Function is an asynchronous function that runs on the server. They can be called from client through a network request, which is why they must be asynchronous.\n\nIn an action or mutation context, they are also called Server Actions.\n\nBy convention, a Server Action is an async function used with startTransition. This happens automatically when the function is:\n\nIn Next.js, Server Actions integrate with the framework's caching architecture. When an action is invoked, Next.js can return both the updated UI and new data in a single server roundtrip.\n\nBehind the scenes, actions use the POST method, and only this HTTP method can invoke them.\n\nA Server Function can be defined by using the use server directive. You can place the directive at the top of an asynchronous function to mark the function as a Server Function, or at the top of a separate file to mark all exports of that file.\n\nServer Functions can be inlined in Server Components by adding the \"use server\" directive to the top of the function body:\n\nGood to know: Server Components support progressive enhancement by default, meaning forms that call Server Actions will be submitted even if JavaScript hasn't loaded yet or is disabled.\n\nIt's not possible to define Server Functions in Client Components. However, you can invoke them in Client Components by importing them from a file that has the \"use server\" directive at the top of it:\n\nGood to know: In Client Components, forms invoking Server Actions will queue submissions if JavaScript isn't loaded yet, and will be prioritized for hydration. After hydration, the browser does not refresh on form submission.\n\nYou can also pass an action to a Client Component as a prop:\n\nThere are two main ways you can invoke a Server Function:\n\nGood to know: Server Functions are designed for server-side mutations. The client currently dispatches and awaits them one at a time. This is an implementation detail and may change. If you need parallel data fetching, use data fetching in Server Components, or perform parallel work inside a single Server Function or Route Handler.\n\nReact extends the HTML <form> element to allow Server Function to be invoked with the HTML action prop.\n\nWhen invoked in a form, the function automatically receives the FormData object. You can extract the data using the native FormData methods:\n\nYou can invoke a Server Function in a Client Component by using event handlers such as onClick.\n\nWhile executing a Server Function, you can show a loading indicator with React's useActionState hook. This hook returns a pending boolean:\n\nAfter performing an update, you can revalidate the Next.js cache and show the updated data by calling revalidatePath or revalidateTag within the Server Function:\n\nYou may want to redirect the user to a different page after performing an update. You can do this by calling redirect within the Server Function.\n\nCalling redirect throws a framework handled control-flow exception. Any code after it won't execute. If you need fresh data, call revalidatePath or revalidateTag beforehand.\n\nYou can get, set, and delete cookies inside a Server Action using the cookies API.\n\nWhen you set or delete a cookie in a Server Action, Next.js re-renders the current page and its layouts on the server so the UI reflects the new cookie value.\n\nGood to know: The server update applies to the current React tree, re-rendering, mounting, or unmounting components, as needed. Client state is preserved for re-rendered components, and effects re-run if their dependencies changed.\n\nYou can use the React useEffect hook to invoke a Server Action when the component mounts or a dependency changes. This is useful for mutations that depend on global events or need to be triggered automatically. For example, onKeyDown for app shortcuts, an intersection observer hook for infinite scrolling, or when the component mounts to update a view count:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Updating Data",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "What are Server Functions?",
+      "id": "what-are-server-functions"
+    },
+    {
+      "level": "h2",
+      "text": "Creating Server Functions",
+      "id": "creating-server-functions"
+    },
+    {
+      "level": "h3",
+      "text": "Server Components",
+      "id": "server-components"
+    },
+    {
+      "level": "h3",
+      "text": "Client Components",
+      "id": "client-components"
+    },
+    {
+      "level": "h3",
+      "text": "Passing actions as props",
+      "id": "passing-actions-as-props"
+    },
+    {
+      "level": "h2",
+      "text": "Invoking Server Functions",
+      "id": "invoking-server-functions"
+    },
+    {
+      "level": "h3",
+      "text": "Forms",
+      "id": "forms"
+    },
+    {
+      "level": "h3",
+      "text": "Event Handlers",
+      "id": "event-handlers"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Showing a pending state",
+      "id": "showing-a-pending-state"
+    },
+    {
+      "level": "h3",
+      "text": "Revalidating",
+      "id": "revalidating"
+    },
+    {
+      "level": "h3",
+      "text": "Redirecting",
+      "id": "redirecting"
+    },
+    {
+      "level": "h3",
+      "text": "Cookies",
+      "id": "cookies"
+    },
+    {
+      "level": "h3",
+      "text": "useEffect",
+      "id": "useeffect"
+    },
+    {
+      "level": "h2",
+      "text": "API Reference",
+      "id": "api-reference"
+    },
+    {
+      "level": "h3",
+      "text": "revalidatePath",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "revalidateTag",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "redirect",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "export async function createPost(formData: FormData) {\n  'use server'\n  const title = formData.get('title')\n  const content = formData.get('content')\n \n  // Update data\n  // Revalidate cache\n}\n \nexport async function deletePost(formData: FormData) {\n  'use server'\n  const id = formData.get('id')\n \n  // Update data\n  // Revalidate cache\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "export default function Page() {\n  // Server Action\n  async function createPost(formData: FormData) {\n    'use server'\n    // ...\n  }\n \n  return <></>\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "'use server'\n \nexport async function createPost() {}",
+      "language": "unknown"
+    },
+    {
+      "code": "'use client'\n \nimport { createPost } from '@/app/actions'\n \nexport function Button() {\n  return <button formAction={createPost}>Create</button>\n}",
+      "language": "python"
+    },
+    {
+      "code": "<ClientComponent updateItemAction={updateItem} />",
+      "language": "unknown"
+    },
+    {
+      "code": "'use client'\n \nexport default function ClientComponent({\n  updateItemAction,\n}: {\n  updateItemAction: (formData: FormData) => void\n}) {\n  return <form action={updateItemAction}>{/* ... */}</form>\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "import { createPost } from '@/app/actions'\n \nexport function Form() {\n  return (\n    <form action={createPost}>\n      <input type=\"text\" name=\"title\" />\n      <input type=\"text\" name=\"content\" />\n      <button type=\"submit\">Create</button>\n    </form>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nexport async function createPost(formData: FormData) {\n  const title = formData.get('title')\n  const content = formData.get('content')\n \n  // Update data\n  // Revalidate cache\n}",
+      "language": "javascript"
+    },
+    {
+      "code": "'use client'\n \nimport { incrementLike } from './actions'\nimport { useState } from 'react'\n \nexport default function LikeButton({ initialLikes }: { initialLikes: number }) {\n  const [likes, setLikes] = useState(initialLikes)\n \n  return (\n    <>\n      <p>Total Likes: {likes}</p>\n      <button\n        onClick={async () => {\n          const updatedLikes = await incrementLike()\n          setLikes(updatedLikes)\n        }}\n      >\n        Like\n      </button>\n    </>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { useActionState, startTransition } from 'react'\nimport { createPost } from '@/app/actions'\nimport { LoadingSpinner } from '@/app/ui/loading-spinner'\n \nexport function Button() {\n  const [state, action, pending] = useActionState(createPost, false)\n \n  return (\n    <button onClick={() => startTransition(action)}>\n      {pending ? <LoadingSpinner /> : 'Create Post'}\n    </button>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "import { revalidatePath } from 'next/cache'\n \nexport async function createPost(formData: FormData) {\n  'use server'\n  // Update data\n  // ...\n \n  revalidatePath('/posts')\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nimport { revalidatePath } from 'next/cache'\nimport { redirect } from 'next/navigation'\n \nexport async function createPost(formData: FormData) {\n  // Update data\n  // ...\n \n  revalidatePath('/posts')\n  redirect('/posts')\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use server'\n \nimport { cookies } from 'next/headers'\n \nexport async function exampleAction() {\n  const cookieStore = await cookies()\n \n  // Get cookie\n  cookieStore.get('name')?.value\n \n  // Set cookie\n  cookieStore.set('name', 'Delba')\n \n  // Delete cookie\n  cookieStore.delete('name')\n}",
+      "language": "python"
+    },
+    {
+      "code": "'use client'\n \nimport { incrementViews } from './actions'\nimport { useState, useEffect, useTransition } from 'react'\n \nexport default function ViewCount({ initialViews }: { initialViews: number }) {\n  const [views, setViews] = useState(initialViews)\n  const [isPending, startTransition] = useTransition()\n \n  useEffect(() => {\n    startTransition(async () => {\n      const updatedViews = await incrementViews()\n      setViews(updatedViews)\n    })\n  }, [])\n \n  // You can use `isPending` to give users feedback\n  return <p>Total Views: {views}</p>\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/15/app",
+    "https://nextjs.org/docs/15/app/getting-started",
+    "https://nextjs.org/docs/15/app/getting-started/updating-data",
+    "https://nextjs.org/docs/15/app/guides/caching",
+    "https://nextjs.org/docs/15/app/getting-started/fetching-data",
+    "https://nextjs.org/docs/15/app/guides/backend-for-frontend",
+    "https://nextjs.org/docs/15/app/api-reference/functions/revalidatePath",
+    "https://nextjs.org/docs/15/app/api-reference/functions/revalidateTag",
+    "https://nextjs.org/docs/15/app/api-reference/functions/redirect",
+    "https://nextjs.org/docs/15/app/api-reference/functions/cookies",
+    "https://nextjs.org/docs/15/app/getting-started/caching-and-revalidating"
+  ]
+}

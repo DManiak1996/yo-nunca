@@ -1,0 +1,111 @@
+{
+  "url": "https://react.dev/reference/react-compiler/directives/use-no-memo",
+  "title": "use no memo",
+  "content": "\"use no memo\" prevents a function from being optimized by React Compiler.\n\nAdd \"use no memo\" at the beginning of a function to prevent React Compiler optimization.\n\nWhen a function contains \"use no memo\", the React Compiler will skip it entirely during optimization. This is useful as a temporary escape hatch when debugging or when dealing with code that doesn’t work correctly with the compiler.\n\nReact Compiler analyzes your code at build time to apply optimizations. \"use no memo\" creates an explicit boundary that tells the compiler to skip a function entirely.\n\nThis directive takes precedence over all other settings:\n\nThe compiler treats these functions as if the React Compiler wasn’t enabled, leaving them exactly as written.\n\n\"use no memo\" should be used sparingly and temporarily. Common scenarios include:\n\nWhen you suspect the compiler is causing issues, temporarily disable optimization to isolate the problem:\n\nWhen integrating with libraries that might not be compatible with the compiler:\n\nThe \"use no memo\" directive is placed at the beginning of a function body to prevent React Compiler from optimizing that function:\n\nThe directive can also be placed at the top of a file to affect all functions in that module:\n\n\"use no memo\" at the function level overrides the module level directive.\n\nIf \"use no memo\" isn’t working:\n\nAlways document why you’re disabling optimization:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "use no memo",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Reference",
+      "id": "reference"
+    },
+    {
+      "level": "h3",
+      "text": "\"use no memo\"",
+      "id": "use-no-memo"
+    },
+    {
+      "level": "h4",
+      "text": "Caveats",
+      "id": "caveats"
+    },
+    {
+      "level": "h3",
+      "text": "How \"use no memo\" opts-out of optimization",
+      "id": "how-use-no-memo-opts-out"
+    },
+    {
+      "level": "h3",
+      "text": "When to use \"use no memo\"",
+      "id": "when-to-use"
+    },
+    {
+      "level": "h4",
+      "text": "Debugging compiler issues",
+      "id": "debugging-compiler"
+    },
+    {
+      "level": "h4",
+      "text": "Third-party library integration",
+      "id": "third-party"
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h3",
+      "text": "Directive not preventing compilation",
+      "id": "not-preventing"
+    },
+    {
+      "level": "h3",
+      "text": "Best practices",
+      "id": "best-practices"
+    },
+    {
+      "level": "h3",
+      "text": "See also",
+      "id": "see-also"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "function MyComponent() {  \"use no memo\";  // ...}",
+      "language": "unknown"
+    },
+    {
+      "code": "function ProblematicComponent({ data }) {  \"use no memo\"; // TODO: Remove after fixing issue #123  // Rules of React violations that weren't statically detected  // ...}",
+      "language": "unknown"
+    },
+    {
+      "code": "function ThirdPartyWrapper() {  \"use no memo\";  useThirdPartyHook(); // Has side effects that compiler might optimize incorrectly  // ...}",
+      "language": "unknown"
+    },
+    {
+      "code": "function MyComponent() {  \"use no memo\";  // Function body}",
+      "language": "unknown"
+    },
+    {
+      "code": "\"use no memo\";// All functions in this file will be skipped by the compiler",
+      "language": "unknown"
+    },
+    {
+      "code": "// ❌ Wrong - directive after codefunction Component() {  const data = getData();  \"use no memo\"; // Too late!}// ✅ Correct - directive firstfunction Component() {  \"use no memo\";  const data = getData();}",
+      "language": "javascript"
+    },
+    {
+      "code": "// ✅ Good - clear explanation and trackingfunction DataProcessor() {  \"use no memo\"; // TODO: Remove after fixing rule of react violation  // ...}// ❌ Bad - no explanationfunction Mystery() {  \"use no memo\";  // ...}",
+      "language": "unknown"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://react.dev/reference/react",
+    "https://react.dev/reference/react-compiler/directives",
+    "https://react.dev/reference/react-compiler/directives/use-no-memo",
+    "https://react.dev/reference/react-compiler/directives/use-memo",
+    "https://react.dev/learn/react-compiler",
+    "https://react.dev/reference/react-compiler/compiling-libraries"
+  ]
+}

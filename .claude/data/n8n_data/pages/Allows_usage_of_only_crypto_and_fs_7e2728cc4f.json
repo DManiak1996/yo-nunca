@@ -1,0 +1,8 @@
+{
+  "title": "Allows usage of only crypto and fs",
+  "content": "export NODE_FUNCTION_ALLOW_BUILTIN=crypto,fs",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#allows-usage-of-only-crypto-and-fs",
+  "links": []
+}

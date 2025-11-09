@@ -1,0 +1,24 @@
+{
+  "title": "Microsoft SharePoint node",
+  "content": "Use the Microsoft SharePoint node to automate work in Microsoft SharePoint and integrate Microsoft SharePoint with other applications. n8n has built-in support for a wide range of Microsoft SharePoint features, which includes downloading, uploading, and updating files, managing items in a list, and getting lists and list items.\n\nOn this page, you'll find a list of operations the Microsoft SharePoint node supports, and links to more resources.\n\nYou can find authentication information for this node [here](../../credentials/microsoft/).\n\n- **File**:\n  - Download: Download a file.\n  - Update: Update a file.\n  - Upload: Upload an existing file.\n- **Item**:\n  - Create: Create an item in an existing list.\n  - Create or Update: Create a new item, or update the current one if it already exists (upsert).\n  - Delete: Delete an item from a list.\n  - Get: Retrieve an item from a list.\n  - Get Many: Get specific items in a list or list many items.\n  - Update: Update an item in an existing list.\n- **List**:\n  - Get: Retrieve details of a single list.\n  - Get Many: Retrieve a list of lists.\n\n## Templates and examples\n\n**Upload File to SharePoint Using Microsoft Graph API**\n\n[View template details](https://n8n.io/workflows/3690-upload-file-to-sharepoint-using-microsoft-graph-api/)\n\n**Track Top Social Media Trends with Reddit, Twitter, and GPT-4o to SP/Drive**\n\n[View template details](https://n8n.io/workflows/6272-track-top-social-media-trends-with-reddit-twitter-and-gpt-4o-to-spdrive/)\n\n**🛠️ Microsoft SharePoint Tool MCP Server 💪 all 11 operations**\n\n[View template details](https://n8n.io/workflows/5178-microsoft-sharepoint-tool-mcp-server-all-11-operations/)\n\n[Browse Microsoft SharePoint integration templates](https://n8n.io/integrations/microsoft-sharepoint/), or [search all templates](https://n8n.io/workflows/)\n\nRefer to [Microsoft's SharePoint documentation](https://learn.microsoft.com/en-us/sharepoint/dev/sp-add-ins/get-to-know-the-sharepoint-rest-service) for more information about the service.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "Related resources",
+      "id": "related-resources"
+    }
+  ],
+  "url": "llms-txt#microsoft-sharepoint-node",
+  "links": []
+}

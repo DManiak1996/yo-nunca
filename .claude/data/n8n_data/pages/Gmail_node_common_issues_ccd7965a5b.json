@@ -1,0 +1,38 @@
+{
+  "title": "Gmail node common issues",
+  "content": "Here are some common errors and issues with the [Gmail node](../) and steps to resolve or troubleshoot them.\n\n## Remove the n8n attribution from sent messages\n\nIf you're using the node to [send a message](../message-operations/#send-a-message) or [reply to a message](../message-operations/#reply-to-a-message), the node appends this statement to the end of the email:\n\n> This email was sent automatically with n8n\n\nTo remove this attribution:\n\n1. In the node's **Options** section, select **Add option**.\n1. Select **Append n8n attribution**.\n1. Turn the toggle off.\n\nRefer to [Send options](../message-operations/#send-options) and [Reply options](../message-operations/#reply-options) for more information.\n\n## Forbidden - perhaps check your credentials\n\nThis error displays next to certain dropdowns in the node, like the **Label Names or IDs** dropdown. The full text looks something like this:\n\nThe error most often displays when you're using a Google Service Account as the credential and the credential doesn't have **Impersonate a User** turned on.\n\nRefer to [Google Service Account: Finish your n8n credential](../../../credentials/google/service-account/#finish-your-n8n-credential) for more information.\n\n## 401 unauthorized error\n\nThe full text of the error looks like this:\n\nThis error occurs when there's an issue with the credential you're using and its scopes or permissions.\n\n1. For [OAuth2](../../../credentials/google/oauth-single-service/) credentials, make sure you've enabled the Gmail API in **APIs & Services > Library**. Refer to [Google OAuth2 Single Service - Enable APIs](../../../credentials/google/oauth-single-service/#enable-apis) for more information.\n1. For [Service Account](../../../credentials/google/service-account/) credentials:\n   1. [Enable domain-wide delegation](../../../credentials/google/service-account/#enable-domain-wide-delegation).\n   1. Make sure you add the Gmail API as part of the domain-wide delegation configuration.\n\n## Bad request - please check your parameters\n\nThis error most often occurs if you enter a Message ID, Thread ID, or Label ID that doesn't exist.\n\nTry a **Get** operation with the ID to confirm it exists.",
+  "code_samples": [
+    {
+      "code": "There was a problem loading the parameter options from server: \"Forbidden - perhaps check your credentials?\"",
+      "language": "unknown"
+    },
+    {
+      "code": "401 - {\"error\":\"unauthorized_client\",\"error_description\":\"Client is unauthorized to retrieve access tokens using this method, or client not authorized for any of the scopes requested.\"}",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Remove the n8n attribution from sent messages",
+      "id": "remove-the-n8n-attribution-from-sent-messages"
+    },
+    {
+      "level": "h2",
+      "text": "Forbidden - perhaps check your credentials",
+      "id": "forbidden---perhaps-check-your-credentials"
+    },
+    {
+      "level": "h2",
+      "text": "401 unauthorized error",
+      "id": "401-unauthorized-error"
+    },
+    {
+      "level": "h2",
+      "text": "Bad request - please check your parameters",
+      "id": "bad-request---please-check-your-parameters"
+    }
+  ],
+  "url": "llms-txt#gmail-node-common-issues",
+  "links": []
+}

@@ -1,0 +1,65 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segment",
+  "title": "useSelectedLayoutSegment",
+  "content": "useSelectedLayoutSegment is a Client Component hook that lets you read the active route segment one level below the Layout it is called from.\n\nIt is useful for navigation UI, such as tabs inside a parent layout that change style depending on the active child segment.\n\nuseSelectedLayoutSegment optionally accepts a parallelRoutesKey, which allows you to read the active route segment within that slot.\n\nuseSelectedLayoutSegment returns a string of the active segment or null if one doesn't exist.\n\nFor example, given the Layouts and URLs below, the returned segment would be:\n\nYou can use useSelectedLayoutSegment to create an active link component that changes style depending on the active segment. For example, a featured posts list in the sidebar of a blog:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "useSelectedLayoutSegment",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Parameters",
+      "id": "parameters"
+    },
+    {
+      "level": "h2",
+      "text": "Returns",
+      "id": "returns"
+    },
+    {
+      "level": "h2",
+      "text": "Examples",
+      "id": "examples"
+    },
+    {
+      "level": "h3",
+      "text": "Creating an active link component",
+      "id": "creating-an-active-link-component"
+    },
+    {
+      "level": "h2",
+      "text": "Version History",
+      "id": "version-history"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "'use client'\n \nimport { useSelectedLayoutSegment } from 'next/navigation'\n \nexport default function ExampleClientComponent() {\n  const segment = useSelectedLayoutSegment()\n \n  return <p>Active segment: {segment}</p>\n}",
+      "language": "python"
+    },
+    {
+      "code": "const segment = useSelectedLayoutSegment(parallelRoutesKey?: string)",
+      "language": "javascript"
+    },
+    {
+      "code": "'use client'\n \nimport Link from 'next/link'\nimport { useSelectedLayoutSegment } from 'next/navigation'\n \n// This *client* component will be imported into a blog layout\nexport default function BlogNavLink({\n  slug,\n  children,\n}: {\n  slug: string\n  children: React.ReactNode\n}) {\n  // Navigating to `/blog/hello-world` will return 'hello-world'\n  // for the selected layout segment\n  const segment = useSelectedLayoutSegment()\n  const isActive = slug === segment\n \n  return (\n    <Link\n      href={`/blog/${slug}`}\n      // Change style depending on whether the link is active\n      style={{ fontWeight: isActive ? 'bold' : 'normal' }}\n    >\n      {children}\n    </Link>\n  )\n}",
+      "language": "python"
+    },
+    {
+      "code": "// Import the Client Component into a parent Layout (Server Component)\nimport { BlogNavLink } from './blog-nav-link'\nimport getFeaturedPosts from './get-featured-posts'\n \nexport default async function Layout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  const featuredPosts = await getFeaturedPosts()\n  return (\n    <div>\n      {featuredPosts.map((post) => (\n        <div key={post.id}>\n          <BlogNavLink slug={post.slug}>{post.title}</BlogNavLink>\n        </div>\n      ))}\n      <div>{children}</div>\n    </div>\n  )\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference",
+    "https://nextjs.org/docs/app/api-reference/functions",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segments",
+    "https://nextjs.org/docs/app/api-reference/functions/use-selected-layout-segment",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/parallel-routes",
+    "https://nextjs.org/docs/app/api-reference/functions/use-search-params"
+  ]
+}

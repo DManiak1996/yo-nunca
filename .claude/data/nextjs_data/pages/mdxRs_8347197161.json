@@ -1,0 +1,25 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/mdxRs",
+  "title": "mdxRs",
+  "content": "For experimental use with @next/mdx. Compiles MDX files using the new Rust compiler.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "mdxRs",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "const withMDX = require('@next/mdx')()\n \n/** @type {import('next').NextConfig} */\nconst nextConfig = {\n  pageExtensions: ['ts', 'tsx', 'mdx'],\n  experimental: {\n    mdxRs: true,\n  },\n}\n \nmodule.exports = withMDX(nextConfig)",
+      "language": "javascript"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/logging",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/onDemandEntries"
+  ]
+}

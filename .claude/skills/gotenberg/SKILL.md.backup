@@ -1,0 +1,100 @@
+---
+name: gotenberg
+description: Gotenberg document conversion API. Use for converting HTML, Markdown, Office documents to PDF, document merging, and automated document generation.
+---
+
+# Gotenberg Skill
+
+Comprehensive assistance with gotenberg development, generated from official documentation.
+
+## When to Use This Skill
+
+This skill should be triggered when:
+- Working with gotenberg
+- Asking about gotenberg features or APIs
+- Implementing gotenberg solutions
+- Debugging gotenberg code
+- Learning gotenberg best practices
+
+## Quick Reference
+
+### Common Patterns
+
+*Quick reference patterns will be added as you use the skill.*
+
+### Example Code Patterns
+
+**Example 1** (text):
+```text
+POST /forms/chromium/convert/url
+```
+
+**Example 2** (bash):
+```bash
+curl \--request POST http://localhost:3000/forms/chromium/convert/url \--form url=https://my.url \-o my.pdf
+```
+
+**Example 3** (text):
+```text
+Gotenberg-Trace: {trace}
+```
+
+**Example 4** (bash):
+```bash
+docker run --rm -p "3000:3000" gotenberg/gotenberg:8 gotenberg --my-module-property=foo
+```
+
+**Example 5** (yaml):
+```yaml
+services:  # Your other services.  gotenberg:    image: gotenberg/gotenberg:8    command:      - "gotenberg"      - "--my-module-property=foo"
+```
+
+## Reference Files
+
+This skill includes comprehensive documentation in `references/`:
+
+- **api.md** - Api documentation
+- **configuration.md** - Configuration documentation
+- **modules.md** - Modules documentation
+- **other.md** - Other documentation
+
+Use `view` to read specific reference files when detailed information is needed.
+
+## Working with This Skill
+
+### For Beginners
+Start with the getting_started or tutorials reference files for foundational concepts.
+
+### For Specific Features
+Use the appropriate category reference file (api, guides, etc.) for detailed information.
+
+### For Code Examples
+The quick reference section above contains common patterns extracted from the official docs.
+
+## Resources
+
+### references/
+Organized documentation extracted from official sources. These files contain:
+- Detailed explanations
+- Code examples with language annotations
+- Links to original documentation
+- Table of contents for quick navigation
+
+### scripts/
+Add helper scripts here for common automation tasks.
+
+### assets/
+Add templates, boilerplate, or example projects here.
+
+## Notes
+
+- This skill was automatically generated from official documentation
+- Reference files preserve the structure and examples from source docs
+- Code examples include language detection for better syntax highlighting
+- Quick reference patterns are extracted from common usage examples in the docs
+
+## Updating
+
+To refresh this skill with updated documentation:
+1. Re-run the scraper with the same configuration
+2. The skill will be rebuilt with the latest information

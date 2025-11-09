@@ -1,0 +1,20 @@
+{
+  "url": "https://nextjs.org/docs/app/guides/multi-tenant",
+  "title": "How to build multi-tenant apps in Next.js",
+  "content": "If you are looking to build a single Next.js application that serves multiple tenants, we have built an example showing our recommended architecture.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to build multi-tenant apps in Next.js",
+      "id": ""
+    }
+  ],
+  "code_samples": [],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/guides",
+    "https://nextjs.org/docs/app/guides/migrating/from-vite",
+    "https://nextjs.org/docs/app/guides/multi-zones"
+  ]
+}

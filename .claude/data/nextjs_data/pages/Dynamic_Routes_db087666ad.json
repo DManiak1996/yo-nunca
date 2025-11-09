@@ -1,0 +1,63 @@
+{
+  "url": "https://nextjs.org/docs/pages/building-your-application/routing/dynamic-routes",
+  "title": "Dynamic Routes",
+  "content": "When you don't know the exact segment names ahead of time and want to create routes from dynamic data, you can use Dynamic Segments that are filled in at request time or prerendered at build time.\n\nA Dynamic Segment can be created by wrapping a file or folder name in square brackets: [segmentName]. For example, [id] or [slug].\n\nDynamic Segments can be accessed from useRouter.\n\nFor example, a blog could include the following route pages/blog/[slug].js where [slug] is the Dynamic Segment for blog posts.\n\nDynamic Segments can be extended to catch-all subsequent segments by adding an ellipsis inside the brackets [...segmentName].\n\nFor example, pages/shop/[...slug].js will match /shop/clothes, but also /shop/clothes/tops, /shop/clothes/tops/t-shirts, and so on.\n\nCatch-all Segments can be made optional by including the parameter in double square brackets: [[...segmentName]].\n\nFor example, pages/shop/[[...slug]].js will also match /shop, in addition to /shop/clothes, /shop/clothes/tops, /shop/clothes/tops/t-shirts.\n\nThe difference between catch-all and optional catch-all segments is that with optional, the route without the parameter is also matched (/shop in the example above).",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Dynamic Routes",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Convention",
+      "id": "convention"
+    },
+    {
+      "level": "h2",
+      "text": "Example",
+      "id": "example"
+    },
+    {
+      "level": "h2",
+      "text": "Catch-all Segments",
+      "id": "catch-all-segments"
+    },
+    {
+      "level": "h2",
+      "text": "Optional Catch-all Segments",
+      "id": "optional-catch-all-segments"
+    },
+    {
+      "level": "h2",
+      "text": "Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "level": "h3",
+      "text": "Linking and Navigating",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "useRouter",
+      "id": ""
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import { useRouter } from 'next/router'\n \nexport default function Page() {\n  const router = useRouter()\n  return <p>Post: {router.query.slug}</p>\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/pages/building-your-application",
+    "https://nextjs.org/docs/pages/building-your-application/routing",
+    "https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-paths",
+    "https://nextjs.org/docs/pages/building-your-application/routing/dynamic-routes",
+    "https://nextjs.org/docs/pages/api-reference/functions/use-router",
+    "https://nextjs.org/docs/pages/building-your-application/routing/linking-and-navigating",
+    "https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts"
+  ]
+}

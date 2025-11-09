@@ -1,0 +1,14 @@
+{
+  "title": "Booleans",
+  "content": "A reference document listing built-in convenience functions to support data transformation in [expressions](../../../../glossary/#expression-n8n) for arrays.\n\nJavaScript in expressions\n\nYou can use any JavaScript in expressions. Refer to [Expressions](../../../expressions/) for more information.\n\nConvert a boolean to a number. `false` converts to `0`, `true` converts to `1`.\n\n______________________________________________________________________",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h3",
+      "text": "toInt(): Number",
+      "id": "toint():-number"
+    }
+  ],
+  "url": "llms-txt#booleans",
+  "links": []
+}

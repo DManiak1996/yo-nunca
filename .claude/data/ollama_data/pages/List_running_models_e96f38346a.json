@@ -1,0 +1,8 @@
+{
+  "title": "List running models",
+  "content": "Source: https://docs.ollama.com/api/ps\n\nopenapi.yaml get /api/ps\nRetrieve a list of models that are currently running",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#list-running-models",
+  "links": []
+}

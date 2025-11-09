@@ -1,0 +1,43 @@
+{
+  "title": "Introduction",
+  "content": "Source: https://docs.ollama.com/api/index\n\nOllama's API allows you to run and interact with models programatically.\n\nIf you're just getting started, follow the [quickstart](/quickstart) documentation to get up and running with Ollama's API.\n\nAfter installation, Ollama's API is served by default at:\n\nFor running cloud models on **ollama.com**, the same API is available with the following base URL:\n\nOnce Ollama is running, its API is automatically available and can be accessed via `curl`:\n\nOllama has official libraries for Python and JavaScript:\n\n* [Python](https://github.com/ollama/ollama-python)\n* [JavaScript](https://github.com/ollama/ollama-js)\n\nSeveral community-maintained libraries are available for Ollama. For a full list, see the [Ollama GitHub repository](https://github.com/ollama/ollama?tab=readme-ov-file#libraries-1).\n\nOllama's API isn't strictly versioned, but the API is expected to be stable and backwards compatible. Deprecations are rare and will be announced in the [release notes](https://github.com/ollama/ollama/releases).",
+  "code_samples": [
+    {
+      "code": "http://localhost:11434/api",
+      "language": "unknown"
+    },
+    {
+      "code": "https://ollama.com/api",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Get started",
+      "id": "get-started"
+    },
+    {
+      "level": "h2",
+      "text": "Base URL",
+      "id": "base-url"
+    },
+    {
+      "level": "h2",
+      "text": "Example request",
+      "id": "example-request"
+    },
+    {
+      "level": "h2",
+      "text": "Libraries",
+      "id": "libraries"
+    },
+    {
+      "level": "h2",
+      "text": "Versioning",
+      "id": "versioning"
+    }
+  ],
+  "url": "llms-txt#introduction",
+  "links": []
+}

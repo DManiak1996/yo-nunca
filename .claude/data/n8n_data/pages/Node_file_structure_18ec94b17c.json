@@ -1,0 +1,34 @@
+{
+  "title": "Node file structure",
+  "content": "Following best practices and standards in your node structure makes your node easier to maintain. It's helpful if other people need to work with the code.\n\nThe file and directory structure of your node depends on:\n\n- Your node's complexity.\n- Whether you use node versioning.\n- How many nodes you include in the npm package.\n\nn8n recommends using the [`n8n-node` tool](../../n8n-node/) to create the expected node file structure. You can customize the generated scaffolding as required to meet more complex needs.\n\n## Required files and directories\n\nYour node must include:\n\n- A `package.json` file at the root of the project. Every npm module requires this.\n- A `nodes` directory, containing the code for your node:\n  - This directory must contain the [base file](../node-base-files/), in the format `<node-name>.node.ts`. For example, `MyNode.node.ts`.\n  - n8n recommends including a [codex file](../node-codex-files/), containing metadata for your node. The codex filename must match the node base filename. For example, given a node base file named `MyNode.node.ts`, the codex name is `MyNode.node.json`.\n  - The `nodes` directory can contain other files and subdirectories, including directories for versions, and node code split across more than one file to create a modular structure.\n- A `credentials` directory, containing your credentials code. This code lives in a single [credentials file](../credentials-files/). The filename format is `<node-name>.credentials.ts`. For example, `MyNode.credentials.ts`.\n\nYou can choose whether to place all your node's functionality in one file, or split it out into a base file and other modules, which the base file then imports. Unless your node is very simple, it's a best practice to split it out.\n\nA basic pattern is to separate out operations. Refer to the [HttpBin starter node](https://github.com/n8n-io/n8n-nodes-starter/tree/master/nodes/HttpBin) for an example of this.\n\nFor more complex nodes, n8n recommends a directory structure. Refer to the [Airtable node](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/nodes/Airtable) or [Microsoft Outlook node](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/nodes/Microsoft/Outlook) as examples.\n\n- `actions`: a directory containing sub-directories that represent resources.\n  - Each sub-directory should contain two types of files:\n  - An index file with resource description (named either `<resourceName>.resource.ts` or `index.ts`)\n  - Files for operations `<operationName>.operation.ts`. These files should have two exports: `description` of the operation and an `execute` function.\n- `methods`: an optional directory dynamic parameters' functions.\n- `transport`: a directory containing the communication implementation.\n\nIf your node has more than one version, and you're using full versioning, this makes the file structure more complex. You need a directory for each version, along with a base file that sets the default version. Refer to [Node versioning](../node-versioning/) for more information on working with versions, including types of versioning.\n\n## Decide how many nodes to include in a package\n\nThere are two possible setups when building a node:\n\n- One node in one npm package.\n- More than one node in a single npm package.\n\nn8n supports both approaches. If you include more than one node, each node should have its own directory in the `nodes` directory.\n\n## A best-practice example for programmatic nodes\n\nn8n's built-in [Airtable node](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/nodes/Airtable) implements a modular structure and versioning, following recommended patterns.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Required files and directories",
+      "id": "required-files-and-directories"
+    },
+    {
+      "level": "h2",
+      "text": "Modular structure",
+      "id": "modular-structure"
+    },
+    {
+      "level": "h2",
+      "text": "Versioning",
+      "id": "versioning"
+    },
+    {
+      "level": "h2",
+      "text": "Decide how many nodes to include in a package",
+      "id": "decide-how-many-nodes-to-include-in-a-package"
+    },
+    {
+      "level": "h2",
+      "text": "A best-practice example for programmatic nodes",
+      "id": "a-best-practice-example-for-programmatic-nodes"
+    }
+  ],
+  "url": "llms-txt#node-file-structure",
+  "links": []
+}

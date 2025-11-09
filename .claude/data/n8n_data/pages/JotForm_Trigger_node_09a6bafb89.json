@@ -1,0 +1,8 @@
+{
+  "title": "JotForm Trigger node",
+  "content": "[JotForm](https://www.jotform.com/) is an online form building service. JotForm's software creates forms with a drag and drop creation tool and an option to encrypt user data.\n\nYou can find authentication information for this node [here](../../credentials/jotform/).\n\nExamples and templates\n\nFor usage examples and templates to help you get started, refer to n8n's [JotForm Trigger integrations](https://n8n.io/integrations/jotform-trigger/) page.",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#jotform-trigger-node",
+  "links": []
+}

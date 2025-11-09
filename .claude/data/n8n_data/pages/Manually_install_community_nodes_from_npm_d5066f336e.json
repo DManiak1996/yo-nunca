@@ -1,0 +1,71 @@
+{
+  "title": "Manually install community nodes from npm",
+  "content": "You can manually install community nodes from the npm registry on self-hosted n8n.\n\nYou need to manually install community nodes in the following circumstances:\n\n- Your n8n instance runs in queue mode.\n- You want to install [private packages](https://docs.npmjs.com/creating-and-publishing-private-packages).\n\n## Install a community node\n\nAccess your Docker shell:\n\nCreate `~/.n8n/nodes` if it doesn't already exist, and navigate into it:\n\n## Uninstall a community node\n\nAccess your Docker shell:\n\n## Upgrade a community node\n\nBreaking changes in versions\n\nNode developers may introduce breaking changes in new versions of their nodes. A breaking change is an update that breaks previous functionality. Depending on the node versioning approach that a node developer chooses, upgrading to a version with a breaking change could cause all workflows using the node to break. Be careful when upgrading your nodes. If you find that an upgrade causes issues, you can [downgrade](#upgrade-or-downgrade-to-a-specific-version).\n\n### Upgrade to the latest version\n\nAccess your Docker shell:\n\n### Upgrade or downgrade to a specific version\n\nAccess your Docker shell:\n\nRun npm uninstall to remove the current version:\n\nRun npm install with the version specified:",
+  "code_samples": [
+    {
+      "code": "docker exec -it n8n sh",
+      "language": "unknown"
+    },
+    {
+      "code": "mkdir ~/.n8n/nodes\ncd ~/.n8n/nodes",
+      "language": "unknown"
+    },
+    {
+      "code": "npm i n8n-nodes-nodeName",
+      "language": "unknown"
+    },
+    {
+      "code": "docker exec -it n8n sh",
+      "language": "unknown"
+    },
+    {
+      "code": "npm uninstall n8n-nodes-nodeName",
+      "language": "unknown"
+    },
+    {
+      "code": "docker exec -it n8n sh",
+      "language": "unknown"
+    },
+    {
+      "code": "npm update n8n-nodes-nodeName",
+      "language": "unknown"
+    },
+    {
+      "code": "docker exec -it n8n sh",
+      "language": "unknown"
+    },
+    {
+      "code": "npm uninstall n8n-nodes-nodeName",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Install a community node",
+      "id": "install-a-community-node"
+    },
+    {
+      "level": "h2",
+      "text": "Uninstall a community node",
+      "id": "uninstall-a-community-node"
+    },
+    {
+      "level": "h2",
+      "text": "Upgrade a community node",
+      "id": "upgrade-a-community-node"
+    },
+    {
+      "level": "h3",
+      "text": "Upgrade to the latest version",
+      "id": "upgrade-to-the-latest-version"
+    },
+    {
+      "level": "h3",
+      "text": "Upgrade or downgrade to a specific version",
+      "id": "upgrade-or-downgrade-to-a-specific-version"
+    }
+  ],
+  "url": "llms-txt#manually-install-community-nodes-from-npm",
+  "links": []
+}

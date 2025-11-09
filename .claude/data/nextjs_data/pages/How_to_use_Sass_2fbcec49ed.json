@@ -1,0 +1,57 @@
+{
+  "url": "https://nextjs.org/docs/app/guides/sass",
+  "title": "How to use Sass",
+  "content": "Next.js has built-in support for integrating with Sass after the package is installed using both the .scss and .sass extensions. You can use component-level Sass via CSS Modules and the .module.scssor .module.sass extension.\n\nSass supports two different syntaxes, each with their own extension. The .scss extension requires you use the SCSS syntax, while the .sass extension requires you use the Indented Syntax (\"Sass\").\n\nIf you're not sure which to choose, start with the .scss extension which is a superset of CSS, and doesn't require you learn the Indented Syntax (\"Sass\").\n\nIf you want to configure your Sass options, use sassOptions in next.config.\n\nYou can use the implementation property to specify the Sass implementation to use. By default, Next.js uses the sass package.\n\nNext.js supports Sass variables exported from CSS Module files.\n\nFor example, using the exported primaryColor Sass variable:",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "How to use Sass",
+      "id": ""
+    },
+    {
+      "level": "h3",
+      "text": "Customizing Sass Options",
+      "id": "customizing-sass-options"
+    },
+    {
+      "level": "h4",
+      "text": "Implementation",
+      "id": "implementation"
+    },
+    {
+      "level": "h3",
+      "text": "Sass Variables",
+      "id": "sass-variables"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "npm install --save-dev sass",
+      "language": "unknown"
+    },
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  sassOptions: {\n    additionalData: `$var: red;`,\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  sassOptions: {\n    implementation: 'sass-embedded',\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    },
+    {
+      "code": "$primary-color: #64ff00;\n \n:export {\n  primaryColor: $primary-color;\n}",
+      "language": "unknown"
+    },
+    {
+      "code": "// maps to root `/` URL\n \nimport variables from './variables.module.scss'\n \nexport default function Page() {\n  return <h1 style={{ color: variables.primaryColor }}>Hello, Next.js!</h1>\n}",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app",
+    "https://nextjs.org/docs/app/guides",
+    "https://nextjs.org/docs/app/guides/sass",
+    "https://nextjs.org/docs/app/guides/redirecting",
+    "https://nextjs.org/docs/app/guides/scripts"
+  ]
+}

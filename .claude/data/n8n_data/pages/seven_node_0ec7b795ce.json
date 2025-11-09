@@ -1,0 +1,19 @@
+{
+  "title": "seven node",
+  "content": "Use the seven node to automate work in seven, and integrate seven with other applications. n8n has built-in support for a wide range of seven features, including sending SMS, and converting text to voice.\n\nOn this page, you'll find a list of operations the seven node supports and links to more resources.\n\nRefer to [seven credentials](../../credentials/sms77/) for guidance on setting up authentication.\n\n- SMS\n  - Send SMS\n- Voice Call\n  - Converts text to voice and calls a given number\n\n## Templates and examples\n\n**Automate WhatsApp Booking System with GPT-4 Assistant, Cal.com and SMS Reminders**\n\n[View template details](https://n8n.io/workflows/4949-automate-whatsapp-booking-system-with-gpt-4-assistant-calcom-and-sms-reminders/)\n\n**Sending an SMS using sms77**\n\n[View template details](https://n8n.io/workflows/469-sending-an-sms-using-sms77/)\n\n**🛠️ seven Tool MCP Server with both available operations**\n\n[View template details](https://n8n.io/workflows/5088-seven-tool-mcp-server-with-both-available-operations/)\n\n[Browse seven integration templates](https://n8n.io/integrations/sms77/), or [search all templates](https://n8n.io/workflows/)",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    }
+  ],
+  "url": "llms-txt#seven-node",
+  "links": []
+}

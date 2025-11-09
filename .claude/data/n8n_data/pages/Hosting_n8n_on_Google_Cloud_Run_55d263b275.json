@@ -1,0 +1,144 @@
+{
+  "title": "Hosting n8n on Google Cloud Run",
+  "content": "This hosting guide shows you how to self-host n8n on Google Cloud Run, a serverless container runtime. If you're just getting started with n8n and don't need a production-grade deployment, you can go with the \"easy mode\" option below for deployment. Otherwise, if you intend to use this n8n deployment at-scale, refer to the \"durable mode\" instructions further down.\n\nYou can also enable access via OAuth to Google Workspace, such as Gmail and Drive, to use these services as n8n workflow tools. Instructions for granting n8n access to these services are at the end of of this documentation.\n\nIf you want to deploy to Google Kubernetes Engine (GKE) instead, you can refer to [these instructions](../google-kubernetes-engine/).\n\nSelf-hosting knowledge prerequisites\n\nSelf-hosting n8n requires technical knowledge, including:\n\n- Setting up and configuring servers and containers\n- Managing application resources and scaling\n- Securing servers and applications\n- Configuring n8n\n\nn8n recommends self-hosting for expert users. Mistakes can lead to data loss, security issues, and downtime. If you aren't experienced at managing servers, n8n recommends [n8n Cloud](https://n8n.io/cloud/).\n\nLatest and Next versions\n\nn8n releases a new minor version most weeks. The `latest` version is for production use. `next` is the most recent release. You should treat `next` as a beta: it may be unstable. To report issues, use the [forum](https://community.n8n.io/c/questions/12).\n\nCurrent `latest`: 1.118.1\\\nCurrent `next`: 1.119.0\n\n## Before you begin: get a Google Cloud project\n\nIf you have not yet created a Google Cloud project, [do this first](https://developers.google.com/workspace/guides/create-project) (and ensure you have billing enabled on the project; even if your Cloud Run service runs for free you must have billing activated to deploy). Otherwise, navigate to the project where you want to deploy n8n.\n\nThis is the fastest way to deploy n8n on Cloud Run. For this deployment, n8n's data is in-memory so this is only recommended for demo purposes. **Anytime this Cloud Run service scales to zero or is redeployed, the n8n data will be lost.** Refer to the durable mode instructions below if you need a production-grade deployment.\n\nIf you have not yet created a Google Cloud project, [do this first](https://developers.google.com/workspace/guides/create-project) (and ensure you have billing enabled on the project; even if your Cloud Run service will run for free you must have billing enabled to activated to deploy). Otherwise, navigate to the project where you want to deploy n8n.\n\nOpen the Cloud Shell Terminal (on the Google Cloud console, either type \"G\" then \"S\" or click on the terminal icon on the upper right).\n\nOnce your session is open, you may need to run this command first to login (and follow the steps it asks you to complete):\n\nYou can also explicitly enable the Cloud Run API (even if you don't do this, it will ask if you want this enabled when you deploy):\n\n(you can specify whichever region you prefer, instead of \"us-west1\")\n\nOnce the deployment finishes, open another tab to navigate to the Service URL. n8n may still be loading and you will see a \"n8n is starting up. Please wait\" message, but shortly thereafter you should see the n8n login screen.\n\nOptional: If you want to keep this n8n service running for as long as possible to avoid data loss, you can also set manual scale to 1 to prevent it from autoscaling to 0.\n\nThis does not prevent data loss completely, such as whenever the Cloud Run service is re-deployed/updated. If you want truly persistant data, you should refer to the instructions below for how to attach a database.\n\nThe following instructions are intended for a more durable, production-grade deployment of n8n on Cloud Run. It includes resources such as a database for persistance and secret manager for sensitive data.\n\n## Enable APIs and set env vars\n\nOpen the Cloud Shell Terminal (on the Google Cloud console, either type \"G\" then \"S\" or click on the terminal icon on the upper right) and run these commands in the terminal session:\n\nYou'll also want to set some environment variables for the remainder of these instructions:\n\n## Setup your Postgres database\n\nRun this command to create the Postgres DB instance (it will take a few minutes to complete; also ensure you update the root-password field with your own desired password):\n\nOnce complete, you can add the database that n8n will use:\n\nCreate the DB user for n8n (change the password value, of course):\n\nYou can save the password you set for this n8n-user to a file for the next step of saving the password in Secret Manager. Be sure to delete this file later.\n\n## Store sensitive data in Secret Manager\n\nWhile not required, it's absolutely recommended to store your sensitive data in Secrets Manager.\n\nCreate a secret for the database password (replace \"/your/password/file\" with the file you created above for the n8n-user password):\n\nCreate an encryption key (you can use your own, this example generates a random one):\n\nCreate a secret for this encryption key (replace \"my-encryption-key\" if you are supplying your own):\n\nNow you can delete my-encryption-key and the database password files you created. These values are now securely stored in Secret Manager.\n\n## Create a service account for Cloud Run\n\nYou want this Cloud Run service to be restricted to access only the resources it needs. The following commands create the service account and adds the permissions necessary to access secrets and the database:\n\n## Deploy the Cloud Run service\n\nNow you can deploy your n8n service:\n\nOnce the deployment finishes, open another tab to navigate to the Service URL. You should see the n8n login screen.\n\nIf you see a \"Cannot GET /\" screen this usually indicates that n8n is still starting up. You can refresh the page and it should eventually load.\n\n## (Optional) Enabling Google Workspace services as n8n tools\n\nIf you want to use Google Workspace services (Gmail, Calendar, Drive, etc.) as tools in n8n, it's recommended to setup OAuth to access these services.\n\nFirst ensure the respective APIs you want are enabled:\n\nRe-deploy n8n on Cloud Run with the necessary OAuth callback URLs as environment variables:\n\nLastly, you must setup OAuth for these services. Visit `https://console.cloud.google.com/auth` and follow these steps:\n\n1. Click \"Get Started\" if this button shows (when you have not yet setup OAuth in this Cloud project).\n1. For \"App Information\", enter whichever \"App Name\" and \"User Support Email\" you prefer.\n1. For \"Audience\", select \"Internal\" if you intend to only enable access to your user(s) within this same Google Workspace. Otherwise, you can select \"External\".\n1. Enter \"Contact Information\".\n1. If you selected \"External\", then click \"Audience\" and add any test users you need to grant access.\n1. Click \"Clients\" > \"Create client\", select \"Web application\" for \"Application type\", enter your n8n service URL into \"Authorized JavaScript origins\", and \"/rest/oauth2-credential/callback\" into \"Authorized redirect URIs\" where your YOUR-N8N-URL is also the n8n service URL (e.g. `https://n8n-12345678.us-west1.run.app/rest/oauth2-credential/callback`). Make sure you download the created client's JSON file since it contains the client secret which you will not be able to see later in the Console.\n1. Click \"Data Access\" and add the scopes you want n8n to have access for (e.g. to access Google Sheets, you need `https://googleapis.com/auth/drive.file` and `https://googleapis.com/auth/spreadsheets`)\n1. Now you should be able to use these workspace services. You can test if it works by logging into n8n, add a Tool for the respective service and add its credentials using the information in the OAuth client JSON file from step 6.",
+  "code_samples": [
+    {
+      "code": "gcloud auth login",
+      "language": "unknown"
+    },
+    {
+      "code": "gcloud services enable run.googleapis.com",
+      "language": "unknown"
+    },
+    {
+      "code": "gcloud run deploy n8n \\\n    --image=n8nio/n8n \\\n    --region=us-west1 \\\n    --allow-unauthenticated \\\n    --port=5678 \\\n    --no-cpu-throttling \\\n    --memory=2Gi",
+      "language": "unknown"
+    },
+    {
+      "code": "gcloud run deploy n8n \\\n    --image=n8nio/n8n \\\n    --region=us-west1 \\\n    --allow-unauthenticated \\\n    --port=5678 \\\n    --no-cpu-throttling \\\n    --memory=2Gi \\\n    --scaling=1",
+      "language": "unknown"
+    },
+    {
+      "code": "## You may need to login first\ngcloud auth login\n\ngcloud services enable run.googleapis.com\ngcloud services enable sqladmin.googleapis.com\ngcloud services enable secretmanager.googleapis.com",
+      "language": "unknown"
+    },
+    {
+      "code": "export PROJECT_ID=your-project\nexport REGION=region-where-you-want-this-deployed",
+      "language": "unknown"
+    },
+    {
+      "code": "gcloud sql instances create n8n-db \\\n    --database-version=POSTGRES_13 \\\n    --tier=db-f1-micro \\\n    --region=$REGION \\\n    --root-password=\"change-this-password\" \\\n    --storage-size=10GB \\\n    --availability-type=ZONAL \\\n    --no-backup \\\n    --storage-type=HDD",
+      "language": "unknown"
+    },
+    {
+      "code": "gcloud sql databases create n8n --instance=n8n-db",
+      "language": "unknown"
+    },
+    {
+      "code": "gcloud sql users create n8n-user \\\n    --instance=n8n-db \\\n    --password=\"change-this-password\"",
+      "language": "unknown"
+    },
+    {
+      "code": "gcloud secrets create n8n-db-password \\\n    --data-file=/your/password/file \\\n    --replication-policy=\"automatic\"",
+      "language": "unknown"
+    },
+    {
+      "code": "openssl rand -base64 -out my-encryption-key 42",
+      "language": "unknown"
+    },
+    {
+      "code": "gcloud secrets create n8n-encryption-key \\\n    --data-file=my-encryption-key \\\n    --replication-policy=\"automatic\"",
+      "language": "unknown"
+    },
+    {
+      "code": "gcloud iam service-accounts create n8n-service-account \\\n    --display-name=\"n8n Service Account\"\n\ngcloud secrets add-iam-policy-binding n8n-db-password \\\n    --member=\"serviceAccount:n8n-service-account@$PROJECT_ID.iam.gserviceaccount.com\" \\\n    --role=\"roles/secretmanager.secretAccessor\"\n\ngcloud secrets add-iam-policy-binding n8n-encryption-key \\\n    --member=\"serviceAccount:n8n-service-account@$PROJECT_ID.iam.gserviceaccount.com\" \\\n    --role=\"roles/secretmanager.secretAccessor\"\n\ngcloud projects add-iam-policy-binding $PROJECT_ID \\\n    --member=\"serviceAccount:n8n-service-account@$PROJECT_ID.iam.gserviceaccount.com\" \\\n    --role=\"roles/cloudsql.client\"",
+      "language": "unknown"
+    },
+    {
+      "code": "gcloud run deploy n8n \\\n    --image=n8nio/n8n:latest \\\n    --command=\"/bin/sh\" \\\n    --args=\"-c,sleep 5;n8n start\" \\\n    --region=$REGION \\\n    --allow-unauthenticated \\\n    --port=5678 \\\n    --memory=2Gi \\\n    --no-cpu-throttling \\\n    --set-env-vars=\"N8N_PORT=5678,N8N_PROTOCOL=https,DB_TYPE=postgresdb,DB_POSTGRESDB_DATABASE=n8n,DB_POSTGRESDB_USER=n8n-user,DB_POSTGRESDB_HOST=/cloudsql/$PROJECT_ID:$REGION:n8n-db,DB_POSTGRESDB_PORT=5432,DB_POSTGRESDB_SCHEMA=public,GENERIC_TIMEZONE=UTC,QUEUE_HEALTH_CHECK_ACTIVE=true\" \\\n    --set-secrets=\"DB_POSTGRESDB_PASSWORD=n8n-db-password:latest,N8N_ENCRYPTION_KEY=n8n-encryption-key:latest\" \\\n    --add-cloudsql-instances=$PROJECT_ID:$REGION:n8n-db \\\n    --service-account=n8n-service-account@$PROJECT_ID.iam.gserviceaccount.com",
+      "language": "unknown"
+    },
+    {
+      "code": "## Enable whichever APIs you need\n## Note: If you want Sheets/Docs, it's not enough to just enable Drive; these services each have their own API\ngcloud services enable gmail.googleapis.com\ngcloud services enable drive.googleapis.com\ngcloud services enable sheets.googleapis.com\ngcloud services enable docs.googleapis.com\ngcloud services enable calendar-json.googleapis.com",
+      "language": "unknown"
+    },
+    {
+      "code": "export SERVICE_URL=\"your-n8n-service-URL\"\n## e.g. https://n8n-12345678.us-west1.run.app\n\ngcloud run services update n8n \\\n    --region=$REGION \\\n    --update-env-vars=\"N8N_HOST=$(echo $SERVICE_URL | sed 's/https:\\/\\///'),WEBHOOK_URL=$SERVICE_URL,N8N_EDITOR_BASE_URL=$SERVICE_URL\"",
+      "language": "unknown"
+    }
+  ],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Before you begin: get a Google Cloud project",
+      "id": "before-you-begin:-get-a-google-cloud-project"
+    },
+    {
+      "level": "h2",
+      "text": "Easy mode",
+      "id": "easy-mode"
+    },
+    {
+      "level": "h2",
+      "text": "Durable mode",
+      "id": "durable-mode"
+    },
+    {
+      "level": "h2",
+      "text": "Enable APIs and set env vars",
+      "id": "enable-apis-and-set-env-vars"
+    },
+    {
+      "level": "h2",
+      "text": "You may need to login first",
+      "id": "you-may-need-to-login-first"
+    },
+    {
+      "level": "h2",
+      "text": "Setup your Postgres database",
+      "id": "setup-your-postgres-database"
+    },
+    {
+      "level": "h2",
+      "text": "Store sensitive data in Secret Manager",
+      "id": "store-sensitive-data-in-secret-manager"
+    },
+    {
+      "level": "h2",
+      "text": "Create a service account for Cloud Run",
+      "id": "create-a-service-account-for-cloud-run"
+    },
+    {
+      "level": "h2",
+      "text": "Deploy the Cloud Run service",
+      "id": "deploy-the-cloud-run-service"
+    },
+    {
+      "level": "h2",
+      "text": "Troubleshooting",
+      "id": "troubleshooting"
+    },
+    {
+      "level": "h2",
+      "text": "(Optional) Enabling Google Workspace services as n8n tools",
+      "id": "(optional)-enabling-google-workspace-services-as-n8n-tools"
+    },
+    {
+      "level": "h2",
+      "text": "Enable whichever APIs you need",
+      "id": "enable-whichever-apis-you-need"
+    },
+    {
+      "level": "h2",
+      "text": "Note: If you want Sheets/Docs, it's not enough to just enable Drive; these services each have their own API",
+      "id": "note:-if-you-want-sheets/docs,-it's-not-enough-to-just-enable-drive;-these-services-each-have-their-own-api"
+    },
+    {
+      "level": "h2",
+      "text": "e.g. https://n8n-12345678.us-west1.run.app",
+      "id": "e.g.-https://n8n-12345678.us-west1.run.app"
+    }
+  ],
+  "url": "llms-txt#hosting-n8n-on-google-cloud-run",
+  "links": []
+}

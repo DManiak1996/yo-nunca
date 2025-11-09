@@ -1,0 +1,8 @@
+{
+  "title": "Set the logging level to 'debug'",
+  "content": "export N8N_LOG_LEVEL=debug",
+  "code_samples": [],
+  "headings": [],
+  "url": "llms-txt#set-the-logging-level-to-'debug'",
+  "links": []
+}

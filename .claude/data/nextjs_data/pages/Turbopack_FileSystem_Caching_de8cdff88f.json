@@ -1,0 +1,36 @@
+{
+  "url": "https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopackFileSystemCache",
+  "title": "Turbopack FileSystem Caching",
+  "content": "Turbopack FileSystem Cache enables Turbopack to reduce work across next dev or next build commands. When enabled, Turbopack will save and restore data to the .next folder between builds, which can greatly speed up subsequent builds and dev sessions.\n\nGood to know: The FileSystem Cache feature is Beta and is still under development. Users adopting should expect some stability issues. We recommend first adopting it for development.",
+  "headings": [
+    {
+      "level": "h1",
+      "text": "Turbopack FileSystem Caching",
+      "id": ""
+    },
+    {
+      "level": "h2",
+      "text": "Usage",
+      "id": "usage"
+    },
+    {
+      "level": "h2",
+      "text": "Version Changes",
+      "id": "version-changes"
+    }
+  ],
+  "code_samples": [
+    {
+      "code": "import type { NextConfig } from 'next'\n \nconst nextConfig: NextConfig = {\n  experimental: {\n    // Enable filesystem caching for `next dev`\n    turbopackFileSystemCacheForDev: true,\n    // Enable filesystem caching for `next build`\n    turbopackFileSystemCacheForBuild: true,\n  },\n}\n \nexport default nextConfig",
+      "language": "python"
+    }
+  ],
+  "patterns": [],
+  "links": [
+    "https://nextjs.org/docs/app/api-reference/config",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopackFileSystemCache",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/typedRoutes"
+  ]
+}

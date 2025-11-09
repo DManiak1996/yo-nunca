@@ -1,0 +1,29 @@
+{
+  "title": "7. Scheduling the Workflow",
+  "content": "In this step of the workflow, you will learn how to schedule your workflow so that it runs automatically at a set time/interval using the Schedule Trigger node. After this step, your workflow should look like this:\n\n[View workflow file](/_workflows//courses/level-one/finished.json)\n\nThe workflow you've built so far executes only when you click on **Execute Workflow**. But Nathan needs it to run automatically every Monday morning. You can do this with the [Schedule Trigger](../../../../integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/), which allows you to schedule workflows to run periodically at fixed dates, times, or intervals.\n\nTo achieve this, we'll remove the Manual Trigger node we started with and replace it with a Schedule Trigger node instead.\n\n## Remove the Manual Trigger node\n\nFirst, let's remove the Manual Trigger node:\n\n1. Select the Manual Trigger node connected to your HTTP Request node.\n1. Select the trash can icon to delete.\n\nThis removes the Manual Trigger node and you'll see an \"Add first step\" option.\n\n## Add the Schedule Trigger node\n\n1. Open the nodes panel and search for **Schedule Trigger**.\n1. Select it when it appears in the search results.\n\nIn the Schedule Trigger node window, configure these parameters:\n\n- **Trigger Interval**: Select **Weeks**.\n- **Weeks Between Triggers**: Enter `1`.\n- **Trigger on weekdays**: Select **Monday** (and remove **Sunday** if added by default).\n- **Trigger at Hour**: Select **9am**.\n- **Trigger at Minute**: Enter `0`.\n\nYour Schedule Trigger node should look like this:\n\n*Schedule Trigger Node*\n\nTo ensure accurate scheduling with the Schedule Trigger node, be sure to set the correct timezone for your [n8n instance](../../../../manage-cloud/set-cloud-timezone/) or the [workflow's settings](../../../../workflows/settings/). The Schedule Trigger node will use the workflow's timezone if it's set; it will fall back to the n8n instance's timezone if it's not.\n\n## Connect the Schedule Trigger node\n\nReturn to the canvas and connect your Schedule Trigger node to the HTTP Request node by dragging the arrow from it to the HTTP Request node.\n\nYour full workflow should look like this:\n\n[View workflow file](/_workflows//courses/level-one/finished.json)\n\n**You 👩‍🔧**: That was it for the workflow! I've added and configured all necessary nodes. Now every time you click on **Execute workflow**, n8n will execute all the nodes: getting, filtering, calculating, and transferring the sales data.\n\n**Nathan 🙋**: This is just what I needed! My workflow will run automatically every Monday morning, correct?\n\n**You 👩‍🔧**: Not so fast. To do that, you need to activate your workflow. I'll do this in the next step and show you how to interpret the execution log.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Remove the Manual Trigger node",
+      "id": "remove-the-manual-trigger-node"
+    },
+    {
+      "level": "h2",
+      "text": "Add the Schedule Trigger node",
+      "id": "add-the-schedule-trigger-node"
+    },
+    {
+      "level": "h2",
+      "text": "Connect the Schedule Trigger node",
+      "id": "connect-the-schedule-trigger-node"
+    },
+    {
+      "level": "h2",
+      "text": "What's next?",
+      "id": "what's-next?"
+    }
+  ],
+  "url": "llms-txt#7.-scheduling-the-workflow",
+  "links": []
+}

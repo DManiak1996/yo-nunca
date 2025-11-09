@@ -1,0 +1,19 @@
+{
+  "title": "Streaming responses",
+  "content": "Available on all plans from [version 1.105.2](../../release-notes/#n8n11052).\n\nStreaming responses let you send data back to users as an AI Agent node generates it. This is useful for chatbots, where you want to show the user the answer as it's generated to provide a better user experience.\n\nYou can enable streaming using either:\n\n- The [Chat Trigger](../../integrations/builtin/core-nodes/n8n-nodes-langchain.chattrigger/)\n- The [Webhook node](../../integrations/builtin/core-nodes/n8n-nodes-base.webhook/)\n\nIn both cases, set the node's **Response Mode** to **Streaming**.\n\n## Configure nodes for streaming\n\nTo stream data, you need to add nodes to the workflow that support streaming output. Not all nodes support this feature.\n\n1. Choose a node that supports streaming, such as:\n   - [AI agent](../../integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/)\n   - [Respond to Webhook](../../integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/)\n1. You can disable streaming in the options of these nodes. By default, they stream data whenever the executed trigger has its `Response Mode` set to `Streaming response`.\n\n## Important information\n\nKeep in mind the following details when configuring streaming responses:\n\n- **Trigger**: Your trigger node must support streaming and have streaming configured. Without this, the workflow behaves according to your response mode settings.\n- **Node configuration**: Even with streaming enabled on the trigger, you need at least one node configured to stream data. Otherwise, your workflow will send no data.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Configure nodes for streaming",
+      "id": "configure-nodes-for-streaming"
+    },
+    {
+      "level": "h2",
+      "text": "Important information",
+      "id": "important-information"
+    }
+  ],
+  "url": "llms-txt#streaming-responses",
+  "links": []
+}

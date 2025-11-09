@@ -1,0 +1,24 @@
+{
+  "title": "Stripe node",
+  "content": "Use the Stripe node to automate work in Stripe, and integrate Stripe with other applications. n8n has built-in support for a wide range of Stripe features, including getting balance, creating charge, and deleting customers.\n\nOn this page, you'll find a list of operations the Stripe node supports and links to more resources.\n\nRefer to [Stripe credentials](../../credentials/stripe/) for guidance on setting up authentication.\n\n- Balance\n  - Get a balance\n- Charge\n  - Create a charge\n  - Get a charge\n  - Get all charges\n  - Update a charge\n- Coupon\n  - Create a coupon\n  - Get all coupons\n- Customer\n  - Create a customer\n  - Delete a customer\n  - Get a customer\n  - Get all customers\n  - Update a customer\n- Customer Card\n  - Add a customer card\n  - Get a customer card\n  - Remove a customer card\n- Source\n  - Create a source\n  - Delete a source\n  - Get a source\n- Token\n  - Create a token\n\n## Templates and examples\n\n**Update HubSpot when a new invoice is registered in Stripe**\n\n[View template details](https://n8n.io/workflows/1468-update-hubspot-when-a-new-invoice-is-registered-in-stripe/)\n\n**Simplest way to create a Stripe Payment Link**\n\n[View template details](https://n8n.io/workflows/2195-simplest-way-to-create-a-stripe-payment-link/)\n\n**Streamline Your Zoom Meetings with Secure, Automated Stripe Payments**\n\n[View template details](https://n8n.io/workflows/2192-streamline-your-zoom-meetings-with-secure-automated-stripe-payments/)\n\n[Browse Stripe integration templates](https://n8n.io/integrations/stripe/), or [search all templates](https://n8n.io/workflows/)\n\n## What to do if your operation isn't supported\n\nIf this node doesn't support the operation you want to do, you can use the [HTTP Request node](../../core-nodes/n8n-nodes-base.httprequest/) to call the service's API.\n\nYou can use the credential you created for this service in the HTTP Request node:\n\n1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.\n1. Select the service you want to connect to.\n1. Select your credential.\n\nRefer to [Custom API operations](../../../custom-operations/) for more information.",
+  "code_samples": [],
+  "headings": [
+    {
+      "level": "h2",
+      "text": "Operations",
+      "id": "operations"
+    },
+    {
+      "level": "h2",
+      "text": "Templates and examples",
+      "id": "templates-and-examples"
+    },
+    {
+      "level": "h2",
+      "text": "What to do if your operation isn't supported",
+      "id": "what-to-do-if-your-operation-isn't-supported"
+    }
+  ],
+  "url": "llms-txt#stripe-node",
+  "links": []
+}
