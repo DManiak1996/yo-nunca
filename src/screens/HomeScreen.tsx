@@ -137,7 +137,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
       <View style={styles.content}>
         {/* Logo y título */}
         <View style={styles.titleContainer}>
-          <Text style={[styles.logo, { color: theme.text }]}>Yo Nunca</Text>
+          <Text style={[styles.logo, { color: theme.text }]}></Text>
         </View>
 
         {/* Botones principales */}
