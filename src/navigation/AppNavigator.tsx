@@ -4,12 +4,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../context/ThemeContext';
 import { RootStackParamList } from '../types';
 import { isAgeVerified } from '../utils/storage';
 
 // Importar pantallas
 import AgeGateScreen from '../screens/AgeGateScreen';
+import OnboardingScreen from '../screens/OnboardingScreen';
 import HomeScreen from '../screens/HomeScreen';
 import GameScreen from '../screens/GameScreen';
 import GameSelectionScreen from '../screens/GameSelectionScreen'; // V4.0.1 - Selección de juegos
@@ -24,40 +26,44 @@ import CustomPhrasesScreen from '../screens/CustomPhrasesScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import GlobalStatsScreen from '../screens/GlobalStatsScreen';
 
-// Importar pantallas de multiplayer solo si NO es Expo Go
-// Expo Go no soporta react-native-tcp-socket
-import Constants from 'expo-constants';
-const isExpoGo = Constants.appOwnership === 'expo';
-
-// Componentes dummy para Expo Go
-const DummyScreen = () => null;
-
-// Importar LocalHost/Join solo en Development Build
-const LocalHostScreen = !isExpoGo ? require('../screens/LocalHostScreen').default : DummyScreen;
-const LocalJoinScreen = !isExpoGo ? require('../screens/LocalJoinScreen').default : DummyScreen;
-
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
   const { theme } = useTheme();
   const [ageVerified, setAgeVerified] = useState<boolean | null>(null);
+  const [onboardingCompleted, setOnboardingCompleted] = useState<boolean | null>(null);
 
   useEffect(() => {
-    async function checkAge() {
+    async function checkInitialState() {
       const verified = await isAgeVerified();
       setAgeVerified(verified);
+
+      // Solo verificar onboarding si ya pasó la verificación de edad
+      if (verified) {
+        const completed = await AsyncStorage.getItem('onboardingCompleted');
+        setOnboardingCompleted(completed === 'true');
+      } else {
+        setOnboardingCompleted(false); // No importa si no ha verificado edad
+      }
     }
-    checkAge();
+    checkInitialState();
   }, []);
 
   // Mostrar loading mientras verifica
-  if (ageVerified === null) {
+  if (ageVerified === null || (ageVerified && onboardingCompleted === null)) {
     return null; // O un splash screen
   }
 
+  // Determinar la ruta inicial
+  const getInitialRoute = () => {
+    if (!ageVerified) return 'AgeGate';
+    if (!onboardingCompleted) return 'Onboarding';
+    return 'Home';
+  };
+
   return (
     <Stack.Navigator
-      initialRouteName={ageVerified ? "Home" : "AgeGate"}
+      initialRouteName={getInitialRoute()}
       screenOptions={{
         headerStyle: {
           backgroundColor: theme.cardBackground,
@@ -89,6 +95,11 @@ export default function AppNavigator() {
           options={{ headerShown: false }}
         />
       )}
+      <Stack.Screen
+        name="Onboarding"
+        component={OnboardingScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="Home"
         component={HomeScreen}
@@ -132,16 +143,6 @@ export default function AppNavigator() {
       <Stack.Screen
         name="BottleGame"
         component={BottleGameScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="LocalHost"
-        component={LocalHostScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="LocalJoin"
-        component={LocalJoinScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen

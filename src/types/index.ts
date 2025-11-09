@@ -140,14 +140,13 @@ export interface DetectivesRoundResult {
 
 export type RootStackParamList = {
   AgeGate: undefined;
+  Onboarding: undefined;
   Home: undefined;
   GameSelection: undefined; // V4.0.1 - Pantalla de selección de juegos
   CategorySelection: undefined;
   PlayerSetup: { difficulty: DifficultyLevel; gameMode?: GameMode; gameType?: GameType };
   GameMultiplayer: { players: Player[]; difficulty: DifficultyLevel };
   GameDetectives: { players: Player[]; difficulty: DifficultyLevel }; // V3.0 - Modo Detectives
-  LocalHost: { hostName: string }; // V3.0 - FASE D - Crear sala local
-  LocalJoin: { playerName: string }; // V3.0 - FASE D - Unirse a sala local
   CardGamePlayerSelect: { players: Player[] }; // V4.1 - Selección jugador inicial
   CardGame: { players: Player[]; startingPlayerIndex?: number }; // V4.0 - El Rey de Copas
   BottleGame: { players: Player[] }; // V4.0 - La Botella

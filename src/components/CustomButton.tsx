@@ -1,11 +1,13 @@
 /**
  * Botón personalizado con variantes de estilo
+ * V5.0 - Refactorizado con Design Tokens
  */
 
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { Pressable, Text, StyleSheet } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { moderateScale, verticalScale, scale } from '../utils/responsive';
+import { colors, spacing, typography, shadows, borderRadius } from '../design-system/tokens';
 
 interface CustomButtonProps {
   title: string;
@@ -13,6 +15,9 @@ interface CustomButtonProps {
   variant?: 'primary' | 'secondary' | 'danger';
   style?: object;
   disabled?: boolean; // V3.0 - Soporte para botones deshabilitados
+  accessibilityLabel?: string; // V4.0 - Soporte TalkBack
+  accessibilityHint?: string; // V4.0 - Soporte TalkBack
+  accessibilityRole?: 'button' | 'none' | 'link' | 'search' | 'image' | 'keyboardkey' | 'text' | 'adjustable' | 'imagebutton' | 'header' | 'summary' | 'alert' | 'checkbox' | 'combobox' | 'menu' | 'menubar' | 'menuitem' | 'progressbar' | 'radio' | 'radiogroup' | 'scrollbar' | 'spinbutton' | 'switch' | 'tab' | 'tablist' | 'timer' | 'toolbar'; // V4.0 - Soporte TalkBack
 }
 
 export default function CustomButton({
@@ -21,6 +26,9 @@ export default function CustomButton({
   variant = 'primary',
   style,
   disabled = false,
+  accessibilityLabel,
+  accessibilityHint,
+  accessibilityRole = 'button',
 }: CustomButtonProps) {
   const { theme } = useTheme();
 
@@ -39,11 +47,11 @@ export default function CustomButton({
 
   const getTextColor = () => {
     // Primary button tiene texto negro, los demás blanco
-    return variant === 'primary' ? '#000000' : '#FFFFFF';
+    return variant === 'primary' ? colors.text.inverse : colors.text.primary;
   };
 
   return (
-    <TouchableOpacity
+    <Pressable
       style={[
         styles.button,
         { backgroundColor: getBackgroundColor() },
@@ -51,32 +59,33 @@ export default function CustomButton({
         style,
       ]}
       onPress={disabled ? undefined : onPress}
-      activeOpacity={disabled ? 1 : 0.8}
       disabled={disabled}
+      accessibilityLabel={accessibilityLabel || title}
+      accessibilityHint={accessibilityHint}
+      accessibilityRole={accessibilityRole}
+      accessibilityState={{ disabled }}
     >
       <Text style={[styles.text, { color: getTextColor() }, disabled && styles.disabledText]}>
         {title}
       </Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: moderateScale(14),
-    paddingVertical: verticalScale(14),
-    paddingHorizontal: scale(28),
+    borderRadius: moderateScale(borderRadius.xl),
+    paddingVertical: verticalScale(spacing.base),
+    paddingHorizontal: scale(spacing.lg),
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
+    minHeight: 48, // V4.0 - Cumplir estándar de 48dp touch target
+    ...shadows.md,
   },
   text: {
-    fontSize: moderateScale(18),
-    fontWeight: '600',
+    fontSize: moderateScale(typography.fontSize.lg),
+    fontWeight: typography.fontWeight.bold,
+    fontFamily: typography.fontFamily.bodyBold,
   },
   disabled: {
     opacity: 0.5,

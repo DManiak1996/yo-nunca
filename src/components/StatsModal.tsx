@@ -1,6 +1,7 @@
 /**
  * Modal de estadísticas en tiempo real durante la partida
  * Muestra ranking de jugadores y métricas actuales
+ * V2.0 - Refactorizado con Design Tokens
  */
 
 import React from 'react';
@@ -15,6 +16,7 @@ import {
 import { useTheme } from '../context/ThemeContext';
 import { Player } from '../types';
 import { useStats } from '../hooks/useStats';
+import { colors, spacing, typography, shadows, borderRadius } from '../design-system/tokens';
 
 interface Props {
   visible: boolean;
@@ -203,7 +205,7 @@ const StatsModal = React.memo(function StatsModal({
             style={[styles.closeButtonBottom, { backgroundColor: theme.primary }]}
             onPress={onClose}
           >
-            <Text style={styles.closeButtonBottomText}>Cerrar</Text>
+            <Text style={[styles.closeButtonBottomText, { color: colors.text.inverse }]}>Cerrar</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -216,123 +218,119 @@ export default StatsModal;
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    backgroundColor: colors.overlay.medium,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: spacing.lg,
   },
   modalContainer: {
     width: '100%',
     maxWidth: 500,
     maxHeight: '80%',
-    borderRadius: 24,
-    elevation: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
+    borderRadius: borderRadius['2xl'],
+    ...shadows.xl,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 20,
-    paddingBottom: 16,
+    padding: spacing.lg,
+    paddingBottom: spacing.base,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: typography.fontSize['2xl'],
+    fontWeight: typography.fontWeight.bold,
   },
   closeButton: {
-    padding: 4,
+    padding: spacing.xs,
   },
   closeButtonText: {
-    fontSize: 28,
-    fontWeight: 'bold',
+    fontSize: typography.fontSize['3xl'],
+    fontWeight: typography.fontWeight.bold,
   },
   content: {
-    paddingHorizontal: 20,
+    paddingHorizontal: spacing.lg,
   },
   section: {
-    marginBottom: 24,
-    paddingBottom: 20,
+    marginBottom: spacing.lg,
+    paddingBottom: spacing.lg,
     borderBottomWidth: 1,
   },
   sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 12,
+    fontSize: typography.fontSize.lg,
+    fontWeight: typography.fontWeight.bold,
+    marginBottom: spacing.md,
   },
   progressInfo: {
-    gap: 8,
+    gap: spacing.sm,
   },
   progressText: {
-    fontSize: 15,
+    fontSize: typography.fontSize.sm,
   },
   rankingItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 12,
-    borderRadius: 12,
-    marginBottom: 8,
+    padding: spacing.md,
+    borderRadius: borderRadius.lg,
+    marginBottom: spacing.sm,
   },
   rankingMedal: {
-    fontSize: 24,
-    marginRight: 8,
+    fontSize: typography.fontSize['2xl'],
+    marginRight: spacing.sm,
     width: 32,
   },
   rankingAvatar: {
-    fontSize: 24,
-    marginRight: 12,
+    fontSize: typography.fontSize['2xl'],
+    marginRight: spacing.md,
   },
   rankingName: {
     flex: 1,
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: typography.fontSize.base,
+    fontWeight: typography.fontWeight.bold,
   },
   rankingDrinks: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: spacing.xs,
   },
   rankingDrinksNumber: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: typography.fontSize.xl,
+    fontWeight: typography.fontWeight.bold,
   },
   rankingDrinksLabel: {
-    fontSize: 16,
+    fontSize: typography.fontSize.base,
   },
   highlightItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 16,
-    borderRadius: 16,
-    marginBottom: 12,
+    padding: spacing.base,
+    borderRadius: borderRadius.xl,
+    marginBottom: spacing.md,
   },
   highlightIcon: {
-    fontSize: 36,
-    marginRight: 12,
+    fontSize: typography.fontSize['4xl'],
+    marginRight: spacing.md,
   },
   highlightInfo: {
     flex: 1,
   },
   highlightLabel: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginBottom: 4,
+    fontSize: typography.fontSize.sm,
+    fontWeight: typography.fontWeight.bold,
+    marginBottom: spacing.xs,
   },
   highlightName: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: typography.fontSize.base,
+    fontWeight: typography.fontWeight.bold,
     marginBottom: 2,
   },
   highlightValue: {
-    fontSize: 14,
+    fontSize: typography.fontSize.sm,
   },
   metricsContainer: {
     flexDirection: 'row',
-    padding: 16,
-    borderRadius: 16,
+    padding: spacing.base,
+    borderRadius: borderRadius.xl,
     alignItems: 'center',
     justifyContent: 'space-around',
   },
@@ -341,12 +339,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   metricValue: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 4,
+    fontSize: typography.fontSize['3xl'],
+    fontWeight: typography.fontWeight.bold,
+    marginBottom: spacing.xs,
   },
   metricLabel: {
-    fontSize: 12,
+    fontSize: typography.fontSize.xs,
     textAlign: 'center',
   },
   metricDivider: {
@@ -354,16 +352,15 @@ const styles = StyleSheet.create({
     height: 40,
   },
   closeButtonBottom: {
-    margin: 20,
-    marginTop: 12,
-    padding: 16,
-    borderRadius: 16,
+    margin: spacing.lg,
+    marginTop: spacing.md,
+    padding: spacing.base,
+    borderRadius: borderRadius.xl,
     alignItems: 'center',
-    elevation: 4,
+    ...shadows.md,
   },
   closeButtonBottomText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#000',
+    fontSize: typography.fontSize.lg,
+    fontWeight: typography.fontWeight.bold,
   },
 });

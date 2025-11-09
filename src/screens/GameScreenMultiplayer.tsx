@@ -22,6 +22,7 @@ import { useTheme } from '../context/ThemeContext';
 import { useGameSession } from '../hooks/useGameSession';
 import { useAutoSave } from '../hooks/useAutoSave';
 import { useRateLimit } from '../hooks/useRateLimit';
+import { useInterstitialAd } from '../hooks/useInterstitialAd';
 import PhraseCard from '../components/PhraseCard';
 import PlayerListItem from '../components/PlayerListItem';
 import CustomButton from '../components/CustomButton';
@@ -30,6 +31,7 @@ import FinalStatsModal from '../components/FinalStatsModal';
 import { getRandomFunnyMessage, shouldShowFunnyMessage } from '../data/funnyMessages';
 import { clearGameSession, updateGlobalStats, saveGameSession } from '../utils/storage';
 import { triggerHaptic } from '../utils/haptics';
+import { ADS_CONFIG } from '../config/adsConfig';
 
 type GameScreenMultiplayerNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -46,9 +48,15 @@ interface Props {
   route: GameScreenMultiplayerRouteProp;
 }
 
+// Contador global de juegos completados para mostrar anuncios intersticiales
+let gamesCompletedCounter = 0;
+
 export default function GameScreenMultiplayer({ navigation, route }: Props) {
   const { players: initialPlayers, difficulty } = route.params;
   const { theme } = useTheme();
+
+  // Hook para anuncios intersticiales
+  const { loaded: adLoaded, showAd } = useInterstitialAd();
 
   const {
     players,
@@ -185,6 +193,16 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
       }
     } catch (error) {
       console.error('Error al marcar sesión como finalizada:', error);
+    }
+
+    // Incrementar contador de juegos completados
+    gamesCompletedCounter++;
+
+    // 🎯 Filosofía user-friendly: Anuncios cada X juegos (configurable)
+    // Prioridad: Experiencia de usuario > Monetización
+    // Proyección con 1000 DAU: $260-600/mes (suficiente para cubrir costos)
+    if (gamesCompletedCounter % ADS_CONFIG.INTERSTITIAL_FREQUENCY === 0 && adLoaded) {
+      showAd();
     }
 
     // Mostrar directamente el modal de estadísticas finales

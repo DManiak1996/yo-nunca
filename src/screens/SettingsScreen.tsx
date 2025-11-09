@@ -13,6 +13,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../context/ThemeContext';
 import CustomButton from '../components/CustomButton';
 import { getVibrationEnabled, setVibrationEnabled } from '../utils/storage';
@@ -146,6 +147,15 @@ export default function SettingsScreen({ navigation }: SettingsScreenProps) {
     }
   };
 
+  const handleShowTutorial = async () => {
+    try {
+      await AsyncStorage.removeItem('onboardingCompleted');
+      navigation.navigate('Onboarding');
+    } catch (error) {
+      console.error('Error resetting onboarding:', error);
+    }
+  };
+
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
       <ScrollView style={styles.content}>
@@ -215,6 +225,20 @@ export default function SettingsScreen({ navigation }: SettingsScreenProps) {
               thumbColor="#FFFFFF"
             />
           </View>
+        </View>
+
+        {/* Sección de ayuda */}
+        <View style={styles.section}>
+          <Text style={[styles.sectionTitle, { color: theme.text }]}>Ayuda</Text>
+
+          <CustomButton
+            title="🎓 Ver Tutorial de Nuevo"
+            onPress={handleShowTutorial}
+            variant="secondary"
+            style={styles.button}
+            accessibilityLabel="Ver tutorial de bienvenida de nuevo"
+            accessibilityHint="Toca dos veces para ver el tutorial de la aplicación otra vez"
+          />
         </View>
 
         {/* Sección Legal */}
