@@ -211,7 +211,7 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
               value={editingName}
               onChangeText={setEditingName}
               autoFocus
-              maxLength={15}
+              maxLength={20}
               autoCapitalize="words"
               onSubmitEditing={handleSaveEdit}
               accessibilityLabel={`Editar nombre de ${item.name}`}
@@ -258,7 +258,7 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
           ) : (
             <>
               <TouchableOpacity
-                style={[styles.actionButton, { backgroundColor: colors.primary[500] }]}
+                style={[styles.actionButton, { backgroundColor: colors.info[500] }]}
                 onPress={() => handleStartEdit(item.id, item.name)}
                 accessibilityLabel={`Editar nombre de ${item.name}`}
                 accessibilityHint="Toca dos veces para editar el nombre"
@@ -267,7 +267,7 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
                 <Text style={styles.actionButtonText}>✎</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.actionButton, { backgroundColor: colors.error[500] }]}
+                style={[styles.actionButton, { backgroundColor: colors.warning[600] }]}
                 onPress={() => handleRemovePlayer(item.id, item.name)}
                 accessibilityLabel={`Eliminar a ${item.name}`}
                 accessibilityHint="Toca dos veces para eliminar este jugador"

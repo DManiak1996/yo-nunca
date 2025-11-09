@@ -337,9 +337,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 12,
-    borderRadius: 12,
-    marginBottom: 8,
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 6,
   },
   targetInfo: {
     flexDirection: 'row',
@@ -348,27 +348,27 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   targetAvatar: {
-    fontSize: 20,
-    marginRight: 10,
+    fontSize: 16,
+    marginRight: 8,
   },
   targetName: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
   },
   voteButtons: {
     flexDirection: 'row',
-    gap: 8,
+    gap: 6,
   },
   voteButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
     borderRadius: 8,
     borderWidth: 2,
-    minWidth: 60,
+    minWidth: 50,
     alignItems: 'center',
   },
   voteButtonText: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: 'bold',
   },
   votedBadge: {

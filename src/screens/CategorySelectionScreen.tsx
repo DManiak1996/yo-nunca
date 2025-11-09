@@ -138,9 +138,6 @@ export default function CategorySelectionScreen({ navigation }: Props) {
         <Text style={[styles.title, { color: theme.text }]}>
           ¿Qué mood tienes hoy?
         </Text>
-        <Text style={[styles.subtitle, { color: theme.textSecondary }]}>
-          Elige la categoria que más te guste
-        </Text>
       </View>
 
       {/* V3.0 - Toggle de modo de juego */}
@@ -186,9 +183,11 @@ export default function CategorySelectionScreen({ navigation }: Props) {
       <View style={styles.explanationContainer}>
         {gameMode === 'detectives' && (
           <Text style={[styles.explanationText, { color: theme.textSecondary }]}>
-            🕵️ MODO DETECTIVES{'\n'}
-            Cada pregunta que lea, los jugadores votarán quién creen que lo ha hecho.{'\n'}
-            El jugador con más votos pierde una vida. ¡Descubre los secretos de tus amigos!
+            🕵️ MODO DETECTIVES{'\n\n'}
+            En este modo, un jugador lee la pregunta en voz alta.{'\n'}
+            Todos (incluyendo al que leyó) votan a quién creen que lo ha hecho.{'\n'}
+            El más votado pierde una vida y debe confesar si realmente lo hizo.{'\n\n'}
+            ¡Descubre quién es quién realmente! 🎭
           </Text>
         )}
       </View>
