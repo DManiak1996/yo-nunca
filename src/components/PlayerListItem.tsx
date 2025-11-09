@@ -122,6 +122,10 @@ const PlayerListItem = React.memo(function PlayerListItem({
         onPress={handleDecrement}
         activeOpacity={canDecrement ? 0.7 : 1}
         disabled={!canDecrement}
+        accessibilityLabel={`${player.name}, ${player.drinks} ${player.drinks === 1 ? 'trago' : 'tragos'}`}
+        accessibilityHint={canDecrement ? "Toca dos veces para restar un trago" : "No hay tragos para restar"}
+        accessibilityRole="button"
+        accessibilityState={{ disabled: !canDecrement }}
       >
         {/* Avatar */}
         <Text style={styles.avatar}>{player.avatar}</Text>
@@ -165,6 +169,9 @@ const PlayerListItem = React.memo(function PlayerListItem({
         style={styles.rightZone}
         onPress={handleIncrement}
         activeOpacity={0.7}
+        accessibilityLabel={`Agregar trago a ${player.name}`}
+        accessibilityHint="Toca dos veces para sumar un trago"
+        accessibilityRole="button"
       >
         {/* Contador de tragos con animación */}
         <Animated.View

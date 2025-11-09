@@ -10,6 +10,7 @@ import CustomButton from '../components/CustomButton';
 import ResumeGameModal from '../components/ResumeGameModal';
 import BeerTransitionAnimation from '../components/BeerTransitionAnimation';
 import IdleBubblesAnimation from '../components/IdleBubblesAnimation';
+import BannerAdComponent from '../components/BannerAdComponent';
 import { RootStackParamList, GameSession } from '../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { getGameSession, clearGameSession } from '../utils/storage';
@@ -147,6 +148,8 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
             onPress={() => navigation.navigate('GameSelection')}
             variant="primary"
             style={styles.button}
+            accessibilityLabel="Seleccionar Juego"
+            accessibilityHint="Toca dos veces para ir a la pantalla de selección de juegos"
           />
 
           <CustomButton
@@ -154,12 +157,17 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
             onPress={() => navigation.navigate('Settings')}
             variant="secondary"
             style={styles.button}
+            accessibilityLabel="Configuración y Ajustes"
+            accessibilityHint="Toca dos veces para abrir la configuración"
           />
         </View>
         {/* Footer */}
         <Text style={[styles.footer, { color: theme.textSecondary }]}>
           Para mayores de 18 años
         </Text>
+
+        {/* Banner Ad */}
+        <BannerAdComponent style={styles.adContainer} />
       </View>
 
       {/* Modal para continuar partida guardada */}
@@ -245,5 +253,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: moderateScale(12),
     paddingBottom: 20,
+  },
+  adContainer: {
+    marginTop: 20,
+    marginBottom: 10,
   },
 });

@@ -213,6 +213,8 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
               maxLength={20}
               autoCapitalize="words"
               onSubmitEditing={handleSaveEdit}
+              accessibilityLabel={`Editar nombre de ${item.name}`}
+              accessibilityHint="Escribe el nuevo nombre del jugador"
             />
           ) : (
             <View style={styles.playerNameContainer}>
@@ -232,12 +234,18 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
               <TouchableOpacity
                 style={[styles.actionButton, { backgroundColor: theme.success }]}
                 onPress={handleSaveEdit}
+                accessibilityLabel="Guardar nombre"
+                accessibilityHint="Toca dos veces para guardar el nuevo nombre"
+                accessibilityRole="button"
               >
                 <Text style={styles.actionButtonText}>✓</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.actionButton, { backgroundColor: theme.danger }]}
                 onPress={handleCancelEdit}
+                accessibilityLabel="Cancelar edición"
+                accessibilityHint="Toca dos veces para cancelar"
+                accessibilityRole="button"
               >
                 <Text style={styles.actionButtonText}>✕</Text>
               </TouchableOpacity>
@@ -247,12 +255,18 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
               <TouchableOpacity
                 style={[styles.actionButton, { backgroundColor: theme.secondary }]}
                 onPress={() => handleStartEdit(item.id, item.name)}
+                accessibilityLabel={`Editar nombre de ${item.name}`}
+                accessibilityHint="Toca dos veces para editar el nombre"
+                accessibilityRole="button"
               >
                 <Text style={styles.actionButtonText}>✎</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.actionButton, { backgroundColor: theme.danger }]}
                 onPress={() => handleRemovePlayer(item.id, item.name)}
+                accessibilityLabel={`Eliminar a ${item.name}`}
+                accessibilityHint="Toca dos veces para eliminar este jugador"
+                accessibilityRole="button"
               >
                 <Text style={styles.actionButtonText}>🗑️</Text>
               </TouchableOpacity>
@@ -289,6 +303,8 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
               title="Cambiar Identidad"
               onPress={() => regeneratePlayers(players.length)}
               variant="secondary"
+              accessibilityLabel="Cambiar Identidad de los jugadores"
+              accessibilityHint="Toca dos veces para generar nuevos nombres y avatares aleatorios"
             />
           </View>
           <View style={styles.halfButton}>
@@ -296,6 +312,8 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
               title="Añadir Jugador"
               onPress={handleAddPlayer}
               variant="secondary"
+              accessibilityLabel="Añadir Jugador"
+              accessibilityHint="Toca dos veces para agregar un nuevo jugador"
             />
           </View>
         </View>
@@ -304,6 +322,8 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
           title="Comenzar Juego"
           onPress={handleStartGame}
           variant="primary"
+          accessibilityLabel="Comenzar Juego"
+          accessibilityHint="Toca dos veces para iniciar la partida con estos jugadores"
         />
       </View>
 
@@ -332,6 +352,10 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
                     },
                   ]}
                   onPress={() => setSelectedNumber(num)}
+                  accessibilityLabel={`${num} jugadores`}
+                  accessibilityHint={`Toca dos veces para seleccionar ${num} jugadores`}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: selectedNumber === num }}
                 >
                   <Text
                     style={[
@@ -351,6 +375,8 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
                   title="Cancelar"
                   onPress={() => setShowNumberPicker(false)}
                   variant="secondary"
+                  accessibilityLabel="Cancelar"
+                  accessibilityHint="Toca dos veces para cerrar sin cambios"
                 />
               </View>
               <View style={styles.halfButton}>
@@ -358,6 +384,8 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
                   title="Generar"
                   onPress={handleChangePlayerCount}
                   variant="primary"
+                  accessibilityLabel="Generar jugadores"
+                  accessibilityHint={`Toca dos veces para generar ${selectedNumber} jugadores`}
                 />
               </View>
             </View>

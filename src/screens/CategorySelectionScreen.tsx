@@ -17,7 +17,6 @@ import { RootStackParamList, DifficultyLevel, GameMode } from '../types';
 import { useTheme } from '../context/ThemeContext';
 import CagonModal from '../components/CagonModal';
 import { moderateScale, verticalScale, scale, isSmallDevice } from '../utils/responsive';
-import Constants from 'expo-constants';
 
 type CategorySelectionScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -59,9 +58,6 @@ export default function CategorySelectionScreen({ navigation }: Props) {
   const [fadeAnim] = useState(new Animated.Value(0));
   const [gameMode, setGameMode] = useState<GameMode>('normal'); // V3.0 - Modo de juego
 
-  // Detectar si estamos en Expo Go (no soporta TCP sockets)
-  const isExpoGo = Constants.executionEnvironment === 'storeClient';
-
   // Seleccionar nombres aleatorios al montar el componente
   const [medioName] = useState(
     () => MEDIO_NAMES[Math.floor(Math.random() * MEDIO_NAMES.length)]
@@ -96,24 +92,6 @@ export default function CategorySelectionScreen({ navigation }: Props) {
   };
 
   /**
-   * FASE D - Multiplayer Local
-   * Crear sala como host
-   */
-  const handleCreateRoom = () => {
-    // Navegar directo - el input de nombre se hace en LocalHostScreen
-    navigation.navigate('LocalHost', { hostName: 'Jugador' });
-  };
-
-  /**
-   * FASE D - Multiplayer Local
-   * Unirse a sala como cliente
-   */
-  const handleJoinRoom = () => {
-    // Navegar directo - el input de nombre se hace en LocalJoinScreen
-    navigation.navigate('LocalJoin', { playerName: 'Jugador' });
-  };
-
-  /**
    * Renderiza una tarjeta de categoría
    */
   const renderCategoryCard = (
@@ -138,6 +116,9 @@ export default function CategorySelectionScreen({ navigation }: Props) {
           style={[styles.categoryCard, { backgroundColor }]}
           onPress={() => handleSelectCategory(difficulty)}
           activeOpacity={0.8}
+          accessibilityLabel={`Categoría ${title}, ${icon}, ${subtitle}`}
+          accessibilityHint="Toca dos veces para seleccionar esta categoría"
+          accessibilityRole="button"
         >
           <Text style={styles.cardIcon}>{icon}</Text>
           <Text style={styles.cardTitle}>{title}</Text>
@@ -168,6 +149,10 @@ export default function CategorySelectionScreen({ navigation }: Props) {
               gameMode !== 'normal' && { backgroundColor: theme.cardBackground },
             ]}
             onPress={() => setGameMode('normal')}
+            accessibilityLabel="Modo Normal"
+            accessibilityHint="Toca dos veces para seleccionar el modo de juego normal"
+            accessibilityRole="button"
+            accessibilityState={{ selected: gameMode === 'normal' }}
           >
             <Text style={[styles.modeButtonText, { color: gameMode === 'normal' ? '#FFF' : theme.text }]}>
               🍺 Normal
@@ -181,6 +166,10 @@ export default function CategorySelectionScreen({ navigation }: Props) {
               gameMode !== 'detectives' && { backgroundColor: theme.cardBackground },
             ]}
             onPress={() => setGameMode('detectives')}
+            accessibilityLabel="Modo Detectives"
+            accessibilityHint="Toca dos veces para seleccionar el modo de juego Detectives"
+            accessibilityRole="button"
+            accessibilityState={{ selected: gameMode === 'detectives' }}
           >
             <Text style={[styles.modeButtonText, { color: gameMode === 'detectives' ? '#FFF' : theme.text }]}>
               🕵️ Detectives
@@ -242,35 +231,6 @@ export default function CategorySelectionScreen({ navigation }: Props) {
           Los nombres cambian cada vez que entras 🎲
         </Text>
       </View>
-
-      {/* FASE D - Botones Multiplayer Local */}
-      {/* Solo mostrar en Development Build, no en Expo Go */}
-      {!isExpoGo && (
-        <View style={styles.multiplayerSection}>
-          <Text style={[styles.multiplayerTitle, { color: theme.text }]}>
-            🌐 Modo Multijugador Local
-          </Text>
-          <View style={styles.multiplayerButtons}>
-            <TouchableOpacity
-              style={[styles.multiplayerButton, { backgroundColor: theme.primary }]}
-              onPress={handleCreateRoom}
-              activeOpacity={0.8}
-            >
-              <Text style={styles.multiplayerButtonIcon}>🎮</Text>
-              <Text style={styles.multiplayerButtonText}>Crear Sala</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[styles.multiplayerButton, { backgroundColor: theme.secondary }]}
-              onPress={handleJoinRoom}
-              activeOpacity={0.8}
-            >
-              <Text style={styles.multiplayerButtonIcon}>🔗</Text>
-              <Text style={styles.multiplayerButtonText}>Unirse a Sala</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      )}
 
       {/* Modal Cagón */}
       <CagonModal
@@ -372,42 +332,5 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(10),
     textAlign: 'center',
     lineHeight: moderateScale(14),
-  },
-  // FASE D - Estilos multiplayer
-  multiplayerSection: {
-    paddingHorizontal: scale(14),
-    paddingVertical: verticalScale(12),
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(255, 255, 255, 0.1)',
-  },
-  multiplayerTitle: {
-    fontSize: moderateScale(12),
-    fontWeight: '600',
-    textAlign: 'center',
-    marginBottom: verticalScale(10),
-  },
-  multiplayerButtons: {
-    flexDirection: 'row',
-    gap: scale(10),
-  },
-  multiplayerButton: {
-    flex: 1,
-    paddingVertical: verticalScale(10),
-    borderRadius: moderateScale(10),
-    alignItems: 'center',
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-  },
-  multiplayerButtonIcon: {
-    fontSize: moderateScale(18),
-    marginBottom: verticalScale(3),
-  },
-  multiplayerButtonText: {
-    color: '#FFF',
-    fontSize: moderateScale(11),
-    fontWeight: '600',
   },
 });
