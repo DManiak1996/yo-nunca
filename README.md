@@ -108,20 +108,49 @@ eas build --platform android --profile production
 
 ```
 yo-nunca/
-├── src/
-│   ├── screens/          # Pantallas principales
-│   ├── components/       # Componentes reutilizables
-│   ├── navigation/       # Configuración de navegación
-│   ├── context/          # Context API (tema)
-│   ├── hooks/            # Custom hooks
-│   ├── data/             # Frases predefinidas
-│   ├── utils/            # Utilidades (storage, shuffle)
-│   ├── constants/        # Constantes (colores)
-│   ├── types/            # TypeScript interfaces
-│   └── legal/            # Política de privacidad
-├── assets/               # Imágenes (icono, splash)
-├── docs/                 # Documentación
-└── App.tsx               # Punto de entrada
+├── .claude/                    # Agentes y configuración de Claude Code
+│   ├── agents/                 # Agentes especializados
+│   │   ├── software-architect.md   # Arquitectura de software
+│   │   ├── ux-designer.md          # UX/UI Design
+│   │   ├── visual-designer.md      # Visual Design
+│   │   ├── QUICKSTART.md           # Guía rápida de agentes
+│   │   └── README.md               # Documentación de agentes
+│   ├── commands/               # Comandos slash personalizados
+│   │   ├── arch-*.md           # Comandos de arquitectura
+│   │   ├── ux-*.md             # Comandos de UX
+│   │   └── visual-*.md         # Comandos de diseño visual
+│   └── skills/                 # Skills de tecnologías
+│       ├── react/
+│       ├── nextjs/
+│       ├── shadcn-ui/
+│       ├── docker/
+│       ├── postgresql/
+│       └── ...
+├── src/                        # Código fuente
+│   ├── screens/                # Pantallas principales
+│   ├── components/             # Componentes reutilizables
+│   ├── navigation/             # Configuración de navegación
+│   ├── context/                # Context API (tema)
+│   ├── hooks/                  # Custom hooks
+│   ├── data/                   # Frases predefinidas
+│   ├── utils/                  # Utilidades (storage, shuffle)
+│   ├── constants/              # Constantes (colores)
+│   ├── types/                  # TypeScript interfaces
+│   └── legal/                  # Política de privacidad
+├── assets/                     # Imágenes (icono, splash)
+├── docs/                       # Documentación del proyecto
+│   ├── planning/               # Documentos de planificación
+│   ├── implementation/         # Documentos de implementación
+│   ├── archive/                # Archivos históricos
+│   ├── YO_NUNCA_DEVLOG.md      # DevLog del proyecto
+│   └── INSTRUCCIONES_PARA_CLAUDE.md  # Instrucciones para IA
+├── android/                    # Configuración Android nativa
+├── fondo.png                   # Imagen de fondo de la app
+├── App.tsx                     # Punto de entrada
+├── package.json                # Dependencias
+├── tsconfig.json               # Configuración TypeScript
+├── app.json                    # Configuración Expo
+└── eas.json                    # Configuración EAS Build
 ```
 
 ## 🎮 Cómo jugar
@@ -182,6 +211,31 @@ export const defaultPhrases: string[] = [
 - Bebe responsablemente
 - No conducir bajo los efectos del alcohol
 - El contenido picante es opcional (puedes usar solo frases suaves)
+
+## 🤖 Desarrollo con IA (Claude Code)
+
+Este proyecto incluye agentes especializados de IA en la carpeta `.claude/` para ayudar en el desarrollo:
+
+### Agentes Disponibles
+
+- **Software Architect** (`/arch-review`, `/arch-init`) - Evaluación y diseño de arquitectura
+- **UX/UI Designer** (`/ux-review`, `/ux-quickwins`) - Mejoras de experiencia de usuario
+- **Visual Designer** (`/visual-review`, `/visual-colors`) - Diseño visual y sistemas de diseño
+
+### Uso Rápido
+
+```bash
+# Evaluar arquitectura del proyecto
+/arch-review
+
+# Obtener mejoras rápidas de UX
+/ux-quickwins
+
+# Revisar diseño visual
+/visual-review
+```
+
+Ver [`.claude/agents/QUICKSTART.md`](.claude/agents/QUICKSTART.md) para más detalles.
 
 ## 🔒 Privacidad
 
