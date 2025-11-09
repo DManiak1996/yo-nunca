@@ -1,37 +1,40 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { InterstitialAd, AdEventType, TestIds } from 'react-native-google-mobile-ads';
-import { Platform } from 'react-native';
+import { DEV_CONFIG } from '../config/devConfig';
 
-const AD_UNIT_ID = __DEV__
-  ? TestIds.INTERSTITIAL
-  : Platform.OS === 'android'
-    ? 'ca-app-pub-XXXXXXXXXXXXX/XXXXXXXXXX' // Usuario debe reemplazar
-    : 'ca-app-pub-XXXXXXXXXXXXX/XXXXXXXXXX';
-
-const interstitial = InterstitialAd.createForAdRequest(AD_UNIT_ID, {
-  requestNonPersonalizedAdsOnly: false,
-});
-
+/**
+ * Hook para anuncios intersticiales de AdMob
+ *
+ * IMPORTANTE: Solo funciona con ENABLE_ADMOB = true
+ * En Expo Go, este hook retorna un mock que no hace nada
+ */
 export function useInterstitialAd() {
   const [loaded, setLoaded] = useState(false);
+  const [interstitial, setInterstitial] = useState<InterstitialAd | null>(null);
 
   useEffect(() => {
-    const unsubscribeLoaded = interstitial.addAdEventListener(
-      AdEventType.LOADED,
-      () => {
-        setLoaded(true);
-      }
-    );
+    // Si AdMob está deshabilitado, no hacer nada
+    if (!DEV_CONFIG.ENABLE_ADMOB) {
+      return;
+    }
 
-    const unsubscribeClosed = interstitial.addAdEventListener(
-      AdEventType.CLOSED,
-      () => {
-        setLoaded(false);
-        interstitial.load();
-      }
-    );
+    // Usar Test ID de Google para desarrollo/testing
+    const adUnitId = TestIds.INTERSTITIAL;
+    const ad = InterstitialAd.createForAdRequest(adUnitId, {
+      requestNonPersonalizedAdsOnly: true,
+    });
 
-    interstitial.load();
+    const unsubscribeLoaded = ad.addAdEventListener(AdEventType.LOADED, () => {
+      setLoaded(true);
+    });
+
+    const unsubscribeClosed = ad.addAdEventListener(AdEventType.CLOSED, () => {
+      setLoaded(false);
+      ad.load(); // Precargar el siguiente anuncio
+    });
+
+    ad.load();
+    setInterstitial(ad);
 
     return () => {
       unsubscribeLoaded();
@@ -40,12 +43,13 @@ export function useInterstitialAd() {
   }, []);
 
   const showAd = async () => {
-    if (loaded) {
-      try {
-        await interstitial.show();
-      } catch (error) {
-        console.error('Error showing interstitial ad:', error);
-      }
+    // Si AdMob está deshabilitado, no hacer nada
+    if (!DEV_CONFIG.ENABLE_ADMOB) {
+      return;
+    }
+
+    if (loaded && interstitial) {
+      interstitial.show();
     }
   };
 

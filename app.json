@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
-    "owner": "DManiak1996",
+    "owner": "dmaniak1996",
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
@@ -43,6 +43,9 @@
       ]
     ],
     "extra": {
+      "eas": {
+        "projectId": "08756388-dd0f-4691-adcd-ff8a63531104"
+      },
       "privacyPolicyUrl": "https://[TU-USUARIO].github.io/yo-nunca/privacy-policy.html"
     }
   }
