@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useCallback } from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import { View, Text, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
@@ -17,6 +17,7 @@ import { muyPicanteLevelPhrases } from '../data/phrases/muyPicanteLevel';
 import DetectivesVoting from '../components/DetectivesVoting';
 import DetectivesResults from '../components/DetectivesResults';
 import CustomButton from '../components/CustomButton';
+import StatsModal from '../components/StatsModal';
 
 type GameScreenDetectivesNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -61,6 +62,7 @@ export default function GameScreenDetectives({ navigation, route }: Props) {
   const [showVoting, setShowVoting] = useState(true);
   const [currentVotes, setCurrentVotes] = useState<DetectivesVote[]>([]);
   const [currentTruths, setCurrentTruths] = useState<DetectivesTruth[]>([]);
+  const [showStatsModal, setShowStatsModal] = useState(false);
 
   const currentPhrase = phrases[currentPhraseIndex];
 
@@ -129,12 +131,20 @@ export default function GameScreenDetectives({ navigation, route }: Props) {
             Frase {phrasesPlayed + 1} • {phrases.length} totales
           </Text>
         </View>
-        <CustomButton
-          title="Salir"
-          onPress={handleExit}
-          variant="secondary"
-          style={styles.exitButton}
-        />
+        <View style={styles.headerButtons}>
+          <TouchableOpacity
+            style={[styles.iconButton, { backgroundColor: theme.cardBackground }]}
+            onPress={() => setShowStatsModal(true)}
+          >
+            <Text style={styles.iconButtonText}>🏆</Text>
+          </TouchableOpacity>
+          <CustomButton
+            title="Salir"
+            onPress={handleExit}
+            variant="secondary"
+            style={styles.exitButton}
+          />
+        </View>
       </View>
 
       {/* Contenido principal */}
@@ -155,6 +165,16 @@ export default function GameScreenDetectives({ navigation, route }: Props) {
           />
         )}
       </View>
+
+      {/* Modal de estadísticas */}
+      <StatsModal
+        visible={showStatsModal}
+        onClose={() => setShowStatsModal(false)}
+        players={initialPlayers}
+        phrasesPlayed={phrasesPlayed}
+        totalPhrases={phrases.length}
+        unusedPhrases={phrases.length - currentPhraseIndex - 1}
+      />
     </SafeAreaView>
   );
 }
@@ -182,6 +202,23 @@ const styles = StyleSheet.create({
   headerPhrase: {
     fontSize: 13,
     marginTop: 2,
+  },
+  headerButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  iconButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  iconButtonText: {
+    fontSize: 22,
   },
   exitButton: {
     minWidth: 80,

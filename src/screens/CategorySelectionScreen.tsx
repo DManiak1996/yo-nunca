@@ -11,12 +11,14 @@ import {
   StyleSheet,
   TouchableOpacity,
   Animated,
+  ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList, DifficultyLevel, GameMode } from '../types';
 import { useTheme } from '../context/ThemeContext';
 import CagonModal from '../components/CagonModal';
+import BannerAdComponent from '../components/BannerAdComponent';
 import { moderateScale, verticalScale, scale, isSmallDevice } from '../utils/responsive';
 import { colors, spacing, typography, shadows, borderRadius } from '../design-system/tokens';
 
@@ -178,15 +180,20 @@ export default function CategorySelectionScreen({ navigation }: Props) {
             </Text>
           </TouchableOpacity>
         </View>
+      </View>
 
+      {/* Contenedor de explicación con altura fija */}
+      <View style={styles.explanationContainer}>
         {gameMode === 'detectives' && (
-          <Text style={[styles.modeDescription, { color: theme.textSecondary }]}>
-            Vota quién crees que lo ha hecho. Los que fallen sus predicciones beben. Ideal para conocerse.
+          <Text style={[styles.explanationText, { color: theme.textSecondary }]}>
+            🕵️ MODO DETECTIVES{'\n'}
+            Cada pregunta que lea, los jugadores votarán quién creen que lo ha hecho.{'\n'}
+            El jugador con más votos pierde una vida. ¡Descubre los secretos de tus amigos!
           </Text>
         )}
       </View>
 
-      <View style={styles.cardsContainer}>
+      <ScrollView style={styles.categoriesScroll} contentContainerStyle={styles.cardsContainer}>
         {/* Botón CAGÓN (troll) */}
         {renderCategoryCard(
           "CAGÓN",
@@ -226,13 +233,10 @@ export default function CategorySelectionScreen({ navigation }: Props) {
           theme.danger, // Naranja terracota
           300
         )}
-      </View>
+      </ScrollView>
 
-      <View style={styles.footer}>
-        <Text style={[styles.footerText, { color: theme.textSecondary }]}>
-          Los nombres cambian cada vez que entras 🎲
-        </Text>
-      </View>
+      {/* Banner AdMob */}
+      <BannerAdComponent style={styles.adContainer} />
 
       {/* Modal Cagón */}
       <CagonModal
@@ -261,59 +265,51 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(typography.fontSize.xs),
     textAlign: 'center',
   },
-  cardsContainer: {
+  categoriesScroll: {
     flex: 1,
+  },
+  cardsContainer: {
     padding: scale(spacing.sm),
-    justifyContent: 'center',
-    gap: verticalScale(isSmallDevice() ? spacing.sm : spacing.sm),
+    paddingBottom: verticalScale(spacing.lg),
+    gap: verticalScale(isSmallDevice() ? spacing.sm : spacing.md),
   },
   cardWrapper: {
     width: '100%',
   },
   categoryCard: {
-    padding: scale(spacing.sm),
-    borderRadius: moderateScale(borderRadius.lg),
+    padding: scale(spacing.lg), // AUMENTADO de spacing.sm a spacing.lg
+    borderRadius: moderateScale(borderRadius.xl), // AUMENTADO de borderRadius.lg a borderRadius.xl
     alignItems: 'center',
-    ...shadows.md,
+    ...shadows.lg, // AUMENTADO de shadows.md a shadows.lg
     borderWidth: 2,
     borderColor: colors.overlay.light,
-    minHeight: verticalScale(isSmallDevice() ? 60 : 70),
+    minHeight: verticalScale(isSmallDevice() ? 100 : 120), // AUMENTADO de 60-70 a 100-120
     justifyContent: 'center',
   },
   cardIcon: {
-    fontSize: moderateScale(typography.fontSize['2xl']),
+    fontSize: moderateScale(typography.fontSize['3xl']), // AUMENTADO de 2xl a 3xl
     marginBottom: verticalScale(spacing.xs),
   },
   cardTitle: {
-    fontSize: moderateScale(typography.fontSize.sm),
+    fontSize: moderateScale(typography.fontSize.lg), // AUMENTADO de sm a lg
     fontWeight: 'bold',
     color: colors.text.primary,
     textAlign: 'center',
-    marginBottom: verticalScale(2),
+    marginBottom: verticalScale(4), // AUMENTADO de 2 a 4
   },
   cardSubtitle: {
-    fontSize: moderateScale(typography.fontSize.xs),
+    fontSize: moderateScale(typography.fontSize.sm), // AUMENTADO de xs a sm
     color: colors.text.secondary,
     textAlign: 'center',
-  },
-  footer: {
-    padding: scale(spacing.base),
-    alignItems: 'center',
-  },
-  footerText: {
-    fontSize: moderateScale(typography.fontSize.xs),
-    textAlign: 'center',
-    fontStyle: 'italic',
   },
   // V3.0 - Estilos para toggle de modo
   modeToggleContainer: {
     paddingHorizontal: scale(spacing.md),
-    paddingBottom: verticalScale(spacing.sm),
+    paddingTop: verticalScale(spacing.xs),
   },
   modeButtons: {
     flexDirection: 'row',
     gap: scale(spacing.sm),
-    marginBottom: verticalScale(spacing.sm),
   },
   modeButton: {
     flex: 1,
@@ -326,9 +322,23 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(typography.fontSize.xs),
     fontWeight: typography.fontWeight.bold,
   },
-  modeDescription: {
-    fontSize: moderateScale(typography.fontSize.xs),
+  // Contenedor de explicación con altura fija para evitar desplazamiento
+  explanationContainer: {
+    minHeight: verticalScale(100), // Espacio fijo para el texto explicativo
+    paddingHorizontal: scale(spacing.lg),
+    paddingTop: verticalScale(spacing.sm),
+    justifyContent: 'center',
+  },
+  explanationText: {
+    fontSize: moderateScale(typography.fontSize.sm),
+    fontFamily: typography.fontFamily.body,
     textAlign: 'center',
-    lineHeight: moderateScale(typography.fontSize.xs * typography.lineHeight.normal),
+    lineHeight: moderateScale(typography.fontSize.sm * typography.lineHeight.relaxed),
+  },
+  // Banner AdMob
+  adContainer: {
+    marginTop: verticalScale(spacing.md),
+    marginBottom: verticalScale(spacing.sm),
+    opacity: 0.9,
   },
 });

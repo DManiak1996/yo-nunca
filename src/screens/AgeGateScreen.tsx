@@ -17,10 +17,11 @@ export default function AgeGateScreen() {
       "Consumo Responsable",
       "Recuerda beber con responsabilidad.\n\nNunca conduzcas bajo los efectos del alcohol.\n\nSi eliges jugar sin alcohol, puedes usar otras 'penas'.",
       [{ text: "Entendido", onPress: () => {
+        // Navegar a Onboarding después de verificar edad
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
-            routes: [{ name: 'Home' }],
+            routes: [{ name: 'Onboarding' }],
           })
         );
       }}]

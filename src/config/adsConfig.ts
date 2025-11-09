@@ -7,7 +7,7 @@
 
 export const ADS_CONFIG = {
   // Frecuencia de anuncios intersticiales
-  INTERSTITIAL_FREQUENCY: 4, // Mostrar cada X juegos completados
+  INTERSTITIAL_FREQUENCY: 2, // Mostrar cada X juegos completados (aumentado de 4 a 2 para mayor monetización)
 
   // Habilitar/deshabilitar tipos de anuncios
   ENABLE_BANNER_ADS: true,

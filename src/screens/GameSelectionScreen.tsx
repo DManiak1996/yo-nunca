@@ -19,6 +19,8 @@ import { RootStackParamList } from '../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { moderateScale, verticalScale, scale } from '../utils/responsive';
 import CustomButton from '../components/CustomButton';
+import BannerAdComponent from '../components/BannerAdComponent';
+import { spacing } from '../design-system/tokens';
 
 type GameSelectionNavigationProp = StackNavigationProp<RootStackParamList, 'GameSelection'>;
 
@@ -174,7 +176,11 @@ export default function GameSelectionScreen({ navigation }: GameSelectionScreenP
       </View>
 
       {/* Tarjetas de juegos */}
-      <View style={styles.cardsContainer}>
+      <ScrollView
+        style={styles.cardsContainer}
+        contentContainerStyle={styles.cardsContent}
+        showsVerticalScrollIndicator={false}
+      >
         {/* Yo Nunca */}
         {renderGameCard(
           "Yo Nunca",
@@ -201,14 +207,17 @@ export default function GameSelectionScreen({ navigation }: GameSelectionScreenP
           theme.danger,
           () => handleGamePress('botella')
         )}
-      </View>
 
-      {/* Footer con info */}
-      <View style={styles.footer}>
-        <Text style={[styles.footerText, { color: theme.textSecondary }]}>
-          Selecciona un juego para comenzar
-        </Text>
-      </View>
+        {/* Footer con info */}
+        <View style={styles.footer}>
+          <Text style={[styles.footerText, { color: theme.textSecondary }]}>
+            Selecciona un juego para comenzar
+          </Text>
+        </View>
+
+        {/* Banner Ad */}
+        <BannerAdComponent style={styles.adContainer} />
+      </ScrollView>
 
       {/* MODAL DE INFORMACIÓN DEL JUEGO */}
       <Modal
@@ -313,15 +322,18 @@ const styles = StyleSheet.create({
   cardsContainer: {
     flex: 1,
     paddingHorizontal: scale(20),
-    gap: verticalScale(16),
+  },
+  cardsContent: {
+    gap: verticalScale(spacing.md),
+    paddingVertical: verticalScale(spacing.md),
   },
   cardWrapper: {
-    flex: 1,
+    minHeight: verticalScale(140),
   },
   gameCard: {
-    flex: 1,
+    minHeight: verticalScale(140),
     borderRadius: 20,
-    padding: scale(24),
+    padding: scale(spacing.base),
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
@@ -331,29 +343,33 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   cardIcon: {
-    fontSize: moderateScale(64),
-    marginBottom: verticalScale(12),
+    fontSize: moderateScale(52),
+    marginBottom: verticalScale(8),
   },
   cardTitle: {
-    fontSize: moderateScale(24),
+    fontSize: moderateScale(20),
     fontWeight: 'bold',
     color: '#FFFFFF',
     textAlign: 'center',
-    marginBottom: verticalScale(8),
+    marginBottom: verticalScale(4),
   },
   cardSubtitle: {
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(13),
     color: 'rgba(255, 255, 255, 0.9)',
     textAlign: 'center',
   },
   footer: {
-    paddingHorizontal: scale(20),
-    paddingBottom: verticalScale(30),
+    paddingVertical: verticalScale(spacing.md),
     alignItems: 'center',
   },
   footerText: {
     fontSize: moderateScale(14),
     textAlign: 'center',
+  },
+  adContainer: {
+    marginTop: verticalScale(spacing.lg),
+    marginBottom: verticalScale(spacing.sm),
+    opacity: 0.9,
   },
   // Modal styles
   modalOverlay: {

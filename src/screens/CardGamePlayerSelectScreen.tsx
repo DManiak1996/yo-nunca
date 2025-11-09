@@ -45,7 +45,11 @@ export default function CardGamePlayerSelectScreen({ navigation, route }: Props)
         <Text style={[styles.playerNumber, { color: theme.primary }]}>
           #{index + 1}
         </Text>
-        <Text style={[styles.playerName, { color: theme.text }]}>
+        <Text
+          style={[styles.playerName, { color: theme.text }]}
+          numberOfLines={1}
+          ellipsizeMode="tail"
+        >
           {item.name}
         </Text>
       </View>

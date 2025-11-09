@@ -35,22 +35,20 @@ export default function AppNavigator() {
 
   useEffect(() => {
     async function checkInitialState() {
-      const verified = await isAgeVerified();
-      setAgeVerified(verified);
+      // Cargar AMBOS estados en paralelo, siempre
+      const [verified, onboardingStatus] = await Promise.all([
+        isAgeVerified(),
+        AsyncStorage.getItem('onboardingCompleted'),
+      ]);
 
-      // Solo verificar onboarding si ya pasó la verificación de edad
-      if (verified) {
-        const completed = await AsyncStorage.getItem('onboardingCompleted');
-        setOnboardingCompleted(completed === 'true');
-      } else {
-        setOnboardingCompleted(false); // No importa si no ha verificado edad
-      }
+      setAgeVerified(verified);
+      setOnboardingCompleted(onboardingStatus === 'true');
     }
     checkInitialState();
   }, []);
 
-  // Mostrar loading mientras verifica
-  if (ageVerified === null || (ageVerified && onboardingCompleted === null)) {
+  // Mostrar loading mientras verifica AMBOS estados
+  if (ageVerified === null || onboardingCompleted === null) {
     return null; // O un splash screen
   }
 
