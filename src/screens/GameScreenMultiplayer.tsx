@@ -260,6 +260,14 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
 
       // Limpiar la sesión al salir
       await clearGameSession();
+
+      // Incrementar contador de juegos completados para anuncios
+      gamesCompletedCounter++;
+
+      // Mostrar anuncio intersticial si corresponde
+      if (gamesCompletedCounter % ADS_CONFIG.INTERSTITIAL_FREQUENCY === 0 && adLoaded) {
+        showAd();
+      }
     } catch (error) {
       console.error('Error al guardar estadísticas o limpiar sesión:', error);
     }

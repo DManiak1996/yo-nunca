@@ -22,6 +22,7 @@ import { useTheme } from '../context/ThemeContext';
 import { usePlayers } from '../hooks/usePlayers';
 import CustomButton from '../components/CustomButton';
 import BeerTransitionAnimation from '../components/BeerTransitionAnimation';
+import SwipeablePlayerItem from '../components/SwipeablePlayerItem';
 import { validatePlayerName } from '../utils/validation';
 import { sanitizePlayerName } from '../utils/sanitization';
 import { colors, shadows } from '../design-system/tokens';
@@ -199,86 +200,17 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
     const isEditing = editingPlayerId === item.id;
 
     return (
-      <View style={[styles.playerItem, { backgroundColor: theme.cardBackground }]}>
-        <View style={styles.playerInfo}>
-          <Text style={styles.playerAvatar}>{item.avatar}</Text>
-          {isEditing ? (
-            <TextInput
-              style={[
-                styles.playerNameInput,
-                { color: theme.text, borderColor: theme.primary },
-              ]}
-              value={editingName}
-              onChangeText={setEditingName}
-              autoFocus
-              maxLength={20}
-              autoCapitalize="words"
-              onSubmitEditing={handleSaveEdit}
-              accessibilityLabel={`Editar nombre de ${item.name}`}
-              accessibilityHint="Escribe el nuevo nombre del jugador"
-            />
-          ) : (
-            <View style={styles.playerNameContainer}>
-              <Text
-                style={[styles.playerName, { color: theme.text }]}
-                numberOfLines={1}
-                ellipsizeMode="tail"
-              >
-                {item.name}
-              </Text>
-              <Text style={[styles.playerNumber, { color: theme.textSecondary }]}>
-                Jugador {index + 1}
-              </Text>
-            </View>
-          )}
-        </View>
-
-        <View style={styles.playerActions}>
-          {isEditing ? (
-            <>
-              <TouchableOpacity
-                style={[styles.actionButton, { backgroundColor: theme.success }]}
-                onPress={handleSaveEdit}
-                accessibilityLabel="Guardar nombre"
-                accessibilityHint="Toca dos veces para guardar el nuevo nombre"
-                accessibilityRole="button"
-              >
-                <Text style={styles.actionButtonText}>✓</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.actionButton, { backgroundColor: theme.danger }]}
-                onPress={handleCancelEdit}
-                accessibilityLabel="Cancelar edición"
-                accessibilityHint="Toca dos veces para cancelar"
-                accessibilityRole="button"
-              >
-                <Text style={styles.actionButtonText}>✕</Text>
-              </TouchableOpacity>
-            </>
-          ) : (
-            <>
-              <TouchableOpacity
-                style={[styles.actionButton, { backgroundColor: colors.categories.detectives }]}
-                onPress={() => handleStartEdit(item.id, item.name)}
-                accessibilityLabel={`Editar nombre de ${item.name}`}
-                accessibilityHint="Toca dos veces para editar el nombre"
-                accessibilityRole="button"
-              >
-                <Text style={styles.actionButtonText}>✎</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.actionButton, { backgroundColor: colors.warning[500] }]}
-                onPress={() => handleRemovePlayer(item.id, item.name)}
-                accessibilityLabel={`Eliminar a ${item.name}`}
-                accessibilityHint="Toca dos veces para eliminar este jugador"
-                accessibilityRole="button"
-              >
-                <Text style={styles.actionButtonText}>🗑️</Text>
-              </TouchableOpacity>
-            </>
-          )}
-        </View>
-      </View>
+      <SwipeablePlayerItem
+        player={item}
+        index={index}
+        isEditing={isEditing}
+        editingText={editingName}
+        onStartEdit={handleStartEdit}
+        onSaveEdit={handleSaveEdit}
+        onCancelEdit={handleCancelEdit}
+        onEditTextChange={setEditingName}
+        onRemove={handleRemovePlayer}
+      />
     );
   };
 
@@ -290,6 +222,9 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
         </Text>
         <Text style={[styles.subtitle, { color: theme.textSecondary }]}>
           {players.length} jugador{players.length !== 1 ? 'es' : ''}
+        </Text>
+        <Text style={[styles.swipeHint, { color: theme.textSecondary }]}>
+          💡 Desliza a la izquierda para editar o eliminar
         </Text>
       </View>
 
@@ -421,6 +356,12 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
+    marginBottom: 8,
+  },
+  swipeHint: {
+    fontSize: 13,
+    fontStyle: 'italic',
+    textAlign: 'center',
   },
   listContent: {
     padding: 16,

@@ -30,9 +30,9 @@ export interface Theme {
 export type DifficultyLevel = 'cagon' | 'medio' | 'picante' | 'muy_picante';
 
 /**
- * Modos de juego - V3.0
+ * Modos de juego - V3.0 / V4.1 - Added 'custom' for custom phrases
  */
-export type GameMode = 'normal' | 'detectives';
+export type GameMode = 'normal' | 'detectives' | 'custom';
 
 /**
  * Tipos de juego - V4.0

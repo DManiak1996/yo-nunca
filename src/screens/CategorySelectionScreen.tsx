@@ -176,6 +176,23 @@ export default function CategorySelectionScreen({ navigation }: Props) {
               🕵️ Detectives
             </Text>
           </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[
+              styles.modeButton,
+              gameMode === 'custom' && { backgroundColor: theme.primary },
+              gameMode !== 'custom' && { backgroundColor: theme.cardBackground },
+            ]}
+            onPress={() => setGameMode('custom')}
+            accessibilityLabel="Mis Frases"
+            accessibilityHint="Toca dos veces para jugar con tus frases personalizadas"
+            accessibilityRole="button"
+            accessibilityState={{ selected: gameMode === 'custom' }}
+          >
+            <Text style={[styles.modeButtonText, { color: gameMode === 'custom' ? colors.text.primary : theme.text }]}>
+              ✏️ Mis Frases
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -190,47 +207,86 @@ export default function CategorySelectionScreen({ navigation }: Props) {
             ¡Descubre quién es quién realmente! 🎭
           </Text>
         )}
+        {gameMode === 'custom' && (
+          <Text style={[styles.explanationText, { color: theme.textSecondary }]}>
+            ✏️ MIS FRASES{'\n\n'}
+            Juega con tus propias frases personalizadas.{'\n'}
+            Crea situaciones únicas y divertidas que solo tú y tus amigos conocen.{'\n\n'}
+            ¡Haz que el juego sea totalmente tuyo! 🎉
+          </Text>
+        )}
       </View>
 
       <ScrollView style={styles.categoriesScroll} contentContainerStyle={styles.cardsContainer}>
-        {/* Botón CAGÓN (troll) */}
-        {renderCategoryCard(
-          "CAGÓN",
-          "Para los que no se atreven",
-          "🐔",
-          "cagon",
-          colors.neutral[500], // Gris apagado
-          0
-        )}
+        {gameMode !== 'custom' ? (
+          <>
+            {/* Botón CAGÓN (troll) */}
+            {renderCategoryCard(
+              "CAGÓN",
+              "Para los que no se atreven",
+              "🐔",
+              "cagon",
+              colors.neutral[500], // Gris apagado
+              0
+            )}
 
-        {/* Nivel Medio */}
-        {renderCategoryCard(
-          medioName,
-          "Suave y divertido",
-          "🍺",
-          "medio",
-          theme.success, // Verde oliva
-          100
-        )}
+            {/* Nivel Medio */}
+            {renderCategoryCard(
+              medioName,
+              "Suave y divertido",
+              "🍺",
+              "medio",
+              theme.success, // Verde oliva
+              100
+            )}
 
-        {/* Nivel Picante */}
-        {renderCategoryCard(
-          picanteName,
-          "Ahora la cosa se pone seria",
-          "🌶️",
-          "picante",
-          colors.categories.hot, // Naranja
-          200
-        )}
+            {/* Nivel Picante */}
+            {renderCategoryCard(
+              picanteName,
+              "Ahora la cosa se pone seria",
+              "🌶️",
+              "picante",
+              colors.categories.hot, // Naranja
+              200
+            )}
 
-        {/* Nivel Muy Picante */}
-        {renderCategoryCard(
-          muyPicanteName,
-          "Solo para valientes",
-          "🔥",
-          "muy_picante",
-          theme.danger, // Naranja terracota
-          300
+            {/* Nivel Muy Picante */}
+            {renderCategoryCard(
+              muyPicanteName,
+              "Solo para valientes",
+              "🔥",
+              "muy_picante",
+              theme.danger, // Naranja terracota
+              300
+            )}
+          </>
+        ) : (
+          <>
+            {/* Modo Mis Frases - Botones especiales */}
+            <Animated.View style={[styles.cardWrapper, { opacity: fadeAnim }]}>
+              <TouchableOpacity
+                style={[styles.categoryCard, { backgroundColor: colors.secondary[500] }]}
+                onPress={() => navigation.navigate('CustomPhrases')}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.cardIcon}>⚙️</Text>
+                <Text style={styles.cardTitle}>Gestionar Frases</Text>
+                <Text style={styles.cardSubtitle}>Añade, edita o elimina tus frases</Text>
+              </TouchableOpacity>
+            </Animated.View>
+
+            <Animated.View style={[styles.cardWrapper, { opacity: fadeAnim }]}>
+              <TouchableOpacity
+                style={[styles.categoryCard, { backgroundColor: theme.primary }]}
+                onPress={() => navigation.navigate('PlayerSetup', { difficulty: 'medio', gameMode: 'custom' })}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.cardIcon}>🎮</Text>
+                <Text style={styles.cardTitle}>¡Jugar Ahora!</Text>
+                <Text style={styles.cardSubtitle}>Comienza una partida con tus frases</Text>
+              </TouchableOpacity>
+            </Animated.View>
+          </>
         )}
       </ScrollView>
 
