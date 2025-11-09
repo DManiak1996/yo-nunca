@@ -10,12 +10,15 @@ import {
   StyleSheet,
   TouchableOpacity,
   Animated,
+  Modal,
+  ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../context/ThemeContext';
 import { RootStackParamList } from '../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { moderateScale, verticalScale, scale } from '../utils/responsive';
+import CustomButton from '../components/CustomButton';
 
 type GameSelectionNavigationProp = StackNavigationProp<RootStackParamList, 'GameSelection'>;
 
@@ -23,9 +26,64 @@ interface GameSelectionScreenProps {
   navigation: GameSelectionNavigationProp;
 }
 
+type GameType = 'yo-nunca' | 'rey-copas' | 'botella';
+
+interface GameInfo {
+  title: string;
+  icon: string;
+  description: string;
+  rules: string[];
+  minPlayers: number;
+  maxPlayers: number;
+}
+
+const GAME_INFO: Record<GameType, GameInfo> = {
+  'yo-nunca': {
+    title: 'Yo Nunca',
+    icon: '🍺',
+    description: 'El clásico juego de preguntas donde descubrirás secretos y anécdotas de tus amigos.',
+    rules: [
+      'Cada jugador lee una frase que empieza con "Yo nunca..."',
+      'Quien SÍ haya hecho esa acción, bebe',
+      'Puedes elegir entre modo Clásico o Detective',
+      'Hay diferentes categorías disponibles',
+    ],
+    minPlayers: 2,
+    maxPlayers: 10,
+  },
+  'rey-copas': {
+    title: 'El Rey de Copas',
+    icon: '🃏',
+    description: 'Juego de cartas españolas donde cada carta tiene un efecto único y sorprendente.',
+    rules: [
+      'Cada jugador roba una carta en su turno',
+      'Cada carta tiene un efecto especial (repartir tragos, verdad o reto, cascada, etc.)',
+      'Los Jokers permiten crear reglas personalizadas',
+      'El juego continúa hasta que se acabe el mazo',
+    ],
+    minPlayers: 2,
+    maxPlayers: 10,
+  },
+  'botella': {
+    title: 'La Botella',
+    icon: '🍾',
+    description: 'Gira la botella y afronta los retos que te esperan.',
+    rules: [
+      'Un jugador gira la botella virtual',
+      'La botella señala a un jugador al azar',
+      'El jugador elegido debe completar un reto o pregunta',
+      'Ideal para romper el hielo en reuniones',
+    ],
+    minPlayers: 3,
+    maxPlayers: 10,
+  },
+};
+
 export default function GameSelectionScreen({ navigation }: GameSelectionScreenProps) {
   const { theme } = useTheme();
   const [fadeAnim] = useState(new Animated.Value(0));
+  const [selectedGame, setSelectedGame] = useState<GameType | null>(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     // Animación de entrada
@@ -35,6 +93,29 @@ export default function GameSelectionScreen({ navigation }: GameSelectionScreenP
       useNativeDriver: true,
     }).start();
   }, []);
+
+  /**
+   * Abre el modal con la info del juego
+   */
+  const handleGamePress = (gameType: GameType) => {
+    setSelectedGame(gameType);
+    setShowModal(true);
+  };
+
+  /**
+   * Navega al juego seleccionado
+   */
+  const handlePlayGame = () => {
+    setShowModal(false);
+
+    if (selectedGame === 'yo-nunca') {
+      navigation.navigate('CategorySelection');
+    } else if (selectedGame === 'rey-copas') {
+      navigation.navigate('PlayerSetup', { difficulty: 'medio', gameType: 'cardgame' });
+    } else if (selectedGame === 'botella') {
+      navigation.navigate('PlayerSetup', { difficulty: 'medio', gameType: 'bottle' });
+    }
+  };
 
   /**
    * Renderiza una tarjeta de juego
@@ -100,7 +181,7 @@ export default function GameSelectionScreen({ navigation }: GameSelectionScreenP
           "El clásico juego de preguntas",
           "🍺",
           theme.primary,
-          () => navigation.navigate('CategorySelection')
+          () => handleGamePress('yo-nunca')
         )}
 
         {/* El Rey de Copas */}
@@ -109,7 +190,7 @@ export default function GameSelectionScreen({ navigation }: GameSelectionScreenP
           "Juego de cartas españolas",
           "🃏",
           "#E67E22", // Naranja
-          () => navigation.navigate('PlayerSetup', { difficulty: 'medio', gameType: 'cardgame' })
+          () => handleGamePress('rey-copas')
         )}
 
         {/* La Botella */}
@@ -118,7 +199,7 @@ export default function GameSelectionScreen({ navigation }: GameSelectionScreenP
           "Gira la botella y atrévete",
           "🍾",
           theme.danger,
-          () => navigation.navigate('PlayerSetup', { difficulty: 'medio', gameType: 'bottle' })
+          () => handleGamePress('botella')
         )}
       </View>
 
@@ -128,6 +209,75 @@ export default function GameSelectionScreen({ navigation }: GameSelectionScreenP
           Selecciona un juego para comenzar
         </Text>
       </View>
+
+      {/* MODAL DE INFORMACIÓN DEL JUEGO */}
+      <Modal
+        visible={showModal}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setShowModal(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={[styles.modalContainer, { backgroundColor: theme.cardBg }]}>
+            {selectedGame && (
+              <>
+                {/* Header del modal */}
+                <View style={styles.modalHeader}>
+                  <Text style={styles.modalIcon}>{GAME_INFO[selectedGame].icon}</Text>
+                  <Text style={[styles.modalTitle, { color: theme.text }]}>
+                    {GAME_INFO[selectedGame].title}
+                  </Text>
+                </View>
+
+                {/* Descripción */}
+                <ScrollView style={styles.modalContent} showsVerticalScrollIndicator={false}>
+                  <Text style={[styles.modalDescription, { color: theme.textSecondary }]}>
+                    {GAME_INFO[selectedGame].description}
+                  </Text>
+
+                  {/* Reglas */}
+                  <View style={styles.rulesSection}>
+                    <Text style={[styles.rulesTitle, { color: theme.text }]}>
+                      📋 Cómo se juega:
+                    </Text>
+                    {GAME_INFO[selectedGame].rules.map((rule, index) => (
+                      <View key={index} style={styles.ruleItem}>
+                        <Text style={[styles.ruleBullet, { color: theme.primary }]}>•</Text>
+                        <Text style={[styles.ruleText, { color: theme.text }]}>
+                          {rule}
+                        </Text>
+                      </View>
+                    ))}
+                  </View>
+
+                  {/* Info de jugadores */}
+                  <View style={[styles.playersInfo, { backgroundColor: theme.background }]}>
+                    <Text style={[styles.playersInfoText, { color: theme.textSecondary }]}>
+                      👥 {GAME_INFO[selectedGame].minPlayers}-{GAME_INFO[selectedGame].maxPlayers} jugadores
+                    </Text>
+                  </View>
+                </ScrollView>
+
+                {/* Botones */}
+                <View style={styles.modalActions}>
+                  <CustomButton
+                    title="Cancelar"
+                    onPress={() => setShowModal(false)}
+                    variant="secondary"
+                    style={styles.modalButton}
+                  />
+                  <CustomButton
+                    title="¡Jugar!"
+                    onPress={handlePlayGame}
+                    variant="primary"
+                    style={styles.modalButton}
+                  />
+                </View>
+              </>
+            )}
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -204,5 +354,89 @@ const styles = StyleSheet.create({
   footerText: {
     fontSize: moderateScale(14),
     textAlign: 'center',
+  },
+  // Modal styles
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: scale(20),
+  },
+  modalContainer: {
+    width: '100%',
+    maxWidth: scale(500),
+    maxHeight: '80%',
+    borderRadius: moderateScale(20),
+    padding: scale(24),
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.4,
+    shadowRadius: 16,
+    elevation: 12,
+  },
+  modalHeader: {
+    alignItems: 'center',
+    marginBottom: verticalScale(20),
+  },
+  modalIcon: {
+    fontSize: moderateScale(64),
+    marginBottom: verticalScale(12),
+  },
+  modalTitle: {
+    fontSize: moderateScale(28),
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalContent: {
+    maxHeight: verticalScale(350),
+    marginBottom: verticalScale(20),
+  },
+  modalDescription: {
+    fontSize: moderateScale(16),
+    textAlign: 'center',
+    lineHeight: moderateScale(24),
+    marginBottom: verticalScale(20),
+  },
+  rulesSection: {
+    marginBottom: verticalScale(20),
+  },
+  rulesTitle: {
+    fontSize: moderateScale(18),
+    fontWeight: 'bold',
+    marginBottom: verticalScale(12),
+  },
+  ruleItem: {
+    flexDirection: 'row',
+    marginBottom: verticalScale(10),
+    paddingRight: scale(8),
+  },
+  ruleBullet: {
+    fontSize: moderateScale(18),
+    marginRight: scale(8),
+    marginTop: verticalScale(2),
+  },
+  ruleText: {
+    flex: 1,
+    fontSize: moderateScale(14),
+    lineHeight: moderateScale(20),
+  },
+  playersInfo: {
+    padding: scale(12),
+    borderRadius: moderateScale(12),
+    alignItems: 'center',
+    marginTop: verticalScale(8),
+  },
+  playersInfoText: {
+    fontSize: moderateScale(14),
+    fontWeight: '600',
+  },
+  modalActions: {
+    flexDirection: 'row',
+    gap: scale(12),
+    marginTop: verticalScale(8),
+  },
+  modalButton: {
+    flex: 1,
   },
 });

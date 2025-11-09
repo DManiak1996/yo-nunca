@@ -5,7 +5,7 @@
  * Puede dividir los tragos como quiera
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -49,6 +49,19 @@ export default function DistributeDrinksModal({
     });
     return initial;
   });
+
+  /**
+   * Resetear distribución cada vez que se abre el modal o cambia totalDrinks
+   */
+  useEffect(() => {
+    if (visible) {
+      const initial: Record<string, number> = {};
+      allPlayers.forEach((player) => {
+        initial[player.id] = 0;
+      });
+      setDistribution(initial);
+    }
+  }, [visible, totalDrinks, allPlayers]);
 
   /**
    * Calcula cuántos tragos se han asignado en total

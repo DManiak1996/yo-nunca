@@ -152,6 +152,16 @@ export default function CardGameScreen({ navigation, route }: Props) {
   }, [state.currentCard]);
 
   /**
+   * Forzar render inicial de la imagen al montar el componente
+   */
+  const [imageLoaded, setImageLoaded] = useState(false);
+  useEffect(() => {
+    // Forzar actualización después del montaje para asegurar render de imagen
+    const timer = setTimeout(() => setImageLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  /**
    * Maneja el evento de robar una carta
    */
   const handleDrawCard = async () => {
@@ -385,6 +395,7 @@ export default function CardGameScreen({ navigation, route }: Props) {
             {/* Carta trasera (dorso) */}
             <Animated.View style={[styles.cardFace, styles.cardBack, backAnimatedStyle]}>
               <Image
+                key={`card-back-${imageLoaded}`}
                 source={require('../data/cardGame/trasera carta.png')}
                 style={styles.cardImage}
                 resizeMode="contain"
