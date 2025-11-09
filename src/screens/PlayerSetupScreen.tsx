@@ -258,7 +258,7 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
           ) : (
             <>
               <TouchableOpacity
-                style={[styles.actionButton, { backgroundColor: colors.info[500] }]}
+                style={[styles.actionButton, { backgroundColor: colors.categories.detectives }]}
                 onPress={() => handleStartEdit(item.id, item.name)}
                 accessibilityLabel={`Editar nombre de ${item.name}`}
                 accessibilityHint="Toca dos veces para editar el nombre"
@@ -267,7 +267,7 @@ export default function PlayerSetupScreen({ navigation, route }: Props) {
                 <Text style={styles.actionButtonText}>✎</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.actionButton, { backgroundColor: colors.warning[600] }]}
+                style={[styles.actionButton, { backgroundColor: colors.warning[500] }]}
                 onPress={() => handleRemovePlayer(item.id, item.name)}
                 accessibilityLabel={`Eliminar a ${item.name}`}
                 accessibilityHint="Toca dos veces para eliminar este jugador"
