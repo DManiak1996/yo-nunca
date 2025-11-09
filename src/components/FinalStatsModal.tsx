@@ -1,6 +1,7 @@
 /**
  * Modal de estadísticas finales al terminar la partida
  * Diseño estilo campeonato con podio y métricas completas
+ * V2.0 - Refactorizado con Design Tokens
  */
 
 import React, { useEffect } from 'react';
@@ -15,6 +16,7 @@ import { useTheme } from '../context/ThemeContext';
 import { Player } from '../types';
 import { useStats } from '../hooks/useStats';
 import CustomButton from './CustomButton';
+import { colors, spacing, typography, shadows, borderRadius } from '../design-system/tokens';
 
 interface Props {
   visible: boolean;
@@ -121,7 +123,7 @@ export default function FinalStatsModal({
                     {second.name}
                   </Text>
                   <Text style={styles.silverMedal}>🥈</Text>
-                  <View style={[styles.podiumBase, styles.podiumBaseSecond, { backgroundColor: '#C0C0C0' }]}>
+                  <View style={[styles.podiumBase, styles.podiumBaseSecond, { backgroundColor: colors.neutral[400] }]}>
                     <Text style={styles.podiumDrinks}>{second.drinks}</Text>
                     <Text style={styles.podiumLabel}>tragos</Text>
                   </View>
@@ -141,7 +143,7 @@ export default function FinalStatsModal({
                     <Text style={[styles.podiumDrinks, styles.podiumDrinksFirst]}>
                       {winner.drinks}
                     </Text>
-                    <Text style={[styles.podiumLabel, { color: '#000' }]}>tragos</Text>
+                    <Text style={[styles.podiumLabel, { color: colors.text.inverse }]}>tragos</Text>
                   </View>
                 </View>
               )}
@@ -154,7 +156,7 @@ export default function FinalStatsModal({
                     {third.name}
                   </Text>
                   <Text style={styles.bronzeMedal}>🥉</Text>
-                  <View style={[styles.podiumBase, styles.podiumBaseThird, { backgroundColor: '#CD7F32' }]}>
+                  <View style={[styles.podiumBase, styles.podiumBaseThird, { backgroundColor: colors.warning[700] }]}>
                     <Text style={styles.podiumDrinks}>{third.drinks}</Text>
                     <Text style={styles.podiumLabel}>tragos</Text>
                   </View>
@@ -219,9 +221,9 @@ export default function FinalStatsModal({
 
                 {/* Más ardiente */}
                 {mostArdiente && (
-                  <View style={[styles.highlightCard, { backgroundColor: '#E67E2230' }]}>
+                  <View style={[styles.highlightCard, { backgroundColor: colors.overlay.medium }]}>
                     <Text style={styles.highlightIcon}>🔥</Text>
-                    <Text style={[styles.highlightLabel, { color: '#E67E22' }]}>
+                    <Text style={[styles.highlightLabel, { color: colors.warning[500] }]}>
                       Más ardiente
                     </Text>
                     <Text style={[styles.highlightName, { color: theme.text }]} numberOfLines={1}>
@@ -241,9 +243,9 @@ export default function FinalStatsModal({
 
                   if (bestStreakPlayer && (bestStreakPlayer.maxStreak || 0) > 0) {
                     return (
-                      <View style={[styles.highlightCard, { backgroundColor: '#FF6B3530' }]}>
+                      <View style={[styles.highlightCard, { backgroundColor: colors.overlay.medium }]}>
                         <Text style={styles.highlightIcon}>⚡</Text>
-                        <Text style={[styles.highlightLabel, { color: '#FF6B35' }]}>
+                        <Text style={[styles.highlightLabel, { color: colors.primary[500] }]}>
                           Mayor racha
                         </Text>
                         <Text style={[styles.highlightName, { color: theme.text }]} numberOfLines={1}>
@@ -310,49 +312,45 @@ export default function FinalStatsModal({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.85)',
+    backgroundColor: colors.overlay.dark,
     justifyContent: 'center',
     alignItems: 'center',
   },
   modalContainer: {
     width: '95%',
     maxWidth: 500,
-    height: '90%', // CAMBIADO: de maxHeight a height para que flex funcione
-    borderRadius: 24,
-    elevation: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.4,
-    shadowRadius: 10,
-    flexDirection: 'column', // AÑADIDO: estructura flex
+    height: '90%',
+    borderRadius: borderRadius['2xl'],
+    ...shadows.xl,
+    flexDirection: 'column',
   },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 20,
+    paddingBottom: spacing.lg,
   },
   header: {
     alignItems: 'center',
-    paddingTop: 24,
-    paddingBottom: 16,
+    paddingTop: spacing.lg,
+    paddingBottom: spacing.base,
   },
   trophy: {
     fontSize: 64,
-    marginBottom: 8,
+    marginBottom: spacing.sm,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: typography.fontSize['2xl'],
+    fontWeight: typography.fontWeight.bold,
     textAlign: 'center',
   },
   podiumContainer: {
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 24,
-    gap: 8,
+    paddingHorizontal: spacing.base,
+    paddingVertical: spacing.lg,
+    gap: spacing.sm,
   },
   podiumFirst: {
     alignItems: 'center',
@@ -372,113 +370,113 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
   crownIcon: {
-    fontSize: 32,
-    marginBottom: 4,
+    fontSize: typography.fontSize['4xl'],
+    marginBottom: spacing.xs,
   },
   podiumAvatarFirst: {
-    fontSize: 48,
-    marginBottom: 8,
+    fontSize: typography.fontSize['5xl'],
+    marginBottom: spacing.sm,
   },
   podiumAvatar: {
-    fontSize: 36,
-    marginBottom: 6,
+    fontSize: typography.fontSize['4xl'],
+    marginBottom: spacing.xs,
   },
   podiumNameFirst: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: typography.fontSize.base,
+    fontWeight: typography.fontWeight.bold,
     textAlign: 'center',
-    marginBottom: 4,
+    marginBottom: spacing.xs,
   },
   podiumName: {
-    fontSize: 14,
-    fontWeight: '600',
+    fontSize: typography.fontSize.sm,
+    fontWeight: typography.fontWeight.bold,
     textAlign: 'center',
-    marginBottom: 4,
+    marginBottom: spacing.xs,
   },
   goldMedal: {
-    fontSize: 36,
-    marginBottom: 8,
+    fontSize: typography.fontSize['4xl'],
+    marginBottom: spacing.sm,
   },
   silverMedal: {
-    fontSize: 32,
-    marginBottom: 6,
+    fontSize: typography.fontSize['3xl'],
+    marginBottom: spacing.xs,
   },
   bronzeMedal: {
-    fontSize: 28,
-    marginBottom: 6,
+    fontSize: typography.fontSize['3xl'],
+    marginBottom: spacing.xs,
   },
   podiumBase: {
     width: '100%',
-    paddingVertical: 12,
-    borderRadius: 12,
+    paddingVertical: spacing.md,
+    borderRadius: borderRadius.lg,
     alignItems: 'center',
   },
   podiumBaseFirst: {
-    paddingVertical: 16,
+    paddingVertical: spacing.base,
   },
   podiumBaseSecond: {
-    paddingVertical: 12,
+    paddingVertical: spacing.md,
   },
   podiumBaseThird: {
-    paddingVertical: 10,
+    paddingVertical: spacing.sm,
   },
   podiumDrinks: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#FFF',
+    fontSize: typography.fontSize['2xl'],
+    fontWeight: typography.fontWeight.bold,
+    color: colors.text.primary,
   },
   podiumDrinksFirst: {
-    fontSize: 28,
-    color: '#000',
+    fontSize: typography.fontSize['3xl'],
+    color: colors.text.inverse,
   },
   podiumLabel: {
-    fontSize: 12,
-    color: '#FFF',
+    fontSize: typography.fontSize.xs,
+    color: colors.text.primary,
     marginTop: 2,
   },
   section: {
-    paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.lg,
     borderTopWidth: 1,
   },
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 16,
+    fontSize: typography.fontSize.xl,
+    fontWeight: typography.fontWeight.bold,
+    marginBottom: spacing.base,
   },
   highlightsGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 12,
+    gap: spacing.md,
   },
   highlightCard: {
     width: '48%',
-    padding: 16,
-    borderRadius: 16,
+    padding: spacing.base,
+    borderRadius: borderRadius.xl,
     alignItems: 'center',
   },
   highlightIcon: {
-    fontSize: 36,
-    marginBottom: 8,
+    fontSize: typography.fontSize['4xl'],
+    marginBottom: spacing.sm,
   },
   highlightLabel: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    marginBottom: 6,
+    fontSize: typography.fontSize.xs,
+    fontWeight: typography.fontWeight.bold,
+    marginBottom: spacing.xs,
   },
   highlightName: {
-    fontSize: 15,
-    fontWeight: '600',
-    marginBottom: 4,
+    fontSize: typography.fontSize.sm,
+    fontWeight: typography.fontWeight.bold,
+    marginBottom: spacing.xs,
     textAlign: 'center',
   },
   highlightValue: {
-    fontSize: 13,
+    fontSize: typography.fontSize.xs,
   },
   summaryCard: {
     flexDirection: 'row',
-    padding: 20,
-    borderRadius: 16,
+    padding: spacing.lg,
+    borderRadius: borderRadius.xl,
     alignItems: 'center',
     justifyContent: 'space-around',
   },
@@ -487,12 +485,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   summaryValue: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 6,
+    fontSize: typography.fontSize['2xl'],
+    fontWeight: typography.fontWeight.bold,
+    marginBottom: spacing.xs,
   },
   summaryLabel: {
-    fontSize: 12,
+    fontSize: typography.fontSize.xs,
     textAlign: 'center',
   },
   summaryDivider: {
@@ -500,8 +498,8 @@ const styles = StyleSheet.create({
     height: 40,
   },
   buttonsContainer: {
-    padding: 20,
-    paddingTop: 12,
-    gap: 12,
+    padding: spacing.lg,
+    paddingTop: spacing.md,
+    gap: spacing.md,
   },
 });

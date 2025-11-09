@@ -3,7 +3,7 @@
 iIMPORTANTE PARA EL DEV SERVER :npx expo start --dev-client --scheme yonunca
 
 
-App móvil multiplataforma (Android/iOS) del clásico juego de beber "Yo Nunca" para fiestas.
+App móvil multiplataforma (Android/iOS) del clásico juego de beber "Yo Nunca" para fiestas. **Gratis con anuncios no intrusivos** - tu experiencia es lo primero.
 
 ## 🎯 Características
 
@@ -26,10 +26,22 @@ App móvil multiplataforma (Android/iOS) del clásico juego de beber "Yo Nunca" 
 - ✅ Transiciones suaves sin parpadeos
 
 ### Técnico
-- ✅ 100% offline (sin internet)
-- ✅ Sin anuncios
+- ✅ Gratis con anuncios no intrusivos (experiencia de usuario primero)
+- ✅ Tus datos son locales (nombres, frases y estadísticas no salen de tu dispositivo)
 - ✅ TypeScript con strict mode
 - ✅ Performance optimizado
+
+## 💰 Monetización Respetuosa
+
+Esta app es **gratuita** y utiliza Google AdMob con una filosofía user-friendly:
+
+- **Pocos anuncios**: Solo banners discretos en pantallas secundarias
+- **Sin interrupciones durante el juego**: Los anuncios intersticiales aparecen solo entre partidas (cada 3-4 juegos)
+- **Sin anuncios en gameplay activo**: Tu experiencia de juego no se interrumpe
+- **Transparencia total**: Lee nuestra [Privacy Policy](https://dmaniak1996.github.io/yo-nunca/privacy-policy.html) para saber qué datos recopila AdMob
+- **Opción de desactivar personalización**: Puedes optar por no recibir anuncios personalizados en la configuración de tu dispositivo Android
+
+**Proyección de ingresos**: Con 1,000 usuarios activos diarios, estimamos $260-$600/mes. La prioridad es tu experiencia, no la monetización agresiva.
 
 ## 🛠️ Stack Tecnológico
 
@@ -38,6 +50,7 @@ App móvil multiplataforma (Android/iOS) del clásico juego de beber "Yo Nunca" 
 - TypeScript
 - React Navigation
 - AsyncStorage
+- **Google AdMob**: Monetización respetuosa (react-native-google-mobile-ads)
 
 ## 📦 Requisitos previos
 
@@ -185,7 +198,13 @@ export const defaultPhrases: string[] = [
 
 ## 🔒 Privacidad
 
-Esta app NO recopila datos personales. Todo se almacena localmente en tu dispositivo. Ver [Política de Privacidad](./docs/PRIVACY_POLICY.md) completa.
+Lee nuestra [Privacy Policy completa](https://dmaniak1996.github.io/yo-nunca/privacy-policy.html) para entender:
+- Qué datos recopila Google AdMob
+- Cómo protegemos tu información
+- Tus derechos bajo GDPR y CCPA
+- Cómo desactivar anuncios personalizados
+
+**Resumen**: Tus datos de juego (nombres, frases, estadísticas) permanecen en tu dispositivo. Solo AdMob recopila datos para anuncios (Advertising ID, IP), como es estándar en apps gratuitas.
 
 ## 📄 Licencia
 

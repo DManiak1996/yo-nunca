@@ -1,6 +1,7 @@
 /**
  * Modal troll que aparece cuando el usuario selecciona la categoría "CAGÓN"
  * Muestra frases graciosas y lleva un contador de clicks
+ * V2.0 - Refactorizado con Design Tokens
  */
 
 import React, { useEffect, useState } from 'react';
@@ -15,6 +16,7 @@ import {
 import { useTheme } from '../context/ThemeContext';
 import { getRandomCagonPhrase } from '../data/cagonPhrases';
 import { getCagonCounter, incrementCagonCounter } from '../utils/storage';
+import { colors, spacing, typography, shadows, borderRadius } from '../design-system/tokens';
 
 interface Props {
   visible: boolean;
@@ -105,7 +107,7 @@ export default function CagonModal({ visible, onClose }: Props) {
             style={[styles.closeButton, { backgroundColor: theme.primary }]}
             onPress={handleClose}
           >
-            <Text style={[styles.closeButtonText, { color: '#000' }]}>
+            <Text style={[styles.closeButtonText, { color: colors.text.inverse }]}>
               Entendido, lo siento 😔
             </Text>
           </TouchableOpacity>
@@ -123,67 +125,63 @@ export default function CagonModal({ visible, onClose }: Props) {
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backgroundColor: colors.overlay.dark,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: spacing.lg,
   },
   modalContainer: {
     width: '100%',
     maxWidth: 400,
-    borderRadius: 24,
-    padding: 32,
+    borderRadius: borderRadius['2xl'],
+    padding: spacing.xl,
     alignItems: 'center',
-    elevation: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
+    ...shadows.xl,
   },
   icon: {
     fontSize: 80,
-    marginBottom: 20,
+    marginBottom: spacing.lg,
   },
   phrase: {
-    fontSize: 22,
-    fontWeight: 'bold',
+    fontSize: typography.fontSize['2xl'],
+    fontWeight: typography.fontWeight.bold,
     textAlign: 'center',
-    marginBottom: 24,
-    lineHeight: 30,
+    marginBottom: spacing.lg,
+    lineHeight: typography.fontSize['2xl'] * typography.lineHeight.tight,
   },
   counterContainer: {
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 20,
-    marginBottom: 16,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.sm,
+    borderRadius: borderRadius.xl,
+    marginBottom: spacing.base,
   },
   counterText: {
-    color: '#FFF',
-    fontSize: 14,
-    fontWeight: '600',
+    color: colors.text.primary,
+    fontSize: typography.fontSize.sm,
+    fontWeight: typography.fontWeight.bold,
   },
   extraMessage: {
-    fontSize: 14,
+    fontSize: typography.fontSize.sm,
     textAlign: 'center',
-    marginBottom: 12,
+    marginBottom: spacing.md,
     fontStyle: 'italic',
   },
   closeButton: {
-    paddingHorizontal: 32,
-    paddingVertical: 16,
-    borderRadius: 16,
-    marginTop: 8,
+    paddingHorizontal: spacing.xl,
+    paddingVertical: spacing.base,
+    borderRadius: borderRadius.xl,
+    marginTop: spacing.sm,
     width: '100%',
     alignItems: 'center',
-    elevation: 4,
+    ...shadows.md,
   },
   closeButtonText: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: typography.fontSize.lg,
+    fontWeight: typography.fontWeight.bold,
   },
   hint: {
-    fontSize: 12,
-    marginTop: 16,
+    fontSize: typography.fontSize.xs,
+    marginTop: spacing.base,
     textAlign: 'center',
   },
 });

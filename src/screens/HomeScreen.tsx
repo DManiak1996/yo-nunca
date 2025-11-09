@@ -1,5 +1,6 @@
 /**
  * Pantalla de inicio de la app
+ * V2.0 - Refactorizado con Design Tokens
  */
 
 import React, { useState, useEffect } from 'react';
@@ -17,6 +18,7 @@ import { getGameSession, clearGameSession } from '../utils/storage';
 import { useFonts, BebasNeue_400Regular } from '@expo-google-fonts/bebas-neue';
 import { Nunito_400Regular, Nunito_600SemiBold } from '@expo-google-fonts/nunito';
 import { moderateScale, verticalScale, scale, isSmallDevice } from '../utils/responsive';
+import { spacing, typography } from '../design-system/tokens';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -201,20 +203,20 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingHorizontal: scale(20),
+    paddingHorizontal: scale(spacing.lg),
     zIndex: 10, // Por encima de las burbujas
     elevation: 10, // Para Android
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    paddingTop: verticalScale(10),
+    paddingTop: verticalScale(spacing.sm),
   },
   settingsIcon: {
-    padding: scale(10),
+    padding: scale(spacing.sm),
   },
   settingsIconText: {
-    fontSize: moderateScale(28),
+    fontSize: moderateScale(typography.fontSize['3xl']),
     fontWeight: 'bold'
   },
   titleContainer: {
@@ -224,38 +226,39 @@ const styles = StyleSheet.create({
     marginBottom: verticalScale(isSmallDevice() ? 40 : 60),
   },
   logo: {
-    fontSize: moderateScale(48),
-    fontFamily: 'BebasNeue_400Regular',
+    fontSize: moderateScale(typography.fontSize['5xl']),
+    fontFamily: typography.fontFamily.display,
     textAlign: 'center',
     marginBottom: 0,
     letterSpacing: 2,
   },
   subtitle: {
-    fontSize: moderateScale(20),
-    fontFamily: 'Nunito_600SemiBold',
+    fontSize: moderateScale(typography.fontSize.xl),
+    fontFamily: typography.fontFamily.bodyBold,
     textAlign: 'center',
   },
   buttonsContainer: {
-    gap: verticalScale(14),
-    paddingBottom: verticalScale(30),
+    gap: verticalScale(spacing.md),
+    paddingBottom: verticalScale(spacing.xl),
   },
   button: {
     width: '100%',
   },
   sectionTitle: {
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(typography.fontSize.base),
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: verticalScale(8),
-    marginBottom: verticalScale(4),
+    marginTop: verticalScale(spacing.sm),
+    marginBottom: verticalScale(spacing.xs),
   },
   footer: {
     textAlign: 'center',
-    fontSize: moderateScale(12),
-    paddingBottom: 20,
+    fontSize: moderateScale(typography.fontSize.xs),
+    paddingBottom: spacing.lg,
   },
   adContainer: {
-    marginTop: 20,
-    marginBottom: 10,
+    marginTop: spacing.xl, // Mayor separación del contenido principal (user-friendly)
+    marginBottom: spacing.sm,
+    opacity: 0.9, // Ligeramente transparente para ser menos intrusivo
   },
 });

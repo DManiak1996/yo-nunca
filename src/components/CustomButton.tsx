@@ -1,11 +1,13 @@
 /**
  * Botón personalizado con variantes de estilo
+ * V5.0 - Refactorizado con Design Tokens
  */
 
 import React from 'react';
 import { Pressable, Text, StyleSheet } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { moderateScale, verticalScale, scale } from '../utils/responsive';
+import { colors, spacing, typography, shadows, borderRadius } from '../design-system/tokens';
 
 interface CustomButtonProps {
   title: string;
@@ -45,7 +47,7 @@ export default function CustomButton({
 
   const getTextColor = () => {
     // Primary button tiene texto negro, los demás blanco
-    return variant === 'primary' ? '#000000' : '#FFFFFF';
+    return variant === 'primary' ? colors.text.inverse : colors.text.primary;
   };
 
   return (
@@ -72,21 +74,18 @@ export default function CustomButton({
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: moderateScale(14),
-    paddingVertical: verticalScale(16),
-    paddingHorizontal: scale(28),
+    borderRadius: moderateScale(borderRadius.xl),
+    paddingVertical: verticalScale(spacing.base),
+    paddingHorizontal: scale(spacing.lg),
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: 48, // V4.0 - Cumplir estándar de 48dp touch target
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
+    ...shadows.md,
   },
   text: {
-    fontSize: moderateScale(18),
-    fontWeight: '600',
+    fontSize: moderateScale(typography.fontSize.lg),
+    fontWeight: typography.fontWeight.bold,
+    fontFamily: typography.fontFamily.bodyBold,
   },
   disabled: {
     opacity: 0.5,

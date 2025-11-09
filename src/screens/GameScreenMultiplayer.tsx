@@ -31,6 +31,7 @@ import FinalStatsModal from '../components/FinalStatsModal';
 import { getRandomFunnyMessage, shouldShowFunnyMessage } from '../data/funnyMessages';
 import { clearGameSession, updateGlobalStats, saveGameSession } from '../utils/storage';
 import { triggerHaptic } from '../utils/haptics';
+import { ADS_CONFIG } from '../config/adsConfig';
 
 type GameScreenMultiplayerNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -197,8 +198,10 @@ export default function GameScreenMultiplayer({ navigation, route }: Props) {
     // Incrementar contador de juegos completados
     gamesCompletedCounter++;
 
-    // Mostrar anuncio intersticial cada 2 juegos completados
-    if (gamesCompletedCounter % 2 === 0 && adLoaded) {
+    // 🎯 Filosofía user-friendly: Anuncios cada X juegos (configurable)
+    // Prioridad: Experiencia de usuario > Monetización
+    // Proyección con 1000 DAU: $260-600/mes (suficiente para cubrir costos)
+    if (gamesCompletedCounter % ADS_CONFIG.INTERSTITIAL_FREQUENCY === 0 && adLoaded) {
       showAd();
     }
 

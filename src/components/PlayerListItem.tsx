@@ -2,12 +2,14 @@
  * Componente para mostrar un jugador en la lista durante el juego
  * Con zonas táctiles: izquierda resta, derecha suma
  * Sistema de bloqueo de tragos al cambiar de frase
+ * V2.0 - Refactorizado con Design Tokens
  */
 
 import React, { useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import { Player } from '../types';
 import { useTheme } from '../context/ThemeContext';
+import { colors, spacing, typography, shadows, borderRadius } from '../design-system/tokens';
 
 interface Props {
   player: Player;
@@ -91,7 +93,7 @@ const PlayerListItem = React.memo(function PlayerListItem({
     if (player.drinks === 0) return theme.border;
     if (player.drinks < 3) return theme.success;
     if (player.drinks < 6) return theme.primary;
-    if (player.drinks < 10) return '#E67E22'; // Naranja
+    if (player.drinks < 10) return colors.warning[500]; // Naranja
     return theme.danger; // Rojo si tiene 10+
   };
 
@@ -202,53 +204,49 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 12,
-    marginBottom: 8,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
+    borderRadius: borderRadius.lg,
+    marginBottom: spacing.sm,
+    ...shadows.sm,
     borderWidth: 2,
     overflow: 'hidden',
   },
   rankContainer: {
     position: 'absolute',
-    top: 4,
-    left: 4,
+    top: spacing.xs,
+    left: spacing.xs,
     zIndex: 10,
   },
   rankText: {
-    fontSize: 16,
+    fontSize: typography.fontSize.base,
   },
   leftZone: {
     flex: 0.5,
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
-    paddingRight: 6,
+    padding: spacing.sm,
+    paddingRight: spacing.xs,
     minHeight: 70,
   },
   rightZone: {
     flex: 0.5,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 12,
+    padding: spacing.md,
     minHeight: 70,
     borderLeftWidth: 1,
-    borderLeftColor: 'rgba(255, 255, 255, 0.1)',
+    borderLeftColor: colors.overlay.light,
   },
   avatar: {
-    fontSize: 26,
-    marginRight: 8,
+    fontSize: typography.fontSize['2xl'],
+    marginRight: spacing.sm,
   },
   infoContainer: {
     flex: 1,
   },
   name: {
-    fontSize: 15,
-    fontWeight: '600',
-    marginBottom: 4,
+    fontSize: typography.fontSize.sm,
+    fontWeight: typography.fontWeight.bold,
+    marginBottom: spacing.xs,
   },
   drinksContainer: {
     flexDirection: 'row',
@@ -257,11 +255,11 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   drinkIcon: {
-    fontSize: 11,
+    fontSize: typography.fontSize.xs,
     marginRight: 1,
   },
   drinkCount: {
-    fontSize: 11,
+    fontSize: typography.fontSize.xs,
     fontWeight: 'bold',
     marginLeft: 3,
   },
@@ -269,29 +267,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   counterNumber: {
-    fontSize: 28,
+    fontSize: typography.fontSize['3xl'],
     fontWeight: 'bold',
   },
   counterLabel: {
-    fontSize: 10,
+    fontSize: typography.fontSize.xs,
     marginTop: 2,
   },
   zoneIndicator: {
-    fontSize: 10,
+    fontSize: typography.fontSize.xs,
     marginTop: 2,
     opacity: 0.6,
   },
   streakBadge: {
-    backgroundColor: 'rgba(255, 87, 34, 0.2)',
-    paddingHorizontal: 6,
+    backgroundColor: colors.overlay.medium,
+    paddingHorizontal: spacing.xs,
     paddingVertical: 2,
-    borderRadius: 8,
-    marginTop: 4,
+    borderRadius: borderRadius.md,
+    marginTop: spacing.xs,
     alignSelf: 'flex-start',
   },
   streakText: {
-    fontSize: 11,
+    fontSize: typography.fontSize.xs,
     fontWeight: 'bold',
-    color: '#FF5722',
+    color: colors.error[500],
   },
 });

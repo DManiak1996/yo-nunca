@@ -1,6 +1,7 @@
 /**
  * Pantalla de selección de categoría/dificultad
  * Incluye botón troll "CAGÓN" y 3 niveles reales con nombres rotatorios
+ * V2.0 - Refactorizado con Design Tokens
  */
 
 import React, { useState, useEffect } from 'react';
@@ -17,6 +18,7 @@ import { RootStackParamList, DifficultyLevel, GameMode } from '../types';
 import { useTheme } from '../context/ThemeContext';
 import CagonModal from '../components/CagonModal';
 import { moderateScale, verticalScale, scale, isSmallDevice } from '../utils/responsive';
+import { colors, spacing, typography, shadows, borderRadius } from '../design-system/tokens';
 
 type CategorySelectionScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -154,7 +156,7 @@ export default function CategorySelectionScreen({ navigation }: Props) {
             accessibilityRole="button"
             accessibilityState={{ selected: gameMode === 'normal' }}
           >
-            <Text style={[styles.modeButtonText, { color: gameMode === 'normal' ? '#FFF' : theme.text }]}>
+            <Text style={[styles.modeButtonText, { color: gameMode === 'normal' ? colors.text.primary : theme.text }]}>
               🍺 Normal
             </Text>
           </TouchableOpacity>
@@ -171,7 +173,7 @@ export default function CategorySelectionScreen({ navigation }: Props) {
             accessibilityRole="button"
             accessibilityState={{ selected: gameMode === 'detectives' }}
           >
-            <Text style={[styles.modeButtonText, { color: gameMode === 'detectives' ? '#FFF' : theme.text }]}>
+            <Text style={[styles.modeButtonText, { color: gameMode === 'detectives' ? colors.text.primary : theme.text }]}>
               🕵️ Detectives
             </Text>
           </TouchableOpacity>
@@ -191,7 +193,7 @@ export default function CategorySelectionScreen({ navigation }: Props) {
           "Para los que no se atreven",
           "🐔",
           "cagon",
-          "#95a5a6", // Gris apagado
+          colors.neutral[500], // Gris apagado
           0
         )}
 
@@ -211,7 +213,7 @@ export default function CategorySelectionScreen({ navigation }: Props) {
           "Ahora la cosa se pone seria",
           "🌶️",
           "picante",
-          "#E67E22", // Naranja
+          colors.categories.hot, // Naranja
           200
         )}
 
@@ -246,91 +248,87 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    padding: scale(16),
+    padding: scale(spacing.base),
     alignItems: 'center',
   },
   title: {
-    fontSize: moderateScale(22),
+    fontSize: moderateScale(typography.fontSize['2xl']),
     fontWeight: 'bold',
-    marginBottom: verticalScale(4),
+    marginBottom: verticalScale(spacing.xs),
     textAlign: 'center',
   },
   subtitle: {
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(typography.fontSize.xs),
     textAlign: 'center',
   },
   cardsContainer: {
     flex: 1,
-    padding: scale(10),
+    padding: scale(spacing.sm),
     justifyContent: 'center',
-    gap: verticalScale(isSmallDevice() ? 8 : 10),
+    gap: verticalScale(isSmallDevice() ? spacing.sm : spacing.sm),
   },
   cardWrapper: {
     width: '100%',
   },
   categoryCard: {
-    padding: scale(10),
-    borderRadius: moderateScale(12),
+    padding: scale(spacing.sm),
+    borderRadius: moderateScale(borderRadius.lg),
     alignItems: 'center',
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 6,
+    ...shadows.md,
     borderWidth: 2,
-    borderColor: 'rgba(255, 255, 255, 0.1)',
+    borderColor: colors.overlay.light,
     minHeight: verticalScale(isSmallDevice() ? 60 : 70),
     justifyContent: 'center',
   },
   cardIcon: {
-    fontSize: moderateScale(24),
-    marginBottom: verticalScale(4),
+    fontSize: moderateScale(typography.fontSize['2xl']),
+    marginBottom: verticalScale(spacing.xs),
   },
   cardTitle: {
-    fontSize: moderateScale(15),
+    fontSize: moderateScale(typography.fontSize.sm),
     fontWeight: 'bold',
-    color: '#FFF',
+    color: colors.text.primary,
     textAlign: 'center',
     marginBottom: verticalScale(2),
   },
   cardSubtitle: {
-    fontSize: moderateScale(10),
-    color: 'rgba(255, 255, 255, 0.9)',
+    fontSize: moderateScale(typography.fontSize.xs),
+    color: colors.text.secondary,
     textAlign: 'center',
   },
   footer: {
-    padding: scale(16),
+    padding: scale(spacing.base),
     alignItems: 'center',
   },
   footerText: {
-    fontSize: moderateScale(11),
+    fontSize: moderateScale(typography.fontSize.xs),
     textAlign: 'center',
     fontStyle: 'italic',
   },
   // V3.0 - Estilos para toggle de modo
   modeToggleContainer: {
-    paddingHorizontal: scale(14),
-    paddingBottom: verticalScale(10),
+    paddingHorizontal: scale(spacing.md),
+    paddingBottom: verticalScale(spacing.sm),
   },
   modeButtons: {
     flexDirection: 'row',
-    gap: scale(8),
-    marginBottom: verticalScale(8),
+    gap: scale(spacing.sm),
+    marginBottom: verticalScale(spacing.sm),
   },
   modeButton: {
     flex: 1,
-    paddingVertical: verticalScale(8),
-    paddingHorizontal: scale(10),
-    borderRadius: moderateScale(8),
+    paddingVertical: verticalScale(spacing.sm),
+    paddingHorizontal: scale(spacing.sm),
+    borderRadius: moderateScale(borderRadius.md),
     alignItems: 'center',
   },
   modeButtonText: {
-    fontSize: moderateScale(12),
-    fontWeight: '600',
+    fontSize: moderateScale(typography.fontSize.xs),
+    fontWeight: typography.fontWeight.bold,
   },
   modeDescription: {
-    fontSize: moderateScale(10),
+    fontSize: moderateScale(typography.fontSize.xs),
     textAlign: 'center',
-    lineHeight: moderateScale(14),
+    lineHeight: moderateScale(typography.fontSize.xs * typography.lineHeight.normal),
   },
 });
